@@ -5,7 +5,8 @@ from backend.adapters import Case8AdapterProtocol
 from backend.core.errors import system_error
 from backend.models import (CapabilityList, ConfigList, EntropyHistory, EvidenceRecord,
                             Experiment, FieldResponse, FieldSnapshot, MetricCollection,
-                            ResultProvenance, ScalarSeries, ScientificArray, SnapshotIndex)
+                            ResultProvenance, ScalarSeries, ScientificArray, SnapshotAlignment,
+                            SnapshotIndex)
 
 
 class Case8Service:
@@ -59,3 +60,9 @@ class Case8Service:
 
     def load_provenance(self, result_id: str) -> ResultProvenance:
         return self._call("load_provenance", ResultProvenance, result_id)
+
+    def load_snapshot_alignment(self, config_id: str, *, scalar_step: int,
+                                policy: str = "NEAREST_RECORDED",
+                                snapshot_index: int | None = None) -> SnapshotAlignment:
+        return self._call("load_snapshot_alignment", SnapshotAlignment, config_id,
+                          scalar_step=scalar_step, policy=policy, snapshot_index=snapshot_index)

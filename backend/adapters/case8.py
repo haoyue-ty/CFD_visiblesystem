@@ -3,7 +3,8 @@ from typing import Protocol, runtime_checkable
 
 from backend.models import (CapabilityList, ConfigList, EntropyHistory, EvidenceRecord,
                             Experiment, FieldResponse, FieldSnapshot, MetricCollection,
-                            ResultProvenance, ScalarSeries, ScientificArray, SnapshotIndex)
+                            ResultProvenance, ScalarSeries, ScientificArray, SnapshotAlignment,
+                            SnapshotIndex)
 
 
 @runtime_checkable
@@ -23,3 +24,6 @@ class Case8AdapterProtocol(Protocol):
                      snapshot_index: int | None = None) -> MetricCollection: ...
     def load_evidence(self, evidence_id: str) -> EvidenceRecord: ...
     def load_provenance(self, result_id: str) -> ResultProvenance: ...
+    def load_snapshot_alignment(self, config_id: str, *, scalar_step: int,
+                                policy: str = "NEAREST_RECORDED",
+                                snapshot_index: int | None = None) -> SnapshotAlignment: ...

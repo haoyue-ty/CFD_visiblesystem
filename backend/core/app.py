@@ -3,7 +3,11 @@ from uuid import uuid4
 from flask import Flask, g
 
 from backend.adapters import Case8AdapterProtocol
+from backend.api.arrays import register_array_operations
+from backend.api.case8 import register_case8_operations
 from backend.api.catalog import OperationCatalog
+from backend.api.evidence import register_evidence_operations
+from backend.api.registry import register_registry_operations
 from backend.api.system import register_system_operations
 from backend.core.errors import register_error_handlers
 from backend.core.settings import Settings
@@ -25,9 +29,14 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     if project.account_extension.enabled:
         raise ValueError("Bootstrap project metadata must disable accounts")
     catalog = OperationCatalog()
+    service = app.extensions["case8_service"]
     register_system_operations(catalog, project)
+    register_registry_operations(catalog, project, service)
+    register_case8_operations(catalog, project, service)
+    register_array_operations(catalog, project, service)
+    register_evidence_operations(catalog, project, service)
     if configure_catalog is not None:
-        configure_catalog(catalog, app.extensions["case8_service"])
+        configure_catalog(catalog, service)
     app.extensions["operation_catalog"] = catalog
 
     @app.before_request

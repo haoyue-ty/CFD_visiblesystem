@@ -168,6 +168,2122 @@
           }
         }
       }
+    },
+    "/api/v1/experiments": {
+      "get": {
+        "operationId": "REG01",
+        "description": "Lightweight canonical experiment metadata; only Case8 is IMPLEMENTED.",
+        "tags": [
+          "system_registry"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "RegistryService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_ExperimentList_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/{experiment_id}": {
+      "get": {
+        "operationId": "REG02",
+        "description": "Case8 experiment metadata; other families remain PLANNED.",
+        "tags": [
+          "system_registry"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "RegistryService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_Experiment_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_EXPERIMENT",
+            "x-error-codes": [
+              "UNKNOWN_EXPERIMENT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "experiment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Experiment Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/{experiment_id}/configs": {
+      "get": {
+        "operationId": "REG03",
+        "description": "Registered configs for a delivered experiment.",
+        "tags": [
+          "system_registry"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "RegistryService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_ConfigList_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "experiment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Experiment Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/{experiment_id}/capabilities": {
+      "get": {
+        "operationId": "REG04",
+        "description": "Capability-driven tabs and controls supplied by the registry, not hard-coded clients.",
+        "tags": [
+          "system_registry"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "RegistryService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_CapabilityList_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "experiment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Experiment Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/case8/configs/{config_id}/snapshots": {
+      "get": {
+        "operationId": "C801",
+        "description": "Six recorded snapshot headers with refs only; no field values.",
+        "tags": [
+          "case8"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "Case8Service",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_SnapshotIndex_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/case8/configs/{config_id}/snapshots/{snapshot_index}": {
+      "get": {
+        "operationId": "C802",
+        "description": "Recorded snapshot metadata by 1-based index; no time interpolation.",
+        "tags": [
+          "case8"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "Case8Service",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_FieldSnapshot_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "snapshot_index",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Snapshot Index",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Field"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/case8/configs/{config_id}/snapshots/{snapshot_index}/fields/{field_id}": {
+      "get": {
+        "operationId": "C803",
+        "description": "Real field header, spatial domain and array reference for ARRAY01 retrieval.",
+        "tags": [
+          "case8"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "Case8Service",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_FieldResponse_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "snapshot_index",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Snapshot Index",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Field Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/case8/configs/{config_id}/entropy-history": {
+      "get": {
+        "operationId": "C804",
+        "description": "1912 accepted-step entropy history; each selected series keeps its own source.",
+        "tags": [
+          "case8"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "Case8Service",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_EntropyHistory_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "series",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              "title": "Series",
+              "type": "array"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 2000,
+              "maximum": 5000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/case8/configs/{config_id}/scalar-series/{series_id}": {
+      "get": {
+        "operationId": "C805",
+        "description": "One semantic scalar series; display names never identify a scientific quantity.",
+        "tags": [
+          "case8"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "Case8Service",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_ScalarSeries_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "series_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Series Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 2000,
+              "maximum": 5000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/case8/configs/{config_id}/metrics": {
+      "get": {
+        "operationId": "C806",
+        "description": "Width/RMS/HF metrics with definitions and detector scope.",
+        "tags": [
+          "case8"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "Case8Service",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_MetricCollection_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "metric_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Metric Id"
+            }
+          },
+          {
+            "name": "snapshot_index",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Snapshot Index"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/case8/configs/{config_id}/snapshot-alignment": {
+      "get": {
+        "operationId": "C808",
+        "description": "Scalar step to recorded frame alignment with both times exposed.",
+        "tags": [
+          "case8"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "Case8Service",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_SnapshotAlignment_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "scalar_step",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "exclusiveMinimum": 0,
+              "title": "Scalar Step",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "policy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "NEAREST_RECORDED",
+              "enum": [
+                "NEAREST_RECORDED",
+                "PINNED"
+              ],
+              "title": "Policy",
+              "type": "string"
+            }
+          },
+          {
+            "name": "snapshot_index",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Snapshot Index"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/results/{result_id}/arrays/{array_id}": {
+      "get": {
+        "operationId": "ARRAY01",
+        "description": "Flat C-order array values for one registered result/array pair.",
+        "tags": [
+          "scientific_arrays"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "ResultArrayService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_ScientificArray_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "INVALID_RESULT_ID",
+            "x-error-codes": [
+              "INVALID_RESULT_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Result Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "array_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Array Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/evidence/{evidence_id}": {
+      "get": {
+        "operationId": "EVI02",
+        "description": "Full method/config/assets/hashes/freeze/processing/verification evidence record.",
+        "tags": [
+          "evidence"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "EvidenceService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_EvidenceRecord_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_EVIDENCE_ID",
+            "x-error-codes": [
+              "UNKNOWN_EVIDENCE_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "evidence_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Evidence Id"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Asset Id"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/results/{result_id}/provenance": {
+      "get": {
+        "operationId": "EVI03",
+        "description": "Provenance for any scientific result, listing every contributing source reference.",
+        "tags": [
+          "evidence"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "EvidenceService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_ResultProvenance_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "INVALID_RESULT_ID",
+            "x-error-codes": [
+              "INVALID_RESULT_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Result Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -3955,6 +6071,2283 @@
           "components"
         ],
         "title": "OpenAPIDocument",
+        "type": "object"
+      },
+      "AvailableEnvelope_ExperimentList_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentList"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[ExperimentList]",
+        "type": "object"
+      },
+      "ExperimentList": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Experiment"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "ExperimentList",
+        "type": "object"
+      },
+      "PartialEnvelope_ExperimentList_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExperimentList"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[ExperimentList]",
+        "type": "object"
+      },
+      "ApiEnvelope_ExperimentList_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_ExperimentList_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_ExperimentList_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_ExperimentList_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_ExperimentList_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[ExperimentList]"
+      },
+      "AvailableEnvelope_Experiment_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Experiment"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[Experiment]",
+        "type": "object"
+      },
+      "PartialEnvelope_Experiment_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Experiment"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[Experiment]",
+        "type": "object"
+      },
+      "ApiEnvelope_Experiment_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_Experiment_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_Experiment_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_Experiment_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_Experiment_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[Experiment]"
+      },
+      "Input_ExperimentPath": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "experiment_id"
+        ],
+        "title": "ExperimentPath",
+        "type": "object"
+      },
+      "AvailableEnvelope_ConfigList_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ConfigList"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[ConfigList]",
+        "type": "object"
+      },
+      "ConfigList": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentConfig"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "items"
+        ],
+        "title": "ConfigList",
+        "type": "object"
+      },
+      "PartialEnvelope_ConfigList_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ConfigList"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[ConfigList]",
+        "type": "object"
+      },
+      "ApiEnvelope_ConfigList_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_ConfigList_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_ConfigList_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_ConfigList_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_ConfigList_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[ConfigList]"
+      },
+      "AvailableEnvelope_CapabilityList_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CapabilityList"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[CapabilityList]",
+        "type": "object"
+      },
+      "CapabilityList": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentCapability"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "items"
+        ],
+        "title": "CapabilityList",
+        "type": "object"
+      },
+      "PartialEnvelope_CapabilityList_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CapabilityList"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[CapabilityList]",
+        "type": "object"
+      },
+      "ApiEnvelope_CapabilityList_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_CapabilityList_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_CapabilityList_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_CapabilityList_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_CapabilityList_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[CapabilityList]"
+      },
+      "AvailableEnvelope_SnapshotIndex_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SnapshotIndex"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[SnapshotIndex]",
+        "type": "object"
+      },
+      "PartialEnvelope_SnapshotIndex_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SnapshotIndex"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[SnapshotIndex]",
+        "type": "object"
+      },
+      "ApiEnvelope_SnapshotIndex_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_SnapshotIndex_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_SnapshotIndex_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_SnapshotIndex_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_SnapshotIndex_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[SnapshotIndex]"
+      },
+      "Input_ConfigQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "config_id"
+        ],
+        "title": "ConfigQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_FieldSnapshot_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/FieldSnapshot"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[FieldSnapshot]",
+        "type": "object"
+      },
+      "PartialEnvelope_FieldSnapshot_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/FieldSnapshot"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[FieldSnapshot]",
+        "type": "object"
+      },
+      "ApiEnvelope_FieldSnapshot_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_FieldSnapshot_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_FieldSnapshot_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_FieldSnapshot_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_FieldSnapshot_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[FieldSnapshot]"
+      },
+      "Input_SnapshotQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "snapshot_index": {
+            "title": "Snapshot Index",
+            "type": "integer"
+          },
+          "field": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Field"
+          }
+        },
+        "required": [
+          "config_id",
+          "snapshot_index"
+        ],
+        "title": "SnapshotQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_FieldResponse_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/FieldResponse"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[FieldResponse]",
+        "type": "object"
+      },
+      "FieldResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "snapshot": {
+            "$ref": "#/components/schemas/FieldSnapshot"
+          },
+          "field": {
+            "$ref": "#/components/schemas/FieldDescriptor"
+          }
+        },
+        "required": [
+          "snapshot",
+          "field"
+        ],
+        "title": "FieldResponse",
+        "type": "object"
+      },
+      "PartialEnvelope_FieldResponse_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/FieldResponse"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[FieldResponse]",
+        "type": "object"
+      },
+      "ApiEnvelope_FieldResponse_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_FieldResponse_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_FieldResponse_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_FieldResponse_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_FieldResponse_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[FieldResponse]"
+      },
+      "Input_FieldQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "snapshot_index": {
+            "title": "Snapshot Index",
+            "type": "integer"
+          },
+          "field_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Field Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "config_id",
+          "snapshot_index",
+          "field_id"
+        ],
+        "title": "FieldQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_EntropyHistory_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EntropyHistory"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[EntropyHistory]",
+        "type": "object"
+      },
+      "PartialEnvelope_EntropyHistory_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EntropyHistory"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[EntropyHistory]",
+        "type": "object"
+      },
+      "ApiEnvelope_EntropyHistory_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_EntropyHistory_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_EntropyHistory_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_EntropyHistory_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_EntropyHistory_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[EntropyHistory]"
+      },
+      "Input_HistoryQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "series": {
+            "default": [],
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Series",
+            "type": "array"
+          },
+          "offset": {
+            "default": 0,
+            "minimum": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "limit": {
+            "default": 2000,
+            "maximum": 5000,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "config_id"
+        ],
+        "title": "HistoryQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_ScalarSeries_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ScalarSeries"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[ScalarSeries]",
+        "type": "object"
+      },
+      "PartialEnvelope_ScalarSeries_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ScalarSeries"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[ScalarSeries]",
+        "type": "object"
+      },
+      "ApiEnvelope_ScalarSeries_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_ScalarSeries_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_ScalarSeries_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_ScalarSeries_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_ScalarSeries_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[ScalarSeries]"
+      },
+      "Input_ScalarSeriesQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "series_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Series Id",
+            "type": "string"
+          },
+          "offset": {
+            "default": 0,
+            "minimum": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "limit": {
+            "default": 2000,
+            "maximum": 5000,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "config_id",
+          "series_id"
+        ],
+        "title": "ScalarSeriesQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_MetricCollection_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MetricCollection"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[MetricCollection]",
+        "type": "object"
+      },
+      "PartialEnvelope_MetricCollection_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MetricCollection"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[MetricCollection]",
+        "type": "object"
+      },
+      "ApiEnvelope_MetricCollection_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_MetricCollection_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_MetricCollection_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_MetricCollection_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_MetricCollection_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[MetricCollection]"
+      },
+      "Input_MetricQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "metric_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Metric Id"
+          },
+          "snapshot_index": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Snapshot Index"
+          }
+        },
+        "required": [
+          "config_id"
+        ],
+        "title": "MetricQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_SnapshotAlignment_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SnapshotAlignment"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[SnapshotAlignment]",
+        "type": "object"
+      },
+      "PartialEnvelope_SnapshotAlignment_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SnapshotAlignment"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[SnapshotAlignment]",
+        "type": "object"
+      },
+      "ApiEnvelope_SnapshotAlignment_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_SnapshotAlignment_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_SnapshotAlignment_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_SnapshotAlignment_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_SnapshotAlignment_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[SnapshotAlignment]"
+      },
+      "Input_AlignmentQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "scalar_step": {
+            "exclusiveMinimum": 0,
+            "title": "Scalar Step",
+            "type": "integer"
+          },
+          "policy": {
+            "default": "NEAREST_RECORDED",
+            "enum": [
+              "NEAREST_RECORDED",
+              "PINNED"
+            ],
+            "title": "Policy",
+            "type": "string"
+          },
+          "snapshot_index": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Snapshot Index"
+          }
+        },
+        "required": [
+          "config_id",
+          "scalar_step"
+        ],
+        "title": "AlignmentQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_ScientificArray_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ScientificArray"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[ScientificArray]",
+        "type": "object"
+      },
+      "PartialEnvelope_ScientificArray_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ScientificArray"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[ScientificArray]",
+        "type": "object"
+      },
+      "ApiEnvelope_ScientificArray_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_ScientificArray_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_ScientificArray_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_ScientificArray_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_ScientificArray_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[ScientificArray]"
+      },
+      "Input_ArrayQuery": {
+        "additionalProperties": false,
+        "description": "format is fixed FLAT_JSON; no user dtype/member/path/downsample is accepted.",
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          },
+          "array_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Array Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result_id",
+          "array_id"
+        ],
+        "title": "ArrayQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_EvidenceRecord_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EvidenceRecord"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[EvidenceRecord]",
+        "type": "object"
+      },
+      "PartialEnvelope_EvidenceRecord_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EvidenceRecord"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[EvidenceRecord]",
+        "type": "object"
+      },
+      "ApiEnvelope_EvidenceRecord_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_EvidenceRecord_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_EvidenceRecord_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_EvidenceRecord_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_EvidenceRecord_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[EvidenceRecord]"
+      },
+      "Input_IdentityQuery": {
+        "additionalProperties": false,
+        "description": "Path-only identity selector for EVI02 and EVI04.",
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Evidence Id"
+          },
+          "asset_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Asset Id"
+          }
+        },
+        "title": "IdentityQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_ResultProvenance_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ResultProvenance"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[ResultProvenance]",
+        "type": "object"
+      },
+      "PartialEnvelope_ResultProvenance_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ResultProvenance"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[ResultProvenance]",
+        "type": "object"
+      },
+      "ApiEnvelope_ResultProvenance_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_ResultProvenance_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_ResultProvenance_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_ResultProvenance_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_ResultProvenance_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[ResultProvenance]"
+      },
+      "Input_ProvenanceQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result_id"
+        ],
+        "title": "ProvenanceQuery",
         "type": "object"
       }
     }
