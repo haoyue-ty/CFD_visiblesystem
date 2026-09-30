@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "shockpath",
+  "name": "ShockPath Bootstrap",
+  "architecture_style": "HYBRID_SHARED_SCIENTIFIC_WORKSPACE",
+  "api_version": "v1",
+  "registry_revision": "bootstrap-metadata-v1",
+  "data_revision": "bootstrap-no-scientific-data-v1",
+  "release_id": {"state": "NOT_APPLICABLE", "reason": "No release bundle in bootstrap"},
+  "replay_primary": true,
+  "live_demo_priority": "P1",
+  "top_level_navigation": ["Home", "Explore", "Lab", "Evidence"],
+  "page_template_ids": ["P01", "P02", "P03", "P04", "P05", "P06", "P07", "P08", "P09"],
+  "experiments": [
+    {"experiment_id": "case8", "name": "Case8", "delivery_status": "PLANNED"},
+    {"experiment_id": "gate", "name": "Gate", "delivery_status": "PLANNED"},
+    {"experiment_id": "entropy-closure", "name": "Entropy Closure", "delivery_status": "PLANNED"},
+    {"experiment_id": "spectrum", "name": "Spectrum", "delivery_status": "PLANNED"},
+    {"experiment_id": "modal-validation", "name": "Modal Validation", "delivery_status": "PLANNED"},
+    {"experiment_id": "cylinder", "name": "Cylinder", "delivery_status": "PLANNED"}
+  ],
+  "account_extension": {"enabled": false, "status": "UNSUPPORTED", "registration_method": "QQ_EMAIL_CODE"},
+  "limitations": [
+    {"id": "lim.bootstrap.delivery", "code": "BOOTSTRAP_ONLY", "description": "Software metadata only; scientific adapters and resources are not delivered", "affected_refs": ["case8"], "severity": "INFO"}
+  ]
+}

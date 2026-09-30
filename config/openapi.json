@@ -1,0 +1,3962 @@
+{
+  "openapi": "3.1.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "ShockPath Bootstrap",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/system": {
+      "get": {
+        "operationId": "SYS01",
+        "description": "Bootstrap project metadata; all scientific experiments remain PLANNED.",
+        "tags": [
+          "system_registry"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "RegistryService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_ProjectInfo_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/openapi.json": {
+      "get": {
+        "operationId": "DOC01",
+        "description": "Native OpenAPI 3.1 document, without ApiEnvelope.",
+        "tags": [
+          "system_registry"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "ContractExporter",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenAPIDocument"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR",
+            "x-error-codes": [
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Fact_str_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_str_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_str_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[str]"
+      },
+      "KnownFact_str_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[str]",
+        "type": "object"
+      },
+      "UnresolvedFact": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "UNKNOWN",
+              "MISSING",
+              "NOT_APPLICABLE"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "reason": {
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "reason"
+        ],
+        "title": "UnresolvedFact",
+        "type": "object"
+      },
+      "UnitSpec": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "system": {
+            "enum": [
+              "MODEL",
+              "DIMENSIONLESS",
+              "UNKNOWN"
+            ],
+            "title": "System",
+            "type": "string"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "si_mapping": {
+            "$ref": "#/components/schemas/Fact_str_"
+          }
+        },
+        "required": [
+          "id",
+          "system",
+          "quantity",
+          "label",
+          "si_mapping"
+        ],
+        "title": "UnitSpec",
+        "type": "object"
+      },
+      "ScientificLimitation": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "affected_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Affected Refs",
+            "type": "array"
+          },
+          "severity": {
+            "enum": [
+              "INFO",
+              "WARNING",
+              "BLOCKING"
+            ],
+            "title": "Severity",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "description",
+          "affected_refs",
+          "severity"
+        ],
+        "title": "ScientificLimitation",
+        "type": "object"
+      },
+      "Fact_AwareDatetime_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_AwareDatetime_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_AwareDatetime_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[AwareDatetime]"
+      },
+      "KnownFact_AwareDatetime_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "format": "date-time",
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[AwareDatetime]",
+        "type": "object"
+      },
+      "Verification": {
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "FROZEN_VERIFIED",
+              "VERIFIED_NOT_FROZEN",
+              "DERIVED_VERIFIED",
+              "AVAILABLE_UNVERIFIED",
+              "PARTIAL",
+              "MISSING",
+              "LEGACY",
+              "SUPERSEDED",
+              "NOT_APPLICABLE"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "basis": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Basis",
+            "type": "array"
+          },
+          "verified_at": {
+            "$ref": "#/components/schemas/Fact_AwareDatetime_"
+          },
+          "observation_at": {
+            "$ref": "#/components/schemas/Fact_AwareDatetime_"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "basis",
+          "verified_at",
+          "observation_at",
+          "evidence_refs"
+        ],
+        "title": "Verification",
+        "type": "object"
+      },
+      "Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1), _PydanticGeneralMetadata(pattern='^[A-Za-z0-9_.-]+$')])]]"
+      },
+      "Fact_bool_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_bool_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_bool_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[bool]"
+      },
+      "KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1), _PydanticGeneralMetadata(pattern='^[A-Za-z0-9_.-]+$')])]]",
+        "type": "object"
+      },
+      "KnownFact_bool_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[bool]",
+        "type": "object"
+      },
+      "ProvenanceRef": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "title": "Evidence Refs",
+            "type": "array"
+          },
+          "source_asset_ids": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Source Asset Ids",
+            "type": "array"
+          },
+          "registry_revision": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Registry Revision",
+            "type": "string"
+          },
+          "data_revision": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Data Revision",
+            "type": "string"
+          },
+          "release_id": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "source_drift": {
+            "$ref": "#/components/schemas/Fact_bool_"
+          }
+        },
+        "required": [
+          "evidence_refs",
+          "source_asset_ids",
+          "registry_revision",
+          "data_revision",
+          "release_id",
+          "source_drift"
+        ],
+        "title": "ProvenanceRef",
+        "type": "object"
+      },
+      "Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)])]]"
+      },
+      "Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_2_____": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_2_____",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_2_____"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0), Le(le=2)])]]"
+      },
+      "Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0)])]]"
+      },
+      "Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Gt_gt_0_____": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Gt_gt_0_____",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Gt_gt_0_____"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True)]), FieldInfo(annotation=NoneType, required=True, metadata=[Gt(gt=0)])]]"
+      },
+      "Fact_TimeInterval_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_TimeInterval_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_TimeInterval_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[TimeInterval]"
+      },
+      "KnownFact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "number"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)])]]",
+        "type": "object"
+      },
+      "KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_2_____": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "maximum": 2,
+            "minimum": 0,
+            "title": "Value",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0), Le(le=2)])]]",
+        "type": "object"
+      },
+      "KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "minimum": 0,
+            "title": "Value",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0)])]]",
+        "type": "object"
+      },
+      "KnownFact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Gt_gt_0_____": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "exclusiveMinimum": 0,
+            "title": "Value",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[Annotated[int, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True)]), FieldInfo(annotation=NoneType, required=True, metadata=[Gt(gt=0)])]]",
+        "type": "object"
+      },
+      "KnownFact_TimeInterval_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/TimeInterval"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[TimeInterval]",
+        "type": "object"
+      },
+      "ScopeSpec": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "boundary_scope": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "spatial_domain_ref": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "mask_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Mask Refs",
+            "type": "array"
+          },
+          "definition_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Definition Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "description",
+          "boundary_scope",
+          "spatial_domain_ref",
+          "mask_refs",
+          "definition_refs"
+        ],
+        "title": "ScopeSpec",
+        "type": "object"
+      },
+      "TimeInterval": {
+        "additionalProperties": false,
+        "properties": {
+          "start": {
+            "title": "Start",
+            "type": "number"
+          },
+          "end": {
+            "title": "End",
+            "type": "number"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "TimeInterval",
+        "type": "object"
+      },
+      "TimeSpec": {
+        "additionalProperties": false,
+        "properties": {
+          "sampling": {
+            "enum": [
+              "STATIC",
+              "TERMINAL",
+              "MULTI_SNAPSHOT",
+              "PER_STEP",
+              "PER_STAGE"
+            ],
+            "title": "Sampling",
+            "type": "string"
+          },
+          "accumulation": {
+            "enum": [
+              "NONE",
+              "TRAJECTORY_INTEGRATED",
+              "STEP_INCREMENT",
+              "STAGE_WEIGHTED_INCREMENT"
+            ],
+            "title": "Accumulation",
+            "type": "string"
+          },
+          "physical_time": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          },
+          "interval": {
+            "$ref": "#/components/schemas/Fact_TimeInterval_"
+          },
+          "step_index": {
+            "$ref": "#/components/schemas/Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"
+          },
+          "stage_index": {
+            "$ref": "#/components/schemas/Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_2_____"
+          },
+          "snapshot_index": {
+            "$ref": "#/components/schemas/Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Gt_gt_0_____"
+          },
+          "index_convention": {
+            "title": "Index Convention",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sampling",
+          "accumulation",
+          "physical_time",
+          "interval",
+          "step_index",
+          "stage_index",
+          "snapshot_index",
+          "index_convention"
+        ],
+        "title": "TimeSpec",
+        "type": "object"
+      },
+      "ScientificResult": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          },
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "semantic_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Semantic Id",
+            "type": "string"
+          },
+          "data_origin": {
+            "enum": [
+              "FROZEN_PRODUCTION",
+              "VERIFIED_PRODUCTION",
+              "VERIFIED_POSTPROCESS",
+              "DIAGNOSTIC_RERUN",
+              "MOCK",
+              "SCHEMATIC",
+              "LIVE_DEMO"
+            ],
+            "title": "Data Origin",
+            "type": "string"
+          },
+          "availability": {
+            "enum": [
+              "AVAILABLE",
+              "PARTIAL"
+            ],
+            "title": "Availability",
+            "type": "string"
+          },
+          "time": {
+            "$ref": "#/components/schemas/TimeSpec"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ScopeSpec"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/UnitSpec"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/Verification"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/ProvenanceRef"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "result_id",
+          "experiment_id",
+          "config_id",
+          "semantic_id",
+          "data_origin",
+          "availability",
+          "time",
+          "scope",
+          "unit",
+          "verification",
+          "provenance",
+          "limitations"
+        ],
+        "title": "ScientificResult",
+        "type": "object"
+      },
+      "ErrorDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "title": "Field",
+            "type": "string"
+          },
+          "issue": {
+            "title": "Issue",
+            "type": "string"
+          },
+          "allowed_values": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Allowed Values",
+            "type": "array"
+          }
+        },
+        "required": [
+          "field",
+          "issue",
+          "allowed_values"
+        ],
+        "title": "ErrorDetail",
+        "type": "object"
+      },
+      "ErrorTarget": {
+        "additionalProperties": false,
+        "properties": {
+          "resource_type": {
+            "title": "Resource Type",
+            "type": "string"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          }
+        },
+        "required": [
+          "resource_type",
+          "identity"
+        ],
+        "title": "ErrorTarget",
+        "type": "object"
+      },
+      "ErrorBody": {
+        "additionalProperties": false,
+        "properties": {
+          "domain": {
+            "enum": [
+              "SYSTEM",
+              "SCIENTIFIC",
+              "ACCOUNT"
+            ],
+            "title": "Domain",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "target": {
+            "$ref": "#/components/schemas/ErrorTarget"
+          },
+          "retryable": {
+            "title": "Retryable",
+            "type": "boolean"
+          },
+          "details": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            },
+            "title": "Details",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "domain",
+          "code",
+          "message",
+          "target",
+          "retryable",
+          "details",
+          "evidence_refs"
+        ],
+        "title": "ErrorBody",
+        "type": "object"
+      },
+      "AccountFeatureInfo": {
+        "additionalProperties": false,
+        "description": "Static feature metadata only; no account storage or operations.",
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "AVAILABLE",
+              "UNSUPPORTED",
+              "ERROR"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "registration_method": {
+            "const": "QQ_EMAIL_CODE",
+            "title": "Registration Method",
+            "type": "string"
+          }
+        },
+        "required": [
+          "enabled",
+          "status",
+          "registration_method"
+        ],
+        "title": "AccountFeatureInfo",
+        "type": "object"
+      },
+      "ExperimentRef": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "delivery_status": {
+            "enum": [
+              "PLANNED",
+              "IMPLEMENTED"
+            ],
+            "title": "Delivery Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "name",
+          "delivery_status"
+        ],
+        "title": "ExperimentRef",
+        "type": "object"
+      },
+      "ProjectInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "project_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Project Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "architecture_style": {
+            "title": "Architecture Style",
+            "type": "string"
+          },
+          "api_version": {
+            "title": "Api Version",
+            "type": "string"
+          },
+          "registry_revision": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Registry Revision",
+            "type": "string"
+          },
+          "data_revision": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Data Revision",
+            "type": "string"
+          },
+          "release_id": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "replay_primary": {
+            "title": "Replay Primary",
+            "type": "boolean"
+          },
+          "live_demo_priority": {
+            "title": "Live Demo Priority",
+            "type": "string"
+          },
+          "top_level_navigation": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Level Navigation",
+            "type": "array"
+          },
+          "page_template_ids": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Page Template Ids",
+            "type": "array"
+          },
+          "experiments": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentRef"
+            },
+            "title": "Experiments",
+            "type": "array"
+          },
+          "account_extension": {
+            "$ref": "#/components/schemas/AccountFeatureInfo"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "project_id",
+          "name",
+          "architecture_style",
+          "api_version",
+          "registry_revision",
+          "data_revision",
+          "release_id",
+          "replay_primary",
+          "live_demo_priority",
+          "top_level_navigation",
+          "page_template_ids",
+          "experiments",
+          "account_extension",
+          "limitations"
+        ],
+        "title": "ProjectInfo",
+        "type": "object"
+      },
+      "AxisExtent": {
+        "additionalProperties": false,
+        "properties": {
+          "axis": {
+            "title": "Axis",
+            "type": "string"
+          },
+          "lower": {
+            "title": "Lower",
+            "type": "number"
+          },
+          "upper": {
+            "title": "Upper",
+            "type": "number"
+          }
+        },
+        "required": [
+          "axis",
+          "lower",
+          "upper"
+        ],
+        "title": "AxisExtent",
+        "type": "object"
+      },
+      "AxisSize": {
+        "additionalProperties": false,
+        "properties": {
+          "axis": {
+            "title": "Axis",
+            "type": "string"
+          },
+          "size": {
+            "exclusiveMinimum": 0,
+            "title": "Size",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "axis",
+          "size"
+        ],
+        "title": "AxisSize",
+        "type": "object"
+      },
+      "ConfigCapability": {
+        "additionalProperties": false,
+        "properties": {
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "SUPPORTED",
+              "PARTIAL",
+              "MISSING",
+              "UNSUPPORTED"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "result_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Result Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "config_id",
+          "status",
+          "reason",
+          "result_refs"
+        ],
+        "title": "ConfigCapability",
+        "type": "object"
+      },
+      "ControlSpec": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "ENUM",
+              "RECORDED_INDEX"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "allowed_values": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Allowed Values",
+            "type": "array"
+          },
+          "combination_registry_ref": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          }
+        },
+        "required": [
+          "name",
+          "kind",
+          "allowed_values",
+          "combination_registry_ref"
+        ],
+        "title": "ControlSpec",
+        "type": "object"
+      },
+      "ExperimentCapability": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "task": {
+            "title": "Task",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "SUPPORTED",
+              "PARTIAL",
+              "MISSING",
+              "UNSUPPORTED"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "available_for_configs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Available For Configs",
+            "type": "array"
+          },
+          "config_support": {
+            "items": {
+              "$ref": "#/components/schemas/ConfigCapability"
+            },
+            "title": "Config Support",
+            "type": "array"
+          },
+          "controls": {
+            "items": {
+              "$ref": "#/components/schemas/ControlSpec"
+            },
+            "title": "Controls",
+            "type": "array"
+          },
+          "tab_policy": {
+            "$ref": "#/components/schemas/TabPolicy"
+          },
+          "result_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Result Refs",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "experiment_id",
+          "task",
+          "status",
+          "available_for_configs",
+          "config_support",
+          "controls",
+          "tab_policy",
+          "result_refs",
+          "limitations",
+          "evidence_refs"
+        ],
+        "title": "ExperimentCapability",
+        "type": "object"
+      },
+      "ExperimentConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/ParameterValue"
+            },
+            "title": "Parameters",
+            "type": "array"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/ProtocolSpec"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/Verification"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "experiment_id",
+          "name",
+          "parameters",
+          "protocol",
+          "verification",
+          "limitations",
+          "evidence_refs"
+        ],
+        "title": "ExperimentConfig",
+        "type": "object"
+      },
+      "Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^[0-9a-f]{64}$')])]]"
+      },
+      "Fact_GridSpec_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_GridSpec_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_GridSpec_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[GridSpec]"
+      },
+      "Fact_Union_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______str__": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_Union_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______str__",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_Union_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______str__"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[Union[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)])], str]]"
+      },
+      "GridSpec": {
+        "additionalProperties": false,
+        "properties": {
+          "coordinate_system": {
+            "enum": [
+              "CARTESIAN",
+              "CURVILINEAR_POLAR"
+            ],
+            "title": "Coordinate System",
+            "type": "string"
+          },
+          "dimensions": {
+            "items": {
+              "$ref": "#/components/schemas/AxisSize"
+            },
+            "title": "Dimensions",
+            "type": "array"
+          },
+          "extent": {
+            "items": {
+              "$ref": "#/components/schemas/AxisExtent"
+            },
+            "title": "Extent",
+            "type": "array"
+          }
+        },
+        "required": [
+          "coordinate_system",
+          "dimensions",
+          "extent"
+        ],
+        "title": "GridSpec",
+        "type": "object"
+      },
+      "KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^[0-9a-f]{64}$')])]]",
+        "type": "object"
+      },
+      "KnownFact_GridSpec_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/GridSpec"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[GridSpec]",
+        "type": "object"
+      },
+      "KnownFact_Union_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______str__": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[Union[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)])], str]]",
+        "type": "object"
+      },
+      "ParameterValue": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "enum": [
+              "q_aa",
+              "q_at",
+              "gate",
+              "CFL",
+              "epsilon",
+              "ell",
+              "mode"
+            ],
+            "title": "Name",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Fact_Union_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______str__"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/UnitSpec"
+          }
+        },
+        "required": [
+          "name",
+          "value",
+          "unit"
+        ],
+        "title": "ParameterValue",
+        "type": "object"
+      },
+      "ProtocolSpec": {
+        "additionalProperties": false,
+        "properties": {
+          "method_name": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "method_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "grid": {
+            "$ref": "#/components/schemas/Fact_GridSpec_"
+          },
+          "integrator": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "reconstruction": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "final_time": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          },
+          "boundary_scope": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "protocol_asset_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Protocol Asset Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "method_name",
+          "method_hash",
+          "grid",
+          "integrator",
+          "reconstruction",
+          "final_time",
+          "boundary_scope",
+          "protocol_asset_refs"
+        ],
+        "title": "ProtocolSpec",
+        "type": "object"
+      },
+      "TabPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "tab_id": {
+            "title": "Tab Id",
+            "type": "string"
+          },
+          "visible_for_family": {
+            "title": "Visible For Family",
+            "type": "boolean"
+          },
+          "disabled_for_configs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Disabled For Configs",
+            "type": "array"
+          },
+          "unsupported_deep_link_behavior": {
+            "const": "EXPLAIN",
+            "title": "Unsupported Deep Link Behavior",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tab_id",
+          "visible_for_family",
+          "disabled_for_configs",
+          "unsupported_deep_link_behavior"
+        ],
+        "title": "TabPolicy",
+        "type": "object"
+      },
+      "Experiment": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "scientific_family": {
+            "title": "Scientific Family",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "capabilities": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentCapability"
+            },
+            "title": "Capabilities",
+            "type": "array"
+          },
+          "available_configs": {
+            "items": {
+              "$ref": "#/components/schemas/ExperimentConfig"
+            },
+            "title": "Available Configs",
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "AVAILABLE",
+              "PARTIAL",
+              "MISSING",
+              "UNSUPPORTED",
+              "ERROR"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "delivery_status": {
+            "enum": [
+              "PLANNED",
+              "IMPLEMENTED"
+            ],
+            "title": "Delivery Status",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          },
+          "related_experiment_ids": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Related Experiment Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "id",
+          "name",
+          "scientific_family",
+          "description",
+          "capabilities",
+          "available_configs",
+          "status",
+          "delivery_status",
+          "limitations",
+          "evidence_refs",
+          "related_experiment_ids"
+        ],
+        "title": "Experiment",
+        "type": "object"
+      },
+      "ArrayDescriptor": {
+        "additionalProperties": false,
+        "properties": {
+          "array_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Array Id",
+            "type": "string"
+          },
+          "dtype": {
+            "enum": [
+              "float64",
+              "int64",
+              "bool",
+              "complex128"
+            ],
+            "title": "Dtype",
+            "type": "string"
+          },
+          "shape": {
+            "items": {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            "title": "Shape",
+            "type": "array"
+          },
+          "order": {
+            "const": "C",
+            "title": "Order",
+            "type": "string"
+          },
+          "axes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Axes",
+            "type": "array"
+          },
+          "encoding": {
+            "const": "FLAT_JSON",
+            "title": "Encoding",
+            "type": "string"
+          },
+          "element_count": {
+            "exclusiveMinimum": 0,
+            "title": "Element Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "array_id",
+          "dtype",
+          "shape",
+          "order",
+          "axes",
+          "encoding",
+          "element_count"
+        ],
+        "title": "ArrayDescriptor",
+        "type": "object"
+      },
+      "ArrayRef": {
+        "additionalProperties": false,
+        "properties": {
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          },
+          "descriptor": {
+            "$ref": "#/components/schemas/ArrayDescriptor"
+          }
+        },
+        "required": [
+          "result_id",
+          "descriptor"
+        ],
+        "title": "ArrayRef",
+        "type": "object"
+      },
+      "AxisDescriptor": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "size": {
+            "exclusiveMinimum": 0,
+            "title": "Size",
+            "type": "integer"
+          },
+          "coordinate_values": {
+            "$ref": "#/components/schemas/Fact_list_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______"
+          },
+          "coordinate_array_ref": {
+            "$ref": "#/components/schemas/Fact_ArrayRef_"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/UnitSpec"
+          }
+        },
+        "required": [
+          "name",
+          "size",
+          "coordinate_values",
+          "coordinate_array_ref",
+          "unit"
+        ],
+        "title": "AxisDescriptor",
+        "type": "object"
+      },
+      "Fact_ArrayRef_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_ArrayRef_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_ArrayRef_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[ArrayRef]"
+      },
+      "Fact_list_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_list_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_list_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[list[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)])]]]"
+      },
+      "FieldDescriptor": {
+        "additionalProperties": false,
+        "properties": {
+          "field_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Field Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/SpatialDomain"
+          },
+          "array_ref": {
+            "$ref": "#/components/schemas/ArrayRef"
+          },
+          "mask_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Mask Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "field_id",
+          "label",
+          "result",
+          "domain",
+          "array_ref",
+          "mask_refs"
+        ],
+        "title": "FieldDescriptor",
+        "type": "object"
+      },
+      "KnownFact_ArrayRef_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/ArrayRef"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[ArrayRef]",
+        "type": "object"
+      },
+      "KnownFact_list_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "items": {
+              "type": "number"
+            },
+            "title": "Value",
+            "type": "array"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[list[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)])]]]",
+        "type": "object"
+      },
+      "MeasureConvention": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "integral_rule": {
+            "title": "Integral Rule",
+            "type": "string"
+          },
+          "measure_parameters": {
+            "items": {
+              "$ref": "#/components/schemas/NamedFact"
+            },
+            "title": "Measure Parameters",
+            "type": "array"
+          },
+          "includes_time_weights": {
+            "title": "Includes Time Weights",
+            "type": "boolean"
+          },
+          "includes_spatial_measure": {
+            "title": "Includes Spatial Measure",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "description",
+          "integral_rule",
+          "measure_parameters",
+          "includes_time_weights",
+          "includes_spatial_measure"
+        ],
+        "title": "MeasureConvention",
+        "type": "object"
+      },
+      "NamedFact": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Fact_Union_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______str__"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "title": "NamedFact",
+        "type": "object"
+      },
+      "SpatialDomain": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "coordinate_system": {
+            "enum": [
+              "CARTESIAN",
+              "CURVILINEAR_POLAR",
+              "FOURIER_PROFILE",
+              "ANGULAR"
+            ],
+            "title": "Coordinate System",
+            "type": "string"
+          },
+          "location_type": {
+            "enum": [
+              "CARTESIAN_CELL",
+              "CARTESIAN_X_FACE",
+              "CARTESIAN_Y_FACE",
+              "CARTESIAN_ROW",
+              "CYLINDER_RADIAL_FACE",
+              "CYLINDER_ANGULAR_FACE",
+              "CYLINDER_ANGULAR_SECTOR",
+              "CYLINDER_FRONT_BAND",
+              "PROFILE_CELL"
+            ],
+            "title": "Location Type",
+            "type": "string"
+          },
+          "shape": {
+            "items": {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            "title": "Shape",
+            "type": "array"
+          },
+          "axes": {
+            "items": {
+              "$ref": "#/components/schemas/AxisDescriptor"
+            },
+            "title": "Axes",
+            "type": "array"
+          },
+          "extent": {
+            "items": {
+              "$ref": "#/components/schemas/AxisExtent"
+            },
+            "title": "Extent",
+            "type": "array"
+          },
+          "measure_convention": {
+            "$ref": "#/components/schemas/MeasureConvention"
+          },
+          "boundary_scope": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "geometry_ref": {
+            "$ref": "#/components/schemas/Fact_ArrayRef_"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "coordinate_system",
+          "location_type",
+          "shape",
+          "axes",
+          "extent",
+          "measure_convention",
+          "boundary_scope",
+          "geometry_ref",
+          "evidence_refs"
+        ],
+        "title": "SpatialDomain",
+        "type": "object"
+      },
+      "FieldSnapshot": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "snapshot_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Snapshot Id",
+            "type": "string"
+          },
+          "snapshot_index": {
+            "exclusiveMinimum": 0,
+            "title": "Snapshot Index",
+            "type": "integer"
+          },
+          "step_index": {
+            "minimum": 0,
+            "title": "Step Index",
+            "type": "integer"
+          },
+          "physical_time": {
+            "title": "Physical Time",
+            "type": "number"
+          },
+          "grid": {
+            "$ref": "#/components/schemas/GridSpec"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldDescriptor"
+            },
+            "title": "Fields",
+            "type": "array"
+          }
+        },
+        "required": [
+          "result",
+          "snapshot_id",
+          "snapshot_index",
+          "step_index",
+          "physical_time",
+          "grid",
+          "fields"
+        ],
+        "title": "FieldSnapshot",
+        "type": "object"
+      },
+      "SnapshotIndex": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "snapshot_count": {
+            "minimum": 0,
+            "title": "Snapshot Count",
+            "type": "integer"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FieldSnapshot"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "config_id",
+          "snapshot_count",
+          "items"
+        ],
+        "title": "SnapshotIndex",
+        "type": "object"
+      },
+      "ComplexValue": {
+        "additionalProperties": false,
+        "properties": {
+          "real": {
+            "title": "Real",
+            "type": "number"
+          },
+          "imag": {
+            "title": "Imag",
+            "type": "number"
+          }
+        },
+        "required": [
+          "real",
+          "imag"
+        ],
+        "title": "ComplexValue",
+        "type": "object"
+      },
+      "ScientificArray": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "descriptor": {
+            "$ref": "#/components/schemas/ArrayDescriptor"
+          },
+          "values": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/components/schemas/ComplexValue"
+                }
+              ]
+            },
+            "title": "Values",
+            "type": "array"
+          }
+        },
+        "required": [
+          "result",
+          "descriptor",
+          "values"
+        ],
+        "title": "ScientificArray",
+        "type": "object"
+      },
+      "ScalarPoint": {
+        "additionalProperties": false,
+        "properties": {
+          "point_index": {
+            "minimum": 0,
+            "title": "Point Index",
+            "type": "integer"
+          },
+          "step_index": {
+            "$ref": "#/components/schemas/Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"
+          },
+          "stage_index": {
+            "$ref": "#/components/schemas/Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_2_____"
+          },
+          "source_step_index": {
+            "$ref": "#/components/schemas/Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"
+          },
+          "source_stage_index": {
+            "$ref": "#/components/schemas/Fact_Annotated_int__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"
+          },
+          "physical_time": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          },
+          "interval": {
+            "$ref": "#/components/schemas/Fact_TimeInterval_"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          }
+        },
+        "required": [
+          "point_index",
+          "step_index",
+          "stage_index",
+          "source_step_index",
+          "source_stage_index",
+          "physical_time",
+          "interval",
+          "value"
+        ],
+        "title": "ScalarPoint",
+        "type": "object"
+      },
+      "PageWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "offset": {
+            "minimum": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "limit": {
+            "exclusiveMinimum": 0,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "returned_count": {
+            "minimum": 0,
+            "title": "Returned Count",
+            "type": "integer"
+          },
+          "total_count": {
+            "minimum": 0,
+            "title": "Total Count",
+            "type": "integer"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "offset",
+          "limit",
+          "returned_count",
+          "total_count",
+          "has_more"
+        ],
+        "title": "PageWindow",
+        "type": "object"
+      },
+      "ScalarSeries": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "series_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Series Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "total_point_count": {
+            "minimum": 0,
+            "title": "Total Point Count",
+            "type": "integer"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/ScalarPoint"
+            },
+            "title": "Points",
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageWindow"
+          },
+          "aggregation": {
+            "enum": [
+              "NONE",
+              "CUMULATIVE",
+              "STEP_INCREMENT",
+              "STAGE_AGGREGATE"
+            ],
+            "title": "Aggregation",
+            "type": "string"
+          },
+          "source_column": {
+            "title": "Source Column",
+            "type": "string"
+          },
+          "definition_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Definition Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result",
+          "series_id",
+          "label",
+          "total_point_count",
+          "points",
+          "page",
+          "aggregation",
+          "source_column",
+          "definition_id"
+        ],
+        "title": "ScalarSeries",
+        "type": "object"
+      },
+      "Fact_SnapshotAlignment_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_SnapshotAlignment_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_SnapshotAlignment_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[SnapshotAlignment]"
+      },
+      "KnownFact_SnapshotAlignment_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/SnapshotAlignment"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[SnapshotAlignment]",
+        "type": "object"
+      },
+      "SnapshotAlignment": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "selection_policy": {
+            "enum": [
+              "NEAREST_RECORDED",
+              "PINNED"
+            ],
+            "title": "Selection Policy",
+            "type": "string"
+          },
+          "selected_scalar_step": {
+            "exclusiveMinimum": 0,
+            "title": "Selected Scalar Step",
+            "type": "integer"
+          },
+          "selected_scalar_time": {
+            "title": "Selected Scalar Time",
+            "type": "number"
+          },
+          "displayed_snapshot_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Displayed Snapshot Id",
+            "type": "string"
+          },
+          "displayed_snapshot_index": {
+            "exclusiveMinimum": 0,
+            "title": "Displayed Snapshot Index",
+            "type": "integer"
+          },
+          "displayed_snapshot_time": {
+            "title": "Displayed Snapshot Time",
+            "type": "number"
+          },
+          "signed_time_delta": {
+            "title": "Signed Time Delta",
+            "type": "number"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "config_id",
+          "selection_policy",
+          "selected_scalar_step",
+          "selected_scalar_time",
+          "displayed_snapshot_id",
+          "displayed_snapshot_index",
+          "displayed_snapshot_time",
+          "signed_time_delta",
+          "limitations"
+        ],
+        "title": "SnapshotAlignment",
+        "type": "object"
+      },
+      "EntropyHistory": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "series": {
+            "items": {
+              "$ref": "#/components/schemas/ScalarSeries"
+            },
+            "title": "Series",
+            "type": "array"
+          },
+          "stage_aggregate_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Stage Aggregate Refs",
+            "type": "array"
+          },
+          "snapshot_alignment": {
+            "$ref": "#/components/schemas/Fact_SnapshotAlignment_"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "config_id",
+          "series",
+          "stage_aggregate_refs",
+          "snapshot_alignment",
+          "limitations",
+          "evidence_refs"
+        ],
+        "title": "EntropyHistory",
+        "type": "object"
+      },
+      "DetectorSpec": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "definition": {
+            "title": "Definition",
+            "type": "string"
+          },
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/NamedFact"
+            },
+            "title": "Parameters",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "definition",
+          "parameters",
+          "evidence_refs"
+        ],
+        "title": "DetectorSpec",
+        "type": "object"
+      },
+      "Fact_DetectorSpec_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_DetectorSpec_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_DetectorSpec_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[DetectorSpec]"
+      },
+      "KnownFact_DetectorSpec_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/DetectorSpec"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[DetectorSpec]",
+        "type": "object"
+      },
+      "Metric": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "metric_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Metric Id",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          },
+          "definition_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Definition Id",
+            "type": "string"
+          },
+          "detector": {
+            "$ref": "#/components/schemas/Fact_DetectorSpec_"
+          },
+          "time_scope": {
+            "$ref": "#/components/schemas/TimeSpec"
+          },
+          "display_label": {
+            "title": "Display Label",
+            "type": "string"
+          },
+          "resolution_limit": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          }
+        },
+        "required": [
+          "result",
+          "metric_id",
+          "value",
+          "definition_id",
+          "detector",
+          "time_scope",
+          "display_label",
+          "resolution_limit"
+        ],
+        "title": "Metric",
+        "type": "object"
+      },
+      "AvailableSlot_Metric_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Metric"
+          }
+        },
+        "required": [
+          "availability",
+          "value"
+        ],
+        "title": "AvailableSlot[Metric]",
+        "type": "object"
+      },
+      "FailedSlot": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "enum": [
+              "MISSING",
+              "UNSUPPORTED",
+              "ERROR"
+            ],
+            "title": "Availability",
+            "type": "string"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "required": [
+          "availability",
+          "error"
+        ],
+        "title": "FailedSlot",
+        "type": "object"
+      },
+      "PartialSlot_Metric_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Metric"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "availability",
+          "value",
+          "issues"
+        ],
+        "title": "PartialSlot[Metric]",
+        "type": "object"
+      },
+      "ResourceSlot_Metric_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableSlot_Metric_",
+            "ERROR": "#/components/schemas/FailedSlot",
+            "MISSING": "#/components/schemas/FailedSlot",
+            "PARTIAL": "#/components/schemas/PartialSlot_Metric_",
+            "UNSUPPORTED": "#/components/schemas/FailedSlot"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableSlot_Metric_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialSlot_Metric_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedSlot"
+          }
+        ],
+        "title": "ResourceSlot[Metric]"
+      },
+      "MetricCollection": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceSlot_Metric_"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "config_id",
+          "items",
+          "evidence_refs"
+        ],
+        "title": "MetricCollection",
+        "type": "object"
+      },
+      "Fact_ExperimentConfig_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_ExperimentConfig_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_ExperimentConfig_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[ExperimentConfig]"
+      },
+      "Fact_FreezeReference_": {
+        "discriminator": {
+          "mapping": {
+            "KNOWN": "#/components/schemas/KnownFact_FreezeReference_",
+            "MISSING": "#/components/schemas/UnresolvedFact",
+            "NOT_APPLICABLE": "#/components/schemas/UnresolvedFact",
+            "UNKNOWN": "#/components/schemas/UnresolvedFact"
+          },
+          "propertyName": "state"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/KnownFact_FreezeReference_"
+          },
+          {
+            "$ref": "#/components/schemas/UnresolvedFact"
+          }
+        ],
+        "title": "Fact[FreezeReference]"
+      },
+      "FreezeReference": {
+        "additionalProperties": false,
+        "properties": {
+          "freeze_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Freeze Id",
+            "type": "string"
+          },
+          "manifest_asset_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Manifest Asset Id",
+            "type": "string"
+          },
+          "recorded_at": {
+            "$ref": "#/components/schemas/Fact_AwareDatetime_"
+          },
+          "hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          }
+        },
+        "required": [
+          "freeze_id",
+          "manifest_asset_id",
+          "recorded_at",
+          "hash"
+        ],
+        "title": "FreezeReference",
+        "type": "object"
+      },
+      "KnownFact_ExperimentConfig_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/ExperimentConfig"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[ExperimentConfig]",
+        "type": "object"
+      },
+      "KnownFact_FreezeReference_": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "const": "KNOWN",
+            "title": "State",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/FreezeReference"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ],
+        "title": "KnownFact[FreezeReference]",
+        "type": "object"
+      },
+      "MaskIndexSet": {
+        "additionalProperties": false,
+        "properties": {
+          "axis": {
+            "title": "Axis",
+            "type": "string"
+          },
+          "indices": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "title": "Indices",
+            "type": "array"
+          },
+          "index_base": {
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Index Base",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "axis",
+          "indices",
+          "index_base"
+        ],
+        "title": "MaskIndexSet",
+        "type": "object"
+      },
+      "MaskSpec": {
+        "additionalProperties": false,
+        "description": "Dependency of EvidenceRecord, not an allocation adapter.",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "GATE_CELL_SHOCK_WINDOW",
+              "CASE8_NATIVE_FACE_SHOCK_WINDOW",
+              "SPECTRUM_FIXED_SHOCK_CELLS",
+              "CYLINDER_FIXED_FRONT_BAND"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "domain_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Domain Refs",
+            "type": "array"
+          },
+          "definition": {
+            "title": "Definition",
+            "type": "string"
+          },
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/NamedFact"
+            },
+            "title": "Parameters",
+            "type": "array"
+          },
+          "index_sets": {
+            "items": {
+              "$ref": "#/components/schemas/MaskIndexSet"
+            },
+            "title": "Index Sets",
+            "type": "array"
+          },
+          "mask_array_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ArrayRef"
+            },
+            "title": "Mask Array Refs",
+            "type": "array"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ScopeSpec"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/Verification"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "domain_refs",
+          "definition",
+          "parameters",
+          "index_sets",
+          "mask_array_refs",
+          "scope",
+          "verification",
+          "evidence_refs"
+        ],
+        "title": "MaskSpec",
+        "type": "object"
+      },
+      "ProcessingRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "FORMAT_MAPPING",
+              "METADATA_CORRECTION",
+              "VERIFIED_DERIVATION",
+              "DISPLAY_ONLY"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "input_asset_ids": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Input Asset Ids",
+            "type": "array"
+          },
+          "definition_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Definition Refs",
+            "type": "array"
+          },
+          "processing_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/Verification"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "description",
+          "input_asset_ids",
+          "definition_refs",
+          "processing_hash",
+          "verification"
+        ],
+        "title": "ProcessingRecord",
+        "type": "object"
+      },
+      "ScientificDefinition": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Id",
+            "type": "string"
+          },
+          "semantic_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Semantic Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "definition": {
+            "title": "Definition",
+            "type": "string"
+          },
+          "time_rule": {
+            "title": "Time Rule",
+            "type": "string"
+          },
+          "spatial_rule": {
+            "title": "Spatial Rule",
+            "type": "string"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/UnitSpec"
+          },
+          "mask_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Mask Refs",
+            "type": "array"
+          },
+          "detector": {
+            "$ref": "#/components/schemas/Fact_DetectorSpec_"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "semantic_id",
+          "title",
+          "definition",
+          "time_rule",
+          "spatial_rule",
+          "unit",
+          "mask_refs",
+          "detector",
+          "evidence_refs",
+          "limitations"
+        ],
+        "title": "ScientificDefinition",
+        "type": "object"
+      },
+      "SourceAsset": {
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "source_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "source_display": {
+            "title": "Source Display",
+            "type": "string"
+          },
+          "relative_origin": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "role": {
+            "enum": [
+              "DATA",
+              "CONFIG",
+              "METHOD",
+              "MASK",
+              "ANALYSIS",
+              "FREEZE",
+              "MISSING_REFERENCE"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "format": {
+            "title": "Format",
+            "type": "string"
+          },
+          "recorded_data_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "current_data_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "data_drift": {
+            "$ref": "#/components/schemas/Fact_bool_"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/Verification"
+          },
+          "canonical_selected": {
+            "title": "Canonical Selected",
+            "type": "boolean"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "asset_id",
+          "source_id",
+          "source_display",
+          "relative_origin",
+          "role",
+          "format",
+          "recorded_data_hash",
+          "current_data_hash",
+          "data_drift",
+          "verification",
+          "canonical_selected",
+          "limitations"
+        ],
+        "title": "SourceAsset",
+        "type": "object"
+      },
+      "SourceObservation": {
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "recorded_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "current_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "drift": {
+            "$ref": "#/components/schemas/Fact_bool_"
+          },
+          "observation_at": {
+            "$ref": "#/components/schemas/Fact_AwareDatetime_"
+          }
+        },
+        "required": [
+          "asset_id",
+          "recorded_hash",
+          "current_hash",
+          "drift",
+          "observation_at"
+        ],
+        "title": "SourceObservation",
+        "type": "object"
+      },
+      "EvidenceRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "evidence_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "result_ids": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Result Ids",
+            "type": "array"
+          },
+          "result_contexts": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificResult"
+            },
+            "title": "Result Contexts",
+            "type": "array"
+          },
+          "experiment_id": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "config_id": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "config": {
+            "$ref": "#/components/schemas/Fact_ExperimentConfig_"
+          },
+          "definitions": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificDefinition"
+            },
+            "title": "Definitions",
+            "type": "array"
+          },
+          "masks": {
+            "items": {
+              "$ref": "#/components/schemas/MaskSpec"
+            },
+            "title": "Masks",
+            "type": "array"
+          },
+          "method_name": {
+            "$ref": "#/components/schemas/Fact_str_"
+          },
+          "method_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "recorded_source_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "current_source_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "source_observations": {
+            "items": {
+              "$ref": "#/components/schemas/SourceObservation"
+            },
+            "title": "Source Observations",
+            "type": "array"
+          },
+          "source_assets": {
+            "items": {
+              "$ref": "#/components/schemas/SourceAsset"
+            },
+            "title": "Source Assets",
+            "type": "array"
+          },
+          "data_hash": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern____0-9a-f__64________"
+          },
+          "freeze_reference": {
+            "$ref": "#/components/schemas/Fact_FreezeReference_"
+          },
+          "processing": {
+            "items": {
+              "$ref": "#/components/schemas/ProcessingRecord"
+            },
+            "title": "Processing",
+            "type": "array"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/Verification"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "source_drift": {
+            "$ref": "#/components/schemas/Fact_bool_"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/Fact_AwareDatetime_"
+          },
+          "verified_at": {
+            "$ref": "#/components/schemas/Fact_AwareDatetime_"
+          },
+          "related_evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Related Evidence Refs",
+            "type": "array"
+          },
+          "superseded_by": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          }
+        },
+        "required": [
+          "schema_version",
+          "evidence_id",
+          "result_ids",
+          "result_contexts",
+          "experiment_id",
+          "config_id",
+          "config",
+          "definitions",
+          "masks",
+          "method_name",
+          "method_hash",
+          "recorded_source_hash",
+          "current_source_hash",
+          "source_observations",
+          "source_assets",
+          "data_hash",
+          "freeze_reference",
+          "processing",
+          "verification",
+          "limitations",
+          "source_drift",
+          "created_at",
+          "verified_at",
+          "related_evidence_refs",
+          "superseded_by"
+        ],
+        "title": "EvidenceRecord",
+        "type": "object"
+      },
+      "EvidenceIndexItem": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "result_ids": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Result Ids",
+            "type": "array"
+          },
+          "experiment_id": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/Verification"
+          },
+          "source_drift": {
+            "$ref": "#/components/schemas/Fact_bool_"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "result_ids",
+          "experiment_id",
+          "title",
+          "verification",
+          "source_drift",
+          "limitations"
+        ],
+        "title": "EvidenceIndexItem",
+        "type": "object"
+      },
+      "ResultProvenance": {
+        "additionalProperties": false,
+        "properties": {
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/ProvenanceRef"
+          },
+          "evidence_records": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "title": "Evidence Records",
+            "type": "array"
+          }
+        },
+        "required": [
+          "result_id",
+          "provenance",
+          "evidence_records"
+        ],
+        "title": "ResultProvenance",
+        "type": "object"
+      },
+      "AvailableEnvelope_ProjectInfo_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProjectInfo"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[ProjectInfo]",
+        "type": "object"
+      },
+      "FailedEnvelope": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "enum": [
+              "MISSING",
+              "UNSUPPORTED",
+              "ERROR"
+            ],
+            "title": "Availability",
+            "type": "string"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "error",
+          "issues"
+        ],
+        "title": "FailedEnvelope",
+        "type": "object"
+      },
+      "PartialEnvelope_ProjectInfo_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProjectInfo"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[ProjectInfo]",
+        "type": "object"
+      },
+      "ApiEnvelope_ProjectInfo_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_ProjectInfo_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_ProjectInfo_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_ProjectInfo_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_ProjectInfo_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[ProjectInfo]"
+      },
+      "Input_RegistryQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          }
+        },
+        "title": "RegistryQuery",
+        "type": "object"
+      },
+      "OpenAPIDocument": {
+        "additionalProperties": false,
+        "properties": {
+          "openapi": {
+            "const": "3.1.0",
+            "title": "Openapi",
+            "type": "string"
+          },
+          "jsonSchemaDialect": {
+            "title": "Jsonschemadialect",
+            "type": "string"
+          },
+          "info": {
+            "additionalProperties": true,
+            "title": "Info",
+            "type": "object"
+          },
+          "paths": {
+            "additionalProperties": true,
+            "title": "Paths",
+            "type": "object"
+          },
+          "components": {
+            "additionalProperties": true,
+            "title": "Components",
+            "type": "object"
+          }
+        },
+        "required": [
+          "openapi",
+          "jsonSchemaDialect",
+          "info",
+          "paths",
+          "components"
+        ],
+        "title": "OpenAPIDocument",
+        "type": "object"
+      }
+    }
+  }
+}
