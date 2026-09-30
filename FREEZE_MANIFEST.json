@@ -1,0 +1,23 @@
+{
+  "project": "ShockPath",
+  "freeze_version": "V1_SCOPE_FREEZE",
+  "generated_at": "2026-09-30T19:32:13+08:00",
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {
+      "relative_path": "docs/00_PROJECT_SCOPE.md",
+      "size": 14758,
+      "sha256": "80b0d252b2b6bb6c704f6821e1ad83f33cbe84fa717bffd68f307ffd228ef87d"
+    },
+    {
+      "relative_path": "PROJECT_FREEZE.json",
+      "size": 956,
+      "sha256": "425fff25aa86fd258ba295d5db12417d2fff87809b3998c525a8d2ecdf32a0a1"
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "size": 612,
+      "sha256": "cba4e7013bfae9ef10ee6ac348f68db6fed62d6e1dce9c843f7ab78f1222768c"
+    }
+  ]
+}

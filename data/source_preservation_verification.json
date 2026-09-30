@@ -1,0 +1,34 @@
+{
+  "scientific_root": "D:\\Paper\\passage6",
+  "all_enumerated_files": 16567,
+  "stat_changed_files": [],
+  "deleted_files": [],
+  "added_files": [],
+  "selected_sha256_rechecked": 2329,
+  "sha256_changed_files": [],
+  "phase0_hash_checks": [
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\docs\\00_PROJECT_SCOPE.md",
+      "match": true
+    },
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\PROJECT_FREEZE.json",
+      "match": true
+    },
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\CHANGELOG.md",
+      "match": true
+    }
+  ],
+  "excluded_dirs": [
+    ".git",
+    ".pytest_cache",
+    ".superpowers",
+    ".venv",
+    ".workbuddy",
+    "__pycache__",
+    "node_modules"
+  ],
+  "verification_scope": "All scanned file paths/size/mtime plus SHA256 stability of every selected asset; unrelated unselected files not hash checked",
+  "pass": true
+}

@@ -1,0 +1,111 @@
+{
+  "freeze_version": "PHASE4_TECHNICAL_FOUNDATION",
+  "version": "1.0.1",
+  "status": "FROZEN",
+  "timestamp": "2026-10-01T01:04:03+08:00",
+  "timezone": "Asia/Shanghai",
+  "hash_algorithm": "SHA-256",
+  "documents": [
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\docs\\04_SYSTEM_ARCHITECTURE.md",
+      "sha256": "5A7193D4203ECD205F487FC38C2F64D09256388A9CB88F64D7201496EF58E2EA",
+      "size_bytes": 43863,
+      "version": "1.0.1",
+      "status": "FROZEN"
+    },
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\docs\\05_DATA_SCHEMA.md",
+      "sha256": "F61482EB917B81767864EB377A4DB0C8B6DCF3E333676C2BD23201C7F0997099",
+      "size_bytes": 74214,
+      "version": "1.0.1",
+      "status": "FROZEN"
+    },
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\docs\\06_API_CONTRACT.md",
+      "sha256": "C115EF21D4C8BA2170CB888BFD4842EA12FE2C7F66CDF1B0519D08489DD4D9F1",
+      "size_bytes": 57241,
+      "version": "1.0.1",
+      "status": "FROZEN"
+    }
+  ],
+  "technical_foundation_freeze": {
+    "path": "D:\\code_project\\CFD_visiblesystem\\docs\\PHASE4_TECHNICAL_FOUNDATION_FREEZE.json",
+    "sha256": "9F26496479067AB1C44B5B72C2EDFA1363D2AA919336D73999BE7D5B68200654",
+    "size_bytes": 4520
+  },
+  "upstream_documents": [
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\docs\\00_PROJECT_SCOPE.md",
+      "sha256": "80B0D252B2B6BB6C704F6821E1AD83F33CBE84FA717BFFD68F307FFD228EF87D",
+      "size_bytes": 14758,
+      "role": "PHASE0_SCOPE",
+      "baseline_sha256": "80B0D252B2B6BB6C704F6821E1AD83F33CBE84FA717BFFD68F307FFD228EF87D",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\01_DATA_ASSET_INVENTORY.md",
+      "sha256": "C08C836F26438DE5393081FAD4744B60C0F5AAA7FA9D9791CA1B8BF6DE61737A",
+      "size_bytes": 62928,
+      "role": "PHASE1_INVENTORY",
+      "baseline_sha256": "C08C836F26438DE5393081FAD4744B60C0F5AAA7FA9D9791CA1B8BF6DE61737A",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\mind_design\\02_ShockPath_PRD_V1.md",
+      "sha256": "F1823153C27CEAC45A335BADBD23D33E9B254A81DAA5069FF4CA0E6B67E71645",
+      "size_bytes": 22231,
+      "role": "PHASE2_PRD",
+      "baseline_sha256": "F1823153C27CEAC45A335BADBD23D33E9B254A81DAA5069FF4CA0E6B67E71645",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\docs\\03_USER_FLOW_AND_IA.md",
+      "sha256": "E78CAAB49E02C22AC4C92E166B05C7F54756F9B7AB24C6E8A56E7D95FB776973",
+      "size_bytes": 63683,
+      "role": "PHASE3_IA",
+      "baseline_sha256": "E78CAAB49E02C22AC4C92E166B05C7F54756F9B7AB24C6E8A56E7D95FB776973",
+      "unchanged": true
+    }
+  ],
+  "prior_freeze_artifacts": [
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\FREEZE_MANIFEST.json",
+      "sha256": "8005158DFEBC944DE2A4F50FDA908FCA2EE3B1344950AABD67B2CD254B33BBBD",
+      "size_bytes": 668,
+      "role": "PRIOR_FREEZE_MANIFEST",
+      "baseline_sha256": "8005158DFEBC944DE2A4F50FDA908FCA2EE3B1344950AABD67B2CD254B33BBBD",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\code_project\\CFD_visiblesystem\\PROJECT_FREEZE.json",
+      "sha256": "425FFF25AA86FD258BA295D5DB12417D2FFF87809B3998C525A8D2ECDF32A0A1",
+      "size_bytes": 956,
+      "role": "PRIOR_PROJECT_FREEZE",
+      "baseline_sha256": "425FFF25AA86FD258BA295D5DB12417D2FFF87809B3998C525A8D2ECDF32A0A1",
+      "unchanged": true
+    }
+  ],
+  "changelog": {
+    "path": "D:\\code_project\\CFD_visiblesystem\\CHANGELOG.md",
+    "sha256": "D1F06384C2B6F669B3DFE47DB03A391B6232D13E7A84594238CEDE089ADBCD36",
+    "size_bytes": 1982,
+    "entry": "PHASE4_TECHNICAL_FOUNDATION_FREEZE",
+    "prior_entries_preserved": true
+  },
+  "minimal_revision_only": true,
+  "scientific_files_modified": false,
+  "scientific_directory_rehashed": false,
+  "code_files_created": false,
+  "frontend_code_written": false,
+  "backend_code_written": false,
+  "cfdruns_started": 0,
+  "database_connected": false,
+  "emails_sent": 0,
+  "packages_installed": false,
+  "upstream_scope_modified": false,
+  "upstream_inventory_modified": false,
+  "upstream_prd_modified": false,
+  "upstream_ia_modified": false,
+  "next_phase_started": false,
+  "manifest_self_hash_excluded": true
+}

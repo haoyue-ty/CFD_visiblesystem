@@ -1,0 +1,28 @@
+{
+  "project": "ShockPath",
+  "freeze_version": "V1_SCOPE_FREEZE",
+  "status": "FROZEN",
+  "root": "D:\\Paper\\passage6\\ShockPath",
+  "scope_doc": "D:\\Paper\\passage6\\ShockPath\\docs\\00_PROJECT_SCOPE.md",
+  "p0_modules": [
+    "Mechanism Explorer",
+    "Case 8 Replay",
+    "Entropy Ledger",
+    "Gate Allocation Explorer",
+    "Spectral Lab",
+    "Case 8 / Cylinder Cross-flow Compare",
+    "Reproducibility Center",
+    "Real experimental data loading",
+    "Explore Mode basic demo flow",
+    "Lab Mode basic experiment browsing flow"
+  ],
+  "scientific_assets_modified": false,
+  "solver_modified": false,
+  "experiment_data_modified": false,
+  "frozen_evidence_modified": false,
+  "production_runs_started": 0,
+  "next_phase": "DATA_ASSET_INVENTORY",
+  "next_phase_started": false,
+  "freeze_timestamp": "2026-09-30T19:32:13+08:00",
+  "scope_sha256": "80b0d252b2b6bb6c704f6821e1ad83f33cbe84fa717bffd68f307ffd228ef87d"
+}

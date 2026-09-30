@@ -1,0 +1,17 @@
+{
+  "schema_fields": "PASS",
+  "unique_asset_ids": "PASS",
+  "status_enums": "PASS",
+  "csv_json_count_match": "PASS",
+  "seven_modules": "PASS",
+  "ten_p0_features": "PASS",
+  "semantics_and_dependency_references": "PASS",
+  "no_array_parse_errors": "PASS",
+  "source_preservation": "PASS",
+  "phase0_unchanged": "PASS",
+  "gate_integral": "PASS",
+  "spectrum_coverage": "PASS",
+  "fig13_full_timeseries": "PASS",
+  "case8_snapshots_and_terminal_match": "PASS",
+  "result": "PASS"
+}

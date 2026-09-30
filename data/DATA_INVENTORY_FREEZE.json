@@ -1,0 +1,119 @@
+{
+  "freeze_version": "PHASE1_DATA_ASSET_INVENTORY",
+  "scope_version": "V1_SCOPE_FREEZE",
+  "status": "FROZEN",
+  "timestamp": "2026-09-30T21:53:32+08:00",
+  "inventory_docs": [
+    {
+      "path": "D:\\比赛\\数媒\\data\\01_DATA_ASSET_INVENTORY.md",
+      "relative_path": "01_DATA_ASSET_INVENTORY.md",
+      "size_bytes": 62928,
+      "sha256": "c08c836f26438de5393081fad4744b60c0f5aaa7fa9d9791ca1b8bf6de61737a"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\data_asset_inventory.json",
+      "relative_path": "data_asset_inventory.json",
+      "size_bytes": 12565641,
+      "sha256": "db7b3a469d6508032c4600c1ad46d6c8155bd779402e852934a45a4f4d7e88e4"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\data_asset_inventory.csv",
+      "relative_path": "data_asset_inventory.csv",
+      "size_bytes": 7366666,
+      "sha256": "dbfc501737a3474ae52581783e601724b9eab5aefb1cab70cfa88ff45306d5e3"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\CHANGELOG.md",
+      "relative_path": "CHANGELOG.md",
+      "size_bytes": 649,
+      "sha256": "2b0e88a6bcafcd31abbc37a4f8fed3a2959fc5d3ecec385e82c127e219e64ba2"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\acceptance_summary.json",
+      "relative_path": "acceptance_summary.json",
+      "size_bytes": 2538,
+      "sha256": "6282ddb21615595d21b01fe214255e19917dbd4366843e65307ecdc2418c4b6c"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\hash_verification.json",
+      "relative_path": "hash_verification.json",
+      "size_bytes": 1439030,
+      "sha256": "31d50a0f0b86fc4279f4b60d28d5bc24837acf7e9df1eb95b84391382035d366"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\evidence_validation.json",
+      "relative_path": "evidence_validation.json",
+      "size_bytes": 19889,
+      "sha256": "e252e9cef30a006474f809e0c45a5c43d78b7c2624a8268b050ece3e5c37f472"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\external_context_validation.json",
+      "relative_path": "external_context_validation.json",
+      "size_bytes": 5070,
+      "sha256": "565c129c31447a9799261082b78b413225ff119b6723432a8d34623230753553"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\source_preservation_verification.json",
+      "relative_path": "source_preservation_verification.json",
+      "size_bytes": 917,
+      "sha256": "9be8a106722b4928bde61d21ce1872d841e3e3913e04521c46e8dc31f1c9e55f"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\inventory_validation.json",
+      "relative_path": "inventory_validation.json",
+      "size_bytes": 499,
+      "sha256": "076a6df1c884de7c444e515b5c3d9a3b5bbe473ffaf6acb60deac343be691cbe"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\source_tree_before.json",
+      "relative_path": "source_tree_before.json",
+      "size_bytes": 2992982,
+      "sha256": "8f9bb4ce2cec82c4c61c8ce920b8bd4747b81e55c111b44d4bfdf843268934ce"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\inspect_sources.py",
+      "relative_path": "inspect_sources.py",
+      "size_bytes": 884,
+      "sha256": "f395e2e999f3bee4b92f9c97edbee09c242bde6cc71d81d88cb1e18e70d4e927"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\build_inventory.py",
+      "relative_path": "build_inventory.py",
+      "size_bytes": 24816,
+      "sha256": "0328ba88229c9a8a8b90a48b82fdb6ec9dd0dc3ba74be8d91f97f8ea0d58bf4d"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\validate_evidence.py",
+      "relative_path": "validate_evidence.py",
+      "size_bytes": 3747,
+      "sha256": "ab52e626e5c36f63948cf38ac9a615a9bba875b12e9c1058be5bbfd5c82ec68a"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\finalize_inventory.py",
+      "relative_path": "finalize_inventory.py",
+      "size_bytes": 55134,
+      "sha256": "57e82e2da8cb51684a5ecbdc034a30af4d3da7ede3c06dc31f509138bbe34546"
+    },
+    {
+      "path": "D:\\比赛\\数媒\\data\\verify_and_freeze_inventory.py",
+      "relative_path": "verify_and_freeze_inventory.py",
+      "size_bytes": 6232,
+      "sha256": "e56fce84e320d94a06f4feb5335dd23f9aa415714051e624ed3ec97ab02f6af3"
+    }
+  ],
+  "asset_count": 2337,
+  "verified_count": 726,
+  "frozen_verified_count": 416,
+  "missing_count": 8,
+  "legacy_count": 661,
+  "P0_blocker_count": 0,
+  "P0_partial_count": 2,
+  "scientific_files_modified": false,
+  "CFD_runs_started": 0,
+  "phase0_modified": false,
+  "output_root_override": "User requested D:\\比赛\\数媒\\data",
+  "inventory_validation": "PASS",
+  "self_hash_excluded": true,
+  "next_phase": "PRD",
+  "next_phase_started": false
+}

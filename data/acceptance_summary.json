@@ -1,0 +1,47 @@
+{
+  "DATA_ASSET_INVENTORY": "PASS",
+  "SCIENTIFIC_FILES_MODIFIED": "NO",
+  "CFD_RUNS_STARTED": 0,
+  "ASSET_COUNT": 2337,
+  "EXISTING_FILE_ASSET_COUNT": 2329,
+  "FROZEN_VERIFIED_COUNT": 416,
+  "LEGACY_COUNT": 661,
+  "LEGACY_STATUS_COUNT": 52,
+  "SUPERSEDED_COUNT": 609,
+  "MISSING_ASSET_COUNT": 8,
+  "P0_SUPPORTED_COUNT": 8,
+  "P0_PARTIAL_COUNT": 2,
+  "P0_BLOCKED_COUNT": 0,
+  "TIME_SERIES_ASSET_COUNT": 66,
+  "REPLAY_CANDIDATE_COUNT": 7,
+  "LIVE_DEMO_CANDIDATE_COUNT": 3,
+  "REPLAY_FILE_ASSET_COUNT": 317,
+  "INVENTORY_DOC": "D:\\比赛\\数媒\\data\\01_DATA_ASSET_INVENTORY.md",
+  "INVENTORY_JSON": "D:\\比赛\\数媒\\data\\data_asset_inventory.json",
+  "NEXT_PHASE": "PRD",
+  "NEXT_PHASE_STARTED": false,
+  "TOP_5_DATA_GAPS": [
+    "Near1D Mach6五档ε的权威raw输出、配置、method/hash与精确空间/振幅指标未找到；Figure7表来自论文抄录，不能当正式数据。",
+    "Cylinder full-trajectory空间Pi_at累计场缺失；已有16角向累计分箱及固定band标量，不是完整场。",
+    "Case8只有6个真实流场/瞬时face快照；缺1912步完整空间轨迹与全部RK stage场，Ledger同步受限。",
+    "原始Case8其他配置的完整轨迹累计空间通道图未找到；近期冻结诊断重跑仅覆盖D_u。",
+    "Serialized Jacobian/Fourier blocks未找到；MUSCL只存终态密度和summary，缺空间Pi_at；当前部分driver/observer历史hash漂移需保留。"
+  ],
+  "TOP_5_PRD_CONSTRAINTS": [
+    "Time slider只在真实已存时间点播放：Case8六帧，Cylinder五个瞬时face；Gate累计图和谱数据STATIC，不能暗示实时轨迹。",
+    "严格分开Gate cell累计分配、Case8 native-face累计率积分、Cylinder interior-only sector/band口径；不得重复乘dt/面积或统一排名。",
+    "Near1D五档scan论文抄录数值不进入正式展示；Quirk单次弱扰动和Fourier验证epsilon不能替代该scan。",
+    "参数只选已运行组合：A/B/C/D、三种校准gate、四档q_at、既存CFL/ε；谱位移与宏观响应非单调，不能插值成新科研结果。",
+    "保留method/hash/config/掩膜/模型单位与验证状态；D_u不是通用更优解，Cylinder宽度受检测器限制；Live仅候选，本阶段未运行。"
+  ],
+  "STATUS_COUNTS": {
+    "SUPERSEDED": 609,
+    "FROZEN_VERIFIED": 416,
+    "AVAILABLE_UNVERIFIED": 940,
+    "VERIFIED_NOT_FROZEN": 310,
+    "LEGACY": 52,
+    "PARTIAL": 2,
+    "MISSING": 8
+  },
+  "TIMESTAMP": "2026-09-30T21:53:25+08:00"
+}

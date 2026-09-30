@@ -1,0 +1,719 @@
+{
+  "gate_allocation": [
+    {
+      "gate": "Acoustic",
+      "shape": [
+        32,
+        128
+      ],
+      "finite": true,
+      "nonnegative": true,
+      "sum_vs_E_at_abs_error": 6.071532165918825e-18,
+      "pass": true,
+      "recorded_window_fraction": 0.9983067757919961
+    },
+    {
+      "gate": "Ungated",
+      "shape": [
+        32,
+        128
+      ],
+      "finite": true,
+      "nonnegative": true,
+      "sum_vs_E_at_abs_error": 1.3010426069826053e-18,
+      "pass": true,
+      "recorded_window_fraction": 0.8923001329707689
+    },
+    {
+      "gate": "Pressure",
+      "shape": [
+        32,
+        128
+      ],
+      "finite": true,
+      "nonnegative": true,
+      "sum_vs_E_at_abs_error": 3.0357660829594124e-18,
+      "pass": true,
+      "recorded_window_fraction": 0.9916868280217838
+    }
+  ],
+  "spectrum": {
+    "rows": 68,
+    "unique_combinations": 68,
+    "modes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "q_at": [
+      0.0,
+      0.132,
+      0.264,
+      0.396
+    ],
+    "coverage_pass": true
+  },
+  "fig13": {
+    "summary_rows": 24,
+    "planned_combinations": 24,
+    "histories": [
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m01_q0p000_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m01_q0p000_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m01_q0p000_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m01_q0p396_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m01_q0p396_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m01_q0p396_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m04_q0p000_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m04_q0p000_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m04_q0p000_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m04_q0p396_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m04_q0p396_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m04_q0p396_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m08_q0p000_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m08_q0p000_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m08_q0p000_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m08_q0p396_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m08_q0p396_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m08_q0p396_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m12_q0p000_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m12_q0p000_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m12_q0p000_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m12_q0p396_eps1e-04.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m12_q0p396_eps1e-05.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      },
+      {
+        "path": "experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m12_q0p396_eps1e-06.csv",
+        "rows": 33,
+        "time_range": [
+          0.0,
+          0.0013389121338912135
+        ],
+        "strictly_increasing": true,
+        "fit_window": [
+          0,
+          32
+        ],
+        "fit_points": 33,
+        "pass": true
+      }
+    ],
+    "per_epsilon_worst_relative_error": {
+      "0.0001": 0.00014310436622350458,
+      "1e-05": 1.4191439504558442e-05,
+      "1e-06": 2.0991845492983838e-06
+    },
+    "min_fit_r2": 0.9999999999785093,
+    "pass": true
+  },
+  "case8_flow_snapshots": [
+    {
+      "configuration": "A_u",
+      "snapshots": [
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\03_case8_A_u\\checkpoints\\step_000000.npz",
+          "time": 0.0,
+          "step": 0,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\03_case8_A_u\\checkpoints\\step_000382.npz",
+          "time": 0.01598326359832636,
+          "step": 382,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\03_case8_A_u\\checkpoints\\step_000765.npz",
+          "time": 0.03200836820083682,
+          "step": 765,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\03_case8_A_u\\checkpoints\\step_001147.npz",
+          "time": 0.04799163179916318,
+          "step": 1147,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\03_case8_A_u\\checkpoints\\step_001530.npz",
+          "time": 0.06401673640167364,
+          "step": 1530,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\03_case8_A_u\\checkpoints\\step_001912.npz",
+          "time": 0.08,
+          "step": 1912,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        }
+      ],
+      "endpoint_equals_hash_verified_J2B_state": true,
+      "temporal_resolution": "6 snapshots; no per-step flow field",
+      "scientific_verification_scope": "finite density/pressure, exact endpoint state and protocol timestamps only; no CFD recalculation"
+    },
+    {
+      "configuration": "B_u",
+      "snapshots": [
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\04_case8_B_u\\checkpoints\\step_000000.npz",
+          "time": 0.0,
+          "step": 0,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\04_case8_B_u\\checkpoints\\step_000382.npz",
+          "time": 0.01598326359832636,
+          "step": 382,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\04_case8_B_u\\checkpoints\\step_000765.npz",
+          "time": 0.03200836820083682,
+          "step": 765,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\04_case8_B_u\\checkpoints\\step_001147.npz",
+          "time": 0.04799163179916318,
+          "step": 1147,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\04_case8_B_u\\checkpoints\\step_001530.npz",
+          "time": 0.06401673640167364,
+          "step": 1530,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\04_case8_B_u\\checkpoints\\step_001912.npz",
+          "time": 0.08,
+          "step": 1912,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        }
+      ],
+      "endpoint_equals_hash_verified_J2B_state": true,
+      "temporal_resolution": "6 snapshots; no per-step flow field",
+      "scientific_verification_scope": "finite density/pressure, exact endpoint state and protocol timestamps only; no CFD recalculation"
+    },
+    {
+      "configuration": "C_u",
+      "snapshots": [
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\06_case8_C_u\\checkpoints\\step_000000.npz",
+          "time": 0.0,
+          "step": 0,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\06_case8_C_u\\checkpoints\\step_000382.npz",
+          "time": 0.01598326359832636,
+          "step": 382,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\06_case8_C_u\\checkpoints\\step_000765.npz",
+          "time": 0.03200836820083682,
+          "step": 765,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\06_case8_C_u\\checkpoints\\step_001147.npz",
+          "time": 0.04799163179916318,
+          "step": 1147,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\06_case8_C_u\\checkpoints\\step_001530.npz",
+          "time": 0.06401673640167364,
+          "step": 1530,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\06_case8_C_u\\checkpoints\\step_001912.npz",
+          "time": 0.08,
+          "step": 1912,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        }
+      ],
+      "endpoint_equals_hash_verified_J2B_state": true,
+      "temporal_resolution": "6 snapshots; no per-step flow field",
+      "scientific_verification_scope": "finite density/pressure, exact endpoint state and protocol timestamps only; no CFD recalculation"
+    },
+    {
+      "configuration": "D_u",
+      "snapshots": [
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\05_case8_D_u\\checkpoints\\step_000000.npz",
+          "time": 0.0,
+          "step": 0,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\05_case8_D_u\\checkpoints\\step_000382.npz",
+          "time": 0.01598326359832636,
+          "step": 382,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\05_case8_D_u\\checkpoints\\step_000765.npz",
+          "time": 0.03200836820083682,
+          "step": 765,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\05_case8_D_u\\checkpoints\\step_001147.npz",
+          "time": 0.04799163179916318,
+          "step": 1147,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\05_case8_D_u\\checkpoints\\step_001530.npz",
+          "time": 0.06401673640167364,
+          "step": 1530,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        },
+        {
+          "path": "corrected_physics_reproduction_v1\\case8\\05_case8_D_u\\checkpoints\\step_001912.npz",
+          "time": 0.08,
+          "step": 1912,
+          "density_shape": [
+            32,
+            128
+          ],
+          "finite_density_pressure": true
+        }
+      ],
+      "endpoint_equals_hash_verified_J2B_state": true,
+      "temporal_resolution": "6 snapshots; no per-step flow field",
+      "scientific_verification_scope": "finite density/pressure, exact endpoint state and protocol timestamps only; no CFD recalculation"
+    }
+  ],
+  "method_source_hash": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+  "CFD_RUNS_STARTED": 0
+}

@@ -1,0 +1,166 @@
+[
+  {
+    "case": "Case8",
+    "method": "roe_hh",
+    "width": 0.012450652236825876,
+    "column": "shock_width_physical",
+    "summary_asset": "asset_30d20098fc44",
+    "raw_field_asset_ids": [
+      "asset_890f192cbfb0",
+      "asset_948b7bf8d529",
+      "asset_4b0d1d91703c",
+      "asset_2521c07bdcbe",
+      "asset_98a7a87e4494",
+      "asset_c69c510a92b4",
+      "asset_181d212bd1bb",
+      "asset_6928689d15a9",
+      "asset_751775f8ca21",
+      "asset_22d305742e10",
+      "asset_b1aaab82e56c",
+      "asset_187d76d4bea4",
+      "asset_e4279b4912cf",
+      "asset_10391d9cb70f"
+    ],
+    "raw_field_file_count": 14,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  },
+  {
+    "case": "Case8",
+    "method": "hlle",
+    "width": 0.014484400784993856,
+    "column": "shock_width_physical",
+    "summary_asset": "asset_30d20098fc44",
+    "raw_field_asset_ids": [
+      "asset_374c6dde45cd",
+      "asset_fb2e67321491",
+      "asset_757e9ac96341",
+      "asset_d77e6216ef7d",
+      "asset_0f07abcef847",
+      "asset_ebbe16691cc8",
+      "asset_3c3f37cdfc1d",
+      "asset_4ae562e29ca6",
+      "asset_bc0a4f7fb87b",
+      "asset_d677b54344a6",
+      "asset_74ea7dbcb174",
+      "asset_d8b930ac6a57",
+      "asset_42256dde3e98",
+      "asset_a15d20be6c65"
+    ],
+    "raw_field_file_count": 14,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  },
+  {
+    "case": "Case8",
+    "method": "hllemcc",
+    "width": 0.014673353159564728,
+    "column": "shock_width_physical",
+    "summary_asset": "asset_30d20098fc44",
+    "raw_field_asset_ids": [
+      "asset_002de8ce78e6",
+      "asset_f6be07169cd7",
+      "asset_eb6183ead598",
+      "asset_3d3a8d2187f8",
+      "asset_55b493168789",
+      "asset_c0fd4ab4cdc0",
+      "asset_11d3b78ba2f5",
+      "asset_87b6b5a6ea8f",
+      "asset_6309978db339",
+      "asset_19a162cd5d22",
+      "asset_c9c0d29c741b",
+      "asset_1f5fa92c6579",
+      "asset_95b3ac183422",
+      "asset_a9bc3b6268f1"
+    ],
+    "raw_field_file_count": 14,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  },
+  {
+    "case": "Case8",
+    "method": "chandrashekar_ec_ev_llf",
+    "width": 0.03700939060494548,
+    "column": "shock_width_physical",
+    "summary_asset": "asset_30d20098fc44",
+    "raw_field_asset_ids": [
+      "asset_26361fcb92bd",
+      "asset_1bcfb35c42e5",
+      "asset_2c2c717310b5",
+      "asset_606bad96b9fa",
+      "asset_bbc803661d02",
+      "asset_5aba5e370083",
+      "asset_392bffe6c6d5",
+      "asset_c1447f18c627",
+      "asset_95ba54653bec",
+      "asset_bac67377da9b",
+      "asset_414b946da651",
+      "asset_63b2d798c380",
+      "asset_fe2edc126b88",
+      "asset_45ecc6ffeeb4"
+    ],
+    "raw_field_file_count": 14,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  },
+  {
+    "case": "Cylinder",
+    "method": "roe_hh",
+    "width": 0.15916171689122627,
+    "column": "center_width_physical",
+    "summary_asset": "asset_c28be9431281",
+    "raw_field_asset_ids": [
+      "asset_d8f58edca619",
+      "asset_588c21176412",
+      "asset_622ac7182cd8",
+      "asset_c57a6f3b71e1",
+      "asset_c3ec1bd77913"
+    ],
+    "raw_field_file_count": 5,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  },
+  {
+    "case": "Cylinder",
+    "method": "hlle",
+    "width": 0.21166423315955418,
+    "column": "center_width_physical",
+    "summary_asset": "asset_c28be9431281",
+    "raw_field_asset_ids": [
+      "asset_d6031b2d37f6",
+      "asset_e93e0a962b8f",
+      "asset_4a6986f25d50",
+      "asset_c650de87d2df",
+      "asset_36d2f2d7e6bc"
+    ],
+    "raw_field_file_count": 5,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  },
+  {
+    "case": "Cylinder",
+    "method": "hllemcc",
+    "width": 0.20571250919748685,
+    "column": "center_width_physical",
+    "summary_asset": "asset_c28be9431281",
+    "raw_field_asset_ids": [
+      "asset_78ba842e9212",
+      "asset_137128ebb28d",
+      "asset_d4930cc48d19",
+      "asset_69ac2631359a",
+      "asset_bb6afc4e9a9e"
+    ],
+    "raw_field_file_count": 5,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  },
+  {
+    "case": "Cylinder",
+    "method": "chandrashekar_ec_ev_llf",
+    "width": 0.35156792170610784,
+    "column": "center_width_physical",
+    "summary_asset": "asset_c28be9431281",
+    "raw_field_asset_ids": [
+      "asset_c53ab4f4d8d0",
+      "asset_5faacc4c1bbd",
+      "asset_d397175fb16a",
+      "asset_5e0c30e6a9d1",
+      "asset_b5b6125341eb"
+    ],
+    "raw_field_file_count": 5,
+    "status": "SUMMARY_CROSSCHECK_PASS; raw fields AVAILABLE_UNVERIFIED unless separately hash verified"
+  }
+]
