@@ -1,0 +1,705 @@
+{
+  "schema_version": "phase9_closure_asset_binding_v1",
+  "source_map_sha256": "fcc71bfa3cecb719b5d74943e639b836107af0e9837d7650dcee0f6088a9fc26",
+  "source_map_commit": "5ad96fb43421af09b43c64f88b51a494fc4a5cdf",
+  "phase9_base_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+  "scientific_root": "D:/Paper/passage6",
+  "assets": {
+    "experiments/entropy_budget_closure/experiment_report.md": {
+      "asset_id": "asset_a4a8b1423eca",
+      "sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0",
+      "size_bytes": 6677,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.experiment_report.md"
+    },
+    "experiments/entropy_budget_closure/temporal_refinement_summary.csv": {
+      "asset_id": "asset_dad98df1a5ea",
+      "sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc",
+      "size_bytes": 3576,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.temporal_refinement_summary.csv"
+    },
+    "experiments/entropy_budget_closure/temporal_slopes.csv": {
+      "asset_id": "asset_2e9d01ae9067",
+      "sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b",
+      "size_bytes": 429,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.temporal_slopes.csv"
+    },
+    "experiments/entropy_budget_closure/audit_summary.json": {
+      "asset_id": "asset_1994cfe88a47",
+      "sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849",
+      "size_bytes": 9911,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.audit_summary.json"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_02/stage_closure.csv": {
+      "asset_id": "asset_13d202a3cf53",
+      "sha256": "cf2c151f8676cfbd8aaed4230037d7a7d3ce56a96a7f9cc19d270f3ee2c11034",
+      "size_bytes": 2310092,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_02/stage_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_02/step_closure.csv": {
+      "asset_id": "asset_af31510d2bb9",
+      "sha256": "8f5ac4314e8668c21a0b9b6f570243bf9ba57369527a6e7de94c309682fe04c0",
+      "size_bytes": 1863272,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_02/step_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_01/stage_closure.csv": {
+      "asset_id": "asset_e14e1cb989ea",
+      "sha256": "37f91616566f59fd9a0d61385a64f4400aaec2accb586cfcbe17529b5d458487",
+      "size_bytes": 4621326,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_01/stage_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_01/step_closure.csv": {
+      "asset_id": "asset_19563dc2fd21",
+      "sha256": "2eaf3743ff6e3aab2831823d732a3ec9390c0e931f71c4f1c43bebbe1561663a",
+      "size_bytes": 3734662,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_01/step_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_005/stage_closure.csv": {
+      "asset_id": "asset_b3904064f3d6",
+      "sha256": "2c9c960040f470a442bd45096ac951f5b01551f15810ef2dfc8f2c0514303d42",
+      "size_bytes": 9257259,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_005/stage_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_005/step_closure.csv": {
+      "asset_id": "asset_b8418588583c",
+      "sha256": "c73957bf75da1c410bd8d864b8f7cb4a9f487a1cceffa547db0df00f1457815a",
+      "size_bytes": 7441451,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_005/step_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_0025/stage_closure.csv": {
+      "asset_id": "asset_1499d735c8d7",
+      "sha256": "24de1c91e156e3bdc657618f0fbd2efedf9b933a439a7a9aacab0bbdef423aa8",
+      "size_bytes": 18555881,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_0025/stage_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_0025/step_closure.csv": {
+      "asset_id": "asset_f42fc85c399f",
+      "sha256": "02755d4897a85684c5bf5aedfaf69f6fa79286b61412aeac258c1f292759648f",
+      "size_bytes": 14924038,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_0025/step_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Bu_cfl_005/stage_closure.csv": {
+      "asset_id": "asset_36a6b4bd548c",
+      "sha256": "975edbb580e79aaf3e79c0e809ad408a795059c440d40c2eb850fb72f9afc164",
+      "size_bytes": 8498611,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Bu_cfl_005/stage_closure.csv"
+    },
+    "experiments/entropy_budget_closure/outputs/Bu_cfl_005/step_closure.csv": {
+      "asset_id": "asset_b8b904e19794",
+      "sha256": "6b46dd818f68e7b5d0011f6c483b65ac2dfa46c2a2f5784f7aa0f1eccb987b7f",
+      "size_bytes": 6425445,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Bu_cfl_005/step_closure.csv"
+    },
+    "experiments/entropy_budget_closure/config.json": {
+      "asset_id": "asset_5c4aeaba111b",
+      "sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056",
+      "size_bytes": 3416,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.config.json"
+    },
+    "experiments/entropy_budget_closure/imported_solver_hashes.json": {
+      "asset_id": "asset_244586f0da8c",
+      "sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771",
+      "size_bytes": 2872,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.imported_solver_hashes.json"
+    },
+    "experiments/entropy_budget_closure/FREEZE/README.md": {
+      "asset_id": "asset_980a465badd3",
+      "sha256": "aeb52b69a1c61db54f79eacd38c03e684060deae0b69c224c20eef99e98b65e5",
+      "size_bytes": 2362,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/README.md"
+    },
+    "experiments/entropy_budget_closure/FREEZE/FREEZE_STATUS.txt": {
+      "asset_id": "asset_7df61799d80d",
+      "sha256": "3b3d650293275f5787b88959a8c03e45bc27808e3f25ad149f758147d223e48f",
+      "size_bytes": 622,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/FREEZE_STATUS.txt"
+    },
+    "experiments/entropy_budget_closure/FREEZE/verify_and_freeze.py": {
+      "asset_id": "asset_275cfa1177e9",
+      "sha256": "d571373f95d4bbe079cec798281b74080cd793c71b2fd72e5a70b2c5dff9129a",
+      "size_bytes": 18605,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/verify_and_freeze.py"
+    },
+    "experiments/entropy_budget_closure/FREEZE/frozen_experiment_report.md": {
+      "asset_id": "asset_55407a9c17a7",
+      "sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0",
+      "size_bytes": 6677,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/frozen_experiment_report.md"
+    },
+    "experiments/entropy_budget_closure/FREEZE/frozen_temporal_refinement_summary.csv": {
+      "asset_id": "asset_99cb9d06fd67",
+      "sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc",
+      "size_bytes": 3576,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/frozen_temporal_refinement_summary.csv"
+    },
+    "experiments/entropy_budget_closure/FREEZE/frozen_audit_summary.json": {
+      "asset_id": "asset_89888b33d985",
+      "sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849",
+      "size_bytes": 9911,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/frozen_audit_summary.json"
+    },
+    "experiments/entropy_budget_closure/FREEZE/frozen_config.json": {
+      "asset_id": "asset_22132dc817e3",
+      "sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056",
+      "size_bytes": 3416,
+      "role": "CONFIG",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/frozen_config.json"
+    },
+    "experiments/entropy_budget_closure/FREEZE/frozen_imported_solver_hashes.json": {
+      "asset_id": "asset_c1c7d1acb148",
+      "sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771",
+      "size_bytes": 2872,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/frozen_imported_solver_hashes.json"
+    },
+    "experiments/entropy_budget_closure/FREEZE/frozen_temporal_slopes.csv": {
+      "asset_id": "asset_8e8e70ba433f",
+      "sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b",
+      "size_bytes": 429,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/frozen_temporal_slopes.csv"
+    },
+    "experiments/entropy_budget_closure/FREEZE/frozen_experiment_README.md": {
+      "asset_id": "asset_9bc69f58e439",
+      "sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b",
+      "size_bytes": 2902,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/frozen_experiment_README.md"
+    },
+    "experiments/entropy_budget_closure/README.md": {
+      "asset_id": "asset_e597536e80cf",
+      "sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b",
+      "size_bytes": 2902,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.README.md"
+    },
+    "experiments/entropy_budget_closure/run_entropy_budget_closure.py": {
+      "asset_id": "asset_405f51fa726e",
+      "sha256": "d43c0136ded283a7bfa408828d18c1eefbe424d98c34e1f6e77728c8f42ee54f",
+      "size_bytes": 12245,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.run_entropy_budget_closure.py"
+    },
+    "experiments/entropy_budget_closure/analyze_entropy_budget_closure.py": {
+      "asset_id": "asset_5ac8b249e0a6",
+      "sha256": "5a60d05928d978357ab43842136d4e4178532c4440bc7f9e4dec9d287b5b6423",
+      "size_bytes": 11489,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.analyze_entropy_budget_closure.py"
+    },
+    "experiments/entropy_budget_closure/finalize_when_done.py": {
+      "asset_id": "asset_a8b2e3164811",
+      "sha256": "c38d2806df80817c601f55752f0ec873c6bfb372fba571c259e7dcd7b2533c6d",
+      "size_bytes": 1186,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.finalize_when_done.py"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_02/run_summary.json": {
+      "asset_id": "asset_758bdf21d025",
+      "sha256": "a650f835a649b1086d7a53bcd9d8b82470b43f202b84ab58348a752cd7d30ee1",
+      "size_bytes": 1276,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_02/run_summary.json"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_01/run_summary.json": {
+      "asset_id": "asset_b1cd63cc0723",
+      "sha256": "66c90cfe22908ffed1ce5fe7add7256e83e01cfa5e874a9c3366bc63e5018e2b",
+      "size_bytes": 1298,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_01/run_summary.json"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_005/run_summary.json": {
+      "asset_id": "asset_1d41ffaf0a13",
+      "sha256": "d60177cd0d14c22b43ce1a03f409047e65eccd7cc8f87214ea4bf7a4efc9a1d4",
+      "size_bytes": 1281,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_005/run_summary.json"
+    },
+    "experiments/entropy_budget_closure/outputs/Du_cfl_0025/run_summary.json": {
+      "asset_id": "asset_26e81ce65d56",
+      "sha256": "6aaffff46f2f43a33b52689033bd1737b6a145137720351c09e81800de631efd",
+      "size_bytes": 1278,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Du_cfl_0025/run_summary.json"
+    },
+    "experiments/entropy_budget_closure/outputs/Bu_cfl_005/run_summary.json": {
+      "asset_id": "asset_98631455b4e4",
+      "sha256": "2567a92a09fb656a660486e75bc3cd3c1584433a90ddeceef104d5b694ee5d7f",
+      "size_bytes": 1209,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.outputs/Bu_cfl_005/run_summary.json"
+    },
+    "experiments/entropy_budget_closure/logs/Bu_005.stderr.log": {
+      "asset_id": "asset_43992bf9f309",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Bu_005.stderr.log"
+    },
+    "experiments/entropy_budget_closure/logs/Bu_005.stdout.log": {
+      "asset_id": "asset_c6245332b76f",
+      "sha256": "720432ea85a04c15a7a59344890874b364fa012721c38efc69366737c3a56586",
+      "size_bytes": 744,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Bu_005.stdout.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_0025.stderr.log": {
+      "asset_id": "asset_191d9452c455",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_0025.stderr.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_0025.stdout.log": {
+      "asset_id": "asset_19ee1f471c74",
+      "sha256": "555b679d6cfd404c78bc8d3d1692a403a12563bcade936855c49a2603b1008d3",
+      "size_bytes": 1352,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_0025.stdout.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_005.stderr.log": {
+      "asset_id": "asset_08248044965c",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_005.stderr.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_005.stdout.log": {
+      "asset_id": "asset_9b40f162c5e9",
+      "sha256": "da11b7caafcdd84d2fe1986de46e9d1b51f1fbe2da092825391c1d21452ffe0b",
+      "size_bytes": 744,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_005.stdout.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_010.stderr.log": {
+      "asset_id": "asset_e272d88f4e4c",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_010.stderr.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_010.stdout.log": {
+      "asset_id": "asset_1150090b1a04",
+      "sha256": "32b97997badc16ccdec7926ed9663d0c6a481ed0b7bd204d2c5f3bdf6d23959a",
+      "size_bytes": 448,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_010.stdout.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_020.stderr.log": {
+      "asset_id": "asset_91a5aaf85093",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_020.stderr.log"
+    },
+    "experiments/entropy_budget_closure/logs/Du_020.stdout.log": {
+      "asset_id": "asset_332dae55ae7c",
+      "sha256": "3628d4827a88d6410e2e562df86a2e559a1000bac4b1132234c42b79f1faad1f",
+      "size_bytes": 334,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/Du_020.stdout.log"
+    },
+    "experiments/entropy_budget_closure/logs/finalizer.stderr.log": {
+      "asset_id": "asset_a6f0ba14c210",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/finalizer.stderr.log"
+    },
+    "experiments/entropy_budget_closure/logs/finalizer.stdout.log": {
+      "asset_id": "asset_a5f900a3c72f",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/finalizer.stdout.log"
+    },
+    "experiments/entropy_budget_closure/logs/finalizer_status.log": {
+      "asset_id": "asset_4c079d08edf0",
+      "sha256": "c983600639522845709633f2485e37e730beec70d5227abc4db77566ec1e6c3e",
+      "size_bytes": 597,
+      "role": "ANALYSIS",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/finalizer_status.log"
+    },
+    "experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/run_summary.json": {
+      "asset_id": "asset_3a2847d1e9c8",
+      "sha256": "600387b160d01869b3e28644af97edc021d8f4be785009c8cd593f601f2da9c6",
+      "size_bytes": 1297,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/preflight_Du_cfl_0199/run_summary.json"
+    },
+    "experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/stage_closure.csv": {
+      "asset_id": "asset_e4e31ca9f9f3",
+      "sha256": "e88a091a2150dae999d51c008b80aa4375572ff2d8c18bacfd61ad7a7618f362",
+      "size_bytes": 3321,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/preflight_Du_cfl_0199/stage_closure.csv"
+    },
+    "experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/step_closure.csv": {
+      "asset_id": "asset_c341ac4a60f8",
+      "sha256": "2879e81df386d23dbfdeccbd769076756a00f4387fca010d5fa70c5a4018b731",
+      "size_bytes": 3010,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/preflight_Du_cfl_0199/step_closure.csv"
+    },
+    "experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/run_summary.json": {
+      "asset_id": "asset_5cda4b05fe78",
+      "sha256": "dc14487fef68fead3649cfea7ad47f41a3af2bbefb444a333c14728f395d80a7",
+      "size_bytes": 1318,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/preflight_Du_cfl_02/run_summary.json"
+    },
+    "experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/stage_closure.csv": {
+      "asset_id": "asset_308f344a8b67",
+      "sha256": "888c0724dc3131998b383553cd8c02a9596c3741f6de644fadd2e71c8ef92c0a",
+      "size_bytes": 3351,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/preflight_Du_cfl_02/stage_closure.csv"
+    },
+    "experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/step_closure.csv": {
+      "asset_id": "asset_1dc017415e61",
+      "sha256": "ddc02a200a6d7d39b47951201085c5e3d8403d12bf5fcb735bf59b8dbfd7c607",
+      "size_bytes": 2993,
+      "role": "DATA",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.logs/preflight_Du_cfl_02/step_closure.csv"
+    },
+    "experiments/entropy_budget_closure/FREEZE/FREEZE_MANIFEST.json": {
+      "asset_id": "asset_c50aaca8961b",
+      "sha256": "578b88266a9e84afbd17c8a9f34897d52561bd84243fc787dfe1015ff5cb22ab",
+      "size_bytes": 17593,
+      "role": "FREEZE",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "closure.FREEZE/FREEZE_MANIFEST.json"
+    },
+    "experiments/entropy_budget_closure/FREEZE/FREEZE_HASHES.sha256": {
+      "asset_id": "asset_b2f4d711b18a",
+      "sha256": "cf7f0962ba608f6634047f092fcb77bf3515443f159771579398770e1d3490f6",
+      "size_bytes": 5429,
+      "role": "FREEZE",
+      "verification": "VERIFIED_NOT_FROZEN",
+      "source_map_id": "closure.FREEZE/FREEZE_HASHES.sha256"
+    },
+    "jcp_extension_v1/J2_entropy_diagnostics/J2D0_case7_integration/code/case7_entropy_observer.py": {
+      "asset_id": "asset_b73e50111c7b",
+      "sha256": "d3d5e519b149872cb9c2f99a9e511fe7cfe76ba45a718ab5005242307f0374d5",
+      "size_bytes": 3250,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.jcp_extension_v1/J2_entropy_diagnostics/J2D0_case7_integration/code/case7_entropy_observer.py"
+    },
+    "jcp_extension_v1/J2_entropy_diagnostics/diagnostics/channel_entropy_diagnostics.py": {
+      "asset_id": "asset_96611fd4b571",
+      "sha256": "dc893fd8401787fa34e82190586cc115c3793a06aa876c6c8d49fda99fe2d036",
+      "size_bytes": 6455,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.jcp_extension_v1/J2_entropy_diagnostics/diagnostics/channel_entropy_diagnostics.py"
+    },
+    "solver/__init__.py": {
+      "asset_id": "asset_phase9_method_dc48a6179afb",
+      "sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8",
+      "size_bytes": 47,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/__init__.py"
+    },
+    "solver/cases/__init__.py": {
+      "asset_id": "asset_phase9_method_c4a19ecaadd6",
+      "sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf",
+      "size_bytes": 26,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/cases/__init__.py"
+    },
+    "solver/cases/isentropic_vortex.py": {
+      "asset_id": "asset_99e71dd3e214",
+      "sha256": "00000b5146cdfcf1cbedff8c7ab86f4a04cb242319f3cb76828f55929dd23656",
+      "size_bytes": 6448,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/cases/isentropic_vortex.py"
+    },
+    "solver/core/__init__.py": {
+      "asset_id": "asset_phase9_method_ef864640be7d",
+      "sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab",
+      "size_bytes": 85,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/core/__init__.py"
+    },
+    "solver/core/boundary.py": {
+      "asset_id": "asset_phase9_method_7cc9c7a81e10",
+      "sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86",
+      "size_bytes": 3486,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/core/boundary.py"
+    },
+    "solver/core/entropy.py": {
+      "asset_id": "asset_phase9_method_0272e5c4e35e",
+      "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc",
+      "size_bytes": 1800,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/core/entropy.py"
+    },
+    "solver/core/euler.py": {
+      "asset_id": "asset_phase9_method_c76c9df32906",
+      "sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b",
+      "size_bytes": 4265,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/core/euler.py"
+    },
+    "solver/core/explicit_ssprk.py": {
+      "asset_id": "asset_phase9_method_c37407c68677",
+      "sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3",
+      "size_bytes": 2458,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/core/explicit_ssprk.py"
+    },
+    "solver/core/finite_volume.py": {
+      "asset_id": "asset_phase9_method_fc99220cb8c8",
+      "sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46",
+      "size_bytes": 1185,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/core/finite_volume.py"
+    },
+    "solver/core/mesh.py": {
+      "asset_id": "asset_phase9_method_4eae85eed06c",
+      "sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159",
+      "size_bytes": 927,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/core/mesh.py"
+    },
+    "solver/diagnostics/__init__.py": {
+      "asset_id": "asset_phase9_method_08bd4854ad77",
+      "sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4",
+      "size_bytes": 40,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/diagnostics/__init__.py"
+    },
+    "solver/diagnostics/isentropic_vortex.py": {
+      "asset_id": "asset_phase9_method_4f1e39d4f529",
+      "sha256": "1262965d1503d77f980c64674466523ac3159dccfaf590342728883c1b8c7ff5",
+      "size_bytes": 16650,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/diagnostics/isentropic_vortex.py"
+    },
+    "solver/experiments/__init__.py": {
+      "asset_id": "asset_phase9_method_5735c8c0e2e0",
+      "sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b",
+      "size_bytes": 54,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/experiments/__init__.py"
+    },
+    "solver/experiments/baseline_case7_production.py": {
+      "asset_id": "asset_phase9_method_a7d1f4611b53",
+      "sha256": "6be2316d695a6a07cbb5e508ca70a27b9af493c7f24e30be42ecbe63d8ee3b6e",
+      "size_bytes": 21045,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/experiments/baseline_case7_production.py"
+    },
+    "solver/experiments/corrected_grid_dispatcher.py": {
+      "asset_id": "asset_phase9_method_b34a7c37abee",
+      "sha256": "b785c122fc26059027009d81ad43665e14716f702caa42662c2005d8c27fa1b7",
+      "size_bytes": 29714,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/experiments/corrected_grid_dispatcher.py"
+    },
+    "solver/fluxes/__init__.py": {
+      "asset_id": "asset_phase9_method_bc8e055b4fb4",
+      "sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921",
+      "size_bytes": 48,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/__init__.py"
+    },
+    "solver/fluxes/ausm_plus_up.py": {
+      "asset_id": "asset_phase9_method_de2d0bd79318",
+      "sha256": "0cb13d31eb3eb96e7811735d8eeac9c3f655619fcd1a97e36a93882247246089",
+      "size_bytes": 8461,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/ausm_plus_up.py"
+    },
+    "solver/fluxes/chandrashekar_es.py": {
+      "asset_id": "asset_phase9_method_1d556ad721cc",
+      "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586",
+      "size_bytes": 9002,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/chandrashekar_es.py"
+    },
+    "solver/fluxes/common.py": {
+      "asset_id": "asset_phase9_method_514ec545724f",
+      "sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0",
+      "size_bytes": 3001,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/common.py"
+    },
+    "solver/fluxes/cross_mode_ec_unified_v1.py": {
+      "asset_id": "asset_a0548b71ae83",
+      "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+      "size_bytes": 2813,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/cross_mode_ec_unified_v1.py"
+    },
+    "solver/fluxes/hllc.py": {
+      "asset_id": "asset_phase9_method_76831374fdcd",
+      "sha256": "3525117d25f414cbadafed2c35d0b43029f55e230ba6c94d55f800e900c144d8",
+      "size_bytes": 2134,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/hllc.py"
+    },
+    "solver/fluxes/hlle.py": {
+      "asset_id": "asset_phase9_method_5ccee4e39275",
+      "sha256": "717e84a6a595f6603f49578cc8d09a6f9b01126e242d67a16004e24bdcb6d47a",
+      "size_bytes": 1453,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/hlle.py"
+    },
+    "solver/fluxes/hllemcc.py": {
+      "asset_id": "asset_phase9_method_7098a6e8f466",
+      "sha256": "46363ea89601526cbd7ec6e8ca3bff8cd236ad9b357107af3ad85388a443c71a",
+      "size_bytes": 5748,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/hllemcc.py"
+    },
+    "solver/fluxes/proposed_cross_mode.py": {
+      "asset_id": "asset_phase9_method_01b17b6f9362",
+      "sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1",
+      "size_bytes": 5582,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/proposed_cross_mode.py"
+    },
+    "solver/fluxes/registry.py": {
+      "asset_id": "asset_phase9_method_dddeae222fa8",
+      "sha256": "8004e5196750eb56a7a93f808888c74ce42f7a5b9ad29c7e11463a8c98634f48",
+      "size_bytes": 12752,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/registry.py"
+    },
+    "solver/fluxes/roe.py": {
+      "asset_id": "asset_phase9_method_13489ac9df5a",
+      "sha256": "3cddb2bb99abbd10e9d5d3af189dc163c9af5255e517b17afea4f203b09c4d0f",
+      "size_bytes": 3205,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/roe.py"
+    },
+    "solver/fluxes/rusanov.py": {
+      "asset_id": "asset_phase9_method_f0d0239398b3",
+      "sha256": "339f704f073be012a87ff189c763466d1a5988fb55871f3e5bc0e2ccdefa1b30",
+      "size_bytes": 1283,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/rusanov.py"
+    },
+    "solver/fluxes/sos_v4.py": {
+      "asset_id": "asset_phase9_method_61e96ee03007",
+      "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b",
+      "size_bytes": 3626,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/sos_v4.py"
+    },
+    "solver/fluxes/unbounded_cross_mode.py": {
+      "asset_id": "asset_f604479b6c81",
+      "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c",
+      "size_bytes": 7556,
+      "role": "METHOD",
+      "verification": "FROZEN_VERIFIED",
+      "source_map_id": "imported.solver/fluxes/unbounded_cross_mode.py"
+    }
+  }
+}
