@@ -64,11 +64,16 @@ class RegionAllocation(CanonicalModel):
         return self
 
 
-class AllocationResult(RootModel[Annotated[
+class CylinderAllocationResult(RootModel[Annotated[
     FaceAllocation | CellAllocation | SectorAllocation | RegionAllocation,
     Field(discriminator="representation_type")
 ]]):
     """Four representations defined by frozen 05 §9."""
+
+
+# Preserve the Window 1 import seam; use a distinct schema component name because
+# the delivered Phase 6 AllocationResult intentionally contains only two variants.
+AllocationResult = CylinderAllocationResult
 
 
 class CylinderAllocationOverview(CanonicalModel):

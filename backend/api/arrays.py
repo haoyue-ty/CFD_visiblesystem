@@ -25,7 +25,8 @@ def parse_array(path: dict[str, str], query: dict[str, list[str]]) -> dict:
 
 def register_array_operations(catalog: OperationCatalog, project: ProjectInfo, service) -> None:
     def scientific_array(query: ArrayQuery, result_id: str, array_id: str):
-        revision = getattr(service, "revision_for", lambda _: project.registry_revision)(query.result_id)
+        resolve_revision = getattr(service, "array_revision_for", getattr(service, "revision_for", lambda _: project.registry_revision))
+        revision = resolve_revision(query.result_id)
         if query.registry_revision is not None and query.registry_revision != revision:
             raise system_error("REVISION_UNAVAILABLE", "Requested registry revision is unavailable", status=409)
         array = service.load_array(query.result_id, query.array_id)
@@ -42,8 +43,8 @@ def register_array_operations(catalog: OperationCatalog, project: ProjectInfo, s
         method="GET", path="/api/v1/results/{result_id}/arrays/{array_id}", operation_id="ARRAY01",
         blueprint="scientific_arrays", service="ResultArrayService", request_model=ArrayQuery,
         response_model=ApiEnvelope[ScientificArray],
-        documented_errors={400: ("INVALID_REQUEST",), 404: ("INVALID_RESULT_ID", "MISSING_ASSET"),
-                           405: ("METHOD_NOT_ALLOWED",), 409: ("REVISION_UNAVAILABLE",),
+        documented_errors={400: ("INVALID_REQUEST",), 404: ("INVALID_RESULT_ID", "MISSING_ASSET", "MISSING_SCIENTIFIC_ASSET"),
+                           405: ("METHOD_NOT_ALLOWED",), 409: ("REVISION_UNAVAILABLE", "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ"),
                            500: ("CANONICAL_SCHEMA_MISMATCH", "SOURCE_READ_ERROR", "SOURCE_ERROR", "INTERNAL_ERROR"),
                            503: ("FEATURE_NOT_ENABLED",)},
         delivery_phase="Alpha", handler=scientific_array, request_parser=parse_array,

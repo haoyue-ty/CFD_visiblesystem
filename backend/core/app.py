@@ -6,6 +6,8 @@ from backend.adapters import Case8Adapter, Case8AdapterProtocol
 from backend.api.allocation import register_allocation_operations
 from backend.api.arrays import register_array_operations
 from backend.api.case8 import register_case8_operations
+from backend.api.cylinder import register_cylinder_operations
+from backend.api.crossflow import register_crossflow_operations
 from backend.api.catalog import OperationCatalog
 from backend.api.evidence import register_evidence_operations
 from backend.api.registry import register_registry_operations
@@ -23,6 +25,7 @@ _DEFAULT_ADAPTER = object()
 
 def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterProtocol | None | object = _DEFAULT_ADAPTER,
                allocation_adapter=_DEFAULT_ADAPTER, spectral_adapter=_DEFAULT_ADAPTER,
+               cylinder_adapter=_DEFAULT_ADAPTER,
                project: ProjectInfo | None = None,
                configure_catalog=None) -> Flask:
     settings = settings or Settings.from_env()
@@ -36,12 +39,17 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     if spectral_adapter is _DEFAULT_ADAPTER:
         from backend.adapters.spectral_data import SpectralAdapter
         spectral_adapter = SpectralAdapter()
+    if cylinder_adapter is _DEFAULT_ADAPTER:
+        from backend.adapters.cylinder import CylinderAdapter
+        cylinder_adapter = CylinderAdapter(settings.scientific_data_root) if settings.scientific_data_root else CylinderAdapter()
     app = Flask(__name__, static_folder=None)
     app.config.update(TESTING=False, JSON_SORT_KEYS=False)
     app.extensions["settings"] = settings
     app.extensions["case8_service"] = Case8Service(case8_adapter)
     app.extensions["allocation_service"] = AllocationServiceImpl(allocation_adapter)
     app.extensions["spectral_service"] = SpectralServiceImpl(spectral_adapter)
+    from backend.services.cylinder import CylinderService
+    app.extensions["cylinder_service"] = CylinderService(cylinder_adapter)
     project = project or load_bootstrap_project()
     if project.account_extension.enabled:
         raise ValueError("Bootstrap project metadata must disable accounts")
@@ -53,19 +61,35 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
             "experiments": [ref.model_copy(update={"delivery_status": "IMPLEMENTED"})
                             if ref.experiment_id == "case8" else ref for ref in project.experiments],
         })
+    if cylinder_adapter is not None:
+        project = project.model_copy(update={"experiments": [
+            ref.model_copy(update={"delivery_status": "IMPLEMENTED"}) if ref.experiment_id == "cylinder" else ref
+            for ref in project.experiments]})
     catalog = OperationCatalog()
     service = app.extensions["case8_service"]
     allocation_service = app.extensions["allocation_service"]
     spectral_service = app.extensions["spectral_service"]
     from backend.services.spectral_resources import ResultResourceRouter, SpectralResources
-    resources = ResultResourceRouter(service, SpectralResources(spectral_service), project)
+    from backend.services.cylinder_resources import CylinderResources
+    from backend.services.crossflow import ComparisonService
+    cylinder_service = app.extensions["cylinder_service"]
+    resources = ResultResourceRouter(service, SpectralResources(spectral_service), project,
+                                     CylinderResources(cylinder_service), allocation_service)
+    app.extensions["result_resources"] = resources
+    comparison_service = ComparisonService(service, cylinder_service, allocation_service)
+    app.extensions["comparison_service"] = comparison_service
     register_system_operations(catalog, project)
-    register_registry_operations(catalog, project, service)
+    register_registry_operations(catalog, project, service, cylinder_service)
     register_case8_operations(catalog, project, service)
     register_array_operations(catalog, project, resources)
     register_evidence_operations(catalog, project, resources, allocation_service)
     register_allocation_operations(catalog, project, allocation_service)
     register_spectral_operations(catalog, project, spectral_service)
+    from backend.registry import cylinder_registry as cylinder_registry
+    cylinder_project = project.model_copy(update={"registry_revision": cylinder_registry.REGISTRY_REVISION,
+                                                  "data_revision": cylinder_registry.DATA_REVISION})
+    register_cylinder_operations(catalog, cylinder_project, cylinder_service)
+    register_crossflow_operations(catalog, project, comparison_service)
     if configure_catalog is not None:
         configure_catalog(catalog, service)
     app.extensions["operation_catalog"] = catalog

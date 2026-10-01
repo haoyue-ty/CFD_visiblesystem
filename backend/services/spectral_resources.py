@@ -6,6 +6,9 @@ configuration/assets; this module never opens sources or computes scientific dat
 from backend.core.errors import missing_asset, missing_resource
 from backend.models import EvidenceRecord, ResultProvenance, known, unresolved
 from backend.registry import spectral_registry as R
+from backend.registry import case8_allocation as A
+
+CASE8_ALLOCATION_ARRAY_RESULTS = frozenset({A.RESULT_ID, *(A.array_result_id(name) for name in A.ARRAYS)})
 
 
 def _selectors():
@@ -147,22 +150,38 @@ class SpectralResources:
 
 
 class ResultResourceRouter:
-    """Keep Case8 and Allocation delivery intact; route registered spectral IDs."""
-    def __init__(self, case8, spectral, project):
+    """Canonical owner dispatch over exact registered spectral/Cylinder identities."""
+    def __init__(self, case8, spectral, project, cylinder=None, allocation=None):
         self.case8, self.spectral, self.project = case8, spectral, project
+        self.cylinder, self.allocation = cylinder, allocation
 
     def revision_for(self, identity):
+        if self.cylinder and (self.cylinder.owns_result(identity) or self.cylinder.owns_evidence(identity)):
+            return self.cylinder.registry_revision
         return R.REGISTRY_REVISION if (self.spectral.owns_result(identity) or
                                       self.spectral.owns_evidence(identity)) else self.project.registry_revision
 
+    def array_revision_for(self, identity):
+        if self.allocation and identity in CASE8_ALLOCATION_ARRAY_RESULTS:
+            return A.REGISTRY_REVISION
+        return self.revision_for(identity)
+
     def load_array(self, result_id, array_id):
+        if self.cylinder and self.cylinder.owns_result(result_id):
+            return self.cylinder.load_array(result_id, array_id)
+        if self.allocation and result_id in CASE8_ALLOCATION_ARRAY_RESULTS:
+            return self.allocation.load_allocation_array(result_id, array_id)
         selected = self.spectral if self.spectral.owns_result(result_id) else self.case8
         return selected.load_array(result_id, array_id)
 
     def load_evidence(self, evidence_id):
+        if self.cylinder and self.cylinder.owns_evidence(evidence_id):
+            return self.cylinder.load_evidence(evidence_id)
         selected = self.spectral if self.spectral.owns_evidence(evidence_id) else self.case8
         return selected.load_evidence(evidence_id)
 
     def load_provenance(self, result_id):
+        if self.cylinder and self.cylinder.owns_result(result_id):
+            return self.cylinder.load_provenance(result_id)
         selected = self.spectral if self.spectral.owns_result(result_id) else self.case8
         return selected.load_provenance(result_id)

@@ -1,0 +1,63 @@
+{
+  "WINDOW": "2_CYLINDER_CROSSFLOW_API",
+  "STATUS": "PASS_WITH_PREEXISTING_BASELINE_TEST_FAILURE",
+  "BRANCH": "phase8/cylinder-crossflow-api",
+  "PHASE8_BASE_COMMIT": "69a318b65b9378066b9a55e429dfca162cef32af",
+  "WINDOW1_ACCEPTED_COMMIT": "27907da",
+  "WINDOW1_CHERRY_PICK_COMMIT": "77b9685",
+  "CYL01_09": "PASS",
+  "CMP01": "PASS",
+  "ARRAY01_CYLINDER": "PASS",
+  "CYL06_PARTIAL": "PASS",
+  "CUMULATIVE_2D": "MISSING",
+  "NO_UNIFIED_RANKING": "PASS",
+  "COMPARABILITY_RULES": "PASS",
+  "OPENAPI": "PASS",
+  "GENERATED_TYPES": "PASS",
+  "TESTS": {
+    "WINDOW2_TESTS.xml": {
+      "tests": 80,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 80
+    },
+    "WINDOW2_PRIOR_SLICES.xml": {
+      "tests": 207,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 207
+    },
+    "WINDOW2_FINAL_ARRAY_REGRESSION.xml": {
+      "tests": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 24
+    },
+    "WINDOW2_FULL_REGRESSION.xml": {
+      "tests": 953,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 951
+    }
+  },
+  "FRONTEND_TYPECHECK_BUILD": "PASS",
+  "CANONICAL_CYLINDER_RESULT_OWNERS": 576,
+  "SCIENTIFIC_FILES_MODIFIED": "NO",
+  "AUDITED_SCIENTIFIC_FILES": 189,
+  "CFD_RUNS_STARTED": 0,
+  "FROZEN_DOCS_MODIFIED": "NO",
+  "EXISTING_OPENAPI_COMPONENTS_CHANGED": 0,
+  "PREEXISTING_BASELINE_FAILURE": {
+    "path": "docs/PHASE5_CASE8_FREEZE.json",
+    "expected_sha256": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+    "checkout_sha256": "fb9ccc05c3cb62d58ba5a97ec6ee2e5068019e7e9b1dd068d75e2ada73734852",
+    "accepted_original_sha256": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+    "normalized_bytes_match": true,
+    "preexisting_test": "tests/window0_spectral_foundation/test_protocol_and_freeze.py::test_phase4_contract_hashes_and_phase5_phase6_freeze"
+  },
+  "MERGE_READY": "YES_WITH_PREEXISTING_BASELINE_TEST_FAILURE"
+}

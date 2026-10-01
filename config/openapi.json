@@ -172,7 +172,7 @@
     "/api/v1/experiments": {
       "get": {
         "operationId": "REG01",
-        "description": "Lightweight canonical experiment metadata; only Case8 is IMPLEMENTED.",
+        "description": "Canonical experiment metadata including delivered Case8 and Cylinder.",
         "tags": [
           "system_registry"
         ],
@@ -271,7 +271,7 @@
     "/api/v1/experiments/{experiment_id}": {
       "get": {
         "operationId": "REG02",
-        "description": "Case8 experiment metadata; other families remain PLANNED.",
+        "description": "Registered experiment metadata for a delivered family.",
         "tags": [
           "system_registry"
         ],
@@ -1872,10 +1872,11 @@
             }
           },
           "404": {
-            "description": "INVALID_RESULT_ID, MISSING_ASSET",
+            "description": "INVALID_RESULT_ID, MISSING_ASSET, MISSING_SCIENTIFIC_ASSET",
             "x-error-codes": [
               "INVALID_RESULT_ID",
-              "MISSING_ASSET"
+              "MISSING_ASSET",
+              "MISSING_SCIENTIFIC_ASSET"
             ],
             "content": {
               "application/json": {
@@ -1899,9 +1900,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -4064,6 +4067,1723 @@
               "minLength": 1,
               "pattern": "^[A-Za-z0-9_.-]+$",
               "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/snapshots": {
+      "get": {
+        "operationId": "CYL01",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_SnapshotIndex_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/snapshots/{snapshot_index}": {
+      "get": {
+        "operationId": "CYL02",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_FieldSnapshot_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "snapshot_index",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Snapshot Index",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Field"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/snapshots/{snapshot_index}/fields/{field_id}": {
+      "get": {
+        "operationId": "CYL03",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_FieldResponse_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "snapshot_index",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Snapshot Index",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Field Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/entropy-history": {
+      "get": {
+        "operationId": "CYL04",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_EntropyHistory_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "series",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              "title": "Series",
+              "type": "array"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 2000,
+              "maximum": 5000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/scalar-series/{series_id}": {
+      "get": {
+        "operationId": "CYL05",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_ScalarSeries_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "series_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Series Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 2000,
+              "maximum": 5000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/allocation": {
+      "get": {
+        "operationId": "CYL06",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_CylinderAllocationOverview_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/allocation/sectors": {
+      "get": {
+        "operationId": "CYL07",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_CylinderAllocationResult_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/allocation/front-band": {
+      "get": {
+        "operationId": "CYL08",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_CylinderAllocationResult_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/experiments/cylinder/configs/{config_id}/metrics": {
+      "get": {
+        "operationId": "CYL09",
+        "description": "Saved native Cylinder result; cumulative 2D remains MISSING.",
+        "tags": [
+          "cylinder"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "CylinderService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_MetricCollection_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND, INVALID_RESULT_ID, MISSING_SCIENTIFIC_ASSET",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG",
+              "SNAPSHOT_NOT_FOUND",
+              "INVALID_RESULT_ID",
+              "MISSING_SCIENTIFIC_ASSET"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "config_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Config Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "metric_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Metric Id"
+            }
+          },
+          {
+            "name": "snapshot_index",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Snapshot Index"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/comparisons/case8-cylinder": {
+      "get": {
+        "operationId": "CMP01",
+        "description": "Typed Case8/Cylinder children with explicit comparability and NO_UNIFIED_RANKING.",
+        "tags": [
+          "crossflow"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "ComparisonService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_CrossFlowComparison_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_CONFIG",
+            "x-error-codes": [
+              "UNKNOWN_CONFIG"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "SOURCE_READ_ERROR",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "case8_config",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "D_u",
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Case8 Config",
+              "type": "string"
+            }
+          },
+          {
+            "name": "cylinder_config",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "D_u",
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Cylinder Config",
               "type": "string"
             }
           }
@@ -13301,6 +15021,923 @@
           "run_id"
         ],
         "title": "ValidationQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_CylinderAllocationOverview_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CylinderAllocationOverview"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[CylinderAllocationOverview]",
+        "type": "object"
+      },
+      "AvailableSlot_CylinderAllocationResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/CylinderAllocationResult"
+          }
+        },
+        "required": [
+          "availability",
+          "value"
+        ],
+        "title": "AvailableSlot[CylinderAllocationResult]",
+        "type": "object"
+      },
+      "ChannelArray": {
+        "additionalProperties": false,
+        "properties": {
+          "channel": {
+            "enum": [
+              "bg",
+              "aa",
+              "at",
+              "total"
+            ],
+            "title": "Channel",
+            "type": "string"
+          },
+          "array_ref": {
+            "$ref": "#/components/schemas/ArrayRef"
+          }
+        },
+        "required": [
+          "channel",
+          "array_ref"
+        ],
+        "title": "ChannelArray",
+        "type": "object"
+      },
+      "CylinderAllocationOverview": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "const": "cylinder",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "sectors": {
+            "$ref": "#/components/schemas/ResourceSlot_CylinderAllocationResult_"
+          },
+          "front_band": {
+            "$ref": "#/components/schemas/ResourceSlot_CylinderAllocationResult_"
+          },
+          "cumulative_2d": {
+            "$ref": "#/components/schemas/ResourceSlot_CylinderAllocationResult_"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "config_id",
+          "sectors",
+          "front_band",
+          "cumulative_2d",
+          "limitations",
+          "evidence_refs"
+        ],
+        "title": "CylinderAllocationOverview",
+        "type": "object"
+      },
+      "CylinderAllocationResult": {
+        "description": "Four representations defined by frozen 05 §9.",
+        "discriminator": {
+          "mapping": {
+            "ANGULAR_SECTORS": "#/components/schemas/SectorAllocation",
+            "CELL_FIELD": "#/components/schemas/CellAllocation",
+            "FACE_FIELD": "#/components/schemas/FaceAllocation",
+            "REGION_SCALAR": "#/components/schemas/RegionAllocation"
+          },
+          "propertyName": "representation_type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/FaceAllocation"
+          },
+          {
+            "$ref": "#/components/schemas/CellAllocation"
+          },
+          {
+            "$ref": "#/components/schemas/SectorAllocation"
+          },
+          {
+            "$ref": "#/components/schemas/RegionAllocation"
+          }
+        ],
+        "title": "CylinderAllocationResult"
+      },
+      "PartialEnvelope_CylinderAllocationOverview_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CylinderAllocationOverview"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[CylinderAllocationOverview]",
+        "type": "object"
+      },
+      "PartialSlot_CylinderAllocationResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/CylinderAllocationResult"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "availability",
+          "value",
+          "issues"
+        ],
+        "title": "PartialSlot[CylinderAllocationResult]",
+        "type": "object"
+      },
+      "RegionAllocation": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "representation_type": {
+            "const": "REGION_SCALAR",
+            "title": "Representation Type",
+            "type": "string"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          },
+          "region_mask": {
+            "$ref": "#/components/schemas/MaskSpec"
+          },
+          "integrated_value": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          },
+          "fraction": {
+            "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+          },
+          "denominator_result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Denominator Result Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result",
+          "representation_type",
+          "summary",
+          "region_mask",
+          "integrated_value",
+          "fraction",
+          "denominator_result_id"
+        ],
+        "title": "RegionAllocation",
+        "type": "object"
+      },
+      "ResourceSlot_CylinderAllocationResult_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableSlot_CylinderAllocationResult_",
+            "ERROR": "#/components/schemas/FailedSlot",
+            "MISSING": "#/components/schemas/FailedSlot",
+            "PARTIAL": "#/components/schemas/PartialSlot_CylinderAllocationResult_",
+            "UNSUPPORTED": "#/components/schemas/FailedSlot"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableSlot_CylinderAllocationResult_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialSlot_CylinderAllocationResult_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedSlot"
+          }
+        ],
+        "title": "ResourceSlot[CylinderAllocationResult]"
+      },
+      "SectorAllocation": {
+        "additionalProperties": false,
+        "description": "Materializes the already frozen 05 §9 Cylinder variant.",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "representation_type": {
+            "const": "ANGULAR_SECTORS",
+            "title": "Representation Type",
+            "type": "string"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          },
+          "sector_count": {
+            "const": 16,
+            "title": "Sector Count",
+            "type": "integer"
+          },
+          "bin_edges": {
+            "$ref": "#/components/schemas/ArrayRef"
+          },
+          "channel_arrays": {
+            "items": {
+              "$ref": "#/components/schemas/ChannelArray"
+            },
+            "title": "Channel Arrays",
+            "type": "array"
+          },
+          "sector_fractions": {
+            "items": {
+              "$ref": "#/components/schemas/Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"
+            },
+            "title": "Sector Fractions",
+            "type": "array"
+          },
+          "front_band_summary_ref": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Front Band Summary Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result",
+          "representation_type",
+          "summary",
+          "sector_count",
+          "bin_edges",
+          "channel_arrays",
+          "sector_fractions",
+          "front_band_summary_ref"
+        ],
+        "title": "SectorAllocation",
+        "type": "object"
+      },
+      "ApiEnvelope_CylinderAllocationOverview_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_CylinderAllocationOverview_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_CylinderAllocationOverview_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_CylinderAllocationOverview_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_CylinderAllocationOverview_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[CylinderAllocationOverview]"
+      },
+      "AvailableEnvelope_CylinderAllocationResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CylinderAllocationResult"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[CylinderAllocationResult]",
+        "type": "object"
+      },
+      "PartialEnvelope_CylinderAllocationResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CylinderAllocationResult"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[CylinderAllocationResult]",
+        "type": "object"
+      },
+      "ApiEnvelope_CylinderAllocationResult_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_CylinderAllocationResult_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_CylinderAllocationResult_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_CylinderAllocationResult_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_CylinderAllocationResult_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[CylinderAllocationResult]"
+      },
+      "AvailableEnvelope_CrossFlowComparison_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CrossFlowComparison"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[CrossFlowComparison]",
+        "type": "object"
+      },
+      "AvailableSlot_MetricCollection_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/MetricCollection"
+          }
+        },
+        "required": [
+          "availability",
+          "value"
+        ],
+        "title": "AvailableSlot[MetricCollection]",
+        "type": "object"
+      },
+      "ComparabilityRule": {
+        "additionalProperties": false,
+        "properties": {
+          "left_definition_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Left Definition Id",
+            "type": "string"
+          },
+          "right_definition_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Right Definition Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "DESCRIPTIVE_ONLY",
+              "COMPATIBLE_WITH_DECLARED_MAPPING"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "mapping_ref": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          }
+        },
+        "required": [
+          "left_definition_id",
+          "right_definition_id",
+          "status",
+          "reason",
+          "mapping_ref"
+        ],
+        "title": "ComparabilityRule",
+        "type": "object"
+      },
+      "CrossFlowComparison": {
+        "additionalProperties": false,
+        "properties": {
+          "comparison_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Comparison Id",
+            "type": "string"
+          },
+          "left": {
+            "$ref": "#/components/schemas/CrossFlowSide"
+          },
+          "right": {
+            "$ref": "#/components/schemas/CrossFlowSide"
+          },
+          "comparability": {
+            "items": {
+              "$ref": "#/components/schemas/ComparabilityRule"
+            },
+            "title": "Comparability",
+            "type": "array"
+          },
+          "ranking_policy": {
+            "const": "NO_UNIFIED_RANKING",
+            "title": "Ranking Policy",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificLimitation"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "comparison_id",
+          "left",
+          "right",
+          "comparability",
+          "ranking_policy",
+          "limitations",
+          "evidence_refs"
+        ],
+        "title": "CrossFlowComparison",
+        "type": "object"
+      },
+      "CrossFlowSide": {
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": {
+            "enum": [
+              "case8",
+              "cylinder"
+            ],
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/ProtocolSpec"
+          },
+          "budget": {
+            "$ref": "#/components/schemas/ResourceSlot_MetricCollection_"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/ResourceSlot_MetricCollection_"
+          },
+          "allocation": {
+            "$ref": "#/components/schemas/ResourceSlot_CylinderAllocationResult_"
+          },
+          "front_band": {
+            "$ref": "#/components/schemas/ResourceSlot_CylinderAllocationResult_"
+          },
+          "snapshot_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Snapshot Refs",
+            "type": "array"
+          },
+          "history_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "History Refs",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "experiment_id",
+          "config_id",
+          "protocol",
+          "budget",
+          "metrics",
+          "allocation",
+          "front_band",
+          "snapshot_refs",
+          "history_refs",
+          "evidence_refs"
+        ],
+        "title": "CrossFlowSide",
+        "type": "object"
+      },
+      "PartialEnvelope_CrossFlowComparison_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CrossFlowComparison"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[CrossFlowComparison]",
+        "type": "object"
+      },
+      "PartialSlot_MetricCollection_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/MetricCollection"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "availability",
+          "value",
+          "issues"
+        ],
+        "title": "PartialSlot[MetricCollection]",
+        "type": "object"
+      },
+      "ResourceSlot_MetricCollection_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableSlot_MetricCollection_",
+            "ERROR": "#/components/schemas/FailedSlot",
+            "MISSING": "#/components/schemas/FailedSlot",
+            "PARTIAL": "#/components/schemas/PartialSlot_MetricCollection_",
+            "UNSUPPORTED": "#/components/schemas/FailedSlot"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableSlot_MetricCollection_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialSlot_MetricCollection_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedSlot"
+          }
+        ],
+        "title": "ResourceSlot[MetricCollection]"
+      },
+      "ApiEnvelope_CrossFlowComparison_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_CrossFlowComparison_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_CrossFlowComparison_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_CrossFlowComparison_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_CrossFlowComparison_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[CrossFlowComparison]"
+      },
+      "Input_ComparisonQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "case8_config": {
+            "default": "D_u",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Case8 Config",
+            "type": "string"
+          },
+          "cylinder_config": {
+            "default": "D_u",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Cylinder Config",
+            "type": "string"
+          }
+        },
+        "title": "ComparisonQuery",
         "type": "object"
       }
     }

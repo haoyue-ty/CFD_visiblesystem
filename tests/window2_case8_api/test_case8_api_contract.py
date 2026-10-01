@@ -272,7 +272,10 @@ IMPLEMENTED = {"SYS01", "DOC01", "REG01", "REG02", "REG03", "REG04", "C801", "C8
                "ALLOC01", "ALLOC02", "ALLOC03", "ALLOC04",
                # Phase 7B Window 2 delivered the spectral dataset/curve/record/eigenmode/validation ops.
                # Phase 7B Window 3 added SPEC06 (the registered validation-run identities).
-               "SPEC00", "SPEC01", "SPEC02", "SPEC03", "SPEC04", "SPEC05", "SPEC06"}
+               "SPEC00", "SPEC01", "SPEC02", "SPEC03", "SPEC04", "SPEC05", "SPEC06",
+               # Phase 8 Window 2 declares Cylinder/composite routes even when
+               # this isolated Case8 fixture disables the Cylinder adapter.
+               "CYL01", "CYL02", "CYL03", "CYL04", "CYL05", "CYL06", "CYL07", "CYL08", "CYL09", "CMP01"}
 
 
 def test_openapi_operations_match_the_catalog_and_runtime_routes(app):
@@ -287,7 +290,8 @@ def test_openapi_operations_match_the_catalog_and_runtime_routes(app):
     # C807 stays CONTRACT_DEFINED / IMPLEMENTATION_DEFERRED, so it must not be advertised.
     assert "C807" not in documented
     # Window 3 routes live under /api/v1/allocations/*; nothing advertises C807's {base}/allocation.
-    assert not any(path.endswith("/allocation") for path in document["paths"])
+    assert not any(path.startswith("/api/v1/experiments/case8/configs/") and path.endswith("/allocation")
+                   for path in document["paths"])
 
 
 def test_openapi_paths_and_methods_match_the_catalog_exactly(app):

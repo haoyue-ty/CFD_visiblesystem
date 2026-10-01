@@ -16,7 +16,7 @@ def adapter():
 
 @pytest.fixture
 def app(adapter):
-    application = create_app(case8_adapter=adapter)
+    application = create_app(case8_adapter=adapter, cylinder_adapter=None)
     application.config["TESTING"] = True
     return application
 

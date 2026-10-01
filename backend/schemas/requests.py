@@ -18,6 +18,11 @@ class RegistryQuery(CanonicalModel):
     registry_revision: ID | None = None
 
 
+class ComparisonQuery(RegistryQuery):
+    case8_config: ID = "D_u"
+    cylinder_config: ID = "D_u"
+
+
 class ExperimentPath(RegistryQuery):
     experiment_id: ID
 

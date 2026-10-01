@@ -1,0 +1,2300 @@
+{
+  "status": "PASS",
+  "audited_scientific_files": 189,
+  "baseline": "Window 1 recorded source inventory, before and after hashes identical",
+  "before_inventory": [
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/07_cylinder_A_u/case_row.json",
+      "sha256": "cfc4cb6c36d1e99354fc4013b9277ea013c86ce8ddb8782774a1558d352b7db2",
+      "size_bytes": 2786,
+      "mtime_ns": 1788498448898480000
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/07_cylinder_A_u/checkpoint_final.npz",
+      "sha256": "31e9c31018dad72bbee0307f1e0cd91e8bf4f247b78b4168a79a24b411e80103",
+      "size_bytes": 135700,
+      "mtime_ns": 1788498448897484800
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/07_cylinder_A_u/CORRECTED_PRE_RUN_SIDECAR.json",
+      "sha256": "1e17095c255a41ba0373eb2df7226b774551d482b4a6ce9e88c6a512f98c1dfd",
+      "size_bytes": 2022,
+      "mtime_ns": 1788497875159945100
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/08_cylinder_B_u/case_row.json",
+      "sha256": "935b7328aa823233aeeeb4a7f5e1ea4323b502bb127db07a5e00776b57969e72",
+      "size_bytes": 2789,
+      "mtime_ns": 1788499064810683800
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/08_cylinder_B_u/checkpoint_final.npz",
+      "sha256": "7bc688b867766242dab9438f209f3ff7acceb44ed9915b50d17cd1aa6b4a3f7f",
+      "size_bytes": 135961,
+      "mtime_ns": 1788499064809664400
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/08_cylinder_B_u/CORRECTED_PRE_RUN_SIDECAR.json",
+      "sha256": "fc9c112dbb54afc483f87c67a10f1bd0d66d08fe5917d9e2ffa75f521a3b22bf",
+      "size_bytes": 2022,
+      "mtime_ns": 1788498484202195200
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/09_cylinder_D_u/case_row.json",
+      "sha256": "b1704ecdf254464f023f0373cf575571359020c3af88f1efa50dab184ab7a654",
+      "size_bytes": 2785,
+      "mtime_ns": 1788499676412332000
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/09_cylinder_D_u/checkpoint_final.npz",
+      "sha256": "458c22cb089f4036d4e4c7eb1ec7ba965861f179d75a8ee8217f44a4da394003",
+      "size_bytes": 135941,
+      "mtime_ns": 1788499676411138800
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/09_cylinder_D_u/CORRECTED_PRE_RUN_SIDECAR.json",
+      "sha256": "fa07368363494c991d3067fa00541a2123f5b70b5c448124bd60eb67a3e349ac",
+      "size_bytes": 2024,
+      "mtime_ns": 1788499089269806400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/diagnostics/channel_entropy_diagnostics.py",
+      "sha256": "dc893fd8401787fa34e82190586cc115c3793a06aa876c6c8d49fda99fe2d036",
+      "size_bytes": 6455,
+      "mtime_ns": 1789953811157292700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/analyze_angular_localization.cpython-310.pyc",
+      "sha256": "012b78247889202b3a1743da776605835a5a271a0639a73753d1f88b2b248a17",
+      "size_bytes": 716,
+      "mtime_ns": 1789558848976690200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/analyze_channel_budget.cpython-310.pyc",
+      "sha256": "5d925f09c29eddc7bff0e78b7b6b17001d11d51e6332e634a7fecbd35cee2295",
+      "size_bytes": 794,
+      "mtime_ns": 1789558848971020700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/compare_case8_cylinder.cpython-310.pyc",
+      "sha256": "21f0859ff931ec824cd0832240e2e5890b641f1bf00ad072cb5e312156bb178e",
+      "size_bytes": 827,
+      "mtime_ns": 1789558848986045200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/cylinder_j2c_v2.cpython-310.pyc",
+      "sha256": "7d7b1c660ac79329c5977800568394f18d9a10f62f3fd08ffae70bf243307c7c",
+      "size_bytes": 34798,
+      "mtime_ns": 1789558848966644300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/make_internal_figures.cpython-310.pyc",
+      "sha256": "8dab2cc00beb1876bab365c35f2ad200aa138442747f1f66ff57b63d793a54f9",
+      "size_bytes": 788,
+      "mtime_ns": 1789558848991102500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/reproduce_physical_metrics.cpython-310.pyc",
+      "sha256": "22cd21a44b7a22c77a363c2d6aed9f2e475ab0a8d0635dcbc29558448bdbb171",
+      "size_bytes": 722,
+      "mtime_ns": 1789558848982295700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/test_cylinder_j2c_v2.cpython-310-pytest-9.1.1.pyc",
+      "sha256": "3f2f758b33d870d54a63c9da8ef11ed612da6e9b6fe2b739aa2f3759fb88d468",
+      "size_bytes": 8669,
+      "mtime_ns": 1789558773445981000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/analyze_angular_localization.py",
+      "sha256": "8865a0c80315edc421e8d5bdc13669ebebc2e7b96ae87f6ceae4c1b1f4723bb0",
+      "size_bytes": 401,
+      "mtime_ns": 1789558832613340700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/analyze_channel_budget.py",
+      "sha256": "c1ffdc191a1256c03d63cdcdbe65fd6b3d29363ed2b7f8d92784199b50a6e66f",
+      "size_bytes": 472,
+      "mtime_ns": 1789558832613340700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/causal_values.json",
+      "sha256": "f916b4af4f7c9799425d705afddcb111ffc68035c2d3cabf6ee99c270cd93d27",
+      "size_bytes": 726,
+      "mtime_ns": 1789558874922330100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/compare_case8_cylinder.py",
+      "sha256": "662bcda1484a69b889d805c9bd17858e0641a11003e5bff742608305ec9ba567",
+      "size_bytes": 518,
+      "mtime_ns": 1789558832616205000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/cylinder_j2c_v2.py",
+      "sha256": "04c7b8cdf6cf72875a4d4cd3f90517840375826eabfedd25119faac6e81aceaa",
+      "size_bytes": 33826,
+      "mtime_ns": 1789558786112749700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/make_internal_figures.py",
+      "sha256": "f3c73abe557a12ac896dc22960481ed95b69579b12cf6a17828dfa05269f5b6b",
+      "size_bytes": 468,
+      "mtime_ns": 1789558832617207700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/reproduce_physical_metrics.py",
+      "sha256": "35c9a4329247181a7f2591504446547c88194adf89025114139842ee128f86c2",
+      "size_bytes": 358,
+      "mtime_ns": 1789558832615198800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/test_cylinder_j2c_v2.py",
+      "sha256": "2ae61c325e77fef28e1faf8f3c183029ab56acb60be285f8272db69303dbebb9",
+      "size_bytes": 3488,
+      "mtime_ns": 1789558765020895400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/figures/J2C_V2_channel_budgets.png",
+      "sha256": "d67310d3f03196046e6e63e1724ee5732535e02f031e0b0e7b8ef788d5d05846",
+      "size_bytes": 48196,
+      "mtime_ns": 1789558875036212600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_ANGULAR_LOCALIZATION.csv",
+      "sha256": "380b652b44b10c9baf4eafecabdeb16a08930a9c65550ebc1aa95149bb8c03ed",
+      "size_bytes": 7743,
+      "mtime_ns": 1789558874912944300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CASE8_COMPARISON.md",
+      "sha256": "6386b48332578f7e9514a4b41504ab3abd88e9247b42c19f04d59fe7305a83aa",
+      "size_bytes": 627,
+      "mtime_ns": 1789558874924148800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CAUSAL_COMPARISONS.md",
+      "sha256": "1934909601826efbc0a53846811962b405a0b3be3f22cc676ea42f982a793e0c",
+      "size_bytes": 899,
+      "mtime_ns": 1789558874922936300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CHANNEL_BUDGET.csv",
+      "sha256": "6a06d27c3a92005120d37c433ba860aae1d83ac1642fb9a6b61c12b113ca5fe1",
+      "size_bytes": 976,
+      "mtime_ns": 1789558874911206500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CLAIM_BOUNDARY.md",
+      "sha256": "262844fd9490096099537716ff665cd484a9080ac6bf1436af666281c25316d0",
+      "size_bytes": 188,
+      "mtime_ns": 1789558874925461500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_PREFLIGHT.md",
+      "sha256": "fa64b8e3efe8d53578452b36ac66524872dccc5f92d52e16d895867cc7870245",
+      "size_bytes": 126,
+      "mtime_ns": 1789554088135850900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_PROTOCOL_LOCK.json",
+      "sha256": "d79b48415902f510241efd8f70c3ae40b2f359464237ad0a322973a564f94c7b",
+      "size_bytes": 3033,
+      "mtime_ns": 1789554088129750300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_RESULT_SUMMARY.md",
+      "sha256": "e033894c9854fae11d137398fac545a32cf16a47a6da48850c81c3cd0e54741b",
+      "size_bytes": 1621,
+      "mtime_ns": 1789558874926069400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_RUN_MANIFEST.csv",
+      "sha256": "91dc25e51b33ad875b777d52d97495894e05ed00f4bf06d56d7e026110b0031f",
+      "size_bytes": 604,
+      "mtime_ns": 1789558875112859600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_SCIENTIFIC_CLASSIFICATION.md",
+      "sha256": "82e9d6bd5dc83da0c69ec0aafd9de34daaf2e0fd734ac568850078e405e80f19",
+      "size_bytes": 156,
+      "mtime_ns": 1789558874924864900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_STATUS.json",
+      "sha256": "519b5bf395efb5b7fcfd8cb69f77eeb1ae8c4002aded7e02d60f515fde56d24e",
+      "size_bytes": 1670,
+      "mtime_ns": 1789558875112859600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/baseline_integrity.json",
+      "sha256": "4c26a973f080053292ca6220ddf85600c4f018721ed6ac835dd4073d9f3090db",
+      "size_bytes": 262,
+      "mtime_ns": 1789554088131402900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/driver_callgraph.md",
+      "sha256": "10fa6e41335d5dcda29273ceb6983822923e726c7ec86983013f1b4c47eccb67",
+      "size_bytes": 188,
+      "mtime_ns": 1789554088132744100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/failed_attempt_integrity.json",
+      "sha256": "2967663c8e8bffe114eee894aba738c2436594e187e8bd1cc4cd968285068966",
+      "size_bytes": 74,
+      "mtime_ns": 1789554088131402900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/method_sha256.txt",
+      "sha256": "3963d6a022255edcd86604f16c4578d68ccfbbe7bd11f6fe90fd40f5961c2684",
+      "size_bytes": 66,
+      "mtime_ns": 1789554088132744100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/protocol_diff.csv",
+      "sha256": "9f6474d3bdc646016f44bc3ab220ca2f79e36209fb2d8264e7243c931e7e7812",
+      "size_bytes": 70,
+      "mtime_ns": 1789554088134287300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/result_hashes.csv",
+      "sha256": "0c1b164fa6a3213e8676d3b05e7d248aaf123e870bb61664f065a1fe018adb16",
+      "size_bytes": 7137,
+      "mtime_ns": 1789558875195764100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/README.md",
+      "sha256": "929bf3f9084bfee1367273a8ad7a56c94ae0616b2579124a25dc390c4ebf7236",
+      "size_bytes": 140,
+      "mtime_ns": 1789554088134838400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/final_state.npz",
+      "sha256": "9a9f5f494a9ad17a8b5f285ec63a2b5d71bbbc149ea6965b9ec738fd30dc935c",
+      "size_bytes": 92318,
+      "mtime_ns": 1789555497782209300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/physical_metrics.json",
+      "sha256": "075578e2b96c0adb6083ac000a585ec2d1b3ec22a2a4f049ab412ac0b70124d6",
+      "size_bytes": 1019,
+      "mtime_ns": 1789555498451532800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/run_result.json",
+      "sha256": "d1e70fff284814e842643daa19279dfcb3b34751bda4cae39d275a39e98ff20d",
+      "size_bytes": 2629,
+      "mtime_ns": 1789555498456171900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_00000.npz",
+      "sha256": "d95aab3e875408df428bf2ef0b5fcdf36ec80204a3caff3b05c9d009e1aad310",
+      "size_bytes": 120708,
+      "mtime_ns": 1789554106088879900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_02439.npz",
+      "sha256": "eea49c183a11dca837a07b7fbcc99e8f424e0b2620e86f42aff65778580b599c",
+      "size_bytes": 374598,
+      "mtime_ns": 1789554467548257100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_04878.npz",
+      "sha256": "01c7b5f18c3fb92e663490766092d22e8bec949d14910ee9052886b46926f67c",
+      "size_bytes": 372718,
+      "mtime_ns": 1789554823536931000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_07318.npz",
+      "sha256": "00e64d6d88bd4409364c8cbe5d017dc18aa0c3445c54526814816e3923da7547",
+      "size_bytes": 369189,
+      "mtime_ns": 1789555170915933000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_09757.npz",
+      "sha256": "208a1c59a4ede25a3c9f167beeb8b33df4d47542955f900663e917c850ae2987",
+      "size_bytes": 366788,
+      "mtime_ns": 1789555497688154300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/spatial_cumulative.npz",
+      "sha256": "9c3ae8ab40dbbd8f797c763e307546b7c887c9d4a8e8c35f1f864223659bd35d",
+      "size_bytes": 2934,
+      "mtime_ns": 1789555498455163100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/stage_weighted_history.csv",
+      "sha256": "cb5406b3cc6d137a2902b59a5caf585890a18618271dcfed7b6f0da4b8c5009b",
+      "size_bytes": 6034795,
+      "mtime_ns": 1789555498449533600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/final_state.npz",
+      "sha256": "b28443926dbb24d6cc7ea77ddb10f6ff56ea643e86c5fdf2a2aab5ede3e40684",
+      "size_bytes": 92408,
+      "mtime_ns": 1789557181844934600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/physical_metrics.json",
+      "sha256": "21594bf5272a5ab0de587d4c0ac2d49795bebd57a51326056aa4054c342b7a41",
+      "size_bytes": 1021,
+      "mtime_ns": 1789557182319863500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/run_result.json",
+      "sha256": "e58b6ed81227edb275e04dbde37da253ad92b4be9389b77ffef57e4016951525",
+      "size_bytes": 2591,
+      "mtime_ns": 1789557182323949700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_00000.npz",
+      "sha256": "d95aab3e875408df428bf2ef0b5fcdf36ec80204a3caff3b05c9d009e1aad310",
+      "size_bytes": 120708,
+      "mtime_ns": 1789555523939718800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_02439.npz",
+      "sha256": "d41dbb2abddb81d5454d2e7a0e7017fb3eb15619a60070bae4eb3839eb2ea8fb",
+      "size_bytes": 376010,
+      "mtime_ns": 1789555981200721500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_04878.npz",
+      "sha256": "d2870a51035941705956488d8ea357bf827ee17b5bb0e67c83993d247853f08e",
+      "size_bytes": 373597,
+      "mtime_ns": 1789556449834752700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_07318.npz",
+      "sha256": "034f190e607b50e7a73a3c536f639dfde3bb76cdf2fc65bcb17c2b0d41b75593",
+      "size_bytes": 370201,
+      "mtime_ns": 1789556822492627300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_09757.npz",
+      "sha256": "77637c91937f744608aad28f3cb4ee7b8a729d6ef2c831f9633c91a289e1d565",
+      "size_bytes": 367169,
+      "mtime_ns": 1789557181803612200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/spatial_cumulative.npz",
+      "sha256": "2eec6063dd7c81dd6c80b898f921c1bcafedac8986d343fe44c7fda742462f06",
+      "size_bytes": 2934,
+      "mtime_ns": 1789557182322938200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/stage_weighted_history.csv",
+      "sha256": "55b12669d1d63a65b584904fd430397f4ff34dc87f0f51b30859ccc5707371d1",
+      "size_bytes": 6105071,
+      "mtime_ns": 1789557182318180500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/final_state.npz",
+      "sha256": "bef58b555dfe3ada5b8d852b56caa51154e7793a115600ee0e2e5b41ae6cf99d",
+      "size_bytes": 92431,
+      "mtime_ns": 1789558647599308800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/physical_metrics.json",
+      "sha256": "0f10f5ee3abf80ed4910eea907328bfab6b7835029b037418681a626266c4983",
+      "size_bytes": 1015,
+      "mtime_ns": 1789558648179810200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/run_result.json",
+      "sha256": "34e783cc983fb964397748179d5b6e98c6a0bff67533e5170a21a74ad9bb776e",
+      "size_bytes": 2618,
+      "mtime_ns": 1789558648184502900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_00000.npz",
+      "sha256": "d95aab3e875408df428bf2ef0b5fcdf36ec80204a3caff3b05c9d009e1aad310",
+      "size_bytes": 120708,
+      "mtime_ns": 1789557207023476900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_02439.npz",
+      "sha256": "db4d1d5c4e2cbe15cb644165527b3930ef86c4793ea5ec8ce61f1f896c5323e8",
+      "size_bytes": 426517,
+      "mtime_ns": 1789557560640744500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_04878.npz",
+      "sha256": "43ecb3d8df0aae2faf1a798d312e7d9b6d5293d687019f10fd0f1644bba854f5",
+      "size_bytes": 424903,
+      "mtime_ns": 1789557925038663500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_07318.npz",
+      "sha256": "ca3d3aef2c897e7c94de977d21948dd321afc83bdaba974e39ec5057f0a4aa80",
+      "size_bytes": 420750,
+      "mtime_ns": 1789558288926801600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_09757.npz",
+      "sha256": "79e298c947fd67ee3a24cddd27a5d55cb232ddc8ce0de523cd60d092aee78c5c",
+      "size_bytes": 417373,
+      "mtime_ns": 1789558647569965100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/spatial_cumulative.npz",
+      "sha256": "58f2ba441d7eb330949a0feaeaeba90eaf855b2407bc20625ff775d5350655a7",
+      "size_bytes": 3199,
+      "mtime_ns": 1789558648182912200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/stage_weighted_history.csv",
+      "sha256": "b5e6d00600a2414dfbb7edc5b21e5fef3044f025d7f2c52f1e9e12f9879fe411",
+      "size_bytes": 7678346,
+      "mtime_ns": 1789558648179810200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/audit_localization_semantics.cpython-310.pyc",
+      "sha256": "7ecfe22fc1a1134050acf1360cdf403e17d29d9531088af0354c29f1c795d05e",
+      "size_bytes": 14891,
+      "mtime_ns": 1789567243572033900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/audit_localization_semantics.cpython-312.pyc",
+      "sha256": "f92adb14b476ae84ddf142429f6777aeb5e08c6c3ecec9ab2ca73e366d3aff68",
+      "size_bytes": 22513,
+      "mtime_ns": 1789569273790212100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/compute_existing_cumulative_localization.cpython-310.pyc",
+      "sha256": "2a286e08e1111cc1fd444bfd18718cc5585d79e28fee80ad50f732f64bffbf49",
+      "size_bytes": 560,
+      "mtime_ns": 1789567243578352100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/test_audit_localization_semantics.cpython-310-pytest-9.1.1.pyc",
+      "sha256": "e26b5e3b9db8c4fa0f144a51fc887b61731623b068734c99c6d86d13bb87a8ce",
+      "size_bytes": 2507,
+      "mtime_ns": 1789567058966069500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/test_audit_localization_semantics.cpython-312-pytest-9.1.1.pyc",
+      "sha256": "5e7f9ef4467ff1ca33975e530efeb10aea63f8fbbaab6cdbba3a37e7a46ac86d",
+      "size_bytes": 4895,
+      "mtime_ns": 1789569273782319700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/verify_cross_case_metrics.cpython-310.pyc",
+      "sha256": "a4176af902391c8b163377f02ab9b0efe0ca77a474c9b702b8f46f348675b92e",
+      "size_bytes": 745,
+      "mtime_ns": 1789567243582690200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/audit_localization_semantics.py",
+      "sha256": "811ea3b72a8417045509b11ab19c3023bcea5383c222426387837b9c3b3dadde",
+      "size_bytes": 16586,
+      "mtime_ns": 1789567175488345500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/compute_existing_cumulative_localization.py",
+      "sha256": "acaeadaa9605c2dd7fdb8a0de5c49a01b0dddfe864389f4a339594703bb5ef01",
+      "size_bytes": 328,
+      "mtime_ns": 1789567226088304000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/localization_values.json",
+      "sha256": "de3ee6d6f9147bb216e73d72a78fc2c39f2e8124b0b243159c788947247c211f",
+      "size_bytes": 5894,
+      "mtime_ns": 1789567196014973400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/test_audit_localization_semantics.py",
+      "sha256": "c507e8e7d46d22f6350295005514ec96bbf5a6fe2460643bee79a430c392f975",
+      "size_bytes": 799,
+      "mtime_ns": 1789567049638756600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/verify_cross_case_metrics.py",
+      "sha256": "976abc1c4a4a98d6e961b07d4076cb7c4fad2e52ac54be89f6bd48b1686d819e",
+      "size_bytes": 590,
+      "mtime_ns": 1789567226089527000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CASE8_LOCALIZATION_TRACE.md",
+      "sha256": "a733c414547792688a72e2200d8e28eec69a94efcfd43537cf7c06d58961bd74",
+      "size_bytes": 320,
+      "mtime_ns": 1789567196018157100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CROSS_CASE_COMPARABILITY.md",
+      "sha256": "9e22a2aa6e42a734b22c9998eacefb5e4320fbde024c900747dbafc5c88c69cc",
+      "size_bytes": 808,
+      "mtime_ns": 1789567196018671700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CYLINDER_DISTRIBUTION_EVIDENCE.md",
+      "sha256": "b376dab61f9d31c860e4109071e06d55321791e7817bf88aeaad34c99b4b3ad9",
+      "size_bytes": 1183,
+      "mtime_ns": 1789567196019765000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CYLINDER_LOCALIZATION_TRACE.md",
+      "sha256": "7b198e65a0de9a208872e78c644ecfccb058ee3813ce05002db96f4ea568ef3b",
+      "size_bytes": 453,
+      "mtime_ns": 1789567196018671700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/J2C_S0_CLAIM_BOUNDARY.md",
+      "sha256": "2413209b09daab83fa4f05fb35824c6fbcec6897f66fa154bef47a3816c7ce78",
+      "size_bytes": 1060,
+      "mtime_ns": 1789567196021742500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/J2C_S0_IMPLEMENTATION_PLAN.md",
+      "sha256": "4575c2f737e4d711d612ca621094c12203ffa527bc5d603ddb44afd9768003ae",
+      "size_bytes": 1823,
+      "mtime_ns": 1789567024274349900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/J2C_S0_STATUS.json",
+      "sha256": "ba6935840b7327a57e8e6ed842a45d00719e995d10c73d5398d642b755aab83a",
+      "size_bytes": 920,
+      "mtime_ns": 1789567196102030500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/LOCALIZATION_DEFINITION_AUDIT.md",
+      "sha256": "edc8e8b1dff7bd488ee1ab00c52a9486eb86d5b9a5e54653930096f0f0565cb7",
+      "size_bytes": 845,
+      "mtime_ns": 1789567196017137800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/LOCALIZATION_QUANTITY_REGISTRY.csv",
+      "sha256": "631eaa684aeadad26be1c2cb121b2501454b5afc4bc4b322461119152835ccef",
+      "size_bytes": 2172,
+      "mtime_ns": 1789567196016566500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/provenance/commands_executed.txt",
+      "sha256": "190b808e2448449af22e2c34f84664ad087385f2e809430c0e7e044bc44702a9",
+      "size_bytes": 70,
+      "mtime_ns": 1789567196101020000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/provenance/input_hashes.csv",
+      "sha256": "5e745d45095b108d246aba8265569e4dc1b8d1ecd65a0ccc444b3198ea88b067",
+      "size_bytes": 14166,
+      "mtime_ns": 1789567195994688000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/provenance/inspected_files.csv",
+      "sha256": "a9795856aba4bc37f47a099e096f7c78f9f29723071da80e30f462571314f969",
+      "size_bytes": 8865,
+      "mtime_ns": 1789567196098354500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/README.md",
+      "sha256": "128f42f6580fd22f2706e7a911d162a071c0c414b148b8cc2bf327888eec3113",
+      "size_bytes": 137,
+      "mtime_ns": 1789567196101020000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_angular_faces.npy",
+      "sha256": "63250ff1a46ff62fad471daf09ae1622f47dd5867bbec7b9b602084d243ea6bc",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213464024700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_angular_faces_contribution.npy",
+      "sha256": "8c63289ac2fe1ab48c3756334dd8f204bccd213982f3e8eabb0a79ab3cd1a3d0",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213467047000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_cells.npy",
+      "sha256": "fda5b9dc7d551295cb3e3c6bb7d469983b8d3b63d4ac8bfb267b1ad8a424688f",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736244314270400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_cells_density.npy",
+      "sha256": "f44755a04ae96b0598c5979d71a802445bfc912eb1deacf353a98d720a007a26",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736244315273000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_faces.npy",
+      "sha256": "de7d74c25f648cd94a748bdc81164682970e9759ab3c48609cc6dbb35a8452f2",
+      "size_bytes": 580800,
+      "mtime_ns": 1790736245342503100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_faces.npz",
+      "sha256": "d38cc0ac72f87f5fbfbc643d14302de55e342bc76d7573a79b5f2c40ee559f62",
+      "size_bytes": 217927,
+      "mtime_ns": 1790736213460059200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_radial_faces.npy",
+      "sha256": "87c038a40938bd580b704622919842428b26f8a19ab591444f7ac953bc5eb321",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213462024700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_radial_faces_contribution.npy",
+      "sha256": "df77402a525488dcf47ac0b2f9e62cdf870a47045f0c7e46eb0cea6c1aeb2395",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213465024200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_measure.npy",
+      "sha256": "4c0288ccce357576eb01073a0aa698b462fc337d9fc9f5ad5a0be3787ed9cfdd",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213489569200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_nx.npy",
+      "sha256": "80a72e1001b6d66d31331ea8e449d3b6d08f437b23b27ea6d207378f2e448831",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213486596400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_ny.npy",
+      "sha256": "dc8f80182e6d3b6b42a68462c261a32ba6bec1723016b5e3003b2dd2550fcf73",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213488588100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_r.npy",
+      "sha256": "205e67c6f1d48ccb19e6232b3ef871b11de76db97acd2892c6aa8e4cba64d745",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213492568800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_theta.npy",
+      "sha256": "1ea847f25ba00a5742dd103340fd99218082afd54421db15822d92d7e3a3d893",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213494568700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_x.npy",
+      "sha256": "7bf19e76f5c7104cd041597339a2d3a21ef6a6c14b8c099272dc6f278b290a43",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213482576500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_y.npy",
+      "sha256": "eb58a4efa16f3104c63174729d7e972b9e711c002f47239e2e32bd2c99b8e312",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213484575700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/assemble_fig15.py",
+      "sha256": "ba144a87e18a6e0931b6bf01725bd0cfbdc2543d5b26fee092d2a533214f62c7",
+      "size_bytes": 2254,
+      "mtime_ns": 1790732936827878100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/build_reference_audit.py",
+      "sha256": "65489db926152710e15606e2f8d10c6d77cdac3da27d500694ce95bd59da1e0a",
+      "size_bytes": 15918,
+      "mtime_ns": 1790732741219730000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/check_field_shock_consistency.py",
+      "sha256": "8f0554b96f86c3ccb3e156b38d615ee5c0f7cef3d28893dae96a25beef1a4d6b",
+      "size_bytes": 3402,
+      "mtime_ns": 1790736380211975100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/derive_cell_density.py",
+      "sha256": "5188d9b0c6d8e0c97f5c10cef0343db19532996627491c328f44bb34fc08777a",
+      "size_bytes": 5344,
+      "mtime_ns": 1790732907028118300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/derived_cell_field_report.json",
+      "sha256": "afecd8c067dda6dd73782e6d0e898f65232a973abce5d2441c69ca214b3bfdb8",
+      "size_bytes": 1085,
+      "mtime_ns": 1790736244352718900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/du_spatial_rerun_driver.py",
+      "sha256": "463af13ca65e82f93c89fc7150dfde8971b3df7ee4015d12827d9a79edec8b99",
+      "size_bytes": 34234,
+      "mtime_ns": 1790734509194884700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/du_spatial_rerun_observer.py",
+      "sha256": "4a6b38485e8004e7450843909c1d59c39645741fde3e19ec3711f69b47532abf",
+      "size_bytes": 9348,
+      "mtime_ns": 1790732760184545200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/entropy_budget_rerun.csv",
+      "sha256": "03e779ce33319a7da9e78b789f54c00a6d5692f818664a6bef322ac3ab0a1f94",
+      "size_bytes": 7678258,
+      "mtime_ns": 1790736213388219700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/export_single_npy.py",
+      "sha256": "b6f0500eefa7e539a5eb6863d92cd21c470ffa8fbcc2c544a3da088c9d76bc38",
+      "size_bytes": 3567,
+      "mtime_ns": 1790732952854870800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_family_id.npy",
+      "sha256": "0686e23c2f99019ce2164506431bda699b3c1ce17b15753d3ea6999318fb85b5",
+      "size_bytes": 8192,
+      "mtime_ns": 1790736245352024700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_geometry.npz",
+      "sha256": "2dc75faa96c2a388251a7f7a22a98223a51438e3884dba924f6a632f95028caf",
+      "size_bytes": 116566,
+      "mtime_ns": 1790736245362062700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_geometry_index.json",
+      "sha256": "dd3d3964cf3eafd7f65283513ab164575354c6d098c02792db2c79af47e02eea",
+      "size_bytes": 878,
+      "mtime_ns": 1790736245363063000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_measure.npy",
+      "sha256": "f92ff293afdd9c12827bf92734be296ee74f01f79219107948f1d8f0f37f182c",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245351022800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_nx.npy",
+      "sha256": "608a19ce45ecad22afe46b1bd58df3f61463b71b1ab8f0cfb014e05a8fea3204",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245347506300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_ny.npy",
+      "sha256": "9c7e7938e8ec713ebad45ad98f0cab767ce1513c5eefee615619107fb43973fc",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245349015200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_x.npy",
+      "sha256": "c6affc04c91ccf09a8e02dbe597acdfca8ccfa3306546087bd3c52426c76676c",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245343504900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_y.npy",
+      "sha256": "1ceb6bada91f50595637fa7af4280abf95c803e456349fb3f0e96d33b1e809ba",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245345504900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/field_shock_consistency_check.json",
+      "sha256": "5a2ea84a03b4b653c88c28ecb4f03445f83b378190b547fb72909dbd73f59fbd",
+      "size_bytes": 1512,
+      "mtime_ns": 1790736386912187300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_data_provenance.json",
+      "sha256": "4e1ddd875f20bdab4bc4f44de17a721394a3e9b82f6aeef619f739dae5ecfcc3",
+      "size_bytes": 20399,
+      "mtime_ns": 1790697077491166600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_mach3_cylinder.pdf",
+      "sha256": "1f259c508a30e84e8458eb11ba7f072d86867953acadc27dd3070990f6d0e29d",
+      "size_bytes": 656854,
+      "mtime_ns": 1790736389652977200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_mach3_cylinder.svg",
+      "sha256": "f05dbc990cddeea089cabbc6c04d860a1392811ef8b67e6a5bc13eadd96e0af3",
+      "size_bytes": 931857,
+      "mtime_ns": 1790736389877731100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_mach3_cylinder_600dpi.png",
+      "sha256": "fee253f8d95dddf6d448dc7f8805ac4221b7b1cc3479aabc31e60197501b8562",
+      "size_bytes": 689733,
+      "mtime_ns": 1790736391656932900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_spatial_rerun_validation.md",
+      "sha256": "614967d388b3dc7f86d6515ee7500c107c77028f97d149e24b65ddf64180d7eb",
+      "size_bytes": 6242,
+      "mtime_ns": 1790736448142842900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15b_entropy_map.py",
+      "sha256": "5d3d3b5a3c478f705ec81e98412e9caf484e469ebcd279988d4bc0ce071ca275",
+      "size_bytes": 6291,
+      "mtime_ns": 1790736303578696200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/final_front_arrays.npz",
+      "sha256": "684f5ef64de514dc6f9aa09be7ac50d39d2b5e6f09f8408c7565849b1f5dbd40",
+      "size_bytes": 2240,
+      "mtime_ns": 1790736213506887100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/freeze_bundle.py",
+      "sha256": "972362a954019504654c445dda91472eb3e5de536d18cf041d183ceb25ec346a",
+      "size_bytes": 11711,
+      "mtime_ns": 1790736433299601100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/FREEZE_MANIFEST.json",
+      "sha256": "aa4dc910164fe43a4d620eb5df3579ba6a069639757aa671deb14d821ba83b9f",
+      "size_bytes": 18003,
+      "mtime_ns": 1790736441732639500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/FREEZE_MANIFEST.sha256",
+      "sha256": "b7f55e83a9de388cda0baf811f2a08bb5e2a1e0e4752b8f0ffcf92bf85f4c337",
+      "size_bytes": 88,
+      "mtime_ns": 1790736441732639500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/freeze_reload_check.json",
+      "sha256": "8e4f9aeca78228d23154560ef1cb9d8de41b692fdff271c8d00b10d2a01a4a0d",
+      "size_bytes": 777,
+      "mtime_ns": 1790736441692178400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/front_band_mask.npz",
+      "sha256": "47d2cdd09c9fbfc601d9320b06f0071a068101e21b8ba86eaf804a74f46110ff",
+      "size_bytes": 10550,
+      "mtime_ns": 1790736213498586000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/front_band_recheck.json",
+      "sha256": "c55cdee456e6f4b01c90773e000712e83a8f8d60fbaf5afb442624466a302f7f",
+      "size_bytes": 662,
+      "mtime_ns": 1790736213514269300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/front_response_source_data.csv",
+      "sha256": "9bc53155fd75d651e918772c430bf72de50fdc3d9cb0638ffe225e3efcb6ebe0",
+      "size_bytes": 1097,
+      "mtime_ns": 1790697028308190000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/global_entropy_totals.json",
+      "sha256": "503bfde2de28f191e60e45d7605f77d500910c287f8d7da404ae5f2f1aa8f6b1",
+      "size_bytes": 1050,
+      "mtime_ns": 1790736213511837400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/method_sha256.txt",
+      "sha256": "3963d6a022255edcd86604f16c4578d68ccfbbe7bd11f6fe90fd40f5961c2684",
+      "size_bytes": 66,
+      "mtime_ns": 1790736441693178700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/observer_validation.json",
+      "sha256": "1f00ccdb8fc7df61eb8310f0ee9bd081566ee397bc0e63fe6e5b2cc22e3c39b4",
+      "size_bytes": 628,
+      "mtime_ns": 1790736213533967800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_a_curved_shock.pdf",
+      "sha256": "1ac95036adae7b0b4042d8b4d2c27989c1abf1fb479f1ad439727271b181ef5b",
+      "size_bytes": 116394,
+      "mtime_ns": 1790696981034808500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_entropy_map.pdf",
+      "sha256": "cb011de318693976b81d6378db2cfa7fa426e7d133551fcb4efbf621d4e1a3f0",
+      "size_bytes": 127747,
+      "mtime_ns": 1790736336646060300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_entropy_map.png",
+      "sha256": "c18edfeb665ce00486643f16a38081647dab34d3f345aa01b11818e5edc7f091",
+      "size_bytes": 249400,
+      "mtime_ns": 1790736337101447600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_entropy_map.svg",
+      "sha256": "ae0bdd1215f8ae85660d9232057918ed36b1d3c8a26de5e09e0ee95f350fe08a",
+      "size_bytes": 202777,
+      "mtime_ns": 1790736336885463600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_provenance.json",
+      "sha256": "c0beee084d5c8f56033881b73263f57522a88106ed89394775602129912a343f",
+      "size_bytes": 1450,
+      "mtime_ns": 1790736337122457000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_c_sector_allocation.pdf",
+      "sha256": "ea048f3e4319ac402a6c588274802b99755c92daf8bd8d7f9fedd876adc00276",
+      "size_bytes": 41893,
+      "mtime_ns": 1790696810847026700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_d_front_response.pdf",
+      "sha256": "4af7d9f6d4ca33d76e78b0eda55cc1893e96e84b467494faeb12354bfba3a44e",
+      "size_bytes": 38718,
+      "mtime_ns": 1790697029170522700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/physical_metrics_rerun.json",
+      "sha256": "0f10f5ee3abf80ed4910eea907328bfab6b7835029b037418681a626266c4983",
+      "size_bytes": 1015,
+      "mtime_ns": 1790736213509346000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/production_stdout.log",
+      "sha256": "1b137df3f478d5d61cfa0f2addaa722b874429b58f1b7d738b560ae58cd6cd78",
+      "size_bytes": 468,
+      "mtime_ns": 1790736213718555800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_measure.npy",
+      "sha256": "746e8e1ababf13e53d44e753708100e540935c2d597c8872f7ed245a30bdc23f",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213476085800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_nx.npy",
+      "sha256": "074565395ebf7d552dd4bb35fb8919c39a3774ae56efe6cc2e01e7f1d609ae5c",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213474086400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_ny.npy",
+      "sha256": "6c9a024f7cad2c4bec8ff769546caa7f0484e61a563b66f05367bfb4be17ac1b",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213476085800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_r.npy",
+      "sha256": "504d47fcf44613c74ef00f10dfe4df541fa0b48e1ecc80a509f0e16a36952f37",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213478578500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_theta.npy",
+      "sha256": "338f9bc21e2b16316b9c0273a29e35b8b5eff516a1fe1d7eb2fbfa0846c0d63c",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213480576600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_x.npy",
+      "sha256": "773c3428812bf134eda3dbab7134b53ff208ed1e550fa31c1030ed445dba19f8",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213470080500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_y.npy",
+      "sha256": "9977128ab17b782ea1497a60ef78ccb732570b9457e7935087eee9bd5380e525",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213472110700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/raw_accumulators.npz",
+      "sha256": "3f788713e59abaf071fb8682ec5cbdec2929fc8db47990775580ef348972064c",
+      "size_bytes": 194513,
+      "mtime_ns": 1790736213414642800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/readonly_check.json",
+      "sha256": "448f1dbea6772732daa657381870bb4e3ee1bb1937c9cf4a9cfe8054ac5eb1a0",
+      "size_bytes": 631,
+      "mtime_ns": 1790734671183179400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/reference_Du_audit.json",
+      "sha256": "365ea5c89793866116a50acf0aec332adf6af710f68b5c32cb3317dc84c9ff02",
+      "size_bytes": 12353,
+      "mtime_ns": 1790732746695068300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/rerun_config.json",
+      "sha256": "dcc0d7016101ac1df47e3222856d442556edc7bbcb5bfe5281fee4df150ce569",
+      "size_bytes": 2518,
+      "mtime_ns": 1790736213531996900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/rerun_config_audit.json",
+      "sha256": "d0c896a8f0f957f72bab42ebaa9339d580ef51cbf315da99598e1caeccfdd665",
+      "size_bytes": 1522,
+      "mtime_ns": 1790732746696115600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/rerun_metrics.json",
+      "sha256": "07283ee7a23d51fc8a68cb4db76083131f9b716b7be5c40709f4dd45f328bdf7",
+      "size_bytes": 4073,
+      "mtime_ns": 1790736213520963700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/sector_allocation.csv",
+      "sha256": "0d41826cd02336e1cd7eaae1f9b696a059d07be23bf70968dd3dfb710fc7bb89",
+      "size_bytes": 1527,
+      "mtime_ns": 1790697077480523000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/sector_reproduction_check.csv",
+      "sha256": "890a9a92221dd6c97833b775c2aba2fda20e142edefd6659e04f04be272c0aaf",
+      "size_bytes": 2875,
+      "mtime_ns": 1790736213516772600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/sector_reproduction_summary.json",
+      "sha256": "9dcc179f322be118ab4e7735f47d85a38f0564b1a4df40c231f9bf9f1f31f4f8",
+      "size_bytes": 366,
+      "mtime_ns": 1790736213518804200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/smoke_equivalence.json",
+      "sha256": "f4fc75d2f3c2a3a2f3aee6d4ccf7264c1bd271e0a02d072fad13e099fa3ffa89",
+      "size_bytes": 3527,
+      "mtime_ns": 1790734668416182100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/terminal_state.npz",
+      "sha256": "d31d23a77b4982242376f4224cfe3be4703702ab66dc6fb147adef153ab1ced2",
+      "size_bytes": 92723,
+      "mtime_ns": 1790736213504571800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/verification_report.json",
+      "sha256": "2014d6c03d3675e9e9ccc9874a6b329784cd86b053352e4008d72d21970ef6f6",
+      "size_bytes": 5180,
+      "mtime_ns": 1790736237675092100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/verify_fig15_spatial_rerun.py",
+      "sha256": "edc4f18cb9fbe4683d4eaed004e8ad17cef64997e14d1b2443a79816be96291a",
+      "size_bytes": 16367,
+      "mtime_ns": 1790732873241089000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/write_validation_report.py",
+      "sha256": "9783fbc65aadc3750f5ddab070073b6251ce7b1eedb92fd1e38168443edd5fa1",
+      "size_bytes": 12788,
+      "mtime_ns": 1790732996227190300
+    },
+    {
+      "path": "solver/core/curvilinear_mesh.py",
+      "sha256": "b50011f770539547577286d29880ac7ff229897c2c2a880c48b56e0e96d997d6",
+      "size_bytes": 3323,
+      "mtime_ns": 1787416424545264700
+    },
+    {
+      "path": "solver/core/entropy.py",
+      "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc",
+      "size_bytes": 1800,
+      "mtime_ns": 1787411100027510800
+    },
+    {
+      "path": "solver/core/time_integrator.py",
+      "sha256": "05e6d9deb3414236a5b9bff8b96c54bfe42014b1cd8bb6eaf2a36d9819164055",
+      "size_bytes": 4632,
+      "mtime_ns": 1787416638959524800
+    },
+    {
+      "path": "solver/diagnostics/cylinder.py",
+      "sha256": "8b9d14754b460af510f8fa8dc39d95570cf69ac3f898b8557ce31fba466948ef",
+      "size_bytes": 9712,
+      "mtime_ns": 1787728745277756600
+    },
+    {
+      "path": "solver/experiments/corrected_cylinder_dispatcher.py",
+      "sha256": "04e4c2447bca62f5a9006a0f736c284caebb7ddc8873370b317d942ae51e6725",
+      "size_bytes": 7736,
+      "mtime_ns": 1788497757240920900
+    },
+    {
+      "path": "solver/experiments/cylinder_b2_4_production.py",
+      "sha256": "fc1aa98ea5e144e7afe724937a8ad3a663eeff44e45a90544dc8f7f9f01677bd",
+      "size_bytes": 20838,
+      "mtime_ns": 1788271917396953800
+    },
+    {
+      "path": "solver/fluxes/chandrashekar_es.py",
+      "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586",
+      "size_bytes": 9002,
+      "mtime_ns": 1788057010138410900
+    },
+    {
+      "path": "solver/fluxes/cross_mode_ec_unified_v1.py",
+      "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+      "size_bytes": 2813,
+      "mtime_ns": 1788436998388720900
+    },
+    {
+      "path": "solver/fluxes/sos_v4.py",
+      "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b",
+      "size_bytes": 3626,
+      "mtime_ns": 1787416577551399800
+    },
+    {
+      "path": "solver/fluxes/unbounded_cross_mode.py",
+      "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c",
+      "size_bytes": 7556,
+      "mtime_ns": 1787507272086779500
+    },
+    {
+      "path": "unified_corrected_method_v3/CERTIFICATION_MANIFEST.json",
+      "sha256": "69e89674c0772cf650e073b138d6da61e1a60567a02a786f8b19b6a1d615b1b2",
+      "size_bytes": 2130,
+      "mtime_ns": 1788437632153495000
+    }
+  ],
+  "after_inventory": [
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/07_cylinder_A_u/case_row.json",
+      "sha256": "cfc4cb6c36d1e99354fc4013b9277ea013c86ce8ddb8782774a1558d352b7db2",
+      "size_bytes": 2786,
+      "mtime_ns": 1788498448898480000
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/07_cylinder_A_u/checkpoint_final.npz",
+      "sha256": "31e9c31018dad72bbee0307f1e0cd91e8bf4f247b78b4168a79a24b411e80103",
+      "size_bytes": 135700,
+      "mtime_ns": 1788498448897484800
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/07_cylinder_A_u/CORRECTED_PRE_RUN_SIDECAR.json",
+      "sha256": "1e17095c255a41ba0373eb2df7226b774551d482b4a6ce9e88c6a512f98c1dfd",
+      "size_bytes": 2022,
+      "mtime_ns": 1788497875159945100
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/08_cylinder_B_u/case_row.json",
+      "sha256": "935b7328aa823233aeeeb4a7f5e1ea4323b502bb127db07a5e00776b57969e72",
+      "size_bytes": 2789,
+      "mtime_ns": 1788499064810683800
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/08_cylinder_B_u/checkpoint_final.npz",
+      "sha256": "7bc688b867766242dab9438f209f3ff7acceb44ed9915b50d17cd1aa6b4a3f7f",
+      "size_bytes": 135961,
+      "mtime_ns": 1788499064809664400
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/08_cylinder_B_u/CORRECTED_PRE_RUN_SIDECAR.json",
+      "sha256": "fc9c112dbb54afc483f87c67a10f1bd0d66d08fe5917d9e2ffa75f521a3b22bf",
+      "size_bytes": 2022,
+      "mtime_ns": 1788498484202195200
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/09_cylinder_D_u/case_row.json",
+      "sha256": "b1704ecdf254464f023f0373cf575571359020c3af88f1efa50dab184ab7a654",
+      "size_bytes": 2785,
+      "mtime_ns": 1788499676412332000
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/09_cylinder_D_u/checkpoint_final.npz",
+      "sha256": "458c22cb089f4036d4e4c7eb1ec7ba965861f179d75a8ee8217f44a4da394003",
+      "size_bytes": 135941,
+      "mtime_ns": 1788499676411138800
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/cylinder/09_cylinder_D_u/CORRECTED_PRE_RUN_SIDECAR.json",
+      "sha256": "fa07368363494c991d3067fa00541a2123f5b70b5c448124bd60eb67a3e349ac",
+      "size_bytes": 2024,
+      "mtime_ns": 1788499089269806400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/diagnostics/channel_entropy_diagnostics.py",
+      "sha256": "dc893fd8401787fa34e82190586cc115c3793a06aa876c6c8d49fda99fe2d036",
+      "size_bytes": 6455,
+      "mtime_ns": 1789953811157292700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/analyze_angular_localization.cpython-310.pyc",
+      "sha256": "012b78247889202b3a1743da776605835a5a271a0639a73753d1f88b2b248a17",
+      "size_bytes": 716,
+      "mtime_ns": 1789558848976690200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/analyze_channel_budget.cpython-310.pyc",
+      "sha256": "5d925f09c29eddc7bff0e78b7b6b17001d11d51e6332e634a7fecbd35cee2295",
+      "size_bytes": 794,
+      "mtime_ns": 1789558848971020700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/compare_case8_cylinder.cpython-310.pyc",
+      "sha256": "21f0859ff931ec824cd0832240e2e5890b641f1bf00ad072cb5e312156bb178e",
+      "size_bytes": 827,
+      "mtime_ns": 1789558848986045200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/cylinder_j2c_v2.cpython-310.pyc",
+      "sha256": "7d7b1c660ac79329c5977800568394f18d9a10f62f3fd08ffae70bf243307c7c",
+      "size_bytes": 34798,
+      "mtime_ns": 1789558848966644300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/make_internal_figures.cpython-310.pyc",
+      "sha256": "8dab2cc00beb1876bab365c35f2ad200aa138442747f1f66ff57b63d793a54f9",
+      "size_bytes": 788,
+      "mtime_ns": 1789558848991102500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/reproduce_physical_metrics.cpython-310.pyc",
+      "sha256": "22cd21a44b7a22c77a363c2d6aed9f2e475ab0a8d0635dcbc29558448bdbb171",
+      "size_bytes": 722,
+      "mtime_ns": 1789558848982295700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/__pycache__/test_cylinder_j2c_v2.cpython-310-pytest-9.1.1.pyc",
+      "sha256": "3f2f758b33d870d54a63c9da8ef11ed612da6e9b6fe2b739aa2f3759fb88d468",
+      "size_bytes": 8669,
+      "mtime_ns": 1789558773445981000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/analyze_angular_localization.py",
+      "sha256": "8865a0c80315edc421e8d5bdc13669ebebc2e7b96ae87f6ceae4c1b1f4723bb0",
+      "size_bytes": 401,
+      "mtime_ns": 1789558832613340700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/analyze_channel_budget.py",
+      "sha256": "c1ffdc191a1256c03d63cdcdbe65fd6b3d29363ed2b7f8d92784199b50a6e66f",
+      "size_bytes": 472,
+      "mtime_ns": 1789558832613340700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/causal_values.json",
+      "sha256": "f916b4af4f7c9799425d705afddcb111ffc68035c2d3cabf6ee99c270cd93d27",
+      "size_bytes": 726,
+      "mtime_ns": 1789558874922330100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/compare_case8_cylinder.py",
+      "sha256": "662bcda1484a69b889d805c9bd17858e0641a11003e5bff742608305ec9ba567",
+      "size_bytes": 518,
+      "mtime_ns": 1789558832616205000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/cylinder_j2c_v2.py",
+      "sha256": "04c7b8cdf6cf72875a4d4cd3f90517840375826eabfedd25119faac6e81aceaa",
+      "size_bytes": 33826,
+      "mtime_ns": 1789558786112749700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/make_internal_figures.py",
+      "sha256": "f3c73abe557a12ac896dc22960481ed95b69579b12cf6a17828dfa05269f5b6b",
+      "size_bytes": 468,
+      "mtime_ns": 1789558832617207700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/reproduce_physical_metrics.py",
+      "sha256": "35c9a4329247181a7f2591504446547c88194adf89025114139842ee128f86c2",
+      "size_bytes": 358,
+      "mtime_ns": 1789558832615198800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/analysis/test_cylinder_j2c_v2.py",
+      "sha256": "2ae61c325e77fef28e1faf8f3c183029ab56acb60be285f8272db69303dbebb9",
+      "size_bytes": 3488,
+      "mtime_ns": 1789558765020895400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/figures/J2C_V2_channel_budgets.png",
+      "sha256": "d67310d3f03196046e6e63e1724ee5732535e02f031e0b0e7b8ef788d5d05846",
+      "size_bytes": 48196,
+      "mtime_ns": 1789558875036212600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_ANGULAR_LOCALIZATION.csv",
+      "sha256": "380b652b44b10c9baf4eafecabdeb16a08930a9c65550ebc1aa95149bb8c03ed",
+      "size_bytes": 7743,
+      "mtime_ns": 1789558874912944300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CASE8_COMPARISON.md",
+      "sha256": "6386b48332578f7e9514a4b41504ab3abd88e9247b42c19f04d59fe7305a83aa",
+      "size_bytes": 627,
+      "mtime_ns": 1789558874924148800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CAUSAL_COMPARISONS.md",
+      "sha256": "1934909601826efbc0a53846811962b405a0b3be3f22cc676ea42f982a793e0c",
+      "size_bytes": 899,
+      "mtime_ns": 1789558874922936300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CHANNEL_BUDGET.csv",
+      "sha256": "6a06d27c3a92005120d37c433ba860aae1d83ac1642fb9a6b61c12b113ca5fe1",
+      "size_bytes": 976,
+      "mtime_ns": 1789558874911206500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_CLAIM_BOUNDARY.md",
+      "sha256": "262844fd9490096099537716ff665cd484a9080ac6bf1436af666281c25316d0",
+      "size_bytes": 188,
+      "mtime_ns": 1789558874925461500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_PREFLIGHT.md",
+      "sha256": "fa64b8e3efe8d53578452b36ac66524872dccc5f92d52e16d895867cc7870245",
+      "size_bytes": 126,
+      "mtime_ns": 1789554088135850900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_PROTOCOL_LOCK.json",
+      "sha256": "d79b48415902f510241efd8f70c3ae40b2f359464237ad0a322973a564f94c7b",
+      "size_bytes": 3033,
+      "mtime_ns": 1789554088129750300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_RESULT_SUMMARY.md",
+      "sha256": "e033894c9854fae11d137398fac545a32cf16a47a6da48850c81c3cd0e54741b",
+      "size_bytes": 1621,
+      "mtime_ns": 1789558874926069400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_RUN_MANIFEST.csv",
+      "sha256": "91dc25e51b33ad875b777d52d97495894e05ed00f4bf06d56d7e026110b0031f",
+      "size_bytes": 604,
+      "mtime_ns": 1789558875112859600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_SCIENTIFIC_CLASSIFICATION.md",
+      "sha256": "82e9d6bd5dc83da0c69ec0aafd9de34daaf2e0fd734ac568850078e405e80f19",
+      "size_bytes": 156,
+      "mtime_ns": 1789558874924864900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/J2C_V2_STATUS.json",
+      "sha256": "519b5bf395efb5b7fcfd8cb69f77eeb1ae8c4002aded7e02d60f515fde56d24e",
+      "size_bytes": 1670,
+      "mtime_ns": 1789558875112859600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/baseline_integrity.json",
+      "sha256": "4c26a973f080053292ca6220ddf85600c4f018721ed6ac835dd4073d9f3090db",
+      "size_bytes": 262,
+      "mtime_ns": 1789554088131402900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/driver_callgraph.md",
+      "sha256": "10fa6e41335d5dcda29273ceb6983822923e726c7ec86983013f1b4c47eccb67",
+      "size_bytes": 188,
+      "mtime_ns": 1789554088132744100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/failed_attempt_integrity.json",
+      "sha256": "2967663c8e8bffe114eee894aba738c2436594e187e8bd1cc4cd968285068966",
+      "size_bytes": 74,
+      "mtime_ns": 1789554088131402900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/method_sha256.txt",
+      "sha256": "3963d6a022255edcd86604f16c4578d68ccfbbe7bd11f6fe90fd40f5961c2684",
+      "size_bytes": 66,
+      "mtime_ns": 1789554088132744100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/protocol_diff.csv",
+      "sha256": "9f6474d3bdc646016f44bc3ab220ca2f79e36209fb2d8264e7243c931e7e7812",
+      "size_bytes": 70,
+      "mtime_ns": 1789554088134287300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/provenance/result_hashes.csv",
+      "sha256": "0c1b164fa6a3213e8676d3b05e7d248aaf123e870bb61664f065a1fe018adb16",
+      "size_bytes": 7137,
+      "mtime_ns": 1789558875195764100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/README.md",
+      "sha256": "929bf3f9084bfee1367273a8ad7a56c94ae0616b2579124a25dc390c4ebf7236",
+      "size_bytes": 140,
+      "mtime_ns": 1789554088134838400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/final_state.npz",
+      "sha256": "9a9f5f494a9ad17a8b5f285ec63a2b5d71bbbc149ea6965b9ec738fd30dc935c",
+      "size_bytes": 92318,
+      "mtime_ns": 1789555497782209300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/physical_metrics.json",
+      "sha256": "075578e2b96c0adb6083ac000a585ec2d1b3ec22a2a4f049ab412ac0b70124d6",
+      "size_bytes": 1019,
+      "mtime_ns": 1789555498451532800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/run_result.json",
+      "sha256": "d1e70fff284814e842643daa19279dfcb3b34751bda4cae39d275a39e98ff20d",
+      "size_bytes": 2629,
+      "mtime_ns": 1789555498456171900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_00000.npz",
+      "sha256": "d95aab3e875408df428bf2ef0b5fcdf36ec80204a3caff3b05c9d009e1aad310",
+      "size_bytes": 120708,
+      "mtime_ns": 1789554106088879900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_02439.npz",
+      "sha256": "eea49c183a11dca837a07b7fbcc99e8f424e0b2620e86f42aff65778580b599c",
+      "size_bytes": 374598,
+      "mtime_ns": 1789554467548257100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_04878.npz",
+      "sha256": "01c7b5f18c3fb92e663490766092d22e8bec949d14910ee9052886b46926f67c",
+      "size_bytes": 372718,
+      "mtime_ns": 1789554823536931000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_07318.npz",
+      "sha256": "00e64d6d88bd4409364c8cbe5d017dc18aa0c3445c54526814816e3923da7547",
+      "size_bytes": 369189,
+      "mtime_ns": 1789555170915933000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/snapshots/native_faces_step_09757.npz",
+      "sha256": "208a1c59a4ede25a3c9f167beeb8b33df4d47542955f900663e917c850ae2987",
+      "size_bytes": 366788,
+      "mtime_ns": 1789555497688154300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/spatial_cumulative.npz",
+      "sha256": "9c3ae8ab40dbbd8f797c763e307546b7c887c9d4a8e8c35f1f864223659bd35d",
+      "size_bytes": 2934,
+      "mtime_ns": 1789555498455163100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_A_u/stage_weighted_history.csv",
+      "sha256": "cb5406b3cc6d137a2902b59a5caf585890a18618271dcfed7b6f0da4b8c5009b",
+      "size_bytes": 6034795,
+      "mtime_ns": 1789555498449533600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/final_state.npz",
+      "sha256": "b28443926dbb24d6cc7ea77ddb10f6ff56ea643e86c5fdf2a2aab5ede3e40684",
+      "size_bytes": 92408,
+      "mtime_ns": 1789557181844934600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/physical_metrics.json",
+      "sha256": "21594bf5272a5ab0de587d4c0ac2d49795bebd57a51326056aa4054c342b7a41",
+      "size_bytes": 1021,
+      "mtime_ns": 1789557182319863500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/run_result.json",
+      "sha256": "e58b6ed81227edb275e04dbde37da253ad92b4be9389b77ffef57e4016951525",
+      "size_bytes": 2591,
+      "mtime_ns": 1789557182323949700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_00000.npz",
+      "sha256": "d95aab3e875408df428bf2ef0b5fcdf36ec80204a3caff3b05c9d009e1aad310",
+      "size_bytes": 120708,
+      "mtime_ns": 1789555523939718800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_02439.npz",
+      "sha256": "d41dbb2abddb81d5454d2e7a0e7017fb3eb15619a60070bae4eb3839eb2ea8fb",
+      "size_bytes": 376010,
+      "mtime_ns": 1789555981200721500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_04878.npz",
+      "sha256": "d2870a51035941705956488d8ea357bf827ee17b5bb0e67c83993d247853f08e",
+      "size_bytes": 373597,
+      "mtime_ns": 1789556449834752700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_07318.npz",
+      "sha256": "034f190e607b50e7a73a3c536f639dfde3bb76cdf2fc65bcb17c2b0d41b75593",
+      "size_bytes": 370201,
+      "mtime_ns": 1789556822492627300
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/snapshots/native_faces_step_09757.npz",
+      "sha256": "77637c91937f744608aad28f3cb4ee7b8a729d6ef2c831f9633c91a289e1d565",
+      "size_bytes": 367169,
+      "mtime_ns": 1789557181803612200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/spatial_cumulative.npz",
+      "sha256": "2eec6063dd7c81dd6c80b898f921c1bcafedac8986d343fe44c7fda742462f06",
+      "size_bytes": 2934,
+      "mtime_ns": 1789557182322938200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_B_u/stage_weighted_history.csv",
+      "sha256": "55b12669d1d63a65b584904fd430397f4ff34dc87f0f51b30859ccc5707371d1",
+      "size_bytes": 6105071,
+      "mtime_ns": 1789557182318180500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/final_state.npz",
+      "sha256": "bef58b555dfe3ada5b8d852b56caa51154e7793a115600ee0e2e5b41ae6cf99d",
+      "size_bytes": 92431,
+      "mtime_ns": 1789558647599308800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/physical_metrics.json",
+      "sha256": "0f10f5ee3abf80ed4910eea907328bfab6b7835029b037418681a626266c4983",
+      "size_bytes": 1015,
+      "mtime_ns": 1789558648179810200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/run_result.json",
+      "sha256": "34e783cc983fb964397748179d5b6e98c6a0bff67533e5170a21a74ad9bb776e",
+      "size_bytes": 2618,
+      "mtime_ns": 1789558648184502900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_00000.npz",
+      "sha256": "d95aab3e875408df428bf2ef0b5fcdf36ec80204a3caff3b05c9d009e1aad310",
+      "size_bytes": 120708,
+      "mtime_ns": 1789557207023476900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_02439.npz",
+      "sha256": "db4d1d5c4e2cbe15cb644165527b3930ef86c4793ea5ec8ce61f1f896c5323e8",
+      "size_bytes": 426517,
+      "mtime_ns": 1789557560640744500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_04878.npz",
+      "sha256": "43ecb3d8df0aae2faf1a798d312e7d9b6d5293d687019f10fd0f1644bba854f5",
+      "size_bytes": 424903,
+      "mtime_ns": 1789557925038663500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_07318.npz",
+      "sha256": "ca3d3aef2c897e7c94de977d21948dd321afc83bdaba974e39ec5057f0a4aa80",
+      "size_bytes": 420750,
+      "mtime_ns": 1789558288926801600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/snapshots/native_faces_step_09757.npz",
+      "sha256": "79e298c947fd67ee3a24cddd27a5d55cb232ddc8ce0de523cd60d092aee78c5c",
+      "size_bytes": 417373,
+      "mtime_ns": 1789558647569965100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/spatial_cumulative.npz",
+      "sha256": "58f2ba441d7eb330949a0feaeaeba90eaf855b2407bc20625ff775d5350655a7",
+      "size_bytes": 3199,
+      "mtime_ns": 1789558648182912200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2/runs/cylinder_D_u/stage_weighted_history.csv",
+      "sha256": "b5e6d00600a2414dfbb7edc5b21e5fef3044f025d7f2c52f1e9e12f9879fe411",
+      "size_bytes": 7678346,
+      "mtime_ns": 1789558648179810200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/audit_localization_semantics.cpython-310.pyc",
+      "sha256": "7ecfe22fc1a1134050acf1360cdf403e17d29d9531088af0354c29f1c795d05e",
+      "size_bytes": 14891,
+      "mtime_ns": 1789567243572033900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/audit_localization_semantics.cpython-312.pyc",
+      "sha256": "f92adb14b476ae84ddf142429f6777aeb5e08c6c3ecec9ab2ca73e366d3aff68",
+      "size_bytes": 22513,
+      "mtime_ns": 1789569273790212100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/compute_existing_cumulative_localization.cpython-310.pyc",
+      "sha256": "2a286e08e1111cc1fd444bfd18718cc5585d79e28fee80ad50f732f64bffbf49",
+      "size_bytes": 560,
+      "mtime_ns": 1789567243578352100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/test_audit_localization_semantics.cpython-310-pytest-9.1.1.pyc",
+      "sha256": "e26b5e3b9db8c4fa0f144a51fc887b61731623b068734c99c6d86d13bb87a8ce",
+      "size_bytes": 2507,
+      "mtime_ns": 1789567058966069500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/test_audit_localization_semantics.cpython-312-pytest-9.1.1.pyc",
+      "sha256": "5e7f9ef4467ff1ca33975e530efeb10aea63f8fbbaab6cdbba3a37e7a46ac86d",
+      "size_bytes": 4895,
+      "mtime_ns": 1789569273782319700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/__pycache__/verify_cross_case_metrics.cpython-310.pyc",
+      "sha256": "a4176af902391c8b163377f02ab9b0efe0ca77a474c9b702b8f46f348675b92e",
+      "size_bytes": 745,
+      "mtime_ns": 1789567243582690200
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/audit_localization_semantics.py",
+      "sha256": "811ea3b72a8417045509b11ab19c3023bcea5383c222426387837b9c3b3dadde",
+      "size_bytes": 16586,
+      "mtime_ns": 1789567175488345500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/compute_existing_cumulative_localization.py",
+      "sha256": "acaeadaa9605c2dd7fdb8a0de5c49a01b0dddfe864389f4a339594703bb5ef01",
+      "size_bytes": 328,
+      "mtime_ns": 1789567226088304000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/localization_values.json",
+      "sha256": "de3ee6d6f9147bb216e73d72a78fc2c39f2e8124b0b243159c788947247c211f",
+      "size_bytes": 5894,
+      "mtime_ns": 1789567196014973400
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/test_audit_localization_semantics.py",
+      "sha256": "c507e8e7d46d22f6350295005514ec96bbf5a6fe2460643bee79a430c392f975",
+      "size_bytes": 799,
+      "mtime_ns": 1789567049638756600
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/analysis/verify_cross_case_metrics.py",
+      "sha256": "976abc1c4a4a98d6e961b07d4076cb7c4fad2e52ac54be89f6bd48b1686d819e",
+      "size_bytes": 590,
+      "mtime_ns": 1789567226089527000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CASE8_LOCALIZATION_TRACE.md",
+      "sha256": "a733c414547792688a72e2200d8e28eec69a94efcfd43537cf7c06d58961bd74",
+      "size_bytes": 320,
+      "mtime_ns": 1789567196018157100
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CROSS_CASE_COMPARABILITY.md",
+      "sha256": "9e22a2aa6e42a734b22c9998eacefb5e4320fbde024c900747dbafc5c88c69cc",
+      "size_bytes": 808,
+      "mtime_ns": 1789567196018671700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CYLINDER_DISTRIBUTION_EVIDENCE.md",
+      "sha256": "b376dab61f9d31c860e4109071e06d55321791e7817bf88aeaad34c99b4b3ad9",
+      "size_bytes": 1183,
+      "mtime_ns": 1789567196019765000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/CYLINDER_LOCALIZATION_TRACE.md",
+      "sha256": "7b198e65a0de9a208872e78c644ecfccb058ee3813ce05002db96f4ea568ef3b",
+      "size_bytes": 453,
+      "mtime_ns": 1789567196018671700
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/J2C_S0_CLAIM_BOUNDARY.md",
+      "sha256": "2413209b09daab83fa4f05fb35824c6fbcec6897f66fa154bef47a3816c7ce78",
+      "size_bytes": 1060,
+      "mtime_ns": 1789567196021742500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/J2C_S0_IMPLEMENTATION_PLAN.md",
+      "sha256": "4575c2f737e4d711d612ca621094c12203ffa527bc5d603ddb44afd9768003ae",
+      "size_bytes": 1823,
+      "mtime_ns": 1789567024274349900
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/J2C_S0_STATUS.json",
+      "sha256": "ba6935840b7327a57e8e6ed842a45d00719e995d10c73d5398d642b755aab83a",
+      "size_bytes": 920,
+      "mtime_ns": 1789567196102030500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/LOCALIZATION_DEFINITION_AUDIT.md",
+      "sha256": "edc8e8b1dff7bd488ee1ab00c52a9486eb86d5b9a5e54653930096f0f0565cb7",
+      "size_bytes": 845,
+      "mtime_ns": 1789567196017137800
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/LOCALIZATION_QUANTITY_REGISTRY.csv",
+      "sha256": "631eaa684aeadad26be1c2cb121b2501454b5afc4bc4b322461119152835ccef",
+      "size_bytes": 2172,
+      "mtime_ns": 1789567196016566500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/provenance/commands_executed.txt",
+      "sha256": "190b808e2448449af22e2c34f84664ad087385f2e809430c0e7e044bc44702a9",
+      "size_bytes": 70,
+      "mtime_ns": 1789567196101020000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/provenance/input_hashes.csv",
+      "sha256": "5e745d45095b108d246aba8265569e4dc1b8d1ecd65a0ccc444b3198ea88b067",
+      "size_bytes": 14166,
+      "mtime_ns": 1789567195994688000
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/provenance/inspected_files.csv",
+      "sha256": "a9795856aba4bc37f47a099e096f7c78f9f29723071da80e30f462571314f969",
+      "size_bytes": 8865,
+      "mtime_ns": 1789567196098354500
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics/README.md",
+      "sha256": "128f42f6580fd22f2706e7a911d162a071c0c414b148b8cc2bf327888eec3113",
+      "size_bytes": 137,
+      "mtime_ns": 1789567196101020000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_angular_faces.npy",
+      "sha256": "63250ff1a46ff62fad471daf09ae1622f47dd5867bbec7b9b602084d243ea6bc",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213464024700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_angular_faces_contribution.npy",
+      "sha256": "8c63289ac2fe1ab48c3756334dd8f204bccd213982f3e8eabb0a79ab3cd1a3d0",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213467047000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_cells.npy",
+      "sha256": "fda5b9dc7d551295cb3e3c6bb7d469983b8d3b63d4ac8bfb267b1ad8a424688f",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736244314270400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_cells_density.npy",
+      "sha256": "f44755a04ae96b0598c5979d71a802445bfc912eb1deacf353a98d720a007a26",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736244315273000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_faces.npy",
+      "sha256": "de7d74c25f648cd94a748bdc81164682970e9759ab3c48609cc6dbb35a8452f2",
+      "size_bytes": 580800,
+      "mtime_ns": 1790736245342503100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_faces.npz",
+      "sha256": "d38cc0ac72f87f5fbfbc643d14302de55e342bc76d7573a79b5f2c40ee559f62",
+      "size_bytes": 217927,
+      "mtime_ns": 1790736213460059200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_radial_faces.npy",
+      "sha256": "87c038a40938bd580b704622919842428b26f8a19ab591444f7ac953bc5eb321",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213462024700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/A_at_radial_faces_contribution.npy",
+      "sha256": "df77402a525488dcf47ac0b2f9e62cdf870a47045f0c7e46eb0cea6c1aeb2395",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213465024200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_measure.npy",
+      "sha256": "4c0288ccce357576eb01073a0aa698b462fc337d9fc9f5ad5a0be3787ed9cfdd",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213489569200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_nx.npy",
+      "sha256": "80a72e1001b6d66d31331ea8e449d3b6d08f437b23b27ea6d207378f2e448831",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213486596400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_ny.npy",
+      "sha256": "dc8f80182e6d3b6b42a68462c261a32ba6bec1723016b5e3003b2dd2550fcf73",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213488588100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_r.npy",
+      "sha256": "205e67c6f1d48ccb19e6232b3ef871b11de76db97acd2892c6aa8e4cba64d745",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213492568800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_theta.npy",
+      "sha256": "1ea847f25ba00a5742dd103340fd99218082afd54421db15822d92d7e3a3d893",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213494568700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_x.npy",
+      "sha256": "7bf19e76f5c7104cd041597339a2d3a21ef6a6c14b8c099272dc6f278b290a43",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213482576500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/angular_face_y.npy",
+      "sha256": "eb58a4efa16f3104c63174729d7e972b9e711c002f47239e2e32bd2c99b8e312",
+      "size_bytes": 32896,
+      "mtime_ns": 1790736213484575700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/assemble_fig15.py",
+      "sha256": "ba144a87e18a6e0931b6bf01725bd0cfbdc2543d5b26fee092d2a533214f62c7",
+      "size_bytes": 2254,
+      "mtime_ns": 1790732936827878100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/build_reference_audit.py",
+      "sha256": "65489db926152710e15606e2f8d10c6d77cdac3da27d500694ce95bd59da1e0a",
+      "size_bytes": 15918,
+      "mtime_ns": 1790732741219730000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/check_field_shock_consistency.py",
+      "sha256": "8f0554b96f86c3ccb3e156b38d615ee5c0f7cef3d28893dae96a25beef1a4d6b",
+      "size_bytes": 3402,
+      "mtime_ns": 1790736380211975100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/derive_cell_density.py",
+      "sha256": "5188d9b0c6d8e0c97f5c10cef0343db19532996627491c328f44bb34fc08777a",
+      "size_bytes": 5344,
+      "mtime_ns": 1790732907028118300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/derived_cell_field_report.json",
+      "sha256": "afecd8c067dda6dd73782e6d0e898f65232a973abce5d2441c69ca214b3bfdb8",
+      "size_bytes": 1085,
+      "mtime_ns": 1790736244352718900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/du_spatial_rerun_driver.py",
+      "sha256": "463af13ca65e82f93c89fc7150dfde8971b3df7ee4015d12827d9a79edec8b99",
+      "size_bytes": 34234,
+      "mtime_ns": 1790734509194884700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/du_spatial_rerun_observer.py",
+      "sha256": "4a6b38485e8004e7450843909c1d59c39645741fde3e19ec3711f69b47532abf",
+      "size_bytes": 9348,
+      "mtime_ns": 1790732760184545200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/entropy_budget_rerun.csv",
+      "sha256": "03e779ce33319a7da9e78b789f54c00a6d5692f818664a6bef322ac3ab0a1f94",
+      "size_bytes": 7678258,
+      "mtime_ns": 1790736213388219700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/export_single_npy.py",
+      "sha256": "b6f0500eefa7e539a5eb6863d92cd21c470ffa8fbcc2c544a3da088c9d76bc38",
+      "size_bytes": 3567,
+      "mtime_ns": 1790732952854870800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_family_id.npy",
+      "sha256": "0686e23c2f99019ce2164506431bda699b3c1ce17b15753d3ea6999318fb85b5",
+      "size_bytes": 8192,
+      "mtime_ns": 1790736245352024700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_geometry.npz",
+      "sha256": "2dc75faa96c2a388251a7f7a22a98223a51438e3884dba924f6a632f95028caf",
+      "size_bytes": 116566,
+      "mtime_ns": 1790736245362062700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_geometry_index.json",
+      "sha256": "dd3d3964cf3eafd7f65283513ab164575354c6d098c02792db2c79af47e02eea",
+      "size_bytes": 878,
+      "mtime_ns": 1790736245363063000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_measure.npy",
+      "sha256": "f92ff293afdd9c12827bf92734be296ee74f01f79219107948f1d8f0f37f182c",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245351022800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_nx.npy",
+      "sha256": "608a19ce45ecad22afe46b1bd58df3f61463b71b1ab8f0cfb014e05a8fea3204",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245347506300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_ny.npy",
+      "sha256": "9c7e7938e8ec713ebad45ad98f0cab767ce1513c5eefee615619107fb43973fc",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245349015200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_x.npy",
+      "sha256": "c6affc04c91ccf09a8e02dbe597acdfca8ccfa3306546087bd3c52426c76676c",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245343504900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/face_y.npy",
+      "sha256": "1ceb6bada91f50595637fa7af4280abf95c803e456349fb3f0e96d33b1e809ba",
+      "size_bytes": 64640,
+      "mtime_ns": 1790736245345504900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/field_shock_consistency_check.json",
+      "sha256": "5a2ea84a03b4b653c88c28ecb4f03445f83b378190b547fb72909dbd73f59fbd",
+      "size_bytes": 1512,
+      "mtime_ns": 1790736386912187300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_data_provenance.json",
+      "sha256": "4e1ddd875f20bdab4bc4f44de17a721394a3e9b82f6aeef619f739dae5ecfcc3",
+      "size_bytes": 20399,
+      "mtime_ns": 1790697077491166600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_mach3_cylinder.pdf",
+      "sha256": "1f259c508a30e84e8458eb11ba7f072d86867953acadc27dd3070990f6d0e29d",
+      "size_bytes": 656854,
+      "mtime_ns": 1790736389652977200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_mach3_cylinder.svg",
+      "sha256": "f05dbc990cddeea089cabbc6c04d860a1392811ef8b67e6a5bc13eadd96e0af3",
+      "size_bytes": 931857,
+      "mtime_ns": 1790736389877731100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_mach3_cylinder_600dpi.png",
+      "sha256": "fee253f8d95dddf6d448dc7f8805ac4221b7b1cc3479aabc31e60197501b8562",
+      "size_bytes": 689733,
+      "mtime_ns": 1790736391656932900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15_spatial_rerun_validation.md",
+      "sha256": "614967d388b3dc7f86d6515ee7500c107c77028f97d149e24b65ddf64180d7eb",
+      "size_bytes": 6242,
+      "mtime_ns": 1790736448142842900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/fig15b_entropy_map.py",
+      "sha256": "5d3d3b5a3c478f705ec81e98412e9caf484e469ebcd279988d4bc0ce071ca275",
+      "size_bytes": 6291,
+      "mtime_ns": 1790736303578696200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/final_front_arrays.npz",
+      "sha256": "684f5ef64de514dc6f9aa09be7ac50d39d2b5e6f09f8408c7565849b1f5dbd40",
+      "size_bytes": 2240,
+      "mtime_ns": 1790736213506887100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/freeze_bundle.py",
+      "sha256": "972362a954019504654c445dda91472eb3e5de536d18cf041d183ceb25ec346a",
+      "size_bytes": 11711,
+      "mtime_ns": 1790736433299601100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/FREEZE_MANIFEST.json",
+      "sha256": "aa4dc910164fe43a4d620eb5df3579ba6a069639757aa671deb14d821ba83b9f",
+      "size_bytes": 18003,
+      "mtime_ns": 1790736441732639500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/FREEZE_MANIFEST.sha256",
+      "sha256": "b7f55e83a9de388cda0baf811f2a08bb5e2a1e0e4752b8f0ffcf92bf85f4c337",
+      "size_bytes": 88,
+      "mtime_ns": 1790736441732639500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/freeze_reload_check.json",
+      "sha256": "8e4f9aeca78228d23154560ef1cb9d8de41b692fdff271c8d00b10d2a01a4a0d",
+      "size_bytes": 777,
+      "mtime_ns": 1790736441692178400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/front_band_mask.npz",
+      "sha256": "47d2cdd09c9fbfc601d9320b06f0071a068101e21b8ba86eaf804a74f46110ff",
+      "size_bytes": 10550,
+      "mtime_ns": 1790736213498586000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/front_band_recheck.json",
+      "sha256": "c55cdee456e6f4b01c90773e000712e83a8f8d60fbaf5afb442624466a302f7f",
+      "size_bytes": 662,
+      "mtime_ns": 1790736213514269300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/front_response_source_data.csv",
+      "sha256": "9bc53155fd75d651e918772c430bf72de50fdc3d9cb0638ffe225e3efcb6ebe0",
+      "size_bytes": 1097,
+      "mtime_ns": 1790697028308190000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/global_entropy_totals.json",
+      "sha256": "503bfde2de28f191e60e45d7605f77d500910c287f8d7da404ae5f2f1aa8f6b1",
+      "size_bytes": 1050,
+      "mtime_ns": 1790736213511837400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/method_sha256.txt",
+      "sha256": "3963d6a022255edcd86604f16c4578d68ccfbbe7bd11f6fe90fd40f5961c2684",
+      "size_bytes": 66,
+      "mtime_ns": 1790736441693178700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/observer_validation.json",
+      "sha256": "1f00ccdb8fc7df61eb8310f0ee9bd081566ee397bc0e63fe6e5b2cc22e3c39b4",
+      "size_bytes": 628,
+      "mtime_ns": 1790736213533967800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_a_curved_shock.pdf",
+      "sha256": "1ac95036adae7b0b4042d8b4d2c27989c1abf1fb479f1ad439727271b181ef5b",
+      "size_bytes": 116394,
+      "mtime_ns": 1790696981034808500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_entropy_map.pdf",
+      "sha256": "cb011de318693976b81d6378db2cfa7fa426e7d133551fcb4efbf621d4e1a3f0",
+      "size_bytes": 127747,
+      "mtime_ns": 1790736336646060300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_entropy_map.png",
+      "sha256": "c18edfeb665ce00486643f16a38081647dab34d3f345aa01b11818e5edc7f091",
+      "size_bytes": 249400,
+      "mtime_ns": 1790736337101447600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_entropy_map.svg",
+      "sha256": "ae0bdd1215f8ae85660d9232057918ed36b1d3c8a26de5e09e0ee95f350fe08a",
+      "size_bytes": 202777,
+      "mtime_ns": 1790736336885463600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_b_provenance.json",
+      "sha256": "c0beee084d5c8f56033881b73263f57522a88106ed89394775602129912a343f",
+      "size_bytes": 1450,
+      "mtime_ns": 1790736337122457000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_c_sector_allocation.pdf",
+      "sha256": "ea048f3e4319ac402a6c588274802b99755c92daf8bd8d7f9fedd876adc00276",
+      "size_bytes": 41893,
+      "mtime_ns": 1790696810847026700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/panel_d_front_response.pdf",
+      "sha256": "4af7d9f6d4ca33d76e78b0eda55cc1893e96e84b467494faeb12354bfba3a44e",
+      "size_bytes": 38718,
+      "mtime_ns": 1790697029170522700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/physical_metrics_rerun.json",
+      "sha256": "0f10f5ee3abf80ed4910eea907328bfab6b7835029b037418681a626266c4983",
+      "size_bytes": 1015,
+      "mtime_ns": 1790736213509346000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/production_stdout.log",
+      "sha256": "1b137df3f478d5d61cfa0f2addaa722b874429b58f1b7d738b560ae58cd6cd78",
+      "size_bytes": 468,
+      "mtime_ns": 1790736213718555800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_measure.npy",
+      "sha256": "746e8e1ababf13e53d44e753708100e540935c2d597c8872f7ed245a30bdc23f",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213476085800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_nx.npy",
+      "sha256": "074565395ebf7d552dd4bb35fb8919c39a3774ae56efe6cc2e01e7f1d609ae5c",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213474086400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_ny.npy",
+      "sha256": "6c9a024f7cad2c4bec8ff769546caa7f0484e61a563b66f05367bfb4be17ac1b",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213476085800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_r.npy",
+      "sha256": "504d47fcf44613c74ef00f10dfe4df541fa0b48e1ecc80a509f0e16a36952f37",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213478578500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_theta.npy",
+      "sha256": "338f9bc21e2b16316b9c0273a29e35b8b5eff516a1fe1d7eb2fbfa0846c0d63c",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213480576600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_x.npy",
+      "sha256": "773c3428812bf134eda3dbab7134b53ff208ed1e550fa31c1030ed445dba19f8",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213470080500
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/radial_face_y.npy",
+      "sha256": "9977128ab17b782ea1497a60ef78ccb732570b9457e7935087eee9bd5380e525",
+      "size_bytes": 31872,
+      "mtime_ns": 1790736213472110700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/raw_accumulators.npz",
+      "sha256": "3f788713e59abaf071fb8682ec5cbdec2929fc8db47990775580ef348972064c",
+      "size_bytes": 194513,
+      "mtime_ns": 1790736213414642800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/readonly_check.json",
+      "sha256": "448f1dbea6772732daa657381870bb4e3ee1bb1937c9cf4a9cfe8054ac5eb1a0",
+      "size_bytes": 631,
+      "mtime_ns": 1790734671183179400
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/reference_Du_audit.json",
+      "sha256": "365ea5c89793866116a50acf0aec332adf6af710f68b5c32cb3317dc84c9ff02",
+      "size_bytes": 12353,
+      "mtime_ns": 1790732746695068300
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/rerun_config.json",
+      "sha256": "dcc0d7016101ac1df47e3222856d442556edc7bbcb5bfe5281fee4df150ce569",
+      "size_bytes": 2518,
+      "mtime_ns": 1790736213531996900
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/rerun_config_audit.json",
+      "sha256": "d0c896a8f0f957f72bab42ebaa9339d580ef51cbf315da99598e1caeccfdd665",
+      "size_bytes": 1522,
+      "mtime_ns": 1790732746696115600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/rerun_metrics.json",
+      "sha256": "07283ee7a23d51fc8a68cb4db76083131f9b716b7be5c40709f4dd45f328bdf7",
+      "size_bytes": 4073,
+      "mtime_ns": 1790736213520963700
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/sector_allocation.csv",
+      "sha256": "0d41826cd02336e1cd7eaae1f9b696a059d07be23bf70968dd3dfb710fc7bb89",
+      "size_bytes": 1527,
+      "mtime_ns": 1790697077480523000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/sector_reproduction_check.csv",
+      "sha256": "890a9a92221dd6c97833b775c2aba2fda20e142edefd6659e04f04be272c0aaf",
+      "size_bytes": 2875,
+      "mtime_ns": 1790736213516772600
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/sector_reproduction_summary.json",
+      "sha256": "9dcc179f322be118ab4e7735f47d85a38f0564b1a4df40c231f9bf9f1f31f4f8",
+      "size_bytes": 366,
+      "mtime_ns": 1790736213518804200
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/smoke_equivalence.json",
+      "sha256": "f4fc75d2f3c2a3a2f3aee6d4ccf7264c1bd271e0a02d072fad13e099fa3ffa89",
+      "size_bytes": 3527,
+      "mtime_ns": 1790734668416182100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/terminal_state.npz",
+      "sha256": "d31d23a77b4982242376f4224cfe3be4703702ab66dc6fb147adef153ab1ced2",
+      "size_bytes": 92723,
+      "mtime_ns": 1790736213504571800
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/verification_report.json",
+      "sha256": "2014d6c03d3675e9e9ccc9874a6b329784cd86b053352e4008d72d21970ef6f6",
+      "size_bytes": 5180,
+      "mtime_ns": 1790736237675092100
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/verify_fig15_spatial_rerun.py",
+      "sha256": "edc4f18cb9fbe4683d4eaed004e8ad17cef64997e14d1b2443a79816be96291a",
+      "size_bytes": 16367,
+      "mtime_ns": 1790732873241089000
+    },
+    {
+      "path": "Paper/fig/fig_15/FREEZE/write_validation_report.py",
+      "sha256": "9783fbc65aadc3750f5ddab070073b6251ce7b1eedb92fd1e38168443edd5fa1",
+      "size_bytes": 12788,
+      "mtime_ns": 1790732996227190300
+    },
+    {
+      "path": "solver/core/curvilinear_mesh.py",
+      "sha256": "b50011f770539547577286d29880ac7ff229897c2c2a880c48b56e0e96d997d6",
+      "size_bytes": 3323,
+      "mtime_ns": 1787416424545264700
+    },
+    {
+      "path": "solver/core/entropy.py",
+      "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc",
+      "size_bytes": 1800,
+      "mtime_ns": 1787411100027510800
+    },
+    {
+      "path": "solver/core/time_integrator.py",
+      "sha256": "05e6d9deb3414236a5b9bff8b96c54bfe42014b1cd8bb6eaf2a36d9819164055",
+      "size_bytes": 4632,
+      "mtime_ns": 1787416638959524800
+    },
+    {
+      "path": "solver/diagnostics/cylinder.py",
+      "sha256": "8b9d14754b460af510f8fa8dc39d95570cf69ac3f898b8557ce31fba466948ef",
+      "size_bytes": 9712,
+      "mtime_ns": 1787728745277756600
+    },
+    {
+      "path": "solver/experiments/corrected_cylinder_dispatcher.py",
+      "sha256": "04e4c2447bca62f5a9006a0f736c284caebb7ddc8873370b317d942ae51e6725",
+      "size_bytes": 7736,
+      "mtime_ns": 1788497757240920900
+    },
+    {
+      "path": "solver/experiments/cylinder_b2_4_production.py",
+      "sha256": "fc1aa98ea5e144e7afe724937a8ad3a663eeff44e45a90544dc8f7f9f01677bd",
+      "size_bytes": 20838,
+      "mtime_ns": 1788271917396953800
+    },
+    {
+      "path": "solver/fluxes/chandrashekar_es.py",
+      "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586",
+      "size_bytes": 9002,
+      "mtime_ns": 1788057010138410900
+    },
+    {
+      "path": "solver/fluxes/cross_mode_ec_unified_v1.py",
+      "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+      "size_bytes": 2813,
+      "mtime_ns": 1788436998388720900
+    },
+    {
+      "path": "solver/fluxes/sos_v4.py",
+      "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b",
+      "size_bytes": 3626,
+      "mtime_ns": 1787416577551399800
+    },
+    {
+      "path": "solver/fluxes/unbounded_cross_mode.py",
+      "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c",
+      "size_bytes": 7556,
+      "mtime_ns": 1787507272086779500
+    },
+    {
+      "path": "unified_corrected_method_v3/CERTIFICATION_MANIFEST.json",
+      "sha256": "69e89674c0772cf650e073b138d6da61e1a60567a02a786f8b19b6a1d615b1b2",
+      "size_bytes": 2130,
+      "mtime_ns": 1788437632153495000
+    }
+  ],
+  "directory_names_preserved": {
+    "jcp_extension_v1/J2_entropy_diagnostics/J2C_cylinder_formal_v2": true,
+    "jcp_extension_v1/J2_entropy_diagnostics/J2C_S0_localization_semantics": true,
+    "Paper/fig/fig_15/FREEZE": true
+  },
+  "frozen_phase4_documents_preserved": {
+    "docs/03_USER_FLOW_AND_IA.md": true,
+    "docs/04_SYSTEM_ARCHITECTURE.md": true,
+    "docs/05_DATA_SCHEMA.md": true,
+    "docs/06_API_CONTRACT.md": true
+  },
+  "existing_openapi_components_preserved": true,
+  "existing_openapi_component_count": 231,
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "preexisting_baseline_failure": {
+    "path": "docs/PHASE5_CASE8_FREEZE.json",
+    "expected_sha256": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+    "checkout_sha256": "fb9ccc05c3cb62d58ba5a97ec6ee2e5068019e7e9b1dd068d75e2ada73734852",
+    "accepted_original_sha256": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+    "normalized_bytes_match": true,
+    "preexisting_test": "tests/window0_spectral_foundation/test_protocol_and_freeze.py::test_phase4_contract_hashes_and_phase5_phase6_freeze"
+  }
+}

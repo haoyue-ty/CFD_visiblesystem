@@ -76,7 +76,7 @@ def test_no_operation_is_advertised_for_the_deferred_allocation_endpoint(case8_a
     """
     assert {"C801", "C802", "C804"} <= _registered_operation_ids(case8_app)
     assert not [path for _, path in _registered_routes(case8_app)
-                if path.endswith("/allocation")]
+                if path.startswith(CASE8_BASE) and path.endswith("/allocation")]
     # Window 3 allocation operations are present but live on a distinct path shape.
     allocation_routes = {path for _, path in _registered_routes(case8_app)
                          if path.startswith("/api/v1/allocations")}
