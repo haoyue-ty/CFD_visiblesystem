@@ -8,3 +8,7 @@
 # Preserve the exact accepted Windows bytes bound by the Phase5 freeze hash.
 docs/PHASE5_CASE8_FREEZE.json text eol=crlf
 docs/PHASE5_CASE8_FREEZE_MANIFEST.json text eol=crlf
+# The accepted Phase7 freeze artifacts also bind their original Windows bytes.
+docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE.md text eol=crlf
+docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE_MANIFEST.json text eol=crlf
+docs/handoffs/phase7/PHASE7_SPECTRAL_INTEGRATION_EVIDENCE.json text eol=crlf
