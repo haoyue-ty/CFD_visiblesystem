@@ -1,7 +1,9 @@
 """Canonical public models from frozen 05_DATA_SCHEMA.md sections 1–5."""
+import re
+
 from typing import Annotated, Generic, Literal, TypeVar
 
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, RootModel, model_validator
+from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, RootModel, model_serializer, model_validator
 
 T = TypeVar("T")
 ID = Annotated[str, Field(min_length=1, pattern=r"^[A-Za-z0-9_.-]+$")]
@@ -18,8 +20,26 @@ VerificationStatus = Literal["FROZEN_VERIFIED", "VERIFIED_NOT_FROZEN", "DERIVED_
 DataOrigin = Literal["FROZEN_PRODUCTION", "VERIFIED_PRODUCTION", "VERIFIED_POSTPROCESS", "DIAGNOSTIC_RERUN", "MOCK", "SCHEMATIC", "LIVE_DEMO"]
 
 
+_PUBLIC_LOCATOR = re.compile(r"file://[^\s]+|(?<![A-Za-z0-9])[A-Za-z]:[\\/][^\s]+|\\\\[^\s]+|(?<![\w:])/(?:home|Users|tmp|var|mnt|opt|workspace)/[^\s]+", re.IGNORECASE)
+
+
+def _public_strings(value):
+    if isinstance(value, str):
+        return _PUBLIC_LOCATOR.sub("[source locator withheld]", value)
+    if isinstance(value, dict):
+        return {key: _public_strings(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_public_strings(item) for item in value]
+    return value
+
+
 class CanonicalModel(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True, allow_inf_nan=False)
+
+    @model_serializer(mode="wrap")
+    def public_payload(self, handler):
+        # Free text follows the same public locator prohibition as SourceAsset.
+        return _public_strings(handler(self))
 
 
 class KnownFact(CanonicalModel, Generic[T]):

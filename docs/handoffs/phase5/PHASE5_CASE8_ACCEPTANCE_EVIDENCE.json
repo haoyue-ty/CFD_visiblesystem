@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "bootstrap_base": "7d73806a436d95adacb9b7d3de5a88c14ad9dcba",
+  "window_heads": {
+    "data": "d1df957bd3e14469f3b700b4c07f0c11979225df",
+    "api": "d02a036c084181a0841de51bdf625d73068494de",
+    "frontend": "4f43963c491c3cf7c2b242853644dcb41902c78f",
+    "qa": "07578892349056d68bedbd8a3b99304c575ab634"
+  },
+  "production_adapter": "backend.adapters.case8.Case8Adapter",
+  "production_provider": "API",
+  "production_mock_implementation_in_bundle": false,
+  "actual_configs": {
+    "A_u": {
+      "snapshots": 6,
+      "history_rows": 1912
+    },
+    "B_u": {
+      "snapshots": 6,
+      "history_rows": 1912
+    },
+    "C_u": {
+      "snapshots": 6,
+      "history_rows": 1912
+    },
+    "D_u": {
+      "snapshots": 6,
+      "history_rows": 1912
+    }
+  },
+  "actual_total_snapshots": 24,
+  "actual_total_history_rows": 7648,
+  "D_u_final": {
+    "snapshot_index": 6,
+    "step_index": 1912,
+    "physical_time": 0.08
+  },
+  "backend_test_classes": {
+    "tests.test_bootstrap": 20,
+    "tests.test_models": 39,
+    "tests.verification.test_api_contract": 46,
+    "tests.verification.test_case8_scientific_truth": 30,
+    "tests.verification.test_integration_real": 11,
+    "tests.verification.test_provenance": 7,
+    "tests.verification.test_semantics": 12,
+    "tests.window1_case8_data.test_case8_adapter": 50,
+    "tests.window2_case8_api.test_case8_api_contract": 58
+  },
+  "playwright_stats": {
+    "startTime": "2026-10-01T01:49:44.234Z",
+    "duration": 43922.242,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "frontend_unit_tests": 5,
+  "real_e2e_tests": 19,
+  "window3_mock_development_tests": 16,
+  "window4_status": {
+    "STATUS": "PASS",
+    "SCIENTIFIC_ASSERTIONS": "pass",
+    "pytest": {
+      "passed": 106,
+      "xfailed": 0,
+      "failed": 0,
+      "error": 0
+    },
+    "EXPECTED_FAILS": 0,
+    "UNEXPECTED_FAILS": 0,
+    "MARKERS": {
+      "WAITING_FOR_IMPLEMENTATION": 0,
+      "FOUND_FAILURE": 0,
+      "CLEARED": 0,
+      "TOTAL_XFAIL": 0
+    },
+    "CONFIG_COUNT_EXPECTED": 4,
+    "SNAPSHOT_COUNT_EXPECTED": 24,
+    "HISTORY_ROWS_EXPECTED": 7648,
+    "DU_FINAL_EXPECTED": "snapshot6,step1912,time0.08",
+    "SNAPSHOT_ZERO_ALLOWED": "NO"
+  },
+  "source_audit": {
+    "status": "PASS",
+    "source_root": "D:\\Paper\\passage6",
+    "files_before": 24842,
+    "files_after": 24842,
+    "bytes": 4524549696,
+    "before_manifest_sha256": "caa10a4ecf529cebed34c2eab0fb4d59253c2a408b082fd396808612c6aa7d11",
+    "after_manifest_sha256": "caa10a4ecf529cebed34c2eab0fb4d59253c2a408b082fd396808612c6aa7d11",
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ]
+  },
+  "frozen_contract_documents_changed": false,
+  "CFD_RUNS_STARTED": 0,
+  "ENABLE_ACCOUNTS": false,
+  "DATABASE_CONNECTED": false,
+  "EMAILS_SENT": 0,
+  "artifact_sha256": {
+    "config\\openapi.json": "b1510208f9a02ec7d8350db14f967bd76059ecc75d3e12c875d591ff5d7bcbd9",
+    "frontend\\src\\types\\generated\\api.d.ts": "7edba4df277003b698dbfd14328dad0a8607453fcfd119b03b2baef1b0491df1"
+  },
+  "qa_harness_alignment": [
+    "Removed merge-gated xfail/fixme markers",
+    "Case8 route coverage compares only Case8 paths",
+    "CUMULATIVE enum is distinct from TRAJECTORY_INTEGRATED accumulation",
+    "Actual query-based UI routes replace illustrative product URLs",
+    "C_u is a real Case8 config; typed 422 remains for genuinely unsupported combinations",
+    "Recorded metrics retain MULTI_SNAPSHOT scope; not relabeled TERMINAL"
+  ]
+}

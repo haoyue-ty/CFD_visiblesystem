@@ -4,6 +4,21 @@ from werkzeug.exceptions import HTTPException
 
 from backend.models import ErrorBody, FailedEnvelope, unresolved
 
+# Error codes that are typed for the public contract. Anything not listed is a bug.
+SYSTEM_CODES = frozenset({
+    "INVALID_REQUEST", "API_ROUTE_NOT_FOUND", "METHOD_NOT_ALLOWED", "UNSUPPORTED_MEDIA_TYPE",
+    "REVISION_UNAVAILABLE", "INTERNAL_ERROR", "FEATURE_NOT_ENABLED",
+})
+SCIENTIFIC_CODES = frozenset({
+    "UNKNOWN_EXPERIMENT", "UNKNOWN_CONFIG", "INVALID_RESULT_ID", "SNAPSHOT_NOT_FOUND",
+    "UNKNOWN_EVIDENCE_ID", "UNKNOWN_ASSET_ID", "MISSING_SCIENTIFIC_ASSET",
+    "UNSUPPORTED_COMBINATION", "SOURCE_READ_ERROR", "CANONICAL_SCHEMA_MISMATCH",
+})
+# Failures here are server-side by definition: the adapter or the canonical contract is at fault.
+SERVER_SIDE_CODES = frozenset({
+    "SOURCE_READ_ERROR", "CANONICAL_SCHEMA_MISMATCH", "INTERNAL_ERROR", "FEATURE_NOT_ENABLED",
+})
+
 
 class DomainError(Exception):
     """Typed error from registry/service/adapter, safe for public serialization."""
@@ -15,11 +30,39 @@ class DomainError(Exception):
 
 
 def system_error(code: str, message: str, *, status: int = 500,
-                 availability: str = "ERROR", retryable: bool = False) -> DomainError:
-    body = ErrorBody(domain="SYSTEM", code=code, message=message,
-                     target={"resource_type": "api", "identity": unresolved("No registered resource identity")},
-                     retryable=retryable, details=[], evidence_refs=[])
+                 availability: str = "ERROR", retryable: bool = False,
+                 resource_type: str = "api", identity=None,
+                 details: list | None = None, evidence_refs: list | None = None,
+                 domain: str = "SYSTEM") -> DomainError:
+    """Construct a typed, contract-listed failure without leaking internal detail.
+
+    `identity` is an already-built Fact dict (see `unresolved`/`known`), so a known
+    target identity and an unknown one stay distinguishable in the wire payload.
+    """
+    if code in SCIENTIFIC_CODES:
+        # Scientific codes are always reported under the SCIENTIFIC domain.
+        domain = "SCIENTIFIC"
+    body = ErrorBody(
+        domain=domain, code=code, message=message,
+        target={"resource_type": resource_type,
+                "identity": identity if identity is not None else unresolved("No registered resource identity")},
+        retryable=retryable, details=details or [], evidence_refs=evidence_refs or [],
+    )
     return DomainError(status, availability, body)
+
+
+def missing_resource(code: str, message: str, *, resource_type: str, identity) -> DomainError:
+    """404 MISSING: the identity is recognized by the registry but has no data."""
+    return system_error(code, message, status=404, availability="MISSING",
+                        resource_type=resource_type, identity=identity, domain="SCIENTIFIC")
+
+
+def unsupported_combination(message: str, *, resource_type: str, identity,
+                            details: list | None = None, evidence_refs: list | None = None) -> DomainError:
+    """422 UNSUPPORTED: syntactically valid but outside the verified combination set."""
+    return system_error("UNSUPPORTED_COMBINATION", message, status=422, availability="UNSUPPORTED",
+                        resource_type=resource_type, identity=identity, details=details,
+                        evidence_refs=evidence_refs, domain="SCIENTIFIC")
 
 
 def register_error_handlers(app: Flask) -> None:

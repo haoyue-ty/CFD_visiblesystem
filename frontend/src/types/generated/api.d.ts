@@ -38,6 +38,244 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/experiments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Lightweight canonical experiment metadata; only Case8 is IMPLEMENTED. */
+        get: operations["REG01"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/{experiment_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Case8 experiment metadata; other families remain PLANNED. */
+        get: operations["REG02"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/{experiment_id}/configs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Registered configs for a delivered experiment. */
+        get: operations["REG03"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/{experiment_id}/capabilities": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Capability-driven tabs and controls supplied by the registry, not hard-coded clients. */
+        get: operations["REG04"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/case8/configs/{config_id}/snapshots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Six recorded snapshot headers with refs only; no field values. */
+        get: operations["C801"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/case8/configs/{config_id}/snapshots/{snapshot_index}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Recorded snapshot metadata by 1-based index; no time interpolation. */
+        get: operations["C802"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/case8/configs/{config_id}/snapshots/{snapshot_index}/fields/{field_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Real field header, spatial domain and array reference for ARRAY01 retrieval. */
+        get: operations["C803"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/case8/configs/{config_id}/entropy-history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 1912 accepted-step entropy history; each selected series keeps its own source. */
+        get: operations["C804"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/case8/configs/{config_id}/scalar-series/{series_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description One semantic scalar series; display names never identify a scientific quantity. */
+        get: operations["C805"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/case8/configs/{config_id}/metrics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Width/RMS/HF metrics with definitions and detector scope. */
+        get: operations["C806"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/experiments/case8/configs/{config_id}/snapshot-alignment": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Scalar step to recorded frame alignment with both times exposed. */
+        get: operations["C808"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/results/{result_id}/arrays/{array_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Flat C-order array values for one registered result/array pair. */
+        get: operations["ARRAY01"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/evidence/{evidence_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Full method/config/assets/hashes/freeze/processing/verification evidence record. */
+        get: operations["EVI02"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/results/{result_id}/provenance": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Provenance for any scientific result, listing every contributing source reference. */
+        get: operations["EVI03"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1239,6 +1477,805 @@ export interface components {
                 [key: string]: unknown;
             };
         };
+        /** AvailableEnvelope[ExperimentList] */
+        AvailableEnvelope_ExperimentList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["ExperimentList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ExperimentList */
+        ExperimentList: {
+            /** Items */
+            items: components["schemas"]["Experiment"][];
+        };
+        /** PartialEnvelope[ExperimentList] */
+        PartialEnvelope_ExperimentList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["ExperimentList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[ExperimentList] */
+        ApiEnvelope_ExperimentList_: components["schemas"]["AvailableEnvelope_ExperimentList_"] | components["schemas"]["PartialEnvelope_ExperimentList_"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[Experiment] */
+        AvailableEnvelope_Experiment_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["Experiment"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[Experiment] */
+        PartialEnvelope_Experiment_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["Experiment"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[Experiment] */
+        ApiEnvelope_Experiment_: components["schemas"]["AvailableEnvelope_Experiment_"] | components["schemas"]["PartialEnvelope_Experiment_"] | components["schemas"]["FailedEnvelope"];
+        /** ExperimentPath */
+        Input_ExperimentPath: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Experiment Id */
+            experiment_id: string;
+        };
+        /** AvailableEnvelope[ConfigList] */
+        AvailableEnvelope_ConfigList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["ConfigList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ConfigList */
+        ConfigList: {
+            /** Experiment Id */
+            experiment_id: string;
+            /** Items */
+            items: components["schemas"]["ExperimentConfig"][];
+        };
+        /** PartialEnvelope[ConfigList] */
+        PartialEnvelope_ConfigList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["ConfigList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[ConfigList] */
+        ApiEnvelope_ConfigList_: components["schemas"]["AvailableEnvelope_ConfigList_"] | components["schemas"]["PartialEnvelope_ConfigList_"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[CapabilityList] */
+        AvailableEnvelope_CapabilityList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["CapabilityList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** CapabilityList */
+        CapabilityList: {
+            /** Experiment Id */
+            experiment_id: string;
+            /** Items */
+            items: components["schemas"]["ExperimentCapability"][];
+        };
+        /** PartialEnvelope[CapabilityList] */
+        PartialEnvelope_CapabilityList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["CapabilityList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[CapabilityList] */
+        ApiEnvelope_CapabilityList_: components["schemas"]["AvailableEnvelope_CapabilityList_"] | components["schemas"]["PartialEnvelope_CapabilityList_"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[SnapshotIndex] */
+        AvailableEnvelope_SnapshotIndex_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["SnapshotIndex"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[SnapshotIndex] */
+        PartialEnvelope_SnapshotIndex_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["SnapshotIndex"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[SnapshotIndex] */
+        ApiEnvelope_SnapshotIndex_: components["schemas"]["AvailableEnvelope_SnapshotIndex_"] | components["schemas"]["PartialEnvelope_SnapshotIndex_"] | components["schemas"]["FailedEnvelope"];
+        /** ConfigQuery */
+        Input_ConfigQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Config Id */
+            config_id: string;
+        };
+        /** AvailableEnvelope[FieldSnapshot] */
+        AvailableEnvelope_FieldSnapshot_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["FieldSnapshot"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[FieldSnapshot] */
+        PartialEnvelope_FieldSnapshot_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["FieldSnapshot"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[FieldSnapshot] */
+        ApiEnvelope_FieldSnapshot_: components["schemas"]["AvailableEnvelope_FieldSnapshot_"] | components["schemas"]["PartialEnvelope_FieldSnapshot_"] | components["schemas"]["FailedEnvelope"];
+        /** SnapshotQuery */
+        Input_SnapshotQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Config Id */
+            config_id: string;
+            /** Snapshot Index */
+            snapshot_index: number;
+            /**
+             * Field
+             * @default null
+             */
+            field: string | null;
+        };
+        /** AvailableEnvelope[FieldResponse] */
+        AvailableEnvelope_FieldResponse_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["FieldResponse"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** FieldResponse */
+        FieldResponse: {
+            snapshot: components["schemas"]["FieldSnapshot"];
+            field: components["schemas"]["FieldDescriptor"];
+        };
+        /** PartialEnvelope[FieldResponse] */
+        PartialEnvelope_FieldResponse_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["FieldResponse"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[FieldResponse] */
+        ApiEnvelope_FieldResponse_: components["schemas"]["AvailableEnvelope_FieldResponse_"] | components["schemas"]["PartialEnvelope_FieldResponse_"] | components["schemas"]["FailedEnvelope"];
+        /** FieldQuery */
+        Input_FieldQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Config Id */
+            config_id: string;
+            /** Snapshot Index */
+            snapshot_index: number;
+            /** Field Id */
+            field_id: string;
+        };
+        /** AvailableEnvelope[EntropyHistory] */
+        AvailableEnvelope_EntropyHistory_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["EntropyHistory"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[EntropyHistory] */
+        PartialEnvelope_EntropyHistory_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["EntropyHistory"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[EntropyHistory] */
+        ApiEnvelope_EntropyHistory_: components["schemas"]["AvailableEnvelope_EntropyHistory_"] | components["schemas"]["PartialEnvelope_EntropyHistory_"] | components["schemas"]["FailedEnvelope"];
+        /** HistoryQuery */
+        Input_HistoryQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Config Id */
+            config_id: string;
+            /**
+             * Series
+             * @default []
+             */
+            series: string[];
+            /**
+             * Offset
+             * @default 0
+             */
+            offset: number;
+            /**
+             * Limit
+             * @default 2000
+             */
+            limit: number;
+        };
+        /** AvailableEnvelope[ScalarSeries] */
+        AvailableEnvelope_ScalarSeries_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["ScalarSeries"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[ScalarSeries] */
+        PartialEnvelope_ScalarSeries_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["ScalarSeries"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[ScalarSeries] */
+        ApiEnvelope_ScalarSeries_: components["schemas"]["AvailableEnvelope_ScalarSeries_"] | components["schemas"]["PartialEnvelope_ScalarSeries_"] | components["schemas"]["FailedEnvelope"];
+        /** ScalarSeriesQuery */
+        Input_ScalarSeriesQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Config Id */
+            config_id: string;
+            /** Series Id */
+            series_id: string;
+            /**
+             * Offset
+             * @default 0
+             */
+            offset: number;
+            /**
+             * Limit
+             * @default 2000
+             */
+            limit: number;
+        };
+        /** AvailableEnvelope[MetricCollection] */
+        AvailableEnvelope_MetricCollection_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["MetricCollection"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[MetricCollection] */
+        PartialEnvelope_MetricCollection_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["MetricCollection"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[MetricCollection] */
+        ApiEnvelope_MetricCollection_: components["schemas"]["AvailableEnvelope_MetricCollection_"] | components["schemas"]["PartialEnvelope_MetricCollection_"] | components["schemas"]["FailedEnvelope"];
+        /** MetricQuery */
+        Input_MetricQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Config Id */
+            config_id: string;
+            /**
+             * Metric Id
+             * @default null
+             */
+            metric_id: string | null;
+            /**
+             * Snapshot Index
+             * @default null
+             */
+            snapshot_index: number | null;
+        };
+        /** AvailableEnvelope[SnapshotAlignment] */
+        AvailableEnvelope_SnapshotAlignment_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["SnapshotAlignment"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[SnapshotAlignment] */
+        PartialEnvelope_SnapshotAlignment_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["SnapshotAlignment"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[SnapshotAlignment] */
+        ApiEnvelope_SnapshotAlignment_: components["schemas"]["AvailableEnvelope_SnapshotAlignment_"] | components["schemas"]["PartialEnvelope_SnapshotAlignment_"] | components["schemas"]["FailedEnvelope"];
+        /** AlignmentQuery */
+        Input_AlignmentQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Config Id */
+            config_id: string;
+            /** Scalar Step */
+            scalar_step: number;
+            /**
+             * Policy
+             * @default NEAREST_RECORDED
+             * @enum {string}
+             */
+            policy: "NEAREST_RECORDED" | "PINNED";
+            /**
+             * Snapshot Index
+             * @default null
+             */
+            snapshot_index: number | null;
+        };
+        /** AvailableEnvelope[ScientificArray] */
+        AvailableEnvelope_ScientificArray_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["ScientificArray"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[ScientificArray] */
+        PartialEnvelope_ScientificArray_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["ScientificArray"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[ScientificArray] */
+        ApiEnvelope_ScientificArray_: components["schemas"]["AvailableEnvelope_ScientificArray_"] | components["schemas"]["PartialEnvelope_ScientificArray_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * ArrayQuery
+         * @description format is fixed FLAT_JSON; no user dtype/member/path/downsample is accepted.
+         */
+        Input_ArrayQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Result Id */
+            result_id: string;
+            /** Array Id */
+            array_id: string;
+        };
+        /** AvailableEnvelope[EvidenceRecord] */
+        AvailableEnvelope_EvidenceRecord_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["EvidenceRecord"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[EvidenceRecord] */
+        PartialEnvelope_EvidenceRecord_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["EvidenceRecord"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[EvidenceRecord] */
+        ApiEnvelope_EvidenceRecord_: components["schemas"]["AvailableEnvelope_EvidenceRecord_"] | components["schemas"]["PartialEnvelope_EvidenceRecord_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * IdentityQuery
+         * @description Path-only identity selector for EVI02 and EVI04.
+         */
+        Input_IdentityQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /**
+             * Evidence Id
+             * @default null
+             */
+            evidence_id: string | null;
+            /**
+             * Asset Id
+             * @default null
+             */
+            asset_id: string | null;
+        };
+        /** AvailableEnvelope[ResultProvenance] */
+        AvailableEnvelope_ResultProvenance_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["ResultProvenance"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[ResultProvenance] */
+        PartialEnvelope_ResultProvenance_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["ResultProvenance"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[ResultProvenance] */
+        ApiEnvelope_ResultProvenance_: components["schemas"]["AvailableEnvelope_ResultProvenance_"] | components["schemas"]["PartialEnvelope_ResultProvenance_"] | components["schemas"]["FailedEnvelope"];
+        /** ProvenanceQuery */
+        Input_ProvenanceQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Result Id */
+            result_id: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -1344,6 +2381,1095 @@ export interface operations {
             };
             /** @description INTERNAL_ERROR */
             500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    REG01: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_ExperimentList_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    REG02: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                experiment_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_Experiment_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_EXPERIMENT */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    REG03: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                experiment_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_ConfigList_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    REG04: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                experiment_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_CapabilityList_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    C801: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                config_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_SnapshotIndex_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_CONFIG */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    C802: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                field?: string | null;
+            };
+            header?: never;
+            path: {
+                config_id: string;
+                snapshot_index: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_FieldSnapshot_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    C803: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                config_id: string;
+                snapshot_index: number;
+                field_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_FieldResponse_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_CONFIG, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    C804: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                series?: string[];
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                config_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_EntropyHistory_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_CONFIG */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    C805: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                config_id: string;
+                series_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_ScalarSeries_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_CONFIG */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    C806: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                metric_id?: string | null;
+                snapshot_index?: number | null;
+            };
+            header?: never;
+            path: {
+                config_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_MetricCollection_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_CONFIG */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    C808: {
+        parameters: {
+            query: {
+                registry_revision?: string | null;
+                scalar_step: number;
+                policy?: "NEAREST_RECORDED" | "PINNED";
+                snapshot_index?: number | null;
+            };
+            header?: never;
+            path: {
+                config_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_SnapshotAlignment_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_CONFIG */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    ARRAY01: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                result_id: string;
+                array_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_ScientificArray_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_RESULT_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    EVI02: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                asset_id?: string | null;
+            };
+            header?: never;
+            path: {
+                evidence_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_EvidenceRecord_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_EVIDENCE_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    EVI03: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                result_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_ResultProvenance_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_RESULT_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
                 headers: {
                     [name: string]: unknown;
                 };

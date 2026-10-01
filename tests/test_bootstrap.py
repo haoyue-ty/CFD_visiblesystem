@@ -21,7 +21,7 @@ def test_system_envelope(app):
     envelope = ApiEnvelope[ProjectInfo].model_validate_json(response.data)
     assert envelope.root.request_id == response.headers["X-Request-ID"] != "untrusted"
     assert envelope.root.data.account_extension.enabled is False
-    assert all(item.delivery_status == "PLANNED" for item in envelope.root.data.experiments)
+    assert all(item.delivery_status == ("IMPLEMENTED" if item.experiment_id == "case8" else "PLANNED") for item in envelope.root.data.experiments)
 
 
 @pytest.mark.parametrize("url,status,code", [
@@ -86,7 +86,7 @@ class FakeAdapter:
 
 def test_fake_adapter_injection_and_independent_apps():
     first = create_app(case8_adapter=FakeAdapter())
-    second = create_app()
+    second = create_app(case8_adapter=None)
     assert first.extensions["case8_service"].list_configs().experiment_id == "case8"
     assert first.extensions["case8_service"].describe_capabilities().items == []
     with pytest.raises(DomainError) as error:

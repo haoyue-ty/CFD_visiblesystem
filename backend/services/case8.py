@@ -5,7 +5,8 @@ from backend.adapters import Case8AdapterProtocol
 from backend.core.errors import system_error
 from backend.models import (CapabilityList, ConfigList, EntropyHistory, EvidenceRecord,
                             Experiment, FieldResponse, FieldSnapshot, MetricCollection,
-                            ResultProvenance, ScalarSeries, ScientificArray, SnapshotIndex)
+                            ResultProvenance, ScalarSeries, ScientificArray, SnapshotAlignment,
+                            SnapshotIndex)
 
 
 class Case8Service:
@@ -16,7 +17,16 @@ class Case8Service:
         if self.adapter is None:
             raise system_error("FEATURE_NOT_ENABLED", "Case8 adapter has not been delivered",
                                status=503, retryable=True)
-        value = getattr(self.adapter, method)(*args, **kwargs)
+        try:
+            value = getattr(self.adapter, method)(*args, **kwargs)
+        except KeyError:
+            code = {"load_snapshot_metadata": "SNAPSHOT_NOT_FOUND", "load_field": "SNAPSHOT_NOT_FOUND",
+                    "load_snapshot_alignment": "SNAPSHOT_NOT_FOUND", "load_array": "INVALID_RESULT_ID",
+                    "load_evidence": "UNKNOWN_EVIDENCE_ID", "load_provenance": "INVALID_RESULT_ID",
+                    "load_scalar_series": "INVALID_RESULT_ID", "load_entropy_history": "INVALID_RESULT_ID"}.get(method, "UNKNOWN_CONFIG")
+            raise system_error(code, "Requested scientific identity is not registered", status=404, availability="MISSING") from None
+        except (FileNotFoundError, OSError):
+            raise system_error("SOURCE_READ_ERROR", "Recorded scientific source could not be read") from None
         # Revalidate serialized model instances too; adapters cannot bypass validators.
         payload = value.model_dump(mode="python") if isinstance(value, BaseModel) else value
         return model.model_validate(payload)
@@ -59,3 +69,9 @@ class Case8Service:
 
     def load_provenance(self, result_id: str) -> ResultProvenance:
         return self._call("load_provenance", ResultProvenance, result_id)
+
+    def load_snapshot_alignment(self, config_id: str, *, scalar_step: int,
+                                policy: str = "NEAREST_RECORDED",
+                                snapshot_index: int | None = None) -> SnapshotAlignment:
+        return self._call("load_snapshot_alignment", SnapshotAlignment, config_id,
+                          scalar_step=scalar_step, policy=policy, snapshot_index=snapshot_index)
