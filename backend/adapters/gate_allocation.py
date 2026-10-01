@@ -396,6 +396,8 @@ class GateAllocationAdapter:
         header = self._result_header(facts)
         header["result_id"] = f"gate.{facts.config_id}.summary.{metric_id}"
         header["unit"] = unit
+        header["semantic_id"] = definition_id
+        header["scope"]["description"] = label
         header["scope"]["mask_refs"] = [G.MASK_ID]
         header["scope"]["definition_refs"] = [definition_id]
         return {
@@ -431,7 +433,7 @@ class GateAllocationAdapter:
                 "availability": "AVAILABLE",
                 "value": self._metric(facts, metric_id="gate_E_at", label="Integrated q_at cell budget",
                                       value=facts.e_at, unit=entropy_unit,
-                                      integral_rule="sum(Pi_at)", definition_id=G.SEMANTIC_ID),
+                                      integral_rule="sum(Pi_at)", definition_id="E_at_cumulative"),
             },
             "inside": {
                 "availability": "AVAILABLE",

@@ -9,7 +9,8 @@ from pydantic import Field, RootModel, model_validator
 
 from .core import CanonicalModel, ID, ResourceSlot, fact_value
 from .context import MeasureConvention, ScopeSpec
-from .results import ArrayRef, FieldDescriptor, Metric, ScientificResult
+from .results import ArrayRef, FieldDescriptor, Metric, ScientificResult, ScientificDefinition
+from .evidence import MaskSpec
 
 AllocationRepresentation = Literal["FACE_FIELD", "CELL_FIELD", "ANGULAR_SECTOR"]
 MeasureDefinition = Literal["face integrated", "cell integrated", "sector aggregated"]
@@ -169,6 +170,10 @@ class AllocationMetadata(CanonicalModel):
     evidence_refs: list[ID]
     scope: ScopeSpec
     result: ScientificResult
+    fields: list[FieldDescriptor] = Field(default_factory=list)
+    definition: ScientificDefinition | None = None
+    masks: list[MaskSpec] = Field(default_factory=list)
+    mask_counts: list[int] = Field(default_factory=list)
 
 
 class AllocationComparisonEntry(CanonicalModel):

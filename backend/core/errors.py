@@ -14,6 +14,7 @@ SCIENTIFIC_CODES = frozenset({
     "UNKNOWN_EVIDENCE_ID", "UNKNOWN_ASSET_ID", "MISSING_SCIENTIFIC_ASSET",
     "UNSUPPORTED_REPRESENTATION", "MISSING_ASSET",
     "UNSUPPORTED_COMBINATION", "SOURCE_READ_ERROR", "CANONICAL_SCHEMA_MISMATCH",
+    "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ",
 })
 # Failures here are server-side by definition: the adapter or the canonical contract is at fault.
 SERVER_SIDE_CODES = frozenset({

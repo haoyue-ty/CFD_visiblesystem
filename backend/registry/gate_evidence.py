@@ -18,7 +18,7 @@ _FROZEN_VERIFICATION: Final[dict] = {
     "status": "FROZEN_VERIFIED",
     "basis": [
         "PASSAGE6 Experiment 1 freeze: source-to-snapshot SHA256 equality 17/17 PASS",
-        "Pi_at integral consistency abs(sum(E_at_array) - entropy.E_at) < 1e-10",
+        "Pi_at integral consistency abs(sum(Pi_at) - entropy.E_at) < 1e-10",
     ],
     "verified_at": unresolved("No bound per-asset verification timestamp"),
     "observation_at": unresolved("Runtime observation not performed"),

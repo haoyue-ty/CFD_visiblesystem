@@ -21,13 +21,16 @@ _DEFAULT_ADAPTER = object()
 
 
 def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterProtocol | None | object = _DEFAULT_ADAPTER,
-               allocation_adapter=None, project: ProjectInfo | None = None,
+               allocation_adapter=_DEFAULT_ADAPTER, project: ProjectInfo | None = None,
                configure_catalog=None) -> Flask:
     settings = settings or Settings.from_env()
     if settings.enable_accounts:
         raise ValueError("Accounts must remain disabled in Phase 5A")
     if case8_adapter is _DEFAULT_ADAPTER:
         case8_adapter = Case8Adapter(settings.scientific_data_root) if settings.scientific_data_root else Case8Adapter()
+    if allocation_adapter is _DEFAULT_ADAPTER:
+        from backend.adapters.allocation_integration import IntegratedAllocationAdapter
+        allocation_adapter = IntegratedAllocationAdapter(case8_root=settings.scientific_data_root or None)
     app = Flask(__name__, static_folder=None)
     app.config.update(TESTING=False, JSON_SORT_KEYS=False)
     app.extensions["settings"] = settings
@@ -51,7 +54,7 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     register_registry_operations(catalog, project, service)
     register_case8_operations(catalog, project, service)
     register_array_operations(catalog, project, service)
-    register_evidence_operations(catalog, project, service)
+    register_evidence_operations(catalog, project, service, allocation_service)
     register_allocation_operations(catalog, project, allocation_service)
     if configure_catalog is not None:
         configure_catalog(catalog, service)

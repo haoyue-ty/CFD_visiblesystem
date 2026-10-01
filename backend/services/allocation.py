@@ -13,10 +13,10 @@ canonical model so an adapter cannot bypass the frozen validators.
 """
 from typing import Protocol, runtime_checkable
 
-from pydantic import BaseModel
+from pydantic import BaseModel, TypeAdapter
 
 from backend.adapters.allocation import AllocationAdapterProtocol, AllocationDescription
-from backend.core.errors import (missing_asset, source_error, system_error,
+from backend.core.errors import (DomainError, missing_asset, source_error, system_error,
                                  unsupported_representation)
 from backend.models.allocation import (AllocationArrayResponse, AllocationComparison,
                                        AllocationComparisonEntry, AllocationMetadata,
@@ -57,6 +57,14 @@ class AllocationServiceImpl:
                                status=503, retryable=True)
         try:
             return handler(*args, **kwargs)
+        except DomainError as error:
+            if error.body.code in {'MISSING_SCIENTIFIC_ASSET', 'UNKNOWN_CONFIG', 'UNKNOWN_EXPERIMENT'}:
+                raise missing_asset(error.body.message, resource_type='allocation', identity=None) from None
+            if error.body.code == 'UNSUPPORTED_COMBINATION':
+                raise unsupported_representation(error.body.message, resource_type='allocation', identity=None) from None
+            if error.body.code in {'SOURCE_READ_ERROR', 'SOURCE_DATA_DRIFT', 'SOURCE_CHANGED_DURING_READ'}:
+                raise source_error(error.body.message, retryable=False) from None
+            raise
         except KeyError:
             raise missing_asset("Requested allocation identity is not registered",
                                 resource_type="allocation",
@@ -72,8 +80,9 @@ class AllocationServiceImpl:
 
     def describe_allocation(self, experiment_id: str, config_id: str, *,
                             registry_revision: str | None = None) -> AllocationDescription:
-        return self._call("describe_allocation", AllocationDescription,
-                          experiment_id, config_id, registry_revision=registry_revision)
+        value = self._call_raw("describe_allocation", experiment_id, config_id,
+                               registry_revision=registry_revision)
+        return TypeAdapter(AllocationDescription).validate_python(value)
 
     def load_allocation_metadata(self, result_id: str, *,
                                  registry_revision: str | None = None) -> AllocationResult:
@@ -88,6 +97,20 @@ class AllocationServiceImpl:
     def load_mask(self, mask_id: str, *,
                   registry_revision: str | None = None) -> MaskSpec:
         return self._call("load_mask", MaskSpec, mask_id, registry_revision=registry_revision)
+
+    def owns_evidence(self, identity: str) -> bool:
+        return bool(self.adapter and getattr(self.adapter, 'owns_evidence', lambda _: False)(identity))
+
+    def owns_result(self, identity: str) -> bool:
+        return bool(self.adapter and getattr(self.adapter, 'owns_result', lambda _: False)(identity))
+
+    def load_evidence(self, evidence_id: str):
+        from backend.models import EvidenceRecord
+        return self._call('load_evidence', EvidenceRecord, evidence_id)
+
+    def load_provenance(self, result_id: str):
+        from backend.models import ResultProvenance
+        return self._call('load_provenance', ResultProvenance, result_id)
 
     def load_summary_metrics(self, result_id: str, *,
                              registry_revision: str | None = None) -> AllocationSummary:
@@ -126,7 +149,7 @@ class AllocationServiceImpl:
             return AllocationArrayResponse.model_validate(raw.model_dump(mode="python"))
         scientific = ScientificArray.model_validate(
             raw.model_dump(mode="python") if isinstance(raw, BaseModel) else raw)
-        metadata = self.describe_capability(scientific.result.result_id,
+        metadata = self.describe_capability(result_id,
                                             registry_revision=registry_revision)
         return AllocationArrayResponse(
             result=scientific.result,

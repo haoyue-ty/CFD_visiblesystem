@@ -2020,9 +2020,10 @@
             }
           },
           "404": {
-            "description": "UNKNOWN_EVIDENCE_ID",
+            "description": "UNKNOWN_EVIDENCE_ID, MISSING_ASSET",
             "x-error-codes": [
-              "UNKNOWN_EVIDENCE_ID"
+              "UNKNOWN_EVIDENCE_ID",
+              "MISSING_ASSET"
             ],
             "content": {
               "application/json": {
@@ -2059,10 +2060,13 @@
             }
           },
           "500": {
-            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, SOURCE_ERROR, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ, INTERNAL_ERROR",
             "x-error-codes": [
               "CANONICAL_SCHEMA_MISMATCH",
               "SOURCE_READ_ERROR",
+              "SOURCE_ERROR",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ",
               "INTERNAL_ERROR"
             ],
             "content": {
@@ -2184,9 +2188,10 @@
             }
           },
           "404": {
-            "description": "INVALID_RESULT_ID",
+            "description": "INVALID_RESULT_ID, MISSING_ASSET",
             "x-error-codes": [
-              "INVALID_RESULT_ID"
+              "INVALID_RESULT_ID",
+              "MISSING_ASSET"
             ],
             "content": {
               "application/json": {
@@ -2223,10 +2228,13 @@
             }
           },
           "500": {
-            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, SOURCE_ERROR, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ, INTERNAL_ERROR",
             "x-error-codes": [
               "CANONICAL_SCHEMA_MISMATCH",
               "SOURCE_READ_ERROR",
+              "SOURCE_ERROR",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ",
               "INTERNAL_ERROR"
             ],
             "content": {
@@ -6998,6 +7006,38 @@
           },
           "result": {
             "$ref": "#/components/schemas/ScientificResult"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldDescriptor"
+            },
+            "title": "Fields",
+            "type": "array"
+          },
+          "definition": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScientificDefinition"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "masks": {
+            "items": {
+              "$ref": "#/components/schemas/MaskSpec"
+            },
+            "title": "Masks",
+            "type": "array"
+          },
+          "mask_counts": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Mask Counts",
+            "type": "array"
           }
         },
         "required": [

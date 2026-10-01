@@ -28,6 +28,7 @@
  *   is always visible while the mock provider is active.
  */
 import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { activeProvider, dataService, createRequestGuard, type Loaded, type AllocationSelector } from '../../data'
 import type { AllocationView } from '../../data/domain'
 import LoadStateBlock from '../../components/LoadStateBlock.vue'
@@ -38,6 +39,7 @@ import AllocationSummary from '../../scientific/AllocationSummary.vue'
 import EvidenceLink from '../../scientific/EvidenceLink.vue'
 
 const props = defineProps<{ configId: string }>()
+const route = useRoute()
 
 /** The allocation "family" this tab can display. Both are read via one provider. */
 type Family = 'case8' | 'gate'
@@ -49,8 +51,10 @@ const GATE_CONFIGS = ['Acoustic', 'Pressure', 'Ungated'] as const
  * Keeping two selectors means switching the Gate variant never has to pretend to
  * be a Case8 config change.
  */
-const family = ref<Family>('case8')
-const gateConfig = ref<string>('Acoustic')
+const family = ref<Family>(route.query.allocation_family === 'gate' ? 'gate' : 'case8')
+const gateConfig = ref<string>(GATE_CONFIGS.find(c => c === route.query.allocation_gate) ?? 'Acoustic')
+const returnTo = computed(() => ({ name: 'experiment', params: route.params,
+  query: { ...route.query, allocation_family: family.value, allocation_gate: gateConfig.value } }))
 
 const allocation = ref<Loaded<AllocationView> | null>(null)
 const guard = createRequestGuard()
@@ -200,7 +204,7 @@ watch(() => props.configId, () => {
           <h3>Evidence</h3>
           <ul class="al__ev-list">
             <li v-for="ref in allocation.data.evidence_refs" :key="ref" data-testid="alloc-evidence-link">
-              <EvidenceLink :evidence-id="ref" context="allocation" />
+              <EvidenceLink :evidence-id="ref" context="allocation" :return-to="returnTo" />
               <span class="al__ev-id">{{ ref }}</span>
             </li>
           </ul>

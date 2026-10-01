@@ -67,12 +67,8 @@ async function load<T>(task: () => Promise<T>): Promise<Loaded<T>> {
 /**
  * Allocation error classifier.
  *
- * Allocation routes (ALLOC01–ALLOC04) are REGISTERED but the concrete loader is
- * not delivered, so the backend currently answers 503 with
- * `domain: SYSTEM / code: FEATURE_NOT_ENABLED` ("Allocation adapter has not been
- * delivered"). That is a capability that exists on the wire but cannot yet serve
- * data — the honest UI state is UNSUPPORTED, not ERROR and certainly not an
- * invented empty field. A genuine MISSING (unknown/absent result) stays MISSING.
+ * Explicitly disabled loaders report UNSUPPORTED; missing assets stay MISSING.
+ * A source failure stays ERROR, without a synthetic field or provider fallback.
  */
 function allocationFailure(envelope: { availability?: string; error?: S['ErrorBody'] } | undefined, status: number): ApiFailure {
   const availability = envelope?.availability
@@ -115,25 +111,17 @@ function evidenceView(record: S['EvidenceRecord'], config: S['ExperimentConfig']
 }
 
 /**
- * Mask view from metadata + summary.
- *
- * The mask identity comes from the server (`mask_refs`). Counts are read from the
- * summary's own mask refs when present; the mask definition text is the recorded
- * rule, never a reformatted guess. The mask type is resolved from the registered
- * mask id so the two representations can never share one identity.
+ * Canonical server MaskSpec and orientation counts; validate summary identity.
  */
 function maskView(meta: S['AllocationMetadata'], summary: S['AllocationSummary']): AllocationMaskView {
-  const maskId = meta.mask_refs[0] ?? meta.mask_definition
-  const type: S['MaskSpec']['type'] = maskId.includes('gate')
-    ? 'GATE_CELL_SHOCK_WINDOW'
-    : maskId.includes('native-face') || maskId.includes('case8')
-      ? 'CASE8_NATIVE_FACE_SHOCK_WINDOW'
-      : 'GATE_CELL_SHOCK_WINDOW'
+  const mask = meta.masks?.[0]
+  if (!mask || meta.mask_refs.length !== 1 || mask.id !== meta.mask_refs[0]
+    || summary.mask_refs.length !== 1 || summary.mask_refs[0] !== mask.id) throw new Error('Allocation mask context mismatch')
   return {
-    mask_id: maskId,
-    mask_type: type,
-    definition: meta.mask_definition,
-    counts: [],
+    mask_id: mask.id,
+    mask_type: mask.type,
+    definition: mask.definition,
+    counts: meta.mask_counts ?? [],
     evidence_refs: summary.evidence_refs,
     verification: meta.result.verification,
   }
@@ -153,6 +141,22 @@ function allocationResultId(selector: AllocationSelector): string {
 /** Read the `value` of an AVAILABLE / PARTIAL resource slot, else null. */
 function slotValue<T>(slot: { availability: string; value?: T }): T | null {
   return slot.availability === 'AVAILABLE' || slot.availability === 'PARTIAL' ? (slot.value ?? null) : null
+}
+
+function validateAllocationSummary(meta: S['AllocationMetadata'], summary: S['AllocationSummary']) {
+  if (JSON.stringify(meta.measure) !== JSON.stringify(summary.measure)) throw new Error('Allocation measure context mismatch')
+  for (const [slot, fraction] of [[summary.total_budget, false], [summary.inside, true], [summary.outside, true]] as const) {
+    const metric = slotValue(slot)
+    if (!metric) continue
+    const result = metric.result
+    if (result.experiment_id !== meta.experiment_id || result.config_id !== meta.config_id
+      || result.provenance.registry_revision !== meta.result.provenance.registry_revision
+      || result.provenance.data_revision !== meta.result.provenance.data_revision
+      || metric.time_scope.accumulation !== 'TRAJECTORY_INTEGRATED'
+      || JSON.stringify(metric.time_scope.interval) !== JSON.stringify(meta.result.time.interval)
+      || result.unit.id !== (fraction ? 'dimensionless_fraction' : 'model_integrated_entropy')
+      || (!fraction && result.semantic_id !== 'E_at_cumulative')) throw new Error('Allocation scalar context mismatch')
+  }
 }
 
 /** Map one summary Metric slot onto the allocation metric view. */
@@ -295,15 +299,15 @@ export function createApiProvider(): DataProvider {
     getEvidence: (evidenceId, signal) => load(async () => {
       const record = await evidence(evidenceId, signal)
       const configId = factValue(record.config_id)
-      const configs = configId ? await body<S['ConfigList']>(api.GET('/api/v1/experiments/{experiment_id}/configs', { params: { path: { experiment_id: 'case8' } }, signal })) : null
-      return evidenceView(record, configs?.items.find(item => item.id === configId) ?? null)
+      const boundConfig = factValue(record.config)
+      const configs = !boundConfig && configId && factValue(record.experiment_id) === 'case8'
+        ? await body<S['ConfigList']>(api.GET('/api/v1/experiments/{experiment_id}/configs', { params: { path: { experiment_id: 'case8' } }, signal })) : null
+      return evidenceView(record, boundConfig ?? configs?.items.find(item => item.id === configId) ?? null)
     }),
 
     // --- Phase 6B allocation -------------------------------------------------
     // ALLOC01 metadata declares the representation; ALLOC03 supplies the summary.
-    // The concrete allocation loader is registered but not yet enabled, so these
-    // calls currently resolve to an honest UNSUPPORTED (FEATURE_NOT_ENABLED)
-    // rather than an invented field.
+    // Integrated loaders retain each source's representation, revision and masks.
     describeAllocation: (selector, signal) => load(async () => {
       const resultId = allocationResultId(selector)
       const meta = await allocationBody<S['AllocationMetadata']>(
@@ -312,15 +316,19 @@ export function createApiProvider(): DataProvider {
       const summary = await allocationBody<S['AllocationSummary']>(
         api.GET('/api/v1/allocations/{result_id}/summary', { params: { path: { result_id: resultId } }, signal }),
       )
+      const definition = meta.definition
+      validateAllocationSummary(meta, summary)
+      if (!definition || definition.semantic_id !== meta.semantic_id) throw new Error('Allocation definition context mismatch')
+      header(meta.result)
       const common = {
         result_id: meta.result_id,
         experiment_id: meta.experiment_id,
         config_id: meta.config_id,
         semantic_id: meta.semantic_id,
-        title: meta.result.scope.description,
-        definition: meta.mask_definition,
-        time_rule: meta.coordinate_convention,
-        spatial_rule: meta.measure.integral_rule,
+        title: definition.title,
+        definition: definition.definition,
+        time_rule: definition.time_rule,
+        spatial_rule: definition.spatial_rule,
         data_origin: meta.result.data_origin,
         verification: meta.result.verification,
         limitations: meta.result.limitations,
@@ -336,11 +344,25 @@ export function createApiProvider(): DataProvider {
         ).then(array => {
           // Mirror the snapshot-array guard: a non-numeric payload is an error,
           // never a silently coerced field.
-          if (array.values.some(v => typeof v !== 'number')) throw new Error('Allocation array is not numeric')
+          const field = meta.fields?.find(f => f.array_ref.descriptor.array_id === ref.descriptor.array_id)
+          if (!field || array.representation_type !== meta.representation_type
+            || array.result.experiment_id !== meta.experiment_id || array.result.config_id !== meta.config_id
+            || array.result.semantic_id !== meta.semantic_id
+            || array.result.result_id !== ref.result_id
+            || array.result.provenance.registry_revision !== meta.result.provenance.registry_revision
+            || array.result.provenance.data_revision !== meta.result.provenance.data_revision
+            || JSON.stringify(array.array_ref) !== JSON.stringify(ref)
+            || array.values.length !== ref.descriptor.element_count
+            || array.values.some(v => typeof v !== 'number' || !Number.isFinite(v))) throw new Error('Allocation array context mismatch')
+          header(array.result)
+          const location = field.domain.location_type
+          if (location !== 'CARTESIAN_X_FACE' && location !== 'CARTESIAN_Y_FACE' && location !== 'CARTESIAN_CELL') {
+            throw new Error('Unsupported allocation field location')
+          }
           return {
             array_id: array.array_ref.descriptor.array_id,
-            label: array.field_id,
-            location_type: 'CARTESIAN_CELL' as const,
+            label: field.label,
+            location_type: location,
             shape: array.array_ref.descriptor.shape,
             axes: array.array_ref.descriptor.axes,
             unit_label: array.result.unit.label,
@@ -351,14 +373,19 @@ export function createApiProvider(): DataProvider {
       // The server declares the representation; the frontend narrows to it and
       // asserts the matching array cardinality the renderer requires.
       if (meta.representation_type === 'FACE_FIELD') {
-        if (arrays.length !== 2) throw new Error('FACE_FIELD requires exactly two native-face orientations')
+        if (arrays.length !== 2 || arrays[0].location_type !== 'CARTESIAN_X_FACE'
+          || arrays[1].location_type !== 'CARTESIAN_Y_FACE'
+          || common.mask.mask_type !== 'CASE8_NATIVE_FACE_SHOCK_WINDOW'
+          || meta.measure.includes_spatial_measure) throw new Error('FACE_FIELD requires exactly two native-face orientations')
         return {
           ...common, representation_type: 'FACE_FIELD', measure_definition: 'face integrated',
           coordinate_convention: meta.coordinate_convention,
           arrays: [arrays[0], arrays[1]],
         }
       }
-      if (arrays.length !== 1) throw new Error('CELL_FIELD requires exactly one cell array')
+      if (meta.representation_type !== 'CELL_FIELD' || arrays.length !== 1
+        || arrays[0].location_type !== 'CARTESIAN_CELL' || common.mask.mask_type !== 'GATE_CELL_SHOCK_WINDOW'
+        || !meta.measure.includes_spatial_measure) throw new Error('CELL_FIELD requires exactly one cell array')
       return {
         ...common, representation_type: 'CELL_FIELD', measure_definition: 'cell integrated',
         coordinate_convention: meta.coordinate_convention, arrays: [arrays[0]],
@@ -382,6 +409,7 @@ export function createApiProvider(): DataProvider {
       const summary = await allocationBody<S['AllocationSummary']>(
         api.GET('/api/v1/allocations/{result_id}/summary', { params: { path: { result_id: resultId } }, signal }),
       )
+      validateAllocationSummary(meta, summary)
       return summaryView(summary, meta.measure)
     }),
   }

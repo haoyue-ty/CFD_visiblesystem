@@ -41,24 +41,27 @@ def _path_parser(*path_names: str):
     return parse
 
 
-def register_evidence_operations(catalog: OperationCatalog, project: ProjectInfo, service) -> None:
+def register_evidence_operations(catalog: OperationCatalog, project: ProjectInfo, service, allocation_service=None) -> None:
     def evidence_record(query: IdentityQuery, evidence_id: str):
         _revision(query, project)
-        return _envelope(service.load_evidence(query.evidence_id or evidence_id), project,
+        identity = query.evidence_id or evidence_id
+        selected = allocation_service if allocation_service and allocation_service.owns_evidence(identity) else service
+        return _envelope(selected.load_evidence(identity), project,
                          ApiEnvelope[EvidenceRecord])
 
     def provenance(query: ProvenanceQuery, result_id: str):
         _revision(query, project)
-        return _envelope(service.load_provenance(query.result_id), project,
+        selected = allocation_service if allocation_service and allocation_service.owns_result(query.result_id) else service
+        return _envelope(selected.load_provenance(query.result_id), project,
                          ApiEnvelope[ResultProvenance])
 
     catalog.register(Operation(
         method="GET", path="/api/v1/evidence/{evidence_id}", operation_id="EVI02", blueprint="evidence",
         service="EvidenceService", request_model=IdentityQuery,
         response_model=ApiEnvelope[EvidenceRecord],
-        documented_errors={400: ("INVALID_REQUEST",), 404: ("UNKNOWN_EVIDENCE_ID",),
+        documented_errors={400: ("INVALID_REQUEST",), 404: ("UNKNOWN_EVIDENCE_ID", "MISSING_ASSET"),
                            405: ("METHOD_NOT_ALLOWED",), 409: ("REVISION_UNAVAILABLE",),
-                           500: ("CANONICAL_SCHEMA_MISMATCH", "SOURCE_READ_ERROR", "INTERNAL_ERROR"),
+                           500: ("CANONICAL_SCHEMA_MISMATCH", "SOURCE_READ_ERROR", "SOURCE_ERROR", "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ", "INTERNAL_ERROR"),
                            503: ("FEATURE_NOT_ENABLED",)},
         delivery_phase="Alpha", handler=evidence_record, request_parser=_path_parser("evidence_id"),
         description="Full method/config/assets/hashes/freeze/processing/verification evidence record."))
@@ -66,9 +69,9 @@ def register_evidence_operations(catalog: OperationCatalog, project: ProjectInfo
         method="GET", path="/api/v1/results/{result_id}/provenance", operation_id="EVI03",
         blueprint="evidence", service="EvidenceService", request_model=ProvenanceQuery,
         response_model=ApiEnvelope[ResultProvenance],
-        documented_errors={400: ("INVALID_REQUEST",), 404: ("INVALID_RESULT_ID",),
+        documented_errors={400: ("INVALID_REQUEST",), 404: ("INVALID_RESULT_ID", "MISSING_ASSET"),
                            405: ("METHOD_NOT_ALLOWED",), 409: ("REVISION_UNAVAILABLE",),
-                           500: ("CANONICAL_SCHEMA_MISMATCH", "SOURCE_READ_ERROR", "INTERNAL_ERROR"),
+                           500: ("CANONICAL_SCHEMA_MISMATCH", "SOURCE_READ_ERROR", "SOURCE_ERROR", "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ", "INTERNAL_ERROR"),
                            503: ("FEATURE_NOT_ENABLED",)},
         delivery_phase="Alpha", handler=provenance, request_parser=_path_parser("result_id"),
         description="Provenance for any scientific result, listing every contributing source reference."))

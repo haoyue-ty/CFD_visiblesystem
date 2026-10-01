@@ -1635,6 +1635,14 @@ export interface components {
             evidence_refs: string[];
             scope: components["schemas"]["ScopeSpec"];
             result: components["schemas"]["ScientificResult"];
+            /** Fields */
+            fields?: components["schemas"]["FieldDescriptor"][];
+            /** @default null */
+            definition: components["schemas"]["ScientificDefinition"] | null;
+            /** Masks */
+            masks?: components["schemas"]["MaskSpec"][];
+            /** Mask Counts */
+            mask_counts?: number[];
         };
         /**
          * AllocationArrayResponse
@@ -3848,7 +3856,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description UNKNOWN_EVIDENCE_ID */
+            /** @description UNKNOWN_EVIDENCE_ID, MISSING_ASSET */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -3875,7 +3883,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, SOURCE_ERROR, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ, INTERNAL_ERROR */
             500: {
                 headers: {
                     [name: string]: unknown;
@@ -3926,7 +3934,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description INVALID_RESULT_ID */
+            /** @description INVALID_RESULT_ID, MISSING_ASSET */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -3953,7 +3961,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, SOURCE_ERROR, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ, INTERNAL_ERROR */
             500: {
                 headers: {
                     [name: string]: unknown;
