@@ -21,7 +21,7 @@ def test_system_envelope(app):
     envelope = ApiEnvelope[ProjectInfo].model_validate_json(response.data)
     assert envelope.root.request_id == response.headers["X-Request-ID"] != "untrusted"
     assert envelope.root.data.account_extension.enabled is False
-    assert all(item.delivery_status == ("IMPLEMENTED" if item.experiment_id in ("case8", "cylinder") else "PLANNED") for item in envelope.root.data.experiments)
+    assert all(item.delivery_status == ("IMPLEMENTED" if item.experiment_id in ("case8", "cylinder", "entropy-closure") else "PLANNED") for item in envelope.root.data.experiments)
 
 
 @pytest.mark.parametrize("url,status,code", [

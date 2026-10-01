@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="116" time="58.406" timestamp="2026-10-01T21:54:47.850016+08:00" hostname="haoyue"><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo01_exactly_five_complete_frozen_runs" time="4.513" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo02_all_five_identity_cfl_terminal_and_zero_channel[D_u-cfl-0.2]" time="0.089" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo02_all_five_identity_cfl_terminal_and_zero_channel[D_u-cfl-0.1]" time="0.094" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo02_all_five_identity_cfl_terminal_and_zero_channel[D_u-cfl-0.05]" time="0.107" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo02_all_five_identity_cfl_terminal_and_zero_channel[D_u-cfl-0.025]" time="0.113" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo02_all_five_identity_cfl_terminal_and_zero_channel[B_u-cfl-0.05]" time="0.098" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[stage-PER_STAGE-columns0-D_u-cfl-0.2]" time="0.655" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[stage-PER_STAGE-columns0-D_u-cfl-0.1]" time="0.756" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[stage-PER_STAGE-columns0-D_u-cfl-0.05]" time="0.954" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[stage-PER_STAGE-columns0-D_u-cfl-0.025]" time="1.311" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[stage-PER_STAGE-columns0-B_u-cfl-0.05]" time="0.984" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[step-PER_STEP-columns1-D_u-cfl-0.2]" time="0.221"><failure message="AssertionError: assert 'STEP_INCREMENT' == 'NONE'&#10;  &#10;  - NONE&#10;  + STEP_INCREMENT">client = &lt;FlaskClient &lt;Flask 'backend.core.app'&gt;&gt;
+source_rows = &lt;function source_rows.&lt;locals&gt;.load at 0x000001C5F608C680&gt;
+run_id = 'D_u-cfl-0.2', group = 'step', granularity = 'PER_STEP'
+columns = ('time_n', 'time_np1', 'dt', 'S_n', 'S_np1', 'DeltaS', ...)
+
+    @pytest.mark.parametrize("run_id", R.RUN_IDS)
+    @pytest.mark.parametrize("group,granularity,columns", [("stage", "PER_STAGE", R.STAGE_SERIES), ("step", "PER_STEP", R.STEP_SERIES)])
+    def test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals(client, source_rows, run_id, group, granularity, columns):
+        rows = source_rows(run_id, group)
+        step_rows = source_rows(run_id, "step")
+        count = R.RUNS[run_id][f"{group}_rows"]
+        assert len(rows) == count
+        # First, stage-boundary crossing, middle, terminal, and empty pages.
+        for offset in (0, 2, count // 2, count - 4, count, count + 5):
+            history = read(client, f"{BASE}/runs/{run_id}/{group}-history?offset={offset}&amp;limit=4", ClosureHistory)
+            assert history["run_id"] == run_id and history["granularity"] == granularity
+            assert [s["series_id"] for s in history["series"]] == list(columns)
+            for series in history["series"]:
+                assert series["total_point_count"] == series["page"]["total_count"] == count
+                expected = rows[offset:offset + 4]
+                assert series["page"] == {"offset": offset, "limit": 4, "returned_count": len(expected),
+                                           "total_count": count, "has_more": offset + len(expected) &lt; count}
+                assert series["result"]["time"]["sampling"] == granularity
+                assert series["result"]["config_id"] == run_id
+                assert series["source_column"] == series["series_id"]
+                for point, row, ordinal in zip(series["points"], expected, range(offset, offset + len(expected))):
+                    assert point["point_index"] == ordinal
+                    assert point["value"]["value"] == float(row[series["series_id"]])
+                    assert point["step_index"]["value"] == point["source_step_index"]["value"] == int(row["step"])
+                    endpoint = step_rows[int(row["step"]) - 1]
+                    assert point["interval"]["value"] == {"start": float(endpoint["time_n"]), "end": float(endpoint["time_np1"])}
+                    assert point["physical_time"]["value"] == float(row["t_stage_or_step_time" if group == "stage" else "time_np1"])
+                    if group == "stage":
+                        assert point["source_stage_index"]["value"] == int(row["stage"])
+                        assert point["stage_index"]["value"] == int(row["stage"]) - 1
+                        assert point["physical_time"]["value"] == float(endpoint["time_n"])
+                    elif "_stage" in series["series_id"]:
+                        assert point["source_stage_index"]["value"] == int(series["series_id"][-1])
+                        assert point["stage_index"]["value"] == int(series["series_id"][-1]) - 1
+                    else:
+                        assert point["stage_index"]["state"] == point["source_stage_index"]["state"] == "NOT_APPLICABLE"
+                if group == "step":
+&gt;                   assert series["aggregation"] == ("CUMULATIVE" if series["series_id"] == "R_time_cumulative" else
+                                                      "STEP_INCREMENT" if series["series_id"].startswith("E_") or series["series_id"] == "DeltaS" else "NONE")
+E                   AssertionError: assert 'STEP_INCREMENT' == 'NONE'
+E
+E                     - NONE
+E                     + STEP_INCREMENT
+
+tests\window2_closure_api\test_closure_api.py:137: AssertionError</failure></testcase><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[step-PER_STEP-columns1-D_u-cfl-0.1]" time="0.178"><failure message="AssertionError: assert 'STEP_INCREMENT' == 'NONE'&#10;  &#10;  - NONE&#10;  + STEP_INCREMENT">client = &lt;FlaskClient &lt;Flask 'backend.core.app'&gt;&gt;
+source_rows = &lt;function source_rows.&lt;locals&gt;.load at 0x000001C5F608C680&gt;
+run_id = 'D_u-cfl-0.1', group = 'step', granularity = 'PER_STEP'
+columns = ('time_n', 'time_np1', 'dt', 'S_n', 'S_np1', 'DeltaS', ...)
+
+    @pytest.mark.parametrize("run_id", R.RUN_IDS)
+    @pytest.mark.parametrize("group,granularity,columns", [("stage", "PER_STAGE", R.STAGE_SERIES), ("step", "PER_STEP", R.STEP_SERIES)])
+    def test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals(client, source_rows, run_id, group, granularity, columns):
+        rows = source_rows(run_id, group)
+        step_rows = source_rows(run_id, "step")
+        count = R.RUNS[run_id][f"{group}_rows"]
+        assert len(rows) == count
+        # First, stage-boundary crossing, middle, terminal, and empty pages.
+        for offset in (0, 2, count // 2, count - 4, count, count + 5):
+            history = read(client, f"{BASE}/runs/{run_id}/{group}-history?offset={offset}&amp;limit=4", ClosureHistory)
+            assert history["run_id"] == run_id and history["granularity"] == granularity
+            assert [s["series_id"] for s in history["series"]] == list(columns)
+            for series in history["series"]:
+                assert series["total_point_count"] == series["page"]["total_count"] == count
+                expected = rows[offset:offset + 4]
+                assert series["page"] == {"offset": offset, "limit": 4, "returned_count": len(expected),
+                                           "total_count": count, "has_more": offset + len(expected) &lt; count}
+                assert series["result"]["time"]["sampling"] == granularity
+                assert series["result"]["config_id"] == run_id
+                assert series["source_column"] == series["series_id"]
+                for point, row, ordinal in zip(series["points"], expected, range(offset, offset + len(expected))):
+                    assert point["point_index"] == ordinal
+                    assert point["value"]["value"] == float(row[series["series_id"]])
+                    assert point["step_index"]["value"] == point["source_step_index"]["value"] == int(row["step"])
+                    endpoint = step_rows[int(row["step"]) - 1]
+                    assert point["interval"]["value"] == {"start": float(endpoint["time_n"]), "end": float(endpoint["time_np1"])}
+                    assert point["physical_time"]["value"] == float(row["t_stage_or_step_time" if group == "stage" else "time_np1"])
+                    if group == "stage":
+                        assert point["source_stage_index"]["value"] == int(row["stage"])
+                        assert point["stage_index"]["value"] == int(row["stage"]) - 1
+                        assert point["physical_time"]["value"] == float(endpoint["time_n"])
+                    elif "_stage" in series["series_id"]:
+                        assert point["source_stage_index"]["value"] == int(series["series_id"][-1])
+                        assert point["stage_index"]["value"] == int(series["series_id"][-1]) - 1
+                    else:
+                        assert point["stage_index"]["state"] == point["source_stage_index"]["state"] == "NOT_APPLICABLE"
+                if group == "step":
+&gt;                   assert series["aggregation"] == ("CUMULATIVE" if series["series_id"] == "R_time_cumulative" else
+                                                      "STEP_INCREMENT" if series["series_id"].startswith("E_") or series["series_id"] == "DeltaS" else "NONE")
+E                   AssertionError: assert 'STEP_INCREMENT' == 'NONE'
+E
+E                     - NONE
+E                     + STEP_INCREMENT
+
+tests\window2_closure_api\test_closure_api.py:137: AssertionError</failure></testcase><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[step-PER_STEP-columns1-D_u-cfl-0.05]" time="0.241"><failure message="AssertionError: assert 'STEP_INCREMENT' == 'NONE'&#10;  &#10;  - NONE&#10;  + STEP_INCREMENT">client = &lt;FlaskClient &lt;Flask 'backend.core.app'&gt;&gt;
+source_rows = &lt;function source_rows.&lt;locals&gt;.load at 0x000001C5F608C680&gt;
+run_id = 'D_u-cfl-0.05', group = 'step', granularity = 'PER_STEP'
+columns = ('time_n', 'time_np1', 'dt', 'S_n', 'S_np1', 'DeltaS', ...)
+
+    @pytest.mark.parametrize("run_id", R.RUN_IDS)
+    @pytest.mark.parametrize("group,granularity,columns", [("stage", "PER_STAGE", R.STAGE_SERIES), ("step", "PER_STEP", R.STEP_SERIES)])
+    def test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals(client, source_rows, run_id, group, granularity, columns):
+        rows = source_rows(run_id, group)
+        step_rows = source_rows(run_id, "step")
+        count = R.RUNS[run_id][f"{group}_rows"]
+        assert len(rows) == count
+        # First, stage-boundary crossing, middle, terminal, and empty pages.
+        for offset in (0, 2, count // 2, count - 4, count, count + 5):
+            history = read(client, f"{BASE}/runs/{run_id}/{group}-history?offset={offset}&amp;limit=4", ClosureHistory)
+            assert history["run_id"] == run_id and history["granularity"] == granularity
+            assert [s["series_id"] for s in history["series"]] == list(columns)
+            for series in history["series"]:
+                assert series["total_point_count"] == series["page"]["total_count"] == count
+                expected = rows[offset:offset + 4]
+                assert series["page"] == {"offset": offset, "limit": 4, "returned_count": len(expected),
+                                           "total_count": count, "has_more": offset + len(expected) &lt; count}
+                assert series["result"]["time"]["sampling"] == granularity
+                assert series["result"]["config_id"] == run_id
+                assert series["source_column"] == series["series_id"]
+                for point, row, ordinal in zip(series["points"], expected, range(offset, offset + len(expected))):
+                    assert point["point_index"] == ordinal
+                    assert point["value"]["value"] == float(row[series["series_id"]])
+                    assert point["step_index"]["value"] == point["source_step_index"]["value"] == int(row["step"])
+                    endpoint = step_rows[int(row["step"]) - 1]
+                    assert point["interval"]["value"] == {"start": float(endpoint["time_n"]), "end": float(endpoint["time_np1"])}
+                    assert point["physical_time"]["value"] == float(row["t_stage_or_step_time" if group == "stage" else "time_np1"])
+                    if group == "stage":
+                        assert point["source_stage_index"]["value"] == int(row["stage"])
+                        assert point["stage_index"]["value"] == int(row["stage"]) - 1
+                        assert point["physical_time"]["value"] == float(endpoint["time_n"])
+                    elif "_stage" in series["series_id"]:
+                        assert point["source_stage_index"]["value"] == int(series["series_id"][-1])
+                        assert point["stage_index"]["value"] == int(series["series_id"][-1]) - 1
+                    else:
+                        assert point["stage_index"]["state"] == point["source_stage_index"]["state"] == "NOT_APPLICABLE"
+                if group == "step":
+&gt;                   assert series["aggregation"] == ("CUMULATIVE" if series["series_id"] == "R_time_cumulative" else
+                                                      "STEP_INCREMENT" if series["series_id"].startswith("E_") or series["series_id"] == "DeltaS" else "NONE")
+E                   AssertionError: assert 'STEP_INCREMENT' == 'NONE'
+E
+E                     - NONE
+E                     + STEP_INCREMENT
+
+tests\window2_closure_api\test_closure_api.py:137: AssertionError</failure></testcase><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[step-PER_STEP-columns1-D_u-cfl-0.025]" time="0.209"><failure message="AssertionError: assert 'STEP_INCREMENT' == 'NONE'&#10;  &#10;  - NONE&#10;  + STEP_INCREMENT">client = &lt;FlaskClient &lt;Flask 'backend.core.app'&gt;&gt;
+source_rows = &lt;function source_rows.&lt;locals&gt;.load at 0x000001C5F608C680&gt;
+run_id = 'D_u-cfl-0.025', group = 'step', granularity = 'PER_STEP'
+columns = ('time_n', 'time_np1', 'dt', 'S_n', 'S_np1', 'DeltaS', ...)
+
+    @pytest.mark.parametrize("run_id", R.RUN_IDS)
+    @pytest.mark.parametrize("group,granularity,columns", [("stage", "PER_STAGE", R.STAGE_SERIES), ("step", "PER_STEP", R.STEP_SERIES)])
+    def test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals(client, source_rows, run_id, group, granularity, columns):
+        rows = source_rows(run_id, group)
+        step_rows = source_rows(run_id, "step")
+        count = R.RUNS[run_id][f"{group}_rows"]
+        assert len(rows) == count
+        # First, stage-boundary crossing, middle, terminal, and empty pages.
+        for offset in (0, 2, count // 2, count - 4, count, count + 5):
+            history = read(client, f"{BASE}/runs/{run_id}/{group}-history?offset={offset}&amp;limit=4", ClosureHistory)
+            assert history["run_id"] == run_id and history["granularity"] == granularity
+            assert [s["series_id"] for s in history["series"]] == list(columns)
+            for series in history["series"]:
+                assert series["total_point_count"] == series["page"]["total_count"] == count
+                expected = rows[offset:offset + 4]
+                assert series["page"] == {"offset": offset, "limit": 4, "returned_count": len(expected),
+                                           "total_count": count, "has_more": offset + len(expected) &lt; count}
+                assert series["result"]["time"]["sampling"] == granularity
+                assert series["result"]["config_id"] == run_id
+                assert series["source_column"] == series["series_id"]
+                for point, row, ordinal in zip(series["points"], expected, range(offset, offset + len(expected))):
+                    assert point["point_index"] == ordinal
+                    assert point["value"]["value"] == float(row[series["series_id"]])
+                    assert point["step_index"]["value"] == point["source_step_index"]["value"] == int(row["step"])
+                    endpoint = step_rows[int(row["step"]) - 1]
+                    assert point["interval"]["value"] == {"start": float(endpoint["time_n"]), "end": float(endpoint["time_np1"])}
+                    assert point["physical_time"]["value"] == float(row["t_stage_or_step_time" if group == "stage" else "time_np1"])
+                    if group == "stage":
+                        assert point["source_stage_index"]["value"] == int(row["stage"])
+                        assert point["stage_index"]["value"] == int(row["stage"]) - 1
+                        assert point["physical_time"]["value"] == float(endpoint["time_n"])
+                    elif "_stage" in series["series_id"]:
+                        assert point["source_stage_index"]["value"] == int(series["series_id"][-1])
+                        assert point["stage_index"]["value"] == int(series["series_id"][-1]) - 1
+                    else:
+                        assert point["stage_index"]["state"] == point["source_stage_index"]["state"] == "NOT_APPLICABLE"
+                if group == "step":
+&gt;                   assert series["aggregation"] == ("CUMULATIVE" if series["series_id"] == "R_time_cumulative" else
+                                                      "STEP_INCREMENT" if series["series_id"].startswith("E_") or series["series_id"] == "DeltaS" else "NONE")
+E                   AssertionError: assert 'STEP_INCREMENT' == 'NONE'
+E
+E                     - NONE
+E                     + STEP_INCREMENT
+
+tests\window2_closure_api\test_closure_api.py:137: AssertionError</failure></testcase><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals[step-PER_STEP-columns1-B_u-cfl-0.05]" time="0.190"><failure message="AssertionError: assert 'STEP_INCREMENT' == 'NONE'&#10;  &#10;  - NONE&#10;  + STEP_INCREMENT">client = &lt;FlaskClient &lt;Flask 'backend.core.app'&gt;&gt;
+source_rows = &lt;function source_rows.&lt;locals&gt;.load at 0x000001C5F608C680&gt;
+run_id = 'B_u-cfl-0.05', group = 'step', granularity = 'PER_STEP'
+columns = ('time_n', 'time_np1', 'dt', 'S_n', 'S_np1', 'DeltaS', ...)
+
+    @pytest.mark.parametrize("run_id", R.RUN_IDS)
+    @pytest.mark.parametrize("group,granularity,columns", [("stage", "PER_STAGE", R.STAGE_SERIES), ("step", "PER_STEP", R.STEP_SERIES)])
+    def test_clo03_clo04_saved_rows_source_clock_stage_indices_and_totals(client, source_rows, run_id, group, granularity, columns):
+        rows = source_rows(run_id, group)
+        step_rows = source_rows(run_id, "step")
+        count = R.RUNS[run_id][f"{group}_rows"]
+        assert len(rows) == count
+        # First, stage-boundary crossing, middle, terminal, and empty pages.
+        for offset in (0, 2, count // 2, count - 4, count, count + 5):
+            history = read(client, f"{BASE}/runs/{run_id}/{group}-history?offset={offset}&amp;limit=4", ClosureHistory)
+            assert history["run_id"] == run_id and history["granularity"] == granularity
+            assert [s["series_id"] for s in history["series"]] == list(columns)
+            for series in history["series"]:
+                assert series["total_point_count"] == series["page"]["total_count"] == count
+                expected = rows[offset:offset + 4]
+                assert series["page"] == {"offset": offset, "limit": 4, "returned_count": len(expected),
+                                           "total_count": count, "has_more": offset + len(expected) &lt; count}
+                assert series["result"]["time"]["sampling"] == granularity
+                assert series["result"]["config_id"] == run_id
+                assert series["source_column"] == series["series_id"]
+                for point, row, ordinal in zip(series["points"], expected, range(offset, offset + len(expected))):
+                    assert point["point_index"] == ordinal
+                    assert point["value"]["value"] == float(row[series["series_id"]])
+                    assert point["step_index"]["value"] == point["source_step_index"]["value"] == int(row["step"])
+                    endpoint = step_rows[int(row["step"]) - 1]
+                    assert point["interval"]["value"] == {"start": float(endpoint["time_n"]), "end": float(endpoint["time_np1"])}
+                    assert point["physical_time"]["value"] == float(row["t_stage_or_step_time" if group == "stage" else "time_np1"])
+                    if group == "stage":
+                        assert point["source_stage_index"]["value"] == int(row["stage"])
+                        assert point["stage_index"]["value"] == int(row["stage"]) - 1
+                        assert point["physical_time"]["value"] == float(endpoint["time_n"])
+                    elif "_stage" in series["series_id"]:
+                        assert point["source_stage_index"]["value"] == int(series["series_id"][-1])
+                        assert point["stage_index"]["value"] == int(series["series_id"][-1]) - 1
+                    else:
+                        assert point["stage_index"]["state"] == point["source_stage_index"]["state"] == "NOT_APPLICABLE"
+                if group == "step":
+&gt;                   assert series["aggregation"] == ("CUMULATIVE" if series["series_id"] == "R_time_cumulative" else
+                                                      "STEP_INCREMENT" if series["series_id"].startswith("E_") or series["series_id"] == "DeltaS" else "NONE")
+E                   AssertionError: assert 'STEP_INCREMENT' == 'NONE'
+E
+E                     - NONE
+E                     + STEP_INCREMENT
+
+tests\window2_closure_api\test_closure_api.py:137: AssertionError</failure></testcase><testcase classname="tests.window2_closure_api.test_closure_api" name="test_default_history_query_uses_existing_bounds_and_complete_series" time="29.479" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_clo05_four_du_recorded_refinement_points_existing_slopes" time="0.265" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[B_u-cfl-0.1-]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[B_u-cfl-0.1-/stage-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[B_u-cfl-0.1-/step-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[D_u-cfl-0.03-]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[D_u-cfl-0.03-/stage-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[D_u-cfl-0.03-/step-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[B_u-cfl-0.2-]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[B_u-cfl-0.2-/stage-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[B_u-cfl-0.2-/step-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[D_u-cfl-0.005-]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[D_u-cfl-0.005-/stage-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_recognized_invalid_combinations_are_422[D_u-cfl-0.005-/step-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[random-run-]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[random-run-/stage-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[random-run-/step-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[not-registered-123-]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[not-registered-123-/stage-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[not-registered-123-/step-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[C_u-cfl-0.05-]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[C_u-cfl-0.05-/stage-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_random_ids_are_404[C_u-cfl-0.05-/step-history]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[series=G-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[series=G-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[granularity=PER_STEP-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[granularity=PER_STEP-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[sampling=PER_STAGE-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[sampling=PER_STAGE-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[stage=1-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[stage=1-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[stage_index=0-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[stage_index=0-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[step=1-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[step=1-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[step_index=1-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[step_index=1-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[CFL=0.1-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[CFL=0.1-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[cfl=0.1-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[cfl=0.1-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[config=B_u-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[config=B_u-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[config_id=B_u-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[config_id=B_u-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[run_id=B_u-cfl-0.05-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[run_id=B_u-cfl-0.05-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[offset=-1-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[offset=-1-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[offset=1.5-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[offset=1.5-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=0-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=0-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=5001-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=5001-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=two-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=two-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[offset=0&amp;offset=1-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[offset=0&amp;offset=1-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=1&amp;limit=2-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[limit=1&amp;limit=2-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[formula=G%2BD_total-stage]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_client_semantic_identity_or_pagination_override[formula=G%2BD_total-step]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[spatial]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[fields]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[snapshots]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[trajectory]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[arbitrary-cfl]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[run-new]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[allocation]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_no_spatial_or_unfrozen_routes[spectrum]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_real_registry_activation_tabs_and_unsupported_capabilities" time="1.555" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.B_u-cfl-0.05.run]" time="0.422" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.B_u-cfl-0.05.stage]" time="0.437" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.B_u-cfl-0.05.step]" time="0.570" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.025.run]" time="0.472" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.025.stage]" time="0.493" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.025.step]" time="0.608" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.05.run]" time="0.412" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.05.stage]" time="0.446" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.05.step]" time="0.559" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.1.run]" time="0.382" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.1.stage]" time="0.409" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.1.step]" time="0.525" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.2.run]" time="0.369" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.2.stage]" time="0.401" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u-cfl-0.2.step]" time="0.514" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_all_evidence_groups_and_result_provenance_resolve[ev.entropy-closure.D_u.temporal-refinement]" time="0.827" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_source_missing_is_typed_scientific_error[CLO01]" time="0.028" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_source_missing_is_typed_scientific_error[CLO02]" time="0.020" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_source_missing_is_typed_scientific_error[CLO03]" time="0.020" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_source_missing_is_typed_scientific_error[CLO04]" time="0.020" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_source_missing_is_typed_scientific_error[CLO05]" time="0.021" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_adapter_disabled_and_schema_mismatch_fail_closed" time="0.086" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_typed_source_failures_are_documented[SOURCE_DATA_DRIFT-409]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_typed_source_failures_are_documented[SOURCE_CHANGED_DURING_READ-409]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_typed_source_failures_are_documented[SOURCE_READ_ERROR-500]" time="0.001" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_exact_five_openapi_operations_export_equality_and_wire_schema" time="4.798" /><testcase classname="tests.window2_closure_api.test_closure_api" name="test_generated_types_are_repeatable_and_contain_exact_operations" time="2.086"><failure message="UnicodeDecodeError: 'gbk' codec can't decode byte 0x94 in position 84025: illegal multibyte sequence">tmp_path = WindowsPath('C:/Users/t/AppData/Local/Temp/pytest-of-t/pytest-77/test_generated_types_are_repea0')
+
+    def test_generated_types_are_repeatable_and_contain_exact_operations(tmp_path):
+        generated = R.ROOT / "frontend/src/types/generated/api.d.ts"
+        cli = R.ROOT / "frontend/node_modules/openapi-typescript/bin/cli.js"
+        assert cli.is_file(), "Install locked frontend dependencies before contract acceptance"
+        output = tmp_path / "api.d.ts"
+        subprocess.run(["node", str(cli), str(R.ROOT / "config/openapi.json"), "-o", str(output)], check=True, capture_output=True)
+        assert output.read_bytes() == generated.read_bytes()
+        first = hashlib.sha256(output.read_bytes()).hexdigest()
+        subprocess.run(["node", str(cli), str(R.ROOT / "config/openapi.json"), "-o", str(output)], check=True, capture_output=True)
+        assert hashlib.sha256(output.read_bytes()).hexdigest() == first
+&gt;       source = output.read_text()
+                 ^^^^^^^^^^^^^^^^^^
+
+tests\window2_closure_api\test_closure_api.py:297:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/t/AppData/Local/Temp/pytest-of-t/pytest-77/test_generated_types_are_repea0/api.d.ts')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+&gt;           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0x94 in position 84025: illegal multibyte sequence
+
+D:\Users\t\miniconda3\Lib\pathlib.py:1028: UnicodeDecodeError</failure></testcase><testcase classname="tests.window2_closure_api.test_closure_api" name="test_scientific_sources_and_window1_adapter_bytes_preserved" time="0.496" /></testsuite></testsuites>

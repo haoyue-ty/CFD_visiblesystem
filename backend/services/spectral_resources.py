@@ -151,11 +151,14 @@ class SpectralResources:
 
 class ResultResourceRouter:
     """Canonical owner dispatch over exact registered spectral/Cylinder identities."""
-    def __init__(self, case8, spectral, project, cylinder=None, allocation=None):
+    def __init__(self, case8, spectral, project, cylinder=None, allocation=None, closure=None):
         self.case8, self.spectral, self.project = case8, spectral, project
         self.cylinder, self.allocation = cylinder, allocation
+        self.closure = closure
 
     def revision_for(self, identity):
+        if self.closure and (self.closure.owns_result(identity) or self.closure.owns_evidence(identity)):
+            return self.closure.registry_revision
         if self.cylinder and (self.cylinder.owns_result(identity) or self.cylinder.owns_evidence(identity)):
             return self.cylinder.registry_revision
         return R.REGISTRY_REVISION if (self.spectral.owns_result(identity) or
@@ -167,6 +170,9 @@ class ResultResourceRouter:
         return self.revision_for(identity)
 
     def load_array(self, result_id, array_id):
+        if self.closure and self.closure.owns_result(result_id):
+            raise missing_resource("INVALID_RESULT_ID", "Closure has no registered arrays",
+                                   resource_type="array", identity=known(result_id))
         if self.cylinder and self.cylinder.owns_result(result_id):
             return self.cylinder.load_array(result_id, array_id)
         if self.allocation and result_id in CASE8_ALLOCATION_ARRAY_RESULTS:
@@ -175,12 +181,16 @@ class ResultResourceRouter:
         return selected.load_array(result_id, array_id)
 
     def load_evidence(self, evidence_id):
+        if self.closure and self.closure.owns_evidence(evidence_id):
+            return self.closure.load_evidence(evidence_id)
         if self.cylinder and self.cylinder.owns_evidence(evidence_id):
             return self.cylinder.load_evidence(evidence_id)
         selected = self.spectral if self.spectral.owns_evidence(evidence_id) else self.case8
         return selected.load_evidence(evidence_id)
 
     def load_provenance(self, result_id):
+        if self.closure and self.closure.owns_result(result_id):
+            return self.closure.load_provenance(result_id)
         if self.cylinder and self.cylinder.owns_result(result_id):
             return self.cylinder.load_provenance(result_id)
         selected = self.spectral if self.spectral.owns_result(result_id) else self.case8

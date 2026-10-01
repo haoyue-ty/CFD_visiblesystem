@@ -22,7 +22,7 @@ def register_system_operations(catalog: OperationCatalog, project: ProjectInfo) 
         service="RegistryService", request_model=RegistryQuery, response_model=ApiEnvelope[ProjectInfo],
         documented_errors={400: ("INVALID_REQUEST",), 405: ("METHOD_NOT_ALLOWED",), 409: ("REVISION_UNAVAILABLE",),
                            500: ("CANONICAL_SCHEMA_MISMATCH", "INTERNAL_ERROR")},
-        delivery_phase="Alpha", handler=system, description="Bootstrap project metadata; all scientific experiments remain PLANNED.",
+        delivery_phase="Alpha", handler=system, description="Project metadata and current experiment delivery status; accounts disabled.",
     ))
     catalog.register(Operation(
         method="GET", path="/api/v1/openapi.json", operation_id="DOC01", blueprint="system_registry",

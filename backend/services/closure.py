@@ -8,6 +8,7 @@ from backend.adapters.entropy_closure import EntropyClosureAdapterProtocol
 from backend.core.errors import DomainError, system_error
 from backend.models.closure import ClosureHistory, ClosureRunRegistry, EntropyClosureRun, RefinementSummary
 from backend.models.evidence import EvidenceRecord, ResultProvenance
+from backend.models import CapabilityList, ConfigList, Experiment, known
 from backend.registry import closure_registry as R
 
 
@@ -58,6 +59,63 @@ class ClosureService:
         summary = self._call("load_refinement", RefinementSummary)
         self._identity(summary.comparison_id == R.COMPARISON_ID and summary.run_ids == list(R.RUN_IDS[:4]))
         return summary
+
+    def list_configs(self) -> ConfigList:
+        return ConfigList(experiment_id="entropy-closure", items=[run.config for run in self.list_runs().runs])
+
+    @staticmethod
+    def _capabilities(registry) -> CapabilityList:
+        items = []
+        for task in ("overview", "semi-discrete", "fully-discrete", "evidence", "flow", "allocation", "spectrum"):
+            status = "MISSING" if task == "flow" else "UNSUPPORTED" if task in ("allocation", "spectrum") else "SUPPORTED"
+            supported = status == "SUPPORTED"
+            refs_by_run, evidence = {}, []
+            for run in registry.runs:
+                refs = []
+                if task in ("overview", "evidence"):
+                    refs = [slot.root.value.result.result_id for slot in run.terminal_summary]
+                    evidence.extend(run.evidence_refs)
+                elif task == "semi-discrete":
+                    refs = run.stage_series_refs
+                    evidence.append(R.evidence_id(run.run_id, "stage"))
+                elif task == "fully-discrete":
+                    refs = list(run.step_series_refs)
+                    evidence.append(R.evidence_id(run.run_id, "step"))
+                    if run.run_id in R.RUN_IDS[:4]:
+                        refs.append(R.result_id(run.run_id, "refinement", "R_total"))
+                        evidence.append(R.REFINEMENT_EVIDENCE)
+                refs_by_run[run.run_id] = refs
+            reason = ("Saved frozen scalar diagnostics for the exact five-run selection" if supported else
+                      "No saved spatial trajectory" if task == "flow" else "No frozen Closure capability for this task")
+            items.append({
+                "id": f"cap.entropy-closure.{task}", "experiment_id": "entropy-closure", "task": task,
+                "status": status, "available_for_configs": list(R.RUN_IDS) if supported else [],
+                "config_support": [{"config_id": run, "status": status, "reason": reason, "result_refs": refs}
+                                   for run, refs in refs_by_run.items()],
+                "controls": [{"name": "run", "kind": "ENUM", "allowed_values": list(R.RUN_IDS),
+                              "combination_registry_ref": known(R.REGISTRY_REVISION)}] if supported else [],
+                "tab_policy": {"tab_id": task, "visible_for_family": supported,
+                               "disabled_for_configs": [] if supported else list(R.RUN_IDS),
+                               "unsupported_deep_link_behavior": "EXPLAIN"},
+                "result_refs": [ref for refs in refs_by_run.values() for ref in refs],
+                "limitations": R.LIMITATIONS, "evidence_refs": list(dict.fromkeys(evidence)),
+            })
+        return CapabilityList.model_validate({"experiment_id": "entropy-closure", "items": items})
+
+    def describe_capabilities(self) -> CapabilityList:
+        return self._capabilities(self.list_runs())
+
+    def describe_experiment(self) -> Experiment:
+        registry = self.list_runs()
+        return Experiment.model_validate({
+            "schema_version": "1.0.0", "id": "entropy-closure", "name": "Entropy Closure",
+            "scientific_family": "ENTROPY_CLOSURE",
+            "description": "Frozen periodic Case7 semi-discrete closure and fully-discrete temporal diagnostics; existing D_u refinement.",
+            "capabilities": self._capabilities(registry).items, "available_configs": [run.config for run in registry.runs],
+            "status": "AVAILABLE", "delivery_status": "IMPLEMENTED", "limitations": R.LIMITATIONS,
+            "evidence_refs": [ev for run in registry.runs for ev in run.evidence_refs] + [R.REFINEMENT_EVIDENCE],
+            "related_experiment_ids": [],
+        })
 
     @staticmethod
     def _identity(condition):
