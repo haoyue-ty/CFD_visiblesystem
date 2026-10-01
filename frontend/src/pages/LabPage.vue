@@ -3,8 +3,8 @@ import { activeProvider } from '../data'
 /**
  * P04 — Lab Workspace (experiment catalog + analysis shortcuts).
  *
- * Only Case8 is marked IMPLEMENTED and is enterable. Gate / Spectrum / Cylinder
- * are shown as PLANNED — a DELIVERY status. They are explicitly NOT labelled as
+ * Case8 and Cylinder are enterable when the API declares IMPLEMENTED. Other
+ * catalog entries retain their API delivery status. They are not labelled as
  * MISSING scientific data (IA 17.1: "不能把'未实现'标记为科研数据 MISSING").
  */
 import { onMounted, ref } from 'vue'
@@ -29,7 +29,7 @@ onMounted(async () => {
     <nav class="lab__subnav" aria-label="Lab sections">
       <span class="lab__subnav-current">实验目录 / Experiment catalog</span>
       <span class="lab__subnav-item lab__subnav-item--planned">机制工作台 Mechanism · PLANNED</span>
-      <span class="lab__subnav-item lab__subnav-item--planned">跨流动比较 Cross-flow · PLANNED</span>
+      <RouterLink :to="{ name: 'cross-flow' }">跨流动比较 Cross-flow</RouterLink>
     </nav>
 
     <h1>Lab Workspace</h1>
@@ -61,11 +61,11 @@ onMounted(async () => {
 
           <!-- IMPLEMENTED: enterable, with real capability summary -->
           <template v-if="exp.delivery_status === 'IMPLEMENTED' && exp.implementable_route">
-            <p class="lab__capability" data-testid="case8-capability">SUPPORTED · 6 snapshots + 1912 scalar steps</p>
+            <p class="lab__capability" :data-testid="`${exp.experiment_id}-capability`">{{ exp.experiment_id === 'cylinder' ? 'SUPPORTED · 5 instantaneous snapshots + 9757 scalar steps + 16 sectors; cumulative 2D Missing' : exp.experiment_id === 'case8' ? 'SUPPORTED · 6 snapshots + 1912 scalar steps' : exp.summary }}</p>
             <RouterLink
               class="lab__cta"
               :to="{ name: 'experiment', params: { experiment_id: exp.experiment_id } }"
-              data-testid="open-case8"
+              :data-testid="`open-${exp.experiment_id}`"
             >Open {{ exp.name }} →</RouterLink>
           </template>
 

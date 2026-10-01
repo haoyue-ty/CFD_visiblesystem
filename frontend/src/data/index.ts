@@ -37,6 +37,7 @@ import type {
 } from './domain'
 import { createMockProvider } from './mockProvider'
 import { createApiProvider } from './apiProvider'
+export { cylinderService } from './cylinder'
 
 export type {
   AllocationArrayView,

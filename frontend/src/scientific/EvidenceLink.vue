@@ -25,7 +25,7 @@ function target(): RouteLocationRaw {
     // Encode the return target compactly so P09 can offer "back to result".
     query.back = JSON.stringify({ ...props.returnTo })
   }
-  if (!query.back && route.name === 'experiment') query.back = JSON.stringify({ name: route.name, params: route.params, query: route.query })
+  if (!query.back && (route.name === 'experiment' || route.name === 'cross-flow')) query.back = JSON.stringify({ name: route.name, params: route.params, query: route.query })
   return { name: 'evidence', params: { evidence_id: props.evidenceId }, query }
 }
 </script>

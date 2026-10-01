@@ -129,6 +129,7 @@ watch(
       <span>Case8</span> →
       <span class="exp__crumb-current">{{ configId }}</span>
     </nav>
+    <RouterLink :to="{ name: 'cross-flow', query: { case8_config: configId, cylinder_config: 'D_u' } }">Case8 ↔ Cylinder · Cross-flow Compare</RouterLink>
 
     <section v-if="invalidSnapshot" data-state="invalid-selector">Invalid snapshot selector: recorded indices are 1…6; index 0 is rejected.</section>
     <LoadStateBlock v-else :loaded="overview" target="experiment overview">
