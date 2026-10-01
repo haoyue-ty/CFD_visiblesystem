@@ -57,11 +57,13 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     service = app.extensions["case8_service"]
     allocation_service = app.extensions["allocation_service"]
     spectral_service = app.extensions["spectral_service"]
+    from backend.services.spectral_resources import ResultResourceRouter, SpectralResources
+    resources = ResultResourceRouter(service, SpectralResources(spectral_service), project)
     register_system_operations(catalog, project)
     register_registry_operations(catalog, project, service)
     register_case8_operations(catalog, project, service)
-    register_array_operations(catalog, project, service)
-    register_evidence_operations(catalog, project, service, allocation_service)
+    register_array_operations(catalog, project, resources)
+    register_evidence_operations(catalog, project, resources, allocation_service)
     register_allocation_operations(catalog, project, allocation_service)
     register_spectral_operations(catalog, project, spectral_service)
     if configure_catalog is not None:

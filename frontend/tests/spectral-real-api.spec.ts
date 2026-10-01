@@ -43,21 +43,81 @@ test('real Spectral Lab reads recorded frozen facts', async ({ page }) => {
   await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
   await expect(page.getByTestId('curve-provenance')).toContainText('registry_revision=')
 
-  // Region 2: the mode-record metadata resolves from the frozen registry, but the
-  // vector payload cannot be fetched: ARRAY01 is wired to the case8 service only, so a
-  // spectral eigenmode result_id is not routable. The page must still name the record
-  // facts honestly and mark the values slot MISSING — never a blank region, never a
-  // fabricated canvas. (Window 2 ARRAY01 routing gap; see handoff report.)
+  // Region 2: saved metadata and complex array both resolve through the real API.
   await expect(page.getByTestId('mode-index')).toHaveText('1')
   await expect(page.getByTestId('mode-rank')).toHaveText('0')
   await expect(page.getByTestId('mode-shape')).toContainText('128')
-  await expect(page.getByTestId('eigenmode-canvas')).toHaveCount(0)
-  const modeValuesMissing = page.getByTestId('spectral-mode-region').locator('[data-state="missing"]').first()
-  await expect(modeValuesMissing).toBeVisible()
-  await expect(modeValuesMissing).not.toBeEmpty()
+  await expect(page.getByTestId('eigenmode-canvas')).toBeVisible()
 
   // Region 3: recorded validation rates; the linear history stays explicitly absent.
   await expect(page.getByTestId('growth-cfd')).not.toHaveText('unavailable')
   await expect(page.getByTestId('growth-linear-missing')).toContainText('not saved')
   await expect(page.getByTestId('mock-badge')).toHaveCount(0)
 })
+
+
+test('all four real configurations expose every recorded mode and restore evidence context', async ({ page }, testInfo) => {
+  test.setTimeout(180_000)
+  await page.goto('/lab/experiments/case8?tab=spectral')
+  await expect(page.getByTestId('spectral-scientific-limit')).toHaveText('Positive entropy production does not imply uniform modal damping.')
+  for (const q of [0, 0.132, 0.264, 0.396]) {
+    await page.getByTestId(`spectral-q-${q}`).click()
+    await expect(page.getByTestId('spectral-qat').locator('strong')).toHaveText(String(q))
+    await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
+    for (let mode = 0; mode <= 16; mode++) {
+      await page.getByTestId(`spectral-mode-${mode}`).click()
+      await expect(page.getByTestId('mode-index')).toHaveText(String(mode))
+      await expect(page.getByTestId('eigenmode-canvas')).toBeVisible()
+      await expect(page.getByTestId('mode-provenance')).toContainText('spectral-registry-v1')
+    }
+    const text = (await page.locator('body').innerText()).toLowerCase()
+    for (const phrase of ['all stable', 'always improved', 'universal']) expect(text).not.toContain(phrase)
+  }
+  await page.screenshot({ path: testInfo.outputPath('spectral-real.png'), fullPage: true })
+  await expect(page).toHaveURL(/spectral_mode=16/)
+  const refs = await page.getByTestId('spectral-evidence-link').locator('.sl__ev-id').allTextContents()
+  expect(refs).toHaveLength(4)
+  for (const ref of refs) {
+    await page.getByText(ref, { exact: true }).locator('..').getByTestId('evidence-link').click()
+    await expect(page.getByTestId('evidence-record')).toBeVisible()
+    await expect(page.getByTestId('evidence-drift')).toHaveText('No')
+    await expect(page.getByTestId('evidence-verification')).toContainText('FROZEN_VERIFIED')
+    await expect(page.getByTestId('current-source-hash')).toHaveText(/[a-f0-9]{64}/)
+    await expect(page.getByTestId('evidence-record')).toContainText('does not imply uniform modal damping')
+    await expect(page.getByTestId('evidence-assets').locator('tbody tr')).not.toHaveCount(0)
+    await page.getByTestId('back-to-result').click()
+    await expect(page.getByTestId('spectral-qat').locator('strong')).toHaveText('0.396')
+    await expect(page.getByTestId('mode-index')).toHaveText('16')
+    await expect(page.getByTestId('eigenmode-canvas')).toBeVisible()
+  }
+})
+
+test('real provider reports a missing saved vector explicitly', async ({ page }) => {
+  await page.route('**/api/v1/spectra/*/eigenmodes/*', route => route.fulfill({
+    status: 404, contentType: 'application/json',
+    body: JSON.stringify({ availability: 'MISSING', error: { code: 'MISSING_EIGENMODE', message: 'Registered saved eigenmode asset is absent' } }),
+  }))
+  await page.goto('/lab/experiments/case8?tab=spectral')
+  await expect(page.getByTestId('spectral-mode-unavailable')).toContainText('Unavailable')
+  await expect(page.getByTestId('eigenmode-canvas')).toHaveCount(0)
+  await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
+  await expect(page.getByTestId('mock-badge')).toHaveCount(0)
+})
+
+
+for (const fault of ['result identity', 'element count']) {
+  test(`real eigenmode rejects an array ${fault} mismatch`, async ({ page }) => {
+    await page.route('**/api/v1/results/spectrum.*/arrays/eigenvector', async route => {
+      const response = await route.fetch()
+      const body = await response.json()
+      if (fault === 'result identity') body.data.result.result_id = 'spectrum.q-0.396.mode-16'
+      else body.data.values.pop()
+      await route.fulfill({ response, json: body })
+    })
+    await page.goto('/lab/experiments/case8?tab=spectral')
+    await expect(page.getByTestId('spectral-mode-region').locator('.ls--error')).toBeVisible()
+    await expect(page.getByTestId('spectral-mode-region')).toContainText('identity/descriptor mismatch')
+    await expect(page.getByTestId('eigenmode-canvas')).toHaveCount(0)
+    await expect(page.getByTestId('mock-badge')).toHaveCount(0)
+  })
+}

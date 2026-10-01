@@ -591,8 +591,14 @@ export function createApiProvider(): DataProvider {
         api.GET('/api/v1/results/{result_id}/arrays/{array_id}', {
           params: { path: { result_id: ref.result_id, array_id: ref.array_id } }, signal,
         }))
-      if (array.descriptor.array_id !== ref.array_id || array.descriptor.dtype !== ref.dtype
-        || JSON.stringify(array.descriptor.shape) !== JSON.stringify(ref.shape)) {
+      const expectedCount = ref.shape.reduce((size, axis) => size * axis, 1)
+      if (array.result.result_id !== ref.result_id || array.descriptor.array_id !== ref.array_id
+        || array.descriptor.dtype !== ref.dtype
+        || JSON.stringify(array.descriptor.shape) !== JSON.stringify(ref.shape)
+        || !Array.isArray(array.values) || array.values.length !== expectedCount
+        || !array.values.every(v => ref.dtype === 'complex128'
+          ? typeof v === 'object' && v !== null && Number.isFinite(v.real) && Number.isFinite(v.imag)
+          : typeof v === 'number' && Number.isFinite(v))) {
         throw new Error('Eigenmode array identity/descriptor mismatch')
       }
       header(array.result)

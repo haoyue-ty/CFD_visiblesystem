@@ -62,8 +62,8 @@ const option = computed(() => {
     return {
       ...base,
       legend: { top: 4, right: 4, data: COMPONENTS.map(n => `${n} (cell index)`), textStyle: { fontSize: 11 } },
-      xAxis: { type: 'value', name: 'Re(λ·v) [model]', nameLocation: 'middle', nameGap: 30, scale: true, axisLabel: { fontSize: 10 } },
-      yAxis: { type: 'value', name: 'Im(λ·v) [model]', nameLocation: 'middle', nameGap: 48, scale: true, axisLabel: { fontSize: 10 } },
+      xAxis: { type: 'value', name: `Re(v) [${unitLabel}]`, nameLocation: 'middle', nameGap: 30, scale: true, axisLabel: { fontSize: 10 } },
+      yAxis: { type: 'value', name: `Im(v) [${unitLabel}]`, nameLocation: 'middle', nameGap: 48, scale: true, axisLabel: { fontSize: 10 } },
       series: slots,
       graphic: [{ type: 'text', left: 62, top: 44, style: { text: 'Raw complex composite vector shown as a parametric (Re, Im) scatter per component slot (no single real ordering).', fontSize: 10, fill: '#555' } }],
     }
@@ -71,13 +71,13 @@ const option = computed(() => {
 
   // REAL / IMAGINARY / AMPLITUDE of a complex vector, or a primitive profile.
   const x = Array.from({ length: cells }, (_, i) => i)
-  let series: { name: string; type: 'line'; data: number[]; smooth: false; symbol: string; symbolSize: number; lineStyle: { width: number }; itemStyle: { color: string } }[]
+  let series: { name: string; type: 'line'; data: (number | null)[]; smooth: false; symbol: string; symbolSize: number; lineStyle: { width: number }; itemStyle: { color: string } }[]
   if (isComplex) {
     const pairs = values as [number, number][]
     series = COMPONENTS.map((name, slot) => ({
       name, type: 'line' as const, smooth: false as const, symbol: 'circle' as const, symbolSize: 4,
       lineStyle: { width: 1.4 }, itemStyle: { color: ['#1a4f8a', '#c0392b', '#27795b', '#8e44ad'][slot] },
-      data: x.map(i => projectionOf(pairs[i * 4 + slot] ?? [0, 0], props.mode.projection)),
+      data: x.map(i => pairs[i * 4 + slot] === undefined ? null : projectionOf(pairs[i * 4 + slot], props.mode.projection)),
     }))
   } else {
     series = [{
@@ -89,7 +89,7 @@ const option = computed(() => {
     ...base,
     legend: { top: 4, right: 4, data: series.map(s => s.name), textStyle: { fontSize: 11 } },
     xAxis: { type: 'category', name: 'cell index along the saved axis', nameLocation: 'middle', nameGap: 30, data: x, axisLabel: { fontSize: 10 }, axisTick: { alignWithLabel: true }, boundaryGap: false },
-    yAxis: { type: 'value', name: `${props.mode.projection === 'AMPLITUDE' ? '|λ·v|' : props.mode.projection} [${unitLabel === 'rate (model units)' ? 'model' : unitLabel}]`, nameLocation: 'middle', nameGap: 50, scale: true, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { type: 'dashed', color: '#e6e6e6' } } },
+    yAxis: { type: 'value', name: `${props.mode.projection === 'AMPLITUDE' ? '|v|' : props.mode.projection} [${unitLabel}]`, nameLocation: 'middle', nameGap: 50, scale: true, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { type: 'dashed', color: '#e6e6e6' } } },
     series,
   }
 })

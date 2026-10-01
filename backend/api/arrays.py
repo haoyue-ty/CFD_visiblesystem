@@ -25,15 +25,16 @@ def parse_array(path: dict[str, str], query: dict[str, list[str]]) -> dict:
 
 def register_array_operations(catalog: OperationCatalog, project: ProjectInfo, service) -> None:
     def scientific_array(query: ArrayQuery, result_id: str, array_id: str):
-        if query.registry_revision is not None and query.registry_revision != project.registry_revision:
+        revision = getattr(service, "revision_for", lambda _: project.registry_revision)(query.result_id)
+        if query.registry_revision is not None and query.registry_revision != revision:
             raise system_error("REVISION_UNAVAILABLE", "Requested registry revision is unavailable", status=409)
         array = service.load_array(query.result_id, query.array_id)
         # The response envelope carries the array's own ScientificResult, so a caller cannot
         # confuse the outer transport health with the scientific certification of the values.
         return ApiEnvelope[ScientificArray].model_validate({
             "schema_version": "1.0.0", "request_id": g.request_id,
-            "registry_revision": known(project.registry_revision),
-            "data_revision": known(project.data_revision),
+            "registry_revision": known(array.result.provenance.registry_revision),
+            "data_revision": known(array.result.provenance.data_revision),
             "availability": "AVAILABLE", "data": array, "issues": [],
         })
 
@@ -41,9 +42,9 @@ def register_array_operations(catalog: OperationCatalog, project: ProjectInfo, s
         method="GET", path="/api/v1/results/{result_id}/arrays/{array_id}", operation_id="ARRAY01",
         blueprint="scientific_arrays", service="ResultArrayService", request_model=ArrayQuery,
         response_model=ApiEnvelope[ScientificArray],
-        documented_errors={400: ("INVALID_REQUEST",), 404: ("INVALID_RESULT_ID",),
+        documented_errors={400: ("INVALID_REQUEST",), 404: ("INVALID_RESULT_ID", "MISSING_ASSET"),
                            405: ("METHOD_NOT_ALLOWED",), 409: ("REVISION_UNAVAILABLE",),
-                           500: ("CANONICAL_SCHEMA_MISMATCH", "SOURCE_READ_ERROR", "INTERNAL_ERROR"),
+                           500: ("CANONICAL_SCHEMA_MISMATCH", "SOURCE_READ_ERROR", "SOURCE_ERROR", "INTERNAL_ERROR"),
                            503: ("FEATURE_NOT_ENABLED",)},
         delivery_phase="Alpha", handler=scientific_array, request_parser=parse_array,
         description="Flat C-order array values for one registered result/array pair."))

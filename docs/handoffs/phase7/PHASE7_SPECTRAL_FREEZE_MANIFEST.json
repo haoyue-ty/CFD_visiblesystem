@@ -1,0 +1,1065 @@
+{
+  "phase": "PHASE7_SPECTRAL",
+  "status": "FROZEN_ACCEPTED",
+  "freeze_type": "LIGHTWEIGHT",
+  "freeze_time": "2026-10-01T15:24:56.884129+08:00",
+  "timezone": "Asia/Shanghai",
+  "scope": "Spectral Lab V1;Phase7C integrated working tree",
+  "accepted_state": "WORKING_TREE",
+  "base_commit": "088909baa13733999c75148a315326d6be819f19",
+  "branch": "phase7/spectral-adapter",
+  "hash_algorithm": "SHA-256",
+  "hash_scope": "Current working-tree bytes; base Git blobs are ancestry, not accepted Phase7C commits",
+  "accepted_file_count": 161,
+  "accepted_files": [
+    {
+      "path": ".env.example",
+      "sha256": "2633e782d5093908b5a787a9f9dbcbd07a15008ef052ac1fc031a2ceb254a4df",
+      "size_bytes": 105,
+      "base_git_blob": "2b9bdf8b8def0ac56e7d1df2e96fd21f5dc8e113"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "13790ad99a647f3d40502c3086f64385c6abd46d11de2348bf1cb48dbd272aa3",
+      "size_bytes": 120,
+      "base_git_blob": "13f6eb8f640b68d6b6b6f91b7d32b334e0b9742c"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "0e4a39b5264b0ba1c96ad5642700f2390cc8533dbbcc1c9ac252b9041d237c68",
+      "size_bytes": 249,
+      "base_git_blob": "46f2c94d7e942c6d6fdf8e592622811354256edf"
+    },
+    {
+      "path": "backend/__init__.py",
+      "sha256": "5a74d086d3eabbc290fd583e5b582bcba302063d9e7e51ff954d50fe0facbad2",
+      "size_bytes": 66,
+      "base_git_blob": "89c66b35f42186661743b6a4b8f7ace82d7804f2"
+    },
+    {
+      "path": "backend/adapters/__init__.py",
+      "sha256": "9b7df64206afd575899f09e65978b3007d7214caf6681e1782a0441b26c23e87",
+      "size_bytes": 280,
+      "base_git_blob": "313b54493248b3c04d8f7ba58694ec4ac2e716cf"
+    },
+    {
+      "path": "backend/adapters/allocation.py",
+      "sha256": "941e15107431bee2347980828fd76068a53b05a1e20fd61eab0470c80d32a2db",
+      "size_bytes": 1907,
+      "base_git_blob": "be11d0528202791501956ff00055b2560efaea23"
+    },
+    {
+      "path": "backend/adapters/allocation_integration.py",
+      "sha256": "914442d1852d012d77611cb550244a706a49e66afc44f4eae5e3dbd492d43ad5",
+      "size_bytes": 13297,
+      "base_git_blob": "67b8f93bbfb7a3e740a8f539c2ff8d8111ae9733"
+    },
+    {
+      "path": "backend/adapters/case8.py",
+      "sha256": "8dab4a7495167a76fba62ee8bdb1c529d0f697f1cf732332152c9d764a6701ee",
+      "size_bytes": 38695,
+      "base_git_blob": "326f93b67307072b7107c9dc3edb6e26efe6eb07"
+    },
+    {
+      "path": "backend/adapters/case8_allocation.py",
+      "sha256": "5bfe52ef3baf2571a7da6ba7e3846cf1a7c55382b37884a78270814bda3e7f29",
+      "size_bytes": 23245,
+      "base_git_blob": "05ceb351a9e0c3b9bc0cc56b50a86aa8a0349a38"
+    },
+    {
+      "path": "backend/adapters/gate_allocation.py",
+      "sha256": "712e090d0e80aff777496236cf91e4f3f75aa2306538d609e21df8ff08b0bb13",
+      "size_bytes": 22907,
+      "base_git_blob": "af6f6883dfda344e9e11e2956b8ec738f4e77080"
+    },
+    {
+      "path": "backend/adapters/spectral.py",
+      "sha256": "a8491bd628a07a06791fe94518a7b0a83121acac7057f450db9a811f76660d41",
+      "size_bytes": 1703,
+      "base_git_blob": "22e20bf6c851b9f1c5110bb7222deaf8810023db"
+    },
+    {
+      "path": "backend/adapters/spectral_data.py",
+      "sha256": "80220fce099a729641a4f3b9cf1147b289e77c8f94e9c9eace8ff2a22e586484",
+      "size_bytes": 33504,
+      "base_git_blob": "0f910a11be313ba670e87c8d61ab82fd95ef1eb3"
+    },
+    {
+      "path": "backend/api/__init__.py",
+      "sha256": "c30180cfc57aabd880ade564aa71b6caf7d7ba6700db8ed3edf6c24c19d549c1",
+      "size_bytes": 60,
+      "base_git_blob": "17c3c068faef2c329eac1d99927bbe888c6f9075"
+    },
+    {
+      "path": "backend/api/allocation.py",
+      "sha256": "6b5e1216474f0a29aeaf99ed11d2949f28cbd0a22bccdca6f700a65c7ce0cad7",
+      "size_bytes": 5417,
+      "base_git_blob": "100a3a047997ae65af8d4729ff7fabeca23d8a5b"
+    },
+    {
+      "path": "backend/api/arrays.py",
+      "sha256": "5782a3f1cd400d5182d87566765443142da71a1ab4a4ce58be28e1de4e89b4ac",
+      "size_bytes": 2920,
+      "base_git_blob": "3d96c4cfac70a85cceda5aca9690428c2ce13824"
+    },
+    {
+      "path": "backend/api/case8.py",
+      "sha256": "7ad110967d254090ab809d9c7449ba378c86732bfdb1259d99ad517371e97312",
+      "size_bytes": 12784,
+      "base_git_blob": "c496ddb39fe29f1cae2af85a6c92d9ab56cbda03"
+    },
+    {
+      "path": "backend/api/catalog.py",
+      "sha256": "b0cd7f0e1d1c8a2055bd70ba949d582fb876e37d68e5587f1473cb76b901de35",
+      "size_bytes": 4413,
+      "base_git_blob": "f110604072b58a43c44a7e962bf136d866a7a27f"
+    },
+    {
+      "path": "backend/api/evidence.py",
+      "sha256": "ac79f105587790331f0819630d422e6b438a5cac349523e3a61c25bce8ec9c68",
+      "size_bytes": 4853,
+      "base_git_blob": "34b1e425cb9991c8485a9fd8c477b288aa153cf1"
+    },
+    {
+      "path": "backend/api/registry.py",
+      "sha256": "d9c3aa102033b40f32eb92c39f60903695fb1c3618d11a3283d8f2ce439e374e",
+      "size_bytes": 6432,
+      "base_git_blob": "33e626f406f70093b188d00ce7a21d21fe4b358d"
+    },
+    {
+      "path": "backend/api/spectral.py",
+      "sha256": "d44afff899e74c7d17638ad7b4bfd10ff26f3684db713fc64d9aadc4b86e2e9e",
+      "size_bytes": 8439,
+      "base_git_blob": "814d7f79b0395d305fed3be81ef1c3e89b20aced"
+    },
+    {
+      "path": "backend/api/system.py",
+      "sha256": "3a72f4eb442c5e761fded9c663d223cb79b2c765e8cc76d638d5f2f85c942764",
+      "size_bytes": 2029,
+      "base_git_blob": "072bc8912d5d5b02762a73894b62fb55c7bea1f9"
+    },
+    {
+      "path": "backend/core/__init__.py",
+      "sha256": "1d2efcb00d6c64322fd5e642cf55081935e54299c1a13708b4d20807214abb7b",
+      "size_bytes": 64,
+      "base_git_blob": "3dfad1f96c4ff7e47b69298b120547e11863dc4e"
+    },
+    {
+      "path": "backend/core/app.py",
+      "sha256": "a47b4637f87ccd02f6a88430557e4d93ae61d91466f9e2a0da6bf7a1a2bfadca",
+      "size_bytes": 4255,
+      "base_git_blob": "d385f1d9de03aeb46a5e07539ce0e1194aa4ab9f"
+    },
+    {
+      "path": "backend/core/errors.py",
+      "sha256": "b7fdc7e90af8a3f61ef92e4a124db80ccc5d5bdb833d28b8d57bd0794115e46f",
+      "size_bytes": 9186,
+      "base_git_blob": "60f8cbf19ea4263d67751836bbfbfe86c75a0ac7"
+    },
+    {
+      "path": "backend/core/settings.py",
+      "sha256": "fd3704fb3bb491204028b6ca3f462606b6b5781cd88e27f69114972d6791ce5a",
+      "size_bytes": 1065,
+      "base_git_blob": "8cf588370cb3a277d2a590bc1dd25d9bd2d03053"
+    },
+    {
+      "path": "backend/models/__init__.py",
+      "sha256": "5505848587c6e719b52288221cd4b50e215f3660b0eb913f28133ff80eb0cb09",
+      "size_bytes": 2400,
+      "base_git_blob": "4bc23307a433d8ace49ef1ba82926560aacff775"
+    },
+    {
+      "path": "backend/models/allocation.py",
+      "sha256": "5e6a8b53d8631d9912c64ff3bd95e83344309b391b515d7e6ea11be5073642de",
+      "size_bytes": 8728,
+      "base_git_blob": "95410b52f2d6edc9fb4b70baad48773d09b9b206"
+    },
+    {
+      "path": "backend/models/context.py",
+      "sha256": "10eac8a24550b24f36d1e41f86c19b018c61eeae34f94cbf70601eb1e981ff75",
+      "size_bytes": 3652,
+      "base_git_blob": "d75a323277844ec167ad93336549d384481b9012"
+    },
+    {
+      "path": "backend/models/core.py",
+      "sha256": "85071d2c9575b4f26d8c790da5802c238a9de1ce85b3ea0eb9d3a73eb9ec0569",
+      "size_bytes": 4920,
+      "base_git_blob": "055299d00fda36fa10200f4514ccb10d67ac6502"
+    },
+    {
+      "path": "backend/models/evidence.py",
+      "sha256": "58d2f98b8726dea27dcebb571dc78c02edad30c1ca569eacdd3f46eaffb1ba1a",
+      "size_bytes": 3652,
+      "base_git_blob": "4e8ed6d29cccc1dcdb1c8951c69ee2668973f96d"
+    },
+    {
+      "path": "backend/models/experiments.py",
+      "sha256": "3b9a48e64489f6afc4ac75c60f9a95d4460f23dd280e088d7dcf4fe5181c259a",
+      "size_bytes": 3889,
+      "base_git_blob": "a56c7cb8017a48a772eceea81f3775e7fec0a936"
+    },
+    {
+      "path": "backend/models/results.py",
+      "sha256": "28b7c08e0fe6074d73331a12b767aea97fcb2f9bcc3c467dbed09c06df637fe4",
+      "size_bytes": 9994,
+      "base_git_blob": "b7fa5408b3e459a366228c00f15bdfdd182afa23"
+    },
+    {
+      "path": "backend/models/spectral.py",
+      "sha256": "48294b62d37850cd8163b679d8f8b19d9714924a60af963555b4fd08783d7587",
+      "size_bytes": 17967,
+      "base_git_blob": "c5c669da65b47bf1606889ed1bfa05d4ad2ff631"
+    },
+    {
+      "path": "backend/models/spectral_api.py",
+      "sha256": "ed6c326728c80e62b6dec80ff2816a75f60ee81e7b3bf274088b8b0cfe02cb52",
+      "size_bytes": 16128,
+      "base_git_blob": "3076f72d3c051d3b9631352c6cff1cc50cdbd8cf"
+    },
+    {
+      "path": "backend/models/transport.py",
+      "sha256": "e290d1b792192d0055a29a8abefee3a63756208d1443c219b104687146bd3260",
+      "size_bytes": 1489,
+      "base_git_blob": "446c588eaced8c75351e398f83a08df4a3702056"
+    },
+    {
+      "path": "backend/registry/__init__.py",
+      "sha256": "e144f2a6a5871495db1f72cee2a5331f980e86f8520a1d7878d6bda9217ad86d",
+      "size_bytes": 590,
+      "base_git_blob": "553e93eca8fa6e44e9d9944aff733b7573169e9f"
+    },
+    {
+      "path": "backend/registry/case8_allocation.py",
+      "sha256": "c6e5a99583c35564371e39998b3a8c5397249b01eb194f78a62e5b9515618b95",
+      "size_bytes": 6788,
+      "base_git_blob": "7e6da08375c7c6b41fd9c00d7bbe043a8f56d920"
+    },
+    {
+      "path": "backend/registry/case8_evidence.py",
+      "sha256": "bd88b84b5d83298fd52b7a3cdd0b635d60cc66bb864e996d67c97fc3a5ad4553",
+      "size_bytes": 6788,
+      "base_git_blob": "909e76c7cb4c06a06854ba531f34a4524967e6b4"
+    },
+    {
+      "path": "backend/registry/case8_registry.py",
+      "sha256": "fa2ff9d0e67b8d9561caeda1c25aaf3652f19befb79ff9e8613ac1d91fb33343",
+      "size_bytes": 9000,
+      "base_git_blob": "27e7a1eafd5ef57ef7a488feaa0722a71fbf6e95"
+    },
+    {
+      "path": "backend/registry/case8_semantics.py",
+      "sha256": "533a0b5d2c9a5edd7847c911ea686d953e2fe641c97c95cdd517671f0908fb5f",
+      "size_bytes": 12167,
+      "base_git_blob": "33550b9375207427cb3e8d8908f243120b3189ad"
+    },
+    {
+      "path": "backend/registry/case8_source_constants.py",
+      "sha256": "b89ba330311007253c8bee36bc93866823ffd4b3133fdc869ece29dd9f8e334f",
+      "size_bytes": 4274,
+      "base_git_blob": "b3bdf1eb5cbf94dd2a5ee127237350bc1cb95d66"
+    },
+    {
+      "path": "backend/registry/gate_evidence.py",
+      "sha256": "410e9edf72da68686b85c39d57f1deb121369eace8dad367d3e185b3e4c33c93",
+      "size_bytes": 5064,
+      "base_git_blob": "b5d4b0bd4a727231e8c367e2919e3615e5e88165"
+    },
+    {
+      "path": "backend/registry/gate_registry.py",
+      "sha256": "20534b19191c397171b19cf199c8371ca7684342e8315e968ebf99a140b6769f",
+      "size_bytes": 11083,
+      "base_git_blob": "74165797c274ea610284a122c701e2e860d9ad89"
+    },
+    {
+      "path": "backend/registry/spectral_registry.py",
+      "sha256": "3d5ee3f82166172f37477b8a77bde9f220d3008a38989c217511ef3e2eb7985c",
+      "size_bytes": 12289,
+      "base_git_blob": "aa3435d019b2ccaa8d6db986e4683625d0a349d0"
+    },
+    {
+      "path": "backend/schemas/__init__.py",
+      "sha256": "bc8292b430ca540317ef5ed0d339b096f027b204c62f4f4d686e91f4d1232474",
+      "size_bytes": 77,
+      "base_git_blob": "ed42709f185d07b152eba8109b17cbe6f4158687"
+    },
+    {
+      "path": "backend/schemas/openapi.py",
+      "sha256": "d50b973a81cf290bc8fa1b383f0765358e513af9a84b49c89ee53375f44aea15",
+      "size_bytes": 3586,
+      "base_git_blob": "c80e7d412378f817f64bbfa6fc94170e09068e38"
+    },
+    {
+      "path": "backend/schemas/requests.py",
+      "sha256": "544193055838a921932c5780ba8f0f1d4c381f3638e2dd6057a5d4457aefb855",
+      "size_bytes": 4161,
+      "base_git_blob": "e9279e8a565f337ff9e4923d0bb3a26b403b087f"
+    },
+    {
+      "path": "backend/services/__init__.py",
+      "sha256": "aca45e10b87fd0f9c3a6b764d5c3629d514868fda56ee7f1a5fdbb0401015eab",
+      "size_bytes": 283,
+      "base_git_blob": "898a4cac7ffa776f3a7d3950f9d5d3b042dc7045"
+    },
+    {
+      "path": "backend/services/allocation.py",
+      "sha256": "58404aedd4ec51d9cd2e4f48ecee22729da7ab6bfbc0b5a75e403b202c62f718",
+      "size_bytes": 8837,
+      "base_git_blob": "f9ece9a1afb369c88d24306d896fe61855e70394"
+    },
+    {
+      "path": "backend/services/case8.py",
+      "sha256": "d13c3b854d144852e24923130f95586e5cfad920e88621ff2f2c6fcb59885521",
+      "size_bytes": 4561,
+      "base_git_blob": "ca727b6839bac0bbb282d7c09196bbe1a63dfb49"
+    },
+    {
+      "path": "backend/services/spectral.py",
+      "sha256": "ceb0ba3af1d5b37a08cfd835413772369edde8b5018407d7f9512ba89d140e33",
+      "size_bytes": 16963,
+      "base_git_blob": "9cb7291a75a04950df96a7fd835a2bc3d317a59a"
+    },
+    {
+      "path": "backend/services/spectral_resources.py",
+      "sha256": "9e0ea78e3eecea34877769edcfce596ef19024283498184bf7ea6a49ec769069",
+      "size_bytes": 9552,
+      "base_git_blob": null
+    },
+    {
+      "path": "config/bootstrap_project.json",
+      "sha256": "742c38f27738746b92a31da3384bf4368fd39d25cc2ebd459e81489585033cce",
+      "size_bytes": 1466,
+      "base_git_blob": "ca39976486abfdd989fc8c7ba98f41fc6eb690b9"
+    },
+    {
+      "path": "config/openapi.json",
+      "sha256": "77ebd75d2941ff173d7c9e4ab701531afc48c5fc09d40d2d35e2c0c27eddcff4",
+      "size_bytes": 419849,
+      "base_git_blob": "eeecd49bbe47b78e599070c127eda016d445a55e"
+    },
+    {
+      "path": "docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE.md",
+      "sha256": "d2d8fbb302f71f2ee0a6503dc9165617543a18618bd495ee9cc1b6117061f4a9",
+      "size_bytes": 2664,
+      "base_git_blob": null
+    },
+    {
+      "path": "docs/handoffs/phase7/PHASE7_SPECTRAL_INTEGRATION_AUDIT.md",
+      "sha256": "750403f01fb55c9dec36bb78c28b3d197ca14ef726d6b85cddee952b4b217381",
+      "size_bytes": 8347,
+      "base_git_blob": null
+    },
+    {
+      "path": "docs/handoffs/phase7/PHASE7_SPECTRAL_INTEGRATION_EVIDENCE.json",
+      "sha256": "ac1dd7fa868786ef0b883a10cdd4902dc1d576de4c01697a917dc1469f070642",
+      "size_bytes": 45696,
+      "base_git_blob": null
+    },
+    {
+      "path": "docs/handoffs/phase7/SPECTRAL_ADAPTER_DESIGN.md",
+      "sha256": "fdda9431626b2d75bc1e13281348464f9157ee6bd929325ebd7de8a312976644",
+      "size_bytes": 5801,
+      "base_git_blob": "349bc63229762c411512f7a4bd1be7baa974a976"
+    },
+    {
+      "path": "docs/handoffs/phase7/SPECTRAL_FOUNDATION_DESIGN.md",
+      "sha256": "ff12c595aeb273f35b5fafe4cf48aa5919512497a6c20e24fab3f15d69e9992b",
+      "size_bytes": 5116,
+      "base_git_blob": "3a8004a3b2be1ed54561c4fd910128de64467178"
+    },
+    {
+      "path": "docs/handoffs/phase7/SPECTRAL_SOURCE_AUDIT.json",
+      "sha256": "c90dae113b9e28a62462c412e78d79e19a97cc9cdfcefcc24defb3fe16e08285",
+      "size_bytes": 38159,
+      "base_git_blob": "a72664f00d62aec6f9dd71edf8b95311cd6ffff2"
+    },
+    {
+      "path": "docs/handoffs/phase7/WINDOW_0_SPECTRAL_FOUNDATION.md",
+      "sha256": "6cc78d3f190a81b05acb1a41ae3d36772a7a61f92c11c2e49873ca2b973f20ab",
+      "size_bytes": 1274,
+      "base_git_blob": "2e1e847fdac24ac2a0d423f80e5122458fc0eaa0"
+    },
+    {
+      "path": "docs/handoffs/phase7/WINDOW_1_SPECTRAL_ADAPTER.md",
+      "sha256": "785d3285dd12d21b898c8fb838318939d2c6d74ebe66a9b6e038419b62b3b762",
+      "size_bytes": 3434,
+      "base_git_blob": "12c110aa87367385c6471d23aeb2064a9114fb51"
+    },
+    {
+      "path": "docs/handoffs/phase7/WINDOW_2_SPECTRAL_API.md",
+      "sha256": "1f147839ad1b8b3642d5566201f6fa840e8902988253fd07fbc4fed1bcf39c79",
+      "size_bytes": 6079,
+      "base_git_blob": "6f61571954afe77fda6d42418e55322b1b63c8c0"
+    },
+    {
+      "path": "docs/handoffs/phase7/WINDOW_3_SPECTRAL_FRONTEND.md",
+      "sha256": "fed8c4df37cc3203e68d8fc9b7bdcc8d7b43e226b136626d2b9cb6c638fb8a86",
+      "size_bytes": 11660,
+      "base_git_blob": "844cc0ba61661f7239183834de9cb7b409d0ffef"
+    },
+    {
+      "path": "frontend/.npmrc",
+      "sha256": "032619c72c5e003b4670d20a8af2dbb32eff13cbc4b5c7db880c4d3a836c3853",
+      "size_bytes": 20,
+      "base_git_blob": "1ef61f2c3e3cde165446de82e16ecf0e9799c8c3"
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "f4517b2854b735b31cdc1c3ffc2f0c2372e46d31c68ba9b701b67db5a543d293",
+      "size_bytes": 269,
+      "base_git_blob": "7fdb6c5cb5e27e4490cf52db6940ef38899eb007"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "78b4d51556d25950b65e083f370a1dbf3ca8c227483b8d9e9ded1fa45b725d1f",
+      "size_bytes": 73868,
+      "base_git_blob": "fca319c5481a19d46284bb388318d07216ed100e"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "40d783bb2cf0e8db6da4b537b436c3e5ad37085fc9288713c41eca66fcdf7d3c",
+      "size_bytes": 775,
+      "base_git_blob": "b63f3fbd34533352b9142e0407f58e044c94c164"
+    },
+    {
+      "path": "frontend/playwright.config.ts",
+      "sha256": "59996c89133744425a2b9bd0ffb660b63a639054b145787240213a4b9ffead9c",
+      "size_bytes": 1717,
+      "base_git_blob": "748232de3e02e0d93ad3769564a321639e0038b5"
+    },
+    {
+      "path": "frontend/playwright.phase7.config.ts",
+      "sha256": "6c242ed07346748bcb9b90584e055ab127ccd0db8868badb0c21ed89171f36d0",
+      "size_bytes": 242,
+      "base_git_blob": null
+    },
+    {
+      "path": "frontend/playwright.spectral.local.config.ts",
+      "sha256": "d8f1532f284388df46092f73a379a680135f2ad2c0742d07354e7339bf59edc4",
+      "size_bytes": 892,
+      "base_git_blob": "16e5a7a82b4c66afaf94a892dddb27c602e66849"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "sha256": "db7faba0908bc6310e417419bdd981a368e3d337138658cb7f6f9127d076258c",
+      "size_bytes": 1480,
+      "base_git_blob": "477b3c085a593c67b362b91786d4eea047ee9e9d"
+    },
+    {
+      "path": "frontend/src/components/BootstrapPlaceholder.vue",
+      "sha256": "63ad61d175f30ab1ca0b3e23e107b2d1583d956759689d9fc98e95d2f3fd1168",
+      "size_bytes": 154,
+      "base_git_blob": "1fc2e5641f56d0618a4c5ef089c82e5d92de882c"
+    },
+    {
+      "path": "frontend/src/components/LoadStateBlock.vue",
+      "sha256": "e9213938f9f5eee5d9887f4d88a605206b6e833e7db31861639809184e05313f",
+      "size_bytes": 2047,
+      "base_git_blob": "cb0107a59e2a190094a0f1be31ce6df097a544a4"
+    },
+    {
+      "path": "frontend/src/components/MockBadge.vue",
+      "sha256": "c79ae23fd1e10981b2df56b873dacbc95cda9bb4814eb5e9764282eb328cd419",
+      "size_bytes": 1308,
+      "base_git_blob": "b330f8163ed2a0a7c3513ed4377ac125f432bad1"
+    },
+    {
+      "path": "frontend/src/data/apiProvider.ts",
+      "sha256": "9f3e74055b112e638e167a295529f0ed74945282f1ab5eeefbbaf409a72a3372",
+      "size_bytes": 38067,
+      "base_git_blob": "f212ef1a77c20ab48733b0942666a5f4917fe947"
+    },
+    {
+      "path": "frontend/src/data/domain.ts",
+      "sha256": "d8be1639ddb951047ac8df492a4dc4fe0f7ddcacb290700440e30290d9d89b2c",
+      "size_bytes": 15781,
+      "base_git_blob": "1edd3d5e7bc391b95b360f4efe04c391bfafa633"
+    },
+    {
+      "path": "frontend/src/data/index.ts",
+      "sha256": "b0275d9bd7eca0bd221fd3e92b02452df27842f5806d76e3df06aadf3da07ee2",
+      "size_bytes": 8098,
+      "base_git_blob": "feb81157f17bf350a094cf0b3a806ae5d0b1ad1b"
+    },
+    {
+      "path": "frontend/src/data/mockProvider.ts",
+      "sha256": "afcf8d441d57144f0c489ba0f0bf61733908aa40957b3442f7174ea841d9cd8d",
+      "size_bytes": 48019,
+      "base_git_blob": "8f526bc1a7c342ea2a507dd7466a60fabaaa704f"
+    },
+    {
+      "path": "frontend/src/data/provider.ts",
+      "sha256": "8e603e540986cd317d3717ff0b6045d2bc4e9f5109a710dd2fdab211887d2d72",
+      "size_bytes": 6152,
+      "base_git_blob": "b4e9c98fe27916c1c913d75d0fefdd87b5909c9a"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "sha256": "b728ad2cda5461f7d90e65b68a3598adc1324f080301efecc5e73edd805c99f1",
+      "size_bytes": 264,
+      "base_git_blob": "fa30edc2a7a64211720730fb67fa21022caec1eb"
+    },
+    {
+      "path": "frontend/src/pages/EntryPage.vue",
+      "sha256": "c5fd27d5ce6cc1ca951405aba7b68f04d194ae096b409aafb3e4e416ffe5eb25",
+      "size_bytes": 1702,
+      "base_git_blob": "3084dad553c6389fd817a598c25a4b0647481440"
+    },
+    {
+      "path": "frontend/src/pages/EvidencePage.vue",
+      "sha256": "0314e8a6c395909066a7be84bb978d904e623b5c38ad490e3308bf61ef92600c",
+      "size_bytes": 8483,
+      "base_git_blob": "edb0d303c952f773812f8c68be04cd490cd603dc"
+    },
+    {
+      "path": "frontend/src/pages/ExperimentPage.vue",
+      "sha256": "4ae93421f6b9f22513563a3c444cf32847ae8ad67f07deb4127b7c274e055591",
+      "size_bytes": 11990,
+      "base_git_blob": "2eb5bebf4fa2ac5f0fd033a8f22d2af19e5348ec"
+    },
+    {
+      "path": "frontend/src/pages/HomePage.vue",
+      "sha256": "d12d4a664f3c46b36541ef5c5d9496ec4390b1e722ad5f6513aee67fd62ac271",
+      "size_bytes": 7313,
+      "base_git_blob": "f464908ec9bd869b080f649c8d6131a6eaab16e8"
+    },
+    {
+      "path": "frontend/src/pages/LabPage.vue",
+      "sha256": "58e1f54946804e3aaf56aaa14ce63bb4d4dcc96e63bc6a75e29f2d4d7943ccac",
+      "size_bytes": 7363,
+      "base_git_blob": "5cd309ba8da4df06d3869d08f80b7332835cf3f7"
+    },
+    {
+      "path": "frontend/src/router.ts",
+      "sha256": "15d7fcc381fb2347b08574b77827f14cdc6724e6cc24a1e05084d940a750c862",
+      "size_bytes": 763,
+      "base_git_blob": "89edd5d660052879900e865fa1720e5467f4e5b1"
+    },
+    {
+      "path": "frontend/src/scientific/AllocationSummary.vue",
+      "sha256": "3837543aac96cdf21046c330b304bdec5ea8d056f2de784b7054508256d5c078",
+      "size_bytes": 4118,
+      "base_git_blob": "27c1e74c744a415d989e803ed33769af72aa68bd"
+    },
+    {
+      "path": "frontend/src/scientific/CellAllocationView.vue",
+      "sha256": "1acec624b6ab14af7c5aea146046ebacc8df55f5c33d05cc9dc7644ccacb7c89",
+      "size_bytes": 3637,
+      "base_git_blob": "5e28823e578925703183c46beebd6b8cb18f664c"
+    },
+    {
+      "path": "frontend/src/scientific/EigenmodeChart.vue",
+      "sha256": "424779ab999a4d806f1eb3ca8b997a670bd56a2f6a906acf812b8a7b4a023049",
+      "size_bytes": 5842,
+      "base_git_blob": "ebce94c63202fbbc44424f3da6a878224608a5ba"
+    },
+    {
+      "path": "frontend/src/scientific/EntropyChart.vue",
+      "sha256": "97eebfa3519ae21aed3cc2bb30cd3c7ac116339a21d88e6c62c977a1eb163d16",
+      "size_bytes": 4998,
+      "base_git_blob": "a4afabcdf54ba9bd1a11baf2fe30828b65a7092f"
+    },
+    {
+      "path": "frontend/src/scientific/EvidenceLink.vue",
+      "sha256": "313c60c9cf670a906df5e36fe0dbaa5d22ebe4ac874c5f6a39cfbf43e93d2e22",
+      "size_bytes": 1515,
+      "base_git_blob": "a5676cee32ba05d72684e073384dd5a1b596236c"
+    },
+    {
+      "path": "frontend/src/scientific/FaceAllocationView.vue",
+      "sha256": "ca02191beaf456efc1555e914bead5bbc4732be22f7b1c10533e355cadec407a",
+      "size_bytes": 4048,
+      "base_git_blob": "519f7be5e42047810041c0db767b1db9eb0976a2"
+    },
+    {
+      "path": "frontend/src/scientific/GrowthValidationChart.vue",
+      "sha256": "883e000973e66d9b3154e0a697db23ff686f306dc4b7c031e02fd6a3a9d02edc",
+      "size_bytes": 3814,
+      "base_git_blob": "4d216eeb8b39b31ceac30aa30d8423b0d958689a"
+    },
+    {
+      "path": "frontend/src/scientific/MetricsPanel.vue",
+      "sha256": "50fb79a92ba5aa6dbb367d52877c44e9c4f6f041f2260e4d63d16f99b25681e2",
+      "size_bytes": 3121,
+      "base_git_blob": "dab920f7d8f836ee2682753e6ec40b8282ec57b1"
+    },
+    {
+      "path": "frontend/src/scientific/ScientificStatus.vue",
+      "sha256": "77acd86ef39c98c3b24408c6dcf879dc5de4c052bdae21b5b229bdf441a14b9f",
+      "size_bytes": 1817,
+      "base_git_blob": "3608fc1a48bd4069ca6351dded2bcc30946f3fea"
+    },
+    {
+      "path": "frontend/src/scientific/SnapshotViewer.vue",
+      "sha256": "ee323b06479ae25124e2de8eb5bad536446996666d3be5c702614af09175f7c7",
+      "size_bytes": 3794,
+      "base_git_blob": "b873cf15020b0bb96b22c9cdb2a0e4eeaa4d5314"
+    },
+    {
+      "path": "frontend/src/scientific/SpectralCurveChart.vue",
+      "sha256": "44a467e3b4bfcba5f16276d417b2338b63a01bcc1bdf9205771ce959431e0b55",
+      "size_bytes": 4327,
+      "base_git_blob": "4091b8070de058f116fff705333f8418e2f2de61"
+    },
+    {
+      "path": "frontend/src/scientific/echarts.ts",
+      "sha256": "1f5dd64ec5141eb43857de33ad1d9d67c26c519fd1fcb89ab89d55ddaa511fb7",
+      "size_bytes": 985,
+      "base_git_blob": "a79651169098b347f948383453c7d44efbdc5f47"
+    },
+    {
+      "path": "frontend/src/scientific/index.ts",
+      "sha256": "04c4d61c466743415ad2e03574e807c7128ec6043d4f79c409edc3b23cf02cc0",
+      "size_bytes": 886,
+      "base_git_blob": "039967b389a32d16ba86dbc36d9b18107898b03b"
+    },
+    {
+      "path": "frontend/src/scientific/useEcharts.ts",
+      "sha256": "bbb4095a6725cec0a0319c1d3166475b183a95f88e478a9ef5378b890ee6c962",
+      "size_bytes": 1268,
+      "base_git_blob": "6a20a4d6f707944c3b4ae133a17054cfd99abb6f"
+    },
+    {
+      "path": "frontend/src/services/api.ts",
+      "sha256": "a24808d12957d2046b854d7ef5bc9a009e417967c022f03d747d163a7f6b41b8",
+      "size_bytes": 150,
+      "base_git_blob": "30a4d8b1574237931f9b52d7dc30b38d186b1924"
+    },
+    {
+      "path": "frontend/src/services/charts.ts",
+      "sha256": "acaec0712d4dafb544ad6ffbf6d219191046c80950408ebcd2a8f585ec2fc775",
+      "size_bytes": 910,
+      "base_git_blob": "4c90ae28c3b94ef3728436891ac16fc2d6cac18d"
+    },
+    {
+      "path": "frontend/src/stores/session.ts",
+      "sha256": "bd4eea632178977010b1962d5d7590c7fd0d2340ab877ba9c6e0dccf9b091500",
+      "size_bytes": 139,
+      "base_git_blob": "45a1cff93c6b4a11187376de2f21b078633026f1"
+    },
+    {
+      "path": "frontend/src/types/generated/api.d.ts",
+      "sha256": "347843225c79f09100616f315fba117072dfe979d0ae598ef33241c810ab078e",
+      "size_bytes": 233351,
+      "base_git_blob": "5fa51b56a854ac1e2f6e5ad8fa1618bb30acc3b8"
+    },
+    {
+      "path": "frontend/src/views/case8/AllocationTab.vue",
+      "sha256": "019f7cd97657c00a18db7bd0d2a014281aa8bd5a5cf9e8895a00fd331b16a7ed",
+      "size_bytes": 12995,
+      "base_git_blob": "9a67696c2c25df17b638ddb84b047586865de9a6"
+    },
+    {
+      "path": "frontend/src/views/case8/EntropyTab.vue",
+      "sha256": "cfd005e55231a6a2c4cbe2394b0854b1ad789cbfbcdf88445c98faf4461330a9",
+      "size_bytes": 7928,
+      "base_git_blob": "e41686dd65e51bd3fa6657769f933374e4eba065"
+    },
+    {
+      "path": "frontend/src/views/case8/EvidenceTab.vue",
+      "sha256": "1ddab4425b08e39033a552d4e80834fe70593f124a2a5cb8259eb95d2d8cf34e",
+      "size_bytes": 3371,
+      "base_git_blob": "d1dc1e9517487eda1f47670a11870027d5ee9389"
+    },
+    {
+      "path": "frontend/src/views/case8/FlowTab.vue",
+      "sha256": "3a03d42b9393d3af3a751c67fd5915ab37bf850cbe9aed3a160c8401f0a209f8",
+      "size_bytes": 6983,
+      "base_git_blob": "3690de0784dd1d951792005a7970503b55b21050"
+    },
+    {
+      "path": "frontend/src/views/case8/MetricsTab.vue",
+      "sha256": "f625af00c995ba17049b7972d76fab2d9a78bc70daf0db741173a44b0b3a9d01",
+      "size_bytes": 1778,
+      "base_git_blob": "500661f1bda80f2c6c86ca5ee14a791966b277e1"
+    },
+    {
+      "path": "frontend/src/views/case8/OverviewTab.vue",
+      "sha256": "fa003e0d5f825c0339d9767c20b91d7d87dda8b63a155d28c6ffc15edbaa32bb",
+      "size_bytes": 3857,
+      "base_git_blob": "9ac60674873c1d1c9526d849fc73f7aecca84896"
+    },
+    {
+      "path": "frontend/src/views/case8/SpectralTab.vue",
+      "sha256": "de77e7f724aca7d875e4a5b2f67925822e92178c36d8b9249ee357c2ebb575c1",
+      "size_bytes": 19009,
+      "base_git_blob": "0672b574a66fc798bcbc8e4932cac7d366ece865"
+    },
+    {
+      "path": "frontend/tests/allocation-real-api.spec.ts",
+      "sha256": "02cb3d47924b3b18cea761b364e57f97fa0db5c178da8514d6a67da97928e389",
+      "size_bytes": 6740,
+      "base_git_blob": "7ca1720669fb5618dc549938a5c3942aefe64154"
+    },
+    {
+      "path": "frontend/tests/case8-acceptance.spec.ts",
+      "sha256": "c1fca927b1c963ec3573a24734570d2e73539d1b3be18481a535b006b79361a3",
+      "size_bytes": 5584,
+      "base_git_blob": "7645c89ba7fb4e56c238a976e8e87c0bbe10423a"
+    },
+    {
+      "path": "frontend/tests/case8-real-integration.spec.ts",
+      "sha256": "deac9dc7212e93ac1c6816637c3c4d7227b223a9e1d5c2b0b9bc418e0192abc6",
+      "size_bytes": 3996,
+      "base_git_blob": "bc6ddf21976776b5ee8a272a6e95f4544da54f08"
+    },
+    {
+      "path": "frontend/tests/data-projection.unit.spec.ts",
+      "sha256": "722cedc69f2cacbeff3fee31ed718c5d39693b9d68407ee423bb2a8357e6adf6",
+      "size_bytes": 557,
+      "base_git_blob": "64600719e7127fd82a63155fd82eac95602a87d8"
+    },
+    {
+      "path": "frontend/tests/routes.spec.ts",
+      "sha256": "d7a23cc6868ab1ec4e3ebca0136c68bf29723233720fe3d2eeaba9489e540e3a",
+      "size_bytes": 670,
+      "base_git_blob": "1c194cd084a3698deb14e67154432f0f5475d62c"
+    },
+    {
+      "path": "frontend/tests/spectral-real-api.spec.ts",
+      "sha256": "aa20d7c1e19c39727bcf9445582a5165536d55348cb1e4bffe6cfa3ca7685f35",
+      "size_bytes": 7041,
+      "base_git_blob": "fdd0af05cc183d3ef2197ce12a758c324d1783a2"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "sha256": "cc0693c91467a73f45c9a9fc1233f84ed4cde9c9662c7ba50b2e2494bc224c18",
+      "size_bytes": 388,
+      "base_git_blob": "8dc2b3a6ab577c58563a7c7feb043eb5a4e94fc0"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "sha256": "127f4e3ce937aa9c564fe3971db59c228d60d982fdf00747a8fefe8c429449bc",
+      "size_bytes": 362,
+      "base_git_blob": "230a3109ead4f5ff908c4f370e4e303a6e817c6f"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "3db9e736bd4113261163b8651a4430137ed625ed3df62e3495529b4050448caf",
+      "size_bytes": 512,
+      "base_git_blob": "b4cafd3947c32b9d7b57eead8ba1c36c61de8be8"
+    },
+    {
+      "path": "requirements.lock.txt",
+      "sha256": "5391a5a4574671de9b5ef51001d46413aa5a81976cb4bf59363ef24b7172a92f",
+      "size_bytes": 712,
+      "base_git_blob": "bc49d27988df37df024b0e4568fe3efcc2dedac1"
+    },
+    {
+      "path": "scripts/__init__.py",
+      "sha256": "ce8408386fec5dca7c0e50a59681abef31613a4b4fc804285e2bfca5a987300c",
+      "size_bytes": 63,
+      "base_git_blob": "593c6009003d05a5e5e622c74550bcbb37540187"
+    },
+    {
+      "path": "scripts/export_openapi.py",
+      "sha256": "2451518b9b522babdbdf167ee6e0b8aeba03e4993539d3b379f2ac0f677e6f1a",
+      "size_bytes": 632,
+      "base_git_blob": "049cec2d6cc0d64a23bbdca15b8aeed8c4359ba5"
+    },
+    {
+      "path": "scripts/serve_backend.py",
+      "sha256": "71f2b2f33cfc9ddd8dcf8b505529c10ec6e5d1a77b99c34a341d03ae3578ce67",
+      "size_bytes": 216,
+      "base_git_blob": "bdc6b712f56bf6785c55ff2258782d607171f57a"
+    },
+    {
+      "path": "scripts/verification/qa_status.py",
+      "sha256": "72ab624c7f635d7747a2a06f0e60a97209b0941b3c190f0e7ffff5eeddbd349f",
+      "size_bytes": 3610,
+      "base_git_blob": "8007a355d2416accb972fe5b2331d9a67852c86c"
+    },
+    {
+      "path": "scripts/verification/source_audit.py",
+      "sha256": "8928bde08658f8ccf872e4f04a74c0b4a1ccdd5818e6d24862f4eea946381596",
+      "size_bytes": 1936,
+      "base_git_blob": "c0430335ee29c675eb80bfa2f5e0452945b65343"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "a0eccebe8d42e8ac7e52b3b9fc35d691c0059c5b3b9d486dddbfcc9e00056b3a",
+      "size_bytes": 1588,
+      "base_git_blob": "16b590e139cf5ad2274e93869a9bb730e0529ea4"
+    },
+    {
+      "path": "tests/test_bootstrap.py",
+      "sha256": "3276b2f0c1cec5b65ee311c383a21e574ad0fe069c7682cb91960646c97a1ec5",
+      "size_bytes": 9400,
+      "base_git_blob": "2c6e38aeba175ee37885942f24539937039ac159"
+    },
+    {
+      "path": "tests/test_models.py",
+      "sha256": "98d957cf82f3ce1e0626ebf50cdcae9b7443af8f0cc798c9a5ee6a09a862ee77",
+      "size_bytes": 6743,
+      "base_git_blob": "abe17162a8f52d618ae900b280ad57f2135928e2"
+    },
+    {
+      "path": "tests/verification/case8_facts.py",
+      "sha256": "a888d1fc610d9313fe92708f74c760654b1bfe1be91cb74fd3264386617469ea",
+      "size_bytes": 12248,
+      "base_git_blob": "b97b3511cbacfaa4a487ce5ea4e898ceb0860afd"
+    },
+    {
+      "path": "tests/verification/conftest.py",
+      "sha256": "b508dd0ace8f4d63a9cab12ed7d718a1e90f1cbb6d39579d09aec1ccf771c553",
+      "size_bytes": 1550,
+      "base_git_blob": "0a6238807e088ffc1ac0a207be0411f863537d3a"
+    },
+    {
+      "path": "tests/verification/test_allocation_foundation.py",
+      "sha256": "a51fe813bf339b6373f77098ec53503fff99691a02adb9090e162e50bd78dbe4",
+      "size_bytes": 9039,
+      "base_git_blob": "fa25fabe8e3b2e973245ba46ff4ccbfbc8d7d88c"
+    },
+    {
+      "path": "tests/verification/test_allocation_integration.py",
+      "sha256": "d67508cc6e169c246a7c7959a194f6fd01aefc95733cf2ce1a1b6856d3889739",
+      "size_bytes": 8491,
+      "base_git_blob": "19cb3e0aac16ce9925d5b0fc9c4676dea53c1821"
+    },
+    {
+      "path": "tests/verification/test_api_contract.py",
+      "sha256": "e57299b99d419d44f2728665a8d2b60563bea4605a3ac5ac7380acaacd7a628b",
+      "size_bytes": 16538,
+      "base_git_blob": "f67ebfc07460a6be244678b3d25b92831cc49c7c"
+    },
+    {
+      "path": "tests/verification/test_case8_scientific_truth.py",
+      "sha256": "84646915c1a78172930311dae9af4754eba49ec7c5cb252c029d90155c55fd77",
+      "size_bytes": 6521,
+      "base_git_blob": "5e72980ee98749536e13d0b607adc959bc5c0c25"
+    },
+    {
+      "path": "tests/verification/test_integration_real.py",
+      "sha256": "b34a759f08a6fc260cd3892b9b89bdd8a7fe812cf7559ad4727c6cf615ce058b",
+      "size_bytes": 5294,
+      "base_git_blob": "856c697ef6b679b05b9e820e8e772943f7bfed5b"
+    },
+    {
+      "path": "tests/verification/test_provenance.py",
+      "sha256": "77573b1a67baff021cc0d06339c3ea8427e28d8683246bb850d32108dc88adec",
+      "size_bytes": 8031,
+      "base_git_blob": "d67f317961ae234734178264fd0f8230b16c96ee"
+    },
+    {
+      "path": "tests/verification/test_semantics.py",
+      "sha256": "3a16642aa73076081199019a9c830e67d6b62cbf86f43f1d4f1b63066df8a9a4",
+      "size_bytes": 8300,
+      "base_git_blob": "da4a5cb32f5cc124d466a94115defe6543263fd4"
+    },
+    {
+      "path": "tests/verification/test_spectral_integration.py",
+      "sha256": "0092177b8b64653a71392c0bcb4652ccb8f360eeb1333aef874cb9ca0e51451f",
+      "size_bytes": 8084,
+      "base_git_blob": null
+    },
+    {
+      "path": "tests/window0_spectral_foundation/conftest.py",
+      "sha256": "2fdbc05e3f9317503117d9c2126ff5ef99035d654da3caeda0831e96e8e5ecb5",
+      "size_bytes": 7070,
+      "base_git_blob": "92071ad8cb9fc980984629795abdaaea33843519"
+    },
+    {
+      "path": "tests/window0_spectral_foundation/test_protocol_and_freeze.py",
+      "sha256": "6c1d7fe02ae0d41334c742b1e49ce23b154b8c39e17e575b6a6d9eab916d9de7",
+      "size_bytes": 6628,
+      "base_git_blob": "ffe25f9b3837063ac179fc6bdcc73d13ad5bdfa8"
+    },
+    {
+      "path": "tests/window0_spectral_foundation/test_spectral_models.py",
+      "sha256": "f0107506c6912735d75e79e313b5317ff5890500cea9e9df5d27aef0c159cb16",
+      "size_bytes": 13732,
+      "base_git_blob": "ba1c2bf8187c96a09176285cfb99f66060f14680"
+    },
+    {
+      "path": "tests/window1_case8_data/__init__.py",
+      "sha256": "36edca0697eff56347c454e996c4a987c7c0698a094854a0698660fe5a65e6ad",
+      "size_bytes": 84,
+      "base_git_blob": "b346e64f2d6823a618d1f320a207b6670320d988"
+    },
+    {
+      "path": "tests/window1_case8_data/test_case8_adapter.py",
+      "sha256": "90fb618697b33f67762c73569b1f8e5c64bdde36bf4354cacc371bd0076295e7",
+      "size_bytes": 7823,
+      "base_git_blob": "e6b5b9c1f232bd52b887b45e94aa1f44fd9564a0"
+    },
+    {
+      "path": "tests/window1_du_allocation/test_du_allocation.py",
+      "sha256": "d5314a54632706619563e672738088fda0daf4f150bc0c97f61f2efa01a8cf1f",
+      "size_bytes": 13172,
+      "base_git_blob": "7c39d691ae55a49e06dff84142aa35d50be4118c"
+    },
+    {
+      "path": "tests/window1_spectral_adapter/test_spectral_adapter.py",
+      "sha256": "be0d48c2feea097dbc46622d7f962ef914c46cea5c661a035fb958dbdf81fb77",
+      "size_bytes": 22231,
+      "base_git_blob": "5f23dd2c73aa2f72faa82e2edfc4d723622ba382"
+    },
+    {
+      "path": "tests/window2_case8_api/conftest.py",
+      "sha256": "785e40e5fa012f8cc38e9d17c145ff101dee6e01735779f5fc21a5d93e0af263",
+      "size_bytes": 496,
+      "base_git_blob": "7f68bed723874152208100bf564f52025926f972"
+    },
+    {
+      "path": "tests/window2_case8_api/fake_case8_adapter.py",
+      "sha256": "e46d57e9574b82139b05b5e75f93aedf7030dedf150af10b5599913ac82dc76a",
+      "size_bytes": 22245,
+      "base_git_blob": "34e6f43501bb9581d86dddbe5f6581eb9b4b40ca"
+    },
+    {
+      "path": "tests/window2_case8_api/test_case8_api_contract.py",
+      "sha256": "bf288d04a284837f31ba5591c6d648809bcce8f706917d637925ecb070f27720",
+      "size_bytes": 19777,
+      "base_git_blob": "69055c69de0276074b47a6e203146410817b4434"
+    },
+    {
+      "path": "tests/window2_gate_allocation/__init__.py",
+      "sha256": "e44d035f364be24db145d3569cfa6e0cc9efc8cf41c239fb53240e26a0e68efe",
+      "size_bytes": 40,
+      "base_git_blob": "0948aa4c8c6b986303deb8f6160388287d86ce61"
+    },
+    {
+      "path": "tests/window2_gate_allocation/test_gate_allocation_adapter.py",
+      "sha256": "18e02be2c66d1a5e6538eaddbed84e3e51065561dc9007f452074dbd3817cfc7",
+      "size_bytes": 12894,
+      "base_git_blob": "d01797673ff936899198e2428797278b8c70fa7f"
+    },
+    {
+      "path": "tests/window2_spectral_api/conftest.py",
+      "sha256": "fb8d6f26574de316d3be84ceb9d074dd7c6a2166f3f0ee5b7c21adf69d646077",
+      "size_bytes": 508,
+      "base_git_blob": "cfee2ac885af65820175815de0b047d10937823c"
+    },
+    {
+      "path": "tests/window2_spectral_api/fake_spectral_adapter.py",
+      "sha256": "9cd6ee9133e5bb7135e68b2c190cb5c82dc799c5e3e9492e0f971e24ce0b7b35",
+      "size_bytes": 19430,
+      "base_git_blob": "c30848809590a84d42acfb064736b58566b8877b"
+    },
+    {
+      "path": "tests/window2_spectral_api/test_spectral_api_contract.py",
+      "sha256": "d1982c42c2600ffe9bf772c0456f87b473e2a7524723bc71f8c0786c3452b215",
+      "size_bytes": 13338,
+      "base_git_blob": "7954796c918681003d1ae41585b52d98b4ac937e"
+    },
+    {
+      "path": "tests/window3_allocation_api/conftest.py",
+      "sha256": "7a0268c2822a631741998190f7512f595018e4149ff8f08268f8f023ab761ac2",
+      "size_bytes": 516,
+      "base_git_blob": "00d7e2d0f2992102b54da7da63716b1f06d09697"
+    },
+    {
+      "path": "tests/window3_allocation_api/fake_allocation_adapter.py",
+      "sha256": "5dec3aeac776ce1c6ce90216ae6b165d07c787acf7cdcbeb34a675cb3d5893b7",
+      "size_bytes": 11679,
+      "base_git_blob": "94865053efb117f830a952f8dcf8a81c5d39e0bc"
+    },
+    {
+      "path": "tests/window3_allocation_api/test_allocation_api_contract.py",
+      "sha256": "6fbef292984f8b4e5f250fcbf86d171403f7aae39ca6b3702bf09950d53c42e8",
+      "size_bytes": 5917,
+      "base_git_blob": "9997604dc3225681b952d2b1b4852f3778617550"
+    },
+    {
+      "path": "tests/window3_frontend/case8_slice.spec.ts",
+      "sha256": "625e0a9087380c950c6d12493a3e25d537b2347c26d3e2e7e9162208363a43f6",
+      "size_bytes": 9911,
+      "base_git_blob": "871da92ec201d786f2d80bbb020c6f89ef583fb9"
+    },
+    {
+      "path": "tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "sha256": "911736675063f79373134303d8e2ec2a0548cc7649b8273d86fcac63514c0821",
+      "size_bytes": 5102,
+      "base_git_blob": "a3d8d07929b07a4a6eb1d2f1fa81f87c4281e008"
+    },
+    {
+      "path": "tests/window4_allocation/allocation_ui.spec.ts",
+      "sha256": "e1ee3962ea9acab216ff4efbc6596bea9e4a57deb8fe47e5b20493b832ac742e",
+      "size_bytes": 8372,
+      "base_git_blob": "c2b1a8e841b573ecb1ec20aef3c42ce240245510"
+    }
+  ],
+  "execution_evidence": [
+    {
+      "path": ".cache/phase7/pytest.xml",
+      "sha256": "79c7abdd40076e607a4e8da35b3f79fe578c89ca58fdc10d999946d941bfc2d3",
+      "size_bytes": 121873
+    },
+    {
+      "path": ".cache/phase7/pytest.log",
+      "sha256": "9b584fe720336c6a1079c4d0e43e5580f54a5be00b7728191442aacf5c2cdf6f",
+      "size_bytes": 924
+    },
+    {
+      "path": ".cache/phase7/playwright-full.json",
+      "sha256": "6c08601f98bd8907ff6f458f4bc79ca2e8b9daec17463bb3be46b52696a43120",
+      "size_bytes": 91099
+    },
+    {
+      "path": ".cache/phase7/playwright-full.log",
+      "sha256": "d024b377d816b790456cc66d4aaa782da44f2024364fbc9848d279509402c316",
+      "size_bytes": 14830
+    },
+    {
+      "path": ".cache/phase7/playwright-array-guards.json",
+      "sha256": "a543e392a10cc2e6d856dc1665c7e034d5cb681bfc2392429ed4e57914c99dfd",
+      "size_bytes": 5726
+    },
+    {
+      "path": ".cache/phase7/playwright-array-guards.log",
+      "sha256": "8f225621ccc1e2a23fb005ea5b15a430b3db40cb940648bcb3559b883a844c42",
+      "size_bytes": 1587
+    },
+    {
+      "path": ".cache/phase7/source-before.json",
+      "sha256": "40ae35a72f23839efcc53bc4fdce2b95999e90d6a5b5134727b70e3d3db32913",
+      "size_bytes": 19344
+    },
+    {
+      "path": ".cache/phase7/source-after.json",
+      "sha256": "40ae35a72f23839efcc53bc4fdce2b95999e90d6a5b5134727b70e3d3db32913",
+      "size_bytes": 19344
+    },
+    {
+      "path": ".cache/phase7/preservation.json",
+      "sha256": "403928472d26a05ba16e6f7762eb878a80b2303ee299010f1aef9d3a6c5ee9ea",
+      "size_bytes": 2147
+    },
+    {
+      "path": ".cache/phase7/freeze-prerequisites.xml",
+      "sha256": "ca126f9ab434bef79257e4773a13b5fe126b49f12bfc66b87947e45ad95ddafd",
+      "size_bytes": 398
+    }
+  ],
+  "phase4_sha256": {
+    "04_SYSTEM_ARCHITECTURE.md": "5a7193d4203ecd205f487fc38c2f64d09256388a9cb88f64d7201496ef58e2ea",
+    "05_DATA_SCHEMA.md": "f61482eb917b81767864eb377a4db0c8b6dcf3e333676c2bd23201c7f0997099",
+    "06_API_CONTRACT.md": "c115ef21d4c8ba2170cb888bfd4842ea12fe2c7f66cdf1b0519d08489dd4d9f1"
+  },
+  "prerequisite_freeze_sha256": {
+    "docs/PHASE5_CASE8_FREEZE.json": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+    "docs/PHASE5_CASE8_FREEZE_MANIFEST.json": "44c82e9bc8d0d4dc692f847107917bf201f37be15166650d349e5f0a1ee925c8",
+    "docs/handoffs/phase6/PHASE6_ALLOCATION_FREEZE.md": "ee12d9fc703030db4c97a6d8d42dc887079d064c57f0d10ade59d4c41150b42b"
+  },
+  "source_preservation": {
+    "status": "PASS",
+    "spectral_full_tree_files": 93,
+    "before_fingerprint": "78f4853e1fa9f13a470dc207c2fc6df32e633cd23c3bd9f32e72a16ea40b0ddd",
+    "after_fingerprint": "78f4853e1fa9f13a470dc207c2fc6df32e633cd23c3bd9f32e72a16ea40b0ddd",
+    "phase6_selected_files": 17,
+    "scoped_check": "SHA256, relative names, sizes, mtime_ns",
+    "rechecked_at_freeze": true
+  },
+  "accepted_test_results": {
+    "backend_passed": 790,
+    "frontend_and_e2e_passed": 71,
+    "prior_acceptance_reused": true,
+    "fresh_prerequisite_test_passed": 1
+  },
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "code_modified_by_freeze": false,
+  "next_phase_started": false,
+  "manifest_self_hash_excluded": true,
+  "next": "STOP_AND_REVIEW"
+}

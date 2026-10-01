@@ -28,7 +28,7 @@
  *   constructs a `spectrum.q-*` string from a free-form number.
  */
 import { computed, onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { activeProvider, dataService, createRequestGuard, type Loaded } from '../../data'
 import type {
   EigenmodeSelector,
@@ -48,6 +48,7 @@ import EigenmodeChart from '../../scientific/EigenmodeChart.vue'
 import GrowthValidationChart from '../../scientific/GrowthValidationChart.vue'
 
 const route = useRoute()
+const router = useRouter()
 
 /** The four registered q_at configurations are discovered from SPEC00, never hard-coded. */
 const datasets = ref<Loaded<SpectralDatasetRef[]> | null>(null)
@@ -60,6 +61,7 @@ const runs = ref<Loaded<ValidationRunRef[]> | null>(null)
 
 const datasetsGuard = createRequestGuard()
 const curveGuard = createRequestGuard()
+const datasetGuard = createRequestGuard()
 const modeGuard = createRequestGuard()
 const validationGuard = createRequestGuard()
 
@@ -103,7 +105,7 @@ async function loadCurve() {
   curve.value = { state: 'LOADING', data: null, reason: null, origin: 'MOCK' }
   dataset.value = { state: 'LOADING', data: null, reason: null, origin: 'MOCK' }
   const [datasetResult, curveResult] = await Promise.all([
-    curveGuard.run((signal) => dataService.getSpectrumDataset({ datasetId: selectedDatasetId.value }, signal)),
+    datasetGuard.run((signal) => dataService.getSpectrumDataset({ datasetId: selectedDatasetId.value }, signal)),
     curveGuard.run((signal) => dataService.getSpectralCurve({ datasetId: selectedDatasetId.value }, signal)),
   ])
   if (datasetResult) dataset.value = datasetResult
@@ -169,7 +171,7 @@ function updateQuery() {
   const query: Record<string, string> = { ...(route.query as Record<string, string>),
     spectral_q: selectedDatasetId.value, spectral_mode: String(selectedModeIndex.value),
     spectral_rank: String(selectedRank.value), spectral_run: selectedRunId.value }
-  void query
+  void router.replace({ query })
 }
 watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updateQuery)
 </script>
@@ -184,6 +186,7 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
         common Mach6 base state. Each <em>q_at</em> below is one exact registered configuration; modes are
         discrete blocks (ell 0…16). This page reports recorded spectral facts only.
       </p>
+      <p data-testid="spectral-scientific-limit">Positive entropy production does not imply uniform modal damping.</p>
     </header>
 
     <!-- SELECTION: configuration (dataset) + exact q_at -->
@@ -292,6 +295,7 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
         <template v-if="validation?.data">
           <MockBadge :origin="validation.data.result.data_origin" :verification="validation.data.verification.status" />
           <GrowthValidationChart :validation="validation.data" />
+          <p>Recorded growth rates [{{ validation.data.result.unit.label }}]</p>
           <dl class="sl__facts">
             <div><dt>σ linear</dt><dd data-testid="growth-linear">{{ validation.data.growth_rate.linear === null ? 'unavailable' : validation.data.growth_rate.linear.toExponential(6) }}</dd></div>
             <div><dt>σ RK3</dt><dd data-testid="growth-rk3">{{ validation.data.growth_rate.rk3 === null ? 'unavailable' : validation.data.growth_rate.rk3.toExponential(6) }}</dd></div>
@@ -317,7 +321,7 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
     <section class="sl__region" data-testid="spectral-evidence">
       <h3>Evidence</h3>
       <ul class="sl__ev-list">
-        <li v-for="ref in curve?.data?.provenance.evidence_refs ?? []" :key="ref" data-testid="spectral-evidence-link">
+        <li v-for="ref in [...new Set([...(dataset?.data?.provenance.evidence_refs ?? []), ...(curve?.data?.provenance.evidence_refs ?? []), ...(mode?.data?.provenance.evidence_refs ?? []), ...(validation?.data?.provenance.evidence_refs ?? [])])]" :key="ref" data-testid="spectral-evidence-link">
           <EvidenceLink :evidence-id="ref" context="spectral" :return-to="returnTo" />
           <span class="sl__ev-id">{{ ref }}</span>
         </li>

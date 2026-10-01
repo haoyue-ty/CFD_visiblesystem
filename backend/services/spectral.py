@@ -21,6 +21,7 @@ out-of-range request with the contract code; the adapter remains the authority f
 whether a specific saved vector exists, and its MISSING slot becomes MISSING_EIGENMODE.
 """
 from typing import Protocol, runtime_checkable
+from backend.services.spectral_resources import bind_evidence
 
 from backend.adapters.spectral import SpectralAdapterProtocol
 from backend.core.errors import (DomainError, missing_asset, missing_eigenmode,
@@ -181,7 +182,7 @@ class SpectralServiceImpl:
             datasets = handler(registry_revision=registry_revision)
         except DomainError as error:
             raise self._translate(error) from None
-        return [project_dataset(dataset) for dataset in datasets]
+        return [bind_evidence(project_dataset(dataset)) for dataset in datasets]
 
     def describe_dataset(self, dataset_id: str, *,
                          registry_revision: str | None = None) -> SpectrumDatasetView:
@@ -189,7 +190,7 @@ class SpectralServiceImpl:
         slot = self._slot("describe_spectrum", dataset_id, registry_revision=registry_revision)
         value, _ = self._unwrap(slot, missing=missing_asset, resource_type="spectrum",
                                 identity=self._identity(dataset_id))
-        return project_dataset(value)
+        return bind_evidence(project_dataset(value))
 
     def load_curve(self, dataset_id: str, *,
                    registry_revision: str | None = None) -> SpectrumCurveView:
@@ -197,7 +198,7 @@ class SpectralServiceImpl:
         slot = self._slot("load_spectral_points", dataset_id, registry_revision=registry_revision)
         value, _ = self._unwrap(slot, missing=missing_asset, resource_type="spectrum",
                                 identity=self._identity(dataset_id))
-        return project_curve(value)
+        return bind_evidence(project_curve(value))
 
     def load_point(self, dataset_id: str, mode_index: int, *,
                    registry_revision: str | None = None) -> SpectralPointView:
@@ -210,7 +211,7 @@ class SpectralServiceImpl:
         if not selected:
             raise unknown_mode("Requested Fourier mode is not recorded for this dataset",
                                identity=self._identity(dataset_id))
-        return project_point(selected[0])
+        return bind_evidence(project_point(selected[0]))
 
     def load_eigenmode_view(self, dataset_id: str, mode_index: int, *, side: str = "RIGHT",
                             rank: int = 0, representation: str = "COMPLEX_VECTOR",
@@ -226,14 +227,14 @@ class SpectralServiceImpl:
                           field_component=field_component, registry_revision=registry_revision)
         value, _ = self._unwrap(slot, missing=missing_eigenmode, resource_type="eigenmode",
                                 identity=self._identity(dataset_id))
-        return project_eigenmode(value)
+        return bind_evidence(project_eigenmode(value))
 
     def load_validation_view(self, run_id: str, *,
                              registry_revision: str | None = None) -> GrowthValidationView:
         slot = self._slot("load_growth_validation", run_id, registry_revision=registry_revision)
         value, issues = self._unwrap(slot, missing=missing_asset, resource_type="growth_validation",
                                      identity=self._identity(run_id))
-        return project_validation(value, partial_issues=issues)
+        return bind_evidence(project_validation(value, partial_issues=issues))
 
     def list_validation_runs(self, *, registry_revision: str | None = None) -> ValidationRunListView:
         """SPEC06: the registered validation-run identities.

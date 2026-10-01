@@ -12,9 +12,8 @@
  *                     entry with an explicit note — it is NEVER a synthesized
  *                     exponential exp(sigma*t), and it is never a flat zero line.
  *
- * The recorded growth rates (linear / RK3 / CFD) are shown as horizontal
- * reference lines at their recorded values, each with its own legend name and its
- * own unit. The relative discrepancy is quoted verbatim from the frozen contract
+ * Growth rates are displayed separately as recorded facts in the parent panel.
+ * Rates and amplitudes have distinct units. The relative discrepancy is quoted verbatim from the frozen contract
  * (CFD−RK3, fraction) and is NOT recomputed by the frontend.
  */
 import { computed, type Ref } from 'vue'
@@ -25,7 +24,6 @@ const props = defineProps<{ validation: GrowthValidationView }>()
 
 const option = computed(() => {
   const v = props.validation
-  const unitLabel = v.result.unit.label === 'rate (model units)' ? 'model' : v.result.unit.label
   const cfd = v.cfd_amplitude
   const linear = v.linear_amplitude
   const linearAvailable = linear.some(x => x !== null)
@@ -43,18 +41,6 @@ const option = computed(() => {
       data: linear, lineStyle: { width: 1.6, color: '#c0392b' }, itemStyle: { color: '#c0392b' },
     })
   }
-  // Recorded growth rates as reference lines at their recorded values.
-  const marks = ([
-    ['linear', v.growth_rate.linear, '#c0392b'],
-    ['RK3', v.growth_rate.rk3, '#27795b'],
-    ['CFD', v.growth_rate.cfd, '#1a4f8a'],
-  ] as const).filter(([, value]) => value !== null)
-    .map(([label, value, color]) => ({
-      name: `σ_${label} = ${(value as number).toExponential(4)}`,
-      yAxis: value as number, lineStyle: { color, type: 'dashed' as const, width: 1 },
-      label: { formatter: `σ_${label}=${(value as number).toPrecision(4)}`, fontSize: 10, color },
-    }))
-
   return {
     title: {
       text: `Growth validation — mode ${v.mode_index} · q_at=${v.q_at} · ε=${v.epsilon}`,
@@ -72,11 +58,11 @@ const option = computed(() => {
       data: v.step_indices.map(i => String(i)), axisLabel: { fontSize: 10 }, boundaryGap: false,
     },
     yAxis: {
-      type: 'value', name: `amplitude [${unitLabel}]`, nameLocation: 'middle', nameGap: 50,
+      type: 'value', name: 'abs projected coefficient [stored units]', nameLocation: 'middle', nameGap: 50,
       scale: true, axisLabel: { fontSize: 10, formatter: (n: number) => n.toExponential(1) },
       splitLine: { lineStyle: { type: 'dashed', color: '#e6e6e6' } },
     },
-    series: series.map((s, i) => (i === 0 ? { ...s, markLine: { silent: true, symbol: 'none', data: marks } } : s)),
+    series,
     ...(linearAvailable ? {} : {
       graphic: [{
         type: 'text', left: 66, top: 44,

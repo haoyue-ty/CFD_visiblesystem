@@ -4649,7 +4649,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description INVALID_RESULT_ID */
+            /** @description INVALID_RESULT_ID, MISSING_ASSET */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -4676,7 +4676,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, SOURCE_ERROR, INTERNAL_ERROR */
             500: {
                 headers: {
                     [name: string]: unknown;

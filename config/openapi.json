@@ -1872,9 +1872,10 @@
             }
           },
           "404": {
-            "description": "INVALID_RESULT_ID",
+            "description": "INVALID_RESULT_ID, MISSING_ASSET",
             "x-error-codes": [
-              "INVALID_RESULT_ID"
+              "INVALID_RESULT_ID",
+              "MISSING_ASSET"
             ],
             "content": {
               "application/json": {
@@ -1911,10 +1912,11 @@
             }
           },
           "500": {
-            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR",
+            "description": "CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, SOURCE_ERROR, INTERNAL_ERROR",
             "x-error-codes": [
               "CANONICAL_SCHEMA_MISMATCH",
               "SOURCE_READ_ERROR",
+              "SOURCE_ERROR",
               "INTERNAL_ERROR"
             ],
             "content": {

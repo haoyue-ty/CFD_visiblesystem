@@ -13,16 +13,19 @@ from backend.schemas.requests import IdentityQuery, ProvenanceQuery, RegistryQue
 
 
 def _envelope(payload, project: ProjectInfo, response_model):
+    provenance = (payload.provenance if isinstance(payload, ResultProvenance) else
+                  payload.result_contexts[0].provenance if payload.result_contexts else None)
     return response_model.model_validate({
         "schema_version": "1.0.0", "request_id": g.request_id,
-        "registry_revision": known(project.registry_revision),
-        "data_revision": known(project.data_revision),
+        "registry_revision": known(provenance.registry_revision if provenance else project.registry_revision),
+        "data_revision": known(provenance.data_revision if provenance else project.data_revision),
         "availability": "AVAILABLE", "data": payload, "issues": [],
     })
 
 
-def _revision(query: RegistryQuery, project: ProjectInfo) -> None:
-    if query.registry_revision is not None and query.registry_revision != project.registry_revision:
+def _revision(query: RegistryQuery, project: ProjectInfo, service, identity) -> None:
+    revision = getattr(service, "revision_for", lambda _: project.registry_revision)(identity)
+    if query.registry_revision is not None and query.registry_revision != revision:
         raise system_error("REVISION_UNAVAILABLE", "Requested registry revision is unavailable", status=409)
 
 
@@ -43,14 +46,14 @@ def _path_parser(*path_names: str):
 
 def register_evidence_operations(catalog: OperationCatalog, project: ProjectInfo, service, allocation_service=None) -> None:
     def evidence_record(query: IdentityQuery, evidence_id: str):
-        _revision(query, project)
         identity = query.evidence_id or evidence_id
+        _revision(query, project, service, identity)
         selected = allocation_service if allocation_service and allocation_service.owns_evidence(identity) else service
         return _envelope(selected.load_evidence(identity), project,
                          ApiEnvelope[EvidenceRecord])
 
     def provenance(query: ProvenanceQuery, result_id: str):
-        _revision(query, project)
+        _revision(query, project, service, query.result_id)
         selected = allocation_service if allocation_service and allocation_service.owns_result(query.result_id) else service
         return _envelope(selected.load_provenance(query.result_id), project,
                          ApiEnvelope[ResultProvenance])
