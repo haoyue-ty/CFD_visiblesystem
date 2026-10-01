@@ -65,14 +65,22 @@ def test_registered_case8_paths_match_the_contract_exactly(case8_app):
 
 
 def test_no_operation_is_advertised_for_the_deferred_allocation_endpoint(case8_app):
-    """C807 is implementation-deferred: the catalog must not advertise it.
+    """C807 is implementation-deferred: the catalog must not advertise its {base}/allocation.
 
     The premise (the Case8 slice itself is registered) is asserted first so this
     test cannot pass vacuously on a base where no Case8 route exists at all.
+
+    Phase 6B Window 3 delivered a *separate* allocation surface under
+    /api/v1/allocations/* (ALLOC01-ALLOC04). Those routes deliberately do not end in
+    "/allocation", so they cannot masquerade as the deferred C807 endpoint.
     """
     assert {"C801", "C802", "C804"} <= _registered_operation_ids(case8_app)
     assert not [path for _, path in _registered_routes(case8_app)
                 if path.endswith("/allocation")]
+    # Window 3 allocation operations are present but live on a distinct path shape.
+    allocation_routes = {path for _, path in _registered_routes(case8_app)
+                         if path.startswith("/api/v1/allocations")}
+    assert allocation_routes and not any(path.endswith("/allocation") for path in allocation_routes)
 
 
 def test_integrated_catalog_declares_delivered_case8_operations(case8_app):

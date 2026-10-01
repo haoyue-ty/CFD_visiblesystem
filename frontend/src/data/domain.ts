@@ -69,3 +69,113 @@ export type EvidenceDetailView = Pick<S['EvidenceRecord'], 'evidence_id' | 'sche
 }
 export type ProviderKind = 'MOCK' | 'API'
 export type Loaded<T> = { state: LoadState; data: T | null; reason: string | null; origin: DataOrigin }
+
+// --- Phase 6B allocation ----------------------------------------------------
+//
+// Allocation is cumulative spatial entropy: a single number per face/cell that
+// already contains the time/RK weights, plus an explicit spatial measure rule.
+// The two accepted representations are DIFFERENT scientific objects:
+//
+//   FACE_FIELD  native x/y normal faces; spatial measure = dy*sum(x)+dx*sum(y)
+//   CELL_FIELD  one cell field; spatial measure already baked in; = sum(cells)
+//
+// They are modelled as a discriminated union so a view cannot render one as the
+// other, and so no generic "heatmap" projection is ever invented.
+
+/** Internal capability vocabulary; ANGULAR_SECTOR maps to frozen ANGULAR_SECTORS. */
+export type AllocationRepresentation = 'FACE_FIELD' | 'CELL_FIELD' | 'ANGULAR_SECTOR'
+/** Human-facing measure rule the allocation values already embody. */
+export type AllocationMeasureDefinition = 'face integrated' | 'cell integrated' | 'sector aggregated'
+
+/** One allocation array (or one native-face orientation) with its own identity. */
+export type AllocationArrayView = {
+  /** Registered array id, e.g. pi_at_x_faces / pi_at_y_faces / pi_at_cells. */
+  array_id: string
+  label: string
+  /** Face orientation for FACE_FIELD; null for CELL_FIELD. */
+  location_type: 'CARTESIAN_X_FACE' | 'CARTESIAN_Y_FACE' | 'CARTESIAN_CELL'
+  shape: number[]
+  axes: string[]
+  unit_label: string
+  /** Values are always present; the mock/API both deliver recorded arrays only. */
+  values: number[]
+}
+
+/** Mask identity, definition and per-orientation counts. Never shared between views. */
+export type AllocationMaskView = {
+  mask_id: string
+  mask_type: S['MaskSpec']['type']
+  definition: string
+  /** Mask counts per mask array, e.g. native x/y faces report two separate counts. */
+  counts: number[]
+  evidence_refs: string[]
+  verification: VerificationTag
+}
+
+/** Budget / inside / outside as returned by the summary; null when unresolved. */
+export type AllocationMetricView = {
+  metric_id: string
+  display_label: string
+  value: number | null
+  unit_label: string
+  definition_id: string
+  /** FRACTION for inside/outside; null for the integrated budget. */
+  fraction_format: 'FRACTION' | null
+  evidence_refs: string[]
+}
+
+export type AllocationSummaryView = {
+  total_budget: AllocationMetricView
+  inside: AllocationMetricView
+  outside: AllocationMetricView | null
+  /** Integration interval, e.g. "[0,0.08]". Kept as a string: never re-derived. */
+  integration_interval: string
+  time_scope_label: string
+  measure_definition: AllocationMeasureDefinition
+  includes_time_weights: boolean
+  includes_spatial_measure: boolean
+  /** The explicit algebraic rule, e.g. "dy*sum(xfaces)+dx*sum(yfaces)". */
+  integral_rule: string
+  /** Numeric parameters of the rule (dx / dy), declared not inferred. */
+  measure_parameters: { name: string; value: number }[]
+  evidence_refs: string[]
+}
+
+/** The invariant part shared by both representations. */
+export type AllocationCommonView = {
+  result_id: string
+  experiment_id: string
+  config_id: string
+  semantic_id: string
+  title: string
+  /** The ScientificDefinition text; the user-visible "definition" field. */
+  definition: string
+  time_rule: string
+  spatial_rule: string
+  data_origin: DataOrigin
+  verification: VerificationTag
+  limitations: Limitation[]
+  evidence_refs: string[]
+  mask: AllocationMaskView
+  summary: AllocationSummaryView
+}
+
+/** Native face allocation — Case8 D_u. Keeps x/y orientations separate. */
+export type FaceAllocationView = AllocationCommonView & {
+  representation_type: 'FACE_FIELD'
+  measure_definition: 'face integrated'
+  coordinate_convention: string
+  /** Exactly two orientations; they are never averaged into one cell field. */
+  arrays: [AllocationArrayView, AllocationArrayView]
+}
+
+/** Cell allocation — Gate Acoustic / Pressure / Ungated. Single 32×128 field. */
+export type CellAllocationView = AllocationCommonView & {
+  representation_type: 'CELL_FIELD'
+  measure_definition: 'cell integrated'
+  coordinate_convention: string
+  /** Exactly one cell field. */
+  arrays: [AllocationArrayView]
+}
+
+export type AllocationView = FaceAllocationView | CellAllocationView

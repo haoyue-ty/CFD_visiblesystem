@@ -2284,6 +2284,648 @@
           }
         ]
       }
+    },
+    "/api/v1/allocations/{result_id}/metadata": {
+      "get": {
+        "operationId": "ALLOC01",
+        "description": "Registered allocation identity, measure, convention and mask refs; no values.",
+        "tags": [
+          "allocation"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "AllocationService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_AllocationMetadata_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "MISSING_ASSET, INVALID_RESULT_ID",
+            "x-error-codes": [
+              "MISSING_ASSET",
+              "INVALID_RESULT_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_REPRESENTATION",
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "SOURCE_ERROR",
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Result Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/allocations/{result_id}/arrays/{array_id}": {
+      "get": {
+        "operationId": "ALLOC02",
+        "description": "Flat C-order values for one allocation field, with its representation_type.",
+        "tags": [
+          "allocation"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "AllocationService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_AllocationArrayResponse_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "MISSING_ASSET, INVALID_RESULT_ID",
+            "x-error-codes": [
+              "MISSING_ASSET",
+              "INVALID_RESULT_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_REPRESENTATION",
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "SOURCE_ERROR",
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Result Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "array_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Array Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/allocations/{result_id}/summary": {
+      "get": {
+        "operationId": "ALLOC03",
+        "description": "Budget/inside/outside summary, measure and cumulative curve slot.",
+        "tags": [
+          "allocation"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "AllocationService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_AllocationSummary_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "MISSING_ASSET, INVALID_RESULT_ID",
+            "x-error-codes": [
+              "MISSING_ASSET",
+              "INVALID_RESULT_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_REPRESENTATION",
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "SOURCE_ERROR",
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Result Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/allocations/comparison": {
+      "get": {
+        "operationId": "ALLOC04",
+        "description": "Shared extent/colour basis and per-variant allocation refs; no normalised values.",
+        "tags": [
+          "allocation"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "AllocationService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_AllocationComparison_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "MISSING_ASSET, INVALID_RESULT_ID",
+            "x-error-codes": [
+              "MISSING_ASSET",
+              "INVALID_RESULT_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION",
+            "x-error-codes": [
+              "UNSUPPORTED_REPRESENTATION",
+              "UNSUPPORTED_COMBINATION"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "SOURCE_ERROR",
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "experiment_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "gate",
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "title": "Experiment Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "representation_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "FACE_FIELD",
+                    "CELL_FIELD",
+                    "ANGULAR_SECTOR"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Representation Type"
+            }
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -6014,6 +6656,601 @@
         ],
         "title": "ApiEnvelope[ProjectInfo]"
       },
+      "AllocationSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "total_budget": {
+            "$ref": "#/components/schemas/ResourceSlot_Metric_"
+          },
+          "inside": {
+            "$ref": "#/components/schemas/ResourceSlot_Metric_"
+          },
+          "outside": {
+            "$ref": "#/components/schemas/ResourceSlot_Metric_"
+          },
+          "fraction_format": {
+            "const": "FRACTION",
+            "title": "Fraction Format",
+            "type": "string"
+          },
+          "mask_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Mask Refs",
+            "type": "array"
+          },
+          "measure": {
+            "$ref": "#/components/schemas/MeasureConvention"
+          },
+          "spatial_cumulative_curve": {
+            "$ref": "#/components/schemas/ResourceSlot_SpatialCurve_"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "total_budget",
+          "inside",
+          "outside",
+          "fraction_format",
+          "mask_refs",
+          "measure",
+          "spatial_cumulative_curve",
+          "evidence_refs"
+        ],
+        "title": "AllocationSummary",
+        "type": "object"
+      },
+      "AvailableSlot_SpatialCurve_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/SpatialCurve"
+          }
+        },
+        "required": [
+          "availability",
+          "value"
+        ],
+        "title": "AvailableSlot[SpatialCurve]",
+        "type": "object"
+      },
+      "CellAllocation": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldDescriptor"
+            },
+            "minItems": 1,
+            "title": "Fields",
+            "type": "array"
+          },
+          "representation_type": {
+            "const": "CELL_FIELD",
+            "title": "Representation Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result",
+          "summary",
+          "fields",
+          "representation_type"
+        ],
+        "title": "CellAllocation",
+        "type": "object"
+      },
+      "FaceAllocation": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldDescriptor"
+            },
+            "minItems": 1,
+            "title": "Fields",
+            "type": "array"
+          },
+          "representation_type": {
+            "const": "FACE_FIELD",
+            "title": "Representation Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result",
+          "summary",
+          "fields",
+          "representation_type"
+        ],
+        "title": "FaceAllocation",
+        "type": "object"
+      },
+      "PartialSlot_SpatialCurve_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/SpatialCurve"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "availability",
+          "value",
+          "issues"
+        ],
+        "title": "PartialSlot[SpatialCurve]",
+        "type": "object"
+      },
+      "ResourceSlot_SpatialCurve_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableSlot_SpatialCurve_",
+            "ERROR": "#/components/schemas/FailedSlot",
+            "MISSING": "#/components/schemas/FailedSlot",
+            "PARTIAL": "#/components/schemas/PartialSlot_SpatialCurve_",
+            "UNSUPPORTED": "#/components/schemas/FailedSlot"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableSlot_SpatialCurve_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialSlot_SpatialCurve_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedSlot"
+          }
+        ],
+        "title": "ResourceSlot[SpatialCurve]"
+      },
+      "SpatialCurve": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "axis": {
+            "title": "Axis",
+            "type": "string"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/ArrayRef"
+          },
+          "cumulative_fraction": {
+            "$ref": "#/components/schemas/ArrayRef"
+          },
+          "definition_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Definition Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result",
+          "axis",
+          "coordinates",
+          "cumulative_fraction",
+          "definition_id"
+        ],
+        "title": "SpatialCurve",
+        "type": "object"
+      },
+      "AllocationResult": {
+        "description": "First-batch subset only; Cylinder sector and REGION_SCALAR remain deferred.",
+        "discriminator": {
+          "mapping": {
+            "CELL_FIELD": "#/components/schemas/CellAllocation",
+            "FACE_FIELD": "#/components/schemas/FaceAllocation"
+          },
+          "propertyName": "representation_type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/FaceAllocation"
+          },
+          {
+            "$ref": "#/components/schemas/CellAllocation"
+          }
+        ],
+        "title": "AllocationResult"
+      },
+      "AllocationMetadata": {
+        "additionalProperties": false,
+        "description": "Registered allocation identity, measure, convention and mask refs.\n\nMetadata never embeds values; arrays load separately with their own headers.",
+        "properties": {
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          },
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "semantic_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Semantic Id",
+            "type": "string"
+          },
+          "representation_type": {
+            "enum": [
+              "FACE_FIELD",
+              "CELL_FIELD",
+              "ANGULAR_SECTOR"
+            ],
+            "title": "Representation Type",
+            "type": "string"
+          },
+          "wire_representation": {
+            "title": "Wire Representation",
+            "type": "string"
+          },
+          "measure_definition": {
+            "enum": [
+              "face integrated",
+              "cell integrated",
+              "sector aggregated"
+            ],
+            "title": "Measure Definition",
+            "type": "string"
+          },
+          "measure": {
+            "$ref": "#/components/schemas/MeasureConvention"
+          },
+          "coordinate_convention": {
+            "title": "Coordinate Convention",
+            "type": "string"
+          },
+          "mask_definition": {
+            "title": "Mask Definition",
+            "type": "string"
+          },
+          "mask_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Mask Refs",
+            "type": "array"
+          },
+          "domains": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Domains",
+            "type": "array"
+          },
+          "array_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ArrayRef"
+            },
+            "title": "Array Refs",
+            "type": "array"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ScopeSpec"
+          },
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          }
+        },
+        "required": [
+          "result_id",
+          "experiment_id",
+          "config_id",
+          "semantic_id",
+          "representation_type",
+          "wire_representation",
+          "measure_definition",
+          "measure",
+          "coordinate_convention",
+          "mask_definition",
+          "mask_refs",
+          "domains",
+          "array_refs",
+          "evidence_refs",
+          "scope",
+          "result"
+        ],
+        "title": "AllocationMetadata",
+        "type": "object"
+      },
+      "AllocationArrayResponse": {
+        "additionalProperties": false,
+        "description": "One allocation field array whose header carries the wire representation.\n\n``representation_type`` is mandatory on every allocation response so a client\nnever has to infer face vs cell from array shape or field identity.",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ScientificResult"
+          },
+          "representation_type": {
+            "enum": [
+              "FACE_FIELD",
+              "CELL_FIELD",
+              "ANGULAR_SECTOR"
+            ],
+            "title": "Representation Type",
+            "type": "string"
+          },
+          "field_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Field Id",
+            "type": "string"
+          },
+          "array_ref": {
+            "$ref": "#/components/schemas/ArrayRef"
+          },
+          "values": {
+            "items": {},
+            "title": "Values",
+            "type": "array"
+          }
+        },
+        "required": [
+          "result",
+          "representation_type",
+          "field_id",
+          "array_ref",
+          "values"
+        ],
+        "title": "AllocationArrayResponse",
+        "type": "object"
+      },
+      "AllocationComparisonEntry": {
+        "additionalProperties": false,
+        "description": "One comparable allocation variant with its own representation header.",
+        "properties": {
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          },
+          "config_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Config Id",
+            "type": "string"
+          },
+          "representation_type": {
+            "enum": [
+              "FACE_FIELD",
+              "CELL_FIELD",
+              "ANGULAR_SECTOR"
+            ],
+            "title": "Representation Type",
+            "type": "string"
+          },
+          "wire_representation": {
+            "title": "Wire Representation",
+            "type": "string"
+          },
+          "array_ref": {
+            "$ref": "#/components/schemas/ArrayRef"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ResourceSlot_AllocationSummary_"
+          }
+        },
+        "required": [
+          "result_id",
+          "config_id",
+          "representation_type",
+          "wire_representation",
+          "array_ref",
+          "summary"
+        ],
+        "title": "AllocationComparisonEntry",
+        "type": "object"
+      },
+      "AvailableSlot_AllocationSummary_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          }
+        },
+        "required": [
+          "availability",
+          "value"
+        ],
+        "title": "AvailableSlot[AllocationSummary]",
+        "type": "object"
+      },
+      "PartialSlot_AllocationSummary_": {
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "availability",
+          "value",
+          "issues"
+        ],
+        "title": "PartialSlot[AllocationSummary]",
+        "type": "object"
+      },
+      "ResourceSlot_AllocationSummary_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableSlot_AllocationSummary_",
+            "ERROR": "#/components/schemas/FailedSlot",
+            "MISSING": "#/components/schemas/FailedSlot",
+            "PARTIAL": "#/components/schemas/PartialSlot_AllocationSummary_",
+            "UNSUPPORTED": "#/components/schemas/FailedSlot"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableSlot_AllocationSummary_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialSlot_AllocationSummary_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedSlot"
+          }
+        ],
+        "title": "ResourceSlot[AllocationSummary]"
+      },
+      "AllocationComparison": {
+        "additionalProperties": false,
+        "description": "Common extent/colour basis plus per-variant refs; no normalised values.",
+        "properties": {
+          "comparison_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Comparison Id",
+            "type": "string"
+          },
+          "experiment_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "representation_type": {
+            "enum": [
+              "FACE_FIELD",
+              "CELL_FIELD",
+              "ANGULAR_SECTOR"
+            ],
+            "title": "Representation Type",
+            "type": "string"
+          },
+          "shared_extent": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceSlot_Metric_"
+            },
+            "title": "Shared Extent",
+            "type": "array"
+          },
+          "colour_scale": {
+            "const": "SHARED_COMPARISON_SCALE",
+            "title": "Colour Scale",
+            "type": "string"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/AllocationComparisonEntry"
+            },
+            "minItems": 1,
+            "title": "Entries",
+            "type": "array"
+          },
+          "measure": {
+            "$ref": "#/components/schemas/MeasureConvention"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            "title": "Evidence Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "comparison_id",
+          "experiment_id",
+          "representation_type",
+          "shared_extent",
+          "colour_scale",
+          "entries",
+          "measure",
+          "evidence_refs"
+        ],
+        "title": "AllocationComparison",
+        "type": "object"
+      },
       "Input_RegistryQuery": {
         "additionalProperties": false,
         "properties": {
@@ -8348,6 +9585,609 @@
           "result_id"
         ],
         "title": "ProvenanceQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_AllocationMetadata_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationMetadata"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[AllocationMetadata]",
+        "type": "object"
+      },
+      "PartialEnvelope_AllocationMetadata_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationMetadata"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[AllocationMetadata]",
+        "type": "object"
+      },
+      "ApiEnvelope_AllocationMetadata_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_AllocationMetadata_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_AllocationMetadata_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_AllocationMetadata_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_AllocationMetadata_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[AllocationMetadata]"
+      },
+      "Input_AllocationQuery": {
+        "additionalProperties": false,
+        "description": "Allocation identity selector; representation is server-declared, never a guess.",
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result_id"
+        ],
+        "title": "AllocationQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_AllocationArrayResponse_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationArrayResponse"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[AllocationArrayResponse]",
+        "type": "object"
+      },
+      "PartialEnvelope_AllocationArrayResponse_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationArrayResponse"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[AllocationArrayResponse]",
+        "type": "object"
+      },
+      "ApiEnvelope_AllocationArrayResponse_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_AllocationArrayResponse_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_AllocationArrayResponse_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_AllocationArrayResponse_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_AllocationArrayResponse_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[AllocationArrayResponse]"
+      },
+      "Input_AllocationArrayQuery": {
+        "additionalProperties": false,
+        "description": "One registered allocation field array; no user dtype/member/path is accepted.",
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "result_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Result Id",
+            "type": "string"
+          },
+          "array_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Array Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result_id",
+          "array_id"
+        ],
+        "title": "AllocationArrayQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_AllocationSummary_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[AllocationSummary]",
+        "type": "object"
+      },
+      "PartialEnvelope_AllocationSummary_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationSummary"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[AllocationSummary]",
+        "type": "object"
+      },
+      "ApiEnvelope_AllocationSummary_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_AllocationSummary_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_AllocationSummary_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_AllocationSummary_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_AllocationSummary_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[AllocationSummary]"
+      },
+      "AvailableEnvelope_AllocationComparison_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationComparison"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[AllocationComparison]",
+        "type": "object"
+      },
+      "PartialEnvelope_AllocationComparison_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AllocationComparison"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[AllocationComparison]",
+        "type": "object"
+      },
+      "ApiEnvelope_AllocationComparison_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_AllocationComparison_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_AllocationComparison_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_AllocationComparison_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_AllocationComparison_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[AllocationComparison]"
+      },
+      "Input_AllocationComparisonQuery": {
+        "additionalProperties": false,
+        "description": "Comparison scope selector; the three frozen Gate variants when omitted.",
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "experiment_id": {
+            "default": "gate",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "representation_type": {
+            "anyOf": [
+              {
+                "enum": [
+                  "FACE_FIELD",
+                  "CELL_FIELD",
+                  "ANGULAR_SECTOR"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Representation Type"
+          }
+        },
+        "title": "AllocationComparisonQuery",
         "type": "object"
       }
     }

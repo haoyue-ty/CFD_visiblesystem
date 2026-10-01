@@ -276,6 +276,74 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/allocations/{result_id}/metadata": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Registered allocation identity, measure, convention and mask refs; no values. */
+        get: operations["ALLOC01"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/allocations/{result_id}/arrays/{array_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Flat C-order values for one allocation field, with its representation_type. */
+        get: operations["ALLOC02"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/allocations/{result_id}/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Budget/inside/outside summary, measure and cumulative curve slot. */
+        get: operations["ALLOC03"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/allocations/comparison": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Shared extent/colour basis and per-variant allocation refs; no normalised values. */
+        get: operations["ALLOC04"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1447,6 +1515,215 @@ export interface components {
         };
         /** ApiEnvelope[ProjectInfo] */
         ApiEnvelope_ProjectInfo_: components["schemas"]["AvailableEnvelope_ProjectInfo_"] | components["schemas"]["PartialEnvelope_ProjectInfo_"] | components["schemas"]["FailedEnvelope"];
+        /** AllocationSummary */
+        AllocationSummary: {
+            total_budget: components["schemas"]["ResourceSlot_Metric_"];
+            inside: components["schemas"]["ResourceSlot_Metric_"];
+            outside: components["schemas"]["ResourceSlot_Metric_"];
+            /**
+             * Fraction Format
+             * @constant
+             */
+            fraction_format: "FRACTION";
+            /** Mask Refs */
+            mask_refs: string[];
+            measure: components["schemas"]["MeasureConvention"];
+            spatial_cumulative_curve: components["schemas"]["ResourceSlot_SpatialCurve_"];
+            /** Evidence Refs */
+            evidence_refs: string[];
+        };
+        /** AvailableSlot[SpatialCurve] */
+        AvailableSlot_SpatialCurve_: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            value: components["schemas"]["SpatialCurve"];
+        };
+        /** CellAllocation */
+        CellAllocation: {
+            result: components["schemas"]["ScientificResult"];
+            summary: components["schemas"]["AllocationSummary"];
+            /** Fields */
+            fields: components["schemas"]["FieldDescriptor"][];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            representation_type: "CELL_FIELD";
+        };
+        /** FaceAllocation */
+        FaceAllocation: {
+            result: components["schemas"]["ScientificResult"];
+            summary: components["schemas"]["AllocationSummary"];
+            /** Fields */
+            fields: components["schemas"]["FieldDescriptor"][];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            representation_type: "FACE_FIELD";
+        };
+        /** PartialSlot[SpatialCurve] */
+        PartialSlot_SpatialCurve_: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            value: components["schemas"]["SpatialCurve"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ResourceSlot[SpatialCurve] */
+        ResourceSlot_SpatialCurve_: components["schemas"]["AvailableSlot_SpatialCurve_"] | components["schemas"]["PartialSlot_SpatialCurve_"] | components["schemas"]["FailedSlot"];
+        /** SpatialCurve */
+        SpatialCurve: {
+            result: components["schemas"]["ScientificResult"];
+            /** Axis */
+            axis: string;
+            coordinates: components["schemas"]["ArrayRef"];
+            cumulative_fraction: components["schemas"]["ArrayRef"];
+            /** Definition Id */
+            definition_id: string;
+        };
+        /**
+         * AllocationResult
+         * @description First-batch subset only; Cylinder sector and REGION_SCALAR remain deferred.
+         */
+        AllocationResult: components["schemas"]["FaceAllocation"] | components["schemas"]["CellAllocation"];
+        /**
+         * AllocationMetadata
+         * @description Registered allocation identity, measure, convention and mask refs.
+         *
+         *     Metadata never embeds values; arrays load separately with their own headers.
+         */
+        AllocationMetadata: {
+            /** Result Id */
+            result_id: string;
+            /** Experiment Id */
+            experiment_id: string;
+            /** Config Id */
+            config_id: string;
+            /** Semantic Id */
+            semantic_id: string;
+            /**
+             * Representation Type
+             * @enum {string}
+             */
+            representation_type: "FACE_FIELD" | "CELL_FIELD" | "ANGULAR_SECTOR";
+            /** Wire Representation */
+            wire_representation: string;
+            /**
+             * Measure Definition
+             * @enum {string}
+             */
+            measure_definition: "face integrated" | "cell integrated" | "sector aggregated";
+            measure: components["schemas"]["MeasureConvention"];
+            /** Coordinate Convention */
+            coordinate_convention: string;
+            /** Mask Definition */
+            mask_definition: string;
+            /** Mask Refs */
+            mask_refs: string[];
+            /** Domains */
+            domains: string[];
+            /** Array Refs */
+            array_refs: components["schemas"]["ArrayRef"][];
+            /** Evidence Refs */
+            evidence_refs: string[];
+            scope: components["schemas"]["ScopeSpec"];
+            result: components["schemas"]["ScientificResult"];
+        };
+        /**
+         * AllocationArrayResponse
+         * @description One allocation field array whose header carries the wire representation.
+         *
+         *     ``representation_type`` is mandatory on every allocation response so a client
+         *     never has to infer face vs cell from array shape or field identity.
+         */
+        AllocationArrayResponse: {
+            result: components["schemas"]["ScientificResult"];
+            /**
+             * Representation Type
+             * @enum {string}
+             */
+            representation_type: "FACE_FIELD" | "CELL_FIELD" | "ANGULAR_SECTOR";
+            /** Field Id */
+            field_id: string;
+            array_ref: components["schemas"]["ArrayRef"];
+            /** Values */
+            values: unknown[];
+        };
+        /**
+         * AllocationComparisonEntry
+         * @description One comparable allocation variant with its own representation header.
+         */
+        AllocationComparisonEntry: {
+            /** Result Id */
+            result_id: string;
+            /** Config Id */
+            config_id: string;
+            /**
+             * Representation Type
+             * @enum {string}
+             */
+            representation_type: "FACE_FIELD" | "CELL_FIELD" | "ANGULAR_SECTOR";
+            /** Wire Representation */
+            wire_representation: string;
+            array_ref: components["schemas"]["ArrayRef"];
+            summary: components["schemas"]["ResourceSlot_AllocationSummary_"];
+        };
+        /** AvailableSlot[AllocationSummary] */
+        AvailableSlot_AllocationSummary_: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            value: components["schemas"]["AllocationSummary"];
+        };
+        /** PartialSlot[AllocationSummary] */
+        PartialSlot_AllocationSummary_: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            value: components["schemas"]["AllocationSummary"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ResourceSlot[AllocationSummary] */
+        ResourceSlot_AllocationSummary_: components["schemas"]["AvailableSlot_AllocationSummary_"] | components["schemas"]["PartialSlot_AllocationSummary_"] | components["schemas"]["FailedSlot"];
+        /**
+         * AllocationComparison
+         * @description Common extent/colour basis plus per-variant refs; no normalised values.
+         */
+        AllocationComparison: {
+            /** Comparison Id */
+            comparison_id: string;
+            /** Experiment Id */
+            experiment_id: string;
+            /**
+             * Representation Type
+             * @enum {string}
+             */
+            representation_type: "FACE_FIELD" | "CELL_FIELD" | "ANGULAR_SECTOR";
+            /** Shared Extent */
+            shared_extent: components["schemas"]["ResourceSlot_Metric_"][];
+            /**
+             * Colour Scale
+             * @constant
+             */
+            colour_scale: "SHARED_COMPARISON_SCALE";
+            /** Entries */
+            entries: components["schemas"]["AllocationComparisonEntry"][];
+            measure: components["schemas"]["MeasureConvention"];
+            /** Evidence Refs */
+            evidence_refs: string[];
+        };
         /** RegistryQuery */
         Input_RegistryQuery: {
             /**
@@ -2275,6 +2552,223 @@ export interface components {
             registry_revision: string | null;
             /** Result Id */
             result_id: string;
+        };
+        /** AvailableEnvelope[AllocationMetadata] */
+        AvailableEnvelope_AllocationMetadata_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["AllocationMetadata"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[AllocationMetadata] */
+        PartialEnvelope_AllocationMetadata_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["AllocationMetadata"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[AllocationMetadata] */
+        ApiEnvelope_AllocationMetadata_: components["schemas"]["AvailableEnvelope_AllocationMetadata_"] | components["schemas"]["PartialEnvelope_AllocationMetadata_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * AllocationQuery
+         * @description Allocation identity selector; representation is server-declared, never a guess.
+         */
+        Input_AllocationQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Result Id */
+            result_id: string;
+        };
+        /** AvailableEnvelope[AllocationArrayResponse] */
+        AvailableEnvelope_AllocationArrayResponse_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["AllocationArrayResponse"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[AllocationArrayResponse] */
+        PartialEnvelope_AllocationArrayResponse_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["AllocationArrayResponse"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[AllocationArrayResponse] */
+        ApiEnvelope_AllocationArrayResponse_: components["schemas"]["AvailableEnvelope_AllocationArrayResponse_"] | components["schemas"]["PartialEnvelope_AllocationArrayResponse_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * AllocationArrayQuery
+         * @description One registered allocation field array; no user dtype/member/path is accepted.
+         */
+        Input_AllocationArrayQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Result Id */
+            result_id: string;
+            /** Array Id */
+            array_id: string;
+        };
+        /** AvailableEnvelope[AllocationSummary] */
+        AvailableEnvelope_AllocationSummary_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["AllocationSummary"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[AllocationSummary] */
+        PartialEnvelope_AllocationSummary_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["AllocationSummary"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[AllocationSummary] */
+        ApiEnvelope_AllocationSummary_: components["schemas"]["AvailableEnvelope_AllocationSummary_"] | components["schemas"]["PartialEnvelope_AllocationSummary_"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[AllocationComparison] */
+        AvailableEnvelope_AllocationComparison_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["AllocationComparison"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[AllocationComparison] */
+        PartialEnvelope_AllocationComparison_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["AllocationComparison"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[AllocationComparison] */
+        ApiEnvelope_AllocationComparison_: components["schemas"]["AvailableEnvelope_AllocationComparison_"] | components["schemas"]["PartialEnvelope_AllocationComparison_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * AllocationComparisonQuery
+         * @description Comparison scope selector; the three frozen Gate variants when omitted.
+         */
+        Input_AllocationComparisonQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /**
+             * Experiment Id
+             * @default gate
+             */
+            experiment_id: string;
+            /**
+             * Representation Type
+             * @default null
+             */
+            representation_type: ("FACE_FIELD" | "CELL_FIELD" | "ANGULAR_SECTOR") | null;
         };
     };
     responses: never;
@@ -3460,6 +3954,355 @@ export interface operations {
                 };
             };
             /** @description CANONICAL_SCHEMA_MISMATCH, SOURCE_READ_ERROR, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    ALLOC01: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                result_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_AllocationMetadata_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MISSING_ASSET, INVALID_RESULT_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    ALLOC02: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                result_id: string;
+                array_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_AllocationArrayResponse_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MISSING_ASSET, INVALID_RESULT_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    ALLOC03: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                result_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_AllocationSummary_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MISSING_ASSET, INVALID_RESULT_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    ALLOC04: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                experiment_id?: string;
+                representation_type?: ("FACE_FIELD" | "CELL_FIELD" | "ANGULAR_SECTOR") | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_AllocationComparison_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MISSING_ASSET, INVALID_RESULT_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
             500: {
                 headers: {
                     [name: string]: unknown;

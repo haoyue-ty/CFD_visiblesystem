@@ -267,7 +267,9 @@ def test_undelivered_adapter_reports_feature_not_enabled():
 # --- OpenAPI coverage ------------------------------------------------------------
 
 IMPLEMENTED = {"SYS01", "DOC01", "REG01", "REG02", "REG03", "REG04", "C801", "C802",
-               "C803", "C804", "C805", "C806", "C808", "ARRAY01", "EVI02", "EVI03"}
+               "C803", "C804", "C805", "C806", "C808", "ARRAY01", "EVI02", "EVI03",
+               # Phase 6B Window 3 delivered the four allocation operations.
+               "ALLOC01", "ALLOC02", "ALLOC03", "ALLOC04"}
 
 
 def test_openapi_operations_match_the_catalog_and_runtime_routes(app):
@@ -281,6 +283,7 @@ def test_openapi_operations_match_the_catalog_and_runtime_routes(app):
     catalog.assert_routes(app)
     # C807 stays CONTRACT_DEFINED / IMPLEMENTATION_DEFERRED, so it must not be advertised.
     assert "C807" not in documented
+    # Window 3 routes live under /api/v1/allocations/*; nothing advertises C807's {base}/allocation.
     assert not any(path.endswith("/allocation") for path in document["paths"])
 
 

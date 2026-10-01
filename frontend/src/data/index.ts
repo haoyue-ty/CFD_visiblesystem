@@ -10,8 +10,11 @@
  * Pages never import a mock module or a transport directly.
  */
 import { ref, type Ref } from 'vue'
-import type { DataProvider, SnapshotSelector } from './provider'
+import type { AllocationSelector, DataProvider, SnapshotSelector } from './provider'
 import type {
+  AllocationMaskView,
+  AllocationSummaryView,
+  AllocationView,
   EntropyHistoryView,
   EvidenceDetailView,
   EvidenceSummaryView,
@@ -28,12 +31,21 @@ import { createMockProvider } from './mockProvider'
 import { createApiProvider } from './apiProvider'
 
 export type {
+  AllocationArrayView,
+  AllocationMaskView,
+  AllocationMeasureDefinition,
+  AllocationMetricView,
+  AllocationRepresentation,
+  AllocationSummaryView,
+  AllocationView,
+  CellAllocationView,
   DataOrigin,
   EntropyHistoryView,
   EvidenceDetailView,
   EvidenceSummaryView,
   ExperimentCatalogEntry,
   ExperimentOverview,
+  FaceAllocationView,
   FieldData,
   Loaded,
   LoadState,
@@ -129,6 +141,14 @@ export const dataService = {
     getProvider().listEvidenceForConfig(configId, signal),
   getEvidence: (evidenceId: string, signal?: AbortSignal): Promise<Loaded<EvidenceDetailView>> =>
     getProvider().getEvidence(evidenceId, signal),
+
+  // --- Phase 6B allocation -------------------------------------------------
+  describeAllocation: (selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationView>> =>
+    getProvider().describeAllocation(selector, signal),
+  loadAllocationMask: (selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationMaskView>> =>
+    getProvider().loadAllocationMask(selector, signal),
+  loadAllocationSummary: (selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationSummaryView>> =>
+    getProvider().loadAllocationSummary(selector, signal),
 }
 
-export type { DataProvider, SnapshotSelector }
+export type { AllocationSelector, DataProvider, SnapshotSelector }

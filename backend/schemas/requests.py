@@ -91,3 +91,22 @@ class IdentityQuery(RegistryQuery):
 
     evidence_id: ID | None = None
     asset_id: ID | None = None
+
+
+class AllocationQuery(RegistryQuery):
+    """Allocation identity selector; representation is server-declared, never a guess."""
+
+    result_id: ID
+
+
+class AllocationArrayQuery(AllocationQuery):
+    """One registered allocation field array; no user dtype/member/path is accepted."""
+
+    array_id: ID
+
+
+class AllocationComparisonQuery(RegistryQuery):
+    """Comparison scope selector; the three frozen Gate variants when omitted."""
+
+    experiment_id: ID = "gate"
+    representation_type: Literal["FACE_FIELD", "CELL_FIELD", "ANGULAR_SECTOR"] | None = None

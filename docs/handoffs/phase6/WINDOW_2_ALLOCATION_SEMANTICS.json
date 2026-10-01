@@ -1,0 +1,120 @@
+{
+  "window": "WINDOW_2_GATE_ALLOCATION",
+  "status": "PASS",
+  "checked_at": "2026-10-01T10:24:33.679910+08:00",
+  "branch": "phase6/gate-allocation",
+  "gate_count": 3,
+  "gate_ids": [
+    "Acoustic",
+    "Pressure",
+    "Ungated"
+  ],
+  "gates": [
+    {
+      "config_id": "Acoustic",
+      "q_at": 0.4,
+      "representation_type": "CELL_FIELD",
+      "measure_definition": "cell integrated",
+      "shape": [
+        32,
+        128
+      ],
+      "dtype": "float64",
+      "budget": 0.0028004425253788713,
+      "recomputed_budget": 0.0028004425253788773,
+      "absolute_error": 6.071532165918825e-18,
+      "absolute_tolerance": 1e-10,
+      "inside_fraction": 0.9983067757919961,
+      "outside_fraction": 0.0016932242080059982,
+      "inside_plus_outside": 1.0000000000000022,
+      "time": "STATIC/TRAJECTORY_INTEGRATED [0,0.08]",
+      "origin": "FROZEN_PRODUCTION",
+      "integral_rule": "sum(cells); no additional dx/dy/dt",
+      "pi_at_sha256": "35adfd76a205fdd811f03aac557b4dcb5e7603d29a6bed2d2ba4a302c580f874",
+      "pi_at_sha256_match": true,
+      "entropy_sha256_match": true
+    },
+    {
+      "config_id": "Pressure",
+      "q_at": 0.31018332312583474,
+      "representation_type": "CELL_FIELD",
+      "measure_definition": "cell integrated",
+      "shape": [
+        32,
+        128
+      ],
+      "dtype": "float64",
+      "budget": 0.0028430539591530325,
+      "recomputed_budget": 0.0028430539591530295,
+      "absolute_error": 3.0357660829594124e-18,
+      "absolute_tolerance": 1e-10,
+      "inside_fraction": 0.9916868280217838,
+      "outside_fraction": 0.008313171978215123,
+      "inside_plus_outside": 0.9999999999999989,
+      "time": "STATIC/TRAJECTORY_INTEGRATED [0,0.08]",
+      "origin": "FROZEN_PRODUCTION",
+      "integral_rule": "sum(cells); no additional dx/dy/dt",
+      "pi_at_sha256": "17754e75e9d207541ecb70a3619e994d27affc203781431eec2c3ed79c700d22",
+      "pi_at_sha256_match": true,
+      "entropy_sha256_match": true
+    },
+    {
+      "config_id": "Ungated",
+      "q_at": 0.03483470441226932,
+      "representation_type": "CELL_FIELD",
+      "measure_definition": "cell integrated",
+      "shape": [
+        32,
+        128
+      ],
+      "dtype": "float64",
+      "budget": 0.0028272752981764065,
+      "recomputed_budget": 0.002827275298176405,
+      "absolute_error": 1.3010426069826053e-18,
+      "absolute_tolerance": 1e-10,
+      "inside_fraction": 0.8923001329707689,
+      "outside_fraction": 0.10769986702923035,
+      "inside_plus_outside": 0.9999999999999993,
+      "time": "STATIC/TRAJECTORY_INTEGRATED [0,0.08]",
+      "origin": "FROZEN_PRODUCTION",
+      "integral_rule": "sum(cells); no additional dx/dy/dt",
+      "pi_at_sha256": "7d89e836f2fb2b4990442d50765c2878a07a2946f5c997bba92338a19b6dddec",
+      "pi_at_sha256_match": true,
+      "entropy_sha256_match": true
+    }
+  ],
+  "supporting_assets": {
+    "matched_qat": {
+      "path": "experiments/gate_ablation/FREEZE/calibration_snapshot/matched_qat.json",
+      "sha256_match": true
+    },
+    "analysis_csv": {
+      "path": "experiments/gate_ablation/FREEZE/gate_ablation_analysis.csv",
+      "sha256_match": true
+    },
+    "readme": {
+      "path": "experiments/gate_ablation/FREEZE/README.md",
+      "sha256_match": true
+    }
+  },
+  "frozen_contracts": [
+    {
+      "path": "docs/04_SYSTEM_ARCHITECTURE.md",
+      "sha256": "5a7193d4203ecd205f487fc38c2f64d09256388a9cb88f64d7201496ef58e2ea",
+      "freeze_match": true
+    },
+    {
+      "path": "docs/05_DATA_SCHEMA.md",
+      "sha256": "f61482eb917b81767864eb377a4db0c8b6dcf3e333676c2bd23201c7f0997099",
+      "freeze_match": true
+    },
+    {
+      "path": "docs/06_API_CONTRACT.md",
+      "sha256": "c115ef21d4c8ba2170cb888bfd4842ea12fe2c7f66cdf1b0519d08489dd4d9f1",
+      "freeze_match": true
+    }
+  ],
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "verification_scope": "read-only hash/shape/integral/window checks; no re-certification of CFD"
+}

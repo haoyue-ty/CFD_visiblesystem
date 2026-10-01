@@ -12,11 +12,13 @@ SYSTEM_CODES = frozenset({
 SCIENTIFIC_CODES = frozenset({
     "UNKNOWN_EXPERIMENT", "UNKNOWN_CONFIG", "INVALID_RESULT_ID", "SNAPSHOT_NOT_FOUND",
     "UNKNOWN_EVIDENCE_ID", "UNKNOWN_ASSET_ID", "MISSING_SCIENTIFIC_ASSET",
+    "UNSUPPORTED_REPRESENTATION", "MISSING_ASSET",
     "UNSUPPORTED_COMBINATION", "SOURCE_READ_ERROR", "CANONICAL_SCHEMA_MISMATCH",
 })
 # Failures here are server-side by definition: the adapter or the canonical contract is at fault.
 SERVER_SIDE_CODES = frozenset({
-    "SOURCE_READ_ERROR", "CANONICAL_SCHEMA_MISMATCH", "INTERNAL_ERROR", "FEATURE_NOT_ENABLED",
+    "SOURCE_READ_ERROR", "SOURCE_ERROR", "CANONICAL_SCHEMA_MISMATCH", "INTERNAL_ERROR",
+    "FEATURE_NOT_ENABLED",
 })
 
 
@@ -63,6 +65,31 @@ def unsupported_combination(message: str, *, resource_type: str, identity,
     return system_error("UNSUPPORTED_COMBINATION", message, status=422, availability="UNSUPPORTED",
                         resource_type=resource_type, identity=identity, details=details,
                         evidence_refs=evidence_refs, domain="SCIENTIFIC")
+
+
+def missing_asset(message: str, *, resource_type: str, identity,
+                  details: list | None = None, evidence_refs: list | None = None) -> DomainError:
+    """404 MISSING_ASSET: a recognized allocation identity whose saved asset is absent."""
+    return system_error("MISSING_ASSET", message, status=404, availability="MISSING",
+                        resource_type=resource_type, identity=identity, details=details,
+                        evidence_refs=evidence_refs, domain="SCIENTIFIC")
+
+
+def unsupported_representation(message: str, *, resource_type: str, identity,
+                               details: list | None = None,
+                               evidence_refs: list | None = None) -> DomainError:
+    """422 UNSUPPORTED_REPRESENTATION: allocation cannot be rendered as the requested form."""
+    return system_error("UNSUPPORTED_REPRESENTATION", message, status=422, availability="UNSUPPORTED",
+                        resource_type=resource_type, identity=identity, details=details,
+                        evidence_refs=evidence_refs, domain="SCIENTIFIC")
+
+
+def source_error(message: str, *, retryable: bool = False, resource_type: str = "allocation",
+                 identity=None, evidence_refs: list | None = None) -> DomainError:
+    """500 SOURCE_ERROR: the controlled allocation source could not be read faithfully."""
+    return system_error("SOURCE_ERROR", message, status=500, retryable=retryable,
+                        resource_type=resource_type, identity=identity,
+                        evidence_refs=evidence_refs, domain="SYSTEM")
 
 
 def register_error_handlers(app: Flask) -> None:

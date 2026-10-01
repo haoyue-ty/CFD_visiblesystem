@@ -22,6 +22,7 @@ import MockBadge from '../components/MockBadge.vue'
 import OverviewTab from '../views/case8/OverviewTab.vue'
 import FlowTab from '../views/case8/FlowTab.vue'
 import EntropyTab from '../views/case8/EntropyTab.vue'
+import AllocationTab from '../views/case8/AllocationTab.vue'
 import MetricsTab from '../views/case8/MetricsTab.vue'
 import EvidenceTab from '../views/case8/EvidenceTab.vue'
 
@@ -174,8 +175,9 @@ watch(
           capability limit for this config, not a synthetic zero field.
         </p>
         <p v-else-if="tab === 'allocation'" class="exp__tab-note" data-testid="allocation-note">
-          D_u allocation is the recorded terminal cumulative native-face diagnostic (DIAGNOSTIC_RERUN).
-          It is delivered after the first slice; the tab is present so the capability stays discoverable.
+          D_u FACE_FIELD is the recorded terminal cumulative native-face diagnostic (DIAGNOSTIC_RERUN).
+          The Gate CELL_FIELD views (Acoustic / Pressure / Ungated) are frozen production cell maps.
+          These are different scientific objects and are rendered separately.
         </p>
 
         <section class="exp__content" role="tabpanel" :aria-label="tab">
@@ -187,9 +189,9 @@ watch(
             v-model:field-id="fieldId"
           />
           <EntropyTab v-else-if="tab === 'entropy'" :config-id="configId" v-model="scalarStep" />
+          <AllocationTab v-else-if="tab === 'allocation'" :config-id="configId" />
           <MetricsTab v-else-if="tab === 'metrics'" :config-id="configId" />
           <EvidenceTab v-else-if="tab === 'evidence'" :config-id="configId" />
-          <p v-else-if="tab === 'allocation'" class="exp__placeholder">Allocation view (delivered after the first slice).</p>
         </section>
       </template>
     </LoadStateBlock>
@@ -222,5 +224,4 @@ watch(
 .exp__tab-reason { font-size: 0.82rem; color: #8a4b00; background: #fffaf0; border-left: 3px solid #d08700; padding: 0.45rem 0.7rem; margin-top: 0.8rem; }
 .exp__tab-note { font-size: 0.82rem; color: #555; background: #f7f7f7; padding: 0.45rem 0.7rem; margin-top: 0.8rem; }
 .exp__content { margin-top: 1rem; }
-.exp__placeholder { color: #777; font-size: 0.9rem; }
 </style>

@@ -11,8 +11,12 @@
  * The generated values are deterministic (seeded) so tests and deep-links are
  * reproducible, but they are SYNTHETIC and must never be cited as science.
  */
-import type { DataProvider, SnapshotSelector } from './provider'
+import type { DataProvider, SnapshotSelector, AllocationSelector } from './provider'
 import type {
+  AllocationArrayView,
+  AllocationMaskView,
+  AllocationSummaryView,
+  AllocationView,
   DataOrigin,
   EntropyHistoryView,
   EvidenceDetailView,
@@ -331,6 +335,225 @@ function buildEvidenceDetail(evidenceId: string): EvidenceDetailView | null {
   }
 }
 
+// --- allocation (Phase 6B) --------------------------------------------------
+//
+// Two representations, two scientific objects. The mock mirrors the recorded
+// semantics in docs/handoffs/phase6/ALLOCATION_SEMANTICS_VERIFICATION.json:
+//
+//   Case8 D_u  FACE_FIELD  x-faces [32,129] + y-faces [32,128], two mask counts
+//                          (640 / 648), spatial measure still required
+//   Gate       CELL_FIELD  one [32,128] cell field, mask count 672,
+//                          spatial measure already included
+//
+// Values are synthetic (seeded) but the SHAPES, MASK IDENTITIES and SUMMARY
+// NUMBERS are the recorded ones so the frontend exercises the real contract.
+// Note the summary budgets below are the recorded scientific values; the arrays
+// are synthetic — the summary is NOT recomputed from the synthetic arrays.
+
+const CASE8_ALLOC = {
+  result_id: 'mock.case8.D_u.allocation',
+  semantic_id: 'Case8_face_Pi_at_integrated',
+  mask_id: 'mask.case8.native-face-shock-window',
+  budget: 0.0027771079325925934,
+  inside_fraction: 0.9980884346017243,
+  mask_counts: [640, 648],
+  dx: 1 / 128,
+  dy: 1 / 32,
+}
+
+const GATE_ALLOC: Record<string, {
+  q_at: number
+  budget: number
+  inside: number
+  outside: number
+  mask_count: number
+}> = {
+  Acoustic: { q_at: 0.4, budget: 0.0028004425253788713, inside: 0.9983067757919961, outside: 0.0016932242080059982, mask_count: 672 },
+  Pressure: { q_at: 0.31018332312583474, budget: 0.0028430539591530325, inside: 0.9916868280217838, outside: 0.008313171978215123, mask_count: 672 },
+  Ungated: { q_at: 0.03483470441226932, budget: 0.0028272752981764065, inside: 0.8923001329707689, outside: 0.10769986702923035, mask_count: 672 },
+}
+
+/** The prescribed initial front for BOTH windows (never an evolved front). */
+function initialFront(y: number): number {
+  return 0.5 + 0.0125 * Math.sin(8 * Math.PI * y)
+}
+
+/** A synthetic cumulative field on a shock-window band around the initial front. */
+function allocationField(seed: number, shape: [number, number], location: 'X_FACE' | 'Y_FACE' | 'CELL'): { values: number[]; mask: boolean[]; count: number } {
+  const [ny, nx] = shape
+  const r = rng(seed)
+  const values: number[] = new Array(ny * nx)
+  const mask: boolean[] = new Array(ny * nx)
+  let count = 0
+  for (let j = 0; j < ny; j += 1) {
+    // x-normal faces sample y at the row centre; y-normal faces at the row edge.
+    const y = location === 'Y_FACE' ? j / ny : (j + 0.5) / ny
+    const xs = initialFront(y)
+    for (let i = 0; i < nx; i += 1) {
+      const x = location === 'X_FACE' || location === 'CELL' ? (i + 0.5) / Math.max(nx - 1, 1) : i / nx
+      const inWindow = Math.abs(x - xs) <= 0.08
+      mask[j * nx + i] = inWindow
+      if (inWindow) count += 1
+      // Cumulative production concentrated on the window band (synthetic).
+      const band = Math.exp(-Math.pow((x - xs) / 0.05, 2))
+      values[j * nx + i] = Number(((inWindow ? band : 0.002 * band) * (0.7 + 0.6 * r())).toFixed(9))
+    }
+  }
+  return { values, mask, count }
+}
+
+function allocationMask(id: string, type: AllocationMaskView['mask_type'], definition: string, counts: number[], evidenceRefs: string[]): AllocationMaskView {
+  return { mask_id: id, mask_type: type, definition, counts, evidence_refs: evidenceRefs, verification: mockVerification() }
+}
+
+function allocationMetric(metricId: string, label: string, value: number, unitLabel: string, fraction: boolean, evidenceRefs: string[]) {
+  return {
+    metric_id: metricId, display_label: label, value, unit_label: unitLabel,
+    definition_id: `mock.def.${metricId}`, fraction_format: fraction ? ('FRACTION' as const) : null, evidence_refs: evidenceRefs,
+  }
+}
+
+/**
+ * Case8 D_u FACE_FIELD — native x/y faces kept as TWO separate arrays.
+ * The two orientations are never summed into one field here; the spatial rules
+ * (dy, dx) are declared in the summary, not applied by the mock.
+ */
+function buildFaceAllocation(): AllocationView {
+  const xSeed = 0x9e3779b1
+  const ySeed = 0x85ebca6b
+  const xField = allocationField(xSeed, [32, 129], 'X_FACE')
+  const yField = allocationField(ySeed, [32, 128], 'Y_FACE')
+  const evidenceRefs = ['mock.evidence.case8.D_u.allocation.map']
+
+  const arrays: [AllocationArrayView, AllocationArrayView] = [
+    {
+      array_id: 'pi_at_x_faces', label: 'x-normal faces', location_type: 'CARTESIAN_X_FACE',
+      shape: [32, 129], axes: ['y', 'x'], unit_label: 'model integrated entropy per model face length',
+      values: xField.values,
+    },
+    {
+      array_id: 'pi_at_y_faces', label: 'y-normal faces', location_type: 'CARTESIAN_Y_FACE',
+      shape: [32, 128], axes: ['y', 'x'], unit_label: 'model integrated entropy per model face length',
+      values: yField.values,
+    },
+  ]
+
+  const mask = allocationMask(
+    CASE8_ALLOC.mask_id,
+    'CASE8_NATIVE_FACE_SHOCK_WINDOW',
+    'Independent saved native x/y-face bool masks: abs(x - (0.5 + 0.0125*sin(8*pi*y))) <= 0.08; prescribed initial front, inclusive.',
+    CASE8_ALLOC.mask_counts,
+    evidenceRefs,
+  )
+
+  const outside = Number((1 - CASE8_ALLOC.inside_fraction).toPrecision(8))
+  const summary: AllocationSummaryView = {
+    total_budget: allocationMetric('mock.metric.case8.D_u.allocation.budget', 'Integrated E_at budget', CASE8_ALLOC.budget, 'model integrated entropy per model face length', false, evidenceRefs),
+    inside: allocationMetric('mock.metric.case8.D_u.allocation.inside', 'Inside shock window', CASE8_ALLOC.inside_fraction, 'dimensionless', true, evidenceRefs),
+    outside: allocationMetric('mock.metric.case8.D_u.allocation.outside', 'Outside shock window', outside, 'dimensionless', true, evidenceRefs),
+    integration_interval: '[0,0.08]',
+    time_scope_label: 'TERMINAL / TRAJECTORY_INTEGRATED · 1912 accepted steps',
+    measure_definition: 'face integrated',
+    includes_time_weights: true,
+    includes_spatial_measure: false,
+    integral_rule: 'dy*sum(xfaces)+dx*sum(yfaces)',
+    measure_parameters: [
+      { name: 'dx', value: CASE8_ALLOC.dx },
+      { name: 'dy', value: CASE8_ALLOC.dy },
+    ],
+    evidence_refs: evidenceRefs,
+  }
+
+  return {
+    representation_type: 'FACE_FIELD',
+    measure_definition: 'face integrated',
+    result_id: CASE8_ALLOC.result_id,
+    experiment_id: 'case8',
+    config_id: 'D_u',
+    semantic_id: CASE8_ALLOC.semantic_id,
+    title: 'D_u trajectory-integrated native-face Pi_at',
+    definition: 'Saved time-integrated cross-mode entropy density on separate x/y normal faces.',
+    time_rule: 'TERMINAL/TRAJECTORY_INTEGRATED [0,0.08], 1912 accepted steps; time/RK weights already included; no additional dt or RK weighting.',
+    spatial_rule: 'dy*sum(pi_at_x_faces)+dx*sum(pi_at_y_faces); x boundary faces retained; periodic y seam counted once; duplicate residual y slot excluded.',
+    data_origin: MOCK_ORIGIN,
+    verification: mockVerification(),
+    limitations: [LIM_MOCK],
+    evidence_refs: evidenceRefs,
+    coordinate_convention: 'Cartesian [y,x], C order on [0,1]^2; x-normal faces x=i/128, y=(j+0.5)/32; y-normal faces x=(i+0.5)/128, y=j/32.',
+    mask,
+    summary,
+    arrays,
+  }
+}
+
+/**
+ * Gate CELL_FIELD — one 32×128 cell field. Spatial measure is already included:
+ * the mock must not declare dx/dy for this representation.
+ */
+function buildCellAllocation(configId: string): AllocationView | null {
+  const def = GATE_ALLOC[configId]
+  if (!def) return null
+  const field = allocationField(0x27d4eb2f ^ (configId.length * 7919), [32, 128], 'CELL')
+  const evidenceRefs = [`mock.evidence.gate.${configId}.allocation.map`]
+
+  const arrays: [AllocationArrayView] = [
+    {
+      array_id: 'pi_at_cells', label: 'cell field', location_type: 'CARTESIAN_CELL',
+      shape: [32, 128], axes: ['y', 'x'], unit_label: 'model integrated entropy per cell',
+      values: field.values,
+    },
+  ]
+
+  const mask = allocationMask(
+    'mask.gate.cell-shock-window',
+    'GATE_CELL_SHOCK_WINDOW',
+    'Cell-centre classification: abs(x - (0.5 + 0.0125*sin(8*pi*y))) <= 0.08; prescribed initial front, inclusive.',
+    [def.mask_count],
+    evidenceRefs,
+  )
+
+  const summary: AllocationSummaryView = {
+    total_budget: allocationMetric(`mock.metric.gate.${configId}.allocation.budget`, 'Integrated E_at budget', def.budget, 'model integrated entropy per cell', false, evidenceRefs),
+    inside: allocationMetric(`mock.metric.gate.${configId}.allocation.inside`, 'Inside shock window', def.inside, 'dimensionless', true, evidenceRefs),
+    outside: allocationMetric(`mock.metric.gate.${configId}.allocation.outside`, 'Outside shock window', def.outside, 'dimensionless', true, evidenceRefs),
+    integration_interval: '[0,0.08]',
+    time_scope_label: 'STATIC / TRAJECTORY_INTEGRATED · frozen full-trajectory contributions',
+    measure_definition: 'cell integrated',
+    includes_time_weights: true,
+    includes_spatial_measure: true,
+    integral_rule: 'sum(cells); no additional dx/dy/dt',
+    measure_parameters: [],
+    evidence_refs: evidenceRefs,
+  }
+
+  return {
+    representation_type: 'CELL_FIELD',
+    measure_definition: 'cell integrated',
+    result_id: `mock.gate.${configId}.allocation`,
+    experiment_id: 'gate',
+    config_id: configId,
+    semantic_id: 'Gate_cell_Pi_at_integrated',
+    title: `Gate ${configId} cumulative cell allocation`,
+    definition: 'Frozen full-trajectory cell contributions of cross-mode entropy production.',
+    time_rule: 'STATIC/TRAJECTORY_INTEGRATED [0,0.08]; frozen full-trajectory cell contributions; no map playback.',
+    spatial_rule: 'sum(cells); interior face contributions split to neighbouring cells; full x-boundary contributions retained.',
+    data_origin: MOCK_ORIGIN,
+    verification: mockVerification(),
+    limitations: [LIM_MOCK],
+    evidence_refs: evidenceRefs,
+    coordinate_convention: 'Cartesian [y,x], C order on [0,1]^2; cell centres x=(i+0.5)/128, y=(j+0.5)/32.',
+    mask,
+    summary,
+    arrays,
+  }
+}
+
+/** Build the requested allocation, or null when the selector is not in scope. */
+function buildAllocation(selector: AllocationSelector): AllocationView | null {
+  if (selector.experimentId === 'case8') return selector.configId === 'D_u' ? buildFaceAllocation() : null
+  return buildCellAllocation(selector.configId)
+}
+
 // --- provider ---------------------------------------------------------------
 
 /** Simulated latency so Loading states are real and cancellable. */
@@ -570,7 +793,40 @@ export function createMockProvider(): DataProvider {
       }
       return delay(ok(detail), signal, 100)
     },
+
+    // --- Phase 6B allocation -------------------------------------------------
+
+    describeAllocation(selector, signal) {
+      const allocation = buildAllocation(selector)
+      if (!allocation) {
+        // A/B/C have no recorded cumulative map. This is a known capability gap,
+        // not a synthesised zero field.
+        const reason =
+          selector.experimentId === 'case8'
+            ? `Case8 config "${selector.configId}" has no recorded cumulative native-face map; only D_u does.`
+            : `Gate config "${selector.configId}" is not one of the frozen variants (Acoustic / Pressure / Ungated).`
+        return delay(fail<AllocationView>('MISSING', reason), signal, 10)
+      }
+      return delay(ok(allocation), signal, 150)
+    },
+
+    loadAllocationMask(selector, signal) {
+      const allocation = buildAllocation(selector)
+      if (!allocation) {
+        return delay(fail<AllocationMaskView>('MISSING', `No allocation mask for ${selector.experimentId}/${selector.configId}.`), signal, 10)
+      }
+      return delay(ok(allocation.mask), signal, 60)
+    },
+
+    loadAllocationSummary(selector, signal) {
+      const allocation = buildAllocation(selector)
+      if (!allocation) {
+        return delay(fail<AllocationSummaryView>('MISSING', `No allocation summary for ${selector.experimentId}/${selector.configId}.`), signal, 10)
+      }
+      return delay(ok(allocation.summary), signal, 80)
+    },
   }
 }
 
 export { CONFIGS as MOCK_CASE8_CONFIGS, SNAPSHOT_ROWS as MOCK_SNAPSHOT_ROWS, TOTAL_POINTS as MOCK_TOTAL_SCALAR_STEPS }
+export { GATE_ALLOC as MOCK_GATE_ALLOCATION_CONFIGS }

@@ -1,8 +1,20 @@
 /** Real API transport; all scientific DTOs come from generated OpenAPI types. */
 import { api } from '../services/api'
 import type { components } from '../types/generated/api'
-import type { DataProvider } from './provider'
-import type { FieldMeta, Loaded, MetricView, UnitSpec, ResultHeader, EvidenceDetailView } from './domain'
+import type { AllocationSelector, DataProvider } from './provider'
+import type {
+  AllocationArrayView,
+  AllocationMaskView,
+  AllocationMetricView,
+  AllocationSummaryView,
+  AllocationView,
+  FieldMeta,
+  Loaded,
+  MetricView,
+  UnitSpec,
+  ResultHeader,
+  EvidenceDetailView,
+} from './domain'
 
 type S = components['schemas']
 type Fact<T> = (Omit<Extract<S['UnitSpec']['si_mapping'], { state: 'KNOWN' }>, 'value'> & { value: T }) | S['UnresolvedFact']
@@ -51,6 +63,37 @@ async function load<T>(task: () => Promise<T>): Promise<Loaded<T>> {
       reason: String(error instanceof Error ? error.message : error), origin: 'VERIFIED_PRODUCTION' }
   }
 }
+
+/**
+ * Allocation error classifier.
+ *
+ * Allocation routes (ALLOC01–ALLOC04) are REGISTERED but the concrete loader is
+ * not delivered, so the backend currently answers 503 with
+ * `domain: SYSTEM / code: FEATURE_NOT_ENABLED` ("Allocation adapter has not been
+ * delivered"). That is a capability that exists on the wire but cannot yet serve
+ * data — the honest UI state is UNSUPPORTED, not ERROR and certainly not an
+ * invented empty field. A genuine MISSING (unknown/absent result) stays MISSING.
+ */
+function allocationFailure(envelope: { availability?: string; error?: S['ErrorBody'] } | undefined, status: number): ApiFailure {
+  const availability = envelope?.availability
+  const code = envelope?.error?.code
+  const state: 'MISSING' | 'UNSUPPORTED' | 'ERROR' =
+    availability === 'MISSING' || code === 'RESULT_NOT_FOUND' || code === 'NOT_FOUND' ? 'MISSING'
+      : availability === 'UNSUPPORTED' || code === 'FEATURE_NOT_ENABLED' ? 'UNSUPPORTED'
+        : 'ERROR'
+  return new ApiFailure(state, envelope?.error?.message ?? `API request failed (${status})`)
+}
+
+/** Read an allocation envelope, mapping capability gaps onto honest states. */
+async function allocationBody<T>(request: Promise<{ data?: unknown; error?: unknown; response: Response }>): Promise<T> {
+  const response = await request
+  const envelope = (response.data ?? response.error) as { availability?: string; data?: T; error?: S['ErrorBody'] }
+  if (!response.response.ok || !envelope || !('data' in envelope)) {
+    throw allocationFailure(envelope, response.response.status)
+  }
+  return envelope.data as T
+}
+
 async function evidence(id: string, signal?: AbortSignal): Promise<S['EvidenceRecord']> {
   return body(api.GET('/api/v1/evidence/{evidence_id}', { params: { path: { evidence_id: id } }, signal }))
 }
@@ -69,6 +112,90 @@ function evidenceView(record: S['EvidenceRecord'], config: S['ExperimentConfig']
     related_result_ids: record.result_ids, limitations: record.limitations,
     freeze_id: factValue(record.freeze_reference)?.freeze_id ?? null,
     data_origin: record.result_contexts[0]?.data_origin ?? 'VERIFIED_PRODUCTION' }
+}
+
+/**
+ * Mask view from metadata + summary.
+ *
+ * The mask identity comes from the server (`mask_refs`). Counts are read from the
+ * summary's own mask refs when present; the mask definition text is the recorded
+ * rule, never a reformatted guess. The mask type is resolved from the registered
+ * mask id so the two representations can never share one identity.
+ */
+function maskView(meta: S['AllocationMetadata'], summary: S['AllocationSummary']): AllocationMaskView {
+  const maskId = meta.mask_refs[0] ?? meta.mask_definition
+  const type: S['MaskSpec']['type'] = maskId.includes('gate')
+    ? 'GATE_CELL_SHOCK_WINDOW'
+    : maskId.includes('native-face') || maskId.includes('case8')
+      ? 'CASE8_NATIVE_FACE_SHOCK_WINDOW'
+      : 'GATE_CELL_SHOCK_WINDOW'
+  return {
+    mask_id: maskId,
+    mask_type: type,
+    definition: meta.mask_definition,
+    counts: [],
+    evidence_refs: summary.evidence_refs,
+    verification: meta.result.verification,
+  }
+}
+
+/**
+ * Allocation result identifier for a selector.
+ *
+ * Result identities are server-registered: `case8.D_u.allocation` and
+ * `gate.<config>.allocation`. The frontend names the target, the server declares
+ * the representation — the frontend never guesses it.
+ */
+function allocationResultId(selector: AllocationSelector): string {
+  return selector.experimentId === 'case8' ? `case8.${selector.configId}.allocation` : `gate.${selector.configId}.allocation`
+}
+
+/** Read the `value` of an AVAILABLE / PARTIAL resource slot, else null. */
+function slotValue<T>(slot: { availability: string; value?: T }): T | null {
+  return slot.availability === 'AVAILABLE' || slot.availability === 'PARTIAL' ? (slot.value ?? null) : null
+}
+
+/** Map one summary Metric slot onto the allocation metric view. */
+function allocationMetricView(m: S['Metric'] | null, label: string, fraction: boolean): AllocationMetricView {
+  return {
+    metric_id: m?.metric_id ?? `unavailable.${label}`,
+    display_label: m?.display_label ?? label,
+    value: m ? factValue(m.value) : null,
+    unit_label: m ? m.result.unit.label : 'UNKNOWN',
+    definition_id: m?.definition_id ?? 'unknown',
+    fraction_format: fraction ? 'FRACTION' : null,
+    evidence_refs: m?.result.provenance.evidence_refs ?? [],
+  }
+}
+
+/**
+ * Map the wire AllocationSummary + MeasureConvention onto the view.
+ *
+ * The measure rule is carried through verbatim — it is what distinguishes the
+ * two representations, so it is never re-derived or simplified here.
+ */
+function summaryView(summary: S['AllocationSummary'], measure: S['MeasureConvention']): AllocationSummaryView {
+  const budgetMetric = slotValue(summary.total_budget)
+  const insideMetric = slotValue(summary.inside)
+  const outsideMetric = summary.outside ? slotValue(summary.outside) : null
+  const interval = budgetMetric ? factValue(budgetMetric.time_scope.interval) : null
+  const accumulation = budgetMetric ? budgetMetric.time_scope.accumulation : null
+  const sampling = budgetMetric ? budgetMetric.time_scope.sampling : null
+  return {
+    total_budget: allocationMetricView(budgetMetric, 'Integrated budget', false),
+    inside: allocationMetricView(insideMetric, 'Inside window', true),
+    outside: outsideMetric ? allocationMetricView(outsideMetric, 'Outside window', true) : null,
+    integration_interval: interval ? `[${interval.start},${interval.end}]` : 'UNKNOWN',
+    time_scope_label: sampling && accumulation ? `${sampling} / ${accumulation}` : measure.description,
+    measure_definition: measure.includes_spatial_measure ? 'cell integrated' : 'face integrated',
+    includes_time_weights: measure.includes_time_weights,
+    includes_spatial_measure: measure.includes_spatial_measure,
+    integral_rule: measure.integral_rule,
+    measure_parameters: measure.measure_parameters
+      .map(p => ({ name: p.name, value: factValue(p.value) }))
+      .filter((p): p is { name: string; value: number } => typeof p.value === 'number'),
+    evidence_refs: summary.evidence_refs,
+  }
 }
 
 export function createApiProvider(): DataProvider {
@@ -170,6 +297,92 @@ export function createApiProvider(): DataProvider {
       const configId = factValue(record.config_id)
       const configs = configId ? await body<S['ConfigList']>(api.GET('/api/v1/experiments/{experiment_id}/configs', { params: { path: { experiment_id: 'case8' } }, signal })) : null
       return evidenceView(record, configs?.items.find(item => item.id === configId) ?? null)
+    }),
+
+    // --- Phase 6B allocation -------------------------------------------------
+    // ALLOC01 metadata declares the representation; ALLOC03 supplies the summary.
+    // The concrete allocation loader is registered but not yet enabled, so these
+    // calls currently resolve to an honest UNSUPPORTED (FEATURE_NOT_ENABLED)
+    // rather than an invented field.
+    describeAllocation: (selector, signal) => load(async () => {
+      const resultId = allocationResultId(selector)
+      const meta = await allocationBody<S['AllocationMetadata']>(
+        api.GET('/api/v1/allocations/{result_id}/metadata', { params: { path: { result_id: resultId } }, signal }),
+      )
+      const summary = await allocationBody<S['AllocationSummary']>(
+        api.GET('/api/v1/allocations/{result_id}/summary', { params: { path: { result_id: resultId } }, signal }),
+      )
+      const common = {
+        result_id: meta.result_id,
+        experiment_id: meta.experiment_id,
+        config_id: meta.config_id,
+        semantic_id: meta.semantic_id,
+        title: meta.result.scope.description,
+        definition: meta.mask_definition,
+        time_rule: meta.coordinate_convention,
+        spatial_rule: meta.measure.integral_rule,
+        data_origin: meta.result.data_origin,
+        verification: meta.result.verification,
+        limitations: meta.result.limitations,
+        evidence_refs: meta.evidence_refs,
+        mask: maskView(meta, summary),
+        summary: summaryView(summary, meta.measure),
+      }
+      const arrays: AllocationArrayView[] = await Promise.all(meta.array_refs.map(ref =>
+        allocationBody<S['AllocationArrayResponse']>(
+          api.GET('/api/v1/allocations/{result_id}/arrays/{array_id}', {
+            params: { path: { result_id: meta.result_id, array_id: ref.descriptor.array_id } }, signal,
+          }),
+        ).then(array => {
+          // Mirror the snapshot-array guard: a non-numeric payload is an error,
+          // never a silently coerced field.
+          if (array.values.some(v => typeof v !== 'number')) throw new Error('Allocation array is not numeric')
+          return {
+            array_id: array.array_ref.descriptor.array_id,
+            label: array.field_id,
+            location_type: 'CARTESIAN_CELL' as const,
+            shape: array.array_ref.descriptor.shape,
+            axes: array.array_ref.descriptor.axes,
+            unit_label: array.result.unit.label,
+            values: array.values as number[],
+          }
+        }),
+      ))
+      // The server declares the representation; the frontend narrows to it and
+      // asserts the matching array cardinality the renderer requires.
+      if (meta.representation_type === 'FACE_FIELD') {
+        if (arrays.length !== 2) throw new Error('FACE_FIELD requires exactly two native-face orientations')
+        return {
+          ...common, representation_type: 'FACE_FIELD', measure_definition: 'face integrated',
+          coordinate_convention: meta.coordinate_convention,
+          arrays: [arrays[0], arrays[1]],
+        }
+      }
+      if (arrays.length !== 1) throw new Error('CELL_FIELD requires exactly one cell array')
+      return {
+        ...common, representation_type: 'CELL_FIELD', measure_definition: 'cell integrated',
+        coordinate_convention: meta.coordinate_convention, arrays: [arrays[0]],
+      }
+    }),
+    loadAllocationMask: (selector, signal) => load(async () => {
+      const resultId = allocationResultId(selector)
+      const meta = await allocationBody<S['AllocationMetadata']>(
+        api.GET('/api/v1/allocations/{result_id}/metadata', { params: { path: { result_id: resultId } }, signal }),
+      )
+      const summary = await allocationBody<S['AllocationSummary']>(
+        api.GET('/api/v1/allocations/{result_id}/summary', { params: { path: { result_id: resultId } }, signal }),
+      )
+      return maskView(meta, summary)
+    }),
+    loadAllocationSummary: (selector, signal) => load(async () => {
+      const resultId = allocationResultId(selector)
+      const meta = await allocationBody<S['AllocationMetadata']>(
+        api.GET('/api/v1/allocations/{result_id}/metadata', { params: { path: { result_id: resultId } }, signal }),
+      )
+      const summary = await allocationBody<S['AllocationSummary']>(
+        api.GET('/api/v1/allocations/{result_id}/summary', { params: { path: { result_id: resultId } }, signal }),
+      )
+      return summaryView(summary, meta.measure)
     }),
   }
 }

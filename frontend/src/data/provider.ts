@@ -9,6 +9,9 @@
  * page can cancel stale requests when the user changes config / snapshot / tab.
  */
 import type {
+  AllocationMaskView,
+  AllocationSummaryView,
+  AllocationView,
   EntropyHistoryView,
   EvidenceDetailView,
   EvidenceSummaryView,
@@ -26,6 +29,18 @@ export interface SnapshotSelector {
   configId: string
   snapshotIndex: number
   fieldId: string
+}
+
+/**
+ * Allocation target selector.
+ *
+ * `experimentId` is `case8` (FACE_FIELD, D_u only) or `gate` (CELL_FIELD, one of
+ * Acoustic / Pressure / Ungated). Both are read through the same provider so a
+ * page never branches on the transport.
+ */
+export interface AllocationSelector {
+  experimentId: 'case8' | 'gate'
+  configId: string
 }
 
 export interface DataProvider {
@@ -49,4 +64,18 @@ export interface DataProvider {
   getMetrics(configId: string, signal?: AbortSignal): Promise<Loaded<MetricCollectionView>>
   listEvidenceForConfig(configId: string, signal?: AbortSignal): Promise<Loaded<EvidenceSummaryView[]>>
   getEvidence(evidenceId: string, signal?: AbortSignal): Promise<Loaded<EvidenceDetailView>>
+
+  // --- Phase 6B allocation -------------------------------------------------
+  //
+  // Mirrors the frozen AllocationService surface (describe / metadata / array /
+  // mask / summary). Metadata and arrays are separate calls so a page can render
+  // representation_type, mask, definition and verification BEFORE any numeric
+  // array arrives — and so a missing array never masquerades as an empty one.
+
+  /** Allocation capability + representation for one experiment/config. */
+  describeAllocation(selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationView>>
+  /** Mask identity and definition only (no array values). */
+  loadAllocationMask(selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationMaskView>>
+  /** Budget / inside / outside and the explicit measure rule. */
+  loadAllocationSummary(selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationSummaryView>>
 }

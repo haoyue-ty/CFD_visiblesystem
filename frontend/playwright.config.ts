@@ -12,6 +12,7 @@ export default defineConfig({
   projects: [
     { name: 'real-api', testDir: './tests', use: { baseURL: 'http://127.0.0.1:4373' } },
     { name: 'window3-mock-development', testDir: '../tests/window3_frontend', use: { baseURL: 'http://127.0.0.1:4473' } },
+    { name: 'window4-allocation-ui', testDir: '../tests/window4_allocation', use: { baseURL: 'http://127.0.0.1:4473' } },
   ],
   webServer: [
     { command: `"${python}" -m scripts.serve_backend`, cwd: workspace, url: 'http://127.0.0.1:5000/api/v1/system', reuseExistingServer: false },
