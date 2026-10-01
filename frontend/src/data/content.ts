@@ -6,6 +6,7 @@ import type { Loaded } from './domain'
 type S = components['schemas']
 export type MechanismContent = S['MechanismContent']
 export type ScenePreset = S['ScenePreset']
+export type SceneList = S['SceneList']
 export type MechanismEvidence = S['EvidenceRecord']
 
 async function load<T>(request: Promise<{ data?: unknown; error?: unknown; response: Response }>, origin: Loaded<T>['origin']): Promise<Loaded<T>> {
@@ -23,6 +24,8 @@ async function load<T>(request: Promise<{ data?: unknown; error?: unknown; respo
 }
 
 export const contentService = {
+  scenes: (signal?: AbortSignal) => load<SceneList>(api.GET('/api/v1/explore/scenes', { signal }), 'SCHEMATIC'),
+  gateComparison: (signal?: AbortSignal) => load<S['AllocationComparison']>(api.GET('/api/v1/allocations/comparison', { params: { query: { experiment_id: 'gate', representation_type: 'CELL_FIELD' } }, signal }), 'FROZEN_PRODUCTION'),
   mechanism: async (signal?: AbortSignal): Promise<Loaded<MechanismContent>> => {
     const result = await load<MechanismContent>(api.GET('/api/v1/mechanism', { signal }), 'SCHEMATIC')
     if (result.data && result.data.data_origin !== 'SCHEMATIC') return { state: 'ERROR', data: null, origin: 'SCHEMATIC', reason: 'Mechanism content must be SCHEMATIC' }

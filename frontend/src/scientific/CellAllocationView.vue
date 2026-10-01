@@ -18,6 +18,7 @@ import type { AllocationArrayView } from '../data/domain'
 const props = defineProps<{
   array: AllocationArrayView
   mask?: boolean[]
+  colourExtent?: [number, number]
 }>()
 
 const canvas = ref<HTMLCanvasElement | null>(null)
@@ -51,6 +52,7 @@ function draw() {
     if (v < min) min = v
     if (v > max) max = v
   }
+  if (props.colourExtent) [min, max] = props.colourExtent
   const span = max - min || 1
   const img = ctx.createImageData(nx, ny)
   for (let i = 0; i < ny * nx; i += 1) {
@@ -77,11 +79,11 @@ function draw() {
 }
 
 onMounted(draw)
-watch(() => [props.array.array_id, props.array.values, props.mask], draw)
+watch(() => [props.array.array_id, props.array.values, props.mask, props.colourExtent], draw)
 </script>
 
 <template>
-  <figure class="cav" :data-array-id="array.array_id">
+  <figure class="cav" :data-array-id="array.array_id" :data-colour-min="colourExtent?.[0]" :data-colour-max="colourExtent?.[1]">
     <figcaption class="cav__cap">
       <span class="cav__title">{{ array.label }}</span>
       <span class="cav__loc">{{ array.location_type }}</span>

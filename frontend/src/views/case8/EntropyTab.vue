@@ -9,14 +9,14 @@
  * Both are shown together. They are never conflated and no rounded time is
  * passed off as the actual time.
  */
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import { dataService, createRequestGuard, type Loaded } from '../../data'
 import type { EntropyHistoryView, SnapshotAlignmentView } from '../../data/domain'
 import LoadStateBlock from '../../components/LoadStateBlock.vue'
 import MockBadge from '../../components/MockBadge.vue'
 import EntropyChart from '../../scientific/EntropyChart.vue'
 
-const props = defineProps<{ configId: string; modelValue?: number | null }>()
+const props = defineProps<{ configId: string; modelValue?: number | null; guided?: boolean }>()
 const emit = defineEmits<{ (e: 'update:modelValue', step: number): void }>()
 
 const history = ref<Loaded<EntropyHistoryView> | null>(null)
@@ -61,6 +61,8 @@ function applyManualStep() {
   loadAlignment(step)
 }
 
+onBeforeUnmount(() => { historyGuard.cancel(); alignGuard.cancel() })
+
 onMounted(async () => {
   await loadHistory()
   if (selectedStep.value !== null) await loadAlignment(selectedStep.value)
@@ -83,7 +85,7 @@ watch(selectedStep, (step) => {
   <section class="ent" data-testid="case8-entropy">
     <LoadStateBlock :loaded="history" target="entropy history">
       <div v-if="history?.data" class="ent__body">
-        <EntropyChart :history="history.data" @select-scalar-step="onSelectStep" />
+        <EntropyChart :history="history.data" :selectable="!guided" @select-scalar-step="onSelectStep" />
         <MockBadge :origin="history.data.series[0]?.data_origin || 'MOCK'" :verification="history.data.series[0]?.verification.status" />
 
         <div class="ent__series-legend">
@@ -97,7 +99,16 @@ watch(selectedStep, (step) => {
       </div>
     </LoadStateBlock>
 
-    <section class="ent__alignment" aria-label="Scalar / snapshot alignment">
+    <section v-if="guided && history?.data" data-testid="entropy-terminal">
+      <h3>Terminal pathway budget — {{ configId }}</h3>
+      <dl v-for="series in history.data.series" :key="series.series_id">
+        <dt>{{ series.label }} · {{ series.aggregation }}</dt>
+        <dd>{{ series.points.at(-1)?.value ?? 'UNKNOWN' }} [{{ series.unit.label }}] · t={{ series.points.at(-1)?.physical_time ?? 'UNKNOWN' }}</dd>
+      </dl>
+      <p>Recorded terminal values; accepted-step scalar history is not a spatial movie.</p>
+    </section>
+
+    <section v-if="!guided" class="ent__alignment" aria-label="Scalar / snapshot alignment">
       <h3>Scalar selection &amp; snapshot alignment</h3>
 
       <!-- Manual step selection: selects a REAL accepted step by number, and is
@@ -149,7 +160,7 @@ watch(selectedStep, (step) => {
 </template>
 
 <style scoped>
-.ent__body { display: grid; gap: 0.4rem; justify-items: start; }
+.ent__body { display: grid; gap: 0.4rem; }
 .ent__series-legend { font-size: 0.85rem; color: #444; }
 .ent__caption { font-size: 0.78rem; color: #777; }
 .ent__alignment { margin-top: 1.5rem; border-top: 1px solid #e6e6e6; padding-top: 1rem; }

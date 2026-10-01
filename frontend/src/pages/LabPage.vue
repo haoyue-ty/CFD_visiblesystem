@@ -33,6 +33,7 @@ onMounted(async () => {
     </nav>
 
     <h1>Lab Workspace</h1>
+    <RouterLink :to="{ name: 'explore', query: { scene: '1' } }" data-testid="lab-open-explore">Explore / Guided Story</RouterLink>
     <p class="lab__intro">
       The Lab opens real experiments and their supported controls. Availability below is
       <strong>software delivery status</strong>; it does not report scientific capability or asset
