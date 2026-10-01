@@ -120,27 +120,32 @@ def method_source_asset() -> dict:
 
 
 def allocation_registry_metadata() -> dict:
-    """D_u native-face allocation: registry metadata only (values deferred).
+    """Phase5 registry view; HTTP delivery remains deferred.
 
-    The cumulative native-face allocation map is the first object a larger
-    surface will consume; this window records identity/provenance so downstream
-    integration can bind it without the adapter loading values now.
+    Phase6 native values are available via the optional Case8AllocationAdapter.
+    Instantaneous native_faces_step_001912.npz cannot supply the trajectory map.
     """
+    from backend.registry import case8_allocation as A
     return {
         "result_id": "case8.D_u.allocation",
-        "asset_id": C.ASSET_ID_ALLOCATION_D_U,
+        "asset_id": A.DATA_ASSET_ID,
         "semantic_id": "Case8_face_Pi_at_integrated",
         "representation_type": "FACE_FIELD",
-        "source_display": "Case8 D_u native_faces_step_001912.npz",
-        "relative_origin": known(
-            "jcp_extension_v1/J2_entropy_diagnostics/J2B_case8_formal/runs/case8_D_u/snapshots/native_faces_step_001912.npz"
-        ),
-        "face_members": ["x_pi_bg", "x_pi_aa", "x_pi_at", "y_pi_bg", "y_pi_aa", "y_pi_at"],
+        "source_display": "Case8 D_u frozen Pi_at_trajectory_integrated.npz",
+        "relative_origin": known(f"{A.FREEZE_DIR}/Pi_at_trajectory_integrated.npz"),
+        "recorded_data_hash": known(A.ASSETS["Pi_at_trajectory_integrated.npz"][1]),
+        "face_members": ["pi_at_x_faces", "pi_at_y_faces"],
         "x_face_shape": [32, 129],
         "y_face_shape": [32, 128],
         "measure": "dy*sum(x-faces) + dx*sum(y-faces) = E_at",
         "implementation_status": "IMPLEMENTATION_DEFERRED",
-        "deferred_reason": "Value loading is not required for the minimal Case8 DoD",
+        "deferred_reason": "Phase5 flow/HTTP allocation delivery deferred; optional Phase6 native adapter implemented",
+        "allocation_adapter_status": "IMPLEMENTED",
+        "allocation_adapter": "Case8AllocationAdapter",
+        "allocation_registry_revision": A.REGISTRY_REVISION,
+        "coordinate_convention": A.COORDINATE_CONVENTION,
+        "face_direction": {"pi_at_x_faces": "x-normal", "pi_at_y_faces": "y-normal"},
+        "integration_semantics": A.TIME_RULE,
     }
 
 
