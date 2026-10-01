@@ -1,0 +1,22 @@
+{
+  "test": "tests/window0_spectral_foundation/test_protocol_and_freeze.py::test_phase4_contract_hashes_and_phase5_phase6_freeze",
+  "freeze_path": "docs/PHASE5_CASE8_FREEZE.json",
+  "expected_raw_sha256": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+  "observations": {
+    "accepted_original": {
+      "sha256": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+      "normalized_sha256": "fb9ccc05c3cb62d58ba5a97ec6ee2e5068019e7e9b1dd068d75e2ada73734852"
+    },
+    "unmodified_bootstrap": {
+      "sha256": "fb9ccc05c3cb62d58ba5a97ec6ee2e5068019e7e9b1dd068d75e2ada73734852",
+      "normalized_sha256": "fb9ccc05c3cb62d58ba5a97ec6ee2e5068019e7e9b1dd068d75e2ada73734852"
+    },
+    "window1": {
+      "sha256": "fb9ccc05c3cb62d58ba5a97ec6ee2e5068019e7e9b1dd068d75e2ada73734852",
+      "normalized_sha256": "fb9ccc05c3cb62d58ba5a97ec6ee2e5068019e7e9b1dd068d75e2ada73734852"
+    }
+  },
+  "reproduced_in_unmodified_bootstrap": true,
+  "reason": "Accepted Windows bytes and Git checkout differ only by CRLF/LF normalization",
+  "window1_changes_to_freeze_or_manifest": false
+}
