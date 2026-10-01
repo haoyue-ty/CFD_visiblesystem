@@ -1,0 +1,28 @@
+{
+  "PHASE5_CASE8_STATUS": "FROZEN_ACCEPTED",
+  "INTEGRATION_COMMIT": "89479eecb9ca2840a01194f032ed438a05fffed8",
+  "REPORT_COMMIT": "2fcee6db97061dc7ca85e442153ee24984a13040",
+  "CASE8_VERTICAL_SLICE_DOD": "PASS",
+  "SCIENTIFIC_SOURCE_MODIFIED": "NO",
+  "PHASE4_CONTRACT_MODIFIED": "NO",
+  "freeze_date": "2026-10-01",
+  "timezone": "Asia/Shanghai",
+  "scope": "CASE8 FUNCTIONAL VERTICAL SLICE V0.1",
+  "acceptance_report": "docs/handoffs/phase5/PHASE5_CASE8_INTEGRATION_AUDIT.md",
+  "acceptance_evidence": "docs/handoffs/phase5/PHASE5_CASE8_ACCEPTANCE_EVIDENCE.json",
+  "freeze_manifest": "docs/PHASE5_CASE8_FREEZE_MANIFEST.json",
+  "accepted_test_results": {
+    "backend": "273/273",
+    "playwright": "40/40"
+  },
+  "scientific_totals": {
+    "configs": 4,
+    "snapshots": 24,
+    "history_rows": 7648
+  },
+  "scientific_verification_policy": "Existing VERIFIED_NOT_FROZEN and PARTIAL scientific states are preserved.",
+  "CFD_RUNS_STARTED": 0,
+  "ENABLE_ACCOUNTS": false,
+  "next_slice_started": false,
+  "change_control": "Changes to this accepted Case8 baseline require explicit authorization, renewed acceptance, and a new freeze record."
+}
