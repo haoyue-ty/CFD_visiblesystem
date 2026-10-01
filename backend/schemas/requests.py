@@ -18,6 +18,10 @@ class RegistryQuery(CanonicalModel):
     registry_revision: ID | None = None
 
 
+class SceneQuery(RegistryQuery):
+    scene_id: Annotated[Integer, Field(ge=1, le=7)]
+
+
 class ComparisonQuery(RegistryQuery):
     case8_config: ID = "D_u"
     cylinder_config: ID = "D_u"

@@ -1,0 +1,243 @@
+{
+  "window": "1_CONTENT_API",
+  "status": "PASS",
+  "branch": "phase10/content-api",
+  "worktree": "D:\\code_project\\CFD_visiblesystem_phase10_content_api",
+  "phase10_base_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+  "accepted_window0_commit": "48286e3fc32e834f91f568d5a7f2d094840bde4d",
+  "window0_cherry_pick": "638b81e",
+  "audit_date": "2026-10-01",
+  "timezone": "Asia/Shanghai",
+  "operations": {
+    "CONTENT01": "PASS",
+    "CONTENT02": "PASS",
+    "CONTENT03": "PASS"
+  },
+  "scene_count": 7,
+  "scene_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "scene_target_objects": 9,
+  "registered_scene_result_refs": 14,
+  "scene_bytes_unchanged_from_window0": true,
+  "mechanism": {
+    "status": "PASS",
+    "data_origin": "SCHEMATIC",
+    "nodes": 11,
+    "edges": 13,
+    "supported_states": [
+      "STRICT_1D",
+      "WEAKLY_2D"
+    ],
+    "evidence_refs": [
+      "evidence.spectral.spectrum.q-0.000"
+    ],
+    "numerical_result_created": false
+  },
+  "invalid_scene_behavior": {
+    "identities": [
+      0,
+      8
+    ],
+    "http_status": 400,
+    "error_code": "INVALID_REQUEST",
+    "availability": "ERROR",
+    "domain": "SYSTEM"
+  },
+  "content_audit": {
+    "status": "PASS",
+    "mechanism_origin": "SCHEMATIC",
+    "supported_states": [
+      "STRICT_1D",
+      "WEAKLY_2D"
+    ],
+    "scene_count": 7,
+    "scene_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "real_targets": 14,
+    "registered_api_bindings": 28,
+    "near1d_numerical_scan": "MISSING",
+    "gap_code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+    "numerical_data_duplicated": false,
+    "numerical_reads": 0,
+    "cfd_runs_started": 0
+  },
+  "content_freeze": {
+    "content_registry_version": "1.0.1",
+    "status": "FROZEN",
+    "base_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+    "scope": "WINDOW_1_CONTENT_API",
+    "data_origin": "SCHEMATIC",
+    "scene_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "near1d_numerical_scan": "MISSING",
+    "gap_code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+    "sha256": {
+      "mechanism.json": "fc4ba5533c9d79e07ace1d4fe0c50cb7024295972a169fc2a8bfda5a32a134c4",
+      "scenes.json": "ee220d9e56f4eed297d64219931d30f91cf0f4809a2a316e485ef3db3b6980b4"
+    }
+  },
+  "full_backend_tests": {
+    "tests": 1088,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 1088,
+    "seconds": 372.932,
+    "local_xml": ".cache/phase10-window1/backend-full.xml",
+    "xml_sha256": "a9b66b3d9aa108b4e43894487491d7da20cf50f6c16fb4f4332321712489c24c"
+  },
+  "final_content_tests_after_lf_export": {
+    "tests": 43,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 43,
+    "seconds": 22.967,
+    "local_xml": ".cache/phase10-window1/content-tests.xml",
+    "xml_sha256": "d4fa0f78b4c79ba34c2d6ac36a4745cc9ad47b684d27807270655d087f2a986a"
+  },
+  "targeted_tests": {
+    "tests": 157,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 157,
+    "seconds": 53.121,
+    "local_xml": ".cache/phase10-window1/targeted.xml",
+    "xml_sha256": "2025012173a918d7aad37a8d17d2df3eb3610d9e2dcdcc3c91d3cba7f2d3efcd"
+  },
+  "historical_audit_followup": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 1,
+    "seconds": 16.65,
+    "local_xml": ".cache/phase10-window1/historical-audit.xml",
+    "xml_sha256": "af790446b9d17521a5996878a1d606a4593c6402401500e329fd46ce305f780d"
+  },
+  "initial_regression": {
+    "tests": 1088,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 1087,
+    "seconds": 304.947,
+    "local_xml": ".cache/phase10-window1/initial-regression.xml",
+    "xml_sha256": "4d446d59955f5b4527548b4d291f201e732e23e532ca3af075f77993bf335008"
+  },
+  "initial_failure_resolution": "Historical Phase8 software audit now inspects immutable accepted Phase8 Git archive; live scientific SOURCE_ROOT, observations and write guards remain unchanged. Full regression rerun passed.",
+  "frontend_build": {
+    "status": "PASS",
+    "command": "npm run build",
+    "checks": [
+      "vue-tsc --noEmit",
+      "vite build"
+    ],
+    "advisory": "Existing Vite large-bundle advisory"
+  },
+  "openapi": {
+    "status": "PASS",
+    "new_operations": [
+      "CONTENT01",
+      "CONTENT02",
+      "CONTENT03"
+    ],
+    "existing_paths_unchanged": true,
+    "existing_schemas_unchanged": true,
+    "runtime_catalog_and_export_consistent": true,
+    "two_independent_exports_byte_equal": true,
+    "sha256": "544a972fea11ae3b505255d7467126af3a2330c9198e347f664764fa053b5792",
+    "newline": "LF",
+    "git_index_bytes_equal": true
+  },
+  "generated_types": {
+    "status": "PASS",
+    "generator": "openapi-typescript 7.13.0",
+    "two_independent_generations_byte_equal": true,
+    "sha256": "ad988d9f3f44f1033b206db32c4678c788c0b33d5472be2675b0a8f050389adf",
+    "git_index_bytes_equal": true
+  },
+  "validated_engineering_file_sha256": {
+    "backend/api/content.py": "d1aa5bde78551a2416b152a232e6ce359c2f6452b1191e48005e1428eab03266",
+    "backend/core/app.py": "c71858c292ee80bb264bc84d7e33e58d2e10136fedda5266b83d085881136351",
+    "backend/registry/content_registry.py": "f17d898a3368b5f6dd637469a4c81c7a69eaa7ac335c1d8108607902ba61eaaa",
+    "backend/schemas/requests.py": "e156b813081affd07ac4e3e8f176205d2128d46211c2fca0bc90e96024a52ca9",
+    "backend/services/content.py": "8b2f51ea16ecf5d70b19619fac846d4348e8cd338262bc4cd98d6de7add10bee",
+    "config/content/freeze_manifest.json": "6ae9dd9b041d85758b52335d92fdc67e9ed4b07a3fe16c2105105c4b3217c1ef",
+    "config/content/mechanism.json": "fc4ba5533c9d79e07ace1d4fe0c50cb7024295972a169fc2a8bfda5a32a134c4",
+    "config/openapi.json": "544a972fea11ae3b505255d7467126af3a2330c9198e347f664764fa053b5792",
+    "frontend/src/types/generated/api.d.ts": "ad988d9f3f44f1033b206db32c4678c788c0b33d5472be2675b0a8f050389adf",
+    "scripts/export_openapi.py": "fe4438e800e4e452b9f6612d83ad595ea8b3431507fbd99561bbacb722cd8090",
+    "tests/window0_phase10_foundation/test_content_foundation.py": "7bd9316dcda02b161abe2d243babdccf93f88b453aeb3703c99fc3f7fce759d4",
+    "tests/window0_phase8_bootstrap/test_cylinder_source_audit.py": "88769a038f696618ac1743a29d71b3e4008710bb96c85bf78e4f4655133e10c8",
+    "tests/window1_content_api/test_content_api.py": "fe5e13e3c0edd06dec0674abbebb45a84cbf56e5048abfb727856b523bc153f4",
+    "tests/window2_case8_api/test_case8_api_contract.py": "5fcdbc2aa8044072aa801aa9b71e2fcf3decab58a90c3e93804e399904597627"
+  },
+  "frozen_contracts": {
+    "docs/03_USER_FLOW_AND_IA.md": {
+      "unchanged": true,
+      "sha256": "e78caab49e02c22ac4c92e166b05c7f54756f9b7ab24c6e8a56e7d95fb776973"
+    },
+    "docs/04_SYSTEM_ARCHITECTURE.md": {
+      "unchanged": true,
+      "sha256": "5a7193d4203ecd205f487fc38c2f64d09256388a9cb88f64d7201496ef58e2ea"
+    },
+    "docs/05_DATA_SCHEMA.md": {
+      "unchanged": true,
+      "sha256": "f61482eb917b81767864eb377a4db0c8b6dcf3e333676c2bd23201c7f0997099"
+    },
+    "docs/06_API_CONTRACT.md": {
+      "unchanged": true,
+      "sha256": "c115ef21d4c8ba2170cb888bfd4842ea12fe2c7f66cdf1b0519d08489dd4d9f1"
+    }
+  },
+  "source_preservation": {
+    "status": "PASS",
+    "scope": "189 accepted selected Phase8 scientific dependencies, not whole passage6",
+    "files": 189,
+    "changed_files": 0,
+    "checks": [
+      "relative path",
+      "SHA-256",
+      "size_bytes",
+      "mtime_ns"
+    ],
+    "accepted_inventory": "docs/handoffs/phase8/WINDOW1_SOURCE_PRESERVATION.json",
+    "inventory_sha256": "1b6ae1bb9c0d83a8a33b96ed100941c199be8024d32da6d228b992468d0bc878"
+  },
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "near1d_numerical_endpoint": false,
+  "parallel_merge_seams": [
+    "app factory",
+    "operation catalog",
+    "OpenAPI",
+    "generated types"
+  ],
+  "phase9_manually_merged": false,
+  "final_v1_integration": "Regenerate OpenAPI and frontend types from the final integrated catalog; do not manually combine generated artifacts.",
+  "merge_ready": true,
+  "window2_started": false
+}

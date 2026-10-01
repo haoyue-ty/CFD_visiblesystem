@@ -633,6 +633,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/explore/scenes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description All seven frozen scenes in order; child resource availability never removes scene metadata. */
+        get: operations["CONTENT01"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/explore/scenes/{scene_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Frozen scene 1..7 with real registered targets; any other scene identity is 400 INVALID_REQUEST. */
+        get: operations["CONTENT02"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/mechanism": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description SCHEMATIC mechanism, including combination and entropy-variable mapping; STRICT_1D/WEAKLY_2D are frontend display states. No epsilon query, state-vector input or numerical flux evaluation. */
+        get: operations["CONTENT03"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -4133,6 +4184,215 @@ export interface components {
              */
             cylinder_config: string;
         };
+        /** AvailableEnvelope[SceneList] */
+        AvailableEnvelope_SceneList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["SceneList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[SceneList] */
+        PartialEnvelope_SceneList_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["SceneList"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** SceneList */
+        SceneList: {
+            /** Items */
+            items: components["schemas"]["ScenePreset"][];
+        };
+        /** ScenePreset */
+        ScenePreset: {
+            /** Scene Id */
+            scene_id: number;
+            /** Title */
+            title: string;
+            /** Conclusion */
+            conclusion: string;
+            /**
+             * View Kind
+             * @enum {string}
+             */
+            view_kind: "MECHANISM" | "ENTROPY" | "ALLOCATION" | "SPECTRUM" | "CROSS_FLOW" | "EVIDENCE";
+            /** Targets */
+            targets: components["schemas"]["ScientificTarget"][];
+            /** Allowed Controls */
+            allowed_controls: components["schemas"]["ControlSpec"][];
+            /** Evidence Refs */
+            evidence_refs: string[];
+            /** Limitations */
+            limitations: components["schemas"]["ScientificLimitation"][];
+        };
+        /** ScientificTarget */
+        ScientificTarget: {
+            /** Experiment Id */
+            experiment_id: string;
+            config_id: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /** Result Ids */
+            result_ids: string[];
+        };
+        /** ApiEnvelope[SceneList] */
+        ApiEnvelope_SceneList_: components["schemas"]["AvailableEnvelope_SceneList_"] | components["schemas"]["PartialEnvelope_SceneList_"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[ScenePreset] */
+        AvailableEnvelope_ScenePreset_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["ScenePreset"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[ScenePreset] */
+        PartialEnvelope_ScenePreset_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["ScenePreset"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[ScenePreset] */
+        ApiEnvelope_ScenePreset_: components["schemas"]["AvailableEnvelope_ScenePreset_"] | components["schemas"]["PartialEnvelope_ScenePreset_"] | components["schemas"]["FailedEnvelope"];
+        /** SceneQuery */
+        Input_SceneQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Scene Id */
+            scene_id: number;
+        };
+        /** AvailableEnvelope[MechanismContent] */
+        AvailableEnvelope_MechanismContent_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["MechanismContent"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** MechanismContent */
+        MechanismContent: {
+            /** Content Id */
+            content_id: string;
+            /**
+             * Data Origin
+             * @constant
+             */
+            data_origin: "SCHEMATIC";
+            /** Nodes */
+            nodes: components["schemas"]["MechanismNode"][];
+            /** Edges */
+            edges: components["schemas"]["MechanismEdge"][];
+            /** Supported States */
+            supported_states: ("STRICT_1D" | "WEAKLY_2D")[];
+            /** Evidence Refs */
+            evidence_refs: string[];
+            /** Limitations */
+            limitations: components["schemas"]["ScientificLimitation"][];
+        };
+        /** MechanismEdge */
+        MechanismEdge: {
+            /** From Node */
+            from_node: string;
+            /** To Node */
+            to_node: string;
+            /** Label */
+            label: string;
+        };
+        /** MechanismNode */
+        MechanismNode: {
+            /** Id */
+            id: string;
+            /** Label */
+            label: string;
+            /** Explanation */
+            explanation: string;
+        };
+        /** PartialEnvelope[MechanismContent] */
+        PartialEnvelope_MechanismContent_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["MechanismContent"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[MechanismContent] */
+        ApiEnvelope_MechanismContent_: components["schemas"]["AvailableEnvelope_MechanismContent_"] | components["schemas"]["PartialEnvelope_MechanismContent_"] | components["schemas"]["FailedEnvelope"];
     };
     responses: never;
     parameters: never;
@@ -7170,6 +7430,182 @@ export interface operations {
             };
             /** @description FEATURE_NOT_ENABLED */
             503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    CONTENT01: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_SceneList_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    CONTENT02: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                scene_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_ScenePreset_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    CONTENT03: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_MechanismContent_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
