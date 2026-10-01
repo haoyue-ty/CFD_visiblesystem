@@ -1,0 +1,46 @@
+{
+  "WINDOW": "2_MECHANISM_FRONTEND",
+  "STATUS": "PASS",
+  "BRANCH": "phase10/mechanism-ui",
+  "BASE_COMMIT": "152e7d562e4233408c8c63f74406ef9e97ef90e6",
+  "MECHANISM_PAGE": "PASS",
+  "SHARED_MECHANISM_VIEW": "PASS",
+  "STRICT_1D": "PASS",
+  "WEAKLY_2D": "PASS",
+  "TRIGGER_OUTPUT_SEPARATION": "PASS",
+  "SCHEMATIC_LABEL": "PASS",
+  "NEAR1D_FAKE_NUMERICS": "NO",
+  "EVIDENCE": "PASS",
+  "BUILD": "PASS",
+  "FRONTEND_REGRESSION": {
+    "startTime": "2026-10-01T14:24:25.621Z",
+    "duration": 168732.99300000002,
+    "expected": 74,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "FINAL_MECHANISM_ROUTES": {
+    "startTime": "2026-10-01T14:27:38.33Z",
+    "duration": 11920.082,
+    "expected": 22,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "CONTENT_CONTRACT_TESTS": {
+    "tests": 101,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "MOCK_IN_PRODUCTION": "NO",
+  "CFD_RUNS_STARTED": 0,
+  "BACKEND_MODIFIED": false,
+  "SCIENTIFIC_FILES_MODIFIED": false,
+  "EXPLORE_SCENES_DELIVERED": [
+    2,
+    3
+  ],
+  "STOP": "Window 2 complete"
+}

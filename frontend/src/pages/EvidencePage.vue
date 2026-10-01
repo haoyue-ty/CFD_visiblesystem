@@ -64,6 +64,11 @@ watch(() => props.evidence_id, load)
       <button v-if="backTarget" class="evd__back" data-testid="back-to-result" @click="goBackToResult">← Back to result</button>
       <RouterLink v-else class="evd__back" :to="{ name: 'lab' }" data-testid="back-to-lab">← Back to Lab</RouterLink>
     </header>
+    <section v-if="route.query.from === 'mechanism'" data-testid="mechanism-evidence-context">
+      <h2>Mechanism explanation evidence</h2>
+      <p>Theory: conditional schematic explanations. Implementation: frozen production method and hash in this record. Numerical result: the linked spectra keep their own scope and verification; they do not certify the schematic as CFD numerical verification or the Near-1D asymptotic scaling.</p>
+      <p>No authoritative five-epsilon raw numerical scan is registered.</p>
+    </section>
 
     <LoadStateBlock :loaded="detail" target="evidence record">
       <article v-if="detail?.data" class="evd__record" data-testid="evidence-record">

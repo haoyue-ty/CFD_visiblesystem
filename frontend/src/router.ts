@@ -5,6 +5,8 @@ import LabPage from './pages/LabPage.vue'
 import ExperimentPage from './pages/ExperimentDetailPage.vue'
 import CrossFlowPage from './pages/CrossFlowPage.vue'
 import EvidencePage from './pages/EvidencePage.vue'
+import MechanismPage from './pages/MechanismPage.vue'
+import ExplorePage from './pages/ExplorePage.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -12,6 +14,8 @@ export const router = createRouter({
     { path: '/', name: 'entry', component: EntryPage },
     { path: '/home', name: 'home', component: HomePage },
     { path: '/lab', name: 'lab', component: LabPage },
+    { path: '/lab/mechanism', name: 'mechanism', component: MechanismPage },
+    { path: '/explore', name: 'explore', component: ExplorePage },
     { path: '/cross-flow', alias: '/lab/compare/case8-cylinder', name: 'cross-flow', component: CrossFlowPage },
     { path: '/lab/experiments/:experiment_id', name: 'experiment', component: ExperimentPage, props: true },
     { path: '/evidence/:evidence_id', name: 'evidence', component: EvidencePage, props: true },
