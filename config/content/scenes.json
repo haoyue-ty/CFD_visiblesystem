@@ -1,0 +1,454 @@
+{
+  "items": [
+    {
+      "scene_id": 1,
+      "title": "How much dissipation?",
+      "conclusion": "Budget identifies pathways, but magnitude alone is insufficient.",
+      "view_kind": "ENTROPY",
+      "targets": [
+        {
+          "experiment_id": "case8",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "B_u"
+          },
+          "result_ids": [
+            "case8.B_u.E_bg_cumulative",
+            "case8.B_u.E_aa_cumulative",
+            "case8.B_u.E_at_cumulative"
+          ]
+        },
+        {
+          "experiment_id": "case8",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "D_u"
+          },
+          "result_ids": [
+            "case8.D_u.E_bg_cumulative",
+            "case8.D_u.E_aa_cumulative",
+            "case8.D_u.E_at_cumulative"
+          ]
+        }
+      ],
+      "allowed_controls": [
+        {
+          "name": "config",
+          "kind": "ENUM",
+          "allowed_values": [
+            "B_u",
+            "D_u"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "case8.configs"
+          }
+        }
+      ],
+      "evidence_refs": [
+        "ev.case8.B_u.entropy",
+        "ev.case8.D_u.entropy"
+      ],
+      "limitations": [
+        {
+          "id": "lim.explore.s1-history",
+          "code": "ACCEPTED_STEP_HISTORY_NOT_SPATIAL_MOVIE",
+          "description": "Use real Case8 B_u / D_u cumulative budget histories. Scalar sampling is 1912 accepted steps; it does not provide 1912 spatial frames. Show original time, units, verification and provenance; terminal values must come from the recorded history.",
+          "affected_refs": [
+            "case8.B_u",
+            "case8.D_u"
+          ],
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "scene_id": 2,
+      "title": "What triggers it? Where does it act?",
+      "conclusion": "Trigger, output direction and spatial action must be understood separately.",
+      "view_kind": "MECHANISM",
+      "targets": [],
+      "allowed_controls": [
+        {
+          "name": "node",
+          "kind": "ENUM",
+          "allowed_values": [
+            "acoustic-information",
+            "acoustic-gate",
+            "normal-output",
+            "tangential-output"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "mechanism.acoustic-pathways.v1"
+          }
+        }
+      ],
+      "evidence_refs": [
+        "evidence.spectral.spectrum.q-0.000"
+      ],
+      "limitations": [
+        {
+          "id": "lim.mechanism.evidence-context",
+          "code": "SCHEMATIC_NOT_NUMERICAL_EXPERIMENT",
+          "description": "The linked frozen Spectrum Evidence includes the production method source and its hash as implementation context. Its numerical spectra do not certify Near-1D asymptotic scaling. The schematic contains no J or dissipation values.",
+          "affected_refs": [
+            "mechanism.acoustic-pathways.v1"
+          ],
+          "severity": "WARNING"
+        },
+        {
+          "id": "lim.mechanism.near1d-raw",
+          "code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+          "description": "Authoritative five-epsilon Near-1D raw numerical evidence is missing. No epsilon slider, five-point numerical scan, formal Near-1D experiment or numeric chart is registered. Fig13 epsilon belongs to modal validation and cannot fill this gap.",
+          "affected_refs": [
+            "mechanism.acoustic-pathways.v1"
+          ],
+          "severity": "WARNING"
+        },
+        {
+          "id": "lim.explore.s2-location",
+          "code": "SCHEMATIC_NO_SPATIAL_DIAGNOSTIC",
+          "description": "This scene uses the shared schematic. The optional Case8 endpoint instantaneous diagnostic is not selected in Window 0; no synthetic location map or cumulative interpretation is supplied.",
+          "affected_refs": [
+            "mechanism.acoustic-pathways.v1"
+          ],
+          "severity": "INFO"
+        }
+      ]
+    },
+    {
+      "scene_id": 3,
+      "title": "Trigger ≠ Output",
+      "conclusion": "Trigger ≠ Output. In Strict 1D the acoustic trigger may exist while tangential output vanishes because tangential receiving content vanishes.",
+      "view_kind": "MECHANISM",
+      "targets": [],
+      "allowed_controls": [
+        {
+          "name": "state",
+          "kind": "ENUM",
+          "allowed_values": [
+            "STRICT_1D",
+            "WEAKLY_2D"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "mechanism.acoustic-pathways.v1"
+          }
+        },
+        {
+          "name": "q_at",
+          "kind": "ENUM",
+          "allowed_values": [
+            "OFF",
+            "ENABLED"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "mechanism.acoustic-pathways.v1"
+          }
+        }
+      ],
+      "evidence_refs": [
+        "evidence.spectral.spectrum.q-0.000"
+      ],
+      "limitations": [
+        {
+          "id": "lim.mechanism.near1d-raw",
+          "code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+          "description": "Authoritative five-epsilon Near-1D raw numerical evidence is missing. No epsilon slider, five-point numerical scan, formal Near-1D experiment or numeric chart is registered. Fig13 epsilon belongs to modal validation and cannot fill this gap.",
+          "affected_refs": [
+            "mechanism.acoustic-pathways.v1"
+          ],
+          "severity": "WARNING"
+        },
+        {
+          "id": "lim.mechanism.near1d-theory",
+          "code": "THEORY_ONLY_NEAR1D_SCALING",
+          "description": "For admissible near-one-dimensional states under the theoretical assumptions, cross-mode action is O(epsilon) and its entropy contribution is O(epsilon^2). This is a theoretical explanation, not a numerical fit or a measured five-epsilon scan.",
+          "affected_refs": [
+            "mechanism.acoustic-pathways.v1"
+          ],
+          "severity": "WARNING"
+        },
+        {
+          "id": "lim.mechanism.evidence-context",
+          "code": "SCHEMATIC_NOT_NUMERICAL_EXPERIMENT",
+          "description": "The linked frozen Spectrum Evidence includes the production method source and its hash as implementation context. Its numerical spectra do not certify Near-1D asymptotic scaling. The schematic contains no J or dissipation values.",
+          "affected_refs": [
+            "mechanism.acoustic-pathways.v1"
+          ],
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "scene_id": 4,
+      "title": "Same budget ≠ Same allocation",
+      "conclusion": "Approximately matched budget ≠ same spatial allocation.",
+      "view_kind": "ALLOCATION",
+      "targets": [
+        {
+          "experiment_id": "gate",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "Acoustic"
+          },
+          "result_ids": [
+            "gate.Acoustic.allocation"
+          ]
+        },
+        {
+          "experiment_id": "gate",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "Pressure"
+          },
+          "result_ids": [
+            "gate.Pressure.allocation"
+          ]
+        },
+        {
+          "experiment_id": "gate",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "Ungated"
+          },
+          "result_ids": [
+            "gate.Ungated.allocation"
+          ]
+        }
+      ],
+      "allowed_controls": [
+        {
+          "name": "gate",
+          "kind": "ENUM",
+          "allowed_values": [
+            "Acoustic",
+            "Pressure",
+            "Ungated"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "gate.configs"
+          }
+        }
+      ],
+      "evidence_refs": [
+        "ev.gate.Acoustic.allocation",
+        "ev.gate.Pressure.allocation",
+        "ev.gate.Ungated.allocation"
+      ],
+      "limitations": [
+        {
+          "id": "lim.explore.s4-matched",
+          "code": "APPROXIMATELY_MATCHED_NOT_IDENTICAL",
+          "description": "Use the existing matched-budget Gate comparison API, its frozen matched q_at values, shared scale and fixed cell mask. Saved cell arrays already include time and spatial measure. No map timeline, free q_at, reweighting or universally best Gate is supported.",
+          "affected_refs": [
+            "gate.Acoustic.allocation",
+            "gate.Pressure.allocation",
+            "gate.Ungated.allocation"
+          ],
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "scene_id": 5,
+      "title": "Positive entropy ≠ Uniform modal damping",
+      "conclusion": "Positive entropy production ≠ uniform modal damping; recorded modal shifts can have different signs.",
+      "view_kind": "SPECTRUM",
+      "targets": [
+        {
+          "experiment_id": "spectrum",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "spectrum.q-0.000"
+          },
+          "result_ids": [
+            "spectrum.q-0.000"
+          ]
+        },
+        {
+          "experiment_id": "spectrum",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "spectrum.q-0.396"
+          },
+          "result_ids": [
+            "spectrum.q-0.396"
+          ]
+        }
+      ],
+      "allowed_controls": [
+        {
+          "name": "q_at",
+          "kind": "ENUM",
+          "allowed_values": [
+            "0",
+            "0.396"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "spectrum.common-mach6"
+          }
+        },
+        {
+          "name": "mode_index",
+          "kind": "RECORDED_INDEX",
+          "allowed_values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "spectrum.common-mach6"
+          }
+        }
+      ],
+      "evidence_refs": [
+        "evidence.spectral.spectrum.q-0.000",
+        "evidence.spectral.spectrum.q-0.396"
+      ],
+      "limitations": [
+        {
+          "id": "lim.explore.s5-complete",
+          "code": "COMPLETE_RECORDED_MODES_REQUIRED",
+          "description": "Load complete ell 0..16 curves for q_at=0 and .396 from SPEC02. Modes 4/8 may be emphasized, but all other modes and non-improving shifts remain visible. The fixed common Mach6 discrete base is separate from Case8; no continuous q_at or numerical Near-1D scan is available.",
+          "affected_refs": [
+            "spectrum.q-0.000",
+            "spectrum.q-0.396"
+          ],
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "scene_id": 6,
+      "title": "Same pathway ≠ Same macroscopic response",
+      "conclusion": "Same pathway ≠ same allocation ≠ same macroscopic response.",
+      "view_kind": "CROSS_FLOW",
+      "targets": [
+        {
+          "experiment_id": "case8",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "D_u"
+          },
+          "result_ids": [
+            "case8.D_u.allocation"
+          ]
+        },
+        {
+          "experiment_id": "cylinder",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "D_u"
+          },
+          "result_ids": [
+            "cylinder.D_u.sectors",
+            "cylinder.D_u.front-band"
+          ]
+        }
+      ],
+      "allowed_controls": [],
+      "evidence_refs": [
+        "ev.case8.D_u.entropy",
+        "ev.case8.D_u.allocation",
+        "ev.cylinder.D_u.sectors",
+        "ev.cylinder.D_u.front-band",
+        "ev.cylinder.D_u.metrics",
+        "ev.missing.cylinder-cumulative2d"
+      ],
+      "limitations": [
+        {
+          "id": "lim.explore.s6-descriptive",
+          "code": "DESCRIPTIVE_ONLY",
+          "description": "Reuse CMP01 with Case8 D_u and Cylinder D_u. Preserve independent child definitions, scope, masks, time horizons and verification. Case8 cumulative native-face allocation is DIAGNOSTIC_RERUN; Cylinder has cumulative sectors and front-band statistics, with cumulative 2D MISSING.",
+          "affected_refs": [
+            "case8.D_u.allocation",
+            "cylinder.D_u.sectors",
+            "cylinder.D_u.front-band"
+          ],
+          "severity": "WARNING"
+        },
+        {
+          "id": "lim.explore.s6-ranking",
+          "code": "NO_UNIFIED_RANKING",
+          "description": "HF, width, localization and budget have different definitions across the flows. Keep CMP01 DESCRIPTIVE_ONLY comparability rules and NO_UNIFIED_RANKING. No common score, winner, ranking or normalized transfer conclusion is supported.",
+          "affected_refs": [
+            "case8.D_u",
+            "cylinder.D_u"
+          ],
+          "severity": "WARNING"
+        }
+      ]
+    },
+    {
+      "scene_id": 7,
+      "title": "Real solver / frozen evidence / hash",
+      "conclusion": "Dissipation magnitude alone is insufficient, and every conclusion has an evidence boundary.",
+      "view_kind": "EVIDENCE",
+      "targets": [],
+      "allowed_controls": [
+        {
+          "name": "evidence_id",
+          "kind": "ENUM",
+          "allowed_values": [
+            "ev.case8.D_u.entropy",
+            "ev.case8.D_u.allocation",
+            "ev.gate.Acoustic.allocation",
+            "evidence.spectral.spectrum.q-0.396",
+            "ev.cylinder.D_u.sectors"
+          ],
+          "combination_registry_ref": {
+            "state": "KNOWN",
+            "value": "explore.evidence"
+          }
+        }
+      ],
+      "evidence_refs": [
+        "ev.case8.D_u.entropy",
+        "ev.case8.D_u.allocation",
+        "ev.gate.Acoustic.allocation",
+        "evidence.spectral.spectrum.q-0.396",
+        "ev.cylinder.D_u.sectors"
+      ],
+      "limitations": [
+        {
+          "id": "lim.explore.s7-evidence",
+          "code": "PER_RESULT_EVIDENCE_BOUNDARY",
+          "description": "Reuse EVI02 to show method, config, source, hash, verification and limitations. Preserve UNKNOWN/current/recorded hash distinctions and per-asset verification. HTTP success and a frozen content registry do not upgrade scientific verification. No complete Evidence index is introduced.",
+          "affected_refs": [
+            "explore.scene-7"
+          ],
+          "severity": "WARNING"
+        },
+        {
+          "id": "lim.mechanism.near1d-raw",
+          "code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+          "description": "Authoritative five-epsilon Near-1D raw numerical evidence is missing. No epsilon slider, five-point numerical scan, formal Near-1D experiment or numeric chart is registered. Fig13 epsilon belongs to modal validation and cannot fill this gap.",
+          "affected_refs": [
+            "mechanism.acoustic-pathways.v1"
+          ],
+          "severity": "WARNING"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "content_id": "mechanism.acoustic-pathways.v1",
+  "data_origin": "SCHEMATIC",
+  "nodes": [
+    {
+      "id": "interface-state",
+      "label": "Interface state",
+      "explanation": "An admissible left/right interface state supplies acoustic/normal information and tangential receiving content. Trigger, output direction and spatial action must be interpreted separately."
+    },
+    {
+      "id": "background-psd",
+      "label": "Background PSD kernel",
+      "explanation": "The background positive-semidefinite dissipation kernel acts directly on interface content. It is a separate pathway from the acoustically gated outputs."
+    },
+    {
+      "id": "acoustic-information",
+      "label": "Acoustic information",
+      "explanation": "Acoustic / normal information constructs the acoustic trigger. Tangential receiving content does not construct this trigger."
+    },
+    {
+      "id": "acoustic-gate",
+      "label": "Acoustic gate J",
+      "explanation": "J is constructed from acoustic / normal information. delta_t (δ_t) DOES NOT ENTER THE GATE. Trigger ≠ Output: J may be nonzero even when tangential output is zero."
+    },
+    {
+      "id": "q-aa",
+      "label": "q_aa",
+      "explanation": "The acoustically gated normal pathway routes dissipation to normal acoustic output; the gate is a trigger and does not by itself specify its receiving content."
+    },
+    {
+      "id": "normal-output",
+      "label": "Normal acoustic output",
+      "explanation": "Normal acoustic output receives the q_aa pathway. Its direction and dissipative amplitude are distinct from the acoustic trigger."
+    },
+    {
+      "id": "q-at",
+      "label": "q_at: OFF / ENABLED",
+      "explanation": "OFF disables the cross-mode tangential pathway. ENABLED permits acoustic-triggered tangential action only when tangential receiving content is present; it does not alter the gate input."
+    },
+    {
+      "id": "tangential-content",
+      "label": "Tangential receiving content",
+      "explanation": "STRICT_1D: tangential jump = 0. WEAKLY_2D: tangential content may be nonzero with the same/similar acoustic trigger. delta_t is receiving content, not a gate input."
+    },
+    {
+      "id": "tangential-output",
+      "label": "Tangential output",
+      "explanation": "Actual dissipative amplitude depends on tangential receiving content as well as q_at and the acoustic trigger. In STRICT_1D, trigger may exist but cross-mode tangential output = 0 because tangential receiving content vanishes. In WEAKLY_2D, nonzero tangential content can activate the enabled q_at pathway."
+    }
+  ],
+  "edges": [
+    {
+      "from_node": "interface-state",
+      "to_node": "background-psd",
+      "label": "Background dissipation pathway"
+    },
+    {
+      "from_node": "interface-state",
+      "to_node": "acoustic-information",
+      "label": "Acoustic / normal information"
+    },
+    {
+      "from_node": "acoustic-information",
+      "to_node": "acoustic-gate",
+      "label": "Constructs trigger J"
+    },
+    {
+      "from_node": "acoustic-gate",
+      "to_node": "q-aa",
+      "label": "Acoustic trigger for normal pathway"
+    },
+    {
+      "from_node": "q-aa",
+      "to_node": "normal-output",
+      "label": "Normal receiving direction"
+    },
+    {
+      "from_node": "acoustic-gate",
+      "to_node": "q-at",
+      "label": "Acoustic trigger for tangential pathway"
+    },
+    {
+      "from_node": "q-at",
+      "to_node": "tangential-output",
+      "label": "OFF / conditionally ENABLED"
+    },
+    {
+      "from_node": "interface-state",
+      "to_node": "tangential-content",
+      "label": "Supplies tangential receiving content"
+    },
+    {
+      "from_node": "tangential-content",
+      "to_node": "tangential-output",
+      "label": "Controls actual tangential dissipative amplitude; no input to J"
+    }
+  ],
+  "supported_states": [
+    "STRICT_1D",
+    "WEAKLY_2D"
+  ],
+  "evidence_refs": [
+    "evidence.spectral.spectrum.q-0.000"
+  ],
+  "limitations": [
+    {
+      "id": "lim.mechanism.near1d-raw",
+      "code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+      "description": "Authoritative five-epsilon Near-1D raw numerical evidence is missing. No epsilon slider, five-point numerical scan, formal Near-1D experiment or numeric chart is registered. Fig13 epsilon belongs to modal validation and cannot fill this gap.",
+      "affected_refs": [
+        "mechanism.acoustic-pathways.v1"
+      ],
+      "severity": "WARNING"
+    },
+    {
+      "id": "lim.mechanism.near1d-theory",
+      "code": "THEORY_ONLY_NEAR1D_SCALING",
+      "description": "For admissible near-one-dimensional states under the theoretical assumptions, cross-mode action is O(epsilon) and its entropy contribution is O(epsilon^2). This is a theoretical explanation, not a numerical fit or a measured five-epsilon scan.",
+      "affected_refs": [
+        "mechanism.acoustic-pathways.v1"
+      ],
+      "severity": "WARNING"
+    },
+    {
+      "id": "lim.mechanism.evidence-context",
+      "code": "SCHEMATIC_NOT_NUMERICAL_EXPERIMENT",
+      "description": "The linked frozen Spectrum Evidence includes the production method source and its hash as implementation context. Its numerical spectra do not certify Near-1D asymptotic scaling. The schematic contains no J or dissipation values.",
+      "affected_refs": [
+        "mechanism.acoustic-pathways.v1"
+      ],
+      "severity": "WARNING"
+    }
+  ]
+}
