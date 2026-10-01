@@ -9,6 +9,8 @@ import ast
 import csv
 import hashlib
 import json
+import subprocess
+import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -87,23 +89,43 @@ def frozen_prerequisites() -> dict:
         p.read_text(encoding="utf-8")
         checks.append({"path": p.relative_to(WORKTREE).as_posix(), "sha256": actual, "unchanged": True})
     phase7 = read_json(WORKTREE / "docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE_MANIFEST.json")
-    original = Path("D:/code_project/CFD_visiblesystem")
+    archive = WORKTREE / "docs/handoffs/phase8/PHASE7_ACCEPTED_BASELINE.zip"
+    # Retain the exact mixed-line-ending accepted bytes independently of the
+    # mutable checkout, which will itself receive the integrated Phase8 slice.
+    with zipfile.ZipFile(archive) as baseline_archive:
+        accepted_bytes = {name: baseline_archive.read(name) for name in baseline_archive.namelist()}
+    assert set(accepted_bytes) == ({item["path"] for item in phase7["accepted_files"]}
+                                   | set(phase7["prerequisite_freeze_sha256"]))
     prerequisite_hashes = []
     for rel, expected in phase7["prerequisite_freeze_sha256"].items():
-        assert digest(original / rel) == expected
-        assert (original / rel).read_bytes().replace(b"\r\n", b"\n") == (WORKTREE / rel).read_bytes().replace(b"\r\n", b"\n")
+        assert hashlib.sha256(accepted_bytes[rel]).hexdigest() == expected
+        assert digest(WORKTREE / rel) == expected
         prerequisite_hashes.append({"path": rel, "frozen_windows_sha256": expected,
                                     "checkout_sha256": digest(WORKTREE / rel), "content_unchanged": True})
     assert read_json(WORKTREE / "docs/PHASE5_CASE8_FREEZE.json")["PHASE5_CASE8_STATUS"] == "FROZEN_ACCEPTED"
     assert "PHASE6_ALLOCATION_STATUS=FROZEN_ACCEPTED" in (WORKTREE / "docs/handoffs/phase6/PHASE6_ALLOCATION_FREEZE.md").read_text()
     assert phase7["status"] == "FROZEN_ACCEPTED"
-    # Phase7 accepted Windows bytes included mixed line endings. The new Git
-    # checkout uses .gitattributes; verify that EVERY mismatch is only CRLF/LF.
+    # Bind the original accepted bytes and the materialized baseline separately
+    # from the authorized Window1--3 integration changes. A bootstrap-only audit
+    # must not require the integrated application's catalog to remain bootstrap.
+    integrated_paths = set(subprocess.check_output(
+        ["git", "diff", "--name-only", BASE_COMMIT, "aaf478da6b9c6302f4843b7c76b5466b686b960a"],
+        cwd=WORKTREE, text=True).splitlines())
+    integrated_paths.add(".gitattributes")  # exact Phase5 CRLF checkout preservation
     normalized = []
+    integration_changes = []
     for item in phase7["accepted_files"]:
-        previous, current = original / item["path"], WORKTREE / item["path"]
-        assert digest(previous) == item["sha256"], f"Accepted source changed: {item['path']}"
-        assert previous.read_bytes().replace(b"\r\n", b"\n") == current.read_bytes().replace(b"\r\n", b"\n")
+        previous, current = accepted_bytes[item["path"]], WORKTREE / item["path"]
+        assert hashlib.sha256(previous).hexdigest() == item["sha256"], f"Accepted source changed: {item['path']}"
+        baseline = subprocess.check_output(["git", "show", f"{BASE_COMMIT}:{item['path']}"], cwd=WORKTREE)
+        assert previous.replace(b"\r\n", b"\n") == baseline.replace(b"\r\n", b"\n")
+        if previous.replace(b"\r\n", b"\n") != current.read_bytes().replace(b"\r\n", b"\n"):
+            assert item["path"] in integrated_paths, f"Unapproved frozen slice change: {item['path']}"
+            if item["path"] != ".gitattributes":
+                delivered = subprocess.check_output(["git", "show", f"aaf478da6b9c6302f4843b7c76b5466b686b960a:{item['path']}"], cwd=WORKTREE)
+                assert current.read_bytes().replace(b"\r\n", b"\n") == delivered.replace(b"\r\n", b"\n")
+            integration_changes.append(item["path"])
+            continue
         if digest(current) != item["sha256"]:
             normalized.append(item["path"])
     return {"phase4_documents": checks, "prerequisite_freeze_hashes": prerequisite_hashes,
@@ -111,7 +133,8 @@ def frozen_prerequisites() -> dict:
             "phase7": "FROZEN_ACCEPTED", "phase7_accepted_files_verified": len(phase7["accepted_files"]),
             "phase7_manifest_sha256": digest(WORKTREE / "docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE_MANIFEST.json"),
             "checkout_line_ending_only_differences": normalized,
-            "phase7_acceptance_semantics": "Original 161/161 SHA256 match; Git checkout text equals accepted text after CRLF/LF normalization."}
+            "authorized_integration_changes": integration_changes,
+            "phase7_acceptance_semantics": "Original 161/161 SHA256 match; materialized baseline equals accepted text; shared integration seams match accepted Window1--3 delivery."}
 
 
 def history_series(columns: list[str]) -> list[dict]:

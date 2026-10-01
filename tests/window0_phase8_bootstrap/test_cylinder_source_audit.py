@@ -179,7 +179,9 @@ def test_frozen_documents_and_shared_git_base(source_map):
     for phase in ("phase5", "phase6", "phase7"):
         assert source_map["frozen_prerequisites"][phase] == "FROZEN_ACCEPTED"
     for item in source_map["frozen_prerequisites"]["prerequisite_freeze_hashes"]:
-        assert audit.digest(audit.WORKTREE / item["path"]) == item["checkout_sha256"]
+        # Final integration restores the accepted CRLF bytes; the historical
+        # bootstrap map retains its LF checkout observation without rewriting it.
+        assert audit.digest(audit.WORKTREE / item["path"]) == item["frozen_windows_sha256"]
     base = source_map["phase8_base_commit"]
     assert subprocess.check_output(["git", "rev-parse", "phase7/spectral-integration"], cwd=audit.WORKTREE, text=True).strip() == base
     assert subprocess.run(["git", "merge-base", "--is-ancestor", base, "HEAD"], cwd=audit.WORKTREE, check=False).returncode == 0
@@ -205,7 +207,14 @@ def test_reproduce_audit_with_scientific_write_guard(source_map, monkeypatch):
 
     monkeypatch.setattr(io, "open", guarded_open)
     rebuilt = audit.audit()
-    assert rebuilt == source_map
+    # Worktree identity and checkout observations change at integration. Every
+    # scientific observation, source hash, missing slot and policy stays exact.
+    observation_keys = {"worktree", "frozen_prerequisites"}
+    assert {k: v for k, v in rebuilt.items() if k not in observation_keys} == {
+        k: v for k, v in source_map.items() if k not in observation_keys}
+    assert rebuilt["frozen_prerequisites"]["phase7_accepted_files_verified"] == 161
+    assert all(item["checkout_sha256"] == item["frozen_windows_sha256"]
+               for item in rebuilt["frozen_prerequisites"]["prerequisite_freeze_hashes"])
     tree = ast.parse(Path(audit.__file__).read_text(encoding="utf-8"))
     imports = [node.module for node in ast.walk(tree) if isinstance(node, ast.ImportFrom)]
     assert not any(name and (name.startswith("solver") or name.startswith("diagnostics")) for name in imports)

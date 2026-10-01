@@ -5,3 +5,6 @@
 *.json text eol=lf
 *.md text eol=lf
 *.ps1 text eol=crlf
+# Preserve the exact accepted Windows bytes bound by the Phase5 freeze hash.
+docs/PHASE5_CASE8_FREEZE.json text eol=crlf
+docs/PHASE5_CASE8_FREEZE_MANIFEST.json text eol=crlf
