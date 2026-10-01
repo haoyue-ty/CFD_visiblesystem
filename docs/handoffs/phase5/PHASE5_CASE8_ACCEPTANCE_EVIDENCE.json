@@ -111,5 +111,6 @@
     "Actual query-based UI routes replace illustrative product URLs",
     "C_u is a real Case8 config; typed 422 remains for genuinely unsupported combinations",
     "Recorded metrics retain MULTI_SNAPSHOT scope; not relabeled TERMINAL"
-  ]
+  ],
+  "accepted_integration_head": "89479eecb9ca2840a01194f032ed438a05fffed8"
 }
