@@ -12,17 +12,25 @@ import type {
   AllocationMaskView,
   AllocationSummaryView,
   AllocationView,
+  EigenmodeView,
   EntropyHistoryView,
   EvidenceDetailView,
   EvidenceSummaryView,
   ExperimentCatalogEntry,
   ExperimentOverview,
   FieldData,
+  GrowthValidationView,
   Loaded,
   MetricCollectionView,
   ProjectView,
   SnapshotAlignmentView,
   SnapshotMeta,
+  SpectrumCurveView,
+  SpectrumDatasetView,
+  SpectralArrayView,
+  SpectralArrayRef,
+  SpectralDatasetRef,
+  ValidationRunRef,
 } from './domain'
 
 export interface SnapshotSelector {
@@ -41,6 +49,30 @@ export interface SnapshotSelector {
 export interface AllocationSelector {
   experimentId: 'case8' | 'gate'
   configId: string
+}
+
+/**
+ * Spectral selectors.
+ *
+ * `dataset_id` is one of the four registered q_at datasets. `modeIndex` is the
+ * Fourier block (ell 0..16). `rank` is the eigenpair rank (0..31) and is a
+ * DIFFERENT index space from the mode index; the two are never interchanged.
+ */
+export interface SpectralCurveSelector {
+  datasetId: string
+}
+export interface SpectralModeSelector {
+  datasetId: string
+  modeIndex: number
+}
+export interface EigenmodeSelector {
+  datasetId: string
+  modeIndex: number
+  side: 'LEFT' | 'RIGHT'
+  rank: number
+  representation: 'COMPLEX_VECTOR' | 'PRIMITIVE_PROFILE'
+  projection: 'COMPLEX' | 'REAL' | 'IMAGINARY' | 'AMPLITUDE'
+  fieldComponent: string
 }
 
 export interface DataProvider {
@@ -78,4 +110,33 @@ export interface DataProvider {
   loadAllocationMask(selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationMaskView>>
   /** Budget / inside / outside and the explicit measure rule. */
   loadAllocationSummary(selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationSummaryView>>
+
+  // --- Phase 7B Spectral Lab ------------------------------------------------
+  //
+  // Mirrors the frozen spectral API surface (SPEC00-SPEC05). Selectors are the
+  // registered identities, never paths or array-member names. A missing saved
+  // vector is a reason-bearing MISSING (not an empty payload); q_at is never
+  // interpolated; the eigenpair rank is never treated as a Fourier mode index.
+
+  /** SPEC00: the four registered q_at datasets (selector identities). */
+  listSpectra(signal?: AbortSignal): Promise<Loaded<SpectralDatasetRef[]>>
+  /** SPEC01: one dataset summary (17 blocks, refs only — no 512-value dump). */
+  getSpectrumDataset(selector: SpectralCurveSelector, signal?: AbortSignal): Promise<Loaded<SpectrumDatasetView>>
+  /** SPEC02: the complete 17-block spectral curve for one q. */
+  getSpectralCurve(selector: SpectralCurveSelector, signal?: AbortSignal): Promise<Loaded<SpectrumCurveView>>
+  /** SPEC04: a saved eigenmode view at one Fourier block (values load via ARRAY01). */
+  getEigenmode(selector: EigenmodeSelector, signal?: AbortSignal): Promise<Loaded<EigenmodeView>>
+  /**
+   * ARRAY01: the numeric payload behind an eigenmode view's `values_ref`.
+   *
+   * Loaded separately from SPEC04 so the manifest and the numbers never arrive as
+   * one payload, and so a missing array is a distinct fact from a missing view.
+   * A complex128 vector decodes to `[real, imag]` pairs; a primitive profile to
+   * plain numbers. No projection, no resampling.
+   */
+  loadSpectralArray(ref: SpectralArrayRef, signal?: AbortSignal): Promise<Loaded<SpectralArrayView>>
+  /** SPEC05: one recorded growth-validation run (PARTIAL when predictions are absent). */
+  getGrowthValidation(runId: string, signal?: AbortSignal): Promise<Loaded<GrowthValidationView>>
+  /** The recorded validation-run identities (a selector list, not a numeric read). */
+  listValidationRuns(signal?: AbortSignal): Promise<Loaded<ValidationRunRef[]>>
 }

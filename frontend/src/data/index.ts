@@ -10,22 +10,30 @@
  * Pages never import a mock module or a transport directly.
  */
 import { ref, type Ref } from 'vue'
-import type { AllocationSelector, DataProvider, SnapshotSelector } from './provider'
+import type { AllocationSelector, EigenmodeSelector, DataProvider, SnapshotSelector, SpectralCurveSelector } from './provider'
+import type { SpectralArrayRef } from './domain'
 import type {
   AllocationMaskView,
   AllocationSummaryView,
   AllocationView,
+  EigenmodeView,
   EntropyHistoryView,
   EvidenceDetailView,
   EvidenceSummaryView,
   ExperimentCatalogEntry,
   ExperimentOverview,
   FieldData,
+  GrowthValidationView,
   Loaded,
   MetricCollectionView,
   ProjectView,
   SnapshotAlignmentView,
   SnapshotMeta,
+  SpectrumCurveView,
+  SpectrumDatasetView,
+  SpectralArrayView,
+  SpectralDatasetRef,
+  ValidationRunRef,
 } from './domain'
 import { createMockProvider } from './mockProvider'
 import { createApiProvider } from './apiProvider'
@@ -39,7 +47,11 @@ export type {
   AllocationSummaryView,
   AllocationView,
   CellAllocationView,
+  ComplexProjection,
   DataOrigin,
+  EigenmodeView,
+  EigenRepresentation,
+  EigenSide,
   EntropyHistoryView,
   EvidenceDetailView,
   EvidenceSummaryView,
@@ -47,12 +59,25 @@ export type {
   ExperimentOverview,
   FaceAllocationView,
   FieldData,
+  GrowthErrorView,
+  GrowthRatesView,
+  GrowthValidationView,
   Loaded,
   LoadState,
   MetricCollectionView,
   ProjectView,
   SnapshotAlignmentView,
   SnapshotMeta,
+  SpectralDatasetRef,
+  SpectralHeader,
+  SpectralNormalizationView,
+  SpectralPointView,
+  SpectralRepresentation,
+  SpectralArrayRef,
+  SpectralArrayView,
+  SpectrumCurveView,
+  SpectrumDatasetView,
+  ValidationRunRef,
 } from './domain'
 
 const providers: Partial<Record<'MOCK' | 'API', DataProvider>> = { API: createApiProvider() }
@@ -149,6 +174,20 @@ export const dataService = {
     getProvider().loadAllocationMask(selector, signal),
   loadAllocationSummary: (selector: AllocationSelector, signal?: AbortSignal): Promise<Loaded<AllocationSummaryView>> =>
     getProvider().loadAllocationSummary(selector, signal),
+
+  // --- Phase 7B spectral ---------------------------------------------------
+  listSpectra: (signal?: AbortSignal): Promise<Loaded<SpectralDatasetRef[]>> => getProvider().listSpectra(signal),
+  getSpectrumDataset: (selector: SpectralCurveSelector, signal?: AbortSignal): Promise<Loaded<SpectrumDatasetView>> =>
+    getProvider().getSpectrumDataset(selector, signal),
+  getSpectralCurve: (selector: SpectralCurveSelector, signal?: AbortSignal): Promise<Loaded<SpectrumCurveView>> =>
+    getProvider().getSpectralCurve(selector, signal),
+  getEigenmode: (selector: EigenmodeSelector, signal?: AbortSignal): Promise<Loaded<EigenmodeView>> =>
+    getProvider().getEigenmode(selector, signal),
+  loadSpectralArray: (ref: SpectralArrayRef, signal?: AbortSignal): Promise<Loaded<SpectralArrayView>> =>
+    getProvider().loadSpectralArray(ref, signal),
+  getGrowthValidation: (runId: string, signal?: AbortSignal): Promise<Loaded<GrowthValidationView>> =>
+    getProvider().getGrowthValidation(runId, signal),
+  listValidationRuns: (signal?: AbortSignal): Promise<Loaded<ValidationRunRef[]>> => getProvider().listValidationRuns(signal),
 }
 
-export type { AllocationSelector, DataProvider, SnapshotSelector }
+export type { AllocationSelector, DataProvider, EigenmodeSelector, SnapshotSelector, SpectralCurveSelector }

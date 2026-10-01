@@ -15,6 +15,14 @@ from .allocation import (AllocationArrayResponse, AllocationComparison,
                          AllocationRepresentation, AllocationResult,
                          AllocationSummary, CellAllocation, FaceAllocation,
                          MeasureDefinition, WIRE_REPRESENTATION)
+from .spectral_api import (EigenmodeView, GrowthErrorView, GrowthRatesView,
+                           GrowthValidationView, SpectralHeader,
+                           SpectralNormalizationView, SpectralPointView,
+                           SpectrumCurveView, SpectrumDatasetView,
+                           ValidationRunListView, ValidationRunView,
+                           project_curve, project_dataset, project_eigenmode,
+                           project_point, project_validation,
+                           project_validation_runs)
 
 CORE_MODELS = (
     UnitSpec, ScientificLimitation, Verification, ProvenanceRef, ScientificResult,
@@ -28,4 +36,7 @@ CORE_MODELS = (
     Fact[Number], HashFact, ResourceSlot[Metric], ApiEnvelope[ProjectInfo],
     AllocationResult, AllocationSummary, AllocationMetadata,
     AllocationArrayResponse, AllocationComparison, AllocationComparisonEntry,
+    # Phase 7B Window 2 spectral public DTOs; Window 3 adds the run selector list.
+    SpectrumDatasetView, SpectrumCurveView, SpectralPointView, EigenmodeView,
+    GrowthValidationView, ValidationRunListView, ValidationRunView,
 )

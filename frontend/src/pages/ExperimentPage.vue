@@ -25,6 +25,7 @@ import EntropyTab from '../views/case8/EntropyTab.vue'
 import AllocationTab from '../views/case8/AllocationTab.vue'
 import MetricsTab from '../views/case8/MetricsTab.vue'
 import EvidenceTab from '../views/case8/EvidenceTab.vue'
+import SpectralTab from '../views/case8/SpectralTab.vue'
 
 const props = defineProps<{ experiment_id: string }>()
 const route = useRoute()
@@ -34,7 +35,7 @@ const overview = ref<Loaded<ExperimentOverview> | null>(null)
 const overviewGuard = createRequestGuard()
 
 const VALID_CONFIGS = ['A_u', 'B_u', 'C_u', 'D_u'] as const
-const VALID_TABS = ['overview', 'flow', 'entropy', 'allocation', 'metrics', 'evidence'] as const
+const VALID_TABS = ['overview', 'flow', 'entropy', 'allocation', 'metrics', 'spectral', 'evidence'] as const
 type Tab = (typeof VALID_TABS)[number]
 
 function readQueryString(key: string): string | null {
@@ -179,6 +180,11 @@ watch(
           The Gate CELL_FIELD views (Acoustic / Pressure / Ungated) are frozen production cell maps.
           These are different scientific objects and are rendered separately.
         </p>
+        <p v-else-if="tab === 'spectral'" class="exp__tab-note" data-testid="spectral-note">
+          Spectral Lab: <strong>Selective modal response</strong> — the Re(λ) growth signature of the most
+          unstable Fourier mode across four exact q_at configurations. This reports recorded spectral
+          facts; it is not a spatial field.
+        </p>
 
         <section class="exp__content" role="tabpanel" :aria-label="tab">
           <OverviewTab v-if="tab === 'overview' && overview.data" :overview="overview.data" :config-id="configId" />
@@ -191,6 +197,7 @@ watch(
           <EntropyTab v-else-if="tab === 'entropy'" :config-id="configId" v-model="scalarStep" />
           <AllocationTab v-else-if="tab === 'allocation'" :config-id="configId" />
           <MetricsTab v-else-if="tab === 'metrics'" :config-id="configId" />
+          <SpectralTab v-else-if="tab === 'spectral'" />
           <EvidenceTab v-else-if="tab === 'evidence'" :config-id="configId" />
         </section>
       </template>

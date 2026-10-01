@@ -11,13 +11,25 @@
  * The generated values are deterministic (seeded) so tests and deep-links are
  * reproducible, but they are SYNTHETIC and must never be cited as science.
  */
-import type { DataProvider, SnapshotSelector, AllocationSelector } from './provider'
+import type { DataProvider, SnapshotSelector, AllocationSelector, EigenmodeSelector, SpectralCurveSelector } from './provider'
+import type { components } from '../types/generated/api'
+type S_ErrorBody = components['schemas']['ErrorBody']
+type S_ProvenanceRef = components['schemas']['ProvenanceRef']
+type S_MaskSpec = components['schemas']['MaskSpec']
 import type {
   AllocationArrayView,
   AllocationMaskView,
   AllocationSummaryView,
   AllocationView,
   DataOrigin,
+  EigenmodeView,
+  GrowthValidationView,
+  SpectrumCurveView,
+  SpectrumDatasetView,
+  SpectralArrayView,
+  SpectralDatasetRef,
+  SpectralPointView,
+  ValidationRunRef,
   EntropyHistoryView,
   EvidenceDetailView,
   EvidenceSummaryView,
@@ -583,6 +595,169 @@ function fail<T>(state: Loaded<T>['state'], reason: string): Loaded<T> {
   return { state, data: null, reason, origin: MOCK_ORIGIN }
 }
 
+// --- Phase 7B spectral mock --------------------------------------------------
+//
+// A spectral curve is 17 DISCRETE Fourier blocks for ONE recorded q_at. The mock
+// NEVER interpolates q and never draws a smooth curve: each block is a separate
+// sample. `Re(lambda)` is strongest at low ell and decays, which is the shape the
+// frozen adapter observes — but these numbers are SYNTHETIC and must never be
+// cited as science. Every record is namespaced `mock.` and carries MOCK origin.
+const SPECTRAL_Q_AT = [0, 0.132, 0.264, 0.396] as const
+
+/** Deterministic mock spectrum dataset identities. */
+function mockSpectralDatasets(): SpectralDatasetRef[] {
+  return SPECTRAL_Q_AT.map(q => ({ dataset_id: `mock.spectrum.q-${q.toFixed(3)}`, q_at: q, configuration_id: `mock.configuration.q-${q.toFixed(3)}` }))
+}
+
+function mockWaveNumbers(): number[] {
+  // Registered wave numbers correspond to the 17 recorded modes 0..16; the mock
+  // uses a simple monotone placeholder — the definition text states it is mock.
+  return Array.from({ length: 17 }, (_, k) => Number((k * (1 / 16)).toFixed(6)))
+}
+
+function mockSpectralHeader(datasetId: string, qAt: number): ResultHeader {
+  return {
+    result_id: `mock.result.${datasetId}`,
+    experiment_id: 'spectrum',
+    config_id: datasetId,
+    semantic_id: 'SpectralRe_lambda',
+    data_origin: MOCK_ORIGIN,
+    availability: 'AVAILABLE',
+    unit: mockUnit('growth_rate', 'rate (model units)'),
+    verification: mockVerification(),
+    evidence_refs: [`mock.evidence.${datasetId}`],
+    limitations: [LIM_MOCK],
+    // q_at is echoed by callers; the header itself carries no q field.
+  } as ResultHeader & { q_at?: number }
+}
+
+/** Mock ProvenanceRef — same shape as the wire record, entirely synthetic. */
+function mockProvenance(evidenceRefs: string[]): S_ProvenanceRef {
+  return {
+    evidence_refs: evidenceRefs, source_asset_ids: [],
+    registry_revision: 'mock-registry-v1', data_revision: 'mock-no-scientific-data-v1',
+    release_id: { state: 'NOT_APPLICABLE', reason: 'Mock provider has no frozen release.' },
+    source_drift: { state: 'NOT_APPLICABLE', reason: 'Mock provider has no source assets.' },
+  } as S_ProvenanceRef
+}
+
+function mockSpectralPoints(datasetId: string, qAt: number): SpectralPointView[] {
+  // Re is strongest at ell 0 and decays with ell; q shifts the peak slightly.
+  return Array.from({ length: 17 }, (_, k) => {
+    const decay = Math.exp(-0.18 * k)
+    const real = Number(((0.28 + qAt * 0.1) * decay - 0.02).toFixed(6))
+    const imag = Number(((0.42 * decay) * Math.sign(Math.sin(k / 2))).toFixed(6))
+    const abscissa = Number(real.toFixed(6))
+    return {
+      q_at: qAt, verification: mockVerification(),
+      provenance: mockProvenance([`mock.evidence.${datasetId}.mode-${k}`]),
+      result: mockSpectralHeader(datasetId, qAt),
+      representation: 'SPECTRUM_POINT' as const,
+      spectrum_record_id: `mock.spectrum-record.${datasetId}.mode-${String(k).padStart(2, '0')}`,
+      mode_index: k,
+      wave_number: mockWaveNumbers()[k],
+      real_lambda: real, imag_lambda: imag, spectral_abscissa: abscissa, eigenvalue_rank: 0 as const,
+    }
+  })
+}
+
+function mockSpectralCurve(selector: SpectralCurveSelector): SpectrumCurveView | null {
+  const qAt = SPECTRAL_Q_AT.find(q => selector.datasetId === `mock.spectrum.q-${q.toFixed(3)}`)
+  if (qAt === undefined) return null
+  const datasetId = selector.datasetId
+  return {
+    q_at: qAt, verification: mockVerification(),
+    provenance: mockProvenance([`mock.evidence.${datasetId}`]),
+    result: mockSpectralHeader(datasetId, qAt),
+    representation: 'SPECTRUM_CURVE', dataset_id: datasetId,
+    collection_id: 'mock.spectrum.common', base_result_id: 'mock.spectrum.common.base',
+    configuration_id: `mock.configuration.q-${qAt.toFixed(3)}`,
+    points: mockSpectralPoints(datasetId, qAt),
+  }
+}
+
+function mockEigenmode(selector: EigenmodeSelector): EigenmodeView | null {
+  const qAt = SPECTRAL_Q_AT.find(q => selector.datasetId === `mock.spectrum.q-${q.toFixed(3)}`)
+  if (qAt === undefined) return null
+  if (!Number.isInteger(selector.modeIndex) || selector.modeIndex < 0 || selector.modeIndex > 16) return null
+  // The saved vectors exist only for ranks 0..3 in the mock; a higher rank is a
+  // reason-bearing MISSING (the panel shows "Unavailable", never an empty frame).
+  if (selector.rank > 3) return null
+  const datasetId = selector.datasetId
+  const record = `mock.spectrum-record.${datasetId}.mode-${String(selector.modeIndex).padStart(2, '0')}`
+  const isProfile = selector.representation === 'PRIMITIVE_PROFILE'
+  return {
+    q_at: qAt, verification: mockVerification(),
+    provenance: mockProvenance([`mock.evidence.${record}`]),
+    result: mockSpectralHeader(datasetId, qAt),
+    representation: 'EIGENMODE',
+    eigenmode_id: `${record}.${selector.side.toLowerCase()}.rank-${String(selector.rank).padStart(2, '0')}.${isProfile ? 'primitive_profile' : 'complex_vector'}.${selector.fieldComponent}`,
+    spectrum_record_id: record, dataset_id: datasetId, mode_index: selector.modeIndex,
+    side: selector.side, rank: selector.rank, field_component: selector.fieldComponent,
+    eigen_representation: selector.representation, projection: selector.projection,
+    shape: isProfile ? [128] : [128, 4],
+    normalization: {
+      id: 'mock.normalization.unknown',
+      definition: null, phase_convention: null, component_order: null, processing_ref: null,
+    },
+    // LEFT localization is genuinely absent in the frozen source; the mock mirrors
+    // that by leaving it unresolved for LEFT rather than inventing a value.
+    localization_fraction: selector.side === 'RIGHT' ? 0.62 : null,
+    localization_definition: 'Fraction of RIGHT primitive energy inside the fixed x-cell mask (mock).',
+    mask_reference: { id: 'mock.mask.spectrum.fixed-shock-cells', type: 'SPECTRUM_FIXED_SHOCK_CELLS', definition: 'Mock fixed x-cell shock window 58..66 (zero based).', counts: [9], evidence_refs: [] } as unknown as S_MaskSpec,
+    values_ref: {
+      result_id: `mock.result.${datasetId}`,
+      array_id: `${record}.${selector.side.toLowerCase()}.rank-${String(selector.rank).padStart(2, '0')}`,
+      shape: isProfile ? [128] : [128, 4],
+      dtype: isProfile ? 'float64' : 'complex128',
+    },
+    evidence_refs: [`mock.evidence.${record}`],
+  }
+}
+
+function mockValidationRuns(): ValidationRunRef[] {
+  const runs: ValidationRunRef[] = []
+  for (const mode of [1, 4, 8, 12]) {
+    for (const eps of [1e-4, 1e-5, 1e-6]) {
+      runs.push({
+        run_id: `mock.modal-validation.m${String(mode).padStart(2, '0')}_q0p396_eps${eps.toExponential(0).replace('e-', 'e-0')}`,
+        label: `mode ${mode} · q_at=0.396 · ε=${eps.toExponential(0)}`,
+        mode_index: mode, q_at: 0.396, epsilon: eps,
+      })
+    }
+  }
+  return runs
+}
+
+function mockGrowthValidation(runId: string): GrowthValidationView | null {
+  const run = mockValidationRuns().find(item => item.run_id === runId)
+  if (!run) return null
+  const time = Array.from({ length: 33 }, (_, i) => Number((i * 0.0025).toFixed(6)))
+  const cfd = time.map(t => Number((1e-4 * Math.exp(1.62 * t)).toFixed(10)))
+  // The linear amplitude history was NOT saved in the frozen source. The mock
+  // mirrors that as an all-null, reason-bearing MISSING series — it is never a
+  // synthesized exponential.
+  const linear: (number | null)[] = time.map(() => null)
+  return {
+    q_at: run.q_at, verification: mockVerification(),
+    provenance: mockProvenance([`mock.evidence.${runId}`]),
+    result: mockSpectralHeader(`mock.spectrum.q-0.396`, run.q_at),
+    representation: 'GROWTH_VALIDATION', run_id: runId, mode_index: run.mode_index, epsilon: run.epsilon,
+    spectrum_record_id: `mock.spectrum-record.mock.spectrum.q-0.396.mode-${String(run.mode_index).padStart(2, '0')}`,
+    eigenmode_id: `mock.eigenmode.mode-${run.mode_index}.rank-00`,
+    time, step_indices: Array.from({ length: 33 }, (_, i) => i),
+    linear_amplitude: linear, cfd_amplitude: cfd,
+    growth_rate: { linear: 1.61, rk3: 1.63, cfd: 1.62 },
+    error: {
+      absolute_discrepancy: 0.01, relative_discrepancy: 0.00613, relative_discrepancy_format: 'FRACTION',
+      definition: 'ABS_SIGMA_CFD_MINUS_RK3_OVER_MAX_ABS_RK3_1', definition_id: 'mock.growth.error.definition',
+      evidence_refs: [`mock.evidence.${runId}`],
+    },
+    amplitude_definition: 'ABS_PROJECTED_COEFFICIENT', fit_start: 0, fit_end: 32, fit_point_count: 33,
+    issues: [{ code: 'MISSING_ASSET', message: 'Linear amplitude history was not saved for this run; only the recorded rate and the CFD history are available.', target: { resource_type: 'growth_validation', identity: { state: 'KNOWN', value: runId } } } as unknown as S_ErrorBody],
+  }
+}
+
 export function createMockProvider(): DataProvider {
   return {
     kind: 'MOCK',
@@ -824,6 +999,86 @@ export function createMockProvider(): DataProvider {
         return delay(fail<AllocationSummaryView>('MISSING', `No allocation summary for ${selector.experimentId}/${selector.configId}.`), signal, 10)
       }
       return delay(ok(allocation.summary), signal, 80)
+    },
+
+    // --- Phase 7B spectral ---------------------------------------------------
+
+    listSpectra(signal) {
+      return delay(ok<SpectralDatasetRef[]>(mockSpectralDatasets()), signal, 60)
+    },
+
+    getSpectrumDataset(selector, signal) {
+      const curve = mockSpectralCurve(selector)
+      if (!curve) {
+        return delay(fail<SpectrumDatasetView>('MISSING', `Spectrum dataset "${selector.datasetId}" is not one of the four registered q_at configurations.`), signal, 10)
+      }
+      return delay(ok<SpectrumDatasetView>({
+        q_at: curve.q_at, verification: curve.verification, provenance: curve.provenance, result: curve.result,
+        representation: 'SPECTRUM_DATASET', dataset_id: curve.dataset_id, collection_id: curve.collection_id,
+        base_result_id: curve.base_result_id, configuration_id: curve.configuration_id,
+        mode_indices: Array.from({ length: 17 }, (_, k) => k), wave_numbers: mockWaveNumbers(),
+        wave_number_definition: 'Mock wave numbers for the 17 recorded Fourier blocks (ell 0..16).',
+        matrix_availability: 'MISSING', evidence_refs: curve.provenance.evidence_refs,
+      }), signal, 90)
+    },
+
+    getSpectralCurve(selector, signal) {
+      const curve = mockSpectralCurve(selector)
+      if (!curve) {
+        return delay(fail<SpectrumCurveView>('MISSING', `No recorded spectral curve for dataset "${selector.datasetId}".`), signal, 10)
+      }
+      return delay(ok<SpectrumCurveView>(curve), signal, 120)
+    },
+
+    getEigenmode(selector, signal) {
+      const view = mockEigenmode(selector)
+      if (!view) {
+        // Distinguish an unregistered selection from a registered-but-unsaved one.
+        const known = SPECTRAL_Q_AT.some(q => selector.datasetId === `mock.spectrum.q-${q.toFixed(3)}`)
+        if (!known || selector.modeIndex < 0 || selector.modeIndex > 16) {
+          return delay(fail<EigenmodeView>('MISSING', `Eigenmode selection (mode ${selector.modeIndex}) is not a recorded block for "${selector.datasetId}".`), signal, 10)
+        }
+        return delay(fail<EigenmodeView>('MISSING', `No saved eigenmode vector for rank ${selector.rank}; only ranks 0..3 are saved in this mock.`), signal, 10)
+      }
+      return delay(ok<EigenmodeView>(view), signal, 110)
+    },
+
+    getGrowthValidation(runId, signal) {
+      const view = mockGrowthValidation(runId)
+      if (!view) {
+        return delay(fail<GrowthValidationView>('MISSING', `Validation run "${runId}" is not a registered recorded run.`), signal, 10)
+      }
+      // PARTIAL: the run's rates and CFD history exist, the linear amplitude
+      // history does not. A missing prediction stays an explicit MISSING fact.
+      return delay({ state: 'PARTIAL', data: view, origin: MOCK_ORIGIN, reason: 'Linear/RK3 amplitude histories were not saved; only recorded rates and the CFD history are available.' }, signal, 130)
+    },
+
+    listValidationRuns(signal) {
+      return delay(ok<ValidationRunRef[]>(mockValidationRuns()), signal, 60)
+    },
+
+    loadSpectralArray(ref, signal) {
+      const datasetId = ref.result_id.replace(/^mock\.result\./, '')
+      const qAt = SPECTRAL_Q_AT.find(q => datasetId === `mock.spectrum.q-${q.toFixed(3)}`)
+      if (qAt === undefined) {
+        return delay(fail<SpectralArrayView>('MISSING', `No saved array for result "${ref.result_id}".`), signal, 10)
+      }
+      const isComplex = ref.dtype === 'complex128'
+      // A deterministic, synthetic vector/profile. The envelope shape and the
+      // dtype are respected so the renderer exercises the real projection paths.
+      const values: number[] | [number, number][] = isComplex
+        ? Array.from({ length: 128 * 4 }, (_, i) => {
+            const t = i / (128 * 4)
+            return [Number((Math.sin(t * Math.PI * 6) * Math.exp(-2 * t)).toFixed(6)),
+                    Number((Math.cos(t * Math.PI * 5) * Math.exp(-2 * t)).toFixed(6))] as [number, number]
+          })
+        : Array.from({ length: 128 }, (_, i) => {
+            const t = i / 128
+            return Number((Math.exp(-Math.pow((t - 0.62) / 0.09, 2))).toFixed(6))
+          })
+      return delay(ok<SpectralArrayView>({
+        result_id: ref.result_id, array_id: ref.array_id, shape: ref.shape, dtype: ref.dtype, values,
+      }), signal, 90)
     },
   }
 }

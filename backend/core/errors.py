@@ -15,6 +15,8 @@ SCIENTIFIC_CODES = frozenset({
     "UNSUPPORTED_REPRESENTATION", "MISSING_ASSET",
     "UNSUPPORTED_COMBINATION", "SOURCE_READ_ERROR", "CANONICAL_SCHEMA_MISMATCH",
     "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ",
+    # Phase 7B Window 2 spectral contract codes (frozen 06 §10/§11).
+    "UNKNOWN_SPECTRUM", "UNKNOWN_MODE", "MISSING_EIGENMODE", "UNSUPPORTED_PARAMETER",
 })
 # Failures here are server-side by definition: the adapter or the canonical contract is at fault.
 SERVER_SIDE_CODES = frozenset({
@@ -91,6 +93,38 @@ def source_error(message: str, *, retryable: bool = False, resource_type: str = 
     return system_error("SOURCE_ERROR", message, status=500, retryable=retryable,
                         resource_type=resource_type, identity=identity,
                         evidence_refs=evidence_refs, domain="SYSTEM")
+
+
+def unknown_spectrum(message: str, *, resource_type: str = "spectrum", identity=None,
+                     details: list | None = None, evidence_refs: list | None = None) -> DomainError:
+    """404 UNKNOWN_SPECTRUM: the requested spectrum dataset identity is not registered."""
+    return system_error("UNKNOWN_SPECTRUM", message, status=404, availability="MISSING",
+                        resource_type=resource_type, identity=identity, details=details,
+                        evidence_refs=evidence_refs, domain="SCIENTIFIC")
+
+
+def unknown_mode(message: str, *, resource_type: str = "spectrum", identity=None,
+                 details: list | None = None, evidence_refs: list | None = None) -> DomainError:
+    """404 UNKNOWN_MODE: the requested Fourier mode index is not a registered block."""
+    return system_error("UNKNOWN_MODE", message, status=404, availability="MISSING",
+                        resource_type=resource_type, identity=identity, details=details,
+                        evidence_refs=evidence_refs, domain="SCIENTIFIC")
+
+
+def missing_eigenmode(message: str, *, resource_type: str = "eigenmode", identity=None,
+                      details: list | None = None, evidence_refs: list | None = None) -> DomainError:
+    """404 MISSING_EIGENMODE: the eigenmode selection is registered but its saved vector/profile is absent."""
+    return system_error("MISSING_EIGENMODE", message, status=404, availability="MISSING",
+                        resource_type=resource_type, identity=identity, details=details,
+                        evidence_refs=evidence_refs, domain="SCIENTIFIC")
+
+
+def unsupported_parameter(message: str, *, resource_type: str = "spectrum", identity=None,
+                          details: list | None = None, evidence_refs: list | None = None) -> DomainError:
+    """422 UNSUPPORTED_PARAMETER: a syntactically valid selector outside the verified parameter set."""
+    return system_error("UNSUPPORTED_PARAMETER", message, status=422, availability="UNSUPPORTED",
+                        resource_type=resource_type, identity=identity, details=details,
+                        evidence_refs=evidence_refs, domain="SCIENTIFIC")
 
 
 def register_error_handlers(app: Flask) -> None:

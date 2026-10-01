@@ -7,3 +7,7 @@ export { default as EvidenceLink } from './EvidenceLink.vue'
 export { default as FaceAllocationView } from './FaceAllocationView.vue'
 export { default as CellAllocationView } from './CellAllocationView.vue'
 export { default as AllocationSummary } from './AllocationSummary.vue'
+// Phase 7B spectral: one renderer per scientific object.
+export { default as SpectralCurveChart } from './SpectralCurveChart.vue'
+export { default as EigenmodeChart } from './EigenmodeChart.vue'
+export { default as GrowthValidationChart } from './GrowthValidationChart.vue'

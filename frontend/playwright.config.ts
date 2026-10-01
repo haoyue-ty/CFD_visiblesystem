@@ -19,6 +19,7 @@ export default defineConfig({
     { name: 'real-api', testDir: './tests', use: { baseURL: productionUrl } },
     { name: 'window3-mock-development', testDir: '../tests/window3_frontend', use: { baseURL: mockUrl } },
     { name: 'window4-allocation-ui', testDir: '../tests/window4_allocation', use: { baseURL: mockUrl } },
+    { name: 'window3-spectral-ui', testDir: '../tests/window3_spectral', use: { baseURL: mockUrl } },
   ],
   webServer: [
     { command: `"${python}" -m scripts.serve_backend`, cwd: workspace, url: `${apiTarget}/api/v1/system`, env: { API_PORT: apiPort }, reuseExistingServer: false },

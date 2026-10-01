@@ -344,6 +344,125 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/spectra": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The four registered spectral dataset summaries; metadata and refs only. */
+        get: operations["SPEC00"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/spectra/{dataset_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description One recorded q dataset summary: 17 blocks, refs only; no 512-value dump. */
+        get: operations["SPEC01"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/spectra/{dataset_id}/points": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The complete 17-block spectral curve for one q; q is never interpolated. */
+        get: operations["SPEC02"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/spectra/{dataset_id}/points/{mode_index}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description One Fourier block record: alpha, leading eigenvalue and eigenvalue ref. */
+        get: operations["SPEC03"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/spectra/{dataset_id}/eigenmodes/{mode_index}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description A saved LEFT/RIGHT vector or primitive profile; values load via ARRAY01. */
+        get: operations["SPEC04"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/spectra/validation/runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The 24 registered Fig13 validation-run identities (selector metadata only). */
+        get: operations["SPEC06"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/spectra/validation/{run_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description One recorded Fig13 validation run: 33 steps, recorded rates, missing facts explicit. */
+        get: operations["SPEC05"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1732,6 +1851,376 @@ export interface components {
             /** Evidence Refs */
             evidence_refs: string[];
         };
+        /**
+         * SpectrumDatasetView
+         * @description SPEC01 metadata: one recorded q, 17 blocks, refs only — no 512-value dump.
+         */
+        SpectrumDatasetView: {
+            result: components["schemas"]["ScientificResult"];
+            /** Q At */
+            q_at: number;
+            verification: components["schemas"]["Verification"];
+            provenance: components["schemas"]["ProvenanceRef"];
+            /**
+             * Representation
+             * @default SPECTRUM_DATASET
+             * @constant
+             */
+            representation: "SPECTRUM_DATASET";
+            /** Dataset Id */
+            dataset_id: string;
+            /** Collection Id */
+            collection_id: string;
+            /** Base Result Id */
+            base_result_id: string;
+            /** Configuration Id */
+            configuration_id: string;
+            /**
+             * Parameter Name
+             * @default q_at
+             * @constant
+             */
+            parameter_name: "q_at";
+            /**
+             * Record Count
+             * @default 17
+             * @constant
+             */
+            record_count: 17;
+            /**
+             * Eigenvalues Per Block
+             * @default 512
+             * @constant
+             */
+            eigenvalues_per_block: 512;
+            /**
+             * Saved Vectors Per Side
+             * @default 32
+             * @constant
+             */
+            saved_vectors_per_side: 32;
+            /** Mode Indices */
+            mode_indices: number[];
+            wave_numbers: components["schemas"]["Fact_list_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False______"];
+            /** Wave Number Definition */
+            wave_number_definition: string;
+            matrix_source: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * Matrix Availability
+             * @default MISSING
+             * @constant
+             */
+            matrix_availability: "MISSING";
+            mask: components["schemas"]["MaskSpec"];
+            /** Evidence Refs */
+            evidence_refs: string[];
+        };
+        /**
+         * SpectralPointView
+         * @description One Fourier block of a curve; ``mode_index`` is ell, never eigenpair rank.
+         */
+        SpectralPointView: {
+            result: components["schemas"]["ScientificResult"];
+            /** Q At */
+            q_at: number;
+            verification: components["schemas"]["Verification"];
+            provenance: components["schemas"]["ProvenanceRef"];
+            /**
+             * Representation
+             * @default SPECTRUM_POINT
+             * @constant
+             */
+            representation: "SPECTRUM_POINT";
+            /** Spectrum Record Id */
+            spectrum_record_id: string;
+            /** Mode Index */
+            mode_index: number;
+            wave_number: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"];
+            real_lambda: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"];
+            imag_lambda: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"];
+            spectral_abscissa: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"];
+            /**
+             * Eigenvalue Rank
+             * @default 0
+             * @constant
+             */
+            eigenvalue_rank: 0;
+            eigenvalues_ref: components["schemas"]["ArrayRef"];
+        };
+        /**
+         * SpectrumCurveView
+         * @description SPEC02: one q yields exactly 17 ordered points; no interpolation of q.
+         */
+        SpectrumCurveView: {
+            result: components["schemas"]["ScientificResult"];
+            /** Q At */
+            q_at: number;
+            verification: components["schemas"]["Verification"];
+            provenance: components["schemas"]["ProvenanceRef"];
+            /**
+             * Representation
+             * @default SPECTRUM_CURVE
+             * @constant
+             */
+            representation: "SPECTRUM_CURVE";
+            /** Dataset Id */
+            dataset_id: string;
+            /** Collection Id */
+            collection_id: string;
+            /** Base Result Id */
+            base_result_id: string;
+            /** Configuration Id */
+            configuration_id: string;
+            /** Points */
+            points: components["schemas"]["SpectralPointView"][];
+        };
+        /** Fact[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0), Le(le=1)])]] */
+        Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_1_____: components["schemas"]["KnownFact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_1_____"] | components["schemas"]["UnresolvedFact"];
+        /** Fact[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1)])]] */
+        Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1_____: components["schemas"]["KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1_____"] | components["schemas"]["UnresolvedFact"];
+        /** Fact[list[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1)])]]] */
+        Fact_list_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1______: components["schemas"]["KnownFact_list_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1______"] | components["schemas"]["UnresolvedFact"];
+        /** KnownFact[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0), Le(le=1)])]] */
+        KnownFact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_1_____: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            state: "KNOWN";
+            /** Value */
+            value: number;
+        };
+        /** KnownFact[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1)])]] */
+        KnownFact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1_____: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            state: "KNOWN";
+            /** Value */
+            value: string;
+        };
+        /** KnownFact[list[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1)])]]] */
+        KnownFact_list_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1______: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            state: "KNOWN";
+            /** Value */
+            value: string[];
+        };
+        /** SpectralNormalizationView */
+        SpectralNormalizationView: {
+            /** Id */
+            id: string;
+            definition: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1_____"];
+            phase_convention: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1_____"];
+            component_order: components["schemas"]["Fact_list_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1______"];
+            processing_ref: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /** Evidence Refs */
+            evidence_refs: string[];
+        };
+        /**
+         * EigenmodeView
+         * @description SPEC04: a saved LEFT/RIGHT vector or a saved primitive amplitude profile.
+         *
+         *     ``representation`` distinguishes a raw complex vector from a primitive profile;
+         *     ``mode_index`` is the Fourier block. Values load separately through ARRAY01.
+         */
+        EigenmodeView: {
+            result: components["schemas"]["ScientificResult"];
+            /** Q At */
+            q_at: number;
+            verification: components["schemas"]["Verification"];
+            provenance: components["schemas"]["ProvenanceRef"];
+            /**
+             * Representation
+             * @default EIGENMODE
+             * @constant
+             */
+            representation: "EIGENMODE";
+            /** Eigenmode Id */
+            eigenmode_id: string;
+            /** Spectrum Record Id */
+            spectrum_record_id: string;
+            /** Dataset Id */
+            dataset_id: string;
+            /** Mode Index */
+            mode_index: number;
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "LEFT" | "RIGHT";
+            /** Rank */
+            rank: number;
+            /** Field Component */
+            field_component: string;
+            /**
+             * Eigen Representation
+             * @enum {string}
+             */
+            eigen_representation: "COMPLEX_VECTOR" | "PRIMITIVE_PROFILE";
+            /**
+             * Projection
+             * @enum {string}
+             */
+            projection: "COMPLEX" | "REAL" | "IMAGINARY" | "AMPLITUDE";
+            /** Shape */
+            shape: number[];
+            normalization: components["schemas"]["SpectralNormalizationView"];
+            localization_fraction: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0___Le_le_1_____"];
+            /** Localization Definition */
+            localization_definition: string;
+            mask_reference: components["schemas"]["MaskSpec"];
+            values_ref: components["schemas"]["ArrayRef"];
+            /** Evidence Refs */
+            evidence_refs: string[];
+        };
+        /** Fact[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0)])]] */
+        Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____: components["schemas"]["KnownFact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"] | components["schemas"]["UnresolvedFact"];
+        /** GrowthErrorView */
+        GrowthErrorView: {
+            absolute_discrepancy: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"];
+            relative_discrepancy: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"];
+            /**
+             * Relative Discrepancy Format
+             * @default FRACTION
+             * @constant
+             */
+            relative_discrepancy_format: "FRACTION";
+            /**
+             * Definition
+             * @default ABS_SIGMA_CFD_MINUS_RK3_OVER_MAX_ABS_RK3_1
+             * @constant
+             */
+            definition: "ABS_SIGMA_CFD_MINUS_RK3_OVER_MAX_ABS_RK3_1";
+            /** Definition Id */
+            definition_id: string;
+            /** Evidence Refs */
+            evidence_refs: string[];
+        };
+        /** GrowthRatesView */
+        GrowthRatesView: {
+            linear: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"];
+            rk3: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"];
+            cfd: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____"];
+        };
+        /** KnownFact[Annotated[float, FieldInfo(annotation=NoneType, required=True, metadata=[Strict(strict=True), _PydanticGeneralMetadata(allow_inf_nan=False)]), FieldInfo(annotation=NoneType, required=True, metadata=[Ge(ge=0)])]] */
+        KnownFact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            state: "KNOWN";
+            /** Value */
+            value: number;
+        };
+        /**
+         * GrowthValidationView
+         * @description SPEC05: one recorded Fig13 run; missing linear amplitudes stay explicit.
+         */
+        GrowthValidationView: {
+            result: components["schemas"]["ScientificResult"];
+            /** Q At */
+            q_at: number;
+            verification: components["schemas"]["Verification"];
+            provenance: components["schemas"]["ProvenanceRef"];
+            /**
+             * Representation
+             * @default GROWTH_VALIDATION
+             * @constant
+             */
+            representation: "GROWTH_VALIDATION";
+            /** Run Id */
+            run_id: string;
+            /** Mode Index */
+            mode_index: number;
+            /** Epsilon */
+            epsilon: number;
+            /** Spectrum Record Id */
+            spectrum_record_id: string;
+            /** Eigenmode Id */
+            eigenmode_id: string;
+            /** Time */
+            time: number[];
+            /** Step Indices */
+            step_indices: number[];
+            /** Linear Amplitude */
+            linear_amplitude: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"][];
+            /** Cfd Amplitude */
+            cfd_amplitude: components["schemas"]["Fact_Annotated_float__FieldInfo_annotation_NoneType__required_True__metadata__Strict_strict_True____PydanticGeneralMetadata_allow_inf_nan_False_____FieldInfo_annotation_NoneType__required_True__metadata__Ge_ge_0_____"][];
+            growth_rate: components["schemas"]["GrowthRatesView"];
+            error: components["schemas"]["GrowthErrorView"];
+            /**
+             * Amplitude Definition
+             * @default ABS_PROJECTED_COEFFICIENT
+             * @constant
+             */
+            amplitude_definition: "ABS_PROJECTED_COEFFICIENT";
+            /**
+             * Fit Start
+             * @default 0
+             * @constant
+             */
+            fit_start: 0;
+            /**
+             * Fit End
+             * @default 32
+             * @constant
+             */
+            fit_end: 32;
+            /**
+             * Fit Point Count
+             * @default 33
+             * @constant
+             */
+            fit_point_count: 33;
+            /**
+             * Issues
+             * @default []
+             */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /**
+         * ValidationRunView
+         * @description SPEC06: one registered validation-run identity (a selector, no numeric payload).
+         *
+         *     The frontend needs the registered run identities to build the run selector; it
+         *     must never construct a ``modal-validation.*`` id itself. This view carries the
+         *     pinned registry's (mode, q_at, epsilon) triple verbatim — the same triple the
+         *     saved summary CSV agrees with. Listing these identities reads only the pinned
+         *     registry metadata, never a scientific source file.
+         */
+        ValidationRunView: {
+            /** Run Id */
+            run_id: string;
+            /** Mode Index */
+            mode_index: number;
+            /** Q At */
+            q_at: number;
+            /** Epsilon */
+            epsilon: number;
+            /** Label */
+            label: string;
+        };
+        /**
+         * ValidationRunListView
+         * @description SPEC06 response: the complete registered Fig13 run set (no filtering).
+         */
+        ValidationRunListView: {
+            /**
+             * Representation
+             * @default VALIDATION_RUN_LIST
+             * @constant
+             */
+            representation: "VALIDATION_RUN_LIST";
+            /** Run Count */
+            run_count: number;
+            /** Runs */
+            runs: components["schemas"]["ValidationRunView"][];
+        };
         /** RegistryQuery */
         Input_RegistryQuery: {
             /**
@@ -2777,6 +3266,389 @@ export interface components {
              * @default null
              */
             representation_type: ("FACE_FIELD" | "CELL_FIELD" | "ANGULAR_SECTOR") | null;
+        };
+        /** AvailableEnvelope[list[SpectrumDatasetView]] */
+        AvailableEnvelope_list_SpectrumDatasetView__: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            /** Data */
+            data: components["schemas"]["SpectrumDatasetView"][];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[list[SpectrumDatasetView]] */
+        PartialEnvelope_list_SpectrumDatasetView__: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            /** Data */
+            data: components["schemas"]["SpectrumDatasetView"][];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[list[SpectrumDatasetView]] */
+        ApiEnvelope_list_SpectrumDatasetView__: components["schemas"]["AvailableEnvelope_list_SpectrumDatasetView__"] | components["schemas"]["PartialEnvelope_list_SpectrumDatasetView__"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[SpectrumDatasetView] */
+        AvailableEnvelope_SpectrumDatasetView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["SpectrumDatasetView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[SpectrumDatasetView] */
+        PartialEnvelope_SpectrumDatasetView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["SpectrumDatasetView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[SpectrumDatasetView] */
+        ApiEnvelope_SpectrumDatasetView_: components["schemas"]["AvailableEnvelope_SpectrumDatasetView_"] | components["schemas"]["PartialEnvelope_SpectrumDatasetView_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * SpectrumQuery
+         * @description Path-only spectrum dataset selector; ``q_at`` is implied by the registered id.
+         */
+        Input_SpectrumQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Dataset Id */
+            dataset_id: string;
+        };
+        /** AvailableEnvelope[SpectrumCurveView] */
+        AvailableEnvelope_SpectrumCurveView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["SpectrumCurveView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[SpectrumCurveView] */
+        PartialEnvelope_SpectrumCurveView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["SpectrumCurveView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[SpectrumCurveView] */
+        ApiEnvelope_SpectrumCurveView_: components["schemas"]["AvailableEnvelope_SpectrumCurveView_"] | components["schemas"]["PartialEnvelope_SpectrumCurveView_"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[SpectralPointView] */
+        AvailableEnvelope_SpectralPointView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["SpectralPointView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[SpectralPointView] */
+        PartialEnvelope_SpectralPointView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["SpectralPointView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[SpectralPointView] */
+        ApiEnvelope_SpectralPointView_: components["schemas"]["AvailableEnvelope_SpectralPointView_"] | components["schemas"]["PartialEnvelope_SpectralPointView_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * SpectrumModeQuery
+         * @description One Fourier block of a dataset; ``mode_index`` is ell 0..16, never eigenpair rank.
+         */
+        Input_SpectrumModeQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Dataset Id */
+            dataset_id: string;
+            /** Mode Index */
+            mode_index: number;
+        };
+        /** AvailableEnvelope[EigenmodeView] */
+        AvailableEnvelope_EigenmodeView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["EigenmodeView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[EigenmodeView] */
+        PartialEnvelope_EigenmodeView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["EigenmodeView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[EigenmodeView] */
+        ApiEnvelope_EigenmodeView_: components["schemas"]["AvailableEnvelope_EigenmodeView_"] | components["schemas"]["PartialEnvelope_EigenmodeView_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * EigenmodeQuery
+         * @description A saved left/right vector or primitive profile; every selector is explicit.
+         *
+         *     No free transform: the saved rank order and the stored component order are the only
+         *     supported selections, and the representation drives which of them is admissible.
+         */
+        Input_EigenmodeQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Dataset Id */
+            dataset_id: string;
+            /** Mode Index */
+            mode_index: number;
+            /**
+             * Side
+             * @default RIGHT
+             * @enum {string}
+             */
+            side: "LEFT" | "RIGHT";
+            /**
+             * Rank
+             * @default 0
+             */
+            rank: number;
+            /**
+             * Representation
+             * @default COMPLEX_VECTOR
+             * @enum {string}
+             */
+            representation: "COMPLEX_VECTOR" | "PRIMITIVE_PROFILE";
+            /**
+             * Projection
+             * @default COMPLEX
+             * @enum {string}
+             */
+            projection: "COMPLEX" | "REAL" | "IMAGINARY" | "AMPLITUDE";
+            /**
+             * Field Component
+             * @default stored_vector
+             */
+            field_component: string;
+        };
+        /** AvailableEnvelope[ValidationRunListView] */
+        AvailableEnvelope_ValidationRunListView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["ValidationRunListView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[ValidationRunListView] */
+        PartialEnvelope_ValidationRunListView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["ValidationRunListView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[ValidationRunListView] */
+        ApiEnvelope_ValidationRunListView_: components["schemas"]["AvailableEnvelope_ValidationRunListView_"] | components["schemas"]["PartialEnvelope_ValidationRunListView_"] | components["schemas"]["FailedEnvelope"];
+        /** AvailableEnvelope[GrowthValidationView] */
+        AvailableEnvelope_GrowthValidationView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["GrowthValidationView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[GrowthValidationView] */
+        PartialEnvelope_GrowthValidationView_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["GrowthValidationView"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[GrowthValidationView] */
+        ApiEnvelope_GrowthValidationView_: components["schemas"]["AvailableEnvelope_GrowthValidationView_"] | components["schemas"]["PartialEnvelope_GrowthValidationView_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * ValidationQuery
+         * @description Path-only modal-validation run selector (24 registered Fig13 combinations).
+         */
+        Input_ValidationQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /** Run Id */
+            run_id: string;
         };
     };
     responses: never;
@@ -4302,6 +5174,618 @@ export interface operations {
                 };
             };
             /** @description UNSUPPORTED_REPRESENTATION, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    SPEC00: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_list_SpectrumDatasetView__"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_SPECTRUM, UNKNOWN_MODE, MISSING_EIGENMODE, MISSING_ASSET */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    SPEC01: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                dataset_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_SpectrumDatasetView_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_SPECTRUM, UNKNOWN_MODE, MISSING_EIGENMODE, MISSING_ASSET */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    SPEC02: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                dataset_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_SpectrumCurveView_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_SPECTRUM, UNKNOWN_MODE, MISSING_EIGENMODE, MISSING_ASSET */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    SPEC03: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                dataset_id: string;
+                mode_index: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_SpectralPointView_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_SPECTRUM, UNKNOWN_MODE, MISSING_EIGENMODE, MISSING_ASSET */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    SPEC04: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                side?: "LEFT" | "RIGHT";
+                rank?: number;
+                representation?: "COMPLEX_VECTOR" | "PRIMITIVE_PROFILE";
+                projection?: "COMPLEX" | "REAL" | "IMAGINARY" | "AMPLITUDE";
+                field_component?: string;
+            };
+            header?: never;
+            path: {
+                dataset_id: string;
+                mode_index: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_EigenmodeView_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_SPECTRUM, UNKNOWN_MODE, MISSING_EIGENMODE, MISSING_ASSET */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    SPEC06: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_ValidationRunListView_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_SPECTRUM, UNKNOWN_MODE, MISSING_EIGENMODE, MISSING_ASSET */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description SOURCE_ERROR, CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    SPEC05: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+            };
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_GrowthValidationView_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_SPECTRUM, UNKNOWN_MODE, MISSING_EIGENMODE, MISSING_ASSET */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER */
             422: {
                 headers: {
                     [name: string]: unknown;

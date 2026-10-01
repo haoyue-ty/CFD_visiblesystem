@@ -179,3 +179,167 @@ export type CellAllocationView = AllocationCommonView & {
 }
 
 export type AllocationView = FaceAllocationView | CellAllocationView
+
+// --- Phase 7B Spectral Lab --------------------------------------------------
+//
+// A spectral object is FOUR different things and they are never conflated:
+//
+//   SPECTRUM_CURVE     17 Fourier blocks (ell 0..16) for ONE recorded q_at:
+//                      x = mode k, y = Re(lambda). q is never interpolated and
+//                      no fitted / smoothed curve is ever drawn through the points.
+//   SPECTRUM_POINT     one recorded block: wave_number, real/imag lambda, alpha.
+//   EIGENMODE          a saved LEFT/RIGHT vector or primitive PROFILE at one ell.
+//                      A registered selection whose saved vector is absent is a
+//                      reason-bearing MISSING — the panel shows "Unavailable",
+//                      never an empty frame.
+//   GROWTH_VALIDATION  one recorded Fig13 run: recorded linear/RK3/CFD rates and
+//                      the 33-step CFD amplitude history. Missing linear amplitude
+//                      histories stay MISSING facts; no exponential is synthesized.
+//
+// Every view carries `q_at`, `verification` and `provenance` verbatim. The
+// frontend never invents a value, never interpolates q and never relabels the
+// eigenpair rank as a Fourier mode index.
+
+/** Rank within a recorded block (0..31); NEVER a Fourier mode index. */
+export type EigenSide = 'LEFT' | 'RIGHT'
+export type EigenRepresentation = 'COMPLEX_VECTOR' | 'PRIMITIVE_PROFILE'
+export type ComplexProjection = 'COMPLEX' | 'REAL' | 'IMAGINARY' | 'AMPLITUDE'
+export type SpectralRepresentation = 'SPECTRUM_DATASET' | 'SPECTRUM_CURVE' | 'SPECTRUM_POINT' | 'EIGENMODE' | 'GROWTH_VALIDATION'
+
+/** Shared scientific header preserved verbatim from the wire view. */
+export type SpectralHeader = {
+  q_at: number
+  verification: VerificationTag
+  provenance: S['ProvenanceRef']
+  result: ResultHeader
+}
+
+export type SpectrumDatasetView = SpectralHeader & {
+  representation: 'SPECTRUM_DATASET'
+  dataset_id: string
+  collection_id: string
+  base_result_id: string
+  configuration_id: string
+  mode_indices: number[]
+  /** Wave numbers for all 17 blocks; null when the fact is unresolved. */
+  wave_numbers: number[] | null
+  wave_number_definition: string
+  matrix_availability: 'MISSING'
+  evidence_refs: string[]
+}
+
+export type SpectralPointView = SpectralHeader & {
+  representation: 'SPECTRUM_POINT'
+  spectrum_record_id: string
+  mode_index: number
+  wave_number: number | null
+  real_lambda: number | null
+  imag_lambda: number | null
+  spectral_abscissa: number | null
+  eigenvalue_rank: 0
+}
+
+export type SpectrumCurveView = SpectralHeader & {
+  representation: 'SPECTRUM_CURVE'
+  dataset_id: string
+  collection_id: string
+  base_result_id: string
+  configuration_id: string
+  points: SpectralPointView[]
+}
+
+export type SpectralNormalizationView = {
+  id: string
+  definition: string | null
+  phase_convention: string | null
+  component_order: string[] | null
+  processing_ref: string | null
+}
+
+export type EigenmodeView = SpectralHeader & {
+  representation: 'EIGENMODE'
+  eigenmode_id: string
+  spectrum_record_id: string
+  dataset_id: string
+  mode_index: number
+  side: EigenSide
+  rank: number
+  field_component: string
+  eigen_representation: EigenRepresentation
+  projection: ComplexProjection
+  shape: number[]
+  normalization: SpectralNormalizationView
+  localization_fraction: number | null
+  localization_definition: string
+  mask_reference: S['MaskSpec']
+  /** The array identity whose values load separately through ARRAY01. */
+  values_ref: SpectralArrayRef
+  evidence_refs: string[]
+}
+
+export type GrowthRatesView = {
+  linear: number | null
+  rk3: number | null
+  cfd: number | null
+}
+
+export type GrowthErrorView = {
+  absolute_discrepancy: number | null
+  relative_discrepancy: number | null
+  relative_discrepancy_format: 'FRACTION'
+  definition: string
+  definition_id: string
+  evidence_refs: string[]
+}
+
+/**
+ * One recorded growth-validation run.
+ *
+ * `linear_amplitude` may contain `null` at EVERY step: the saved history is
+ * absent and the fact is deliberately MISSING. `cfd_amplitude` is the recorded
+ * 33-step history. The two series are drawn as separate legends; the linear
+ * series is drawn only from its recorded samples (never extrapolated).
+ */
+export type GrowthValidationView = SpectralHeader & {
+  representation: 'GROWTH_VALIDATION'
+  run_id: string
+  mode_index: number
+  epsilon: number
+  spectrum_record_id: string
+  eigenmode_id: string
+  time: number[]
+  step_indices: number[]
+  linear_amplitude: (number | null)[]
+  cfd_amplitude: (number | null)[]
+  growth_rate: GrowthRatesView
+  error: GrowthErrorView
+  amplitude_definition: 'ABS_PROJECTED_COEFFICIENT'
+  fit_start: 0
+  fit_end: 32
+  fit_point_count: 33
+  issues: S['ErrorBody'][]
+}
+
+/** Registered spectral dataset summary (SPEC00 list item). */
+export type SpectralDatasetRef = { dataset_id: string; q_at: number; configuration_id: string }
+
+/** One validation run summary (a selector identity for SPEC05). */
+export type ValidationRunRef = { run_id: string; label: string; mode_index: number; q_at: number; epsilon: number }
+
+/** An array reference (result_id + descriptor) as carried by an eigenmode view. */
+export type SpectralArrayRef = { result_id: string; array_id: string; shape: number[]; dtype: string }
+
+/**
+ * Raw numeric payloads load separately through ARRAY01 (never via a SPEC view).
+ *
+ * `values` is either plain numbers (a primitive profile) or `[real, imag]` pairs
+ * (a complex128 vector). The two are distinguished by the descriptor dtype, so a
+ * complex vector is never silently flattened into reals.
+ */
+export type SpectralArrayView = {
+  result_id: string
+  array_id: string
+  shape: number[]
+  dtype: string
+  values: number[] | [number, number][]
+}

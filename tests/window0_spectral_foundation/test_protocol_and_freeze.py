@@ -1,6 +1,7 @@
 import hashlib
 import inspect
 import json
+import re
 from copy import deepcopy
 from pathlib import Path
 from typing import get_type_hints
@@ -51,10 +52,15 @@ def test_internal_models_not_in_public_schema_catalog():
     assert not ({SpectrumDataset, SpectralPoint, SpectralPoints, Eigenmode, GrowthValidation} & set(CORE_MODELS))
     # A negative HTTP delivery assertion would construct the app; this window
     # instead checks the existing registration source without activating readers.
+    internal_models = re.compile(r"backend\.models\.spectral(?!_)")
+    internal_adapter = re.compile(r"backend\.adapters\.spectral(?!_)")
     for directory in ("backend/api", "backend/schemas", "backend/core"):
         for path in (ROOT / directory).glob("*.py"):
-            assert "models.spectral" not in path.read_text(encoding="utf-8")
-            assert "adapters.spectral" not in path.read_text(encoding="utf-8")
+            source = path.read_text(encoding="utf-8")
+            # ``models.spectral_api`` is the Window 2 public DTO surface; only the
+            # internal ``models.spectral`` / ``adapters.spectral`` modules stay out.
+            assert not internal_models.search(source), path
+            assert not internal_adapter.search(source), path
 
 
 def test_missing_slot_cannot_contain_numeric_value():

@@ -110,3 +110,35 @@ class AllocationComparisonQuery(RegistryQuery):
 
     experiment_id: ID = "gate"
     representation_type: Literal["FACE_FIELD", "CELL_FIELD", "ANGULAR_SECTOR"] | None = None
+
+
+class SpectrumQuery(RegistryQuery):
+    """Path-only spectrum dataset selector; ``q_at`` is implied by the registered id."""
+
+    dataset_id: ID
+
+
+class SpectrumModeQuery(SpectrumQuery):
+    """One Fourier block of a dataset; ``mode_index`` is ell 0..16, never eigenpair rank."""
+
+    mode_index: Integer
+
+
+class EigenmodeQuery(SpectrumModeQuery):
+    """A saved left/right vector or primitive profile; every selector is explicit.
+
+    No free transform: the saved rank order and the stored component order are the only
+    supported selections, and the representation drives which of them is admissible.
+    """
+
+    side: Literal["LEFT", "RIGHT"] = "RIGHT"
+    rank: Integer = 0
+    representation: Literal["COMPLEX_VECTOR", "PRIMITIVE_PROFILE"] = "COMPLEX_VECTOR"
+    projection: Literal["COMPLEX", "REAL", "IMAGINARY", "AMPLITUDE"] = "COMPLEX"
+    field_component: ID = "stored_vector"
+
+
+class ValidationQuery(RegistryQuery):
+    """Path-only modal-validation run selector (24 registered Fig13 combinations)."""
+
+    run_id: ID

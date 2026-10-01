@@ -10,3 +10,6 @@ frontend/test-results/
 frontend/playwright-report/
 node_modules/
 .cache/
+
+# Local agent workspace (not part of any delivery)
+.workbuddy/

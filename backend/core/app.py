@@ -9,19 +9,21 @@ from backend.api.case8 import register_case8_operations
 from backend.api.catalog import OperationCatalog
 from backend.api.evidence import register_evidence_operations
 from backend.api.registry import register_registry_operations
+from backend.api.spectral import register_spectral_operations
 from backend.api.system import register_system_operations
 from backend.core.errors import register_error_handlers
 from backend.core.settings import Settings
 from backend.models import ProjectInfo
 from backend.registry import load_bootstrap_project
-from backend.services import Case8Service, AllocationServiceImpl
+from backend.services import Case8Service, AllocationServiceImpl, SpectralServiceImpl
 
 
 _DEFAULT_ADAPTER = object()
 
 
 def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterProtocol | None | object = _DEFAULT_ADAPTER,
-               allocation_adapter=_DEFAULT_ADAPTER, project: ProjectInfo | None = None,
+               allocation_adapter=_DEFAULT_ADAPTER, spectral_adapter=_DEFAULT_ADAPTER,
+               project: ProjectInfo | None = None,
                configure_catalog=None) -> Flask:
     settings = settings or Settings.from_env()
     if settings.enable_accounts:
@@ -31,11 +33,15 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     if allocation_adapter is _DEFAULT_ADAPTER:
         from backend.adapters.allocation_integration import IntegratedAllocationAdapter
         allocation_adapter = IntegratedAllocationAdapter(case8_root=settings.scientific_data_root or None)
+    if spectral_adapter is _DEFAULT_ADAPTER:
+        from backend.adapters.spectral_data import SpectralAdapter
+        spectral_adapter = SpectralAdapter()
     app = Flask(__name__, static_folder=None)
     app.config.update(TESTING=False, JSON_SORT_KEYS=False)
     app.extensions["settings"] = settings
     app.extensions["case8_service"] = Case8Service(case8_adapter)
     app.extensions["allocation_service"] = AllocationServiceImpl(allocation_adapter)
+    app.extensions["spectral_service"] = SpectralServiceImpl(spectral_adapter)
     project = project or load_bootstrap_project()
     if project.account_extension.enabled:
         raise ValueError("Bootstrap project metadata must disable accounts")
@@ -50,12 +56,14 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     catalog = OperationCatalog()
     service = app.extensions["case8_service"]
     allocation_service = app.extensions["allocation_service"]
+    spectral_service = app.extensions["spectral_service"]
     register_system_operations(catalog, project)
     register_registry_operations(catalog, project, service)
     register_case8_operations(catalog, project, service)
     register_array_operations(catalog, project, service)
     register_evidence_operations(catalog, project, service, allocation_service)
     register_allocation_operations(catalog, project, allocation_service)
+    register_spectral_operations(catalog, project, spectral_service)
     if configure_catalog is not None:
         configure_catalog(catalog, service)
     app.extensions["operation_catalog"] = catalog

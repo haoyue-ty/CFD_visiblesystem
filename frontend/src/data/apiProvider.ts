@@ -1,16 +1,23 @@
 /** Real API transport; all scientific DTOs come from generated OpenAPI types. */
 import { api } from '../services/api'
 import type { components } from '../types/generated/api'
-import type { AllocationSelector, DataProvider } from './provider'
+import type { AllocationSelector, EigenmodeSelector, DataProvider, SpectralCurveSelector } from './provider'
 import type {
   AllocationArrayView,
   AllocationMaskView,
   AllocationMetricView,
   AllocationSummaryView,
   AllocationView,
+  EigenmodeView,
   FieldMeta,
+  GrowthValidationView,
   Loaded,
   MetricView,
+  SpectrumCurveView,
+  SpectrumDatasetView,
+  SpectralDatasetRef,
+  SpectralPointView,
+  ValidationRunRef,
   UnitSpec,
   ResultHeader,
   EvidenceDetailView,
@@ -157,6 +164,135 @@ function validateAllocationSummary(meta: S['AllocationMetadata'], summary: S['Al
       || result.unit.id !== (fraction ? 'dimensionless_fraction' : 'model_integrated_entropy')
       || (!fraction && result.semantic_id !== 'E_at_cumulative')) throw new Error('Allocation scalar context mismatch')
   }
+}
+
+// --- Phase 7B spectral mapping ---------------------------------------------------
+//
+// The wire views already carry `verification` and `provenance` verbatim, so the
+// mapping only unwraps Fact envelopes and validates that a MISSING slot stays a
+// reason-bearing MISSING. It never interpolates q, never reorders the 17 blocks,
+// never relabels rank as a mode index and never fabricates a numeric value.
+
+type WireFact<T> = { state: 'KNOWN'; value: T } | { state: string; reason?: string }
+const wireFact = <T>(fact: WireFact<T>): T | null => (fact && fact.state === 'KNOWN' ? (fact as { value: T }).value : null)
+
+/** A registered spectral dataset identity is `spectrum.q-<value>`; the q_at is on the summary. */
+function spectralDatasetRef(view: S['SpectrumDatasetView']): SpectralDatasetRef {
+  return { dataset_id: view.dataset_id, q_at: view.q_at, configuration_id: view.configuration_id }
+}
+
+function spectrumDatasetView(view: S['SpectrumDatasetView']): SpectrumDatasetView {
+  header(view.result)
+  return {
+    q_at: view.q_at, verification: view.verification, provenance: view.provenance, result: header(view.result),
+    representation: 'SPECTRUM_DATASET', dataset_id: view.dataset_id, collection_id: view.collection_id,
+    base_result_id: view.base_result_id, configuration_id: view.configuration_id,
+    mode_indices: view.mode_indices, wave_numbers: wireFact(view.wave_numbers as WireFact<number[]>),
+    wave_number_definition: view.wave_number_definition, matrix_availability: 'MISSING',
+    evidence_refs: view.evidence_refs,
+  }
+}
+
+function spectralPointView(view: S['SpectralPointView']): SpectralPointView {
+  return {
+    q_at: view.q_at, verification: view.verification, provenance: view.provenance, result: header(view.result),
+    representation: 'SPECTRUM_POINT', spectrum_record_id: view.spectrum_record_id, mode_index: view.mode_index,
+    wave_number: wireFact(view.wave_number as WireFact<number>),
+    real_lambda: wireFact(view.real_lambda as WireFact<number>),
+    imag_lambda: wireFact(view.imag_lambda as WireFact<number>),
+    spectral_abscissa: wireFact(view.spectral_abscissa as WireFact<number>), eigenvalue_rank: 0,
+  }
+}
+
+function spectrumCurveView(view: S['SpectrumCurveView']): SpectrumCurveView {
+  header(view.result)
+  // The recorded 0..16 order is authoritative; a reordered or incomplete curve is
+  // a contract violation, not something the UI may silently repair.
+  const points = view.points.map(spectralPointView)
+  if (points.map(point => point.mode_index).join(',') !== Array.from({ length: 17 }, (_, i) => i).join(',')) {
+    throw new Error('Recorded spectral curve is not the ordered 17-block set 0..16')
+  }
+  return {
+    q_at: view.q_at, verification: view.verification, provenance: view.provenance, result: header(view.result),
+    representation: 'SPECTRUM_CURVE', dataset_id: view.dataset_id, collection_id: view.collection_id,
+    base_result_id: view.base_result_id, configuration_id: view.configuration_id, points,
+  }
+}
+
+function eigenmodeView(view: S['EigenmodeView']): EigenmodeView {
+  header(view.result)
+  return {
+    q_at: view.q_at, verification: view.verification, provenance: view.provenance, result: header(view.result),
+    representation: 'EIGENMODE', eigenmode_id: view.eigenmode_id, spectrum_record_id: view.spectrum_record_id,
+    dataset_id: view.dataset_id, mode_index: view.mode_index, side: view.side, rank: view.rank,
+    field_component: view.field_component, eigen_representation: view.eigen_representation,
+    projection: view.projection, shape: view.shape,
+    normalization: {
+      id: view.normalization.id,
+      definition: wireFact(view.normalization.definition as WireFact<string>),
+      phase_convention: wireFact(view.normalization.phase_convention as WireFact<string>),
+      component_order: wireFact(view.normalization.component_order as WireFact<string[]>),
+      processing_ref: wireFact(view.normalization.processing_ref as WireFact<string>),
+    },
+    localization_fraction: wireFact(view.localization_fraction as WireFact<number>),
+    localization_definition: view.localization_definition, mask_reference: view.mask_reference,
+    values_ref: {
+      result_id: view.values_ref.result_id, array_id: view.values_ref.descriptor.array_id,
+      shape: view.values_ref.descriptor.shape, dtype: view.values_ref.descriptor.dtype,
+    },
+    evidence_refs: view.evidence_refs,
+  }
+}
+
+function growthValidationView(view: S['GrowthValidationView']): GrowthValidationView {
+  header(view.result)
+  // Every amplitude stays a reason-bearing fact: an absent history yields null,
+  // never a synthesized exponential or a zero-filled series.
+  return {
+    q_at: view.q_at, verification: view.verification, provenance: view.provenance, result: header(view.result),
+    representation: 'GROWTH_VALIDATION', run_id: view.run_id, mode_index: view.mode_index, epsilon: view.epsilon,
+    spectrum_record_id: view.spectrum_record_id, eigenmode_id: view.eigenmode_id,
+    time: view.time, step_indices: view.step_indices,
+    linear_amplitude: view.linear_amplitude.map(item => wireFact(item as WireFact<number>)),
+    cfd_amplitude: view.cfd_amplitude.map(item => wireFact(item as WireFact<number>)),
+    growth_rate: {
+      linear: wireFact(view.growth_rate.linear as WireFact<number>),
+      rk3: wireFact(view.growth_rate.rk3 as WireFact<number>),
+      cfd: wireFact(view.growth_rate.cfd as WireFact<number>),
+    },
+    error: {
+      absolute_discrepancy: wireFact(view.error.absolute_discrepancy as WireFact<number>),
+      relative_discrepancy: wireFact(view.error.relative_discrepancy as WireFact<number>),
+      relative_discrepancy_format: 'FRACTION', definition: view.error.definition,
+      definition_id: view.error.definition_id, evidence_refs: view.error.evidence_refs,
+    },
+    amplitude_definition: 'ABS_PROJECTED_COEFFICIENT', fit_start: 0, fit_end: 32, fit_point_count: 33,
+    issues: view.issues,
+  }
+}
+
+/**
+ * Spectral failure classifier.
+ *
+ * A MISSING saved vector is MISSING (the panel must read "Unavailable"); a
+ * selector outside the verified set is UNSUPPORTED; an undelivered adapter is
+ * UNSUPPORTED (FEATURE_NOT_ENABLED) — never a synthetic empty curve.
+ */
+function spectralFailure(envelope: { availability?: string; error?: S['ErrorBody'] } | undefined, status: number): ApiFailure {
+  const availability = envelope?.availability
+  const code = envelope?.error?.code
+  const state: 'MISSING' | 'UNSUPPORTED' | 'ERROR' =
+    availability === 'MISSING' || code === 'UNKNOWN_SPECTRUM' || code === 'UNKNOWN_MODE' || code === 'MISSING_EIGENMODE' || code === 'MISSING_ASSET' ? 'MISSING'
+      : availability === 'UNSUPPORTED' || code === 'UNSUPPORTED_PARAMETER' || code === 'FEATURE_NOT_ENABLED' ? 'UNSUPPORTED'
+        : 'ERROR'
+  return new ApiFailure(state, envelope?.error?.message ?? `API request failed (${status})`)
+}
+
+async function spectralBody<T>(request: Promise<{ data?: unknown; error?: unknown; response: Response }>): Promise<T> {
+  const response = await request
+  const envelope = (response.data ?? response.error) as { availability?: string; data?: T; error?: S['ErrorBody'] }
+  if (!response.response.ok || !envelope || !('data' in envelope)) throw spectralFailure(envelope, response.response.status)
+  return envelope.data as T
 }
 
 /** Map one summary Metric slot onto the allocation metric view. */
@@ -411,6 +547,61 @@ export function createApiProvider(): DataProvider {
       )
       validateAllocationSummary(meta, summary)
       return summaryView(summary, meta.measure)
+    }),
+
+    // --- Phase 7B spectral ---------------------------------------------------
+    // SPEC00-SPEC05 only. The raw eigenmode array (ARRAY01) is a separate call so
+    // the metadata/manifest and the numeric vector never arrive as one payload.
+    listSpectra: signal => load(async () => {
+      const items = await spectralBody<S['SpectrumDatasetView'][]>(api.GET('/api/v1/spectra', { signal }))
+      return items.map(spectralDatasetRef)
+    }),
+    getSpectrumDataset: (selector: SpectralCurveSelector, signal) => load(async () =>
+      spectrumDatasetView(await spectralBody<S['SpectrumDatasetView']>(
+        api.GET('/api/v1/spectra/{dataset_id}', { params: { path: { dataset_id: selector.datasetId } }, signal })))),
+    getSpectralCurve: (selector: SpectralCurveSelector, signal) => load(async () =>
+      spectrumCurveView(await spectralBody<S['SpectrumCurveView']>(
+        api.GET('/api/v1/spectra/{dataset_id}/points', { params: { path: { dataset_id: selector.datasetId } }, signal })))),
+    getEigenmode: (selector: EigenmodeSelector, signal) => load(async () =>
+      eigenmodeView(await spectralBody<S['EigenmodeView']>(
+        api.GET('/api/v1/spectra/{dataset_id}/eigenmodes/{mode_index}', {
+          params: {
+            path: { dataset_id: selector.datasetId, mode_index: selector.modeIndex },
+            query: {
+              side: selector.side, rank: selector.rank, representation: selector.representation,
+              projection: selector.projection, field_component: selector.fieldComponent,
+            },
+          }, signal,
+        })))),
+    getGrowthValidation: (runId, signal) => load(async () =>
+      growthValidationView(await spectralBody<S['GrowthValidationView']>(
+        api.GET('/api/v1/spectra/validation/{run_id}', { params: { path: { run_id: runId } }, signal })))),
+    listValidationRuns: signal => load(async () => {
+      // SPEC06: the registered run identities, read from the pinned registry
+      // metadata. The frontend never constructs a `modal-validation.*` id.
+      const view = await spectralBody<S['ValidationRunListView']>(
+        api.GET('/api/v1/spectra/validation/runs', { signal }))
+      return view.runs.map((run): ValidationRunRef => ({
+        run_id: run.run_id, label: run.label, mode_index: run.mode_index,
+        q_at: run.q_at, epsilon: run.epsilon,
+      }))
+    }),
+    loadSpectralArray: (ref, signal) => load(async () => {
+      const array = await body<S['ScientificArray']>(
+        api.GET('/api/v1/results/{result_id}/arrays/{array_id}', {
+          params: { path: { result_id: ref.result_id, array_id: ref.array_id } }, signal,
+        }))
+      if (array.descriptor.array_id !== ref.array_id || array.descriptor.dtype !== ref.dtype
+        || JSON.stringify(array.descriptor.shape) !== JSON.stringify(ref.shape)) {
+        throw new Error('Eigenmode array identity/descriptor mismatch')
+      }
+      header(array.result)
+      return {
+        result_id: ref.result_id, array_id: ref.array_id, shape: array.descriptor.shape, dtype: array.descriptor.dtype,
+        values: Array.isArray(array.values) && array.values.every(v => typeof v === 'object')
+          ? (array.values as S['ComplexValue'][]).map(v => [v.real, v.imag] as [number, number])
+          : (array.values as number[]),
+      }
     }),
   }
 }

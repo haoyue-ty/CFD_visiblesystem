@@ -269,7 +269,10 @@ def test_undelivered_adapter_reports_feature_not_enabled():
 IMPLEMENTED = {"SYS01", "DOC01", "REG01", "REG02", "REG03", "REG04", "C801", "C802",
                "C803", "C804", "C805", "C806", "C808", "ARRAY01", "EVI02", "EVI03",
                # Phase 6B Window 3 delivered the four allocation operations.
-               "ALLOC01", "ALLOC02", "ALLOC03", "ALLOC04"}
+               "ALLOC01", "ALLOC02", "ALLOC03", "ALLOC04",
+               # Phase 7B Window 2 delivered the spectral dataset/curve/record/eigenmode/validation ops.
+               # Phase 7B Window 3 added SPEC06 (the registered validation-run identities).
+               "SPEC00", "SPEC01", "SPEC02", "SPEC03", "SPEC04", "SPEC05", "SPEC06"}
 
 
 def test_openapi_operations_match_the_catalog_and_runtime_routes(app):
