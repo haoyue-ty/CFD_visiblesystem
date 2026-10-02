@@ -14,6 +14,7 @@ SOURCE_ASSETS=PASS
 PROCESSING_LINEAGE=PASS
 LIMITATIONS=PASS
 SOURCE_DRIFT_UI=PASS
+SOURCE_DRIFT_FILTER_SCOPE=CURRENT_SERVER_PAGE_ONLY;accepted EVI01 has no source_drift query
 
 RETURN_CONTEXT=PASS
 ABSOLUTE_PATH_EXPOSED=NO
@@ -23,6 +24,10 @@ MOCK_IN_PRODUCTION=NO
 FRONTEND_TESTS=PASS;15/15 unit;10 new evidence unit tests
 E2E=PASS;183/183 browser;148 production + 35 isolated mock-development;22 new evidence E2E;retries=0;failures=0;skipped=0;flaky=0
 BUILD=PASS;vue-tsc and Vite production build
+RECHECK_FRONTEND_TESTS=PASS;15/15 unit
+RECHECK_E2E=PASS;147/147 production browser;22 evidence acceptance tests included;retries=0;failures=0;skipped=0;flaky=0
+RECHECK_BACKEND_EVIDENCE_TESTS=PASS;62/62
+RECHECK_BUILD=PASS;production JS/CSS hashes identical to delivery
 
 SCIENTIFIC_FILES_MODIFIED=NO
 CFD_RUNS_STARTED=0
@@ -82,3 +87,24 @@ npm --prefix frontend exec -- playwright test --config frontend/playwright.phase
 ```
 
 The ignored .venv and frontend/node_modules junctions reuse already installed runtimes. Window2 ends with its delivery commit, without merging another branch, running CFD or starting the next window.
+
+## Revalidation of the existing delivery
+
+The repeated Window2 request found the requested branch and independent worktree already present and clean. Implementation commit `a5087dc323e2f0bade186e7b7216e152f171a1c6` directly descends from accepted Window1 commit `a09b928d5c48aa262293066ce3543fb37c575d0f`. The existing implementation was inspected against this request and retained. This follow-up changes delivery documentation and validation reports only.
+
+Fresh validation passed 15 unit tests, all 147 production browser tests in the `phase5-10-real-api` project (including all 22 evidence acceptance tests), 62 backend evidence tests, and the production build. The browser run used one worker with zero retries and had no failures, skips or flaky tests. CURRENT, P09 and Quick View screenshots from this run were inspected. Production JS and CSS hashes match the original committed validation report exactly. The original 198-test complete-run reports remain available; this recheck did not rerun the separate Phase8 browser project or isolated mock-development projects.
+
+Fresh reports: `WINDOW2_RECHECK_VALIDATION.json`, `WINDOW2_RECHECK_FRONTEND_TESTS.xml` and `WINDOW2_RECHECK_BACKEND_TESTS.xml`. The prior complete scientific-tree preservation report is retained; this recheck did not repeat that whole-tree hash audit. No scientific source writes or CFD runs were performed. Backend, contracts, canonical metadata and generated types remain identical to accepted Window1. Source drift remains an explicitly labeled filter of the current server page because the accepted EVI01 contract rejects a global `source_drift` query; experiment, verification and section use server filtering before pagination.
+
+Reproduce the production recheck with PowerShell 7 from this worktree:
+
+```powershell
+npm --prefix frontend run build
+$env:E2E_API_PORT='5125'
+$env:E2E_PRODUCTION_PORT='4425'
+$env:E2E_MOCK_PORT='4525'
+npm --prefix frontend exec -- playwright test --config frontend/playwright.phase11.window2.config.ts --project=unit --project=phase5-10-real-api
+.\.venv\Scripts\python.exe -m pytest tests/window1_evidence_core/test_evidence_core.py -q
+```
+
+Stop after committing this revalidation; no merge or next window is performed.

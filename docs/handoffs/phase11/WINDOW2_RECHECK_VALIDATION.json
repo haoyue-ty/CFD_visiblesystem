@@ -1,0 +1,61 @@
+{
+  "window": "2_EVIDENCE_UI",
+  "status": "PASS",
+  "branch": "phase11/evidence-ui",
+  "implementation_commit": "a5087dc323e2f0bade186e7b7216e152f171a1c6",
+  "accepted_window1_commit": "a09b928d5c48aa262293066ce3543fb37c575d0f",
+  "recheck_scope": "Existing delivery; documentation-only follow-up",
+  "frontend": {
+    "status": "PASS",
+    "total": 162,
+    "unit": 15,
+    "production_browser": 147,
+    "evidence_browser": 22,
+    "retries": 0,
+    "stats": {
+      "startTime": "2026-10-02T07:29:13.755Z",
+      "duration": 418236.346,
+      "expected": 162,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "junit": "WINDOW2_RECHECK_FRONTEND_TESTS.xml",
+    "separate_phase8_and_mock_projects_rerun": false
+  },
+  "backend_evidence": {
+    "status": "PASS",
+    "tests": 62,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junit": "WINDOW2_RECHECK_BACKEND_TESTS.xml"
+  },
+  "build": {
+    "status": "PASS",
+    "checks": [
+      "vue-tsc --noEmit",
+      "vite build",
+      "production synthetic-provider exclusion"
+    ],
+    "identical_to_original_delivery": true,
+    "bundle_sha256": {
+      "frontend\\dist\\assets\\index-CmS2n_mf.js": "bfcafc38a48ef3f437e30afa452c22302314af7d7ff43dc459adf73c8c811537",
+      "frontend\\dist\\assets\\index-DSjXdraN.css": "fdd8f8f18cae8c98729ecf930915637ff4e36a108f63b7994a753c601d6e32f8"
+    },
+    "preexisting_chunk_size_advisory": true
+  },
+  "code_changes": 0,
+  "scientific_source_writes_by_recheck": 0,
+  "cfd_runs_started_by_recheck": 0,
+  "whole_tree_hash_audit_rerun": false,
+  "prior_preservation_report": "WINDOW2_SOURCE_PRESERVATION.json",
+  "evi01_drift_filter_scope": "CURRENT_SERVER_PAGE_ONLY",
+  "screenshots_inspected": [
+    "CURRENT",
+    "P09",
+    "Quick View"
+  ],
+  "merge_performed": false,
+  "stop_boundary": "Documentation commit; no next window"
+}
