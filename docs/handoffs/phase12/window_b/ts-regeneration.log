@@ -1,0 +1,6 @@
+
+> shockpath-frontend@0.1.0 generate:types
+> openapi-typescript ../config/openapi.json -o src/types/generated/api.d.ts
+
+✨ openapi-typescript 7.13.0
+🚀 ../config/openapi.json → src/types/generated/api.d.ts [254.4ms]

@@ -1,0 +1,33 @@
+{
+  "window": "PHASE12_B",
+  "initial_worktree_clean": true,
+  "candidate_head": "81fe5d428b9d18261aab10ae483ebf62ae1c1d51",
+  "window_a_accepted_commit": "d9f2f1b66bf146cf3c42217f8509752f970755a1",
+  "accepted_implementation_ancestor": true,
+  "accepted_product_tree_identical": true,
+  "changes_since_implementation": [
+    "docs/handoffs/phase12/window_a/PHASE12_WINDOW_A_HANDOFF.md",
+    "docs/handoffs/phase12/window_a/backend-full.log",
+    "docs/handoffs/phase12/window_a/backend-full.xml",
+    "docs/handoffs/phase12/window_a/build.log",
+    "docs/handoffs/phase12/window_a/contracts.json",
+    "docs/handoffs/phase12/window_a/frontend-full.json",
+    "docs/handoffs/phase12/window_a/frontend-full.log",
+    "docs/handoffs/phase12/window_a/frontend-full.xml",
+    "docs/handoffs/phase12/window_a/lineage.json",
+    "docs/handoffs/phase12/window_a/production-scan.json",
+    "docs/handoffs/phase12/window_a/public-audit.json",
+    "docs/handoffs/phase12/window_a/repository-audit.json",
+    "docs/handoffs/phase12/window_a/source-before-summary.json",
+    "docs/handoffs/phase12/window_a/source-preservation.json",
+    "docs/handoffs/phase12/window_a/static-scan.json",
+    "docs/handoffs/phase12/window_a/ts-regeneration.json",
+    "docs/handoffs/phase12/window_a/ts-regeneration.log",
+    "docs/handoffs/phase12/window_a/validation.json"
+  ],
+  "preexisting": [],
+  "unrelated": [],
+  "owned": "Only fresh Window B QA and final handoff records will be committed",
+  "temporary_artifacts": "Ignored .cache, runtime junction, node_modules, dist and test-results",
+  "independence": "New managed worktree; fresh baseline, server processes, full test reports and production build; no A results copied as B evidence"
+}

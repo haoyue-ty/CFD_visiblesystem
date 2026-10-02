@@ -1,0 +1,95 @@
+{
+  "window": "PHASE12_B",
+  "status": "PASS",
+  "candidate_head": "81fe5d428b9d18261aab10ae483ebf62ae1c1d51",
+  "backend": {
+    "tests": 1356,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 1356
+  },
+  "frontend": {
+    "total": 217,
+    "unit": 15,
+    "e2e_total": 202,
+    "production_real_api": 167,
+    "dev_mock": 35,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "project_counts": {
+      "unit": 15,
+      "phase5-10-real-api": 166,
+      "phase8-real-api": 1,
+      "window3-mock-development": 16,
+      "window4-allocation-ui": 10,
+      "window3-spectral-ui": 9
+    }
+  },
+  "typecheck": "PASS",
+  "production_build": "PASS",
+  "runner": "playwright.phase11.integration.config.ts; all projects, workers=1, retries=0, fresh Waitress + Vite preview + isolated DEV server, reuseExistingServer=false",
+  "commands": [
+    ".venv/Scripts/python.exe -B -m pytest -q --junitxml=.cache/phase12-b/backend-full.xml",
+    "npm run build --prefix frontend",
+    "npx playwright test --config=playwright.phase11.integration.config.ts",
+    "scripts.verification.phase11_integration lineage/capture/contracts/public/scan",
+    "scripts.verification.source_audit --baseline .cache/phase11-final/source-before.json"
+  ],
+  "source_preservation": {
+    "status": "PASS",
+    "source_root": "D:\\Paper\\passage6",
+    "files_before": 27843,
+    "files_after": 27843,
+    "bytes": 5429811970,
+    "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ]
+  },
+  "scientific_files_modified": "NO",
+  "cfd_runs_started": 0,
+  "production_reachable_scientific_mock": 0,
+  "public_source_path_exposure": 0,
+  "explore_full_flow": "PASS",
+  "lab_full_flow": "PASS",
+  "evidence_deep_link": "PASS",
+  "state_restore": "PASS",
+  "browser_network_monitor": "Complete Entry/Explore7/Evidence/Lab-return journey checks page errors, console errors, HTTP>=500 and failed requests; expected aborts excluded; injected outages are separate negative tests.",
+  "known_scientific_gaps": [
+    "Cylinder cumulative2D = MISSING",
+    "Near1D authoritative five-epsilon raw = MISSING",
+    "Spectrum serialized matrices = MISSING",
+    "Saved linear/RK3 amplitude histories = MISSING"
+  ],
+  "cross_flow_comparability": "DESCRIPTIVE_ONLY",
+  "cross_flow_ranking_policy": "NO_UNIFIED_RANKING",
+  "build_advisory": "Existing >500kB bundle advisory; no compile/type errors. No code splitting scope expansion.",
+  "artifact_hash_encoding": "SHA256 of LF-normalized committed software QA artifacts; not scientific provenance",
+  "artifact_sha256": {
+    "backend-full.log": "1252850d641c83fb372f5dcf4216d8ff22dfcd1c4b4e691f9cc7ca3b06a21180",
+    "backend-full.xml": "48a781693b39a371a9d1ff37bc2f2520669b2e437ddada38b6cab42263656628",
+    "build-identity.json": "e4448a2d9915159b06d223e42e33d4bc4a61df0aba3c1fef73c62539b36bc918",
+    "build.log": "7a0f8c79bb5d865f5011f0880f0cf29dd476799b4c203639dc578ff3a74eafa7",
+    "contracts.json": "0e331ea794512b6e453876ad43dfef3659fe33533a586e6fe227140251390af1",
+    "frontend-full.json": "9d460c66382cfb3ed8835c6c1483e56b78598bee1f0b195fee66d8c97fb7b6bc",
+    "frontend-full.log": "28d570aed7572303cba8e8d89512801f037e6e3cf7c1a9cb05c32ccff5636a76",
+    "frontend-full.xml": "eb7ad3347f7edaa0e113c14e15ee9fef88b3380d1995c8d4de6a0934e7a1120d",
+    "lineage.json": "89829cb452c40418084bb71adfb4be67a8fd17ce2b2cf91f982a88bfc167f24c",
+    "original-baseline-equality.json": "a7bdb0dc025eb0cb8a113373795e4d40ce2567116f53a4eebb8cc592dc633b41",
+    "PHASE12_WINDOW_B_ACCEPTANCE.md": "292d1f19911124892c6d9d1a0d901b1581cd7b2a161c8b980d77500f2e252f44",
+    "production-scan.json": "f080cab1e25d54dc37fd9766ab217f8eb7db66144bd94bd6628bc4693b2fcb8b",
+    "public-audit.json": "6950dd4fbb5262f3a67db30ad45d5ac6d3e7c9eea221375d0971e2a9567f1b68",
+    "repository-audit.json": "5a1cd2ad18d6a8f801fb067de48f956813a71abeb138c5f9e8d3b25e201d485e",
+    "source-before-summary.json": "6886ad48d498d5f398c447503f9124bbc3a0e36e09fb40d1cb85e647b5200256",
+    "source-preservation.json": "015f563971fecf29b85388627bed096909dd24e3c28f80373d8482f76d41dee0",
+    "static-scan.json": "d3be76a197c256db12bee10650b2210adebdd79b708e2153922e409aa38bf1cd",
+    "ts-regeneration.json": "ee176d338521ecf45a76ecffd7b4849b83c9e23a6ba3a59f559b19b865c6151b",
+    "ts-regeneration.log": "1236239a59cdfe90ce4e419f3147e56950c9316c209bff696d1186af65c158b8"
+  }
+}

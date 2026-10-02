@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "initial_candidate_head": "81fe5d428b9d18261aab10ae483ebf62ae1c1d51",
+  "accepted": {
+    "PHASE8_COMMIT": {
+      "commit": "fceb3b6c569cf381b04767da77b4b92418a4b5ed",
+      "ancestry": "PASS"
+    },
+    "PHASE9_COMMIT": {
+      "commit": "0df633ff6cd9bd939fdbd0eb2b39a3ec0ac7e880",
+      "ancestry": "PASS"
+    },
+    "PHASE10_COMMIT": {
+      "commit": "004b0e7e8081e5331ed7aa6291b83afdcdc4f45b",
+      "ancestry": "PASS"
+    },
+    "PHASE11_W1_COMMIT": {
+      "commit": "a09b928d5c48aa262293066ce3543fb37c575d0f",
+      "ancestry": "PASS"
+    },
+    "PHASE11_W2_COMMIT": {
+      "commit": "483999ced2c97e80af4df48c50da3ee7bcea9e6a",
+      "ancestry": "PASS"
+    },
+    "PHASE11_W2_IMPLEMENTATION": {
+      "commit": "a5087dc323e2f0bade186e7b7216e152f171a1c6",
+      "ancestry": "PASS"
+    }
+  },
+  "phase9_w1_patch_equivalence": {
+    "original": "31341e75da43f91fd4878edf7e41138aee22c0ff",
+    "effective": "7dd3e36a279942351f39c00cde1e1ac5087e0d8b",
+    "stable_patch_id": "07b07cef49d3f36330f770b5aa803450fb5f84ce",
+    "effective_ancestor": true
+  }
+}

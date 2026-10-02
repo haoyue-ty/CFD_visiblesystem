@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "files": 27843,
+  "bytes": 5429811970,
+  "fingerprint": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+  "phase6_fixture_dependencies": 18,
+  "scientific_writes": 0
+}

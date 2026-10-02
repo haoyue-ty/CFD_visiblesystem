@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "comparison": "Fresh B pre-audit equals original pre-Phase12 A baseline across every path, size, mtime_ns and SHA256",
+  "files": 27843
+}

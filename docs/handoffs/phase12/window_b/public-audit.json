@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "counts": {
+    "CURRENT": 13296,
+    "GAPS": 11,
+    "HISTORY": 2173,
+    "ALL": 15480
+  },
+  "coverage": {
+    "Case8": {
+      "result_id": "case8.D_u.allocation",
+      "evidence_ids": [
+        "ev.case8.D_u.allocation"
+      ]
+    },
+    "Gate": {
+      "result_id": "gate.Acoustic.allocation",
+      "evidence_ids": [
+        "ev.gate.Acoustic.allocation"
+      ]
+    },
+    "Spectrum": {
+      "result_id": "spectrum.q-0.396.mode-08",
+      "evidence_ids": [
+        "evidence.spectral.spectrum.q-0.396.mode-08"
+      ]
+    },
+    "Eigenmode": {
+      "result_id": "spectrum.q-0.396.mode-08.right.rank-00.complex_vector.stored_vector",
+      "evidence_ids": [
+        "evidence.spectral.spectrum.q-0.396.mode-08.right.rank-00.complex_vector.stored_vector"
+      ]
+    },
+    "Modal Validation": {
+      "result_id": "modal-validation.m01_q0p000_eps1e-04.history",
+      "evidence_ids": [
+        "evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history"
+      ]
+    },
+    "Cylinder": {
+      "result_id": "cylinder.D_u.sectors",
+      "evidence_ids": [
+        "ev.cylinder.D_u.sectors"
+      ]
+    },
+    "Cross-flow": {
+      "result_id": "case8-cylinder.D_u.D_u",
+      "evidence_ids": [
+        "ev.case8.D_u.entropy",
+        "ev.case8.D_u.metrics",
+        "ev.case8.D_u.allocation",
+        "ev.cylinder.D_u.protocol",
+        "ev.cylinder.D_u.snapshots",
+        "ev.cylinder.D_u.history",
+        "ev.cylinder.D_u.sectors",
+        "ev.cylinder.D_u.front-band",
+        "ev.cylinder.D_u.metrics",
+        "ev.missing.cylinder-cumulative2d"
+      ]
+    },
+    "Entropy Closure": {
+      "result_id": "entropy-closure.D_u-cfl-0.05.run.R_total",
+      "evidence_ids": [
+        "ev.entropy-closure.D_u-cfl-0.05.run"
+      ]
+    },
+    "Mechanism": {
+      "result_id": "mechanism.acoustic-pathways.v1",
+      "evidence_ids": [
+        "ev.mechanism.theory-implementation"
+      ]
+    }
+  },
+  "source_assets_scanned": 2438,
+  "asset_verification_counts": {
+    "PARTIAL": 5,
+    "VERIFIED_NOT_FROZEN": 382,
+    "AVAILABLE_UNVERIFIED": 938,
+    "SUPERSEDED": 609,
+    "FROZEN_VERIFIED": 444,
+    "LEGACY": 52,
+    "MISSING": 8
+  },
+  "absolute_locators_in_public_assets": 0,
+  "download_routes": 0,
+  "unsafe_query_rejections": 3,
+  "gap_records_no_numeric_payload": [
+    "ev.missing.cylinder-cumulative2d",
+    "ev.inventory.missing_near1d_raw_epsilon_scan",
+    "ev.inventory.missing_persisted_jacobian_fourier_blocks"
+  ],
+  "explore_evidence_duplication": false,
+  "hash_fields_separate": true,
+  "etag_used_as_scientific_hash": false
+}

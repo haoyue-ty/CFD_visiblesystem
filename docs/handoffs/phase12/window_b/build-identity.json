@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "fresh_build_matches_a_byte_for_byte": true,
+  "files": {
+    "assets/index-BKHOjAST.css": "4ec77a0a05485da0ffcec26bbf47d08a489d0473c8fa689a35e0b9108c9ca20b",
+    "assets/index-By65cFav.js": "a5a922592d265cd6bb4b9b70f1556368a4a0b17373be222901c00d3905a937e0",
+    "index.html": "e06849eba9309ed7a2f7ce6dd77a884ed89a5ab933784840106aa4545f4108f9"
+  },
+  "product_tree_matches_accepted": true
+}
