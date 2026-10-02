@@ -34,14 +34,14 @@ test('real spectral outage is surfaced honestly with no fabricated curve', async
 test('real Spectral Lab reads recorded frozen facts', async ({ page }) => {
   test.setTimeout(60_000)
   await page.goto('/lab/experiments/case8?tab=spectral')
-  await expect(page.getByTestId('provider-kind')).toHaveText('REAL API')
-  await expect(page.getByTestId('spectral-scope')).toContainText('Selective modal response')
+  await expect(page.getByTestId('provider-kind')).toHaveText("真实数据 API")
+  await expect(page.getByTestId('spectral-scope')).toContainText("选择性模态响应")
 
   // Region 1: the four registered configurations, one exact q_at resolved.
   await page.getByTestId('spectral-q-0.396').click()
   await expect(page.getByTestId('spectral-qat')).toContainText('0.396')
   await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
-  await expect(page.getByTestId('curve-provenance')).toContainText('registry_revision=')
+  await expect(page.getByTestId('curve-provenance')).toContainText("登记版本=")
 
   // Region 2: saved metadata and complex array both resolve through the real API.
   await expect(page.getByTestId('mode-index')).toHaveText('1')
@@ -50,8 +50,8 @@ test('real Spectral Lab reads recorded frozen facts', async ({ page }) => {
   await expect(page.getByTestId('eigenmode-canvas')).toBeVisible()
 
   // Region 3: recorded validation rates; the linear history stays explicitly absent.
-  await expect(page.getByTestId('growth-cfd')).not.toHaveText('unavailable')
-  await expect(page.getByTestId('growth-linear-missing')).toContainText('not saved')
+  await expect(page.getByTestId('growth-cfd')).not.toHaveText("当前不可用")
+  await expect(page.getByTestId('growth-linear-missing')).toContainText("未保存")
   await expect(page.getByTestId('mock-badge')).toHaveCount(0)
 })
 
@@ -59,7 +59,7 @@ test('real Spectral Lab reads recorded frozen facts', async ({ page }) => {
 test('all four real configurations expose every recorded mode and restore evidence context', async ({ page }, testInfo) => {
   test.setTimeout(180_000)
   await page.goto('/lab/experiments/case8?tab=spectral')
-  await expect(page.getByTestId('spectral-scientific-limit')).toHaveText('Positive entropy production does not imply uniform modal damping.')
+  await expect(page.getByTestId('spectral-scientific-limit')).toHaveText("正熵产 ≠ 所有模态统一增强阻尼。")
   for (const q of [0, 0.132, 0.264, 0.396]) {
     await page.getByTestId(`spectral-q-${q}`).click()
     await expect(page.getByTestId('spectral-qat').locator('strong')).toHaveText(String(q))
@@ -81,10 +81,10 @@ test('all four real configurations expose every recorded mode and restore eviden
     await page.getByText(ref, { exact: true }).locator('..').getByTestId('evidence-link').click()
     await page.getByTestId('quick-full-record').click()
     await expect(page.getByTestId('evidence-record')).toBeVisible()
-    await expect(page.getByTestId('evidence-drift')).toHaveText('No')
-    await expect(page.getByTestId('evidence-verification')).toContainText('FROZEN_VERIFIED')
+    await expect(page.getByTestId('evidence-drift')).toHaveText("记录时源码与当前源码一致")
+    await expect(page.getByTestId('evidence-verification')).toContainText("已冻结验收")
     await expect(page.getByTestId('current-source-hash')).toHaveText(/[a-f0-9]{64}/)
-    await expect(page.getByTestId('evidence-record')).toContainText('does not imply uniform modal damping')
+    await expect(page.getByTestId('evidence-record')).toContainText("正熵产 ≠ 所有模态统一增强阻尼")
     await expect(page.getByTestId('evidence-assets').locator('tbody tr')).not.toHaveCount(0)
     await page.getByTestId('back-to-result').click()
     await expect(page.getByTestId('spectral-qat').locator('strong')).toHaveText('0.396')
@@ -99,7 +99,7 @@ test('real provider reports a missing saved vector explicitly', async ({ page })
     body: JSON.stringify({ availability: 'MISSING', error: { code: 'MISSING_EIGENMODE', message: 'Registered saved eigenmode asset is absent' } }),
   }))
   await page.goto('/lab/experiments/case8?tab=spectral')
-  await expect(page.getByTestId('spectral-mode-unavailable')).toContainText('Unavailable')
+  await expect(page.getByTestId('spectral-mode-unavailable')).toContainText("当前不可用")
   await expect(page.getByTestId('eigenmode-canvas')).toHaveCount(0)
   await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
   await expect(page.getByTestId('mock-badge')).toHaveCount(0)
@@ -117,7 +117,7 @@ for (const fault of ['result identity', 'element count']) {
     })
     await page.goto('/lab/experiments/case8?tab=spectral')
     await expect(page.getByTestId('spectral-mode-region').locator('.ls--error')).toBeVisible()
-    await expect(page.getByTestId('spectral-mode-region')).toContainText('identity/descriptor mismatch')
+    await expect(page.getByTestId('spectral-mode-region')).toContainText('数组标识或描述符不一致')
     await expect(page.getByTestId('eigenmode-canvas')).toHaveCount(0)
     await expect(page.getByTestId('mock-badge')).toHaveCount(0)
   })

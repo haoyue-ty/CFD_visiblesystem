@@ -1,0 +1,804 @@
+{
+  "base": "http://127.0.0.1:4410",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "results": [
+    {
+      "route": "/",
+      "title": "ShockPath · 耗散路径数字实验与可视分析平台",
+      "screenshot": "00.png",
+      "englishActions": [
+        "ShockPath"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/home",
+      "title": "首页 · ShockPath",
+      "screenshot": "01.png",
+      "englishActions": [
+        "ShockPath",
+        "打开 Case 8 · Mach6 →",
+        "打开 Mach 3 圆柱绕流 →"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/explore?scene=1",
+      "title": "引导探索 · ShockPath",
+      "screenshot": "02.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 配置 B_uD_u",
+        "B_u",
+        "D_u"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/explore?scene=2",
+      "title": "引导探索 · ShockPath",
+      "screenshot": "03.png",
+      "englishActions": [
+        "ShockPath"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/explore?scene=3",
+      "title": "引导探索 · ShockPath",
+      "screenshot": "04.png",
+      "englishActions": [
+        "ShockPath",
+        "q_at 关闭启用"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/explore?scene=4",
+      "title": "引导探索 · ShockPath",
+      "screenshot": "05.png",
+      "englishActions": [
+        "ShockPath"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/explore?scene=5",
+      "title": "引导探索 · ShockPath",
+      "screenshot": "06.png",
+      "englishActions": [
+        "ShockPath"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/explore?scene=6",
+      "title": "引导探索 · ShockPath",
+      "screenshot": "07.png",
+      "englishActions": [
+        "ShockPath",
+        "打开 Case 8 详情"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/explore?scene=7",
+      "title": "引导探索 · ShockPath",
+      "screenshot": "08.png",
+      "englishActions": [
+        "ShockPath",
+        "叙事证据 ev.case8.D_u.entropyev.case8.D_u.allocationev.gate.Acoustic.allocationevidence.spectral.spectrum.q-0.396ev.cylinder.D_u.sectors",
+        "ev.case8.D_u.entropy",
+        "ev.case8.D_u.allocation",
+        "ev.gate.Acoustic.allocation",
+        "evidence.spectral.spectrum.q-0.396",
+        "ev.cylinder.D_u.sectors",
+        "ev.method.unified-v1"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab",
+      "title": "数字实验室 · ShockPath",
+      "screenshot": "09.png",
+      "englishActions": [
+        "ShockPath",
+        "打开 Case 8 · Mach6 →",
+        "打开 Mach 3 圆柱绕流 →"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/mechanism",
+      "title": "跨模态耗散机制 · ShockPath",
+      "screenshot": "10.png",
+      "englishActions": [
+        "ShockPath",
+        "q_at 关闭启用"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/case8",
+      "title": "Case 8 · ShockPath",
+      "screenshot": "11.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比",
+        "A_u",
+        "B_u",
+        "C_u",
+        "D_u"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/gate",
+      "title": "门控消融实验 · ShockPath",
+      "screenshot": "12.png",
+      "englishActions": [
+        "ShockPath"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/entropy-closure",
+      "title": "熵预算闭合 · ShockPath",
+      "screenshot": "13.png",
+      "englishActions": [
+        "ShockPath",
+        "运行 D_u — CFL 0.2D_u — CFL 0.1D_u — CFL 0.05D_u — CFL 0.025B_u — CFL 0.05",
+        "D_u — CFL 0.2",
+        "D_u — CFL 0.1",
+        "D_u — CFL 0.05",
+        "D_u — CFL 0.025",
+        "B_u — CFL 0.05"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/spectrum",
+      "title": "横向模态频谱 · ShockPath",
+      "screenshot": "14.png",
+      "englishActions": [
+        "ShockPath",
+        "spectrum.q-0.000",
+        "spectrum.q-0.132",
+        "spectrum.q-0.264",
+        "spectrum.q-0.396",
+        "模态 1 · q_at=0.0 · ε=0.0001",
+        "模态 1 · q_at=0.0 · ε=1e-05",
+        "模态 1 · q_at=0.0 · ε=1e-06",
+        "模态 1 · q_at=0.396 · ε=0.0001",
+        "模态 1 · q_at=0.396 · ε=1e-05",
+        "模态 1 · q_at=0.396 · ε=1e-06",
+        "模态 4 · q_at=0.0 · ε=0.0001",
+        "模态 4 · q_at=0.0 · ε=1e-05",
+        "模态 4 · q_at=0.0 · ε=1e-06",
+        "模态 4 · q_at=0.396 · ε=0.0001",
+        "模态 4 · q_at=0.396 · ε=1e-05",
+        "模态 4 · q_at=0.396 · ε=1e-06",
+        "模态 8 · q_at=0.0 · ε=0.0001",
+        "模态 8 · q_at=0.0 · ε=1e-05",
+        "模态 8 · q_at=0.0 · ε=1e-06",
+        "模态 8 · q_at=0.396 · ε=0.0001",
+        "模态 8 · q_at=0.396 · ε=1e-05",
+        "模态 8 · q_at=0.396 · ε=1e-06",
+        "模态 12 · q_at=0.0 · ε=0.0001",
+        "模态 12 · q_at=0.0 · ε=1e-05",
+        "模态 12 · q_at=0.0 · ε=1e-06",
+        "模态 12 · q_at=0.396 · ε=0.0001",
+        "模态 12 · q_at=0.396 · ε=1e-05",
+        "模态 12 · q_at=0.396 · ε=1e-06"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/modal-validation",
+      "title": "模态验证 · ShockPath",
+      "screenshot": "15.png",
+      "englishActions": [
+        "ShockPath",
+        "spectrum.q-0.000",
+        "spectrum.q-0.132",
+        "spectrum.q-0.264",
+        "spectrum.q-0.396",
+        "模态 1 · q_at=0.0 · ε=0.0001",
+        "模态 1 · q_at=0.0 · ε=1e-05",
+        "模态 1 · q_at=0.0 · ε=1e-06",
+        "模态 1 · q_at=0.396 · ε=0.0001",
+        "模态 1 · q_at=0.396 · ε=1e-05",
+        "模态 1 · q_at=0.396 · ε=1e-06",
+        "模态 4 · q_at=0.0 · ε=0.0001",
+        "模态 4 · q_at=0.0 · ε=1e-05",
+        "模态 4 · q_at=0.0 · ε=1e-06",
+        "模态 4 · q_at=0.396 · ε=0.0001",
+        "模态 4 · q_at=0.396 · ε=1e-05",
+        "模态 4 · q_at=0.396 · ε=1e-06",
+        "模态 8 · q_at=0.0 · ε=0.0001",
+        "模态 8 · q_at=0.0 · ε=1e-05",
+        "模态 8 · q_at=0.0 · ε=1e-06",
+        "模态 8 · q_at=0.396 · ε=0.0001",
+        "模态 8 · q_at=0.396 · ε=1e-05",
+        "模态 8 · q_at=0.396 · ε=1e-06",
+        "模态 12 · q_at=0.0 · ε=0.0001",
+        "模态 12 · q_at=0.0 · ε=1e-05",
+        "模态 12 · q_at=0.0 · ε=1e-06",
+        "模态 12 · q_at=0.396 · ε=0.0001",
+        "模态 12 · q_at=0.396 · ε=1e-05",
+        "模态 12 · q_at=0.396 · ε=1e-06"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/cylinder",
+      "title": "Mach 3 圆柱绕流 · ShockPath",
+      "screenshot": "16.png",
+      "englishActions": [
+        "ShockPath",
+        "A_u",
+        "B_u",
+        "D_u",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/cross-flow",
+      "title": "跨流动对比 · ShockPath",
+      "screenshot": "17.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 配置 A_uB_uC_uD_u",
+        "A_u",
+        "B_u",
+        "C_u",
+        "D_u",
+        "圆柱绕流配置 A_uB_uD_u",
+        "打开 Case 8 详情"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence",
+      "title": "证据中心 · ShockPath",
+      "screenshot": "18.png",
+      "englishActions": [
+        "ShockPath",
+        "实验 全部实验Case 8门控消融实验横向模态频谱模态验证Mach 3 圆柱绕流熵预算闭合跨模态耗散机制",
+        "Case 8",
+        "Mach 3 圆柱绕流"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence?section=GAPS",
+      "title": "证据中心 · ShockPath",
+      "screenshot": "19.png",
+      "englishActions": [
+        "ShockPath",
+        "实验 全部实验Case 8门控消融实验横向模态频谱模态验证Mach 3 圆柱绕流熵预算闭合跨模态耗散机制",
+        "Case 8",
+        "Mach 3 圆柱绕流"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence?section=HISTORY",
+      "title": "证据中心 · ShockPath",
+      "screenshot": "20.png",
+      "englishActions": [
+        "ShockPath",
+        "实验 全部实验Case 8门控消融实验横向模态频谱模态验证Mach 3 圆柱绕流熵预算闭合跨模态耗散机制",
+        "Case 8",
+        "Mach 3 圆柱绕流"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence/ev.case8.D_u.allocation",
+      "title": "证据详情 · ShockPath",
+      "screenshot": "21.png",
+      "englishActions": [
+        "ShockPath",
+        "ev.method.unified-v1",
+        "ev.case8.D_u.allocation"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/case8?config=D_u&tab=flow",
+      "title": "Case 8 · ShockPath",
+      "screenshot": "22.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比",
+        "A_u",
+        "B_u",
+        "C_u",
+        "D_u",
+        "density",
+        "pressure",
+        "front"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/case8?config=D_u&tab=entropy",
+      "title": "Case 8 · ShockPath",
+      "screenshot": "23.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比",
+        "A_u",
+        "B_u",
+        "C_u",
+        "D_u"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/case8?config=D_u&tab=allocation",
+      "title": "Case 8 · ShockPath",
+      "screenshot": "24.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比",
+        "A_u",
+        "B_u",
+        "C_u",
+        "D_u",
+        "Case 8 · 原生面分配"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/case8?config=D_u&tab=metrics",
+      "title": "Case 8 · ShockPath",
+      "screenshot": "25.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比",
+        "A_u",
+        "B_u",
+        "C_u",
+        "D_u"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/case8?config=D_u&tab=evidence",
+      "title": "Case 8 · ShockPath",
+      "screenshot": "26.png",
+      "englishActions": [
+        "ShockPath",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比",
+        "A_u",
+        "B_u",
+        "C_u",
+        "D_u"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/cylinder?config=D_u&tab=flow",
+      "title": "Mach 3 圆柱绕流 · ShockPath",
+      "screenshot": "27.png",
+      "englishActions": [
+        "ShockPath",
+        "A_u",
+        "B_u",
+        "D_u",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比",
+        "快照选择 快照 1 · 已完成步 0 · t=0快照 2 · 已完成步 2439 · t=0.4999487547401866快照 3 · 已完成步 4878 · t=0.9998975094803731快照 4 · 已完成步 7318 · t=1.5000512452598136快照 5 · 已完成步 9757 · t=2",
+        "快照 1 · 已完成步 0 · t=0",
+        "快照 2 · 已完成步 2439 · t=0.4999487547401866",
+        "快照 3 · 已完成步 4878 · t=0.9998975094803731",
+        "快照 4 · 已完成步 7318 · t=1.5000512452598136",
+        "快照 5 · 已完成步 9757 · t=2",
+        "场变量 radial_interior_pi_atdensity — 缺失radial_interior_pi_bgradial_interior_pi_aaradial_interior_pi_totalradial_interior_Jradial_interior_pt_z_norm2angular_interior_pi_bgangular_interior_pi_aaangular_interior_pi_atangular_interior_pi_totalangular_interior_Jangular_interior_pt_z_norm2",
+        "radial_interior_pi_at",
+        "density — 缺失",
+        "radial_interior_pi_bg",
+        "radial_interior_pi_aa",
+        "radial_interior_pi_total",
+        "radial_interior_J",
+        "radial_interior_pt_z_norm2",
+        "angular_interior_pi_bg",
+        "angular_interior_pi_aa",
+        "angular_interior_pi_at",
+        "angular_interior_pi_total",
+        "angular_interior_J",
+        "angular_interior_pt_z_norm2"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/cylinder?config=D_u&tab=entropy",
+      "title": "Mach 3 圆柱绕流 · ShockPath",
+      "screenshot": "28.png",
+      "englishActions": [
+        "ShockPath",
+        "A_u",
+        "B_u",
+        "D_u",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/cylinder?config=D_u&tab=sectors",
+      "title": "Mach 3 圆柱绕流 · ShockPath",
+      "screenshot": "29.png",
+      "englishActions": [
+        "ShockPath",
+        "A_u",
+        "B_u",
+        "D_u",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/cylinder?config=D_u&tab=metrics",
+      "title": "Mach 3 圆柱绕流 · ShockPath",
+      "screenshot": "30.png",
+      "englishActions": [
+        "ShockPath",
+        "A_u",
+        "B_u",
+        "D_u",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/cylinder?config=D_u&tab=evidence",
+      "title": "Mach 3 圆柱绕流 · ShockPath",
+      "screenshot": "31.png",
+      "englishActions": [
+        "ShockPath",
+        "A_u",
+        "B_u",
+        "D_u",
+        "Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/entropy-closure?run=D_u-cfl-0.05&tab=semi-discrete",
+      "title": "熵预算闭合 · ShockPath",
+      "screenshot": "32.png",
+      "englishActions": [
+        "ShockPath",
+        "运行 D_u — CFL 0.2D_u — CFL 0.1D_u — CFL 0.05D_u — CFL 0.025B_u — CFL 0.05",
+        "D_u — CFL 0.2",
+        "D_u — CFL 0.1",
+        "D_u — CFL 0.05",
+        "D_u — CFL 0.025",
+        "B_u — CFL 0.05",
+        "t_stage_or_step_time",
+        "dt",
+        "D_bg",
+        "D_aa",
+        "D_at",
+        "R_decomp",
+        "x_face_count",
+        "y_face_count"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/entropy-closure?run=D_u-cfl-0.05&tab=fully-discrete",
+      "title": "熵预算闭合 · ShockPath",
+      "screenshot": "33.png",
+      "englishActions": [
+        "ShockPath",
+        "运行 D_u — CFL 0.2D_u — CFL 0.1D_u — CFL 0.05D_u — CFL 0.025B_u — CFL 0.05",
+        "D_u — CFL 0.2",
+        "D_u — CFL 0.1",
+        "D_u — CFL 0.05",
+        "D_u — CFL 0.025",
+        "B_u — CFL 0.05",
+        "time_n",
+        "time_np1",
+        "dt",
+        "S_n",
+        "S_np1",
+        "D_bg_stage1",
+        "D_bg_stage2",
+        "D_bg_stage3",
+        "D_aa_stage1",
+        "D_aa_stage2",
+        "D_aa_stage3",
+        "D_at_stage1",
+        "D_at_stage2",
+        "D_at_stage3",
+        "D_total_stage1",
+        "D_total_stage2",
+        "D_total_stage3"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/entropy-closure?run=D_u-cfl-0.05&tab=evidence",
+      "title": "熵预算闭合 · ShockPath",
+      "screenshot": "34.png",
+      "englishActions": [
+        "ShockPath",
+        "运行 D_u — CFL 0.2D_u — CFL 0.1D_u — CFL 0.05D_u — CFL 0.025B_u — CFL 0.05",
+        "D_u — CFL 0.2",
+        "D_u — CFL 0.1",
+        "D_u — CFL 0.05",
+        "D_u — CFL 0.025",
+        "B_u — CFL 0.05"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/mechanism?source_scene=3",
+      "title": "跨模态耗散机制 · ShockPath",
+      "screenshot": "35.png",
+      "englishActions": [
+        "ShockPath",
+        "q_at 关闭启用"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/spectrum?spectral_q=spectrum.q-0.396&spectral_mode=8",
+      "title": "横向模态频谱 · ShockPath",
+      "screenshot": "36.png",
+      "englishActions": [
+        "ShockPath",
+        "spectrum.q-0.000",
+        "spectrum.q-0.132",
+        "spectrum.q-0.264",
+        "spectrum.q-0.396",
+        "模态 1 · q_at=0.0 · ε=0.0001",
+        "模态 1 · q_at=0.0 · ε=1e-05",
+        "模态 1 · q_at=0.0 · ε=1e-06",
+        "模态 1 · q_at=0.396 · ε=0.0001",
+        "模态 1 · q_at=0.396 · ε=1e-05",
+        "模态 1 · q_at=0.396 · ε=1e-06",
+        "模态 4 · q_at=0.0 · ε=0.0001",
+        "模态 4 · q_at=0.0 · ε=1e-05",
+        "模态 4 · q_at=0.0 · ε=1e-06",
+        "模态 4 · q_at=0.396 · ε=0.0001",
+        "模态 4 · q_at=0.396 · ε=1e-05",
+        "模态 4 · q_at=0.396 · ε=1e-06",
+        "模态 8 · q_at=0.0 · ε=0.0001",
+        "模态 8 · q_at=0.0 · ε=1e-05",
+        "模态 8 · q_at=0.0 · ε=1e-06",
+        "模态 8 · q_at=0.396 · ε=0.0001",
+        "模态 8 · q_at=0.396 · ε=1e-05",
+        "模态 8 · q_at=0.396 · ε=1e-06",
+        "模态 12 · q_at=0.0 · ε=0.0001",
+        "模态 12 · q_at=0.0 · ε=1e-05",
+        "模态 12 · q_at=0.0 · ε=1e-06",
+        "模态 12 · q_at=0.396 · ε=0.0001",
+        "模态 12 · q_at=0.396 · ε=1e-05",
+        "模态 12 · q_at=0.396 · ε=1e-06"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/lab/experiments/modal-validation?spectral_q=spectrum.q-0.396&spectral_mode=8&spectral_run=modal-validation.m08_q0p396_eps1e-04",
+      "title": "模态验证 · ShockPath",
+      "screenshot": "37.png",
+      "englishActions": [
+        "ShockPath",
+        "spectrum.q-0.000",
+        "spectrum.q-0.132",
+        "spectrum.q-0.264",
+        "spectrum.q-0.396",
+        "模态 1 · q_at=0.0 · ε=0.0001",
+        "模态 1 · q_at=0.0 · ε=1e-05",
+        "模态 1 · q_at=0.0 · ε=1e-06",
+        "模态 1 · q_at=0.396 · ε=0.0001",
+        "模态 1 · q_at=0.396 · ε=1e-05",
+        "模态 1 · q_at=0.396 · ε=1e-06",
+        "模态 4 · q_at=0.0 · ε=0.0001",
+        "模态 4 · q_at=0.0 · ε=1e-05",
+        "模态 4 · q_at=0.0 · ε=1e-06",
+        "模态 4 · q_at=0.396 · ε=0.0001",
+        "模态 4 · q_at=0.396 · ε=1e-05",
+        "模态 4 · q_at=0.396 · ε=1e-06",
+        "模态 8 · q_at=0.0 · ε=0.0001",
+        "模态 8 · q_at=0.0 · ε=1e-05",
+        "模态 8 · q_at=0.0 · ε=1e-06",
+        "模态 8 · q_at=0.396 · ε=0.0001",
+        "模态 8 · q_at=0.396 · ε=1e-05",
+        "模态 8 · q_at=0.396 · ε=1e-06",
+        "模态 12 · q_at=0.0 · ε=0.0001",
+        "模态 12 · q_at=0.0 · ε=1e-05",
+        "模态 12 · q_at=0.0 · ε=1e-06",
+        "模态 12 · q_at=0.396 · ε=0.0001",
+        "模态 12 · q_at=0.396 · ε=1e-05",
+        "模态 12 · q_at=0.396 · ε=1e-06"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence/ev.mechanism.theory-implementation",
+      "title": "证据详情 · ShockPath",
+      "screenshot": "38.png",
+      "englishActions": [
+        "ShockPath"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence/evidence.spectral.spectrum.q-0.396.mode-08",
+      "title": "证据详情 · ShockPath",
+      "screenshot": "39.png",
+      "englishActions": [
+        "ShockPath",
+        "evidence.spectral.spectrum.q-0.396.mode-08"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence/evidence.spectral.spectrum.q-0.396.mode-08.right.rank-00.complex_vector.stored_vector",
+      "title": "证据详情 · ShockPath",
+      "screenshot": "40.png",
+      "englishActions": [
+        "ShockPath",
+        "evidence.spectral.spectrum.q-0.396.mode-08.right.rank-00.complex_vector.stored_vector"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence/evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history",
+      "title": "证据详情 · ShockPath",
+      "screenshot": "41.png",
+      "englishActions": [
+        "ShockPath",
+        "evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    },
+    {
+      "route": "/evidence/ev.missing.cylinder-cumulative2d",
+      "title": "证据详情 · ShockPath",
+      "screenshot": "42.png",
+      "englishActions": [
+        "ShockPath"
+      ],
+      "residual": [],
+      "width": 1920,
+      "scroll": 1920,
+      "overflowElements": []
+    }
+  ],
+  "errors": []
+}

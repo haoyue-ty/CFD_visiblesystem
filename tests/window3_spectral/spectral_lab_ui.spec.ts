@@ -26,13 +26,13 @@ test.describe('Spectral Lab — route and scope', () => {
     await page.goto('/lab/experiments/case8?tab=spectral')
     await expect(page.getByTestId('spectral-lab')).toBeVisible()
     await expect(page.getByTestId('tab-spectral')).toHaveAttribute('aria-pressed', 'true')
-    await expect(page.getByRole('tablist', { name: 'Case8 tabs' }).getByRole('tab', { name: 'Spectral' })).toHaveCount(0)
+    await expect(page.getByRole('tablist', { name: "Case 8 分页" }).getByRole('tab', { name: '频谱' })).toHaveCount(0)
   })
 
   test('states the scientific scope and never emits an evaluative verdict', async ({ page }) => {
     await openSpectral(page)
     const scope = page.getByTestId('spectral-scope')
-    await expect(scope).toContainText('Selective modal response')
+    await expect(scope).toContainText("选择性模态响应")
 
     // The forbidden vocabulary must not appear anywhere on the page.
     const text = await page.getByTestId('spectral-lab').innerText()
@@ -45,7 +45,7 @@ test.describe('Spectral Lab — route and scope', () => {
 test.describe('Spectral Lab — region 1 (spectral abscissa curve)', () => {
   test('renders x = mode k, y = Re(λ) with the recorded q_at', async ({ page }) => {
     await openSpectral(page)
-    await expect(page.getByTestId('spectral-curve-region')).toContainText('x = mode k')
+    await expect(page.getByTestId('spectral-curve-region')).toContainText("x = 模态 k")
     await expect(page.getByTestId('spectral-curve-region')).toContainText('y = Re(λ)')
     await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
     await expect(page.getByTestId('spectral-qat')).toContainText('q_at =')
@@ -72,7 +72,7 @@ test.describe('Spectral Lab — region 2 (mode detail)', () => {
     await page.goto('/lab/experiments/case8?tab=spectral&spectral_rank=9')
     await expect(page.getByTestId('spectral-lab')).toBeVisible()
     await expect(page.getByTestId('spectral-mode-unavailable')).toBeVisible()
-    await expect(page.getByTestId('spectral-mode-unavailable')).toContainText('Unavailable')
+    await expect(page.getByTestId('spectral-mode-unavailable')).toContainText("当前不可用")
     // No chart may be rendered for an unavailable mode.
     await expect(page.getByTestId('eigenmode-canvas')).toHaveCount(0)
   })
@@ -87,11 +87,11 @@ test.describe('Spectral Lab — region 2 (mode detail)', () => {
 test.describe('Spectral Lab — region 3 (growth validation)', () => {
   test('renders linear vs CFD with recorded rates and an explicit missing history', async ({ page }) => {
     await openSpectral(page)
-    await expect(page.getByTestId('spectral-validation-region')).toContainText('linear vs CFD')
+    await expect(page.getByTestId('spectral-validation-region')).toContainText("线性与 CFD")
     await expect(page.getByTestId('growth-validation-canvas')).toBeVisible()
-    await expect(page.getByTestId('growth-cfd')).not.toHaveText('unavailable')
+    await expect(page.getByTestId('growth-cfd')).not.toHaveText("当前不可用")
     // The linear amplitude history was not saved: this stays explicit.
-    await expect(page.getByTestId('growth-linear-missing')).toContainText('not saved')
+    await expect(page.getByTestId('growth-linear-missing')).toContainText("未保存")
   })
 })
 
@@ -99,6 +99,6 @@ test.describe('Spectral Lab — loading state', () => {
   test('a slow spectral provider surfaces a Loading state first', async ({ page }) => {
     // The mock provider delays every read, so the loading layer is observable.
     await page.goto('/lab/experiments/case8?tab=spectral')
-    await expect(page.getByTestId('spectral-lab')).toContainText('Loading')
+    await expect(page.getByTestId('spectral-lab')).toContainText("正在加载")
   })
 })

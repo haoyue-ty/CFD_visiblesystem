@@ -1,3 +1,4 @@
+import { zh } from '../src/presentation/zh-CN'
 import { test, expect, type Page } from '@playwright/test'
 import { mkdirSync, readFileSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -5,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 const ready = ['entropy-terminal', 'mechanism-architecture', 'mechanism-architecture', 'gate-Ungated', 'guided-modal-table', 'sector-table', 'evidence-record']
 async function open(page: Page, scene: number, extra = '') {
   await page.goto(`/explore?scene=${scene}${extra}`)
-  await expect(page.getByTestId('scene-progress')).toHaveText(`Scene ${scene} / 7`)
+  await expect(page.getByTestId('scene-progress')).toHaveText(`第 ${scene} 幕 / 共 7 幕`)
   await expect(page.getByTestId(ready[scene - 1]!)).toBeVisible()
   if (scene === 1) expect(await page.getByTestId('entropy-chart').evaluate(el => el.clientWidth)).toBeGreaterThan(300)
   if (scene === 4) await expect(page.getByTestId('cell-allocation-canvas')).toHaveCount(3)
@@ -18,9 +19,9 @@ test('Home and Lab enter implemented Explore; CONTENT01 returns exactly seven pr
   const body = await response.json()
   expect(body.data.items.map((s: { scene_id: number }) => s.scene_id)).toEqual([1, 2, 3, 4, 5, 6, 7])
   await page.goto('/home')
-  await expect(page.getByTestId('explore-status')).toContainText('IMPLEMENTED')
+  await expect(page.getByTestId('explore-status')).toContainText("已交付")
   await page.getByTestId('home-start-explore').click()
-  await expect(page.getByTestId('scene-progress')).toHaveText('Scene 1 / 7')
+  await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
   await page.goto('/lab')
   await page.getByTestId('lab-open-explore').click()
   await expect(page).toHaveURL(/scene=1/)
@@ -32,7 +33,7 @@ for (let scene = 1; scene <= 7; scene++) {
     page.on('pageerror', error => errors.push(error.message))
     await open(page, scene)
     await expect(page.getByTestId('scene-evidence').locator('a')).not.toHaveCount(0)
-    await expect(page.locator('[aria-label="Scene navigation"] a')).toHaveCount(7)
+    await expect(page.locator('[aria-label="场景导航"] a')).toHaveCount(7)
     await page.reload()
     await expect(page.getByTestId(ready[scene - 1]!)).toBeVisible()
     if (scene === 1) expect(await page.getByTestId('entropy-chart').evaluate(el => el.clientWidth)).toBeGreaterThan(300)
@@ -72,13 +73,13 @@ test('S2 schematic and S3 strict/weak plus off/enabled use shared MechanismView'
   await expect(page.getByTestId('node-acoustic-gate')).toHaveAttribute('data-role', 'TRIGGER')
   await open(page, 3)
   await page.getByTestId('node-tangential-output').click()
-  await expect(page.getByTestId('selected-node')).toContainText('δ_t does not enter gate')
-  await expect(page.getByTestId('output-state')).toContainText('Inactive / zero')
+  await expect(page.getByTestId('selected-node')).toContainText("δ_t 不进入门控")
+  await expect(page.getByTestId('output-state')).toContainText("输出为零")
   await page.getByTestId('mechanism-state').selectOption('WEAKLY_2D')
-  await expect(page.getByTestId('output-state')).toContainText('Active')
+  await expect(page.getByTestId('output-state')).toContainText("允许输出")
   await page.getByTestId('mechanism-qat').selectOption('OFF')
-  await expect(page.getByTestId('output-state')).toContainText('Pathway disabled')
-  await expect(page.getByTestId('near1d-gap')).toContainText('No authoritative')
+  await expect(page.getByTestId('output-state')).toContainText("路径关闭")
+  await expect(page.getByTestId('near1d-gap')).toContainText("权威五组")
 })
 
 test('S4 Gate matched q_at, common API scale, fixed window and saved fractions', async ({ page, request }) => {
@@ -89,14 +90,14 @@ test('S4 Gate matched q_at, common API scale, fixed window and saved fractions',
     const panel = page.getByTestId(`gate-${gate}`)
     await expect(panel.getByTestId('matched-qat')).toHaveText(q)
     await expect(panel.getByTestId('cell-allocation-canvas')).toBeVisible()
-    await expect(panel.getByTestId('gate-window')).toContainText('counts=')
+    await expect(panel.getByTestId('gate-window')).toContainText("计数=")
     const summary = (await (await request.get(`/api/v1/allocations/gate.${gate}.allocation/summary`)).json()).data
     await expect(panel.getByTestId('alloc-inside')).toHaveText(String(summary.inside.value.value.value))
     const figure = panel.locator('figure')
     await expect(figure).toHaveAttribute('data-colour-min', String(meta.shared_extent[0].value.value.value))
     await expect(figure).toHaveAttribute('data-colour-max', String(meta.shared_extent[1].value.value.value))
   }
-  await expect(page.getByTestId('gate-comparison')).toContainText('Approximately matched')
+  await expect(page.getByTestId('gate-comparison')).toContainText("预算近似匹配")
 })
 
 test('S5 complete real SPEC02 curves retain negative, positive and near-zero directions', async ({ page, request }) => {
@@ -107,9 +108,9 @@ test('S5 complete real SPEC02 curves retain negative, positive and near-zero dir
     const data = (await (await request.get(`/api/v1/spectra/spectrum.q-${q}/points`)).json()).data
     for (const point of data.points) await expect(rows.filter({ has: page.locator(`th:text-is("${point.mode_index}")`) })).toContainText(point.real_lambda.value.toFixed(10))
   }
-  for (const direction of ['negative shift', 'positive shift', 'near-zero shift']) await expect(page.getByTestId('guided-modal-table')).toContainText(direction)
+  for (const direction of ['negative shift', 'positive shift', 'near-zero shift']) await expect(page.getByTestId('guided-modal-table')).toContainText(zh(direction))
   await expect(page.locator('tr.emphasized')).toHaveCount(2)
-  await expect(page.getByTestId('spectral-scientific-limit')).toContainText('does not imply uniform modal damping')
+  await expect(page.getByTestId('spectral-scientific-limit')).toContainText("正熵产 ≠ 所有模态统一增强阻尼")
 })
 
 test('S6 CMP01 fixed D_u pair keeps independent renderers, policies and missing 2D', async ({ page }) => {
@@ -119,9 +120,9 @@ test('S6 CMP01 fixed D_u pair keeps independent renderers, policies and missing 
   expect(data.left.config_id).toBe('D_u'); expect(data.right.config_id).toBe('D_u')
   expect(data.ranking_policy).toBe('NO_UNIFIED_RANKING')
   await expect(page.getByTestId('face-allocation-canvas')).toHaveCount(2)
-  await expect(page.getByTestId('front-band')).toContainText('REGION_SCALAR')
-  await expect(page.getByTestId('cumulative-2d-missing')).toContainText('Missing')
-  await expect(page.getByTestId('descriptive-only')).toContainText('DESCRIPTIVE_ONLY')
+  await expect(page.getByTestId('front-band')).toContainText("前沿区域标量")
+  await expect(page.getByTestId('cumulative-2d-missing')).toContainText("缺失")
+  await expect(page.getByTestId('descriptive-only')).toContainText("仅作描述性比较")
   await expect(page.getByTestId('case8-config')).toHaveCount(0)
 })
 
@@ -129,25 +130,25 @@ test('S7 real per-result evidence loads one record with identity/config/hash/lim
   const scienceRequests: string[] = []
   page.on('request', r => { if (r.url().includes('/api/v1/')) scienceRequests.push(r.url()) })
   await open(page, 7)
-  for (const heading of ['Configuration', 'Method & source', 'Verification', 'Source assets', 'Limitations']) await expect(page.getByRole('heading', { name: heading, exact: true })).toBeVisible()
+  for (const heading of ["配置", "方法与来源", "验证状态", "来源资产", "适用边界"]) await expect(page.getByRole('heading', { name: heading, exact: true })).toBeVisible()
   expect(scienceRequests.filter(s => s.includes('/evidence/'))).toHaveLength(1)
   expect(scienceRequests.filter(s => /\/arrays\/|entropy-history|\/spectra\/|\/comparisons\//.test(s))).toEqual([])
   await page.locator('a[data-testid="evidence-link"][href*="ev.case8.D_u.entropy"]').first().click()
   await page.getByTestId('quick-full-record').click()
   await expect(page.getByTestId('evidence-record')).toBeVisible()
   await page.getByTestId('back-to-result').click()
-  await expect(page.getByTestId('scene-progress')).toHaveText('Scene 7 / 7')
+  await expect(page.getByTestId('scene-progress')).toHaveText("第 7 幕 / 共 7 幕")
 })
 
 test('Previous / Next, scene navigation and browser Back restore only Scene/page', async ({ page }) => {
   await page.goto('/home'); await page.getByTestId('home-start-explore').click()
-  await expect(page.getByTestId('scene-progress')).toHaveText('Scene 1 / 7')
+  await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
   await page.getByTestId('scene-next').click()
-  await expect(page.getByTestId('scene-progress')).toHaveText('Scene 2 / 7')
+  await expect(page.getByTestId('scene-progress')).toHaveText("第 2 幕 / 共 7 幕")
   await page.getByTestId('scene-next').click()
-  await expect(page.getByTestId('scene-progress')).toHaveText('Scene 3 / 7')
-  await page.goBack(); await expect(page.getByTestId('scene-progress')).toHaveText('Scene 2 / 7')
-  await page.getByTestId('scene-previous').click(); await expect(page.getByTestId('scene-progress')).toHaveText('Scene 1 / 7')
+  await expect(page.getByTestId('scene-progress')).toHaveText("第 3 幕 / 共 7 幕")
+  await page.goBack(); await expect(page.getByTestId('scene-progress')).toHaveText("第 2 幕 / 共 7 幕")
+  await page.getByTestId('scene-previous').click(); await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
   await page.goBack(); await page.goBack(); await page.goBack()
   await expect(page).toHaveURL(/\/home$/)
 })
@@ -161,7 +162,7 @@ for (const scene of [1, 4, 5, 6, 7]) {
     await expect(page.getByTestId('explore-return')).toBeVisible()
     await page.reload()
     await page.getByTestId('explore-return').click()
-    await expect(page.getByTestId('scene-progress')).toHaveText(`Scene ${scene} / 7`)
+    await expect(page.getByTestId('scene-progress')).toHaveText(`第 ${scene} 幕 / 共 7 幕`)
     if (scene === 1) await expect(page.getByTestId('explore-entropy-config')).toHaveValue('D_u')
   })
 }
@@ -169,7 +170,7 @@ for (const scene of [1, 4, 5, 6, 7]) {
 for (const invalid of ['0', '8', '-1', 'abc', '1.5', '']) {
   test(`invalid scene ${JSON.stringify(invalid)} has error and no scientific content`, async ({ page }) => {
     await page.goto(`/explore?scene=${invalid}`)
-    await expect(page.getByRole('alert')).toContainText('Invalid scene')
+    await expect(page.getByRole('alert')).toContainText('场景无效')
     await expect(page.locator('.scientific-content')).toHaveCount(0)
   })
 }
@@ -185,8 +186,8 @@ for (const [scene, pattern, target] of [
   test(`S${scene} scientific API failure is explicit with no mock fallback`, async ({ page }) => {
     await page.route(pattern, r => r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ availability: 'ERROR', error: { message: 'Unavailable for outage check' } }) }))
     await page.goto(`/explore?scene=${scene}`)
-    await expect(page.getByRole('alert').first()).toContainText(`Error loading ${target}`)
-    await expect(page.getByTestId('provider-kind')).toHaveText('REAL API')
+    await expect(page.getByRole('alert').first()).toContainText(`数据加载失败： ${zh(target)}`)
+    await expect(page.getByTestId('provider-kind')).toHaveText("真实数据 API")
     await expect(page.getByTestId('mock-badge')).toHaveCount(0)
   })
 }
@@ -194,7 +195,7 @@ for (const [scene, pattern, target] of [
 test('CONTENT01 outage prevents science; production bundle excludes synthetic providers', async ({ page }) => {
   await page.route('**/api/v1/explore/scenes', r => r.abort())
   await page.goto('/explore?scene=1')
-  await expect(page.getByRole('alert')).toContainText('Explore scene navigation')
+  await expect(page.getByRole('alert')).toContainText("引导探索导航")
   await expect(page.getByTestId('case8-entropy')).toHaveCount(0)
   const dist = fileURLToPath(new URL('../dist/assets/', import.meta.url))
   const js = readdirSync(dist).filter(f => f.endsWith('.js')).map(f => readFileSync(`${dist}${f}`, 'utf8')).join('\n')
@@ -209,7 +210,7 @@ test('Lab edits preserve the original Explore return context', async ({ page }) 
   await page.getByTestId('tab-flow').click()
   await page.reload()
   await page.getByTestId('explore-return').click()
-  await expect(page.getByTestId('scene-progress')).toHaveText('Scene 1 / 7')
+  await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
   await expect(page.getByTestId('explore-entropy-config')).toHaveValue('D_u')
 })
 

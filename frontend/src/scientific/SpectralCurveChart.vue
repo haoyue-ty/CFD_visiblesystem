@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * SpectralCurveChart — the spectral abscissa curve.
  *
@@ -27,13 +29,13 @@ const option = computed(() => {
   const points: SpectralPointView[] = props.curve.points
   const xs = points.map(p => `k=${p.mode_index}`)
   const ys = points.map(p => (p.real_lambda === null ? null : p.real_lambda))
-  const unitLabel = props.curve.result.unit.label
+  const unitLabel = zh(props.curve.result.unit.label)
   const missingCount = points.filter(p => p.real_lambda === null).length
   return {
     // legend + title keep the representation and the recorded q explicit.
     title: {
       text: 'Spectral abscissa curve — Re(λ)',
-      subtext: `representation=SPECTRUM_CURVE · q_at=${props.curve.q_at} · ${points.length} recorded blocks (ell 0…16)`,
+      subtext: `频谱曲线 · q_at=${props.curve.q_at} · ${points.length} 个已记录模态块（ell 0…16）`,
       left: 'left',
       textStyle: { fontSize: 13 },
       subtextStyle: { fontSize: 11, color: '#666' },
@@ -44,14 +46,14 @@ const option = computed(() => {
         const list = params as { dataIndex: number }[]
         const point = points[list[0]?.dataIndex ?? 0]
         if (!point) return ''
-        const fmt = (v: number | null) => (v === null ? 'unavailable' : v.toExponential(6))
+        const fmt = (v: number | null) => (v === null ? zh('unavailable') : v.toExponential(6))
         return [
-          `<strong>mode k = ${point.mode_index}</strong>`,
-          `wave number = ${point.wave_number ?? 'unavailable'}`,
+          `<strong>模态 k = ${point.mode_index}</strong>`,
+          `波数 = ${point.wave_number ?? zh('unavailable')}`,
           `Re(λ) = ${fmt(point.real_lambda)}`,
           `Im(λ) = ${fmt(point.imag_lambda)}`,
-          `spectral abscissa = ${fmt(point.spectral_abscissa)}`,
-          `record = ${point.spectrum_record_id}`,
+          `谱横坐标 = ${fmt(point.spectral_abscissa)}`,
+          `记录 = ${point.spectrum_record_id}`,
         ].join('<br/>')
       },
     },
@@ -90,7 +92,7 @@ const option = computed(() => {
       emphasis: { focus: 'series' },
     }],
     ...(missingCount
-      ? { graphic: [{ type: 'text', left: 62, top: 44, style: { text: `${missingCount} block(s) have an unresolved Re(λ) fact — shown as a gap, never as zero.`, fontSize: 10, fill: '#8a4b00' } }] }
+      ? { graphic: [{ type: 'text', left: 62, top: 44, style: { text: `${missingCount} 个模态块的 Re(λ) 未确定，以缺口展示，不补零。`, fontSize: 10, fill: '#8a4b00' } }] }
       : {}),
   }
 })
@@ -101,7 +103,7 @@ const { el } = useEcharts(option as Ref<unknown>)
 <template>
   <figure class="scc" data-testid="spectral-curve-chart">
     <div ref="el" class="scc__canvas" data-testid="spectral-curve-canvas" role="img"
-         :aria-label="`Spectral abscissa curve for q_at ${curve.q_at}`"></div>
+         :aria-label="`q_at ${curve.q_at} 的谱横坐标曲线`"></div>
   </figure>
 </template>
 

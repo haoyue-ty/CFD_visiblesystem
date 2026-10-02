@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { contentService, type MechanismContent } from '../../data/content'
@@ -59,71 +61,71 @@ function nodeState(id: string) {
 
 <template>
   <section data-testid="mechanism-view" class="mechanism">
-    <p><strong data-testid="schematic-badge">SCHEMATIC</strong> · Discrete explanatory states; no numerical simulation.</p>
-    <LoadStateBlock :loaded="content" target="mechanism content">
+    <p><strong data-testid="schematic-badge">{{ zh("SCHEMATIC") }}</strong> {{ zh("· Discrete explanatory states; no numerical simulation.") }}</p>
+    <LoadStateBlock :loaded="content" :target="zh('mechanism content')">
       <div v-if="content?.data" class="workspace">
-        <section aria-label="Mechanism architecture">
-          <h2>Mechanism architecture</h2>
-          <p>Dashed node = <strong>TRIGGER</strong>; solid output nodes = <strong>OUTPUT</strong>. Arrows show dependencies.</p>
-          <svg viewBox="0 0 770 745" role="group" aria-label="Schematic dissipation architecture" data-testid="mechanism-architecture">
+        <section :aria-label="zh('Mechanism architecture')">
+          <h2>{{ zh("Mechanism architecture") }}</h2>
+          <p>{{ zh("Dashed node =") }} <strong>{{ zh("TRIGGER") }}</strong>{{ zh("; solid output nodes =") }} <strong>{{ zh("OUTPUT") }}</strong>{{ zh(". Arrows show dependencies.") }}</p>
+          <svg viewBox="0 0 770 745" role="group" :aria-label="zh('Schematic dissipation architecture')" data-testid="mechanism-architecture">
             <defs><marker id="mechanism-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526477" /></marker></defs>
             <g v-for="edge in content.data.edges" :key="`${edge.from_node}:${edge.to_node}`" :data-from="edge.from_node" :data-to="edge.to_node">
-              <title>{{ edge.label }}</title>
+              <title>{{ zh(edge.label) }}</title>
               <path :d="edgePath(edge.from_node, edge.to_node)" fill="none" stroke="#526477" stroke-width="2" marker-end="url(#mechanism-arrow)" />
             </g>
             <g v-for="node in content.data.nodes" :key="node.id" :transform="`translate(${position(node.id).join(',')})`"
-              role="button" tabindex="0" :aria-label="`${role(node.id)} ${node.label}`" :aria-pressed="selected?.id === node.id"
+              role="button" tabindex="0" :aria-label="`${zh(role(node.id))} ${zh(node.label)}`.trim()" :aria-pressed="selected?.id === node.id"
               :data-testid="`node-${node.id}`" :data-role="role(node.id)" :class="['node', { trigger: role(node.id) === 'TRIGGER', output: role(node.id) === 'OUTPUT', selected: selected?.id === node.id }]"
               @click="update('node', node.id)" @keydown.enter.prevent="update('node', node.id)" @keydown.space.prevent="update('node', node.id)">
-              <title>{{ node.explanation }}</title>
+              <title>{{ zh(node.explanation) }}</title>
               <rect x="-105" y="-34" width="210" height="68" rx="5" />
-              <text v-if="role(node.id)" y="-17" class="role-label">{{ role(node.id) }}</text>
-              <text :y="role(node.id) ? 2 : -3" text-anchor="middle">{{ node.id === 'combiner' ? 'Dissipation combiner' : node.id === 'entropy-variable-mapping' ? 'Physical entropy variables' : node.label }}</text>
-              <text v-if="nodeState(node.id)" y="22" class="state-label">{{ nodeState(node.id) }}</text>
+              <text v-if="role(node.id)" y="-17" class="role-label">{{ zh(role(node.id)) }}</text>
+              <text :y="role(node.id) ? 2 : -3" text-anchor="middle">{{ zh(node.id === 'combiner' ? 'Dissipation combiner' : node.id === 'entropy-variable-mapping' ? 'Physical entropy variables' : node.label) }}</text>
+              <text v-if="nodeState(node.id)" y="22" class="state-label">{{ zh(nodeState(node.id)) }}</text>
             </g>
           </svg>
-          <p>Background PSD + normal acoustic + tangential output → entropy-scaled dissipation combiner → physical entropy-variable dissipation.</p>
+          <p>{{ zh("Background PSD + normal acoustic + tangential output → entropy-scaled dissipation combiner → physical entropy-variable dissipation.") }}</p>
         </section>
         <aside>
-          <section aria-label="Selected node explanation" data-testid="selected-node">
-            <h2>{{ selected?.label }}</h2>
-            <strong>{{ selected ? role(selected.id) : '' }}</strong>
-            <p>{{ selected?.explanation }}</p>
-            <p v-if="selected?.id === 'tangential-output'" data-testid="delta-t-not-gate">δ_t does not enter gate, but tangential receiving content affects output amplitude.</p>
-            <p v-if="selected?.id === 'acoustic-gate'">δ_t does not enter the acoustic gate J. J uses acoustic / normal information.</p>
+          <section :aria-label="zh('Selected node explanation')" data-testid="selected-node">
+            <h2>{{ zh(selected?.label) }}</h2>
+            <strong>{{ zh(selected ? role(selected.id) : '') }}</strong>
+            <p>{{ zh(selected?.explanation) }}</p>
+            <p v-if="selected?.id === 'tangential-output'" data-testid="delta-t-not-gate">{{ zh("δ_t does not enter gate, but tangential receiving content affects output amplitude.") }}</p>
+            <p v-if="selected?.id === 'acoustic-gate'">{{ zh("δ_t does not enter the acoustic gate J. J uses acoustic / normal information.") }}</p>
           </section>
-          <section aria-label="Schematic state controls">
-            <h2>SCHEMATIC STATE</h2>
+          <section :aria-label="zh('Schematic state controls')">
+            <h2>{{ zh("SCHEMATIC STATE") }}</h2>
             <template v-if="controlsEnabled">
-              <label>State <select data-testid="mechanism-state" :value="state" @change="select($event, 'state')"><option value="STRICT_1D">Strict 1D</option><option value="WEAKLY_2D">Weakly 2D</option></select></label>
-              <label>q_at <select data-testid="mechanism-qat" :value="qat" @change="select($event, 'q_at')"><option value="OFF">Off</option><option value="ENABLED">Enabled</option></select></label>
+              <label>{{ zh("State") }} <select data-testid="mechanism-state" :value="state" @change="select($event, 'state')"><option value="STRICT_1D">{{ zh("Strict 1D") }}</option><option value="WEAKLY_2D">{{ zh("Weakly 2D") }}</option></select></label>
+              <label>q_at <select data-testid="mechanism-qat" :value="qat" @change="select($event, 'q_at')"><option value="OFF">{{ zh("Off") }}</option><option value="ENABLED">{{ zh("Enabled") }}</option></select></label>
             </template>
-            <p v-else>Scene S2: select trigger / output nodes. State controls are available in S3 or the workspace.</p>
+            <p v-else>{{ zh("Scene S2: select trigger / output nodes. State controls are available in S3 or the workspace.") }}</p>
             <dl aria-live="polite">
-              <dt>State</dt><dd>{{ state === 'STRICT_1D' ? 'Strict 1D' : 'Weakly 2D' }}</dd>
-              <dt>Acoustic gate J</dt><dd data-testid="gate-state">Trigger retained — may be nonzero; q_at does not alter gate input.</dd>
-              <dt>Tangential receiving content</dt><dd data-testid="receiving-state">{{ state === 'STRICT_1D' ? 'zero' : 'nonzero' }}</dd>
-              <dt>Cross-mode output</dt><dd data-testid="output-state">{{ output }}</dd>
+              <dt>{{ zh("State") }}</dt><dd>{{ zh(state === 'STRICT_1D' ? 'Strict 1D' : 'Weakly 2D') }}</dd>
+              <dt>{{ zh("Acoustic gate J") }}</dt><dd data-testid="gate-state">{{ zh("Trigger retained — may be nonzero; q_at does not alter gate input.") }}</dd>
+              <dt>{{ zh("Tangential receiving content") }}</dt><dd data-testid="receiving-state">{{ zh(state === 'STRICT_1D' ? 'zero' : 'nonzero') }}</dd>
+              <dt>{{ zh("Cross-mode output") }}</dt><dd data-testid="output-state">{{ zh(output) }}</dd>
             </dl>
-            <p>Enabled permits action; actual amplitude depends on receiving content and the acoustic trigger. No J or flux values are evaluated.</p>
+            <p>{{ zh("Enabled permits action; actual amplitude depends on receiving content and the acoustic trigger. No J or flux values are evaluated.") }}</p>
           </section>
-          <section aria-label="Scientific limitations" data-testid="mechanism-limitations">
-            <h2>Scientific limitations · theory</h2>
-            <p>Under the theoretical assumptions, near-1D pathway action scales O(epsilon); entropy contribution scales O(epsilon^2).</p>
-            <p data-testid="near1d-gap"><strong>No authoritative five-epsilon raw numerical scan is registered.</strong></p>
-            <ul><li v-for="lim in content.data.limitations" :key="lim.id">{{ lim.description }}</li></ul>
+          <section :aria-label="zh('Scientific limitations')" data-testid="mechanism-limitations">
+            <h2>{{ zh("Scientific limitations · theory") }}</h2>
+            <p>{{ zh("Under the theoretical assumptions, near-1D pathway action scales O(epsilon); entropy contribution scales O(epsilon^2).") }}</p>
+            <p data-testid="near1d-gap"><strong>{{ zh("No authoritative five-epsilon raw numerical scan is registered.") }}</strong></p>
+            <ul><li v-for="lim in content.data.limitations" :key="lim.id">{{ zh(lim.description) }}</li></ul>
           </section>
-          <section aria-label="Mechanism evidence" data-testid="mechanism-evidence">
-            <h2>Evidence for selected node</h2>
-            <p><strong>Theory:</strong> schematic explanations and conditional scaling; no numerical verification claim.</p>
-            <p><strong>Implementation:</strong> frozen production method and source hash in the linked record.</p>
-            <p><strong>Numerical result:</strong> linked spectra retain their own verification; they do not certify Near-1D scaling or this schematic as CFD numerical verification.</p>
-            <LoadStateBlock :loaded="provenance" target="mechanism provenance">
+          <section :aria-label="zh('Mechanism evidence')" data-testid="mechanism-evidence">
+            <h2>{{ zh("Evidence for selected node") }}</h2>
+            <p><strong>{{ zh("Theory:") }}</strong> {{ zh("schematic explanations and conditional scaling; no numerical verification claim.") }}</p>
+            <p><strong>{{ zh("Implementation:") }}</strong> {{ zh("frozen production method and source hash in the linked record.") }}</p>
+            <p><strong>{{ zh("Numerical result:") }}</strong> {{ zh("linked spectra retain their own verification; they do not certify Near-1D scaling or this schematic as CFD numerical verification.") }}</p>
+            <LoadStateBlock :loaded="provenance" :target="zh('mechanism provenance')">
               <div v-for="record in provenance?.data?.evidence_records" :key="record.evidence_id" class="evidence-actions">
                 <EvidenceLink :evidence-id="record.evidence_id" context="mechanism" :return-to="returnTo" />
               </div>
             </LoadStateBlock>
-            <p>Related numerical evidence retains separate result scope:</p>
+            <p>{{ zh("Related numerical evidence retains separate result scope:") }}</p>
             <div v-for="id in content.data.evidence_refs" :key="id" class="evidence-actions">
               <EvidenceLink :evidence-id="id" context="mechanism" :return-to="returnTo" />
             </div>
@@ -131,7 +133,7 @@ function nodeState(id: string) {
         </aside>
       </div>
     </LoadStateBlock>
-    <button v-if="content?.state === 'ERROR'" @click="loadMechanism">Retry real API</button>
+    <button v-if="content?.state === 'ERROR'" @click="loadMechanism">{{ zh("Retry real API") }}</button>
   </section>
 </template>
 

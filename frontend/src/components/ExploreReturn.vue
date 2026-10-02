@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
@@ -14,4 +16,4 @@ const target = computed(() => {
   return { name: 'explore', query: { scene: scene.value } }
 })
 </script>
-<template><RouterLink v-if="scene" :to="target" data-testid="explore-return">← Back to Explore Scene {{ scene }}</RouterLink></template>
+<template><RouterLink v-if="scene" :to="target" data-testid="explore-return">{{ zh("← Back to Explore Scene") }} {{ zh(scene) }}</RouterLink></template>

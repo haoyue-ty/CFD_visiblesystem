@@ -1,0 +1,392 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+引导探索
+
+沿着 7 个问题，理解耗散路径如何从局部机制影响整体流动。
+
+01 · 耗散有多少？
+02 · 是什么触发了它？它作用在哪里？
+03 · 触发 ≠ 输出
+04 · 相近预算 ≠ 相同空间分配
+05 · 正熵产 ≠ 所有模态统一增强阻尼
+06 · 相同路径 ≠ 相同宏观响应
+07 · 每个结论，都有证据可追溯
+
+第 7 幕 / 共 7 幕
+
+07 · 每个结论，都有证据可追溯
+
+真实求解器 · 冻结证据 · 方法哈希。每个正式科学结论都可以追溯到对应方法、配置、数据来源、哈希、处理过程和适用边界。
+
+结论以可追溯证据为依据，并受到科学适用边界的约束。
+
+进入数字实验室 · 完整分析
+证据 查看证据查看证据查看证据查看证据查看证据
+叙事证据
+ev.case8.D_u.entropy
+ev.case8.D_u.allocation
+ev.gate.Acoustic.allocation
+evidence.spectral.spectrum.q-0.396
+ev.cylinder.D_u.sectors
+查看证据
+证据： ev.case8.D_u.entropy
+验证状态
+记录时源码与当前源码一致
+已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+
+证据仍然可读取，并不代表当前源码能够直接复现该结果。证据响应不能证明数值结果可用。
+
+结果标识 · 证据支持范围
+证据标识
+ev.case8.D_u.entropy
+实验
+case8
+配置
+D_u
+结构版本
+1.0.0
+结果数量
+6
+
+本证据支持： 已接受步累计背景熵列 E_bg；已接受步累计 q_aa 通道熵列 E_aa；已接受步累计 q_at 通道熵列 E_at；每步 RK 加权背景熵增量 deltaE_bg；每步 RK 加权 q_aa 熵增量 deltaE_aa；每步 RK 加权 q_at 熵增量 deltaE_at
+
+本证据不支持： 超出已记录定义、适用范围与来源选择的结论。
+
+case8.D_u.E_bg_cumulative
+
+实验 / 配置： case8 / D_u · 来源： 已验证生产数据
+
+语义标识： E_bg_cumulative · 单位： 模型积分熵单位 (模型单位)
+
+适用范围： Case 8 D_u 已接受步熵预算历史 · 边界： x_lower 激波前流入；x_upper 流出；y 周期边界
+
+时间： 每步 / 轨迹累计 · 保留 source_step_index；step_index=source_step_index+1
+
+物理时间： 未知 — 每步序列，详见点区间 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 依赖漂移： 否
+
+步： 未知 — 每步序列，详见点 step_index · 阶段： 不适用 — 已接受步端点 · 快照： 不适用 — 标量历史没有快照索引
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确认的 SI 映射
+case8.D_u.E_aa_cumulative
+
+实验 / 配置： case8 / D_u · 来源： 已验证生产数据
+
+语义标识： E_aa_cumulative · 单位： 模型积分熵单位 (模型单位)
+
+适用范围： Case 8 D_u 已接受步熵预算历史 · 边界： x_lower 激波前流入；x_upper 流出；y 周期边界
+
+时间： 每步 / 轨迹累计 · 保留 source_step_index；step_index=source_step_index+1
+
+物理时间： 未知 — 每步序列，详见点区间 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 依赖漂移： 否
+
+步： 未知 — 每步序列，详见点 step_index · 阶段： 不适用 — 已接受步端点 · 快照： 不适用 — 标量历史没有快照索引
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确认的 SI 映射
+case8.D_u.E_at_cumulative
+
+实验 / 配置： case8 / D_u · 来源： 已验证生产数据
+
+语义标识： E_at_cumulative · 单位： 模型积分熵单位 (模型单位)
+
+适用范围： Case 8 D_u 已接受步熵预算历史 · 边界： x_lower 激波前流入；x_upper 流出；y 周期边界
+
+时间： 每步 / 轨迹累计 · 保留 source_step_index；step_index=source_step_index+1
+
+物理时间： 未知 — 每步序列，详见点区间 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 依赖漂移： 否
+
+步： 未知 — 每步序列，详见点 step_index · 阶段： 不适用 — 已接受步端点 · 快照： 不适用 — 标量历史没有快照索引
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确认的 SI 映射
+case8.D_u.E_bg_step
+
+实验 / 配置： case8 / D_u · 来源： 已验证生产数据
+
+语义标识： E_bg_step · 单位： 模型积分熵单位 (模型单位)
+
+适用范围： Case 8 D_u 已接受步熵预算历史 · 边界： x_lower 激波前流入；x_upper 流出；y 周期边界
+
+时间： 每步 / 单步增量 · 保留 source_step_index；step_index=source_step_index+1
+
+物理时间： 未知 — 每步序列，详见点区间 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 依赖漂移： 否
+
+步： 未知 — 每步序列，详见点 step_index · 阶段： 不适用 — 已接受步端点 · 快照： 不适用 — 标量历史没有快照索引
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确认的 SI 映射
+case8.D_u.E_aa_step
+
+实验 / 配置： case8 / D_u · 来源： 已验证生产数据
+
+语义标识： E_aa_step · 单位： 模型积分熵单位 (模型单位)
+
+适用范围： Case 8 D_u 已接受步熵预算历史 · 边界： x_lower 激波前流入；x_upper 流出；y 周期边界
+
+时间： 每步 / 单步增量 · 保留 source_step_index；step_index=source_step_index+1
+
+物理时间： 未知 — 每步序列，详见点区间 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 依赖漂移： 否
+
+步： 未知 — 每步序列，详见点 step_index · 阶段： 不适用 — 已接受步端点 · 快照： 不适用 — 标量历史没有快照索引
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确认的 SI 映射
+case8.D_u.E_at_step
+
+实验 / 配置： case8 / D_u · 来源： 已验证生产数据
+
+语义标识： E_at_step · 单位： 模型积分熵单位 (模型单位)
+
+适用范围： Case 8 D_u 已接受步熵预算历史 · 边界： x_lower 激波前流入；x_upper 流出；y 周期边界
+
+时间： 每步 / 单步增量 · 保留 source_step_index；step_index=source_step_index+1
+
+物理时间： 未知 — 每步序列，详见点区间 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 依赖漂移： 否
+
+步： 未知 — 每步序列，详见点 step_index · 阶段： 不适用 — 已接受步端点 · 快照： 不适用 — 标量历史没有快照索引
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确认的 SI 映射
+方法与来源
+方法名称
+cross_mode_ec_unified_v1
+方法哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+记录时源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+数据哈希
+a4fe0ec332b623df3ed7001fd9839ba7ad8c474924588dae419f4e8741db1ea9
+源码一致性
+记录时源码与当前源码一致
+J2B 阶段加权历史，通道可加性通过，终值复现逐位一致（BITWISE）
+只读观测确认记录的 SHA-256 匹配
+
+创建时间： 未知 — 没有权威结果级时间戳 · 验证时间： 未知 — 未绑定权威结果级时间戳
+
+配置
+
+Case8 D_u · D_u
+
+q_aa	3.96
+q_at	0.396
+gate	Acoustic
+CFL	0.05
+网格	{"coordinate_system":"CARTESIAN","dimensions":[{"axis":"y","size":32},{"axis":"x","size":128}],"extent":[{"axis":"x","lower":0,"upper":1},{"axis":"y","lower":0,"upper":1}]}
+终止时间	0.08
+积分器	SSP-RK3
+重构	first-order / none
+边界范围	x_lower 激波前流入；x_upper 流出；y 周期边界
+来源资产
+
+展示受控的来源描述；科学源文件保持只读，不提供下载。
+
+资产	用途 / 格式	验证状态 / 数据漂移
+asset.case8.D_u.entropy-history · Case8 D_u stage_weighted_history.csv (1912 rows)	DATA / CSV	已验证 · 未冻结 · 来源状态：已验证 · 未冻结 / 否
+asset_a0548b71ae83 · solver/fluxes/cross_mode_ec_unified_v1.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset.case8.D_u.entropy-history
+用途 / 来源标识
+DATA / scientific-root-v1
+来源描述
+Case8 D_u stage_weighted_history.csv (1912 rows)
+相对来源
+jcp_extension_v1/J2_entropy_diagnostics/J2B_case8_formal/runs/case8_D_u/stage_weighted_history.csv
+格式
+CSV
+记录时数据哈希
+a4fe0ec332b623df3ed7001fd9839ba7ad8c474924588dae419f4e8741db1ea9
+当前数据哈希
+a4fe0ec332b623df3ed7001fd9839ba7ad8c474924588dae419f4e8741db1ea9
+正式选定
+是
+记录时数据与当前数据一致
+已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+asset_a0548b71ae83
+用途 / 来源标识
+METHOD / passage6
+来源描述
+solver/fluxes/cross_mode_ec_unified_v1.py
+相对来源
+solver/fluxes/cross_mode_ec_unified_v1.py
+格式
+PY
+记录时数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+提示 / FULLY_DISCRETE_DIAGNOSTIC — 全离散时间残差为诊断量，并非精确熵恒等式或新的熵定理；仅适用于冻结周期 Case7 一阶 FV、SSP-RK3。
+说明 / STAGE_STATE_TIME_NOT_ESTABLISHED — 三个阶段的原始 t_stage_or_step_time 均为所属已接受步 time_n；实际阶段状态物理时间尚未确定（NOT_ESTABLISHED），不生成模拟阶段时间。
+说明 / SPATIAL_TRAJECTORY_MISSING — 空间轨迹未保存，不提供空间回放，也不以其他算例或 CFL 的场替代。
+说明 / INTERFACE_PRODUCTION_ATTRIBUTION — 通道预算归因于界面熵产，并非独立状态熵。仅 R_time_cumulative 为已记录累计历史列。
+说明 / SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射。
+记录时 / 当前来源观测
+
+asset.case8.D_u.entropy-history · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： a4fe0ec332b623df3ed7001fd9839ba7ad8c474924588dae419f4e8741db1ea9
+当前： a4fe0ec332b623df3ed7001fd9839ba7ad8c474924588dae419f4e8741db1ea9
+
+asset_a0548b71ae83 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+
+冻结记录
+
+不适用 — 未记录上游资产级冻结记录
+
+处理链路
+
+处理类型：格式映射、元数据校正、已验证派生、仅展示处理。下方仅列出实际登记的处理记录。
+
+格式映射 · processing.ev.case8.D_u.entropy.read
+
+将来源成员 / 列只读映射到正式模型，数值保持原样
+
+输入资产： asset.case8.D_u.entropy-history
+
+定义引用： E_bg_cumulative, E_aa_cumulative, E_at_cumulative, E_bg_step, E_aa_step, E_at_step
+
+处理哈希： 未知 — 未记录适配器哈希
+
+验证状态： 未知 · 来源状态：不适用 · 只读格式映射
+
+科学定义
+背景熵累计量 · E_bg_cumulative
+
+已接受步累计背景熵列 E_bg
+
+语义标识
+E_bg_cumulative
+单位
+模型积分熵单位 · 模型单位 · 积分熵 · SI 映射： 未知 — 尚无确定的 SI 映射
+时间规则
+每步累计至已接受步端点
+空间规则
+固定边界 / 面范围，并非空间场
+掩膜
+未记录
+检测器 / 适用范围
+不适用 — 直接积分预算列
+q_aa 通道熵累计量 · E_aa_cumulative
+
+已接受步累计 q_aa 通道熵列 E_aa
+
+语义标识
+E_aa_cumulative
+单位
+模型积分熵单位 · 模型单位 · 积分熵 · SI 映射： 未知 — 尚无确定的 SI 映射
+时间规则
+每步累计至已接受步端点
+空间规则
+固定边界 / 面范围，并非空间场
+掩膜
+未记录
+检测器 / 适用范围
+不适用 — 直接积分预算列
+q_at 通道熵累计量 · E_at_cumulative
+
+已接受步累计 q_at 通道熵列 E_at
+
+语义标识
+E_at_cumulative
+单位
+模型积分熵单位 · 模型单位 · 积分熵 · SI 映射： 未知 — 尚无确定的 SI 映射
+时间规则
+每步累计至已接受步端点
+空间规则
+固定边界 / 面范围，并非空间场
+掩膜
+未记录
+检测器 / 适用范围
+不适用 — 直接积分预算列
+背景熵单步增量 · E_bg_step
+
+每步 RK 加权背景熵增量 deltaE_bg
+
+语义标识
+E_bg_step
+单位
+模型积分熵单位 · 模型单位 · 积分熵 · SI 映射： 未知 — 尚无确定的 SI 映射
+时间规则
+每步增量（并非累计曲线本身）
+空间规则
+固定边界 / 面范围，并非空间场
+掩膜
+未记录
+检测器 / 适用范围
+不适用 — 派生单步增量列
+q_aa 通道熵单步增量 · E_aa_step
+
+每步 RK 加权 q_aa 熵增量 deltaE_aa
+
+语义标识
+E_aa_step
+单位
+模型积分熵单位 · 模型单位 · 积分熵 · SI 映射： 未知 — 尚无确定的 SI 映射
+时间规则
+每步增量（并非累计曲线本身）
+空间规则
+固定边界 / 面范围，并非空间场
+掩膜
+未记录
+检测器 / 适用范围
+不适用 — 派生单步增量列
+q_at 通道熵单步增量 · E_at_step
+
+每步 RK 加权 q_at 熵增量 deltaE_at
+
+语义标识
+E_at_step
+单位
+模型积分熵单位 · 模型单位 · 积分熵 · SI 映射： 未知 — 尚无确定的 SI 映射
+时间规则
+每步增量（并非累计曲线本身）
+空间规则
+固定边界 / 面范围，并非空间场
+掩膜
+未记录
+检测器 / 适用范围
+不适用 — 派生单步增量列
+适用边界
+
+未登记适用边界；支持范围仍受已记录定义与范围约束。
+
+关联记录
+相关证据
+ev.method.unified-v1
+上游 / 来源结果
+
+未单独记录上游结果字段。已登记的结果 / 来源绑定如下：
+
+case8.D_u.E_bg_cumulative · 来源资产： asset.case8.D_u.entropy-history, asset_a0548b71ae83 · 证据： ev.case8.D_u.entropy
+case8.D_u.E_aa_cumulative · 来源资产： asset.case8.D_u.entropy-history, asset_a0548b71ae83 · 证据： ev.case8.D_u.entropy
+case8.D_u.E_at_cumulative · 来源资产： asset.case8.D_u.entropy-history, asset_a0548b71ae83 · 证据： ev.case8.D_u.entropy
+case8.D_u.E_bg_step · 来源资产： asset.case8.D_u.entropy-history, asset_a0548b71ae83 · 证据： ev.case8.D_u.entropy
+case8.D_u.E_aa_step · 来源资产： asset.case8.D_u.entropy-history, asset_a0548b71ae83 · 证据： ev.case8.D_u.entropy
+case8.D_u.E_at_step · 来源资产： asset.case8.D_u.entropy-history, asset_a0548b71ae83 · 证据： ev.case8.D_u.entropy
+
+已由以下记录替代： 不适用 — 没有已知替代记录
+
+本幕适用边界
+上一步
+下一步
+从第一幕重新开始
+首页

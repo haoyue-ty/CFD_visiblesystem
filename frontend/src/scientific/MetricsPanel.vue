@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * MetricsPanel — displays each metric WITH its definition, unit, detector scope
  * and evidence link. Three bare numbers are explicitly not enough (Window 3).
@@ -15,28 +17,28 @@ defineProps<{ collection: MetricCollectionView }>()
   <div class="mp" data-testid="metrics-panel">
     <article v-for="metric in collection.items" :key="metric.metric_id" class="mp__item" :data-testid="`metric-${metric.metric_id}`" :data-availability="metric.availability">
       <header class="mp__head">
-        <h3 class="mp__label">{{ metric.display_label }}</h3>
+        <h3 class="mp__label">{{ zh(metric.display_label) }}</h3>
         <span class="mp__value">
-          <template v-if="metric.value !== null">{{ metric.value }} <span class="mp__unit">{{ metric.unit.label }}</span></template>
+          <template v-if="metric.value !== null">{{ zh(metric.value) }} <span class="mp__unit">{{ zh(metric.unit.label) }}</span></template>
           <template v-else>—</template>
         </span>
-        <span class="badge" :class="metric.availability === 'AVAILABLE' ? 'badge--ok' : 'badge--partial'">{{ metric.availability }}</span>
+        <span class="badge" :class="metric.availability === 'AVAILABLE' ? 'badge--ok' : 'badge--partial'">{{ zh(metric.availability) }}</span>
       </header>
 
       <dl class="mp__meta">
-        <dt>Definition</dt>
-        <dd>{{ metric.definition_text }} <span class="mp__def-id">[{{ metric.definition_id }}]</span></dd>
-        <dt>Unit</dt>
-        <dd>{{ metric.unit.label }} <span class="mp__def-id">({{ metric.unit.system }})</span></dd>
-        <dt>Detector / scope</dt>
-        <dd>{{ metric.detector_scope }}</dd>
-        <dt>Time scope</dt>
-        <dd>{{ metric.time_scope_label }}</dd>
-        <dt>Resolution limit</dt>
-        <dd>{{ metric.resolution_limit === null ? 'UNKNOWN (not recorded)' : metric.resolution_limit }}</dd>
+        <dt>{{ zh("Definition") }}</dt>
+        <dd>{{ zh(metric.definition_text) }} <span class="mp__def-id">[{{ zh(metric.definition_id) }}]</span></dd>
+        <dt>{{ zh("Unit") }}</dt>
+        <dd>{{ zh(metric.unit.label) }} <span class="mp__def-id">({{ zh(metric.unit.system) }})</span></dd>
+        <dt>{{ zh("Detector / scope") }}</dt>
+        <dd>{{ zh(metric.detector_scope) }}</dd>
+        <dt>{{ zh("Time scope") }}</dt>
+        <dd>{{ zh(metric.time_scope_label) }}</dd>
+        <dt>{{ zh("Resolution limit") }}</dt>
+        <dd>{{ zh(metric.resolution_limit === null ? 'UNKNOWN (not recorded)' : metric.resolution_limit) }}</dd>
       </dl>
 
-      <p v-if="metric.unavailable_reason" class="mp__reason">{{ metric.unavailable_reason }}</p>
+      <p v-if="metric.unavailable_reason" class="mp__reason">{{ zh(metric.unavailable_reason) }}</p>
 
       <footer class="mp__footer">
         <EvidenceLink v-for="ref in metric.evidence_refs" :key="ref" :evidence-id="ref" :context="`metric:${metric.metric_id}`" />

@@ -1,3 +1,4 @@
+import { zh } from '../src/presentation/zh-CN'
 import { test, expect, type Page, type Locator, type APIRequestContext } from '@playwright/test'
 import type { components } from '../src/types/generated/api'
 type EvidenceRecord = components['schemas']['EvidenceRecord']
@@ -16,8 +17,8 @@ async function full(page: Page, link: Locator) {
   await expect(page.getByTestId('quick-identity')).toBeVisible()
   await page.getByTestId('quick-full-record').click()
   await expect(page.getByTestId('evidence-record')).toBeVisible()
-  await expect(page.getByTestId('evidence-method')).toContainText('Recorded source hash')
-  await expect(page.getByTestId('evidence-method')).toContainText('Current source hash')
+  await expect(page.getByTestId('evidence-method')).toContainText("记录时源码哈希")
+  await expect(page.getByTestId('evidence-method')).toContainText("当前源码哈希")
   await expect(page.getByTestId('evidence-source-asset').first()).toBeVisible()
   await expect(page.locator('a[href^="file:"], a[href^="D:"], a[download]')).toHaveCount(0)
 }
@@ -26,9 +27,9 @@ test('W3 Case8 D_u Allocation traces source/hash/processing and restores result'
   await expect(page.getByTestId('face-allocation-canvas')).toHaveCount(2)
   await full(page, page.getByTestId('alloc-evidence').getByTestId('evidence-link').first())
   await expect(page.getByTestId('evidence-config')).toHaveText('D_u')
-  await expect(page.getByTestId('evidence-processing')).toContainText('FORMAT_MAPPING')
-  await expect(page.getByTestId('evidence-verification')).toContainText('FROZEN_ACCEPTED')
-  await expect(page.getByTestId('evidence-limitations')).toContainText('diagnostic rerun')
+  await expect(page.getByTestId('evidence-processing')).toContainText("格式映射")
+  await expect(page.getByTestId('evidence-verification')).toContainText("已冻结验收")
+  await expect(page.getByTestId('evidence-limitations')).toContainText("诊断性重运行")
   await page.screenshot({ path: info.outputPath('case8-detail.png'), fullPage: true })
   await page.getByTestId('back-to-result').click()
   await expect(page.getByTestId('tab-allocation')).toHaveAttribute('aria-selected', 'true')
@@ -38,7 +39,7 @@ test('W3 Gate Acoustic traces matched configuration, native map, mask and summar
   await page.goto('/lab/experiments/gate')
   const gate = page.getByTestId('gate-Acoustic')
   await expect(gate.getByTestId('cell-allocation-canvas')).toBeVisible()
-  await expect(gate.getByTestId('matched-qat')).not.toHaveText('UNKNOWN')
+  await expect(gate.getByTestId('matched-qat')).not.toHaveText("未知")
   await expect(gate.getByTestId('gate-window')).toContainText('672')
   await full(page, gate.getByTestId('evidence-link').first())
   await expect(page.getByTestId('evidence-config')).toHaveText('Acoustic')
@@ -59,7 +60,7 @@ test('W3 q_at=.396 mode8 traces eigenmode and Spectrum provenance without changi
   for (const id of [provenance.evidence_records[0]!.evidence_id, 'evidence.spectral.spectrum.q-0.396']) {
     await full(page, page.locator(`a[data-testid="evidence-link"][href*="${id}"]`).first())
     await expect(page.getByTestId('evidence-config')).toHaveText('spectrum.q-0.396')
-    await expect(page.getByTestId('evidence-source-asset').first()).toContainText('Recorded data hash')
+    await expect(page.getByTestId('evidence-source-asset').first()).toContainText("记录时数据哈希")
     await page.getByTestId('back-to-result').click()
     await expect(page).toHaveURL(original)
     await expect(page.getByTestId('mode-index')).toHaveText('8')
@@ -76,7 +77,7 @@ test('W3 Modal Validation history resolves the actual selected eigenpair via SPE
   await page.goto(`/lab/experiments/modal-validation?spectral_q=spectrum.q-0.396&spectral_mode=8&spectral_run=${run}`)
   await expect(page.getByTestId('growth-validation-canvas')).toBeVisible()
   await expect(page.getByTestId('validation-provenance')).toContainText('spectral-registry-v1')
-  await expect(page.getByTestId('growth-linear-missing')).toContainText('not saved')
+  await expect(page.getByTestId('growth-linear-missing')).toContainText("未保存")
   await full(page, page.locator(`a[data-testid="evidence-link"][href*="evidence.spectral.${run}.history"]`))
   await expect(page.getByTestId('evidence-source-asset').filter({ hasText: 'mode_selection.json' })).toHaveCount(1)
   await expect(page.getByTestId('evidence-params')).toContainText('mode')
@@ -95,16 +96,16 @@ test('W3 Cylinder D_u sectors trace J2C-v2 sources and limitation', async ({ pag
   await full(page, page.getByTestId('sector-allocation').locator('a[href*="ev.cylinder.D_u.sectors"]').first())
   await expect(page.getByTestId('evidence-config')).toHaveText('D_u')
   await expect(page.getByTestId('evidence-assets')).toContainText('J2C_cylinder_formal_v2')
-  await expect(page.getByTestId('evidence-limitations')).toContainText('without full-trajectory 2D')
-  await expect(page.getByTestId('evidence-verification')).toContainText('VERIFIED_NOT_FROZEN')
+  await expect(page.getByTestId('evidence-limitations')).toContainText("未保存全轨迹二维")
+  await expect(page.getByTestId('evidence-verification')).toContainText("已验证 · 未冻结")
   await page.screenshot({ path: info.outputPath('cylinder-sector-detail.png'), fullPage: true })
   await page.getByTestId('back-to-result').click()
   await expect(page.getByTestId('sector-table').locator('tbody tr')).toHaveCount(16)
 })
 test('W3 Cross-flow D_u/D_u preserves independent evidence and descriptive policies', async ({ page }) => {
   await page.goto('/cross-flow?case8_config=D_u&cylinder_config=D_u&view=allocation')
-  await expect(page.getByTestId('descriptive-only')).toContainText('DESCRIPTIVE_ONLY')
-  await expect(page.getByTestId('no-unified-ranking')).toContainText('NO_UNIFIED_RANKING')
+  await expect(page.getByTestId('descriptive-only')).toContainText("仅作描述性比较")
+  await expect(page.getByTestId('no-unified-ranking')).toContainText('不进行统一排名')
   for (const [side, id, experiment] of [
     ['case8-side', 'ev.case8.D_u.allocation', 'case8'],
     ['cylinder-side', 'ev.cylinder.D_u.sectors', 'cylinder'],
@@ -123,9 +124,9 @@ test('W3 Closure D_u CFL=.05 stage and step records retain freeze binding', asyn
     await expect(page.getByTestId('closure-history')).toHaveAttribute('data-granularity', granularity)
     await full(page, page.getByTestId('closure-history').locator(`a[href*="ev.entropy-closure.D_u-cfl-0.05.${group}"]`).first())
     await expect(page.getByTestId('evidence-config')).toHaveText('D_u-cfl-0.05')
-    await expect(page.getByTestId('evidence-result-context').first()).toContainText(granularity)
-    await expect(page.getByTestId('evidence-freeze')).toContainText('Manifest identity')
-    await expect(page.getByTestId('evidence-freeze')).not.toContainText('Freeze was not recorded')
+    await expect(page.getByTestId('evidence-result-context').first()).toContainText(zh(granularity))
+    await expect(page.getByTestId('evidence-freeze')).toContainText("清单标识")
+    await expect(page.getByTestId('evidence-freeze')).not.toContainText("冻结记录未记录")
     await page.getByTestId('back-to-result').click()
     await expect(page.getByTestId('closure-run')).toHaveValue('D_u-cfl-0.05')
   }
@@ -133,9 +134,9 @@ test('W3 Closure D_u CFL=.05 stage and step records retain freeze binding', asyn
 test('W3 Mechanism SCHEMATIC theory/implementation stays nonnumerical', async ({ page }) => {
   await page.goto('/lab/mechanism')
   await full(page, page.locator('a[href*="ev.mechanism.theory-implementation"]').first())
-  await expect(page.getByTestId('evidence-non-numerical')).toContainText('NON-NUMERICAL')
-  await expect(page.getByTestId('evidence-limitations')).toContainText('SCHEMATIC')
-  await expect(page.getByTestId('evidence-limitations')).toContainText('No numeric Near1D scan or CFD result is represented')
+  await expect(page.getByTestId('evidence-non-numerical')).toContainText('非数值证据')
+  await expect(page.getByTestId('evidence-limitations')).toContainText("机制示意")
+  await expect(page.getByTestId('evidence-limitations')).toContainText("不表示 Near1D 数值扫描或 CFD 结果")
   await expect(page.getByTestId('evidence-result-context')).toHaveCount(0)
 })
 test('W3 three required GAPS have no values, fake plots or reconstruct actions', async ({ page, request }) => {
@@ -145,23 +146,23 @@ test('W3 three required GAPS have no values, fake plots or reconstruct actions',
     expect(record.result_contexts).toEqual([])
     expect(record.data_hash.state).not.toBe('KNOWN')
     await page.goto(`/evidence/${id}`)
-    await expect(page.getByTestId('evidence-verification')).toContainText('MISSING')
+    await expect(page.getByTestId('evidence-verification')).toContainText("缺失")
     await expect(page.getByTestId('evidence-record').locator('canvas, svg, input[type="range"]')).toHaveCount(0)
-    await expect(page.getByRole('button', { name: /^(Generate|Reconstruct|Interpolate|Fill)$/i })).toHaveCount(0)
+    await expect(page.getByRole('button', { name: /^(Generate|Reconstruct|Interpolate|Fill|生成|重建|插值|补全)$/i })).toHaveCount(0)
   }
 })
 test('W3 Home→Lab reaches each implemented module and Evidence navigation', async ({ page }) => {
   for (const [id, ready] of [['case8', 'config-D_u'], ['entropy-closure', 'closure-run'], ['cylinder', 'config-D_u']] as const) {
     await page.goto('/home')
-    await page.getByRole('navigation', { name: 'System navigation' }).getByRole('link', { name: 'Lab', exact: true }).click()
+    await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "数字实验室", exact: true }).click()
     await page.getByTestId(`open-${id}`).click()
     await expect(page.getByTestId(ready)).toBeVisible()
-    await expect(page.getByTestId('provider-kind')).toHaveText('REAL API')
+    await expect(page.getByTestId('provider-kind')).toHaveText("真实数据 API")
     expect(await page.locator('body').innerText()).not.toMatch(blockedClaims)
   }
   // Preserve legacy shared-workspace shortcuts alongside delivered standalone cards.
   await page.goto('/home')
-  await page.getByRole('navigation', { name: 'System navigation' }).getByRole('link', { name: 'Lab', exact: true }).click()
+  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "数字实验室", exact: true }).click()
   await page.getByTestId('open-case8').click()
   await page.getByTestId('tab-allocation').click()
   await page.getByTestId('alloc-family-cell').click()
@@ -171,13 +172,13 @@ test('W3 Home→Lab reaches each implemented module and Evidence navigation', as
   await page.getByTestId('tab-spectral').click()
   await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
   await expect(page.getByTestId('growth-validation-canvas')).toBeVisible()
-  await expect(page.getByTestId('growth-cfd')).not.toHaveText('unavailable')
+  await expect(page.getByTestId('growth-cfd')).not.toHaveText("当前不可用")
   await page.goto('/lab')
-  await page.getByRole('link', { name: '跨流动比较 Cross-flow', exact: true }).click()
+  await page.getByRole('link', { name: "跨流动对比", exact: true }).click()
   await expect(page.getByTestId('descriptive-only')).toBeVisible()
   await page.goto('/lab')
   await page.getByTestId('lab-open-mechanism').click()
   await expect(page.getByTestId('mechanism-architecture')).toBeVisible()
-  await page.getByRole('navigation', { name: 'System navigation' }).getByRole('link', { name: 'Evidence', exact: true }).click()
+  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "证据中心", exact: true }).click()
   await expect(page.getByTestId('evidence-CURRENT')).toBeVisible()
 })

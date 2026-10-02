@@ -1,0 +1,565 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+首页 → 证据中心 → ev.case8.D_u.allocation
+
+← 返回数字实验室
+
+证据： ev.case8.D_u.allocation
+验证状态
+记录时源码与当前源码一致
+已冻结验收 · 来源状态：已冻结验收
+诊断性重运行 · 已记录来源
+
+证据仍然可读取，并不代表当前源码能够直接复现该结果。证据响应不能证明数值结果可用。
+
+结果标识 · 证据支持范围
+证据标识
+ev.case8.D_u.allocation
+实验
+case8
+配置
+D_u
+结构版本
+1.0.0
+结果数量
+11
+
+本证据支持： 分别保存在 x/y 法向面上的时间积分跨模态熵密度
+
+本证据不支持： 超出已记录定义、适用范围与来源选择的结论。 模型量尚无确定的 SI 映射; 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+
+case8.D_u.allocation
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_face_Pi_at_integrated · 单位： 模型积分熵 / 模型面长度 (模型单位)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 终值 / 轨迹累计 · 1912 个已接受步；完整轨迹，无回放索引
+
+物理时间： 0.08 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 1912 · 阶段： 不适用 — 完整已接受步轨迹 · 快照： 不适用 — 未保存累计快照序列
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.pi_at_x_faces
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_face_Pi_at_integrated · 单位： 模型积分熵 / 模型面长度 (模型单位)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 终值 / 轨迹累计 · 1912 个已接受步；完整轨迹，无回放索引
+
+物理时间： 0.08 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 1912 · 阶段： 不适用 — 完整已接受步轨迹 · 快照： 不适用 — 未保存累计快照序列
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.pi_at_y_faces
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_face_Pi_at_integrated · 单位： 模型积分熵 / 模型面长度 (模型单位)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 终值 / 轨迹累计 · 1912 个已接受步；完整轨迹，无回放索引
+
+物理时间： 0.08 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 1912 · 阶段： 不适用 — 完整已接受步轨迹 · 快照： 不适用 — 未保存累计快照序列
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.x_face
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_native_face_coordinates · 单位： 模型长度单位 (模型单位)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 静态 / 无 · 静态原生面几何 / 掩膜，无时间索引
+
+物理时间： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 区间： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 阶段： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 快照： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.x_cell
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_native_face_coordinates · 单位： 模型长度单位 (模型单位)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 静态 / 无 · 静态原生面几何 / 掩膜，无时间索引
+
+物理时间： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 区间： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 阶段： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 快照： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.y_face
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_native_face_coordinates · 单位： 模型长度单位 (模型单位)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 静态 / 无 · 静态原生面几何 / 掩膜，无时间索引
+
+物理时间： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 区间： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 阶段： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 快照： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.x_window_mask
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_native_face_shock_window · 单位： 布尔掩膜归属 (无量纲)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 静态 / 无 · 静态原生面几何 / 掩膜，无时间索引
+
+物理时间： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 区间： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 阶段： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 快照： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.y_window_mask
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_native_face_shock_window · 单位： 布尔掩膜归属 (无量纲)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 静态 / 无 · 静态原生面几何 / 掩膜，无时间索引
+
+物理时间： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 区间： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 阶段： 不适用 — 已保存静态几何或指定初始前沿掩膜 · 快照： 不适用 — 已保存静态几何或指定初始前沿掩膜
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.total_budget
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： E_at_cumulative · 单位： 模型积分熵单位 (模型单位)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 终值 / 轨迹累计 · 1912 个已接受步；完整轨迹，无回放索引
+
+物理时间： 0.08 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 1912 · 阶段： 不适用 — 完整已接受步轨迹 · 快照： 不适用 — 未保存累计快照序列
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.inside
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_face_window_fraction · 单位： 无量纲占比 (无量纲)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 终值 / 轨迹累计 · 1912 个已接受步；完整轨迹，无回放索引
+
+物理时间： 0.08 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 1912 · 阶段： 不适用 — 完整已接受步轨迹 · 快照： 不适用 — 未保存累计快照序列
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+case8.D_u.allocation.outside
+
+实验 / 配置： case8 / D_u · 来源： 诊断性重运行
+
+语义标识： Case8_face_outside_fraction · 单位： 无量纲占比 (无量纲)
+
+适用范围： 笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。 · 边界： x_lower 激波前流入；x_upper 流出；保留 x 边界面；y 周期接缝仅计数一次，排除重复残余 y 槽位
+
+时间： 终值 / 轨迹累计 · 1912 个已接受步；完整轨迹，无回放索引
+
+物理时间： 0.08 · 区间： {"start":0,"end":0.08}
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 1912 · 阶段： 不适用 — 完整已接受步轨迹 · 快照： 不适用 — 未保存累计快照序列
+
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+方法与来源
+方法名称
+cross_mode_ec_unified_v1
+方法哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+记录时源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+数据哈希
+a0796191d2d5600916d22ad01163433fe5a71ca7c0daef07054b638dae2f00a5
+源码一致性
+记录时源码与当前源码一致
+保留既有冻结诊断、上游验证门禁与清单哈希
+运行时确认所选数据、配置、掩膜、来源、观测器及清单依赖的 SHA256 匹配
+只读格式映射，不进行当前代码 CFD 复现或重新验证
+
+创建时间： 未知 — 未记录权威结果创建时间戳 · 验证时间： 未知 — 未记录上游验证时间戳
+
+配置
+
+未知 — 权威诊断参数保存在具有哈希的 rerun_config 资产中
+
+q_aa	未知 — 未记录该配置字段
+q_at	未知 — 未记录该配置字段
+gate	未知 — 未记录该配置字段
+CFL	未知 — 未记录该配置字段
+网格	未知 — 未记录该配置字段
+终止时间	未知 — 未记录该配置字段
+积分器	未知 — 未记录该配置字段
+重构	未知 — 未记录该配置字段
+边界范围	未知 — 未记录该配置字段
+来源资产
+
+展示受控的来源描述；科学源文件保持只读，不提供下载。
+
+资产	用途 / 格式	验证状态 / 数据漂移
+asset_1930484b4ef9 · Pi_at_trajectory_integrated.npz	DATA / NPZ	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_d497d3895d92 · shock_window_final_or_definition.npz	MASK / NPZ	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_ed2281aae6da · rerun_config.json	CONFIG / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_865d03d50449 · rerun_metrics.json	ANALYSIS / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_0d36bf11a1df · verification_report.json	ANALYSIS / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_93d8de11883e · rerun_provenance.md	ANALYSIS / MD	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_cc11e0d0f524 · du_spatial_rerun_observer.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_da86831d7f2a · FREEZE_MANIFEST.json	FREEZE / JSON	未知 · 来源状态：可读取 · 验证未知 / 否
+asset_a0548b71ae83 · solver/fluxes/cross_mode_ec_unified_v1.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_1930484b4ef9
+用途 / 来源标识
+DATA / scientific-root-v1
+来源描述
+Pi_at_trajectory_integrated.npz
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/Pi_at_trajectory_integrated.npz
+格式
+NPZ
+记录时数据哈希
+a0796191d2d5600916d22ad01163433fe5a71ca7c0daef07054b638dae2f00a5
+当前数据哈希
+a0796191d2d5600916d22ad01163433fe5a71ca7c0daef07054b638dae2f00a5
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_d497d3895d92
+用途 / 来源标识
+MASK / scientific-root-v1
+来源描述
+shock_window_final_or_definition.npz
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/shock_window_final_or_definition.npz
+格式
+NPZ
+记录时数据哈希
+d00d48e06df45a2f27173082864c551bbedfeffa3ed7f5f8d0b807c3681a3237
+当前数据哈希
+d00d48e06df45a2f27173082864c551bbedfeffa3ed7f5f8d0b807c3681a3237
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_ed2281aae6da
+用途 / 来源标识
+CONFIG / scientific-root-v1
+来源描述
+rerun_config.json
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/rerun_config.json
+格式
+JSON
+记录时数据哈希
+c6f3af05f9d72bc70cc4d38f3acc94400cfcd148a616300b09e9fc0391dce9a9
+当前数据哈希
+c6f3af05f9d72bc70cc4d38f3acc94400cfcd148a616300b09e9fc0391dce9a9
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_865d03d50449
+用途 / 来源标识
+ANALYSIS / scientific-root-v1
+来源描述
+rerun_metrics.json
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/rerun_metrics.json
+格式
+JSON
+记录时数据哈希
+132e4632536ba2aa8882545623acb1c5f183e0d5ba2b450d251e3eafa395b8ba
+当前数据哈希
+132e4632536ba2aa8882545623acb1c5f183e0d5ba2b450d251e3eafa395b8ba
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_0d36bf11a1df
+用途 / 来源标识
+ANALYSIS / scientific-root-v1
+来源描述
+verification_report.json
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/verification_report.json
+格式
+JSON
+记录时数据哈希
+cb48c862ade8149b9c75537af84f6bbe4a819aed69ad904d2ff30018fc6fb0e7
+当前数据哈希
+cb48c862ade8149b9c75537af84f6bbe4a819aed69ad904d2ff30018fc6fb0e7
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_93d8de11883e
+用途 / 来源标识
+ANALYSIS / scientific-root-v1
+来源描述
+rerun_provenance.md
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/rerun_provenance.md
+格式
+MD
+记录时数据哈希
+d3b6c05904e97b29e4794057f4c6085b55d59e7777a9dc014718b836088f48e5
+当前数据哈希
+d3b6c05904e97b29e4794057f4c6085b55d59e7777a9dc014718b836088f48e5
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_cc11e0d0f524
+用途 / 来源标识
+METHOD / scientific-root-v1
+来源描述
+du_spatial_rerun_observer.py
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/du_spatial_rerun_observer.py
+格式
+PY
+记录时数据哈希
+000590a06dcd6c744a638f8b0dafc6185e16cea601bc19d2c63acea6d8c573e0
+当前数据哈希
+000590a06dcd6c744a638f8b0dafc6185e16cea601bc19d2c63acea6d8c573e0
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_da86831d7f2a
+用途 / 来源标识
+FREEZE / scientific-root-v1
+来源描述
+FREEZE_MANIFEST.json
+相对来源
+Paper/fig/fig_14/Du_spatial_rerun/FREEZE/FREEZE_MANIFEST.json
+格式
+JSON
+记录时数据哈希
+65349698edfa4bbfc7937ea0217cd99cde0d036eded29f15856a60008c31b1ba
+当前数据哈希
+65349698edfa4bbfc7937ea0217cd99cde0d036eded29f15856a60008c31b1ba
+正式选定
+是
+记录时数据与当前数据一致
+未知 · 来源状态：可读取 · 验证未知
+asset_a0548b71ae83
+用途 / 来源标识
+METHOD / passage6
+来源描述
+solver/fluxes/cross_mode_ec_unified_v1.py
+相对来源
+solver/fluxes/cross_mode_ec_unified_v1.py
+格式
+PY
+记录时数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+提示 / FULLY_DISCRETE_DIAGNOSTIC — 全离散时间残差为诊断量，并非精确熵恒等式或新的熵定理；仅适用于冻结周期 Case7 一阶 FV、SSP-RK3。
+说明 / STAGE_STATE_TIME_NOT_ESTABLISHED — 三个阶段的原始 t_stage_or_step_time 均为所属已接受步 time_n；实际阶段状态物理时间尚未确定（NOT_ESTABLISHED），不生成模拟阶段时间。
+说明 / SPATIAL_TRAJECTORY_MISSING — 空间轨迹未保存，不提供空间回放，也不以其他算例或 CFL 的场替代。
+说明 / INTERFACE_PRODUCTION_ATTRIBUTION — 通道预算归因于界面熵产，并非独立状态熵。仅 R_time_cumulative 为已记录累计历史列。
+说明 / SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射。
+记录时 / 当前来源观测
+
+asset_1930484b4ef9 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： a0796191d2d5600916d22ad01163433fe5a71ca7c0daef07054b638dae2f00a5
+当前： a0796191d2d5600916d22ad01163433fe5a71ca7c0daef07054b638dae2f00a5
+
+asset_d497d3895d92 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： d00d48e06df45a2f27173082864c551bbedfeffa3ed7f5f8d0b807c3681a3237
+当前： d00d48e06df45a2f27173082864c551bbedfeffa3ed7f5f8d0b807c3681a3237
+
+asset_ed2281aae6da · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： c6f3af05f9d72bc70cc4d38f3acc94400cfcd148a616300b09e9fc0391dce9a9
+当前： c6f3af05f9d72bc70cc4d38f3acc94400cfcd148a616300b09e9fc0391dce9a9
+
+asset_865d03d50449 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 132e4632536ba2aa8882545623acb1c5f183e0d5ba2b450d251e3eafa395b8ba
+当前： 132e4632536ba2aa8882545623acb1c5f183e0d5ba2b450d251e3eafa395b8ba
+
+asset_0d36bf11a1df · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： cb48c862ade8149b9c75537af84f6bbe4a819aed69ad904d2ff30018fc6fb0e7
+当前： cb48c862ade8149b9c75537af84f6bbe4a819aed69ad904d2ff30018fc6fb0e7
+
+asset_93d8de11883e · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： d3b6c05904e97b29e4794057f4c6085b55d59e7777a9dc014718b836088f48e5
+当前： d3b6c05904e97b29e4794057f4c6085b55d59e7777a9dc014718b836088f48e5
+
+asset_cc11e0d0f524 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 000590a06dcd6c744a638f8b0dafc6185e16cea601bc19d2c63acea6d8c573e0
+当前： 000590a06dcd6c744a638f8b0dafc6185e16cea601bc19d2c63acea6d8c573e0
+
+asset_da86831d7f2a · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 65349698edfa4bbfc7937ea0217cd99cde0d036eded29f15856a60008c31b1ba
+当前： 65349698edfa4bbfc7937ea0217cd99cde0d036eded29f15856a60008c31b1ba
+
+asset_a0548b71ae83 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+
+冻结记录
+冻结记录
+case8.D_u.spatial-rerun.freeze
+清单标识
+asset_da86831d7f2a
+记录时间
+未知 — 上游清单没有时间戳
+清单哈希
+65349698edfa4bbfc7937ea0217cd99cde0d036eded29f15856a60008c31b1ba
+处理链路
+
+处理类型：格式映射、元数据校正、已验证派生、仅展示处理。下方仅列出实际登记的处理记录。
+
+格式映射 · processing.case8.D_u.allocation.read
+
+将已保存成员原样映射为 C 顺序扁平数组，不执行科学代码或变换数值
+
+输入资产： asset_1930484b4ef9, asset_d497d3895d92, asset_ed2281aae6da, asset_865d03d50449, asset_0d36bf11a1df, asset_93d8de11883e, asset_cc11e0d0f524, asset_da86831d7f2a
+
+定义引用： Case8_face_Pi_at_integrated
+
+处理哈希： 未知 — 未记录适配器代码哈希
+
+验证状态： 未知 · 来源状态：不适用 · 只读格式映射
+
+科学定义
+D_u 轨迹累计原生面 Pi_at · Case8_face_Pi_at_integrated
+
+分别保存在 x/y 法向面上的时间积分跨模态熵密度
+
+语义标识
+Case8_face_Pi_at_integrated
+单位
+模型积分熵 / 模型面长度 · 模型单位 · 时间积分原生面熵密度 · SI 映射： 未知 — 尚无确定的 SI 映射
+时间规则
+终值 / 轨迹累计 [0,0.08]，1912 个已接受步；Pi_f=sum_n dt*(pi_f_stage0/6 + pi_f_stage1/6 + 2*pi_f_stage2/3)；已含时间 / RK 权重，不再附加 dt 或 RK 权重。
+空间规则
+dy*sum(pi_at_x_faces)+dx*sum(pi_at_y_faces)；x_lower 激波前流入，x_upper 流出；保留 x 边界面，y 周期接缝计数一次，排除重复残余 y 槽位
+掩膜
+mask.case8.native-face-shock-window
+检测器 / 适用范围
+不适用 — 空间分配并非检测器指标
+SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+掩膜： mask.case8.native-face-shock-window · CASE8_NATIVE_FACE_SHOCK_WINDOW
+
+独立保存的原生 x/y 面布尔掩膜：abs(x - (0.5 + 0.0125*sin(8*pi*y))) <= 0.08；指定初始前沿，包含边界。
+
+笛卡尔 [y,x]，区域 [0,1]^2 上采用 C 顺序；x 法向面：x=i/128, y=(j+0.5)/32；y 法向面：x=(i+0.5)/128, y=j/32。x_face/x_cell/y_face 原样加载，y_cell 未存储。
+
+参数： half_width: 0.08
+
+计算域： case8.native-x-faces, case8.native-y-faces · 验证状态： 已冻结验收 · 来源状态：已冻结验收
+
+数组引用： case8.D_u.allocation.x_window_mask / x_window_mask, case8.D_u.allocation.y_window_mask / y_window_mask
+
+适用边界
+说明 · SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射
+影响范围： case8.D_u.allocation
+说明 · TERMINAL_INTEGRAL_ONLY — 冻结诊断性重运行；没有中间累计图或新的 CFD 验证
+影响范围： case8.D_u.allocation
+关联记录
+相关证据
+ev.method.unified-v1
+上游 / 来源结果
+
+未单独记录上游结果字段。已登记的结果 / 来源绑定如下：
+
+case8.D_u.allocation · 来源资产： asset_1930484b4ef9, asset_d497d3895d92, asset_ed2281aae6da, asset_865d03d50449, asset_0d36bf11a1df, asset_93d8de11883e, asset_cc11e0d0f524, asset_da86831d7f2a, asset_a0548b71ae83 · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.pi_at_x_faces · 来源资产： asset_1930484b4ef9, asset_d497d3895d92, asset_ed2281aae6da, asset_865d03d50449, asset_0d36bf11a1df, asset_93d8de11883e, asset_cc11e0d0f524, asset_da86831d7f2a, asset_a0548b71ae83 · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.pi_at_y_faces · 来源资产： asset_1930484b4ef9, asset_d497d3895d92, asset_ed2281aae6da, asset_865d03d50449, asset_0d36bf11a1df, asset_93d8de11883e, asset_cc11e0d0f524, asset_da86831d7f2a, asset_a0548b71ae83 · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.x_face · 来源资产： asset_1930484b4ef9, asset_0d36bf11a1df, asset_865d03d50449, asset_93d8de11883e, asset_a0548b71ae83, asset_cc11e0d0f524, asset_d497d3895d92, asset_da86831d7f2a, asset_ed2281aae6da · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.x_cell · 来源资产： asset_1930484b4ef9, asset_0d36bf11a1df, asset_865d03d50449, asset_93d8de11883e, asset_a0548b71ae83, asset_cc11e0d0f524, asset_d497d3895d92, asset_da86831d7f2a, asset_ed2281aae6da · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.y_face · 来源资产： asset_1930484b4ef9, asset_0d36bf11a1df, asset_865d03d50449, asset_93d8de11883e, asset_a0548b71ae83, asset_cc11e0d0f524, asset_d497d3895d92, asset_da86831d7f2a, asset_ed2281aae6da · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.x_window_mask · 来源资产： asset_d497d3895d92, asset_0d36bf11a1df, asset_1930484b4ef9, asset_865d03d50449, asset_93d8de11883e, asset_a0548b71ae83, asset_cc11e0d0f524, asset_da86831d7f2a, asset_ed2281aae6da · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.y_window_mask · 来源资产： asset_d497d3895d92, asset_0d36bf11a1df, asset_1930484b4ef9, asset_865d03d50449, asset_93d8de11883e, asset_a0548b71ae83, asset_cc11e0d0f524, asset_da86831d7f2a, asset_ed2281aae6da · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.total_budget · 来源资产： asset_1930484b4ef9, asset_d497d3895d92, asset_ed2281aae6da, asset_865d03d50449, asset_0d36bf11a1df, asset_93d8de11883e, asset_cc11e0d0f524, asset_da86831d7f2a, asset_a0548b71ae83 · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.inside · 来源资产： asset_1930484b4ef9, asset_d497d3895d92, asset_ed2281aae6da, asset_865d03d50449, asset_0d36bf11a1df, asset_93d8de11883e, asset_cc11e0d0f524, asset_da86831d7f2a, asset_a0548b71ae83 · 证据： ev.case8.D_u.allocation
+case8.D_u.allocation.outside · 来源资产： asset_1930484b4ef9, asset_d497d3895d92, asset_ed2281aae6da, asset_865d03d50449, asset_0d36bf11a1df, asset_93d8de11883e, asset_cc11e0d0f524, asset_da86831d7f2a, asset_a0548b71ae83 · 证据： ev.case8.D_u.allocation
+
+已由以下记录替代： 不适用 — 没有已知替代记录

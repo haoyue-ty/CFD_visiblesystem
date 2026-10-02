@@ -1,0 +1,1788 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-10-02T20:59:47.758794+08:00",
+  "command": "npx playwright test --config=playwright.phase11.integration.config.ts",
+  "workers": 1,
+  "retries": 0,
+  "stats": {
+    "startTime": "2026-10-02T12:44:21.486Z",
+    "duration": 563375.924,
+    "expected": 220,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "projects": {
+    "unit": 18,
+    "phase5-10-real-api": 166,
+    "phase8-real-api": 1,
+    "window3-mock-development": 16,
+    "window4-allocation-ui": 10,
+    "window3-spectral-ui": 9
+  },
+  "raw_json_path": ".cache/phase11/playwright.json",
+  "raw_json_sha256": "57cbb08dc02f818995da0b10f9819656b05387395067c0fd169b2f56c022f965",
+  "raw_junit_sha256": "0e4a0fc51db2e188925812ebc2eee2a3b8705a0c08273f981b3ebbecd6b49814",
+  "tests": [
+    {
+      "file": "tests/data-projection.unit.spec.ts",
+      "line": 4,
+      "title": "recorded zero remains zero",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 4
+    },
+    {
+      "file": "tests/data-projection.unit.spec.ts",
+      "line": 6,
+      "title": "UNKNOWN is never projected to zero",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/data-projection.unit.spec.ts",
+      "line": 6,
+      "title": "MISSING is never projected to zero",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 1
+    },
+    {
+      "file": "tests/data-projection.unit.spec.ts",
+      "line": 6,
+      "title": "NOT_APPLICABLE is never projected to zero",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/data-projection.unit.spec.ts",
+      "line": 8,
+      "title": "recorded physical time keeps its full precision",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 5,
+      "title": "recorded zero and false remain known; unknown facts carry reasons",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 1
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 11,
+      "title": "verification mapping retains every frozen status and distinguishes history and unfrozen evidence",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 1
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 19,
+      "title": "public provenance and error text strip locators while preserving controlled relative origins",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 2
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 26,
+      "title": "unsafe return context rejected: null",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 26,
+      "title": "unsafe return context rejected: {broken",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 1
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 26,
+      "title": "unsafe return context rejected: {\"name\":\"https://evil.example\"}",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 26,
+      "title": "unsafe return context rejected: {\"name\":\"lab\",\"path\":\"file:///D:/science\"}",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 26,
+      "title": "unsafe return context rejected: {\"name\":\"experiment\"}",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 26,
+      "title": "unsafe return context rejected: {\"name\":\"lab\",\"query\":{\"nested\":{}}}",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 0
+    },
+    {
+      "file": "tests/evidence.unit.spec.ts",
+      "line": 28,
+      "title": "result and center return contexts preserve exact selectors",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 1
+    },
+    {
+      "file": "tests/localization.unit.spec.ts",
+      "line": 4,
+      "title": "presentation preserves scientific identities, formulas, precision and recorded zero",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 4
+    },
+    {
+      "file": "tests/localization.unit.spec.ts",
+      "line": 16,
+      "title": "chart localization copies labels without rewriting or mutating scientific data",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 1
+    },
+    {
+      "file": "tests/localization.unit.spec.ts",
+      "line": 29,
+      "title": "seven scenes retain strict-1D zero-output and modal/comparison boundaries",
+      "project": "unit",
+      "status": "passed",
+      "duration_ms": 1
+    },
+    {
+      "file": "tests/allocation-real-api.spec.ts",
+      "line": 3,
+      "title": "explicit allocation outage stays unsupported without a fake map",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 659
+    },
+    {
+      "file": "tests/allocation-real-api.spec.ts",
+      "line": 23,
+      "title": "real Lab -> Case8 -> Allocation -> D_u -> all Gates -> Evidence",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 10264
+    },
+    {
+      "file": "tests/allocation-real-api.spec.ts",
+      "line": 94,
+      "title": "rejects an API representation mismatch without drawing a field",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1137
+    },
+    {
+      "file": "tests/allocation-real-api.spec.ts",
+      "line": 94,
+      "title": "rejects an API semantic mismatch without drawing a field",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 576
+    },
+    {
+      "file": "tests/allocation-real-api.spec.ts",
+      "line": 94,
+      "title": "rejects an API mask mismatch without drawing a field",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 599
+    },
+    {
+      "file": "tests/allocation-real-api.spec.ts",
+      "line": 94,
+      "title": "rejects an API measure mismatch without drawing a field",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 620
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 25,
+      "title": "every recorded snapshot index is addressable and index 0 is refused",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 543
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 34,
+      "title": "the initial frame is snapshot 1 with step 0, not snapshot 0",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1085
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 40,
+      "title": "snapshot 6 of D_u shows step 1912 and physical time 0.08",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 456
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 47,
+      "title": "entropy tab reports a 1912-record series for the selected configuration",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 3687
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 53,
+      "title": "metrics tab reports the recorded snapshot scope and definitions",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 540
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 59,
+      "title": "an absent metric is rendered as missing, never as zero",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 287
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 68,
+      "title": "evidence view exposes provenance without an absolute source path",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 297
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 77,
+      "title": "reloading a deep link restores the selection",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 610
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 84,
+      "title": "back navigation restores the previous tab selection",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 292
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 91,
+      "title": "switching configuration clears the previous selection",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 489
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 98,
+      "title": "the snapshot timeline offers exactly the six recorded frames",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 608
+    },
+    {
+      "file": "tests/case8-acceptance.spec.ts",
+      "line": 107,
+      "title": "the frozen bootstrap route chain is unchanged",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2933
+    },
+    {
+      "file": "tests/case8-real-integration.spec.ts",
+      "line": 3,
+      "title": "real vertical slice and four-configuration acceptance",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 28329
+    },
+    {
+      "file": "tests/case8-real-integration.spec.ts",
+      "line": 66,
+      "title": "real API outage shows an error without a mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 333
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 12,
+      "title": "Lab opens Closure and traverses D_u .05 stages, steps, Evidence and B_u recorded zero",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 37121
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 41,
+      "title": "CLO01 supplies exactly five complete legal selections; every run is selectable",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1707
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 53,
+      "title": "invalid config × CFL deep link produces no history request or result",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1070
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 61,
+      "title": "Semi-discrete preserves PER_STAGE records, clocks, definitions and optional channels",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 15213
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 82,
+      "title": "Fully-discrete keeps increments, cumulative and terminal values distinct through final page",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 16540
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 101,
+      "title": "B_u D_at and E_at are recorded zeros, never missing",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 16779
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 110,
+      "title": "four-point refinement and global/pairwise orders equal frozen CLO05",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1385
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 123,
+      "title": "scientific limitation remains visible on every tab, with no prohibited claim or spatial view",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 15959
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 139,
+      "title": "Evidence run returns current run/tab/page from overview",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2380
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 139,
+      "title": "Evidence stage returns current run/tab/page from semi-discrete",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 6769
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 139,
+      "title": "Evidence step returns current run/tab/page from fully-discrete",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 17084
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 139,
+      "title": "Evidence run returns current run/tab/page from evidence",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 12067
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 152,
+      "title": "Evidence tab exposes all runs, both history groups, and refinement; refinement returns same run",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2102
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 162,
+      "title": "changing run while history is in flight cannot show stale scientific data",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 6679
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 178,
+      "title": "scientific missing response remains missing, without a substitute chart",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1056
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 184,
+      "title": "non-production science is rejected even if API transport reports success",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1066
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 202,
+      "title": "API registry failure displays error and no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 253
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 202,
+      "title": "API stage failure displays error and no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1060
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 202,
+      "title": "API step failure displays error and no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1062
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 202,
+      "title": "API refinement failure displays error and no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1049
+    },
+    {
+      "file": "tests/closure-real-api.spec.ts",
+      "line": 213,
+      "title": "production artifacts contain no mock provider or synthetic scientific payload",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 43
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 7,
+      "title": "Cylinder A_u: exact tabs, selectors and five actual snapshots",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4647
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 33,
+      "title": "Cylinder A_u: 16 trajectory sectors, front-band and cumulative2D Missing",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1090
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 7,
+      "title": "Cylinder B_u: exact tabs, selectors and five actual snapshots",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4074
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 33,
+      "title": "Cylinder B_u: 16 trajectory sectors, front-band and cumulative2D Missing",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1093
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 7,
+      "title": "Cylinder D_u: exact tabs, selectors and five actual snapshots",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4575
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 33,
+      "title": "Cylinder D_u: 16 trajectory sectors, front-band and cumulative2D Missing",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1094
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 48,
+      "title": "Cylinder full 9757-record history retains scalar semantics and independent snapshot state",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 34448
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 65,
+      "title": "Cylinder local canonical metrics retain definitions, detectors, units, time and detector floor",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 543
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 75,
+      "title": "Cylinder evidence return restores config, tab, snapshot, field and scalar state",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 3854
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 86,
+      "title": "Cross-flow renders distinct scientific objects, policies, comparability and both evidence contexts",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 7392
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 122,
+      "title": "API outage has no mock fallback: /lab/experiments/cylinder?tab=flow",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 263
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 122,
+      "title": "API outage has no mock fallback: /lab/experiments/cylinder?tab=entropy",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 255
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 122,
+      "title": "API outage has no mock fallback: /lab/experiments/cylinder?tab=sectors",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 260
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 122,
+      "title": "API outage has no mock fallback: /lab/experiments/cylinder?tab=metrics",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 261
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 122,
+      "title": "API outage has no mock fallback: /cross-flow",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 254
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 130,
+      "title": "field asset failure shows Missing without substituting another frame",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1066
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 136,
+      "title": "invalid snapshot and unsupported config deep links never create frames or C_u selector",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1097
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 146,
+      "title": "Lab navigation opens Cylinder and cross-flow routes",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1138
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 153,
+      "title": "production bundle contains zero mock implementation or fixture identifiers",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 12
+    },
+    {
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "line": 158,
+      "title": "Cylinder config changes retain selected tab and replace allocation identity",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 3896
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 15,
+      "title": "Evidence navigation opens CURRENT with bounded EVI01 pagination and server filters",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4639
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 45,
+      "title": "GAPS exposes actual missing sources, effects and limits without repair actions",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2158
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 60,
+      "title": "HISTORY is a separate historical selection; details return exact center filters/page",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 5283
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 73,
+      "title": "P09 renders complete canonical method/config/assets/freeze/processing/definitions/limitations/relations",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 537
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 94,
+      "title": "drift response remains inspectable, with distinct recorded/current facts and no availability claim",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 360
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 109,
+      "title": "source drift filters the current server page honestly without a forbidden query",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 346
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 128,
+      "title": "public text strips unsafe locators; all links are application routes and never downloads",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 350
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 139,
+      "title": "known superseded_by links to registered successor; unknown fields are never inferred",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 431
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 158,
+      "title": "Quick close, Quick→Detail, Detail→Result and browser Back preserve /lab/experiments/case8?config=D_u&tab=allocation",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1914
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 158,
+      "title": "Quick close, Quick→Detail, Detail→Result and browser Back preserve /lab/experiments/case8?config=D_u&tab=spectral&spectral_q=spectrum.q-0.396&spectral_mode=8",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 3358
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 158,
+      "title": "Quick close, Quick→Detail, Detail→Result and browser Back preserve /explore?scene=6&case8_config=D_u&cylinder_config=B_u&view=allocation",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1177
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 187,
+      "title": "Quick View traps focus, Escape closes, and changing route aborts stale evidence",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1725
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 204,
+      "title": "Mechanism own EVI03 evidence is non-numerical in Quick and P09",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1577
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 214,
+      "title": "Cylinder missing cumulative evidence stays MISSING and inspectable",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 342
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 220,
+      "title": "Closure evidence exposes recorded run and actual stage processing",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 463
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 228,
+      "title": "evidence index http error is explicit and retry uses real API without fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1624
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 228,
+      "title": "evidence index network error is explicit and retry uses real API without fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1628
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 228,
+      "title": "evidence record http error is explicit and retry uses real API without fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 375
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 228,
+      "title": "evidence record network error is explicit and retry uses real API without fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 379
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 242,
+      "title": "Quick evidence API outage does not fabricate record; close preserves live result",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 659
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 255,
+      "title": "Allocation family, gate and comparison survive full record, browser Back and reload",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1213
+    },
+    {
+      "file": "tests/evidence-real-api.spec.ts",
+      "line": 276,
+      "title": "unknown evidence ID has explicit missing state and no fabricated metadata",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 237
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 16,
+      "title": "Home and Lab enter implemented Explore; CONTENT01 returns exactly seven presets",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 442
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 31,
+      "title": "Scene 1 direct deep link, reload and production screenshot",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 7052
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 31,
+      "title": "Scene 2 direct deep link, reload and production screenshot",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 712
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 31,
+      "title": "Scene 3 direct deep link, reload and production screenshot",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 474
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 31,
+      "title": "Scene 4 direct deep link, reload and production screenshot",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1210
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 31,
+      "title": "Scene 5 direct deep link, reload and production screenshot",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 913
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 31,
+      "title": "Scene 6 direct deep link, reload and production screenshot",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4275
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 31,
+      "title": "Scene 7 direct deep link, reload and production screenshot",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 725
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 53,
+      "title": "S1 reads B_u / D_u Case8 accepted histories and terminal facts verbatim",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 5170
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 70,
+      "title": "S2 schematic and S3 strict/weak plus off/enabled use shared MechanismView",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 444
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 85,
+      "title": "S4 Gate matched q_at, common API scale, fixed window and saved fractions",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 808
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 103,
+      "title": "S5 complete real SPEC02 curves retain negative, positive and near-zero directions",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 794
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 116,
+      "title": "S6 CMP01 fixed D_u pair keeps independent renderers, policies and missing 2D",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2109
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 129,
+      "title": "S7 real per-result evidence loads one record with identity/config/hash/limits; Detail returns",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 496
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 143,
+      "title": "Previous / Next, scene navigation and browser Back restore only Scene/page",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2796
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 157,
+      "title": "S1 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4640
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 157,
+      "title": "S4 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2879
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 157,
+      "title": "S5 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 658
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 157,
+      "title": "S6 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 3045
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 157,
+      "title": "S7 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 907
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 171,
+      "title": "invalid scene \"0\" has error and no scientific content",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 261
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 171,
+      "title": "invalid scene \"8\" has error and no scientific content",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 290
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 171,
+      "title": "invalid scene \"-1\" has error and no scientific content",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 241
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 171,
+      "title": "invalid scene \"abc\" has error and no scientific content",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 259
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 171,
+      "title": "invalid scene \"1.5\" has error and no scientific content",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 262
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 171,
+      "title": "invalid scene \"\" has error and no scientific content",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 241
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 186,
+      "title": "S1 scientific API failure is explicit with no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 297
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 186,
+      "title": "S2 scientific API failure is explicit with no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 259
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 186,
+      "title": "S4 scientific API failure is explicit with no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 261
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 186,
+      "title": "S5 scientific API failure is explicit with no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 273
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 186,
+      "title": "S6 scientific API failure is explicit with no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 265
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 186,
+      "title": "S7 scientific API failure is explicit with no mock fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 256
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 195,
+      "title": "CONTENT01 outage prevents science; production bundle excludes synthetic providers",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 257
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 206,
+      "title": "Lab edits preserve the original Explore return context",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 5285
+    },
+    {
+      "file": "tests/explore-real-api.spec.ts",
+      "line": 217,
+      "title": "rapid Scene changes and selected S7 evidence cannot display stale data",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4958
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 13,
+      "title": "Lab route opens/reloads CONTENT03 real API with every registered node and edge",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 894
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 45,
+      "title": "STRICT_1D / q_at OFF: receiving content and output remain separate from trigger",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 358
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 45,
+      "title": "STRICT_1D / q_at ENABLED: receiving content and output remain separate from trigger",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 422
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 45,
+      "title": "WEAKLY_2D / q_at OFF: receiving content and output remain separate from trigger",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 328
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 45,
+      "title": "WEAKLY_2D / q_at ENABLED: receiving content and output remain separate from trigger",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 319
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 65,
+      "title": "trigger/output have distinct visual and semantic roles; keyboard and delta_t wording",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 328
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 83,
+      "title": "Near1D theory only; no sliders, numeric points or numerical chart",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 276
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 95,
+      "title": "node evidence quick/detail uses EVI02 and restores full mechanism state",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 476
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 116,
+      "title": "Explore S2 shares MechanismView, returns to source_scene and browser Back works",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 546
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 116,
+      "title": "Explore S3 shares MechanismView, returns to source_scene and browser Back works",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 542
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 139,
+      "title": "browser Back restores discrete state and node selection",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 331
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 153,
+      "title": "CONTENT03 network failure shows error, no mock fallback; retry recovers",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 323
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 153,
+      "title": "CONTENT03 http failure shows error, no mock fallback; retry recovers",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 323
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 153,
+      "title": "CONTENT03 envelope failure shows error, no mock fallback; retry recovers",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 359
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 153,
+      "title": "CONTENT03 origin failure shows error, no mock fallback; retry recovers",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 325
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 176,
+      "title": "evidence outage leaves schematic visible and shows no fabricated record",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 294
+    },
+    {
+      "file": "tests/mechanism-real-api.spec.ts",
+      "line": 185,
+      "title": "Explore metadata outage and invalid scene cannot fabricate S2/S3",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 327
+    },
+    {
+      "file": "tests/phase10-final-integration.spec.ts",
+      "line": 5,
+      "title": "Entry → Home → seven real Scenes → Evidence Detail → Scene → Lab → original Scene",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 6514
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 25,
+      "title": "W3 Case8 D_u Allocation traces source/hash/processing and restores result",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1716
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 38,
+      "title": "W3 Gate Acoustic traces matched configuration, native map, mask and summary",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1157
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 52,
+      "title": "W3 q_at=.396 mode8 traces eigenmode and Spectrum provenance without changing selectors",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 3375
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 69,
+      "title": "W3 Modal Validation history resolves the actual selected eigenpair via SPEC05 and EVI03",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1680
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 93,
+      "title": "W3 Cylinder D_u sectors trace J2C-v2 sources and limitation",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2716
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 105,
+      "title": "W3 Cross-flow D_u/D_u preserves independent evidence and descriptive policies",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 4449
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 120,
+      "title": "W3 Closure D_u CFL=.05 stage and step records retain freeze binding",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 24097
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 134,
+      "title": "W3 Mechanism SCHEMATIC theory/implementation stays nonnumerical",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 5912
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 142,
+      "title": "W3 three required GAPS have no values, fake plots or reconstruct actions",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2257
+    },
+    {
+      "file": "tests/phase11-final-integration.spec.ts",
+      "line": 154,
+      "title": "W3 Home→Lab reaches each implemented module and Evidence navigation",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 10839
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 3,
+      "title": "V1 Lab catalog opens all six delivered experiments from production API",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 15257
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 20,
+      "title": "V1 config-disabled Allocation keeps URL, explanation, Back/Forward and no invented field",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 2659
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 43,
+      "title": "V1 gate hides absent capabilities and preserves unsupported deep link",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 572
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 43,
+      "title": "V1 spectrum hides absent capabilities and preserves unsupported deep link",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 626
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 43,
+      "title": "V1 modal-validation hides absent capabilities and preserves unsupported deep link",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 666
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 62,
+      "title": "V1 metadata API failure preserves location and explicit error without scientific fallback",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 255
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 73,
+      "title": "V1 case8 unknown view remains an explicit unsupported location",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 242
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 73,
+      "title": "V1 cylinder unknown view remains an explicit unsupported location",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 244
+    },
+    {
+      "file": "tests/phase12-final-integration.spec.ts",
+      "line": 73,
+      "title": "V1 entropy-closure unknown view remains an explicit unsupported location",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1590
+    },
+    {
+      "file": "tests/routes.spec.ts",
+      "line": 12,
+      "title": "opens and reloads /",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 267
+    },
+    {
+      "file": "tests/routes.spec.ts",
+      "line": 12,
+      "title": "opens and reloads /home",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 286
+    },
+    {
+      "file": "tests/routes.spec.ts",
+      "line": 12,
+      "title": "opens and reloads /lab",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 267
+    },
+    {
+      "file": "tests/routes.spec.ts",
+      "line": 12,
+      "title": "opens and reloads /lab/experiments/case8",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 294
+    },
+    {
+      "file": "tests/routes.spec.ts",
+      "line": 12,
+      "title": "opens and reloads /evidence/ev.case8.D_u.snapshot.6.density",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 324
+    },
+    {
+      "file": "tests/spectral-real-api.spec.ts",
+      "line": 14,
+      "title": "real spectral outage is surfaced honestly with no fabricated curve",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 504
+    },
+    {
+      "file": "tests/spectral-real-api.spec.ts",
+      "line": 34,
+      "title": "real Spectral Lab reads recorded frozen facts",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1544
+    },
+    {
+      "file": "tests/spectral-real-api.spec.ts",
+      "line": 59,
+      "title": "all four real configurations expose every recorded mode and restore evidence context",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 29391
+    },
+    {
+      "file": "tests/spectral-real-api.spec.ts",
+      "line": 96,
+      "title": "real provider reports a missing saved vector explicitly",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 827
+    },
+    {
+      "file": "tests/spectral-real-api.spec.ts",
+      "line": 110,
+      "title": "real eigenmode rejects an array result identity mismatch",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1078
+    },
+    {
+      "file": "tests/spectral-real-api.spec.ts",
+      "line": 110,
+      "title": "real eigenmode rejects an array element count mismatch",
+      "project": "phase5-10-real-api",
+      "status": "passed",
+      "duration_ms": 1090
+    },
+    {
+      "file": "tests/phase8-final-integration.spec.ts",
+      "line": 6,
+      "title": "Phase8D real Cylinder D_u journey, D_u versus D_u and actual cumulative2D absence",
+      "project": "phase8-real-api",
+      "status": "passed",
+      "duration_ms": 24268
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 18,
+      "title": "Entry shows identity and enters the system",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 721
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 26,
+      "title": "Home shows the scientific question, implemented Explore, and Lab entry",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 519
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 40,
+      "title": "Lab marks only Case8 IMPLEMENTED and others PLANNED (never MISSING data)",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 536
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 57,
+      "title": "A/B/C/D are selectable and update the overview",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 566
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 67,
+      "title": "Allocation is family-present but disabled for A/B/C and explained",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 507
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 77,
+      "title": "snapshots 1..6 render with \"Snapshot n / 6\" and actual step/time",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 1892
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 93,
+      "title": "snapshot 0 is not offered as a recorded index",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 491
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 102,
+      "title": "field switch re-renders density / pressure / front",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 1262
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 112,
+      "title": "entropy chart renders and selecting a step shows both times",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 841
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 127,
+      "title": "selecting a scalar step also works via a chart click",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 829
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 143,
+      "title": "each metric shows value with definition, unit, detector and evidence link",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 634
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 158,
+      "title": "mock Evidence tab -> Quick -> P09 missing state -> back restores experiment/config/tab",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 728
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 173,
+      "title": "direct evidence deep link has no fake back target",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 397
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 182,
+      "title": "refresh keeps config, tab and snapshot",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 864
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 191,
+      "title": "unknown experiment shows a system fallback",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 390
+    },
+    {
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "line": 198,
+      "title": "mock badge is visibly present on data pages",
+      "project": "window3-mock-development",
+      "status": "passed",
+      "duration_ms": 507
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 24,
+      "title": "shows representation_type FACE_FIELD with face measure and two orientations",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 715
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 42,
+      "title": "shows the per-orientation mask identity and both mask counts",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 670
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 49,
+      "title": "shows definition, verification and evidence blocks",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 668
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 56,
+      "title": "summary shows budget and inside fraction",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 658
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 65,
+      "title": "switching family shows CELL_FIELD with cell measure and one field",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 693
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 82,
+      "title": "all three Gate configs render a cell map with matched-budget summaries",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 1179
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 100,
+      "title": "cell mask identity is distinct from the Case8 face mask",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 907
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 115,
+      "title": "FACE and CELL differ in representation, measure, mask and raster",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 918
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 152,
+      "title": "allocation tab stays disabled for A/B/C and enabled for D_u",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 502
+    },
+    {
+      "file": "../tests/window4_allocation/allocation_ui.spec.ts",
+      "line": 159,
+      "title": "mock badge is visible on the allocation tab",
+      "project": "window4-allocation-ui",
+      "status": "passed",
+      "duration_ms": 660
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 25,
+      "title": "is reachable via the independent workspace shortcut and legacy deep link",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 592
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 32,
+      "title": "states the scientific scope and never emits an evaluative verdict",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 481
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 46,
+      "title": "renders x = mode k, y = Re(λ) with the recorded q_at",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 757
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 54,
+      "title": "switching configuration changes the resolved q_at (four exact values)",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 1087
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 64,
+      "title": "renders the eigenmode for a saved selection with its index spaces",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 778
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 71,
+      "title": "a registered-but-unsaved mode rank shows Unavailable, never a blank frame",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 572
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 80,
+      "title": "selecting a different mode index re-reads the eigenmode",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 784
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 88,
+      "title": "renders linear vs CFD with recorded rates and an explicit missing history",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 1314
+    },
+    {
+      "file": "../tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "line": 99,
+      "title": "a slow spectral provider surfaces a Loading state first",
+      "project": "window3-spectral-ui",
+      "status": "passed",
+      "duration_ms": 509
+    }
+  ]
+}

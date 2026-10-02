@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 /**
  * Case8 Flow tab.
  *
@@ -88,9 +90,9 @@ watch(activeField, loadField)
 
 <template>
   <section class="flow" data-testid="case8-flow">
-    <LoadStateBlock :loaded="snapshots" target="snapshot index">
+    <LoadStateBlock :loaded="snapshots" :target="zh('snapshot index')">
       <div class="flow__controls">
-        <div class="flow__snapshots" role="group" aria-label="Recorded snapshots">
+        <div class="flow__snapshots" role="group" :aria-label="zh('Recorded snapshots')">
           <button
             v-for="meta in snapshots?.data || []"
             :key="meta.snapshot_index"
@@ -100,10 +102,10 @@ watch(activeField, loadField)
             :data-testid="`snapshot-${meta.snapshot_index}`"
             @click="selectSnapshot(meta.snapshot_index)"
           >
-            {{ meta.snapshot_index }}
+            {{ zh(meta.snapshot_index) }}
           </button>
         </div>
-        <div class="flow__fields" role="group" aria-label="Field">
+        <div class="flow__fields" role="group" :aria-label="zh('Field')">
           <button
             v-for="f in FIELD_ORDER"
             :key="f"
@@ -111,26 +113,25 @@ watch(activeField, loadField)
             :class="{ 'flow__field-btn--active': f === activeField }"
             :data-testid="`field-${f}`"
             @click="selectField(f)"
-          >{{ f }}</button>
+          >{{ zh(f) }}</button>
         </div>
       </div>
 
       <p class="flow__index-label" data-testid="snapshot-label">
-        Snapshot {{ activeIndex }} / {{ snapshots?.data?.length ?? 0 }}
+        {{ zh("Snapshot") }} {{ zh(activeIndex) }} / {{ zh(snapshots?.data?.length ?? 0) }}
       </p>
 
       <dl v-if="currentMeta" class="flow__time" data-testid="snapshot-time">
-        <div><dt>Actual completed step</dt><dd data-testid="snapshot-step">{{ currentMeta.step_index }}</dd></div>
-        <div><dt>Actual physical time</dt><dd data-testid="snapshot-physical-time">{{ currentMeta.physical_time }}</dd></div>
+        <div><dt>{{ zh("Actual completed step") }}</dt><dd data-testid="snapshot-step">{{ zh(currentMeta.step_index) }}</dd></div>
+        <div><dt>{{ zh("Actual physical time") }}</dt><dd data-testid="snapshot-physical-time">{{ zh(currentMeta.physical_time) }}</dd></div>
       </dl>
 
       <!-- A disabled selector slot makes it obvious index 0 is not a recorded frame. -->
       <p class="flow__note">
-        Recorded indices are strictly 1-based ({{ recordedIndices.join(', ') }}). Index 0 is not a
-        recorded snapshot and cannot be selected. No interpolated frames are generated.
+        {{ zh("Recorded indices are strictly 1-based (") }}{{ zh(recordedIndices.join(', ')) }}{{ zh("). Index 0 is not a recorded snapshot and cannot be selected. No interpolated frames are generated.") }}
       </p>
 
-      <LoadStateBlock :loaded="field" target="field values">
+      <LoadStateBlock :loaded="field" :target="zh('field values')">
         <div v-if="field?.data" class="flow__render">
           <SnapshotViewer :field="field.data.meta" :values="field.data.values" />
           <MockBadge :origin="field.data.data_origin" :verification="field.data.meta.verification_status" />
@@ -138,7 +139,7 @@ watch(activeField, loadField)
       </LoadStateBlock>
 
       <p v-if="field?.state === 'MISSING'" class="flow__missing" data-testid="snapshot-missing">
-        {{ field.reason }}
+        {{ zh(field.reason) }}
       </p>
     </LoadStateBlock>
   </section>

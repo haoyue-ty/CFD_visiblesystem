@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 import { activeProvider } from '../data'
 /**
  * P04 — Lab Workspace (experiment catalog + analysis shortcuts).
@@ -26,21 +28,20 @@ onMounted(async () => {
 
 <template>
   <main data-page="lab" class="lab">
-    <nav class="lab__subnav" aria-label="Lab sections">
-      <span class="lab__subnav-current">实验目录 / Experiment catalog</span>
-      <RouterLink :to="{ name: 'mechanism' }" data-testid="lab-open-mechanism">Mechanism Explorer</RouterLink>
-      <RouterLink :to="{ name: 'cross-flow' }">跨流动比较 Cross-flow</RouterLink>
+    <nav class="lab__subnav" :aria-label="zh('Lab sections')">
+      <span class="lab__subnav-current">{{ zh("实验目录 / Experiment catalog") }}</span>
+      <RouterLink :to="{ name: 'mechanism' }" data-testid="lab-open-mechanism">{{ zh("Mechanism Explorer") }}</RouterLink>
+      <RouterLink :to="{ name: 'cross-flow' }">{{ zh("跨流动比较 Cross-flow") }}</RouterLink>
     </nav>
 
-    <h1>Lab Workspace</h1>
-    <RouterLink :to="{ name: 'explore', query: { scene: '1' } }" data-testid="lab-open-explore">Explore / Guided Story</RouterLink>
+    <h1>{{ zh("Lab Workspace") }}</h1>
+    <RouterLink :to="{ name: 'explore', query: { scene: '1' } }" data-testid="lab-open-explore">{{ zh("Explore / Guided Story") }}</RouterLink>
     <p class="lab__intro">
-      The Lab opens real experiments and their supported controls. Availability below is
-      <strong>software delivery status</strong>; it does not report scientific capability or asset
-      verification.
+      {{ zh("The Lab opens real experiments and their supported controls. Availability below is") }}
+      <strong>{{ zh("software delivery status") }}</strong>{{ zh("; it does not report scientific capability or asset verification.") }}
     </p>
 
-    <LoadStateBlock :loaded="experiments" target="experiment catalog">
+    <LoadStateBlock :loaded="experiments" :target="zh('experiment catalog')">
       <ul class="lab__list" data-testid="lab-experiment-list">
         <li
           v-for="exp in experiments?.data || []"
@@ -50,63 +51,61 @@ onMounted(async () => {
           :data-testid="`lab-experiment-${exp.experiment_id}`"
         >
           <div class="lab__item-head">
-            <h2>{{ exp.name }}</h2>
+            <h2>{{ zh(exp.name) }}</h2>
             <span
               class="badge"
               :class="exp.delivery_status === 'IMPLEMENTED' ? 'badge--implemented' : 'badge--planned'"
               :data-testid="`lab-delivery-${exp.experiment_id}`"
-            >{{ exp.delivery_status }}</span>
+            >{{ zh(exp.delivery_status) }}</span>
           </div>
-          <p class="lab__family">{{ exp.scientific_family }}</p>
-          <p class="lab__summary">{{ exp.summary }}</p>
+          <p class="lab__family">{{ zh(exp.scientific_family) }}</p>
+          <p class="lab__summary">{{ zh(exp.summary) }}</p>
 
           <!-- IMPLEMENTED: enterable, with real capability summary -->
           <template v-if="exp.delivery_status === 'IMPLEMENTED' && exp.implementable_route">
-            <p class="lab__capability" :data-testid="`${exp.experiment_id}-capability`">{{ exp.experiment_id === 'cylinder' ? 'SUPPORTED · 5 instantaneous snapshots + 9757 scalar steps + 16 sectors; cumulative 2D Missing' : exp.experiment_id === 'case8' ? 'SUPPORTED · 6 snapshots + 1912 scalar steps' : exp.summary }}</p>
+            <p class="lab__capability" :data-testid="`${exp.experiment_id}-capability`">{{ zh(exp.experiment_id === 'cylinder' ? 'SUPPORTED · 5 instantaneous snapshots + 9757 scalar steps + 16 sectors; cumulative 2D Missing' : exp.experiment_id === 'case8' ? 'SUPPORTED · 6 snapshots + 1912 scalar steps' : exp.summary) }}</p>
             <RouterLink
               class="lab__cta"
               :to="{ name: 'experiment', params: { experiment_id: exp.experiment_id } }"
               :data-testid="`open-${exp.experiment_id}`"
-            >Open {{ exp.name }} →</RouterLink>
+            >{{ zh("Open") }} {{ zh(exp.name) }} →</RouterLink>
           </template>
 
           <!-- PLANNED: explicit delivery note, NOT a missing-data label -->
           <template v-else>
             <p class="lab__planned-note" :data-testid="`lab-planned-note-${exp.experiment_id}`">
-              Delivery: PLANNED — no interactive page is registered yet. This is an application
-              delivery state, <strong>not</strong> MISSING scientific data.
+              {{ zh("Delivery: PLANNED — no interactive page is registered yet. This is an application delivery state,") }} <strong>{{ zh("not") }}</strong> {{ zh("MISSING scientific data.") }}
             </p>
-            <span class="lab__cta lab__cta--disabled" aria-disabled="true">Not yet available</span>
+            <span class="lab__cta lab__cta--disabled" aria-disabled="true">{{ zh("Not yet available") }}</span>
           </template>
         </li>
       </ul>
     </LoadStateBlock>
 
-    <section class="lab__case8-preview" aria-label="Case8 configurations">
-      <h2>Case8 configurations</h2>
-      <LoadStateBlock :loaded="case8" target="Case8 overview">
+    <section class="lab__case8-preview" :aria-label="zh('Case8 configurations')">
+      <h2>{{ zh("Case8 configurations") }}</h2>
+      <LoadStateBlock :loaded="case8" :target="zh('Case8 overview')">
         <table class="lab__configs" data-testid="lab-case8-configs">
           <thead>
-            <tr><th>Config</th><th>q_aa</th><th>q_at</th></tr>
+            <tr><th>{{ zh("Config") }}</th><th>q_aa</th><th>q_at</th></tr>
           </thead>
           <tbody>
             <tr v-for="cfg in case8?.data?.configurations || []" :key="cfg.config_id">
-              <td>{{ cfg.config_id }}</td>
-              <td>{{ cfg.q_aa }}</td>
-              <td>{{ cfg.q_at }}</td>
+              <td>{{ zh(cfg.config_id) }}</td>
+              <td>{{ zh(cfg.q_aa) }}</td>
+              <td>{{ zh(cfg.q_at) }}</td>
             </tr>
           </tbody>
         </table>
         <p class="lab__preview-note">
-          All four configs are equally selectable; D_u is only a convenient starting point, not
-          "best".
+          {{ zh("All four configs are equally selectable; D_u is only a convenient starting point, not \"best\".") }}
         </p>
       </LoadStateBlock>
     </section>
 
     <footer class="lab__provenance">
       <MockBadge v-if="activeProvider.kind === 'MOCK'" origin="MOCK" :verification="activeProvider.kind === 'MOCK' ? 'NOT_APPLICABLE' : undefined" />
-      <span v-if="activeProvider.kind === 'MOCK'" class="lab__provenance-text">All data in this slice is synthetic mock data for layout and interaction development.</span>
+      <span v-if="activeProvider.kind === 'MOCK'" class="lab__provenance-text">{{ zh("All data in this slice is synthetic mock data for layout and interaction development.") }}</span>
     </footer>
   </main>
 </template>

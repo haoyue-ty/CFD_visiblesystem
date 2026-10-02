@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh, evidenceSectionLabels, experimentLabels } from '../presentation/zh-CN'
+
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { createRequestGuard, type Loaded } from '../data'
@@ -41,50 +43,50 @@ function page(next: number) { void router.push({ query: { ...route.query, offset
 </script>
 <template>
   <main class="center" data-page="evidence-center">
-    <h1>Evidence Center</h1>
-    <p>Inspect result identity, method, source, freeze and scientific limits.</p>
-    <nav aria-label="Evidence sections" class="sections">
-      <button v-for="s in sections" :key="s" :aria-current="section === s ? 'page' : undefined" :data-testid="`section-${s}`" @click="set('section', s)">{{ s }}</button>
+    <h1>{{ zh("Evidence Center") }}</h1>
+    <p>{{ zh("Inspect result identity, method, source, freeze and scientific limits.") }}</p>
+    <nav :aria-label="zh('Evidence sections')" class="sections">
+      <button v-for="s in sections" :key="s" :aria-current="section === s ? 'page' : undefined" :data-testid="`section-${s}`" @click="set('section', s)">{{ evidenceSectionLabels[s] }}</button>
     </nav>
     <section :data-testid="`evidence-${section}`" :class="{ history: section === 'HISTORY' }">
-      <h2>{{ section }}</h2>
-      <p v-if="section === 'CURRENT'">Current accepted evidence selection. Verification and drift are independent facts.</p>
-      <p v-else-if="section === 'GAPS'">Known scientific gaps. Missing data remains missing; this center does not generate or fill scientific sources.</p>
-      <p v-else role="note"><strong>HISTORICAL RECORDS — legacy, superseded and nonselected sources. These are not current formal results.</strong></p>
+      <h2>{{ evidenceSectionLabels[section] }}</h2>
+      <p v-if="section === 'CURRENT'">{{ zh("Current accepted evidence selection. Verification and drift are independent facts.") }}</p>
+      <p v-else-if="section === 'GAPS'">{{ zh("Known scientific gaps. Missing data remains missing; this center does not generate or fill scientific sources.") }}</p>
+      <p v-else role="note"><strong>{{ zh("HISTORICAL RECORDS — legacy, superseded and nonselected sources. These are not current formal results.") }}</strong></p>
       <div class="filters">
-        <label>Experiment <select :value="experiment" data-testid="evidence-experiment-filter" @change="set('experiment', ($event.target as HTMLSelectElement).value)"><option value="">All experiments</option><option v-for="id in experiments" :key="id" :value="id">{{ id }}</option></select></label>
-        <label>Verification <select :value="status ?? ''" data-testid="evidence-status-filter" @change="set('status', ($event.target as HTMLSelectElement).value)"><option value="">All verification states</option><option v-for="s in statuses" :key="s" :value="s">{{ verificationLabels[s] }} · Source: {{ s }}</option></select></label>
-        <label>Source drift (this page) <select :value="drift" data-testid="evidence-drift-filter" @change="set('drift', ($event.target as HTMLSelectElement).value)"><option value="">All drift states</option><option>TRUE</option><option>FALSE</option><option>UNKNOWN</option></select></label>
+        <label>{{ zh("Experiment") }} <select :value="experiment" data-testid="evidence-experiment-filter" @change="set('experiment', ($event.target as HTMLSelectElement).value)"><option value="">{{ zh("All experiments") }}</option><option v-for="id in experiments" :key="id" :value="id">{{ experimentLabels[id] ?? id }}</option></select></label>
+        <label>{{ zh("Verification") }} <select :value="status ?? ''" data-testid="evidence-status-filter" @change="set('status', ($event.target as HTMLSelectElement).value)"><option value="">{{ zh("All verification states") }}</option><option v-for="s in statuses" :key="s" :value="s">{{ verificationLabels[s] }}</option></select></label>
+        <label>{{ zh("Source drift (this page)") }} <select :value="drift" data-testid="evidence-drift-filter" @change="set('drift', ($event.target as HTMLSelectElement).value)"><option value="">{{ zh("All drift states") }}</option><option value="TRUE">{{ zh("TRUE") }}</option><option value="FALSE">{{ zh("FALSE") }}</option><option value="UNKNOWN">{{ zh("UNKNOWN") }}</option></select></label>
       </div>
-      <p class="note">Experiment, verification and section filter on EVI01 before pagination. The frozen API has no drift query: source drift filters the current server page only. Next / Previous inspect other pages; no complete-registry load.</p>
-      <LoadStateBlock :loaded="index" target="evidence index">
+      <p class="note">{{ zh("Experiment, verification and section filter on EVI01 before pagination. The frozen API has no drift query: source drift filters the current server page only. Next / Previous inspect other pages; no complete-registry load.") }}</p>
+      <LoadStateBlock :loaded="index" :target="zh('evidence index')">
         <template v-if="index?.data">
-          <p data-testid="evidence-page-range">Server records {{ index.data.page.returned_count ? offset + 1 : 0 }}–{{ offset + index.data.page.returned_count }} of {{ index.data.page.total_count }} · {{ visible.length }} displayed</p>
-          <p v-if="!visible.length" data-testid="evidence-empty">No evidence matches on this server page.</p>
+          <p data-testid="evidence-page-range">{{ zh("Server records") }} {{ zh(index.data.page.returned_count ? offset + 1 : 0) }}–{{ zh(offset + index.data.page.returned_count) }} {{ zh("of") }} {{ zh(index.data.page.total_count) }} · {{ zh(visible.length) }} {{ zh("displayed") }}</p>
+          <p v-if="!visible.length" data-testid="evidence-empty">{{ zh("No evidence matches on this server page.") }}</p>
           <article v-for="item in visible" :key="item.evidence_id" class="card" data-testid="evidence-card">
-            <h3>{{ gapTitles[item.evidence_id] ?? item.title }}</h3>
-            <p v-if="gapTitles[item.evidence_id]">{{ item.title }}</p>
-            <p><strong>Experiment:</strong> {{ factText(item.experiment_id) }} · <strong>Result count:</strong> {{ item.result_ids.length }}</p>
-            <p>Registered result/config identities: {{ item.result_ids.join(', ') || 'No numerical result / config binding in index' }}</p>
-            <strong v-if="section === 'HISTORY'">HISTORY — outside current formal selection</strong>
+            <h3>{{ zh(gapTitles[item.evidence_id] ?? item.title) }}</h3>
+            <p v-if="gapTitles[item.evidence_id]">{{ zh(item.title) }}</p>
+            <p><strong>{{ zh("Experiment:") }}</strong> {{ zh(factText(item.experiment_id)) }} · <strong>{{ zh("Result count:") }}</strong> {{ zh(item.result_ids.length) }}</p>
+            <p>{{ zh("Registered result/config identities:") }} {{ zh(item.result_ids.join(', ') || 'No numerical result / config binding in index') }}</p>
+            <strong v-if="section === 'HISTORY'">{{ zh("HISTORY — outside current formal selection") }}</strong>
             <EvidenceStatus :verification="item.verification" :drift="item.source_drift" />
-            <p><strong>Main limitation:</strong> {{ item.limitations[0]?.description ?? 'No limitation recorded in index; inspect full scope.' }}</p>
+            <p><strong>{{ zh("Main limitation:") }}</strong> {{ zh(item.limitations[0]?.description ?? 'No limitation recorded in index; inspect full scope.') }}</p>
             <template v-if="section === 'GAPS'">
-              <p><strong>Why missing / limited:</strong> {{ item.limitations.map(l => l.description).join('; ') || item.verification.basis.join('; ') }}</p>
-              <p><strong>Affects:</strong> {{ gapScope[item.evidence_id]?.affects ?? (item.limitations.flatMap(l => l.affected_refs).join(', ') || item.result_ids.join(', ') || 'This registered missing source; broader impact is not established.') }}</p>
-              <p><strong>Does not affect:</strong> {{ gapScope[item.evidence_id]?.independent ?? 'This gap alone does not invalidate separately verified records with independent dependencies. Exact unaffected results are not enumerated by this record.' }}</p>
+              <p><strong>{{ zh("Why missing / limited:") }}</strong> {{ zh(item.limitations.map(l => zh(l.description)).join('; ') || item.verification.basis.map(zh).join('；')) }}</p>
+              <p><strong>{{ zh("Affects:") }}</strong> {{ zh(gapScope[item.evidence_id]?.affects ?? (item.limitations.flatMap(l => l.affected_refs).join(', ') || item.result_ids.join(', ') || 'This registered missing source; broader impact is not established.')) }}</p>
+              <p><strong>{{ zh("Does not affect:") }}</strong> {{ zh(gapScope[item.evidence_id]?.independent ?? 'This gap alone does not invalidate separately verified records with independent dependencies. Exact unaffected results are not enumerated by this record.') }}</p>
             </template>
-            <RouterLink :to="{ name: 'evidence', params: { evidence_id: item.evidence_id }, query: { selection: section, back: JSON.stringify({ name: 'evidence-center', query: route.query }) } }">View details →</RouterLink>
+            <RouterLink :to="{ name: 'evidence', params: { evidence_id: item.evidence_id }, query: { selection: section, back: JSON.stringify({ name: 'evidence-center', query: route.query }) } }">{{ zh("View details →") }}</RouterLink>
           </article>
-          <nav aria-label="Evidence pagination" class="pagination">
-            <button data-testid="evidence-previous" :disabled="offset === 0" @click="page(Math.max(0, offset - limit))">Previous</button>
-            <button data-testid="evidence-next" :disabled="!index.data.page.has_more" @click="page(offset + limit)">Next</button>
+          <nav :aria-label="zh('Evidence pagination')" class="pagination">
+            <button data-testid="evidence-previous" :disabled="offset === 0" @click="page(Math.max(0, offset - limit))">{{ zh("Previous") }}</button>
+            <button data-testid="evidence-next" :disabled="!index.data.page.has_more" @click="page(offset + limit)">{{ zh("Next") }}</button>
           </nav>
         </template>
       </LoadStateBlock>
-      <button v-if="index?.state === 'ERROR'" @click="load">Retry evidence index</button>
+      <button v-if="index?.state === 'ERROR'" @click="load">{{ zh("Retry evidence index") }}</button>
     </section>
-    <p>Evidence records can remain inspectable even when source-data drift blocks a scientific result. Inspectability does not mean Numerical Result Available.</p>
+    <p>{{ zh("Evidence records can remain inspectable even when source-data drift blocks a scientific result. Inspectability does not mean Numerical Result Available.") }}</p>
   </main>
 </template>
 <style scoped>

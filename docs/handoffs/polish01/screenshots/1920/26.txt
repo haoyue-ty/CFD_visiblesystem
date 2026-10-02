@@ -1,0 +1,76 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+首页 → 数字实验室 → Case 8 → D_u
+Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比
+Case 8 — D_u
+
+已记录实验回放 · 6 组空间快照与 1912 个已接受步标量历史
+
+配置：
+A_u
+B_u
+C_u
+D_u
+概览
+流场
+熵耗散
+空间分配
+指标
+证据
+独立实验：频谱分析 / 模态验证
+
+当前结果对应的来源。打开记录可查看完整方法、配置、来源、哈希、验证状态与适用边界。
+
+ev.case8.D_u.snapshot.1
+NO DRIFT
+
+验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 结果： case8.D_u.snapshot.1, case8.D_u.snapshot.1.density, case8.D_u.snapshot.1.pressure, case8.D_u.snapshot.1.front
+
+查看证据
+ev.case8.D_u.snapshot.2
+NO DRIFT
+
+验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 结果： case8.D_u.snapshot.2, case8.D_u.snapshot.2.density, case8.D_u.snapshot.2.pressure, case8.D_u.snapshot.2.front
+
+查看证据
+ev.case8.D_u.snapshot.3
+NO DRIFT
+
+验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 结果： case8.D_u.snapshot.3, case8.D_u.snapshot.3.density, case8.D_u.snapshot.3.pressure, case8.D_u.snapshot.3.front
+
+查看证据
+ev.case8.D_u.snapshot.4
+NO DRIFT
+
+验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 结果： case8.D_u.snapshot.4, case8.D_u.snapshot.4.density, case8.D_u.snapshot.4.pressure, case8.D_u.snapshot.4.front
+
+查看证据
+ev.case8.D_u.snapshot.5
+NO DRIFT
+
+验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 结果： case8.D_u.snapshot.5, case8.D_u.snapshot.5.density, case8.D_u.snapshot.5.pressure, case8.D_u.snapshot.5.front
+
+查看证据
+ev.case8.D_u.snapshot.6
+NO DRIFT
+
+验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 结果： case8.D_u.snapshot.6, case8.D_u.snapshot.6.density, case8.D_u.snapshot.6.pressure, case8.D_u.snapshot.6.front
+
+查看证据
+ev.case8.D_u.entropy
+NO DRIFT
+
+验证状态： 已验证 · 未冻结 · 来源状态：已验证 · 未冻结 · 结果： case8.D_u.E_bg_cumulative, case8.D_u.E_aa_cumulative, case8.D_u.E_at_cumulative, case8.D_u.E_bg_step, case8.D_u.E_aa_step, case8.D_u.E_at_step
+
+查看证据
+ev.case8.D_u.metrics
+来源一致性未知
+
+验证状态： 部分验证 · 来源状态：部分验证 · 结果： case8.D_u.metrics.case8_width, case8.D_u.metrics.case8_front_RMS, case8.D_u.metrics.case8_front_high_k_energy
+
+查看证据

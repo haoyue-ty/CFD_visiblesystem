@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import MechanismView from '../views/mechanism/MechanismView.vue'
@@ -8,8 +10,8 @@ const back = computed(() => sourceScene.value ? { name: 'explore', query: { ...r
 </script>
 <template>
   <main data-page="mechanism" class="mechanism-page">
-    <RouterLink :to="back" data-testid="mechanism-return">← {{ sourceScene ? `Back to Explore S${sourceScene}` : 'Back to Lab' }}</RouterLink>
-    <h1>Mechanism Explorer</h1>
+    <RouterLink :to="back" data-testid="mechanism-return">← {{ zh(sourceScene ? `Back to Explore S${sourceScene}` : 'Back to Lab') }}</RouterLink>
+    <h1>{{ zh("Mechanism Explorer") }}</h1>
     <MechanismView />
   </main>
 </template>

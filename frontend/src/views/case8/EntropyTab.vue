@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 /**
  * Case8 Entropy tab.
  *
@@ -83,38 +85,37 @@ watch(selectedStep, (step) => {
 
 <template>
   <section class="ent" data-testid="case8-entropy">
-    <LoadStateBlock :loaded="history" target="entropy history">
+    <LoadStateBlock :loaded="history" :target="zh('entropy history')">
       <div v-if="history?.data" class="ent__body">
         <EntropyChart :history="history.data" :selectable="!guided" @select-scalar-step="onSelectStep" />
         <MockBadge :origin="history.data.series[0]?.data_origin || 'MOCK'" :verification="history.data.series[0]?.verification.status" />
 
         <div class="ent__series-legend">
-          <span data-field="aggregation">{{ history.data.series[0]?.aggregation }}</span>
-          <p><strong>E_bg</strong> background production · <strong>E_aa</strong> acoustic pathway · <strong>E_at</strong> q_at channel cumulative production</p>
+          <span data-field="aggregation">{{ zh(history.data.series[0]?.aggregation) }}</span>
+          <p><strong>E_bg</strong> {{ zh("background production ·") }} <strong>E_aa</strong> {{ zh("acoustic pathway ·") }} <strong>E_at</strong> {{ zh("q_at channel cumulative production") }}</p>
           <p class="ent__caption">
-            <span data-field="total-point-count">{{ history.data.total_point_count }}</span> accepted scalar steps recorded. Step increment and
-            cumulative aggregation are shown as separate semantics.
+            <span data-field="total-point-count">{{ zh(history.data.total_point_count) }}</span> {{ zh("accepted scalar steps recorded. Step increment and cumulative aggregation are shown as separate semantics.") }}
           </p>
         </div>
       </div>
     </LoadStateBlock>
 
     <section v-if="guided && history?.data" data-testid="entropy-terminal">
-      <h3>Terminal pathway budget — {{ configId }}</h3>
+      <h3>{{ zh("Terminal pathway budget —") }} {{ zh(configId) }}</h3>
       <dl v-for="series in history.data.series" :key="series.series_id">
-        <dt>{{ series.label }} · {{ series.aggregation }}</dt>
-        <dd>{{ series.points.at(-1)?.value ?? 'UNKNOWN' }} [{{ series.unit.label }}] · t={{ series.points.at(-1)?.physical_time ?? 'UNKNOWN' }}</dd>
+        <dt>{{ zh(series.label) }} · {{ zh(series.aggregation) }}</dt>
+        <dd>{{ zh(series.points.at(-1)?.value ?? 'UNKNOWN') }} [{{ zh(series.unit.label) }}] · t={{ zh(series.points.at(-1)?.physical_time ?? 'UNKNOWN') }}</dd>
       </dl>
-      <p>Recorded terminal values; accepted-step scalar history is not a spatial movie.</p>
+      <p>{{ zh("Recorded terminal values; accepted-step scalar history is not a spatial movie.") }}</p>
     </section>
 
-    <section v-if="!guided" class="ent__alignment" aria-label="Scalar / snapshot alignment">
-      <h3>Scalar selection &amp; snapshot alignment</h3>
+    <section v-if="!guided" class="ent__alignment" :aria-label="zh('Scalar / snapshot alignment')">
+      <h3>{{ zh("Scalar selection & snapshot alignment") }}</h3>
 
       <!-- Manual step selection: selects a REAL accepted step by number, and is
            the accessible equivalent of clicking the chart. -->
       <div v-if="history?.data" class="ent__picker">
-        <label for="scalar-step-input">Select accepted step (1…{{ history.data.total_point_count }}):</label>
+        <label for="scalar-step-input">{{ zh("Select accepted step (1…") }}{{ zh(history.data.total_point_count) }}):</label>
         <input
           id="scalar-step-input"
           data-testid="scalar-step-input"
@@ -124,35 +125,34 @@ watch(selectedStep, (step) => {
           v-model.number="manualStep"
           @keyup.enter="applyManualStep"
         />
-        <button data-testid="scalar-step-apply" @click="applyManualStep">Apply</button>
+        <button data-testid="scalar-step-apply" @click="applyManualStep">{{ zh("Apply") }}</button>
       </div>
 
       <p v-if="selectedStep === null" class="ent__hint" data-testid="alignment-empty">
-        No scalar point selected yet. Click the chart, or pick an accepted step above.
+        {{ zh("No scalar point selected yet. Click the chart, or pick an accepted step above.") }}
       </p>
-      <LoadStateBlock v-else :loaded="alignment" target="snapshot alignment">
+      <LoadStateBlock v-else :loaded="alignment" :target="zh('snapshot alignment')">
         <div v-if="alignment?.data" class="ent__dual" data-testid="dual-time-notice">
           <div class="ent__dual-col">
-            <h4>Selected scalar time</h4>
-            <p class="ent__dual-big" data-testid="selected-scalar-time">{{ alignment.data.selected_scalar_time }}</p>
-            <p class="ent__dual-sub">completed step {{ alignment.data.selected_scalar_step }} · fine granularity (1…{{ history?.data?.total_point_count }})</p>
+            <h4>{{ zh("Selected scalar time") }}</h4>
+            <p class="ent__dual-big" data-testid="selected-scalar-time">{{ zh(alignment.data.selected_scalar_time) }}</p>
+            <p class="ent__dual-sub">{{ zh("completed step") }} {{ zh(alignment.data.selected_scalar_step) }} {{ zh("· fine granularity (1…") }}{{ zh(history?.data?.total_point_count) }})</p>
           </div>
           <div class="ent__dual-col">
-            <h4>Displayed snapshot time</h4>
-            <p class="ent__dual-big" data-testid="displayed-snapshot-time">{{ alignment.data.displayed_snapshot_time }}</p>
+            <h4>{{ zh("Displayed snapshot time") }}</h4>
+            <p class="ent__dual-big" data-testid="displayed-snapshot-time">{{ zh(alignment.data.displayed_snapshot_time) }}</p>
             <p class="ent__dual-sub">
-              nearest recorded snapshot {{ alignment.data.displayed_snapshot_index }} · coarse granularity (1…6)
+              {{ zh("nearest recorded snapshot") }} {{ zh(alignment.data.displayed_snapshot_index) }} {{ zh("· coarse granularity (1…6)") }}
             </p>
           </div>
           <div class="ent__dual-col">
-            <h4>Signed delta</h4>
-            <p class="ent__dual-big">{{ alignment.data.signed_time_delta }}</p>
-            <p class="ent__dual-sub">displayed time − selected time</p>
+            <h4>{{ zh("Signed delta") }}</h4>
+            <p class="ent__dual-big">{{ zh(alignment.data.signed_time_delta) }}</p>
+            <p class="ent__dual-sub">{{ zh("displayed time − selected time") }}</p>
           </div>
         </div>
         <p class="ent__warn" data-testid="granularity-warning">
-          The two times use different granularities and are <strong>not</strong> the same instant.
-          No interpolated field is generated for the selected scalar step.
+          {{ zh("The two times use different granularities and are") }} <strong>{{ zh("not") }}</strong> {{ zh("the same instant. No interpolated field is generated for the selected scalar step.") }}
         </p>
       </LoadStateBlock>
     </section>

@@ -1,3 +1,4 @@
+import { zh } from '../src/presentation/zh-CN'
 import { test, expect } from '@playwright/test'
 import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -8,23 +9,23 @@ for (const config of ['A_u', 'B_u', 'D_u']) {
     page.on('pageerror', error => errors.push(error.message))
     await page.goto(`/lab/experiments/cylinder?config=${config}&tab=flow`)
     await expect(page.locator('main[data-page="cylinder"]')).toBeVisible()
-    await expect(page.getByRole('tab')).toHaveText(['Overview', 'Flow', 'Entropy', 'Sector Allocation', 'Metrics', 'Evidence'])
-    await expect(page.getByRole('group', { name: 'Cylinder config' }).getByRole('button')).toHaveText(['A_u', 'B_u', 'D_u'])
+    await expect(page.getByRole('tab')).toHaveText(["概览", "流场", "熵耗散", "扇区分配", "指标", "证据"])
+    await expect(page.getByRole('group', { name: "圆柱绕流配置" }).getByRole('button')).toHaveText(['A_u', 'B_u', 'D_u'])
     await expect(page.getByTestId('config-C_u')).toHaveCount(0)
     await expect(page.getByTestId('snapshot-selector').locator('option')).toHaveCount(5)
     const steps = [0, 2439, 4878, 7318, 9757]
     for (let snapshot = 1; snapshot <= 5; snapshot++) {
       await page.getByTestId('snapshot-selector').selectOption(String(snapshot))
-      await expect(page.getByTestId('snapshot-meta')).toContainText(`completed step=${steps[snapshot - 1]}`)
-      await expect(page.getByTestId('snapshot-meta')).toContainText('physical time=')
+      await expect(page.getByTestId('snapshot-meta')).toContainText(`已完成步=${steps[snapshot - 1]}`)
+      await expect(page.getByTestId('snapshot-meta')).toContainText("物理时间=")
       await expect(page.getByTestId('instantaneous-field')).toHaveAttribute('width', '128')
       await expect(page.getByTestId('instantaneous-field')).toHaveAttribute('height', '31')
-      await expect(page.getByTestId('field-availability')).toContainText('radial_interior_pi_at: AVAILABLE')
+      await expect(page.getByTestId('field-availability')).toContainText("radial_interior_pi_at: 可用")
     }
     await page.getByTestId('field-selector').selectOption('angular_interior_pi_at')
     await expect(page.getByTestId('instantaneous-field')).toHaveAttribute('height', '32')
     await page.getByTestId('field-selector').selectOption('density')
-    await expect(page.locator('[data-state="missing"]')).toContainText('No saved instantaneous density')
+    await expect(page.locator('[data-state="missing"]')).toContainText("未保存瞬时密度")
     await expect(page.getByTestId('instantaneous-field')).toHaveCount(0)
     await expect(page.getByTestId('mock-badge')).toHaveCount(0)
     expect(errors).toEqual([])
@@ -33,15 +34,15 @@ for (const config of ['A_u', 'B_u', 'D_u']) {
     await page.goto(`/lab/experiments/cylinder?config=${config}&tab=sectors`)
     await expect(page.getByTestId('angular-sector-chart')).toBeVisible()
     await expect(page.getByTestId('sector-table').locator('tbody tr')).toHaveCount(16)
-    await expect(page.getByTestId('sector-allocation')).toContainText('trajectory-integrated · interior-only')
-    await expect(page.getByTestId('front-band')).toContainText('REGION_SCALAR')
-    await expect(page.getByTestId('front-band')).toContainText('Fraction:')
+    await expect(page.getByTestId('sector-allocation')).toContainText("轨迹累计 · 仅内部")
+    await expect(page.getByTestId('front-band')).toContainText("前沿区域标量")
+    await expect(page.getByTestId('front-band')).toContainText("占比：")
     await expect(page.getByTestId('front-band')).toContainText('mask.cylinder.fixed-front-band')
-    await expect(page.getByTestId('front-band')).toContainText('Definition')
-    await expect(page.getByTestId('cumulative-2d-missing')).toContainText('Unavailable / Missing')
+    await expect(page.getByTestId('front-band')).toContainText("定义")
+    await expect(page.getByTestId('cumulative-2d-missing')).toContainText("当前不可用 / 缺失")
     await expect(page.getByTestId('cumulative-2d-missing').locator('canvas')).toHaveCount(0)
     await expect(page.getByTestId('front-band').getByTestId('evidence-link').first()).toBeVisible()
-    if (config === 'A_u') await expect(page.getByTestId('front-band')).toContainText('N/A (zero denominator)')
+    if (config === 'A_u') await expect(page.getByTestId('front-band')).toContainText("不适用（分母为零）")
   })
 }
 test('Cylinder full 9757-record history retains scalar semantics and independent snapshot state', async ({ page }) => {
@@ -50,15 +51,15 @@ test('Cylinder full 9757-record history retains scalar semantics and independent
   await page.goto('/lab/experiments/cylinder?config=D_u&tab=entropy&snapshot=3&step=123')
   await expect(page.getByTestId('cylinder-entropy-chart')).toBeVisible()
   await expect(page.locator('[data-point-count="9757"]')).toHaveCount(4)
-  await expect(page.getByTestId('cylinder-history')).toContainText('source accepted interval start/end retained')
-  await expect(page.getByTestId('cylinder-history')).toContainText('INTERIOR_ONLY')
-  await expect(page.getByTestId('scalar-selected').first()).toContainText('completed step=123')
+  await expect(page.getByTestId('cylinder-history')).toContainText("保留来源接受区间起止时间")
+  await expect(page.getByTestId('cylinder-history')).toContainText("仅内部")
+  await expect(page.getByTestId('scalar-selected').first()).toContainText("已完成步=123")
   await page.getByTestId('scalar-step').fill('9000')
   await expect(page).toHaveURL(/step=9000/)
   await page.getByTestId('tab-flow').click()
   await expect(page.getByTestId('snapshot-selector')).toHaveValue('3')
   await page.getByTestId('tab-entropy').click()
-  await expect(page.getByTestId('scalar-selected').first()).toContainText('completed step=9000')
+  await expect(page.getByTestId('scalar-selected').first()).toContainText("已完成步=9000")
   expect(offsets).toContain('0'); expect(offsets).toContain('5000')
 })
 test('Cylinder local canonical metrics retain definitions, detectors, units, time and detector floor', async ({ page }) => {
@@ -66,7 +67,7 @@ test('Cylinder local canonical metrics retain definitions, detectors, units, tim
   for (const id of ['cylinder_centerline_width', 'cylinder_front_mean_width', 'cylinder_front_RMS', 'cylinder_front_HF_RMS']) {
     const card = page.locator(`[data-metric="${id}"]`)
     await expect(card).toBeVisible()
-    for (const phrase of ['Definition', 'Detector:', 'Unit', 'Time semantics', 'Limitation', 'View evidence']) await expect(card).toContainText(phrase)
+    for (const phrase of ['Definition', 'Detector:', 'Unit', 'Time semantics', 'Limitation', 'View evidence']) await expect(card).toContainText(zh(phrase))
   }
   await expect(page.locator('[data-metric="cylinder_front_mean_width"]')).toContainText('DETECTOR_LIMITED_SHARPNESS_READING')
   await expect(page.getByTestId('detector-floor').first()).toBeVisible()
@@ -93,8 +94,8 @@ test('Cross-flow renders distinct scientific objects, policies, comparability an
   await expect(right.getByTestId('angular-sector-chart')).toBeVisible()
   await expect(right.getByTestId('face-allocation-canvas')).toHaveCount(0)
   await expect(right.getByTestId('front-band')).toBeVisible()
-  await expect(right.getByTestId('cumulative-2d-missing')).toContainText('Missing')
-  for (const word of ['Localization', 'HF', 'Width', 'Budget']) await expect(page.getByTestId('comparability-rules')).toContainText(word)
+  await expect(right.getByTestId('cumulative-2d-missing')).toContainText("缺失")
+  for (const word of ['Localization', 'HF', 'Width', 'Budget']) await expect(page.getByTestId('comparability-rules')).toContainText(zh(word))
   await expect(page.getByTestId('cylinder-config').locator('option')).toHaveText(['A_u', 'B_u', 'D_u'])
   await page.screenshot({ path: info.outputPath('cross-flow-functional.png'), fullPage: true })
   await left.getByTestId('face-allocation-canvas').first().scrollIntoViewIfNeeded()
@@ -109,7 +110,7 @@ test('Cross-flow renders distinct scientific objects, policies, comparability an
     expect(new URL(page.url()).searchParams.get('view')).toBe('allocation')
   }
   await page.getByTestId('case8-config').selectOption('A_u')
-  await expect(left).toContainText('No saved cumulative native-face allocation')
+  await expect(left).toContainText("未保存累计原生面分配")
   await expect(left.getByTestId('face-allocation-canvas')).toHaveCount(0)
   await expect(right.getByTestId('angular-sector-chart')).toBeVisible()
   await page.reload()
@@ -134,19 +135,19 @@ test('field asset failure shows Missing without substituting another frame', asy
 })
 test('invalid snapshot and unsupported config deep links never create frames or C_u selector', async ({ page }) => {
   await page.goto('/lab/experiments/cylinder?config=C_u&tab=flow&snapshot=0')
-  await expect(page.locator('[data-state="unsupported"]').first()).toContainText('C_u is outside the verified configuration set')
+  await expect(page.locator('[data-state="unsupported"]').first()).toContainText('C_u 不在已验证配置范围内')
   await expect(page).toHaveURL(/config=C_u/)
   await expect(page.getByTestId('config-C_u')).toHaveCount(0)
   await expect(page.getByTestId('instantaneous-field')).toHaveCount(0)
   await page.goto('/lab/experiments/cylinder?config=D_u&tab=flow&snapshot=0')
-  await expect(page.getByRole('alert')).toContainText('only recorded indices 1…5')
+  await expect(page.getByRole('alert')).toContainText("仅支持已记录索引 1…5")
   await expect(page.getByTestId('instantaneous-field')).toHaveCount(0)
 })
 test('Lab navigation opens Cylinder and cross-flow routes', async ({ page }) => {
   await page.goto('/lab')
   await page.getByTestId('open-cylinder').click()
   await expect(page.locator('main[data-page="cylinder"]')).toBeVisible()
-  await page.getByRole('link', { name: /Cross-flow Compare/ }).click()
+  await page.getByRole('link', { name: /跨流动对比/ }).click()
   await expect(page.locator('main[data-page="cross-flow"]')).toBeVisible()
 })
 test('production bundle contains zero mock implementation or fixture identifiers', () => {
@@ -159,7 +160,7 @@ test('Cylinder config changes retain selected tab and replace allocation identit
   for (const config of ['A_u', 'B_u', 'D_u']) {
     await page.getByTestId(`config-${config}`).click()
     await expect(page.getByTestId('front-band')).toContainText(`cylinder.${config}.metric.E_at_int`)
-    await expect(page.getByTestId('cylinder-capability-gap')).toContainText('Unavailable / Missing')
+    await expect(page.getByTestId('cylinder-capability-gap')).toContainText("当前不可用 / 缺失")
     expect(new URL(page.url()).searchParams.get('tab')).toBe('sectors')
   }
 })

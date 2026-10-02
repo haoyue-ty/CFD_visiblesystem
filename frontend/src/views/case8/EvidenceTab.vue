@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { verificationText } from "../../data/evidence"
 import { activeProvider } from '../../data'
 /**
@@ -30,21 +32,20 @@ watch(() => props.configId, load)
 <template>
   <section class="ev" data-testid="case8-evidence">
     <p class="ev__intro">
-      Sources backing the currently displayed results. Open any record for the full
-      method/config/source/hash/verification/limitations detail in P09.
+      {{ zh("Sources backing the currently displayed results. Open any record for the full method/config/source/hash/verification/limitations detail in P09.") }}
     </p>
-    <LoadStateBlock :loaded="items" target="evidence sources">
+    <LoadStateBlock :loaded="items" :target="zh('evidence sources')">
       <ul class="ev__list" data-testid="evidence-source-list">
         <li v-for="item in items?.data || []" :key="item.evidence_id" class="ev__item">
           <div class="ev__head">
-            <span class="ev__title">{{ item.title }}</span>
+            <span class="ev__title">{{ zh(item.title) }}</span>
             <span class="badge" :class="item.source_drift ? 'badge--drift' : 'badge--ok'">
-              {{ item.source_drift === null ? 'DRIFT UNKNOWN' : item.source_drift ? 'SOURCE DRIFT' : 'NO DRIFT' }}
+              {{ zh(item.source_drift === null ? 'DRIFT UNKNOWN' : item.source_drift ? 'SOURCE DRIFT' : 'NO DRIFT') }}
             </span>
           </div>
           <p class="ev__meta">
-            verification: {{ verificationText(item.verification) }} · results:
-            <code>{{ item.result_ids.join(', ') }}</code>
+            {{ zh("verification:") }} {{ zh(verificationText(item.verification)) }} {{ zh("· results:") }}
+            <code>{{ zh(item.result_ids.join(', ')) }}</code>
           </p>
           <EvidenceLink :evidence-id="item.evidence_id" />
         </li>

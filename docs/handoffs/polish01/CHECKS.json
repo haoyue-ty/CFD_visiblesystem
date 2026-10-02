@@ -1,0 +1,328 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-10-02T20:59:47.758794+08:00",
+  "branch": "codex/polish01-zh-cn",
+  "base_commit": "9dfc886b558311fc3a0145fea686a8dc6f3627f7",
+  "final_commit": "HEAD",
+  "final_commit_resolution": "git rev-parse HEAD after committing this acceptance record; the literal hash is reported in the final chat. A commit cannot embed its own hash.",
+  "backend_tests": {
+    "status": "PASS",
+    "passed": 1356,
+    "duration_seconds": 558.67,
+    "carried_forward_from_previous_window": true,
+    "evidence": "RESUME_PROMPT.md records the completed backend run; backend/config are byte-identical to BASE_COMMIT; no backend rerun needed for the locator presentation fix."
+  },
+  "frontend_unit": {
+    "status": "PASS",
+    "passed": 18
+  },
+  "frontend_e2e": {
+    "status": "PASS",
+    "passed": 202,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "frontend_full_suite": {
+    "status": "PASS",
+    "passed": 220,
+    "projects": {
+      "unit": 18,
+      "phase5-10-real-api": 166,
+      "phase8-real-api": 1,
+      "window3-mock-development": 16,
+      "window4-allocation-ui": 10,
+      "window3-spectral-ui": 9
+    },
+    "duration_ms": 563375.924,
+    "receipt": "FRONTEND_TEST_RESULTS.json"
+  },
+  "evidence_locator_regression": {
+    "status": "PASS",
+    "targeted_passed": 1,
+    "also_in_full_suite": true,
+    "security_assertions_preserved": true
+  },
+  "allocation_comparison_selector_regression": {
+    "status": "PASS",
+    "targeted_passed": 1,
+    "also_in_full_suite": true,
+    "fix": "Role locator uses the same two localized display phrases as the actual button; scientific and return-state assertions unchanged."
+  },
+  "typecheck": {
+    "status": "PASS",
+    "command": "npm run build (vue-tsc --noEmit)"
+  },
+  "build": {
+    "status": "PASS",
+    "command": "npm run build",
+    "assets": {
+      "index-6zZIkGqQ.js": {
+        "bytes": 1604203,
+        "sha256": "2e7646c6aa045b57f37336ffa48c5bf30078628d983c0e55183e35e1bcecc81a"
+      },
+      "index-Bg_h4KTQ.css": {
+        "bytes": 28907,
+        "sha256": "efcebb0ab38359b26fd79947cc41c52eac3ade9b8ec9ef56634910c82547f095"
+      }
+    },
+    "warning": "Existing >500 KB chunk warning; no build failure."
+  },
+  "contract": {
+    "status": "PASS",
+    "openapi_diff": "NONE",
+    "backend_contract_diff": "NONE",
+    "scientific_schema_diff": "NONE",
+    "receipt": "CONTRACT_AUDIT.json"
+  },
+  "production_mock_scan": 0,
+  "source_path_exposure": 0,
+  "public_assets": {
+    "status": "PASS",
+    "scanned": 2438,
+    "receipt": "PUBLIC_ASSET_AUDIT.json"
+  },
+  "scientific_source": {
+    "status": "PASS",
+    "files": 27843,
+    "fingerprint": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "scientific_files_modified": false,
+    "cfd_runs_started": 0,
+    "verified_at": "2026-10-02T20:59:47.758794+08:00"
+  },
+  "scientific_values_changed": false,
+  "routes_changed": false,
+  "api_contract_changed": false,
+  "scientific_schema_changed": false,
+  "cfd_runs_started": 0,
+  "browser_qa": {
+    "1920": {
+      "status": "PASS",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "routes": 43,
+      "ordinary_english_residuals": 0,
+      "root_overflows": 0,
+      "pageerrors": 0
+    },
+    "390": {
+      "status": "PASS",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "routes": 43,
+      "ordinary_english_residuals": 0,
+      "root_overflows": 0,
+      "pageerrors": 0
+    }
+  },
+  "screenshots": 93,
+  "body_snapshots": 86,
+  "ambiguous_language_items": 0,
+  "code_review": {
+    "vue_files": [
+      {
+        "path": "frontend/src/App.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/components/BootstrapPlaceholder.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/components/ExploreReturn.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/components/LoadStateBlock.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/components/MockBadge.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/ClosurePage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/CylinderPage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/EntryPage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/EvidenceCenterPage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/ExperimentPage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/ExplorePage.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/pages/HomePage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/LabPage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/MechanismPage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/pages/ScientificLabPage.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/scientific/AllocationSummary.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/scientific/CellAllocationView.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/scientific/EigenmodeChart.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/scientific/EntropyChart.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/scientific/EvidenceLink.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/scientific/FaceAllocationView.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/scientific/GrowthValidationChart.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/scientific/MetricsPanel.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/scientific/ScientificStatus.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/scientific/SnapshotViewer.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/scientific/SpectralCurveChart.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/views/case8/AllocationTab.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/case8/EntropyTab.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/case8/EvidenceTab.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/case8/FlowTab.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/case8/GateComparisonView.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/case8/MetricsTab.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/case8/OverviewTab.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/case8/SpectralTab.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/closure/ClosureChart.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/closure/ClosureHistory.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/closure/ClosureRefinement.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/crossflow/CrossFlowView.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/cylinder/CanonicalMetrics.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/cylinder/InstantaneousField.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/cylinder/ResourceState.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/cylinder/ResultContext.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/cylinder/ScalarHistory.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/views/cylinder/SectorAllocation.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/evidence/EvidenceDetailView.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/evidence/EvidenceQuickView.vue",
+        "script_unchanged_except_localization_import": true
+      },
+      {
+        "path": "frontend/src/views/evidence/EvidenceStatus.vue",
+        "script_unchanged_except_localization_import": false
+      },
+      {
+        "path": "frontend/src/views/mechanism/MechanismView.vue",
+        "script_unchanged_except_localization_import": true
+      }
+    ],
+    "protected_paths_changed": [],
+    "test_numeric_and_route_identity_review": "PASS",
+    "template_controls_review": "PASS; existing conditionals/events/routes unchanged; explicit option values preserve identity; Entry adds authorized Lab link",
+    "changed_scripts_review": "PASS; only scene presentation, chart title/tooltip/legend/spacing and verification display props changed"
+  },
+  "next_stage": "COMPETITION_VISUAL_SYSTEM_POLISH",
+  "next_stage_started": false,
+  "body_snapshot_normalization": "Trailing whitespace only; original browser innerText retained in ignored .cache; all copy and scientific values preserved."
+}

@@ -9,6 +9,7 @@
  */
 import { onBeforeUnmount, onMounted, ref, watch, type Ref } from 'vue'
 import { init, dispose, type ECharts } from './echarts'
+import { chartCopy } from '../presentation/zh-CN'
 
 export function useEcharts(option: Ref<unknown>) {
   const el = ref<HTMLElement | null>(null)
@@ -23,7 +24,7 @@ export function useEcharts(option: Ref<unknown>) {
       observer.observe(el.value)
     }
     // notMerge: a new selector must never merge into a stale series.
-    chart.setOption(option.value as never, true)
+    chart.setOption(chartCopy(option.value) as never, true)
   }
 
   onMounted(render)

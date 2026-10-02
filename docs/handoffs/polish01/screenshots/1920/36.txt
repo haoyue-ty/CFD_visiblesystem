@@ -1,0 +1,125 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+数字实验室
+横向模态频谱
+概览
+频谱
+模态
+验证
+证据
+选择性模态响应
+
+增长率特征 Re(λ) 在共同 Mach6 基态上测量最不稳定 Fourier 模态。下方每个 q_at 均为精确登记的配置；模态为离散块（ell 0…16）。本页仅展示已记录频谱事实。
+
+正熵产 ≠ 所有模态统一增强阻尼。
+
+配置：
+spectrum.q-0.000
+spectrum.q-0.132
+spectrum.q-0.264
+spectrum.q-0.396
+
+q_at = 0.396（四组精确记录配置之一，不插值）
+
+1 · 谱横坐标曲线
+
+x = 模态 k · y = Re(λ)
+
+数据来源：冻结生产数据 · 验证状态：已冻结验收
+
+登记版本=spectral-registry-v1 · 数据版本=linear-perturbation-freeze-v1 · 验证状态：已冻结验收 · 来源状态：已冻结验收
+
+2 · 模态详情
+模态索引（ell）：
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+数据来源：冻结生产数据 · 验证状态：已冻结验收
+模态索引（ELL）
+8
+特征向量侧
+RIGHT
+特征对序号
+0
+特征向量表示
+复向量
+投影
+复平面
+场分量
+stored_vector
+形状
+128 × 4
+局部化
+0.03246193370308546
+
+固定激波单元 58..66 中已保存 RIGHT 原始变量剖面能量占比；sum_x,sum_components |(drho/rho_pre,du/c_pre,dv/c_pre,dp/p_post)|^2；并非守恒向量能量或 LEFT 向量指标
+
+登记版本=spectral-registry-v1 · 数据版本=linear-perturbation-freeze-v1 · 验证状态：已冻结验收 · 来源状态：已冻结验收
+
+3 · 增长验证 — 线性与 CFD
+已记录运行：
+模态 1 · q_at=0.0 · ε=0.0001
+模态 1 · q_at=0.0 · ε=1e-05
+模态 1 · q_at=0.0 · ε=1e-06
+模态 1 · q_at=0.396 · ε=0.0001
+模态 1 · q_at=0.396 · ε=1e-05
+模态 1 · q_at=0.396 · ε=1e-06
+模态 4 · q_at=0.0 · ε=0.0001
+模态 4 · q_at=0.0 · ε=1e-05
+模态 4 · q_at=0.0 · ε=1e-06
+模态 4 · q_at=0.396 · ε=0.0001
+模态 4 · q_at=0.396 · ε=1e-05
+模态 4 · q_at=0.396 · ε=1e-06
+模态 8 · q_at=0.0 · ε=0.0001
+模态 8 · q_at=0.0 · ε=1e-05
+模态 8 · q_at=0.0 · ε=1e-06
+模态 8 · q_at=0.396 · ε=0.0001
+模态 8 · q_at=0.396 · ε=1e-05
+模态 8 · q_at=0.396 · ε=1e-06
+模态 12 · q_at=0.0 · ε=0.0001
+模态 12 · q_at=0.0 · ε=1e-05
+模态 12 · q_at=0.0 · ε=1e-06
+模态 12 · q_at=0.396 · ε=0.0001
+模态 12 · q_at=0.396 · ε=1e-05
+模态 12 · q_at=0.396 · ε=1e-06
+数据来源：冻结生产数据 · 验证状态：已冻结验收
+
+已记录增长率 [模型时间的倒数]
+
+Σ 线性
+1.977809e+0
+Σ RK3
+1.977809e+0
+Σ CFD
+1.977527e+0
+相对偏差（CFD−RK3）
+1.428306e-4
+
+该运行的 线性振幅历史 未保存。现有数据仅包含线性 / RK3 / CFD 增长率和 33 步 CFD 历史，不生成预测曲线。
+
+登记版本=spectral-registry-v1 · 数据版本=linear-perturbation-freeze-v1 · 验证状态：已冻结验收 · 来源状态：已冻结验收 · 振幅定义=ABS_PROJECTED_COEFFICIENT
+
+证据
+查看证据evidence.spectral.spectrum.q-0.396
+查看证据evidence.spectral.spectrum.q-0.396.mode-00
+查看证据evidence.spectral.spectrum.q-0.396.mode-08.right.rank-00.complex_vector.stored_vector
+查看证据evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * AllocationSummary — the budget / inside / outside block plus the explicit
  * measure rule.
@@ -23,59 +25,59 @@ function fmt(value: number | null): string {
 
 <template>
   <section class="as" data-testid="allocation-summary" :data-measure="props.summary.measure_definition">
-    <h3 class="as__h">Summary</h3>
+    <h3 class="as__h">{{ zh("Summary") }}</h3>
     <dl class="as__grid">
       <div class="as__cell">
-        <dt>Integrated budget</dt>
-        <dd data-testid="alloc-budget">{{ fmt(props.summary.total_budget.value) }}</dd>
-        <span class="as__unit">{{ props.summary.total_budget.unit_label }}</span>
+        <dt>{{ zh("Integrated budget") }}</dt>
+        <dd data-testid="alloc-budget">{{ zh(fmt(props.summary.total_budget.value)) }}</dd>
+        <span class="as__unit">{{ zh(props.summary.total_budget.unit_label) }}</span>
       </div>
       <div class="as__cell">
-        <dt>Inside window</dt>
-        <dd data-testid="alloc-inside">{{ fmt(props.summary.inside.value) }}</dd>
-        <span class="as__unit">{{ props.summary.inside.fraction_format ?? '' }}</span>
+        <dt>{{ zh("Inside window") }}</dt>
+        <dd data-testid="alloc-inside">{{ zh(fmt(props.summary.inside.value)) }}</dd>
+        <span class="as__unit">{{ zh(props.summary.inside.fraction_format ?? '') }}</span>
       </div>
       <div class="as__cell" v-if="props.summary.outside">
-        <dt>Outside window</dt>
-        <dd data-testid="alloc-outside">{{ fmt(props.summary.outside.value) }}</dd>
-        <span class="as__unit">{{ props.summary.outside.fraction_format ?? '' }}</span>
+        <dt>{{ zh("Outside window") }}</dt>
+        <dd data-testid="alloc-outside">{{ zh(fmt(props.summary.outside.value)) }}</dd>
+        <span class="as__unit">{{ zh(props.summary.outside.fraction_format ?? '') }}</span>
       </div>
     </dl>
 
     <dl class="as__measure" data-testid="allocation-measure">
       <div>
-        <dt>Measure definition</dt>
-        <dd>{{ props.summary.measure_definition }}</dd>
+        <dt>{{ zh("Measure definition") }}</dt>
+        <dd>{{ zh(props.summary.measure_definition) }}</dd>
       </div>
       <div>
-        <dt>Integral rule</dt>
-        <dd><code data-testid="alloc-integral-rule">{{ props.summary.integral_rule }}</code></dd>
+        <dt>{{ zh("Integral rule") }}</dt>
+        <dd><code data-testid="alloc-integral-rule">{{ zh(props.summary.integral_rule) }}</code></dd>
       </div>
       <div>
-        <dt>Time weights included</dt>
-        <dd>{{ props.summary.includes_time_weights ? 'yes (already applied)' : 'no' }}</dd>
+        <dt>{{ zh("Time weights included") }}</dt>
+        <dd>{{ zh(props.summary.includes_time_weights ? 'yes (already applied)' : 'no') }}</dd>
       </div>
       <div>
-        <dt>Spatial measure included</dt>
+        <dt>{{ zh("Spatial measure included") }}</dt>
         <dd data-testid="alloc-spatial-included">
-          {{ props.summary.includes_spatial_measure ? 'yes (do not multiply again)' : 'no (dx/dy still required)' }}
+          {{ zh(props.summary.includes_spatial_measure ? 'yes (do not multiply again)' : 'no (dx/dy still required)') }}
         </dd>
       </div>
       <div v-if="props.summary.measure_parameters.length">
-        <dt>Rule parameters</dt>
+        <dt>{{ zh("Rule parameters") }}</dt>
         <dd>
           <span v-for="p in props.summary.measure_parameters" :key="p.name" class="as__param">
-            {{ p.name }} = {{ p.value }}
+            {{ zh(p.name) }} = {{ zh(p.value) }}
           </span>
         </dd>
       </div>
       <div>
-        <dt>Integration interval</dt>
-        <dd>{{ props.summary.integration_interval }}</dd>
+        <dt>{{ zh("Integration interval") }}</dt>
+        <dd>{{ zh(props.summary.integration_interval) }}</dd>
       </div>
       <div>
-        <dt>Time scope</dt>
-        <dd>{{ props.summary.time_scope_label }}</dd>
+        <dt>{{ zh("Time scope") }}</dt>
+        <dd>{{ zh(props.summary.time_scope_label) }}</dd>
       </div>
     </dl>
     <p v-if="props.evidenceId" class="as__ev">

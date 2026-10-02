@@ -33,13 +33,13 @@ test.describe('Case8 acceptance chain', () => {
 
   test('the initial frame is snapshot 1 with step 0, not snapshot 0', async ({ page }) => {
     await page.goto(CHAIN.snapshot6.replace('snapshot=6', 'snapshot=1'))
-    await expect(page.getByTestId('snapshot-label')).toHaveText('Snapshot 1 / 6')
+    await expect(page.getByTestId('snapshot-label')).toHaveText("快照 1 / 6")
     await expect(page.locator('[data-testid="snapshot-step"]')).toHaveText('0')
   })
 
   test('snapshot 6 of D_u shows step 1912 and physical time 0.08', async ({ page }) => {
     await page.goto(CHAIN.snapshot6)
-    await expect(page.getByTestId('snapshot-label')).toHaveText('Snapshot 6 / 6')
+    await expect(page.getByTestId('snapshot-label')).toHaveText("快照 6 / 6")
     await expect(page.locator('[data-testid="snapshot-step"]')).toHaveText('1912')
     await expect(page.locator('[data-testid="snapshot-physical-time"]')).toHaveText('0.08')
   })
@@ -47,13 +47,13 @@ test.describe('Case8 acceptance chain', () => {
   test('entropy tab reports a 1912-record series for the selected configuration', async ({ page }) => {
     await page.goto(CHAIN.entropy)
     await expect(page.locator('[data-field="total-point-count"]')).toHaveText('1912')
-    await expect(page.locator('[data-field="aggregation"]')).not.toHaveText('STEP_INCREMENT')
+    await expect(page.locator('[data-field="aggregation"]')).not.toHaveText("单步增量")
   })
 
   test('metrics tab reports the recorded snapshot scope and definitions', async ({ page }) => {
     await page.goto(CHAIN.metrics)
-    await expect(page.getByTestId('metrics-panel')).toContainText('Time scope')
-    await expect(page.getByTestId('metrics-panel')).toContainText('MULTI_SNAPSHOT')
+    await expect(page.getByTestId('metrics-panel')).toContainText("时间范围")
+    await expect(page.getByTestId('metrics-panel')).toContainText("多快照")
   })
 
   test('an absent metric is rendered as missing, never as zero', async ({ page }) => {
@@ -77,7 +77,7 @@ test.describe('state restoration', () => {
   test('reloading a deep link restores the selection', async ({ page }) => {
     await page.goto(CHAIN.snapshot6)
     await page.reload()
-    await expect(page.getByTestId('snapshot-label')).toHaveText('Snapshot 6 / 6')
+    await expect(page.getByTestId('snapshot-label')).toHaveText("快照 6 / 6")
     await expect(page.locator('[data-testid="snapshot-step"]')).toHaveText('1912')
   })
 
@@ -92,7 +92,7 @@ test.describe('state restoration', () => {
     await page.goto(CHAIN.snapshot6)
     await page.goto('/lab/experiments/case8?config=A_u&tab=flow&snapshot=6')
     await expect(page).toHaveURL(url => url.searchParams.get('config') === 'A_u' && url.searchParams.get('snapshot') === '6')
-    await expect(page.locator('main h1')).toHaveText('Case8 — A_u')
+    await expect(page.locator('main h1')).toHaveText("Case 8 — A_u")
   })
 
   test('the snapshot timeline offers exactly the six recorded frames', async ({ page }) => {

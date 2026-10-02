@@ -25,12 +25,12 @@ test.describe('Entry -> Home -> Lab -> Case8 chain', () => {
 
   test('Home shows the scientific question, implemented Explore, and Lab entry', async ({ page }) => {
     await page.goto('/home')
-    await expect(page.getByTestId('home-question')).toContainText('dissipation')
-    await expect(page.getByTestId('explore-status')).toContainText('IMPLEMENTED — 7 scenes')
+    await expect(page.getByTestId('home-question')).toContainText("耗散")
+    await expect(page.getByTestId('explore-status')).toContainText("已交付 · 7 幕引导")
     // Phase10 delivers the guided entry alongside the existing Lab path.
     await page.getByTestId('home-start-explore').click()
     await expect(page).toHaveURL(/\/explore\?scene=1$/)
-    await expect(page.getByTestId('scene-progress')).toHaveText('Scene 1 / 7')
+    await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
     await page.goBack()
     await expect(page.locator('main[data-page="home"]')).toBeVisible()
     await page.getByTestId('home-to-lab').click()
@@ -39,14 +39,14 @@ test.describe('Entry -> Home -> Lab -> Case8 chain', () => {
 
   test('Lab marks only Case8 IMPLEMENTED and others PLANNED (never MISSING data)', async ({ page }) => {
     await page.goto('/lab')
-    await expect(page.getByTestId('lab-delivery-case8')).toHaveText('IMPLEMENTED')
+    await expect(page.getByTestId('lab-delivery-case8')).toHaveText("已交付")
     for (const id of ['gate', 'spectrum', 'cylinder']) {
-      await expect(page.getByTestId(`lab-delivery-${id}`)).toHaveText('PLANNED')
+      await expect(page.getByTestId(`lab-delivery-${id}`)).toHaveText("计划中")
       const note = page.getByTestId(`lab-planned-note-${id}`)
-      await expect(note).toContainText('PLANNED')
+      await expect(note).toContainText("计划中")
       // The note must state this is a delivery state, not a scientific-data gap.
-      await expect(note).toContainText('delivery state')
-      await expect(note).toContainText('not')
+      await expect(note).toContainText("交付状态")
+      await expect(note).toContainText("并非")
     }
     await page.getByTestId('open-case8').click()
     await expect(page.locator('main[data-page="experiment"]')).toBeVisible()
@@ -76,10 +76,10 @@ test.describe('Case8 config switching', () => {
 test.describe('Flow snapshots', () => {
   test('snapshots 1..6 render with "Snapshot n / 6" and actual step/time', async ({ page }) => {
     await page.goto('/lab/experiments/case8?config=D_u&tab=flow')
-    await expect(page.getByTestId('snapshot-label')).toHaveText('Snapshot 1 / 6')
+    await expect(page.getByTestId('snapshot-label')).toHaveText("快照 1 / 6")
     for (let n = 1; n <= 6; n += 1) {
       await page.getByTestId(`snapshot-${n}`).click()
-      await expect(page.getByTestId('snapshot-label')).toHaveText(`Snapshot ${n} / 6`)
+      await expect(page.getByTestId('snapshot-label')).toHaveText(`快照 ${n} / 6`)
       await expect(page.getByTestId('snapshot-step')).not.toBeEmpty()
       await expect(page.getByTestId('snapshot-physical-time')).not.toBeEmpty()
       await expect(page.getByTestId('snapshot-canvas')).toBeVisible()
@@ -121,7 +121,7 @@ test.describe('Entropy + dual time', () => {
     await expect(page.getByTestId('dual-time-notice')).toBeVisible()
     await expect(page.getByTestId('selected-scalar-time')).not.toBeEmpty()
     await expect(page.getByTestId('displayed-snapshot-time')).not.toBeEmpty()
-    await expect(page.getByTestId('granularity-warning')).toContainText('different granularities')
+    await expect(page.getByTestId('granularity-warning')).toContainText("不同粒度")
   })
 
   test('selecting a scalar step also works via a chart click', async ({ page }) => {
@@ -146,9 +146,9 @@ test.describe('Metrics', () => {
     for (const id of ['width', 'front_rms', 'hf']) {
       const card = page.getByTestId(`metric-${id}`)
       await expect(card).toBeVisible()
-      await expect(card).toContainText('Definition')
-      await expect(card).toContainText('Unit')
-      await expect(card).toContainText('Detector / scope')
+      await expect(card).toContainText("定义")
+      await expect(card).toContainText("单位")
+      await expect(card).toContainText("检测器 / 适用范围")
       await expect(card.getByTestId('evidence-link')).toBeVisible()
     }
   })
@@ -181,11 +181,11 @@ test.describe('Evidence navigation and return context', () => {
 test.describe('Refresh / deep-link recovery', () => {
   test('refresh keeps config, tab and snapshot', async ({ page }) => {
     await page.goto('/lab/experiments/case8?config=B_u&tab=flow&snapshot=4')
-    await expect(page.getByTestId('snapshot-label')).toHaveText('Snapshot 4 / 6')
+    await expect(page.getByTestId('snapshot-label')).toHaveText("快照 4 / 6")
     await page.reload()
     await expect(page.locator('main[data-page="experiment"]')).toBeVisible()
     await expect(page.getByTestId('overview-config')).toHaveCount(0) // flow tab
-    await expect(page.getByTestId('snapshot-label')).toHaveText('Snapshot 4 / 6')
+    await expect(page.getByTestId('snapshot-label')).toHaveText("快照 4 / 6")
   })
 
   test('unknown experiment shows a system fallback', async ({ page }) => {

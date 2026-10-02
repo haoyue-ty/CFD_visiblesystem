@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * GrowthValidationChart — recorded growth validation: linear vs CFD.
  *
@@ -43,16 +45,16 @@ const option = computed(() => {
   }
   return {
     title: {
-      text: `Growth validation — mode ${v.mode_index} · q_at=${v.q_at} · ε=${v.epsilon}`,
-      subtext: `representation=GROWTH_VALIDATION · run ${v.run_id} · 33 recorded steps · amplitude=${v.amplitude_definition}`,
+      text: `增长验证 — 模态 ${v.mode_index} · q_at=${v.q_at} · ε=${v.epsilon}`,
+      subtext: `运行 ${v.run_id} · 33 个已记录步 · 振幅=${zh(v.amplitude_definition)}`,
       left: 'left', textStyle: { fontSize: 13 }, subtextStyle: { fontSize: 11, color: '#666' },
     },
     tooltip: {
       trigger: 'axis',
-      valueFormatter: (value: number | null) => (value === null ? 'unavailable (not saved)' : Number(value).toExponential(6)),
+      valueFormatter: (value: number | null) => (value === null ? zh('unavailable (not saved)') : Number(value).toExponential(6)),
     },
     legend: { top: 4, right: 4, textStyle: { fontSize: 11 } },
-    grid: { left: 66, right: 24, top: 72, bottom: 46, containLabel: false },
+    grid: { left: 66, right: 24, top: 92, bottom: 46, containLabel: false },
     xAxis: {
       type: 'category', name: 'recorded step index', nameLocation: 'middle', nameGap: 30,
       data: v.step_indices.map(i => String(i)), axisLabel: { fontSize: 10 }, boundaryGap: false,
@@ -65,7 +67,7 @@ const option = computed(() => {
     series,
     ...(linearAvailable ? {} : {
       graphic: [{
-        type: 'text', left: 66, top: 44,
+        type: 'text', left: 66, top: 60,
         style: { text: 'linear amplitude history was not saved — the linear series is ABSENT (no fitted exponential is drawn).', fontSize: 10, fill: '#8a4b00' },
       }],
     }),
@@ -78,7 +80,7 @@ const { el } = useEcharts(option as Ref<unknown>)
 <template>
   <figure class="gvc" data-testid="growth-validation-chart">
     <div ref="el" class="gvc__canvas" data-testid="growth-validation-canvas" role="img"
-         :aria-label="`Growth validation for run ${validation.run_id}`"></div>
+         :aria-label="`运行 ${validation.run_id} 的增长验证`"></div>
   </figure>
 </template>
 

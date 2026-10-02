@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh, chartCopy } from '../presentation/zh-CN'
+
 /**
  * EntropyChart — ECharts rendering of the recorded scalar entropy history.
  *
@@ -50,7 +52,7 @@ function buildOption() {
         if (!arr?.length) return ''
         const step = arr[0].value[0]
         const t = props.history.series[0]?.points.find(point => point.step_index === step)?.physical_time
-        return `completed step ${step}<br/>scalar time ${t ?? 'UNKNOWN'}<br/>` +
+        return `已完成步 ${step}<br/>标量时间 ${t ?? '未知'}<br/>` +
           arr.map((p) => `${p.seriesName}: ${p.value[1]}`).join('<br/>')
       },
     },
@@ -71,7 +73,7 @@ function buildOption() {
 function render() {
   if (!host.value) return
   if (!chart) chart = echarts.init(host.value)
-  chart.setOption(buildOption(), true)
+  chart.setOption(chartCopy(buildOption()), true)
 
   // Click anywhere in the plot to select the nearest REAL accepted step. Using
   // the coordinate system (rather than a per-symbol hit test) keeps selection
@@ -128,7 +130,7 @@ watch(() => props.history, render, { deep: false })
 <template>
   <div class="ec">
     <div ref="host" class="ec__canvas" data-testid="entropy-chart" :style="{ height: '20rem' }"></div>
-    <p v-if="selectable" class="ec__hint">Click a point to select a real accepted step. The nearest recorded snapshot is shown alongside.</p>
+    <p v-if="selectable" class="ec__hint">{{ zh("Click a point to select a real accepted step. The nearest recorded snapshot is shown alongside.") }}</p>
   </div>
 </template>
 

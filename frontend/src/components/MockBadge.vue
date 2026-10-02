@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh, originLabels, verificationLabels } from '../presentation/zh-CN'
+
 /**
  * MockBadge — the visible MOCK provenance label.
  *
@@ -22,8 +24,8 @@ defineProps<{
     :data-origin="origin"
   >
     <span class="mock-badge__dot" aria-hidden="true"></span>
-    data_origin={{ origin }}
-    <template v-if="verification">· verification={{ verification }}</template>
+    {{ zh("data_origin=") }}{{ originLabels[origin] ?? origin }}
+    <template v-if="verification">{{ zh("· verification=") }}{{ verificationLabels[verification] ?? verification }}</template>
   </span>
 </template>
 

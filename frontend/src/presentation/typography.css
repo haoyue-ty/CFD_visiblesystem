@@ -1,0 +1,25 @@
+:root {
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", system-ui, sans-serif;
+  line-height: 1.65;
+  color: #222;
+}
+body { margin: 0; }
+button, input, select, textarea { font: inherit; }
+button, select, a { touch-action: manipulation; }
+button { line-height: 1.5; }
+h1, h2, h3 { line-height: 1.4; text-wrap: pretty; }
+main, section, article { min-width: 0; }
+select { max-width: 100%; }
+table { max-width: 100%; }
+td, th { overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  .appbar { flex-wrap: wrap; gap: .6rem; padding: .6rem .8rem !important; }
+  .appbar__nav { flex-wrap: wrap; gap: .7rem !important; }
+  [role="tablist"] { flex-wrap: wrap; }
+  .filters label { min-width: 0; width: 100%; }
+  .lab__subnav, .scene-actions, .lab__item-head, .exp-list__head { flex-wrap: wrap; }
+  .comparison, [data-testid="front-band"] { overflow-wrap: anywhere; }
+  .ls { min-width: 0; }
+  .scc, .emc, .gvc { overflow-x: auto; max-width: 100%; }
+  .scc__canvas, .emc__canvas, .gvc__canvas { min-width: 46rem; }
+}

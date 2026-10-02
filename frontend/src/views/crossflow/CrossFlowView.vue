@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { cylinderService, dataService, createRequestGuard, type Loaded, type AllocationView } from '../../data'
@@ -43,44 +45,44 @@ const ruleLabels = ['Localization', 'HF', 'Width', 'Budget']
 </script>
 <template>
   <section data-testid="cross-flow-view" class="comparison">
-    <h1>P07 · Case8 ↔ Cylinder Cross-flow Compare</h1>
-    <aside class="policy" role="note"><strong data-testid="descriptive-only">DESCRIPTIVE ONLY · DESCRIPTIVE_ONLY</strong><br><strong data-testid="no-unified-ranking">NO UNIFIED RANKING · NO_UNIFIED_RANKING</strong><p>Same pathway, different allocation contexts, case-specific macroscopic response.</p></aside>
+    <h1>{{ zh("P07 · Case8 ↔ Cylinder Cross-flow Compare") }}</h1>
+    <aside class="policy" role="note"><strong data-testid="descriptive-only">{{ zh("DESCRIPTIVE ONLY · DESCRIPTIVE_ONLY") }}</strong><br><strong data-testid="no-unified-ranking">{{ zh("NO UNIFIED RANKING · NO_UNIFIED_RANKING") }}</strong><p>{{ zh("Same pathway, different allocation contexts, case-specific macroscopic response.") }}</p></aside>
     <div v-if="!guided" class="selectors">
-      <label>Case8 config <select data-testid="case8-config" :value="leftConfig" @change="update('case8_config', ($event.target as HTMLSelectElement).value)"><option v-for="id in caseConfigs" :key="id">{{ id }}</option></select></label>
-      <label>Cylinder config <select data-testid="cylinder-config" :value="rightConfig" @change="update('cylinder_config', ($event.target as HTMLSelectElement).value)"><option v-for="id in cylinderConfigs" :key="id">{{ id }}</option></select></label>
+      <label>{{ zh("Case8 config") }} <select data-testid="case8-config" :value="leftConfig" @change="update('case8_config', ($event.target as HTMLSelectElement).value)"><option v-for="id in caseConfigs" :key="id" :value="id">{{ zh(id) }}</option></select></label>
+      <label>{{ zh("Cylinder config") }} <select data-testid="cylinder-config" :value="rightConfig" @change="update('cylinder_config', ($event.target as HTMLSelectElement).value)"><option v-for="id in cylinderConfigs" :key="id" :value="id">{{ zh(id) }}</option></select></label>
     </div>
-    <LoadStateBlock :loaded="composite" target="real API cross-flow comparison"><template v-if="composite?.data">
-      <section data-testid="comparability-rules"><h2>Comparability Rules</h2><details :open="!guided"><summary>Independent definitions: localization, HF, width and budget</summary><article v-for="(rule, i) in composite.data.comparison.comparability" :key="rule.left_definition_id"><h3>{{ ruleLabels[i] }} → descriptive only</h3><p>{{ rule.status }} · {{ rule.left_definition_id }} ↔ {{ rule.right_definition_id }}</p><p>{{ rule.reason }}</p></article></details></section>
+    <LoadStateBlock :loaded="composite" :target="zh('real API cross-flow comparison')"><template v-if="composite?.data">
+      <section data-testid="comparability-rules"><h2>{{ zh("Comparability Rules") }}</h2><details :open="!guided"><summary>{{ zh("Independent definitions: localization, HF, width and budget") }}</summary><article v-for="(rule, i) in composite.data.comparison.comparability" :key="rule.left_definition_id"><h3>{{ zh(ruleLabels[i]) }} {{ zh("→ descriptive only") }}</h3><p>{{ zh(rule.status) }} · {{ zh(rule.left_definition_id) }} ↔ {{ zh(rule.right_definition_id) }}</p><p>{{ zh(rule.reason) }}</p></article></details></section>
       <div class="sides">
-        <section data-testid="case8-side"><h2>Case8 — {{ leftConfig }}</h2>
-          <RouterLink :to="{ name: 'experiment', params: { experiment_id: 'case8' }, query: { source_scene: route.query.source_scene ?? (route.name === 'explore' ? '6' : undefined), explore_return: route.query.explore_return ?? (route.name === 'explore' ? JSON.stringify({ name: 'explore', query: route.query }) : undefined), config: leftConfig, tab: 'allocation' } }">Open Case8 detail</RouterLink>
-          <h3>FACE_FIELD · Native-face cumulative allocation</h3>
-          <ResourceState :resource="composite.data.comparison.left.allocation" label="Case8 native-face cumulative allocation">
-            <LoadStateBlock :loaded="native" target="Case8 native-face arrays"><template v-if="native?.data?.representation_type === 'FACE_FIELD'">
-              <p>{{ native.data.definition }} · {{ native.data.time_rule }} · {{ native.data.spatial_rule }}</p>
-              <p>Mask: {{ native.data.mask.mask_id }} — {{ native.data.mask.definition }} · {{ native.data.data_origin }}</p>
+        <section data-testid="case8-side"><h2>{{ zh("Case8 —") }} {{ zh(leftConfig) }}</h2>
+          <RouterLink :to="{ name: 'experiment', params: { experiment_id: 'case8' }, query: { source_scene: route.query.source_scene ?? (route.name === 'explore' ? '6' : undefined), explore_return: route.query.explore_return ?? (route.name === 'explore' ? JSON.stringify({ name: 'explore', query: route.query }) : undefined), config: leftConfig, tab: 'allocation' } }">{{ zh("Open Case8 detail") }}</RouterLink>
+          <h3>{{ zh("FACE_FIELD · Native-face cumulative allocation") }}</h3>
+          <ResourceState :resource="composite.data.comparison.left.allocation" :label="zh('Case8 native-face cumulative allocation')">
+            <LoadStateBlock :loaded="native" :target="zh('Case8 native-face arrays')"><template v-if="native?.data?.representation_type === 'FACE_FIELD'">
+              <p>{{ zh(native.data.definition) }} · {{ zh(native.data.time_rule) }} · {{ zh(native.data.spatial_rule) }}</p>
+              <p>{{ zh("Mask:") }} {{ zh(native.data.mask.mask_id) }} — {{ zh(native.data.mask.definition) }} · {{ zh(native.data.data_origin) }}</p>
               <div v-for="arr in native.data.arrays" :key="arr.array_id"><FaceAllocationView :array="arr" /><EvidenceLink v-for="id in native.data.evidence_refs" :key="id" :evidence-id="id" /></div>
               <AllocationSummary :summary="native.data.summary" />
               <EvidenceLink v-for="id in native.data.evidence_refs" :key="id" :evidence-id="id" />
             </template></LoadStateBlock>
           </ResourceState>
-          <h3>Case8 local metrics / macroscopic response</h3>
-          <ResourceState :resource="composite.data.comparison.left.metrics" label="Case8 local metrics"><CanonicalMetrics v-if="slotValue(composite.data.comparison.left.metrics)" :collection="slotValue(composite.data.comparison.left.metrics)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
-          <h3>Case8 budget · native scope</h3>
-          <ResourceState :resource="composite.data.comparison.left.budget" label="Case8 budget"><CanonicalMetrics v-if="slotValue(composite.data.comparison.left.budget)" :collection="slotValue(composite.data.comparison.left.budget)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
-          <p>Case8 evidence: <EvidenceLink v-for="id in composite.data.comparison.left.evidence_refs" :key="id" :evidence-id="id" /></p>
+          <h3>{{ zh("Case8 local metrics / macroscopic response") }}</h3>
+          <ResourceState :resource="composite.data.comparison.left.metrics" :label="zh('Case8 local metrics')"><CanonicalMetrics v-if="slotValue(composite.data.comparison.left.metrics)" :collection="slotValue(composite.data.comparison.left.metrics)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
+          <h3>{{ zh("Case8 budget · native scope") }}</h3>
+          <ResourceState :resource="composite.data.comparison.left.budget" :label="zh('Case8 budget')"><CanonicalMetrics v-if="slotValue(composite.data.comparison.left.budget)" :collection="slotValue(composite.data.comparison.left.budget)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
+          <p>{{ zh("Case8 evidence:") }} <EvidenceLink v-for="id in composite.data.comparison.left.evidence_refs" :key="id" :evidence-id="id" /></p>
         </section>
-        <section data-testid="cylinder-side"><h2>Cylinder — {{ rightConfig }}</h2>
-          <RouterLink :to="{ name: 'experiment', params: { experiment_id: 'cylinder' }, query: { source_scene: route.query.source_scene ?? (route.name === 'explore' ? '6' : undefined), explore_return: route.query.explore_return ?? (route.name === 'explore' ? JSON.stringify({ name: 'explore', query: route.query }) : undefined), config: rightConfig, tab: 'sectors' } }">Open Cylinder detail</RouterLink>
-          <LoadStateBlock :loaded="angular" target="Cylinder angular sectors and front-band"><SectorAllocation v-if="angular?.data" :bundle="angular.data" /></LoadStateBlock>
-          <h3>Cylinder local metrics / macroscopic response</h3>
-          <ResourceState :resource="composite.data.comparison.right.metrics" label="Cylinder local metrics"><CanonicalMetrics v-if="slotValue(composite.data.comparison.right.metrics)" :collection="slotValue(composite.data.comparison.right.metrics)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
-          <h3>Cylinder budget · interior-only</h3>
-          <ResourceState :resource="composite.data.comparison.right.budget" label="Cylinder budget"><CanonicalMetrics v-if="slotValue(composite.data.comparison.right.budget)" :collection="slotValue(composite.data.comparison.right.budget)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
-          <p>Cylinder evidence: <EvidenceLink v-for="id in composite.data.comparison.right.evidence_refs" :key="id" :evidence-id="id" /></p>
+        <section data-testid="cylinder-side"><h2>{{ zh("Cylinder —") }} {{ zh(rightConfig) }}</h2>
+          <RouterLink :to="{ name: 'experiment', params: { experiment_id: 'cylinder' }, query: { source_scene: route.query.source_scene ?? (route.name === 'explore' ? '6' : undefined), explore_return: route.query.explore_return ?? (route.name === 'explore' ? JSON.stringify({ name: 'explore', query: route.query }) : undefined), config: rightConfig, tab: 'sectors' } }">{{ zh("Open Cylinder detail") }}</RouterLink>
+          <LoadStateBlock :loaded="angular" :target="zh('Cylinder angular sectors and front-band')"><SectorAllocation v-if="angular?.data" :bundle="angular.data" /></LoadStateBlock>
+          <h3>{{ zh("Cylinder local metrics / macroscopic response") }}</h3>
+          <ResourceState :resource="composite.data.comparison.right.metrics" :label="zh('Cylinder local metrics')"><CanonicalMetrics v-if="slotValue(composite.data.comparison.right.metrics)" :collection="slotValue(composite.data.comparison.right.metrics)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
+          <h3>{{ zh("Cylinder budget · interior-only") }}</h3>
+          <ResourceState :resource="composite.data.comparison.right.budget" :label="zh('Cylinder budget')"><CanonicalMetrics v-if="slotValue(composite.data.comparison.right.budget)" :collection="slotValue(composite.data.comparison.right.budget)!" :definitions="composite.data.definitions" :compact="guided" /></ResourceState>
+          <p>{{ zh("Cylinder evidence:") }} <EvidenceLink v-for="id in composite.data.comparison.right.evidence_refs" :key="id" :evidence-id="id" /></p>
         </section>
       </div>
-      <section data-testid="cross-flow-limitations"><h2>Limitations</h2><p>Macroscopic response retains each case's canonical Metrics, units, detectors and time scopes. No browser-derived ratios or shared score.</p><p v-for="limitation in composite.data.comparison.limitations" :key="limitation.id">{{ limitation.code }} — {{ limitation.description }}</p><EvidenceLink v-for="id in composite.data.comparison.evidence_refs" :key="id" :evidence-id="id" /></section>
+      <section data-testid="cross-flow-limitations"><h2>{{ zh("Limitations") }}</h2><p>{{ zh("Macroscopic response retains each case's canonical Metrics, units, detectors and time scopes. No browser-derived ratios or shared score.") }}</p><p v-for="limitation in composite.data.comparison.limitations" :key="limitation.id">{{ zh(limitation.code) }} — {{ zh(limitation.description) }}</p><EvidenceLink v-for="id in composite.data.comparison.evidence_refs" :key="id" :evidence-id="id" /></section>
     </template></LoadStateBlock>
   </section>
 </template>

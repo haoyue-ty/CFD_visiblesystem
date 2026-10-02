@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { verificationText } from "../../data/evidence"
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { contentService } from '../../data/content'
@@ -35,23 +37,23 @@ onBeforeUnmount(() => { guard.cancel() })
 </script>
 <template>
   <section data-testid="gate-comparison">
-    <p>Approximately matched budgets; not exactly identical. Fixed shock window; no universal localization ranking.</p>
-    <LoadStateBlock :loaded="comparison" target="Gate comparison">
+    <p>{{ zh("Approximately matched budgets; not exactly identical. Fixed shock window; no universal localization ranking.") }}</p>
+    <LoadStateBlock :loaded="comparison" :target="zh('Gate comparison')">
       <template v-if="comparison?.data">
-        <p data-testid="gate-shared-scale">{{ comparison.data.colour_scale }} · {{ extent?.join(' … ') ?? 'unavailable' }}</p>
-        <p v-if="!extent" role="alert">Shared colour extent unavailable. Comparison maps cannot be rendered.</p>
+        <p data-testid="gate-shared-scale">{{ zh(comparison.data.colour_scale) }} · {{ zh(extent?.join(' … ') ?? 'unavailable') }}</p>
+        <p v-if="!extent" role="alert">{{ zh("Shared colour extent unavailable. Comparison maps cannot be rendered.") }}</p>
         <div class="gate-grid" v-if="extent">
           <article v-for="entry in comparison.data.entries" :key="entry.result_id" :data-testid="`gate-${entry.config_id}`">
-            <LoadStateBlock :loaded="evidence[entry.config_id] ?? null" target="Gate matched configuration" />
-            <h3>{{ entry.config_id }} · q_at=<span data-testid="matched-qat">{{ qAt(entry.config_id) }}</span></h3>
-            <LoadStateBlock :loaded="fields[entry.config_id] ?? null" target="Gate allocation">
+            <LoadStateBlock :loaded="evidence[entry.config_id] ?? null" :target="zh('Gate matched configuration')" />
+            <h3>{{ zh(entry.config_id) }} · q_at=<span data-testid="matched-qat">{{ zh(qAt(entry.config_id)) }}</span></h3>
+            <LoadStateBlock :loaded="fields[entry.config_id] ?? null" :target="zh('Gate allocation')">
               <template v-if="fields[entry.config_id]?.data?.representation_type === 'CELL_FIELD'">
                 <CellAllocationView v-for="array in fields[entry.config_id]!.data!.arrays" :key="array.array_id" :array="array" :colour-extent="extent" />
                 <AllocationSummary :summary="fields[entry.config_id]!.data!.summary" />
-                <p data-testid="gate-window">{{ fields[entry.config_id]!.data!.mask.definition }} · counts={{ fields[entry.config_id]!.data!.mask.counts.join(',') }}</p>
-                <p>{{ verificationText(fields[entry.config_id]!.data!.verification) }} · {{ fields[entry.config_id]!.data!.data_origin }}</p>
-                <p>{{ fields[entry.config_id]!.data!.definition }} · {{ fields[entry.config_id]!.data!.time_rule }}</p>
-                <p v-for="lim in fields[entry.config_id]!.data!.limitations" :key="lim.id">{{ lim.code }} — {{ lim.description }}</p>
+                <p data-testid="gate-window">{{ zh(fields[entry.config_id]!.data!.mask.definition) }} {{ zh("· counts=") }}{{ zh(fields[entry.config_id]!.data!.mask.counts.join(',')) }}</p>
+                <p>{{ zh(verificationText(fields[entry.config_id]!.data!.verification)) }} · {{ zh(fields[entry.config_id]!.data!.data_origin) }}</p>
+                <p>{{ zh(fields[entry.config_id]!.data!.definition) }} · {{ zh(fields[entry.config_id]!.data!.time_rule) }}</p>
+                <p v-for="lim in fields[entry.config_id]!.data!.limitations" :key="lim.id">{{ zh(lim.code) }} — {{ zh(lim.description) }}</p>
               </template>
             </LoadStateBlock>
             <EvidenceLink v-for="id in fields[entry.config_id]?.data?.evidence_refs ?? []" :key="id" :evidence-id="id" />

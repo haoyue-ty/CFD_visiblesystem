@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { activeProvider } from '../../data'
 /**
  * Case8 Metrics tab — width / front RMS / HF with full definition context.
@@ -27,8 +29,7 @@ watch(() => props.configId, load)
 <template>
   <section class="mt" data-testid="case8-metrics">
     <p class="mt__intro">
-      Each metric is shown with its definition, unit, detector scope, time scope and an evidence
-      link. Terminal metrics do not change with the scalar cursor.
+      {{ zh("Each metric is shown with its definition, unit, detector scope, time scope and an evidence link. Terminal metrics do not change with the scalar cursor.") }}
     </p>
     <LoadStateBlock :loaded="metrics" target="metrics">
       <div v-if="metrics?.data" class="mt__body">

@@ -1,0 +1,174 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+首页 → 证据中心 → ev.mechanism.theory-implementation
+
+← 返回数字实验室
+
+证据： ev.mechanism.theory-implementation
+验证状态
+记录时源码与当前源码一致
+已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+
+证据仍然可读取，并不代表当前源码能够直接复现该结果。证据响应不能证明数值结果可用。
+
+结果标识 · 证据支持范围
+证据标识
+ev.mechanism.theory-implementation
+实验
+mechanism
+配置
+不适用 — 无数值配置
+结构版本
+1.0.0
+结果数量
+0
+
+非数值证据 · 未登记数值结果上下文。本记录描述来源、内容谱系或已知缺口。
+
+本证据支持： Phase10 已验收的机制示意及统一方法实现依据
+
+本证据不支持： 超出已记录定义、适用范围与来源选择的结论。 用于解释 STRICT_1D/WEAKLY_2D 路径的理论与实现依据。不表示 Near1D 数值扫描或 CFD 结果。
+
+方法与来源
+方法名称
+cross_mode_ec_unified_v1
+方法哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+记录时源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+数据哈希
+未知 — 无权威数值数据哈希
+源码一致性
+记录时源码与当前源码一致
+Phase10 已验收的机制示意及统一方法实现依据
+
+创建时间： 未知 — 无科学创建事件时间戳 · 验证时间： 未知 — 无科学验证事件时间戳
+
+配置
+
+不适用 — 无数值配置
+
+q_aa	未知 — 未记录该配置字段
+q_at	未知 — 未记录该配置字段
+gate	未知 — 未记录该配置字段
+CFL	未知 — 未记录该配置字段
+网格	未知 — 未记录该配置字段
+终止时间	未知 — 未记录该配置字段
+积分器	未知 — 未记录该配置字段
+重构	未知 — 未记录该配置字段
+边界范围	未知 — 未记录该配置字段
+来源资产
+
+展示受控的来源描述；科学源文件保持只读，不提供下载。
+
+资产	用途 / 格式	验证状态 / 数据漂移
+asset.content.mechanism · 冻结机制示意 / 内容依据: mechanism.json	METHOD / JSON	已验证 · 未冻结 · 来源状态：已验证 · 未冻结 / 否
+asset.content.scenes · 冻结机制示意 / 内容依据: scenes.json	METHOD / JSON	已验证 · 未冻结 · 来源状态：已验证 · 未冻结 / 否
+asset_a0548b71ae83 · solver/fluxes/cross_mode_ec_unified_v1.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset.content.mechanism
+用途 / 来源标识
+METHOD / shockpath-content
+来源描述
+冻结机制示意 / 内容依据: mechanism.json
+相对来源
+config/content/mechanism.json
+格式
+JSON
+记录时数据哈希
+fc4ba5533c9d79e07ace1d4fe0c50cb7024295972a169fc2a8bfda5a32a134c4
+当前数据哈希
+fc4ba5533c9d79e07ace1d4fe0c50cb7024295972a169fc2a8bfda5a32a134c4
+正式选定
+是
+记录时数据与当前数据一致
+已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+asset.content.scenes
+用途 / 来源标识
+METHOD / shockpath-content
+来源描述
+冻结机制示意 / 内容依据: scenes.json
+相对来源
+config/content/scenes.json
+格式
+JSON
+记录时数据哈希
+ee220d9e56f4eed297d64219931d30f91cf0f4809a2a316e485ef3db3b6980b4
+当前数据哈希
+ee220d9e56f4eed297d64219931d30f91cf0f4809a2a316e485ef3db3b6980b4
+正式选定
+是
+记录时数据与当前数据一致
+已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+asset_a0548b71ae83
+用途 / 来源标识
+METHOD / passage6
+来源描述
+solver/fluxes/cross_mode_ec_unified_v1.py
+相对来源
+solver/fluxes/cross_mode_ec_unified_v1.py
+格式
+PY
+记录时数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+提示 / FULLY_DISCRETE_DIAGNOSTIC — 全离散时间残差为诊断量，并非精确熵恒等式或新的熵定理；仅适用于冻结周期 Case7 一阶 FV、SSP-RK3。
+说明 / STAGE_STATE_TIME_NOT_ESTABLISHED — 三个阶段的原始 t_stage_or_step_time 均为所属已接受步 time_n；实际阶段状态物理时间尚未确定（NOT_ESTABLISHED），不生成模拟阶段时间。
+说明 / SPATIAL_TRAJECTORY_MISSING — 空间轨迹未保存，不提供空间回放，也不以其他算例或 CFL 的场替代。
+说明 / INTERFACE_PRODUCTION_ATTRIBUTION — 通道预算归因于界面熵产，并非独立状态熵。仅 R_time_cumulative 为已记录累计历史列。
+说明 / SI_MAPPING_UNKNOWN — 模型量尚无确定的 SI 映射。
+记录时 / 当前来源观测
+
+asset.content.mechanism · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： fc4ba5533c9d79e07ace1d4fe0c50cb7024295972a169fc2a8bfda5a32a134c4
+当前： fc4ba5533c9d79e07ace1d4fe0c50cb7024295972a169fc2a8bfda5a32a134c4
+
+asset.content.scenes · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： ee220d9e56f4eed297d64219931d30f91cf0f4809a2a316e485ef3db3b6980b4
+当前： ee220d9e56f4eed297d64219931d30f91cf0f4809a2a316e485ef3db3b6980b4
+
+asset_a0548b71ae83 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+
+冻结记录
+
+不适用 — 无数值冻结绑定
+
+处理链路
+
+处理类型：格式映射、元数据校正、已验证派生、仅展示处理。下方仅列出实际登记的处理记录。
+
+尚未登记处理记录。
+
+科学定义
+
+未知 — 尚未登记科学定义。
+
+适用边界
+说明 · 机制示意 — 用于解释 STRICT_1D/WEAKLY_2D 路径的理论与实现依据。不表示 Near1D 数值扫描或 CFD 结果。
+影响范围： mechanism.acoustic-pathways.v1
+关联记录
+相关证据
+
+尚未登记相关证据。
+
+上游 / 来源结果
+
+未单独记录上游结果字段。已登记的结果 / 来源绑定如下：
+
+已由以下记录替代： 不适用 — 未记录后继版本

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from './presentation/zh-CN'
+
 import { activeProvider } from './data'
 import MockBadge from './components/MockBadge.vue'
 import EvidenceQuickView from './views/evidence/EvidenceQuickView.vue'
@@ -8,16 +10,16 @@ import { quickView } from './views/evidence/quickView'
 <template>
   <div :inert="Boolean(quickView)">
   <header class="appbar">
-    <nav aria-label="System navigation" class="appbar__nav">
+    <nav :aria-label="zh('System navigation')" class="appbar__nav">
       <RouterLink :to="{ name: 'entry' }" class="appbar__brand">ShockPath</RouterLink>
-      <RouterLink :to="{ name: 'home' }">Home</RouterLink>
-      <RouterLink :to="{ name: 'explore', query: { scene: '1' } }">Explore</RouterLink>
-      <RouterLink :to="{ name: 'lab' }">Lab</RouterLink>
-      <RouterLink :to="{ name: 'evidence-center' }">Evidence</RouterLink>
+      <RouterLink :to="{ name: 'home' }">{{ zh("Home") }}</RouterLink>
+      <RouterLink :to="{ name: 'explore', query: { scene: '1' } }">{{ zh("Explore") }}</RouterLink>
+      <RouterLink :to="{ name: 'lab' }">{{ zh("Lab") }}</RouterLink>
+      <RouterLink :to="{ name: 'evidence-center' }">{{ zh("Evidence Center") }}</RouterLink>
     </nav>
     <div class="appbar__env">
-      <span class="appbar__env-label">data source</span>
-      <span v-if="activeProvider.kind === 'API'" data-testid="provider-kind">REAL API</span>
+      <span class="appbar__env-label">{{ zh("data source") }}</span>
+      <span v-if="activeProvider.kind === 'API'" data-testid="provider-kind">{{ zh("REAL API") }}</span>
       <MockBadge v-else origin="MOCK" :verification="activeProvider.kind === 'MOCK' ? 'NOT_APPLICABLE' : undefined" compact />
     </div>
   </header>

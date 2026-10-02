@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh, sceneCopy } from '../presentation/zh-CN'
+
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter, type RouteLocationRaw } from 'vue-router'
 import { contentService, type SceneList, type ScenePreset } from '../data/content'
@@ -49,31 +51,32 @@ const labTarget = computed<RouteLocationRaw>(() => {
   return { name: 'experiment', params: { experiment_id: 'case8' }, query: { ...context, config: sceneId.value === 1 ? config.value : 'D_u', tab: 'entropy' } }
 })
 const evidenceRefs = computed(() => scene.value?.data?.evidence_refs ?? [])
-const mainConclusion = computed(() => sceneId.value === 1 ? 'Pathway budget is measurable, but magnitude alone cannot explain the response.' : sceneId.value === 6 ? 'pathway budget ≠ pathway allocation ≠ macroscopic consequence' : sceneId.value === 7 ? 'Dissipation magnitude alone is insufficient. And the supported conclusion is bounded by traceable evidence.' : scene.value?.data?.conclusion)
+const mainConclusion = computed(() => sceneCopy[sceneId.value]?.conclusion)
 </script>
 <template>
   <main data-page="explore" class="explore-page">
-    <h1>Explore / Guided Story</h1>
-    <p>Seven curated scenes · about 250 seconds at your own pace.</p>
-    <LoadStateBlock :loaded="scenes" target="Explore scene navigation">
-      <nav v-if="scenes?.data" aria-label="Scene navigation" class="scene-nav">
-        <RouterLink v-for="item in scenes.data.items" :key="item.scene_id" :to="{ name: 'explore', query: { scene: String(item.scene_id) } }" :aria-current="sceneId === item.scene_id ? 'step' : undefined" :data-testid="`scene-nav-${item.scene_id}`">{{ item.scene_id }} · {{ item.title }}</RouterLink>
+    <h1>{{ zh("Explore / Guided Story") }}</h1>
+    <p>{{ zh("Seven curated scenes · about 250 seconds at your own pace.") }}</p>
+    <LoadStateBlock :loaded="scenes" :target="zh('Explore scene navigation')">
+      <nav v-if="scenes?.data" :aria-label="zh('Scene navigation')" class="scene-nav">
+        <RouterLink v-for="item in scenes.data.items" :key="item.scene_id" :to="{ name: 'explore', query: { scene: String(item.scene_id) } }" :aria-current="sceneId === item.scene_id ? 'step' : undefined" :data-testid="`scene-nav-${item.scene_id}`">{{ String(item.scene_id).padStart(2, '0') }} · {{ sceneCopy[item.scene_id]?.title }}</RouterLink>
       </nav>
     </LoadStateBlock>
-    <button v-if="scenes?.state === 'ERROR'" @click="loadList">Retry scene navigation</button>
-    <LoadStateBlock :loaded="scene" target="Explore scene">
+    <button v-if="scenes?.state === 'ERROR'" @click="loadList">{{ zh("Retry scene navigation") }}</button>
+    <LoadStateBlock :loaded="scene" :target="zh('Explore scene')">
       <template v-if="scene?.data && scenes?.data">
         <header>
-          <p data-testid="scene-progress">Scene {{ scene.data.scene_id }} / 7</p>
-          <h2 data-testid="scene-title">S{{ scene.data.scene_id }} · {{ scene.data.title }}</h2>
-          <p class="conclusion" data-testid="scene-conclusion">{{ mainConclusion }}</p>
-          <RouterLink :to="labTarget" data-testid="explore-open-lab">Open in Lab / Full Analysis</RouterLink>
-          <RouterLink v-if="[2, 3].includes(sceneId)" :to="labTarget" data-testid="explore-open-mechanism">Open Mechanism Explorer workspace</RouterLink>
-          <div data-testid="scene-evidence"><strong>Evidence</strong> <EvidenceLink v-for="id in evidenceRefs" :key="id" :evidence-id="id" :return-to="returnTo" /></div>
+          <p data-testid="scene-progress">第 {{ scene.data.scene_id }} 幕 / 共 7 幕</p>
+          <h2 data-testid="scene-title">{{ String(scene.data.scene_id).padStart(2, '0') }} · {{ sceneCopy[sceneId]?.title }}</h2>
+          <p>{{ sceneCopy[sceneId]?.description }}</p>
+          <p class="conclusion" data-testid="scene-conclusion">{{ zh(mainConclusion) }}</p>
+          <RouterLink :to="labTarget" data-testid="explore-open-lab">{{ zh("Open in Lab / Full Analysis") }}</RouterLink>
+          <RouterLink v-if="[2, 3].includes(sceneId)" :to="labTarget" data-testid="explore-open-mechanism">{{ zh("Open Mechanism Explorer workspace") }}</RouterLink>
+          <div data-testid="scene-evidence"><strong>{{ zh("Evidence") }}</strong> <EvidenceLink v-for="id in evidenceRefs" :key="id" :evidence-id="id" :return-to="returnTo" /></div>
         </header>
-        <section class="scientific-content" aria-label="Scientific content area" :key="sceneId">
+        <section class="scientific-content" :aria-label="zh('Scientific content area')" :key="sceneId">
           <template v-if="sceneId === 1">
-            <label>Case8 configuration <select data-testid="explore-entropy-config" :value="config" @change="update('config', ($event.target as HTMLSelectElement).value)"><option v-for="id in control('config')" :key="id">{{ id }}</option></select></label>
+            <label>{{ zh("Case8 configuration") }} <select data-testid="explore-entropy-config" :value="config" @change="update('config', ($event.target as HTMLSelectElement).value)"><option v-for="id in control('config')" :key="id" :value="id">{{ zh(id) }}</option></select></label>
             <EntropyTab :key="config" :config-id="config" guided />
           </template>
           <MechanismView v-else-if="[2, 3].includes(sceneId)" :controls-enabled="sceneId === 3" />
@@ -81,19 +84,19 @@ const mainConclusion = computed(() => sceneId.value === 1 ? 'Pathway budget is m
           <SpectralTab v-else-if="sceneId === 5" :guided-targets="spectralTargets" />
           <CrossFlowView v-else-if="sceneId === 6" guided />
           <template v-else-if="sceneId === 7">
-            <label>Story evidence <select data-testid="explore-evidence-select" :value="evidenceId" @change="update('evidence_id', ($event.target as HTMLSelectElement).value)"><option v-for="id in control('evidence_id')" :key="id">{{ id }}</option></select></label>
+            <label>{{ zh("Story evidence") }} <select data-testid="explore-evidence-select" :value="evidenceId" @change="update('evidence_id', ($event.target as HTMLSelectElement).value)"><option v-for="id in control('evidence_id')" :key="id" :value="id">{{ zh(id) }}</option></select></label>
             <EvidenceLink :evidence-id="evidenceId" :return-to="returnTo" />
             <EvidenceDetailView :key="evidenceId" :evidence_id="evidenceId" embedded />
           </template>
         </section>
-        <details><summary>Scene limitations</summary><p v-for="lim in scene.data.limitations" :key="lim.id">{{ lim.code }} — {{ lim.description }}</p></details>
+        <details><summary>{{ zh("Scene limitations") }}</summary><p v-for="lim in scene.data.limitations" :key="lim.id">{{ zh(lim.code) }} — {{ zh(lim.description) }}</p></details>
       </template>
     </LoadStateBlock>
     <footer class="scene-actions">
-      <RouterLink v-if="validScene && sceneId > 1" :to="{ name: 'explore', query: { scene: String(sceneId - 1) } }" data-testid="scene-previous">Previous</RouterLink><button v-else disabled>Previous</button>
-      <RouterLink v-if="validScene && sceneId < 7" :to="{ name: 'explore', query: { scene: String(sceneId + 1) } }" data-testid="scene-next">Next</RouterLink><button v-else disabled>Next</button>
-      <RouterLink v-if="sceneId === 7 || !validScene" :to="{ name: 'explore', query: { scene: '1' } }">Restart at Scene 1</RouterLink>
-      <RouterLink v-if="sceneId === 7" :to="{ name: 'home' }">Home</RouterLink>
+      <RouterLink v-if="validScene && sceneId > 1" :to="{ name: 'explore', query: { scene: String(sceneId - 1) } }" data-testid="scene-previous">{{ zh("Previous") }}</RouterLink><button v-else disabled>{{ zh("Previous") }}</button>
+      <RouterLink v-if="validScene && sceneId < 7" :to="{ name: 'explore', query: { scene: String(sceneId + 1) } }" data-testid="scene-next">{{ zh("Next") }}</RouterLink><button v-else disabled>{{ zh("Next") }}</button>
+      <RouterLink v-if="sceneId === 7 || !validScene" :to="{ name: 'explore', query: { scene: '1' } }">{{ zh("Restart at Scene 1") }}</RouterLink>
+      <RouterLink v-if="sceneId === 7" :to="{ name: 'home' }">{{ zh("Home") }}</RouterLink>
     </footer>
   </main>
 </template>

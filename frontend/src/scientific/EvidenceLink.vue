@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * EvidenceLink opens the shared Quick View without unmounting the result.
  * The full-record link retains the experiment / config / tab / selection in an
@@ -36,7 +38,7 @@ function open(event: MouseEvent) {
 </script>
 
 <template>
-  <a class="evidence-link" :href="$router.resolve(target()).href" data-testid="evidence-link" @click="open">View evidence</a>
+  <a class="evidence-link" :href="$router.resolve(target()).href" data-testid="evidence-link" @click="open">{{ zh("View evidence") }}</a>
 </template>
 
 <style scoped>

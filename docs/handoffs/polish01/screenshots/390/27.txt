@@ -1,0 +1,75 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+数字实验室
+→ Mach 3 圆柱绕流
+Mach 3 圆柱绕流实验 — D_u
+
+真实数据 API · 已保存的原生瞬时场、已接受步标量历史与轨迹累计空间分配。
+
+A_u
+B_u
+D_u
+概览
+流场
+熵耗散
+扇区分配
+指标
+证据
+Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比
+
+全轨迹累计二维 Pi_at — 当前不可用 / 缺失: 所选冻结圆柱数据集中，全轨迹累计二维 Pi_at 缺失
+
+查看证据
+已记录的瞬时场
+
+未保存原始密度动画。直接展示原生面采样数组，不生成插值帧。
+
+快照选择
+快照 1 · 已完成步 0 · t=0
+快照 2 · 已完成步 2439 · t=0.4999487547401866
+快照 3 · 已完成步 4878 · t=0.9998975094803731
+快照 4 · 已完成步 7318 · t=1.5000512452598136
+快照 5 · 已完成步 9757 · t=2
+
+快照索引=1 · 已完成步=0 · 物理时间=0
+
+场变量可用性： radial_interior_pi_bg: 可用; radial_interior_pi_aa: 可用; radial_interior_pi_at: 可用; radial_interior_pi_total: 可用; radial_interior_J: 可用; radial_interior_pt_z_norm2: 可用; angular_interior_pi_bg: 可用; angular_interior_pi_aa: 可用; angular_interior_pi_at: 可用; angular_interior_pi_total: 可用; angular_interior_J: 可用; angular_interior_pt_z_norm2: 可用 · 密度：缺失 · 压力：缺失
+
+场变量
+radial_interior_pi_at
+density — 缺失
+radial_interior_pi_bg
+radial_interior_pi_aa
+radial_interior_pi_total
+radial_interior_J
+radial_interior_pt_z_norm2
+angular_interior_pi_bg
+angular_interior_pi_aa
+angular_interior_pi_at
+angular_interior_pi_total
+angular_interior_J
+angular_interior_pt_z_norm2
+radial_interior_pi_at · CYLINDER_RADIAL_FACE · 瞬时
+
+原生索引栅格：行=r_face，列=theta_cell · 形状 31 × 128。色标范围： 0 … 0 model entropy_production_density。不做笛卡尔投影或插值。
+
+定义
+瞬时声学切向熵产密度；0.5*q_at*J*norm(P_T*z)**2；P_T=diag(0,0,1,0)；每个原生面，不含面度量 / 时间权重 Cylinder_pi_at_instantaneous
+单位
+model entropy_production_density (模型单位)
+适用范围
+圆柱主预算仅采用两类原生内部面 · 仅内部；不包含壁面与远场边界熵通量
+时间语义
+多快照 · 无 · t=0 · 区间=N/A · 已完成步=0
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+查看证据

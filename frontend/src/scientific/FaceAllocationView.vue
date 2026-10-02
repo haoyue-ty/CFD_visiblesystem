@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * FaceAllocationView — Case8 D_u FACE_FIELD renderer.
  *
@@ -88,14 +90,13 @@ watch(() => [props.array.array_id, props.array.values, props.mask], draw)
 <template>
   <figure class="fav" :data-array-id="array.array_id">
     <figcaption class="fav__cap">
-      <span class="fav__title">{{ array.label }}</span>
-      <span class="fav__loc">{{ array.location_type }}</span>
+      <span class="fav__title">{{ zh(array.label) }}</span>
+      <span class="fav__loc">{{ zh(array.location_type) }}</span>
     </figcaption>
-    <canvas ref="canvas" class="fav__canvas" data-testid="face-allocation-canvas" :aria-label="`${array.label} native face field, recorded values only`"></canvas>
+    <canvas ref="canvas" class="fav__canvas" data-testid="face-allocation-canvas" :aria-label="zh(`${array.label} native face field, recorded values only`)"></canvas>
     <p class="fav__meta">
-      Shape {{ array.shape.join(' × ') }} · axes {{ array.axes.join(',') }} · samples on the
-      <strong>{{ array.location_type === 'CARTESIAN_X_FACE' ? 'x-normal face plane' : 'y-normal face plane' }}</strong> ·
-      rendered from recorded values only (no interpolation)
+      {{ zh("Shape") }} {{ zh(array.shape.join(' × ')) }} {{ zh("· axes") }} {{ zh(array.axes.join(',')) }} {{ zh("· samples on the") }}
+      <strong>{{ zh(array.location_type === 'CARTESIAN_X_FACE' ? 'x-normal face plane' : 'y-normal face plane') }}</strong> {{ zh("· rendered from recorded values only (no interpolation)") }}
     </p>
   </figure>
 </template>

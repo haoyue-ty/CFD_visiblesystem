@@ -5,20 +5,20 @@ import { returnContext } from '../src/views/evidence/returnContext'
 test('recorded zero and false remain known; unknown facts carry reasons', () => {
   expect(factText({ state: 'KNOWN', value: 0 })).toBe('0')
   expect(knownValue({ state: 'KNOWN', value: false })).toBe(false)
-  expect(factText({ state: 'UNKNOWN', reason: 'No freeze timestamp recorded' })).toBe('Unknown — No freeze timestamp recorded')
-  expect(factText({ state: 'MISSING', reason: 'raw scan absent' })).toBe('MISSING — raw scan absent')
+  expect(factText({ state: 'UNKNOWN', reason: 'No freeze timestamp recorded' })).toBe('未知 — 未记录冻结时间戳')
+  expect(factText({ state: 'MISSING', reason: 'raw scan absent' })).toBe('缺失 — 原始扫描缺失')
 })
 test('verification mapping retains every frozen status and distinguishes history and unfrozen evidence', () => {
   expect(Object.keys(verificationLabels)).toHaveLength(9)
   expect(new Set(Object.values(verificationLabels)).size).toBe(9)
-  expect(verificationLabels.FROZEN_VERIFIED).toContain('FROZEN_ACCEPTED')
-  expect(verificationLabels.VERIFIED_NOT_FROZEN).toBe('VERIFIED_NOT_FROZEN')
-  expect(verificationLabels.SUPERSEDED).toContain('HISTORY')
-  expect(verificationLabels.AVAILABLE_UNVERIFIED).toContain('UNKNOWN')
+  expect(verificationLabels.FROZEN_VERIFIED).toBe('已冻结验收')
+  expect(verificationLabels.VERIFIED_NOT_FROZEN).toBe('已验证 · 未冻结')
+  expect(verificationLabels.SUPERSEDED).toBe('已被替代')
+  expect(verificationLabels.AVAILABLE_UNVERIFIED).toBe('可读取 · 验证未知')
 })
 test('public provenance and error text strip locators while preserving controlled relative origins', () => {
   for (const value of ['D:\\science\\run.npz', 'D:/science/run.npz', 'file:///D:/science/run.npz', '\\\\server\\science\\run.npz', '/home/user/science/run.npz']) {
-    expect(safeText(`Cannot read ${value}`)).toBe('Cannot read [source locator withheld]')
+    expect(safeText(`Cannot read ${value}`)).toBe('Cannot read [来源路径已隐藏]')
   }
   expect(safeText('solver/fluxes/cross_mode_ec_unified_v1.py')).toBe('solver/fluxes/cross_mode_ec_unified_v1.py')
 })

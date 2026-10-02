@@ -1,0 +1,1902 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-10-02T20:59:49.459233+08:00",
+  "base_commit": "9dfc886b558311fc3a0145fea686a8dc6f3627f7",
+  "branch": "codex/polish01-zh-cn",
+  "round_start_clean": true,
+  "round_start_evidence": "Original handoff; all work belonged to Polish 01.",
+  "resume_start_clean": false,
+  "resume_existing_changes_preserved": true,
+  "owned_count": 268,
+  "preexisting_unrelated_count": 0,
+  "unrelated_count": 0,
+  "ignored_temp_artifacts": [
+    ".cache/polish01/tools",
+    ".cache/phase11",
+    "frontend/test-results",
+    "frontend/dist"
+  ],
+  "protected_paths_changed": [],
+  "review_receipt": "CHECKS.json:code_review",
+  "staging_policy": "Stage only the explicit per-file OWNED list below; no git add -A.",
+  "self_hash_note": "GIT_AUDIT.json cannot hash itself; its byte hash is omitted. Other hashes are workspace bytes before Git line-ending normalization.",
+  "final_commit_resolution": "git rev-parse HEAD after the acceptance commit; literal SHA reported in the final chat.",
+  "files": [
+    {
+      "path": "docs/handoffs/polish01/AMBIGUOUS_LANGUAGE_ITEMS.md",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "2b41b2e8b031b2ca77012175bee89ba3b8ed83bf0b0ba5a2cb8a7f47c26a0ffe"
+    },
+    {
+      "path": "docs/handoffs/polish01/CHECKS.json",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "7b08a1067569d94df595ea4f0256b122185b74b0ea631d8717261c3d1c4f75d2"
+    },
+    {
+      "path": "docs/handoffs/polish01/CONTRACT_AUDIT.json",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "e3c68ae1b91623cd203b798e6bb46b3140b8601eb0154b10a83d527cd0f2d435"
+    },
+    {
+      "path": "docs/handoffs/polish01/FRONTEND_TEST_RESULTS.json",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "a0636d1238f67d90905e57c85d65fe97276967c9667261222baa30cf1e8fa6ac"
+    },
+    {
+      "path": "docs/handoffs/polish01/GIT_AUDIT.json",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": null
+    },
+    {
+      "path": "docs/handoffs/polish01/LANGUAGE_AUDIT.md",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "8e3b6088fa5deabb69f1dc99801c8eab39f3e4b61cdc21a6041faaee1f02daf2"
+    },
+    {
+      "path": "docs/handoffs/polish01/POLISH01_ZH_CN_HANDOFF.md",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "ccdb21efe648978d969982ebd6d7797f210cd5182f4cc3f11ad4a29e817c8445"
+    },
+    {
+      "path": "docs/handoffs/polish01/PRODUCTION_SCAN.json",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "94cb42a534e1f81a443df50a31659a1c7c31397b4ae1f95fb276be1baa0fc640"
+    },
+    {
+      "path": "docs/handoffs/polish01/PUBLIC_ASSET_AUDIT.json",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "6425d7607ad75ac77cfe06bea5d804111fc1b9435ee5142c7e4999937ae2c616"
+    },
+    {
+      "path": "docs/handoffs/polish01/RESUME_PROMPT.md",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "c6e0452df35d0570460e578e8b7ec220e0751b9738453f9a0a8d9f44a6b398d9"
+    },
+    {
+      "path": "docs/handoffs/polish01/SCREENSHOT_AUDIT.md",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "3c4f60d46b3bc01f89c46ea55869decc97c970afa4a858857c25fe1c5503d863"
+    },
+    {
+      "path": "docs/handoffs/polish01/SOURCE_PRESERVATION.json",
+      "classification": "OWNED",
+      "category": "HANDOFF_AND_RECEIPTS",
+      "review": "Acceptance documentation and durable receipts; prior interrupted state explicitly superseded.",
+      "sha256_before_staging": "63973862f7213a8a2f7dd15883f157bb59264f98b41daf3ff587cd4056382d65"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/00.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "c578971681a1ad0a951db89bfb860fd107fe09a2c58357ad8bdecf3a4562c4b9"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/00.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e44b2d46c7365c740e700af8edddeca8aba2abbcd6c4b14b12d74fafb6e192e9"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/01.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "b860ac54b5c2f0e5224b6702f78b415261570245f5b0c7ffc430c8c1ea434c27"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/01.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "bbb19b8a21b8193a76bd3982e8862406974ecfc02d6cfdad7536e7f6c51a0438"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/02.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "bd0244984fa0136ad88378549edc2a0463d55903ee14a0735a0adcc2e892ecd2"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/02.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "ada79a111a9e374cd704439ac4edcf7738e0cacf0e80ad366438ebac87e67509"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/03.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "fe210ae8eaca1833df3ede8e4d0af85f1bbf9eb254baf185a9623a4acec22640"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/03.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "0215b409aeb1a287007df0c8ec692e9efe815b441af6b5f0332a9b8ef513f127"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/04.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8ade6578ae074ce9288ca9b2484273b3d04d7dffd2fc6e68cedc3719f948c43c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/04.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7c12d6e66a7a0a1294d3c67cd712396cb755f58f7c0c6c2ee891ea4c4c5c55a3"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/05.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "660e207de6d4d8011e47de9da3290306a5d68030bd0587f68be8b1d189a9c167"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/05.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "2cf1a3e4497d7167dbadad7775d1f9209dc30f56190ba1e0d4c7e4fd184e2873"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/06.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "84d1ebdbcbc1cd0fd4c9196bddfdf85d8452c8ac048813476c64e2faf3bd032c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/06.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "def43964b8cf35472a3ae196329827c164d7b3f2262e653b85315d9438f95437"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/07.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "6be14640730409939eb3f7e3995826344c5b1f56f6847ab8eb4d239f80f60cb9"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/07.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f3087b2d3fd23172b3aa9cdfeb9e70ab7708f14ce0c45994a945b7520207cfe4"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/08.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "296d4c6e1cfa10ac0d327a7095c270bbe855c8f526d48a2c617b5f55a17c93c2"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/08.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "eabca8b49777db64ab9ec738105e030af72496da1db528a2db2a3fba484d0749"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/09.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "bb89001a858988b1a67ebe7aafc5c8070629b4344f47b863d91b55d49f039979"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/09.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e28e3f69b661515f0ebbd6df6bf0442d4a03f9752aa72e03518ed3255c4a1bbb"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/10.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9d3671c370f3b2f0593ce9dd4897d2949ce7f659b7214826a4c5ab8904c9ec67"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/10.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8095b1ba67a35dc92006e218bdd40ec1a092732dd237076dca257618b5092836"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/11.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "32b2c73d7fdce91ce425782f555a4392ab06d6530ccd62338b1005646c3ac3f7"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/11.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "2369841a09831f73b1678dcc1060c7a4f929478e5ff1e8be0eb2bfe3d2b9ffaa"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/12.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "79806c3fb5131043817d9f340d9a097b07dd805acc60804db466421587d1af77"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/12.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "059f67851bec88430ed056c957d97dc69839e5877011189aa7164258d70edb65"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/13.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "49d4c418e23af5b1b4b61255ba985ae1f155fad63a1303f0e7be968ada070d58"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/13.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "129ee8c62bc7ecda6b71aed6da37b6be7caae1244bf3b3e59ee75baf35954487"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/14.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "69490f8c25f2c48dacea707f1deab456842385e9a2063921bbad4164e79811b2"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/14.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e3482d951569869e59aa2883a1154986689d448ea6beb735dec17927a2958f45"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/15.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "c9ef026463bc67330cbaae20aa03a31ca71570411a43868b791d3e989c023624"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/15.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "be5879ad6aa1c89f6775678987c7bbe28f23419ff0a95414dc46b70b9ba49234"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/16.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "a554d98a15ec158ca0ff8533184451536dbf1c7bb2324628bc4ba40b4a84f88f"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/16.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "16915a1266f04ea083e76763290d6406e143c3cc9d7fe9d72eb0a7f66ef5b292"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/17.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f39c89e7bf810666c736a49d81c5bc5c54079323d64ad5418d70bfa840fbbb29"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/17.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "1c88aae0658fbb26892617bc8ef4fbfba7b6aca99c07ab8ca8bf381de49cb453"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/18.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8b7689a8a052ec3551cf59bf2e04f359235f422369f37c21597ac7e6df6c445c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/18.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9e346d799da44b98ad7a0574bdf979a641dfc4e5bfe4281ff502c35ee7f229dd"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/19.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e2549030a83572e9ea53719011e93ccc315e89176dc12a7f41c823a92119fcf2"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/19.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "68a55602f1abaf976449bf4276734c1f4be9ffaef78de1c83babc94727663064"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/20.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "28a418bd45da3284182db25fa9140c23b22f8b468960eb45fc9f8034b9c771e0"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/20.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "5847ce349877b57b8b3e8ae34aa239a32aaf6cc1cb389fa93f8940d945261488"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/21.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "b110d771b64bdbf1f34db94128e83e4031535a69edfae4587dce47167f22d11b"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/21.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "1a74c0f9a659095147c5b7c4d256db6e820b23e9f890416de7aab3a9fbe4421f"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/22.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8180d41a0972e5b25576c1b66e18854aba37c9ad47d6eb8180228f5758ebce51"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/22.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9f60c40cfd8f8254161c73df58d4ad6ed0fa061f275b053c7f79540ee4adda81"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/23.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "fe05a05ecac5c94a80bbe146bedddeac8b9ee42065ed3a8463862da98014fa73"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/23.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "0d1eb3323b372b619dc1ce013962a2fc5759ee5fa84df6d0fbc0d7528860a695"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/24.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "a7369b32e71c8d1d919d8eb4f576a1ee064652d9e60de89312cb96bd3c0a496f"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/24.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "ea84f0c5ab1c3d726cfa36b2d2f4dbd92cabe20fee8b62d7d0078708f598d031"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/25.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9cd6292570a33605a0add904e9bee78fad06ed3933134c6f51280a6e0944d394"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/25.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "b9f62c9dbd3509136070f0a315b15959fd44599ead0f2d01580a8391f14a4852"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/26.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "dce84875564c75d2e7cee6389b14b911b5ba2466f421d640adebb8df8ef9a0c5"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/26.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "d1642e2d8f285fb345e2b567b21420a3f7f65bb3d4c38abd270ba893cdc645f7"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/27.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f22d3878e7ee0724f24b141713db94b4749f1fcb4d991701e16d56af25ad866d"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/27.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "19cb75568d7a93a89aa87c7558f4684abcb4ef315f778e38004b2100fa91f47e"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/28.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "dc60e694111e211c16d7d77ae1337993098b2a171851446b578fa2ab440a8e27"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/28.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "ac94dbb4c96edb7479d4c77a9d183b997c5ebcbeb6a5a55fc352829e72ed20d6"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/29.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "6bd894a6b1e2fd63d4b823676117bbd24e7777824d10cbd4905fb92eb9f32b82"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/29.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7cd4730f3d90e8d03dfb624d54b4a9353fa9eb96cb4abbf43b0dcd07d7952156"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/30.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7fc88642e451302357f0d80c2a83e3ef470d6545ea384c8afeb60baef254bf8b"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/30.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e84ae35bb591a18c1bf9bd2b8f53f32ecd83c414dc04eb2a6828ad84fa78b5af"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/31.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e66ee202e53727da0160cf29f6cfc535f8c0e4c96ad941e7ffb64938b7ebf840"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/31.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "246af68a6eaa09d86d10e2c6b64e76ba3904462d987281e5c25c181912a49311"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/32.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "d8e3901180589d6e03e09c4d70d8434b1d24a3798684083d2e09376f3d870680"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/32.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "73475ec8fbf814249a29aeaffe6690b25eaf93b2bd0fe2703513a98bf702e63e"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/33.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "355dc1f00646296ba5c830e6f074c714faadcb1e398e1ade90a78adbb4ce34c1"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/33.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "87f16575743cb9f85ac05fb5cb9118d2af942f992729e29f7717afba1762d995"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/34.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "291a0e7343694eb058aed9fe0e181ffda30e6f7ce66621c87cc72dde254baab1"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/34.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "d235718fc67e8d0999d0dc07c3602ff3d1f22528e322949a72a2ae0e5af3a0e6"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/35.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "1032833978aabc7e578795ae5b8b674f550ebb36c7b9405d78cd4846b84a1d1c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/35.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "253b34a80633e5178204810a44503ac5cbdaf9689fcf96374a0ff180a728e56c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/36.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "47bc4207fb1a264d11e5a022db442bd45b589a63e123ed2f9ad72723fdc64311"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/36.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e445661b0bb85dbe5a30ebf79d1af2508b8480855bc18f522d53fcb84877f540"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/37.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "c5485a807cb1a53b20d3c0f761bfc836485218afe297ab30d69d9f366f89fbb5"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/37.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "c6633d9ccba1a192c51f257c97b77424c9bd0214032789fc6d7367b3bb7dbea1"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/38.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "08cf094f6d34b571bdc98acda4b5c201011def12b22bbd218eae4cfdbe0450b7"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/38.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "fae204fe7a0474649888204f32c7b72bfbc1bb7e04de8cce0d1c91fce672ab73"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/39.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8734fb54e90022e1e692fb3f81edd28936ad943bee234fd4e0d3ec1b96729f0e"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/39.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "3a78a4a4d7ea361027f41d33aab338411b9243e0faedacc1ad0f150ae5a7bb1b"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/40.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "4e37b563a3d4c4146de7d4762914aed92560438711d624a7437559370d0b12f7"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/40.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "0c589b9dfe167f6310154e1e316f68158c4176234b602649e86dcd5eda420da9"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/41.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "bda24ceef7b12f2c5e1e827e2cc2a69f0534994e8d81eff0fea59f36a38b6b37"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/41.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "729babf6c3d1aacfaa06386642a24a1849f3d8e98092c0d9d09cb56fe923a06c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/42.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "5af2a36ee5aa989a86b576dc4082c7277fd05236efc5232ca150d778fc4b28df"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/42.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "554005280bc3762c243d34e136becb77ff53be30cc1370ec4d12929e81669f54"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/1920/browser-audit.json",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "984faa3a1f16519e2a6a6cc837d89139fdc4100122cfcc3f92fc1c01220125a8"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/00.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "5788d93d94e2448c5c5cb577c9992b84a401158e1b1cc467399e466d201ace24"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/00.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e44b2d46c7365c740e700af8edddeca8aba2abbcd6c4b14b12d74fafb6e192e9"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/01.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "b818ad3bc1cfc28b690b9a16ad8d51afdda5731e334eb3cef16762ab64e48e3b"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/01.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "bbb19b8a21b8193a76bd3982e8862406974ecfc02d6cfdad7536e7f6c51a0438"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/02.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "03c72726d59facb3c851bf51883d9b501548bcc21c532d0695eae6e6fa81ace4"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/02.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "ada79a111a9e374cd704439ac4edcf7738e0cacf0e80ad366438ebac87e67509"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/03.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "acc66dc934a0254cd3e7941cff95df28457a0b34c8855bb8e816c0cb50ebd776"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/03.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "0215b409aeb1a287007df0c8ec692e9efe815b441af6b5f0332a9b8ef513f127"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/04.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "c2fb32a4d56405bac59b4986375b5a53db66f11836d1461e6d8ff4817ba21fda"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/04.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7c12d6e66a7a0a1294d3c67cd712396cb755f58f7c0c6c2ee891ea4c4c5c55a3"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/05.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "52134c4e71fae418bf91a0fd000c7edd9b69172c704fa0efa484877b74c82851"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/05.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "2cf1a3e4497d7167dbadad7775d1f9209dc30f56190ba1e0d4c7e4fd184e2873"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/06.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "5a0efbd07578709c408d0e7c560e56702fd8d9cd2917b1f2e4b7f5aa0f85147f"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/06.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "def43964b8cf35472a3ae196329827c164d7b3f2262e653b85315d9438f95437"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/07.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "029f21dbcde16e975d7b84be78e45313916e44f09efe5c76e1c29a713dc72eb0"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/07.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f3087b2d3fd23172b3aa9cdfeb9e70ab7708f14ce0c45994a945b7520207cfe4"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/08.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "6ef5e2c82956374c5ebca5b396b39d1e03e0795571908b11b92422829bc34448"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/08.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "eabca8b49777db64ab9ec738105e030af72496da1db528a2db2a3fba484d0749"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/09.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f735ca120a16c9b6db2c19694e587491ef9c6ed552211733458982adb16680a4"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/09.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e28e3f69b661515f0ebbd6df6bf0442d4a03f9752aa72e03518ed3255c4a1bbb"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/10.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "1572c07ac4dd65fea368d50d8b6fba3c791f60de27912564638e295813c6d846"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/10.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8095b1ba67a35dc92006e218bdd40ec1a092732dd237076dca257618b5092836"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/11.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "de898e792cb57116a5fd8181b2e8f4b76b6e15d9ca9c947f05f5d6c2203f4da1"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/11.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "2369841a09831f73b1678dcc1060c7a4f929478e5ff1e8be0eb2bfe3d2b9ffaa"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/12.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "812d35a2d0afe4099002245174563246e82cfa61068b507236bb0390fb38819b"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/12.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "059f67851bec88430ed056c957d97dc69839e5877011189aa7164258d70edb65"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/13.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f15ee59f674e66c0d9da54e19f86be997fd611322794abce4c87816170d1006e"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/13.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "129ee8c62bc7ecda6b71aed6da37b6be7caae1244bf3b3e59ee75baf35954487"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/14.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "07f413eb45faf1be24def30fc47a84662edbb134bf3cabccc9fc646f2337ce54"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/14.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e3482d951569869e59aa2883a1154986689d448ea6beb735dec17927a2958f45"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/15.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "4ebf4257520362a133cf2e673968dde3296f04c19984880c15cd5702713ed0d2"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/15.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "be5879ad6aa1c89f6775678987c7bbe28f23419ff0a95414dc46b70b9ba49234"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/16.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "1efe07914ad97390f0dda47ada9aefccef0534d2cf2eaaccb85bb5f91a8e2006"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/16.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "16915a1266f04ea083e76763290d6406e143c3cc9d7fe9d72eb0a7f66ef5b292"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/17.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "b636595188039fa807ba0a5b34f9aa573df7bb2afce53800644fd80c87dcc7fc"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/17.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "1c88aae0658fbb26892617bc8ef4fbfba7b6aca99c07ab8ca8bf381de49cb453"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/18.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9fd864f8d39d9c1bd15d8fe5af0c3e145985e3ed22c2f883dbeae241bf6cd004"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/18.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9e346d799da44b98ad7a0574bdf979a641dfc4e5bfe4281ff502c35ee7f229dd"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/19.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "43d9c32bfecc46461d956ec1e968779f465968dd6e20460b16d51add4c1ede01"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/19.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "68a55602f1abaf976449bf4276734c1f4be9ffaef78de1c83babc94727663064"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/20.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "2fe948c1541a009853f1c9c1d8dc0fc0af5b101973cd431e75c8187fe101d900"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/20.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "5847ce349877b57b8b3e8ae34aa239a32aaf6cc1cb389fa93f8940d945261488"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/21.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8ac2981b83046bb1eb29b9d15aae37cb9f4ed1a98ffe4deeb7004bb2119c1753"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/21.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "1a74c0f9a659095147c5b7c4d256db6e820b23e9f890416de7aab3a9fbe4421f"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/22.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "8e9a2b4c91cd2a7838687f565d05c2315cd1198fa40df20d0d80fa8960aa36a5"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/22.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9f60c40cfd8f8254161c73df58d4ad6ed0fa061f275b053c7f79540ee4adda81"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/23.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "fab6210fa9990aeef9623dbb4a42ff5bea790cbc767af546b082eb78ae76c547"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/23.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "0d1eb3323b372b619dc1ce013962a2fc5759ee5fa84df6d0fbc0d7528860a695"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/24.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "75330084a6cd12f658ba22e46298b383e93e8d5fce3109ad8b1f658fc4a40ab0"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/24.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "ea84f0c5ab1c3d726cfa36b2d2f4dbd92cabe20fee8b62d7d0078708f598d031"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/25.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "c3982fa2d58b6dbc7ed4e306760f615a604e16c9dea0b9d97f65f63cbd7c91a0"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/25.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "b9f62c9dbd3509136070f0a315b15959fd44599ead0f2d01580a8391f14a4852"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/26.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "483602b9831ba9474e8a5e84a6f6e1053d7b13286403bcb16857e6957245cbb1"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/26.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "d1642e2d8f285fb345e2b567b21420a3f7f65bb3d4c38abd270ba893cdc645f7"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/27.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "9948d15b433aa6d6ef918bacd8468a2e09003cb851870152513aa54612646a07"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/27.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "19cb75568d7a93a89aa87c7558f4684abcb4ef315f778e38004b2100fa91f47e"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/28.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "a0d5f48d8c805d926bf9b73c2d1e04b6c6d04808c6ad8750974b604e34cfb1e0"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/28.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "ac94dbb4c96edb7479d4c77a9d183b997c5ebcbeb6a5a55fc352829e72ed20d6"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/29.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f2de12ca2c2eeb7dbfa3758cf62634a1f09fee405f3dd767ef7037e56fc32acd"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/29.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7cd4730f3d90e8d03dfb624d54b4a9353fa9eb96cb4abbf43b0dcd07d7952156"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/30.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "47144e51e715e0b325c979c51b07a12ddd7c294995d4abcd01398e28e9e1d0a8"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/30.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e84ae35bb591a18c1bf9bd2b8f53f32ecd83c414dc04eb2a6828ad84fa78b5af"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/31.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f76ab063e89295c9ae23263706f2ad6adefa373a3fa9d126631ea4e0d2e2d6a9"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/31.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "246af68a6eaa09d86d10e2c6b64e76ba3904462d987281e5c25c181912a49311"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/32.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7027fd9e3e880337e4186f365600f740fa2e48bd2b1bb0a70a3b18b004ba7ac3"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/32.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "73475ec8fbf814249a29aeaffe6690b25eaf93b2bd0fe2703513a98bf702e63e"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/33.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e480e293839ca38665c2139366a4b332812ad7172d16c113456305c62e4b0b26"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/33.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "87f16575743cb9f85ac05fb5cb9118d2af942f992729e29f7717afba1762d995"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/34.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "328e0d8683a03bdf3b36eea04110b6e9ecbf8bd05a24c8cea7434ebf487bad2e"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/34.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "d235718fc67e8d0999d0dc07c3602ff3d1f22528e322949a72a2ae0e5af3a0e6"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/35.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "ebc94f1bbeb90d35ad92207daba82846a236b67d649f64b948a4f0fa9c62da31"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/35.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "253b34a80633e5178204810a44503ac5cbdaf9689fcf96374a0ff180a728e56c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/36.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "71c0cc61c399c6593375929fdbf7861614784406497be17bfb896940bfa88179"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/36.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "e445661b0bb85dbe5a30ebf79d1af2508b8480855bc18f522d53fcb84877f540"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/37.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "634145a81d79039d07e1b0d15288c07d6d60a6349bc80aba5b396d86fcf29f4c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/37.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "c6633d9ccba1a192c51f257c97b77424c9bd0214032789fc6d7367b3bb7dbea1"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/38.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "05b34c0a7f6dbe5e314650f3d66cd87e1b340fdccb89fea13c56d760fba75661"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/38.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "fae204fe7a0474649888204f32c7b72bfbc1bb7e04de8cce0d1c91fce672ab73"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/39.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "a03915ce615824771bbe571ecd48fc59e6e45d231442c1cbbc7b8fd710b7a4fa"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/39.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "3a78a4a4d7ea361027f41d33aab338411b9243e0faedacc1ad0f150ae5a7bb1b"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/40.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "794ca28c24ed4875d826f131ce2cfa1578b14086481f14a9e77be4bb3c3e2a18"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/40.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "0c589b9dfe167f6310154e1e316f68158c4176234b602649e86dcd5eda420da9"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/41.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "d78dbe25be8c4b634df94dd444e8fae2b8b3373cf28d529c6180a0a359a79b96"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/41.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "729babf6c3d1aacfaa06386642a24a1849f3d8e98092c0d9d09cb56fe923a06c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/42.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7c9dcce9287619747a70f412e4118e11c1bcc9220cf6b0ba0fcedec5b189bf0c"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/42.txt",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "554005280bc3762c243d34e136becb77ff53be30cc1370ec4d12929e81669f54"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/390/browser-audit.json",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f527a0193c54c8e322cda8f1af5497d78e2fa259a28c01fb1e7f7fa57038e7bf"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/focus/angular-sector-chart.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "6bd894a6b1e2fd63d4b823676117bbd24e7777824d10cbd4905fb92eb9f32b82"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/focus/cylinder-entropy-chart.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "dc60e694111e211c16d7d77ae1337993098b2a171851446b578fa2ab440a8e27"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/focus/eigenmode-canvas.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "4101634c45bff1027b68e1b4fdc9a9f73e27cb93ed20f7cb70df83562bd44e71"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/focus/entropy-chart-tooltip.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "d04f7a178c9843fd07b2ee80511d63c9fed033c7269e94a733e6c964d3e689ad"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/focus/entropy-chart.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "fe05a05ecac5c94a80bbe146bedddeac8b9ee42065ed3a8463862da98014fa73"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/focus/evidence-definitions.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "7d9328782dc9d9ee6e5422dbc83018ae620255e3c4d630beb45c3e90aa545884"
+    },
+    {
+      "path": "docs/handoffs/polish01/screenshots/focus/growth-validation-canvas.png",
+      "classification": "OWNED",
+      "category": "BROWSER_EVIDENCE",
+      "review": "Final production build + real API; 43 routes per viewport; body/overflow/pageerror audits passed.",
+      "sha256_before_staging": "f15aff4bb050bba5e9e5e02739499c56847ee4a10fdb225e2cdc14c2d1cb9dd2"
+    },
+    {
+      "path": "frontend/index.html",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "fd8bfec9fb8a90de28e0239859cf7f3579b5ccbf3522277253b854122a52677b"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "52c50fa565d96f5eb87d6b86a428555cd5e09c6965163c9494bc67599bba61f0"
+    },
+    {
+      "path": "frontend/src/components/BootstrapPlaceholder.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "61cc6b9d2656a39dcf174a4e283c8637d90f607ade94d8065d44ce1947e98c46"
+    },
+    {
+      "path": "frontend/src/components/ExploreReturn.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "e5af1296fc60ff23eadd8bee693985bc011276b8c3950e07803a2d2cad46fb2a"
+    },
+    {
+      "path": "frontend/src/components/LoadStateBlock.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "3f1ea69571f8466ff7ebe70388d638401000ed061603d7291e71ebbcb18c7054"
+    },
+    {
+      "path": "frontend/src/components/MockBadge.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "76ae225e1ac62da89192e4048d43336888f7d8a12c893e370cf5890760cb6ea1"
+    },
+    {
+      "path": "frontend/src/data/evidence.ts",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "9190c9b40f1dc19bca57752ca62eeec76abeed11504bdd94bac65870cb5d2d03"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "28d4c162d017d236bb772e9047ea8faf78a7b5672d7e2d3a5eb86462c2bb9b9a"
+    },
+    {
+      "path": "frontend/src/pages/ClosurePage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "cdaa1211a462356b5f441b5ff404dd5ed894b6b6236b104d272ad0ff9c5e7a0f"
+    },
+    {
+      "path": "frontend/src/pages/CylinderPage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "b2b62391d0e79c0c85605ca86b0f5b9602e04679096dfd597b1dc04eb473397b"
+    },
+    {
+      "path": "frontend/src/pages/EntryPage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "34c15e0f28a3de2a00ea254feb5a1687f23209ba59d5f6c5333f17381df4addb"
+    },
+    {
+      "path": "frontend/src/pages/EvidenceCenterPage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "305cbaacdb9987c00a5aa38776a3a96551be9f396b8e03262c7b4e2886ea1c4c"
+    },
+    {
+      "path": "frontend/src/pages/ExperimentPage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "6eb79c012b29ba5f542f1e38c599b2c36348a209ecdce4e72bec3512803311de"
+    },
+    {
+      "path": "frontend/src/pages/ExplorePage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "0f52f4513dc505872165c6d265e106bcc54eaa522a5e232a9fc08f467333ef59"
+    },
+    {
+      "path": "frontend/src/pages/HomePage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "d256dc5203bdb92a719129391b5ea9b03392d4aac90417bb3cd77a6b6a301853"
+    },
+    {
+      "path": "frontend/src/pages/LabPage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "ccb7de4a3b0e42f9c2016f20cd310af1a4ed6bca6a1559b508b71210f8bdb3b9"
+    },
+    {
+      "path": "frontend/src/pages/MechanismPage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "0d03d4f6af38ce53c6ef9bf1e0792fe29caade16a20d559b63d1c4f71b9f6623"
+    },
+    {
+      "path": "frontend/src/pages/ScientificLabPage.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "6e0738745caeec471cad01e6a5a116304d4995425ad487608a945a3599ae9dee"
+    },
+    {
+      "path": "frontend/src/presentation/typography.css",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "0e194baf1cb846960a7abbcdb98869f9a8be7536aebb4df9946ebba0cf896310"
+    },
+    {
+      "path": "frontend/src/presentation/zh-CN.json",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "101fe0ab0bb7f2fad234073e90c5ac2f46a3fc99ba658b41ce7494f7aea8fe14"
+    },
+    {
+      "path": "frontend/src/presentation/zh-CN.ts",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "b8d1a4ea136b1c2ba8c14b0f25ef1b20af32aa8241c32247cde9d73b3b6d5d8d"
+    },
+    {
+      "path": "frontend/src/router.ts",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "a7fdc36a8afeec5635318d083a7d46e9a9324724d9cecff1ca4be3db2784a297"
+    },
+    {
+      "path": "frontend/src/scientific/AllocationSummary.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "f0a2f6af5afe7b4973b0811bd69497014d389d338b2b8f998713ac75cb4300d3"
+    },
+    {
+      "path": "frontend/src/scientific/CellAllocationView.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "0241563017754b9076f14d8d35309746fd3421f24ae2b3df71fec6345dc7b9a8"
+    },
+    {
+      "path": "frontend/src/scientific/EigenmodeChart.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "1f11e030d2315fb1fb4434eb6425aa3719f261cda10386c90559334e483a27f0"
+    },
+    {
+      "path": "frontend/src/scientific/EntropyChart.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "ea9dc8a385e7f749f86365cef3b1044ff7dfef61e37eaa291b997702623b49ec"
+    },
+    {
+      "path": "frontend/src/scientific/EvidenceLink.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "b60f8034687869e85eac9ceafd7f3ee5355c2a3d4c2b2afe130bf6b5b998c1d7"
+    },
+    {
+      "path": "frontend/src/scientific/FaceAllocationView.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "06ac43848aa97153f2337c3b336c358d322294ea6f26dcbebafe6ef8ce5c837d"
+    },
+    {
+      "path": "frontend/src/scientific/GrowthValidationChart.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "c83f170e4773e0621e81d79b05a479e9bf57a729cd3bb19ba7dd6fc9b0ccea55"
+    },
+    {
+      "path": "frontend/src/scientific/MetricsPanel.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "7a2d440b649f39f86ae55242a82323aa3ba64e4de0f9cb76ea34c3e43dac301f"
+    },
+    {
+      "path": "frontend/src/scientific/ScientificStatus.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "dfb795c447a40f48382c95e2cf8106f79cd265f937366f148abb1481e7895da0"
+    },
+    {
+      "path": "frontend/src/scientific/SnapshotViewer.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "cacea8558085eda0485de8ee5346109b088578088a8950aa86edb7b8b7f71a47"
+    },
+    {
+      "path": "frontend/src/scientific/SpectralCurveChart.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "da3dc0f09aaac466b6de60e43c0cf062faf1b508b9fa38fab2be7442d067f573"
+    },
+    {
+      "path": "frontend/src/scientific/useEcharts.ts",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "7b1dc8b6be3c95922a475e50b0e2a59a950c549b5c8cc936ddcf246560cd0061"
+    },
+    {
+      "path": "frontend/src/views/case8/AllocationTab.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "76e7e22c6029153d20f5d202004e68e871267e07b887c5a483f4e3be8a9c87b9"
+    },
+    {
+      "path": "frontend/src/views/case8/EntropyTab.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "208eeee2a2c071ff86b5a9b833ac7edd25833e334f43a72709801cfd68c09615"
+    },
+    {
+      "path": "frontend/src/views/case8/EvidenceTab.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "72f4e15ce596a1b8d5f9141f8c43a8e0c6508b33d8b49ac2441e3922100a2a1e"
+    },
+    {
+      "path": "frontend/src/views/case8/FlowTab.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "cbd472bd935efe5e9fa4ca37210b11d0b668b12a4e8f2911e64273bc806ce17e"
+    },
+    {
+      "path": "frontend/src/views/case8/GateComparisonView.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "c68574910ab45b279f4ddfd24955fea1371d8fd4712d6ae33e7569924d6e3300"
+    },
+    {
+      "path": "frontend/src/views/case8/MetricsTab.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "6e16563b680833000e90f8a4500c89ec30b6be6ea30d37aa3a7dd13ee860ba12"
+    },
+    {
+      "path": "frontend/src/views/case8/OverviewTab.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "f7c9af650e0e83799af9cb35f6c1cf15415c5d83cb1a2a07a8ced02e1cd50be2"
+    },
+    {
+      "path": "frontend/src/views/case8/SpectralTab.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "b6abd8f34c2fc9d1b255302c642a2cc50d887d6b9e9e7debcc6fadac40d97b64"
+    },
+    {
+      "path": "frontend/src/views/closure/ClosureChart.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "fae9cac3ac2fe4d36222f15089800290c96618cfff007b5f3c7418d520e1753e"
+    },
+    {
+      "path": "frontend/src/views/closure/ClosureHistory.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "61abbac5285eb06cfa8cea00077b936e216741346cb7a743c69f6cd59c20fe04"
+    },
+    {
+      "path": "frontend/src/views/closure/ClosureRefinement.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "e448e13202251f3643c732824aa7bf9fda3cbe4d1a018acbea18da7c3f7f390c"
+    },
+    {
+      "path": "frontend/src/views/crossflow/CrossFlowView.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "a6fbb1a18ec5ab5e0ffeb1adf10d38375173b3a63fdcdd01a53aa40a216daaab"
+    },
+    {
+      "path": "frontend/src/views/cylinder/CanonicalMetrics.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "2cf07f84a08d503b6d0d6116cc9f5923d03fbc0ab7dd53a3e7f374e971b44a8c"
+    },
+    {
+      "path": "frontend/src/views/cylinder/InstantaneousField.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "015cfdb159a8b5e67761d76930f4f70a89f7b86e5eb3e22a551a94db69ed1aef"
+    },
+    {
+      "path": "frontend/src/views/cylinder/ResourceState.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "95f12e93ac317a02e82d5e43edd423bbebc3bedbebfe27e3ebb7b92b003fabcd"
+    },
+    {
+      "path": "frontend/src/views/cylinder/ResultContext.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "17fa205438147875dbeefef258db52ff2f3156ae8c38cd0ab05335035ef38017"
+    },
+    {
+      "path": "frontend/src/views/cylinder/ScalarHistory.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "89e554fae0d1f77b6785fae3b4b29e24193c3198f1acf25909063a9326250161"
+    },
+    {
+      "path": "frontend/src/views/cylinder/SectorAllocation.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "1d07f5e71411a5ac72820e8b855086a71201ae3492e742d76391ee2f4cc5ab4f"
+    },
+    {
+      "path": "frontend/src/views/evidence/EvidenceDetailView.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "cd9529716c20b42f5a8df757ae7d890fd4209ef00914873a3742cc235f143cab"
+    },
+    {
+      "path": "frontend/src/views/evidence/EvidenceQuickView.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "df8d1c71711eff43bed16551fc270f23a995f3cb8e092b7dd01967cc5a541bb9"
+    },
+    {
+      "path": "frontend/src/views/evidence/EvidenceStatus.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "8703c573b1aa9aac704614341d82c7793e073bb401e136c2975976f79875c4b2"
+    },
+    {
+      "path": "frontend/src/views/mechanism/MechanismView.vue",
+      "classification": "OWNED",
+      "category": "PRESENTATION",
+      "review": "Display mapping/labels/metadata/Chinese typography only; protected code/route/numeric comparisons in CHECKS.json.",
+      "sha256_before_staging": "bf6650337423082806e9686df96e47e77d990818d3368e931ad41499b97810bc"
+    },
+    {
+      "path": "frontend/tests/allocation-real-api.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "8b918a331fd0b271090201dec59649bf2af7af845899f9c93ec124ef5fc55b66"
+    },
+    {
+      "path": "frontend/tests/case8-acceptance.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "082e19b170dee5a89eb39f037b9d59f9e4d16fba6eca681c704ea7362d774a89"
+    },
+    {
+      "path": "frontend/tests/case8-real-integration.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "e27f2fffee87694303e916e4b01ebec3707143e5b4f2a0b4ee7e4dc985693f3f"
+    },
+    {
+      "path": "frontend/tests/closure-real-api.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "164d129cea9e8fd526934d384864906f3167b434f3306f282a5980a15cea71f9"
+    },
+    {
+      "path": "frontend/tests/cylinder-crossflow-real-api.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "214bb4e80dbe9e22a61bacbd31e01d580eb8381debe4c92a9845133cd4e8318f"
+    },
+    {
+      "path": "frontend/tests/evidence-real-api.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "c5b1bddd27cdfe89596cf9cf84cfbafc4376297bc1cfb9642188ea2f6198c04e"
+    },
+    {
+      "path": "frontend/tests/evidence.unit.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "5a1bb44b6611cd9c25472d0ed70827f6152d5a48bfac6d5e49f5080bb6896088"
+    },
+    {
+      "path": "frontend/tests/explore-real-api.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "891dec53c532a649654b2535db45a7e96758c0b6d1fc5fa0c1c6bcfaa9a5ea29"
+    },
+    {
+      "path": "frontend/tests/localization.unit.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "b0587946e7a00a2ace569ac07887dd6deedc5907ee68fc0c31619eb32177718a"
+    },
+    {
+      "path": "frontend/tests/mechanism-real-api.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "49a10f01204a0e8c04087a5b681b54777111e3589bf9e8d3189fc23c070f0405"
+    },
+    {
+      "path": "frontend/tests/phase10-final-integration.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "619d2c1c01637bcaf2e98e731dea8001ad6a46472036c67e7f63621bf85147de"
+    },
+    {
+      "path": "frontend/tests/phase11-final-integration.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "a2f9526052c6a6a54d23537098902d61d10435044e660f720d5010d27b57af46"
+    },
+    {
+      "path": "frontend/tests/phase12-final-integration.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "4940b8d2769f5ee87d578375b722f28a06a130bf7a548b7421f158dc654e4a86"
+    },
+    {
+      "path": "frontend/tests/phase8-final-integration.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "abaa970fbfc62ea821c71656375152d0bc132d42320941f4ddddf6bcc928a650"
+    },
+    {
+      "path": "frontend/tests/spectral-real-api.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "abc66c15623893867e370dfe712af1ae035210144f7882ebfe78a1d716892ec5"
+    },
+    {
+      "path": "scripts/verification/polish01_browser.mjs",
+      "classification": "OWNED",
+      "category": "QA_SCRIPT",
+      "review": "Read-only browser audit; screenshot and text export; no scientific computation or writes.",
+      "sha256_before_staging": "6bf226786ef39d071a785f088e18c57cc823f177e1b8afe70bbc3f0bea192286"
+    },
+    {
+      "path": "tests/window3_frontend/case8_slice.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "bb1c5788aedcab7caf8248a31dc4e2d7d6247817647ed2ca9ab401c8e15858b8"
+    },
+    {
+      "path": "tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "f4038be2ac80eae8874897393a452bc34fde14d9b58578a97854cb7f5c970f85"
+    },
+    {
+      "path": "tests/window4_allocation/allocation_ui.spec.ts",
+      "classification": "OWNED",
+      "category": "LOCALIZED_TESTS",
+      "review": "Display selectors updated; scientific numbers/IDs/API/URL/state assertions preserved; complete 220-item suite passed.",
+      "sha256_before_staging": "6e524296addd6327d183dca8bfb35e8c0dddd5358a374d3b20a4688be2c72c08"
+    }
+  ]
+}

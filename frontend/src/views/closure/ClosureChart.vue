@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { computed } from 'vue'
 import { useEcharts } from '../../scientific/useEcharts'
 const props = defineProps<{ curves: { name: string; unit: string; points: [number, number | null][] }[]; xLabel: string; log?: boolean }>()
@@ -17,4 +19,4 @@ const option = computed(() => {
 })
 const { el } = useEcharts(option)
 </script>
-<template><div ref="el" role="img" :aria-label="curves.map(c => c.name).join(', ')" :data-point-count="curves[0]?.points.length" style="height: 24rem; width: 100%" /></template>
+<template><div ref="el" role="img" :aria-label="curves.map(c => zh(c.name)).join(', ')" :data-point-count="curves[0]?.points.length" style="height: 24rem; width: 100%" /></template>

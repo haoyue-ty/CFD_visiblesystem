@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { verificationText } from "../../data/evidence"
 /**
  * P07 / Spectral Lab tab — Phase 7B Window 3.
@@ -208,39 +210,37 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
   <section class="sl" data-page="spectral-lab" data-testid="spectral-lab">
     <!-- SCIENTIFIC SCOPE: the page states what it is and what it must not be read as -->
     <header class="sl__scope" data-testid="spectral-scope">
-      <h2>Selective modal response</h2>
+      <h2>{{ zh("Selective modal response") }}</h2>
       <p class="sl__scope-text">
-        The growth-rate signature <strong>Re(λ)</strong> of the most unstable Fourier mode, measured on a
-        common Mach6 base state. Each <em>q_at</em> below is one exact registered configuration; modes are
-        discrete blocks (ell 0…16). This page reports recorded spectral facts only.
+        {{ zh("The growth-rate signature") }} <strong>Re(λ)</strong> {{ zh("of the most unstable Fourier mode, measured on a common Mach6 base state. Each") }} <em>q_at</em> {{ zh("below is one exact registered configuration; modes are discrete blocks (ell 0…16). This page reports recorded spectral facts only.") }}
       </p>
-      <p data-testid="spectral-scientific-limit">Positive entropy production does not imply uniform modal damping.</p>
+      <p data-testid="spectral-scientific-limit">{{ zh("Positive entropy production does not imply uniform modal damping.") }}</p>
     </header>
 
     <section v-if="guided" data-testid="guided-spectral">
-      <p>q_at=0 and q_at=.396 · emphasis: mode 4 / mode 8. All recorded ell 0…16 remain visible.</p>
-      <p>Negative shift, positive shift and near-zero shift compare recorded Re(λ) values. Near-zero means equal at ten decimal places for display; it is not a formal stability threshold or a recalculated metric.</p>
-      <LoadStateBlock v-if="!guidedCurves" :loaded="null" target="recorded spectrum comparison" />
+      <p>{{ zh("q_at=0 and q_at=.396 · emphasis: mode 4 / mode 8. All recorded ell 0…16 remain visible.") }}</p>
+      <p>{{ zh("Negative shift, positive shift and near-zero shift compare recorded Re(λ) values. Near-zero means equal at ten decimal places for display; it is not a formal stability threshold or a recalculated metric.") }}</p>
+      <LoadStateBlock v-if="!guidedCurves" :loaded="null" :target="zh('recorded spectrum comparison')" />
       <div v-for="(loaded, i) in guidedCurves ?? []" :key="i">
-        <LoadStateBlock :loaded="loaded" target="recorded spectrum curve">
+        <LoadStateBlock :loaded="loaded" :target="zh('recorded spectrum curve')">
           <template v-if="loaded.data">
             <MockBadge :origin="loaded.data.result.data_origin" :verification="loaded.data.verification.status" />
             <SpectralCurveChart :curve="loaded.data" />
-            <p>{{ loaded.data.provenance.registry_revision }} · {{ loaded.data.provenance.data_revision }} · {{ verificationText(loaded.data.verification) }}</p>
+            <p>{{ zh(loaded.data.provenance.registry_revision) }} · {{ zh(loaded.data.provenance.data_revision) }} · {{ zh(verificationText(loaded.data.verification)) }}</p>
             <EvidenceLink v-for="id in loaded.data.provenance.evidence_refs" :key="id" :evidence-id="id" :return-to="returnTo" />
           </template>
         </LoadStateBlock>
       </div>
       <table v-if="guidedRows.length" data-testid="guided-modal-table">
-        <thead><tr><th>ell</th><th>Recorded Re(λ), q_at=0</th><th>Recorded Re(λ), q_at=.396</th><th>Direction at displayed precision</th></tr></thead>
-        <tbody><tr v-for="row in guidedRows" :key="row.mode" :data-mode="row.mode" :class="{ emphasized: [4, 8].includes(row.mode) }"><th>{{ row.mode }}</th><td>{{ row.baseline?.toFixed(10) ?? 'UNKNOWN' }}</td><td>{{ row.enabled?.toFixed(10) ?? 'UNKNOWN' }}</td><td>{{ row.direction }}</td></tr></tbody>
+        <thead><tr><th>ell</th><th>{{ zh("Recorded Re(λ), q_at=0") }}</th><th>{{ zh("Recorded Re(λ), q_at=.396") }}</th><th>{{ zh("Direction at displayed precision") }}</th></tr></thead>
+        <tbody><tr v-for="row in guidedRows" :key="row.mode" :data-mode="row.mode" :class="{ emphasized: [4, 8].includes(row.mode) }"><th>{{ zh(row.mode) }}</th><td>{{ zh(row.baseline?.toFixed(10) ?? 'UNKNOWN') }}</td><td>{{ zh(row.enabled?.toFixed(10) ?? 'UNKNOWN') }}</td><td>{{ zh(row.direction) }}</td></tr></tbody>
       </table>
     </section>
     <template v-else>
     <!-- SELECTION: configuration (dataset) + exact q_at -->
-    <LoadStateBlock :loaded="datasets" target="spectral datasets">
-      <div class="sl__select" role="group" aria-label="Spectral dataset">
-        <span class="sl__select-label">configuration:</span>
+    <LoadStateBlock :loaded="datasets" :target="zh('spectral datasets')">
+      <div class="sl__select" role="group" :aria-label="zh('Spectral dataset')">
+        <span class="sl__select-label">{{ zh("configuration:") }}</span>
         <button
           v-for="item in datasets?.data || []"
           :key="item.dataset_id"
@@ -249,26 +249,24 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           :data-testid="`spectral-q-${item.q_at}`"
           :aria-pressed="item.dataset_id === selectedDatasetId"
           @click="selectedDatasetId = item.dataset_id"
-        >{{ item.configuration_id }}</button>
+        >{{ zh(item.configuration_id) }}</button>
       </div>
       <p class="sl__qat" data-testid="spectral-qat">
-        q_at = <strong>{{ qAt === null ? 'unavailable' : qAt }}</strong>
-        <span class="sl__qat-note">(one of four exact recorded configurations — never interpolated)</span>
+        q_at = <strong>{{ zh(qAt === null ? 'unavailable' : qAt) }}</strong>
+        <span class="sl__qat-note">{{ zh("(one of four exact recorded configurations — never interpolated)") }}</span>
       </p>
     </LoadStateBlock>
 
     <!-- REGION 1: spectral abscissa curve -->
     <section class="sl__region" data-testid="spectral-curve-region">
-      <h3>1 · Spectral abscissa curve</h3>
-      <p class="sl__axis-note">x = mode k · y = Re(λ)</p>
-      <LoadStateBlock :loaded="curve" target="spectral curve">
+      <h3>{{ zh("1 · Spectral abscissa curve") }}</h3>
+      <p class="sl__axis-note">{{ zh("x = mode k · y = Re(λ)") }}</p>
+      <LoadStateBlock :loaded="curve" :target="zh('spectral curve')">
         <template v-if="curve?.data">
           <MockBadge :origin="curve.data.result.data_origin" :verification="curve.data.verification.status" />
           <SpectralCurveChart :curve="curve.data" />
           <p class="sl__prov" data-testid="curve-provenance">
-            registry_revision={{ curve.data.provenance.registry_revision }} ·
-            data_revision={{ curve.data.provenance.data_revision }} ·
-            verification={{ verificationText(curve.data.verification) }}
+            {{ zh("registry_revision=") }}{{ zh(curve.data.provenance.registry_revision) }} {{ zh("· data_revision=") }}{{ zh(curve.data.provenance.data_revision) }} {{ zh("· verification=") }}{{ zh(verificationText(curve.data.verification)) }}
           </p>
         </template>
       </LoadStateBlock>
@@ -276,9 +274,9 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
 
     <!-- REGION 2: mode detail -->
     <section class="sl__region" data-testid="spectral-mode-region">
-      <h3>2 · Mode detail</h3>
-      <div class="sl__select" role="group" aria-label="Fourier mode index">
-        <span class="sl__select-label">mode index (ell):</span>
+      <h3>{{ zh("2 · Mode detail") }}</h3>
+      <div class="sl__select" role="group" :aria-label="zh('Fourier mode index')">
+        <span class="sl__select-label">{{ zh("mode index (ell):") }}</span>
         <button
           v-for="k in 17"
           :key="k - 1"
@@ -287,37 +285,35 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           :data-testid="`spectral-mode-${k - 1}`"
           :aria-pressed="(k - 1) === selectedModeIndex"
           @click="selectedModeIndex = k - 1"
-        >{{ k - 1 }}</button>
+        >{{ zh(k - 1) }}</button>
       </div>
 
       <!-- MISSING saved vector: an explicit "Unavailable", never a blank frame -->
       <div v-if="modeUnavailable" class="sl__unavailable" data-testid="spectral-mode-unavailable" role="note">
-        <strong>Unavailable.</strong>
-        {{ mode?.reason || 'No saved eigenmode vector exists for this selection in the recorded source.' }}
+        <strong>{{ zh("Unavailable.") }}</strong>
+        {{ zh(mode?.reason || 'No saved eigenmode vector exists for this selection in the recorded source.') }}
       </div>
 
-      <LoadStateBlock v-else :loaded="mode" target="eigenmode">
+      <LoadStateBlock v-else :loaded="mode" :target="zh('eigenmode')">
         <template v-if="mode?.data">
           <MockBadge :origin="mode.data.result.data_origin" :verification="mode.data.verification.status" />
           <dl class="sl__facts">
-            <div><dt>mode index (ell)</dt><dd data-testid="mode-index">{{ mode.data.mode_index }}</dd></div>
-            <div><dt>side</dt><dd data-testid="mode-side">{{ mode.data.side }}</dd></div>
-            <div><dt>rank (eigenpair)</dt><dd data-testid="mode-rank">{{ mode.data.rank }}</dd></div>
-            <div><dt>eigen representation</dt><dd data-testid="mode-representation">{{ mode.data.eigen_representation }}</dd></div>
-            <div><dt>projection</dt><dd data-testid="mode-projection">{{ mode.data.projection }}</dd></div>
-            <div><dt>field component</dt><dd data-testid="mode-component">{{ mode.data.field_component }}</dd></div>
-            <div><dt>shape</dt><dd data-testid="mode-shape">{{ mode.data.shape.join(' × ') }}</dd></div>
-            <div><dt>localization</dt><dd data-testid="mode-localization">{{ mode.data.localization_fraction === null ? 'unavailable' : mode.data.localization_fraction }}</dd></div>
+            <div><dt>{{ zh("mode index (ell)") }}</dt><dd data-testid="mode-index">{{ zh(mode.data.mode_index) }}</dd></div>
+            <div><dt>{{ zh("side") }}</dt><dd data-testid="mode-side">{{ zh(mode.data.side) }}</dd></div>
+            <div><dt>{{ zh("rank (eigenpair)") }}</dt><dd data-testid="mode-rank">{{ zh(mode.data.rank) }}</dd></div>
+            <div><dt>{{ zh("eigen representation") }}</dt><dd data-testid="mode-representation">{{ zh(mode.data.eigen_representation) }}</dd></div>
+            <div><dt>{{ zh("projection") }}</dt><dd data-testid="mode-projection">{{ zh(mode.data.projection) }}</dd></div>
+            <div><dt>{{ zh("field component") }}</dt><dd data-testid="mode-component">{{ zh(mode.data.field_component) }}</dd></div>
+            <div><dt>{{ zh("shape") }}</dt><dd data-testid="mode-shape">{{ zh(mode.data.shape.join(' × ')) }}</dd></div>
+            <div><dt>{{ zh("localization") }}</dt><dd data-testid="mode-localization">{{ zh(mode.data.localization_fraction === null ? 'unavailable' : mode.data.localization_fraction) }}</dd></div>
           </dl>
-          <p class="sl__prov">{{ mode.data.localization_definition }}</p>
+          <p class="sl__prov">{{ zh(mode.data.localization_definition) }}</p>
           <!-- values load separately through ARRAY01 -->
-          <LoadStateBlock :loaded="modeArray" target="eigenmode values">
+          <LoadStateBlock :loaded="modeArray" :target="zh('eigenmode values')">
             <EigenmodeChart v-if="modeArray?.data && mode.data" :mode="mode.data" :array="modeArray.data" />
           </LoadStateBlock>
           <p class="sl__prov" data-testid="mode-provenance">
-            registry_revision={{ mode.data.provenance.registry_revision }} ·
-            data_revision={{ mode.data.provenance.data_revision }} ·
-            verification={{ verificationText(mode.data.verification) }}
+            {{ zh("registry_revision=") }}{{ zh(mode.data.provenance.registry_revision) }} {{ zh("· data_revision=") }}{{ zh(mode.data.provenance.data_revision) }} {{ zh("· verification=") }}{{ zh(verificationText(mode.data.verification)) }}
           </p>
         </template>
       </LoadStateBlock>
@@ -325,9 +321,9 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
 
     <!-- REGION 3: growth validation -->
     <section class="sl__region" data-testid="spectral-validation-region">
-      <h3>3 · Growth validation — linear vs CFD</h3>
-      <div v-if="runs?.data?.length" class="sl__select" role="group" aria-label="Validation run">
-        <span class="sl__select-label">recorded run:</span>
+      <h3>{{ zh("3 · Growth validation — linear vs CFD") }}</h3>
+      <div v-if="runs?.data?.length" class="sl__select" role="group" :aria-label="zh('Validation run')">
+        <span class="sl__select-label">{{ zh("recorded run:") }}</span>
         <button
           v-for="(run, i) in runs.data"
           :key="run.run_id"
@@ -336,30 +332,26 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           :data-testid="`spectral-run-${i}`"
           :aria-pressed="run.run_id === selectedRunId"
           @click="selectedRunId = run.run_id"
-        >{{ run.label }}</button>
+        >{{ zh(run.label) }}</button>
       </div>
 
-      <LoadStateBlock :loaded="validation" target="growth validation" ready-state="READY">
+      <LoadStateBlock :loaded="validation" :target="zh('growth validation')" ready-state="READY">
         <template v-if="validation?.data">
           <MockBadge :origin="validation.data.result.data_origin" :verification="validation.data.verification.status" />
           <GrowthValidationChart :validation="validation.data" />
-          <p>Recorded growth rates [{{ validation.data.result.unit.label }}]</p>
+          <p>{{ zh("Recorded growth rates [") }}{{ zh(validation.data.result.unit.label) }}]</p>
           <dl class="sl__facts">
-            <div><dt>σ linear</dt><dd data-testid="growth-linear">{{ validation.data.growth_rate.linear === null ? 'unavailable' : validation.data.growth_rate.linear.toExponential(6) }}</dd></div>
-            <div><dt>σ RK3</dt><dd data-testid="growth-rk3">{{ validation.data.growth_rate.rk3 === null ? 'unavailable' : validation.data.growth_rate.rk3.toExponential(6) }}</dd></div>
-            <div><dt>σ CFD</dt><dd data-testid="growth-cfd">{{ validation.data.growth_rate.cfd === null ? 'unavailable' : validation.data.growth_rate.cfd.toExponential(6) }}</dd></div>
-            <div><dt>relative discrepancy (CFD−RK3)</dt><dd data-testid="growth-error">{{ validation.data.error.relative_discrepancy === null ? 'unavailable' : validation.data.error.relative_discrepancy.toExponential(6) }}</dd></div>
+            <div><dt>{{ zh("σ linear") }}</dt><dd data-testid="growth-linear">{{ zh(validation.data.growth_rate.linear === null ? 'unavailable' : validation.data.growth_rate.linear.toExponential(6)) }}</dd></div>
+            <div><dt>σ RK3</dt><dd data-testid="growth-rk3">{{ zh(validation.data.growth_rate.rk3 === null ? 'unavailable' : validation.data.growth_rate.rk3.toExponential(6)) }}</dd></div>
+            <div><dt>σ CFD</dt><dd data-testid="growth-cfd">{{ zh(validation.data.growth_rate.cfd === null ? 'unavailable' : validation.data.growth_rate.cfd.toExponential(6)) }}</dd></div>
+            <div><dt>{{ zh("relative discrepancy (CFD−RK3)") }}</dt><dd data-testid="growth-error">{{ zh(validation.data.error.relative_discrepancy === null ? 'unavailable' : validation.data.error.relative_discrepancy.toExponential(6)) }}</dd></div>
           </dl>
           <!-- A MISSING prediction history stays visible and explained -->
           <p v-if="validation.data.linear_amplitude.every(v => v === null)" class="sl__gap" data-testid="growth-linear-missing">
-            The <strong>linear amplitude history</strong> was not saved for this run. Only the recorded
-            linear/RK3/CFD rates and the 33-step CFD history are present — no prediction curve is synthesized.
+            {{ zh("The") }} <strong>{{ zh("linear amplitude history") }}</strong> {{ zh("was not saved for this run. Only the recorded linear/RK3/CFD rates and the 33-step CFD history are present — no prediction curve is synthesized.") }}
           </p>
           <p class="sl__prov" data-testid="validation-provenance">
-            registry_revision={{ validation.data.provenance.registry_revision }} ·
-            data_revision={{ validation.data.provenance.data_revision }} ·
-            verification={{ verificationText(validation.data.verification) }} ·
-            amplitude={{ validation.data.amplitude_definition }}
+            {{ zh("registry_revision=") }}{{ zh(validation.data.provenance.registry_revision) }} {{ zh("· data_revision=") }}{{ zh(validation.data.provenance.data_revision) }} {{ zh("· verification=") }}{{ zh(verificationText(validation.data.verification)) }} {{ zh("· amplitude=") }}{{ zh(validation.data.amplitude_definition) }}
           </p>
         </template>
       </LoadStateBlock>
@@ -367,11 +359,11 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
 
     <!-- Evidence -->
     <section class="sl__region" data-testid="spectral-evidence">
-      <h3>Evidence</h3>
+      <h3>{{ zh("Evidence") }}</h3>
       <ul class="sl__ev-list">
         <li v-for="ref in [...new Set([...(dataset?.data?.provenance.evidence_refs ?? []), ...(curve?.data?.provenance.evidence_refs ?? []), ...(mode?.data?.provenance.evidence_refs ?? []), ...(validation?.data?.provenance.evidence_refs ?? [])])]" :key="ref" data-testid="spectral-evidence-link">
           <EvidenceLink :evidence-id="ref" context="spectral" :return-to="returnTo" />
-          <span class="sl__ev-id">{{ ref }}</span>
+          <span class="sl__ev-id">{{ zh(ref) }}</span>
         </li>
       </ul>
     </section>    </template>

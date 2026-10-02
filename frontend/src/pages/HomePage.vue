@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 import { activeProvider } from '../data'
 /**
  * P02 — Home (system home).
@@ -32,16 +34,17 @@ onMounted(async () => {
   <main data-page="home" class="home">
     <header class="home__hero">
       <h1>ShockPath</h1>
+      <h2>从数值结果，到耗散机制</h2>
+      <p>ShockPath 将隐藏在数值通量内部的耗散机制，转化为可以观察、比较和追踪的数字实验对象。</p>
       <p class="home__question" data-testid="home-question">
-        What triggers numerical dissipation, where does it act, and how does it change modal and
-        macroscopic flow behaviour?
+        {{ zh("What triggers numerical dissipation, where does it act, and how does it change modal and macroscopic flow behaviour?") }}
       </p>
 
-      <LoadStateBlock :loaded="project" target="project identity">
-        <p v-if="project?.data" class="home__tagline">{{ project.data.tagline }}</p>
-        <div v-if="project?.data" class="home__chain" aria-label="Mechanism chain">
+      <LoadStateBlock :loaded="project" :target="zh('project identity')">
+        <p v-if="project?.data" class="home__tagline">{{ zh(project.data.tagline) }}</p>
+        <div v-if="project?.data" class="home__chain" :aria-label="zh('Mechanism chain')">
           <template v-for="(step, i) in project.data.mechanism_chain" :key="step">
-            <span class="home__chain-node">{{ step }}</span>
+            <span class="home__chain-node">{{ zh(step) }}</span>
             <span v-if="i < project.data.mechanism_chain.length - 1" class="home__chain-arrow" aria-hidden="true">→</span>
           </template>
         </div>
@@ -49,55 +52,54 @@ onMounted(async () => {
       </LoadStateBlock>
     </header>
 
-    <section class="home__modes" aria-label="Modes">
+    <section class="home__modes" :aria-label="zh('Modes')">
       <article class="card" data-testid="explore-entry">
-        <h2>Explore</h2>
-        <p>A guided ~4-minute seven-scene scientific story.</p>
-        <p class="badge" data-testid="explore-status">IMPLEMENTED — 7 scenes</p>
-        <RouterLink class="card__cta" :to="{ name: 'explore', query: { scene: '1' } }" data-testid="home-start-explore">Start Explore</RouterLink>
+        <h2>{{ zh("Explore") }}</h2>
+        <p>{{ zh("A guided ~4-minute seven-scene scientific story.") }}</p>
+        <p class="badge" data-testid="explore-status">{{ zh("IMPLEMENTED — 7 scenes") }}</p>
+        <RouterLink class="card__cta" :to="{ name: 'explore', query: { scene: '1' } }" data-testid="home-start-explore">{{ zh("Start Explore") }}</RouterLink>
       </article>
 
       <article class="card card--active">
-        <h2>Lab</h2>
-        <p>Choose a real experiment and configuration, inspect recorded data, analysis and provenance.</p>
-        <RouterLink class="card__cta" :to="{ name: 'lab' }" data-testid="home-to-lab">进入实验室 / Open the Lab</RouterLink>
+        <h2>{{ zh("Lab") }}</h2>
+        <p>{{ zh("Choose a real experiment and configuration, inspect recorded data, analysis and provenance.") }}</p>
+        <RouterLink class="card__cta" :to="{ name: 'lab' }" data-testid="home-to-lab">{{ zh("进入实验室 / Open the Lab") }}</RouterLink>
       </article>
 
       <article class="card">
-        <h2>Evidence</h2>
-        <p>Every scientific result can be traced to its method, config, source and verification state.</p>
-        <p class="card__hint">A result's "View evidence" opens Quick View, then its full record. Browse current evidence, known gaps and history in the center.</p>
-        <RouterLink class="card__cta" :to="{ name: 'evidence-center' }">Open Evidence Center</RouterLink>
+        <h2>{{ zh("Evidence Center") }}</h2>
+        <p>{{ zh("Every scientific result can be traced to its method, config, source and verification state.") }}</p>
+        <p class="card__hint">{{ zh("A result's \"View evidence\" opens Quick View, then its full record. Browse current evidence, known gaps and history in the center.") }}</p>
+        <RouterLink class="card__cta" :to="{ name: 'evidence-center' }">{{ zh("Open Evidence Center") }}</RouterLink>
       </article>
     </section>
 
-    <section class="home__experiments" aria-label="Experiment delivery status">
-      <h2>Experiment availability (delivery status)</h2>
+    <section class="home__experiments" :aria-label="zh('Experiment delivery status')">
+      <h2>{{ zh("Experiment availability (delivery status)") }}</h2>
       <p class="home__caption">
-        Status below is <strong>software delivery status</strong>, not scientific capability and not
-        asset verification.
+        {{ zh("Status below is") }} <strong>{{ zh("software delivery status") }}</strong>{{ zh(", not scientific capability and not asset verification.") }}
       </p>
-      <LoadStateBlock :loaded="experiments" target="experiment catalog">
+      <LoadStateBlock :loaded="experiments" :target="zh('experiment catalog')">
         <ul class="exp-list" data-testid="home-experiment-list">
           <li v-for="exp in experiments?.data || []" :key="exp.experiment_id" class="exp-list__item">
             <div class="exp-list__head">
-              <span class="exp-list__name">{{ exp.name }}</span>
+              <span class="exp-list__name">{{ zh(exp.name) }}</span>
               <span
                 class="badge"
                 :class="exp.delivery_status === 'IMPLEMENTED' ? 'badge--implemented' : 'badge--planned'"
                 :data-testid="`delivery-${exp.experiment_id}`"
-              >{{ exp.delivery_status }}</span>
+              >{{ zh(exp.delivery_status) }}</span>
             </div>
-            <p class="exp-list__summary">{{ exp.summary }}</p>
-            <p v-if="exp.availability_note" class="exp-list__note">{{ exp.availability_note }}</p>
+            <p class="exp-list__summary">{{ zh(exp.summary) }}</p>
+            <p v-if="exp.availability_note" class="exp-list__note">{{ zh(exp.availability_note) }}</p>
             <p v-else class="exp-list__note exp-list__note--planned">
-              Delivery status: PLANNED (software not yet implemented — capability is not missing scientific data).
+              {{ zh("Delivery status: PLANNED (software not yet implemented — capability is not missing scientific data).") }}
             </p>
             <RouterLink
               v-if="exp.delivery_status === 'IMPLEMENTED' && exp.implementable_route"
               class="exp-list__link"
               :to="{ name: 'experiment', params: { experiment_id: exp.implementable_route } }"
-            >Open {{ exp.name }} →</RouterLink>
+            >{{ zh("Open") }} {{ zh(exp.name) }} →</RouterLink>
           </li>
         </ul>
       </LoadStateBlock>

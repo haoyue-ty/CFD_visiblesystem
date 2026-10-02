@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { computed } from 'vue'
 import type { AllocationBundle } from '../../data/cylinder'
 import { known, slotValue } from '../../data/cylinder'
@@ -19,31 +21,31 @@ const { el } = useEcharts(option)
 </script>
 <template>
   <section data-testid="sector-allocation">
-    <h2>ANGULAR_SECTORS · 16 sectors</h2>
-    <p><strong>trajectory-integrated · interior-only</strong> · Native measured SSP-RK3 statistics; time weights and face measure already included.</p>
+    <h2>{{ zh("ANGULAR_SECTORS · 16 sectors") }}</h2>
+    <p><strong>{{ zh("trajectory-integrated · interior-only") }}</strong> {{ zh("· Native measured SSP-RK3 statistics; time weights and face measure already included.") }}</p>
     <ResourceState :resource="bundle.overview.sectors" label="Angular sectors">
       <template v-if="sectors">
-        <div ref="el" data-testid="angular-sector-chart" style="height: 23rem; width: 100%" role="img" aria-label="Sixteen native angular sectors, trajectory integrated interior entropy channels" />
-        <table data-testid="sector-table"><thead><tr><th>Sector</th><th>Angular edges (radian)</th><th>at fraction</th></tr></thead><tbody>
-          <tr v-for="(fraction, i) in sectors.sector_fractions" :key="i"><td>{{ i + 1 }}</td><td>{{ bundle.edges[i] }} … {{ bundle.edges[i + 1] }}</td><td>{{ known(fraction) ?? 'N/A (zero denominator)' }}</td></tr>
+        <div ref="el" data-testid="angular-sector-chart" style="height: 23rem; width: 100%" role="img" :aria-label="zh('Sixteen native angular sectors, trajectory integrated interior entropy channels')" />
+        <table data-testid="sector-table"><thead><tr><th>{{ zh("Sector") }}</th><th>{{ zh("Angular edges (radian)") }}</th><th>{{ zh("at fraction") }}</th></tr></thead><tbody>
+          <tr v-for="(fraction, i) in sectors.sector_fractions" :key="i"><td>{{ zh(i + 1) }}</td><td>{{ zh(bundle.edges[i]) }} … {{ zh(bundle.edges[i + 1]) }}</td><td>{{ zh(known(fraction) ?? 'N/A (zero denominator)') }}</td></tr>
         </tbody></table>
         <ResultContext :result="sectors.result" :definitions="bundle.definitions" />
       </template>
     </ResourceState>
     <section data-testid="front-band">
-      <h2>Front-band REGION_SCALAR</h2>
+      <h2>{{ zh("Front-band REGION_SCALAR") }}</h2>
       <ResourceState :resource="bundle.overview.front_band" label="Front-band scalar">
         <template v-if="band">
-          <p>Fraction: <strong>{{ known(band.fraction) ?? 'N/A (zero denominator)' }}</strong> · integrated value: {{ known(band.integrated_value) ?? 'Missing' }}</p>
-          <p>Denominator: {{ band.denominator_result_id }}</p>
-          <p>Mask: {{ band.region_mask.id }} · {{ band.region_mask.type }} — {{ band.region_mask.definition }}</p>
-          <p>Mask parameters: <span v-for="p in band.region_mask.parameters" :key="p.name">{{ p.name }}={{ known(p.value) ?? 'UNKNOWN' }}; </span></p>
+          <p>{{ zh("Fraction:") }} <strong>{{ zh(known(band.fraction) ?? 'N/A (zero denominator)') }}</strong> {{ zh("· integrated value:") }} {{ zh(known(band.integrated_value) ?? 'Missing') }}</p>
+          <p>{{ zh("Denominator:") }} {{ zh(band.denominator_result_id) }}</p>
+          <p>{{ zh("Mask:") }} {{ zh(band.region_mask.id) }} · {{ zh(band.region_mask.type) }} — {{ zh(band.region_mask.definition) }}</p>
+          <p>{{ zh("Mask parameters:") }} <span v-for="p in band.region_mask.parameters" :key="p.name">{{ zh(p.name) }}={{ zh(known(p.value) ?? 'UNKNOWN') }}; </span></p>
           <ResultContext :result="band.result" :definitions="bundle.definitions" />
         </template>
       </ResourceState>
     </section>
-    <section data-testid="cumulative-2d-missing"><h2>Full trajectory cumulative 2D Pi_at</h2>
-      <ResourceState :resource="bundle.overview.cumulative_2d" label="Full trajectory cumulative 2D Pi_at" />
+    <section data-testid="cumulative-2d-missing"><h2>{{ zh("Full trajectory cumulative 2D Pi_at") }}</h2>
+      <ResourceState :resource="bundle.overview.cumulative_2d" :label="zh('Full trajectory cumulative 2D Pi_at')" />
     </section>
   </section>
 </template>

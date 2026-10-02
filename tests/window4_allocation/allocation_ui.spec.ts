@@ -26,17 +26,17 @@ test.describe('Allocation tab — Case8 D_u FACE_FIELD', () => {
     await expect(page.getByTestId('alloc-family-face')).toHaveAttribute('aria-pressed', 'true')
 
     await expect(page.getByTestId('alloc-representation-type')).toHaveText('FACE_FIELD')
-    await expect(page.getByTestId('alloc-measure-definition')).toHaveText('face integrated')
+    await expect(page.getByTestId('alloc-measure-definition')).toHaveText("面上时间积分")
     await expect(page.getByTestId('alloc-semantic-id')).toHaveText('Case8_face_Pi_at_integrated')
 
     // Native face integration: spatial measure is NOT yet applied.
-    await expect(page.getByTestId('alloc-spatial-included')).toContainText('no')
+    await expect(page.getByTestId('alloc-spatial-included')).toContainText("否")
     await expect(page.getByTestId('alloc-integral-rule')).toHaveText('dy*sum(xfaces)+dx*sum(yfaces)')
 
     // Two separate orientation figures, never one averaged cell field.
     await expect(page.getByTestId('face-allocation-canvas')).toHaveCount(2)
     await expect(page.getByTestId('cell-allocation-canvas')).toHaveCount(0)
-    await expect(page.getByTestId('alloc-face-note')).toContainText('never summed')
+    await expect(page.getByTestId('alloc-face-note')).toContainText("不将其合成为单元场")
   })
 
   test('shows the per-orientation mask identity and both mask counts', async ({ page }) => {
@@ -48,8 +48,8 @@ test.describe('Allocation tab — Case8 D_u FACE_FIELD', () => {
 
   test('shows definition, verification and evidence blocks', async ({ page }) => {
     await openAllocation(page)
-    await expect(page.getByTestId('alloc-definition')).toContainText('separate x/y normal faces')
-    await expect(page.getByTestId('alloc-verification')).toContainText('NOT_APPLICABLE')
+    await expect(page.getByTestId('alloc-definition')).toContainText("x/y 法向面")
+    await expect(page.getByTestId('alloc-verification')).toContainText("不适用")
     await expect(page.getByTestId('alloc-evidence').getByTestId('evidence-link').first()).toBeVisible()
   })
 
@@ -67,12 +67,12 @@ test.describe('Allocation tab — Gate CELL_FIELD', () => {
     await page.getByTestId('alloc-family-cell').click()
 
     await expect(page.getByTestId('alloc-representation-type')).toHaveText('CELL_FIELD')
-    await expect(page.getByTestId('alloc-measure-definition')).toHaveText('cell integrated')
+    await expect(page.getByTestId('alloc-measure-definition')).toHaveText("单元积分")
     await expect(page.getByTestId('alloc-semantic-id')).toHaveText('Gate_cell_Pi_at_integrated')
 
     // Cell integration already includes the spatial measure.
-    await expect(page.getByTestId('alloc-spatial-included')).toContainText('yes')
-    await expect(page.getByTestId('alloc-integral-rule')).toHaveText('sum(cells); no additional dx/dy/dt')
+    await expect(page.getByTestId('alloc-spatial-included')).toContainText("是")
+    await expect(page.getByTestId('alloc-integral-rule')).toHaveText("sum(cells)；不再乘 dx/dy/dt")
 
     // One cell figure, no face figures.
     await expect(page.getByTestId('cell-allocation-canvas')).toHaveCount(1)

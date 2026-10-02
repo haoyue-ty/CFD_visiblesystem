@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 import { activeProvider } from '../data'
 /**
  * P06 — Case8 Experiment Detail.
@@ -130,30 +132,30 @@ watch(
 <template>
   <main data-page="experiment" class="exp">
     <ExploreReturn />
-    <nav class="exp__crumb" aria-label="Breadcrumb">
-      <RouterLink :to="{ name: 'home' }">Home</RouterLink> →
-      <RouterLink :to="{ name: 'lab' }">Lab</RouterLink> →
-      <span>Case8</span> →
-      <span class="exp__crumb-current">{{ configId }}</span>
+    <nav class="exp__crumb" :aria-label="zh('Breadcrumb')">
+      <RouterLink :to="{ name: 'home' }">{{ zh("Home") }}</RouterLink> →
+      <RouterLink :to="{ name: 'lab' }">{{ zh("Lab") }}</RouterLink> →
+      <span>{{ zh("Case8") }}</span> →
+      <span class="exp__crumb-current">{{ zh(configId) }}</span>
     </nav>
-    <RouterLink :to="{ name: 'cross-flow', query: { case8_config: configId, cylinder_config: 'D_u' } }">Case8 ↔ Cylinder · Cross-flow Compare</RouterLink>
+    <RouterLink :to="{ name: 'cross-flow', query: { case8_config: configId, cylinder_config: 'D_u' } }">{{ zh("Case8 ↔ Cylinder · Cross-flow Compare") }}</RouterLink>
 
-    <section v-if="invalidConfig" data-state="invalid-selector">UNSUPPORTED config: {{ readQueryString('config') }}. Choose a recorded Case8 configuration; no default scientific result is substituted.</section>
-    <section v-else-if="unsupportedTab" data-testid="unsupported-tab" role="alert">UNSUPPORTED view: {{ readQueryString('tab') }}. Requested location retained.</section>
-    <section v-else-if="invalidSnapshot" data-state="invalid-selector">Invalid snapshot selector: recorded indices are 1…6; index 0 is rejected.</section>
-    <LoadStateBlock v-else :loaded="overview" target="experiment overview">
+    <section v-if="invalidConfig" data-state="invalid-selector">{{ zh("UNSUPPORTED config:") }} {{ zh(readQueryString('config')) }}{{ zh(". Choose a recorded Case8 configuration; no default scientific result is substituted.") }}</section>
+    <section v-else-if="unsupportedTab" data-testid="unsupported-tab" role="alert">{{ zh("UNSUPPORTED view:") }} {{ zh(readQueryString('tab')) }}{{ zh(". Requested location retained.") }}</section>
+    <section v-else-if="invalidSnapshot" data-state="invalid-selector">{{ zh("Invalid snapshot selector: recorded indices are 1…6; index 0 is rejected.") }}</section>
+    <LoadStateBlock v-else :loaded="overview" :target="zh('experiment overview')">
       <template v-if="overview?.state === 'READY' || overview?.state === 'PARTIAL'">
         <header class="exp__header">
           <div>
-            <h1>Case8 — {{ configId }}</h1>
-            <p class="exp__subtitle">Recorded replay · six spatial snapshots + 1912 accepted-step scalar history</p>
+            <h1>{{ zh("Case8 —") }} {{ zh(configId) }}</h1>
+            <p class="exp__subtitle">{{ zh("Recorded replay · six spatial snapshots + 1912 accepted-step scalar history") }}</p>
           </div>
           <MockBadge v-if="activeProvider.kind === 'MOCK'" origin="MOCK" :verification="activeProvider.kind === 'MOCK' ? 'NOT_APPLICABLE' : undefined" />
         </header>
 
         <!-- Config selector: A/B/C/D are equally selectable -->
-        <div class="exp__configs" role="group" aria-label="Case8 config">
-          <span class="exp__configs-label">Config:</span>
+        <div class="exp__configs" role="group" :aria-label="zh('Case8 config')">
+          <span class="exp__configs-label">{{ zh("Config:") }}</span>
           <button
             v-for="cfg in VALID_CONFIGS"
             :key="cfg"
@@ -162,11 +164,11 @@ watch(
             :data-testid="`config-${cfg}`"
             :aria-pressed="cfg === configId"
             @click="selectConfig(cfg)"
-          >{{ cfg }}</button>
+          >{{ zh(cfg) }}</button>
         </div>
 
         <!-- Capability-driven tabs -->
-        <nav class="exp__tabs" role="tablist" aria-label="Case8 tabs">
+        <nav class="exp__tabs" role="tablist" :aria-label="zh('Case8 tabs')">
           <button
             v-for="t in VALID_TABS.filter(t => t !== 'spectral')"
             :key="t"
@@ -177,34 +179,27 @@ watch(
             :disabled="t === 'allocation' && allocationDisabled"
             :aria-selected="t === tab"
             @click="selectTab(t)"
-          >{{ t.charAt(0).toUpperCase() + t.slice(1) }}</button>
+          >{{ zh(t.charAt(0).toUpperCase() + t.slice(1)) }}</button>
         </nav>
 
         <p v-if="tab === 'overview'" data-testid="case8-independent-workspace-note">
-          Case8 has no recorded spectral capability. Spectrum and Modal Validation use independent
-          recorded experiments; the legacy Spectral Lab shortcut keeps their separate identity.
+          {{ zh("Case8 has no recorded spectral capability. Spectrum and Modal Validation use independent recorded experiments; the legacy Spectral Lab shortcut keeps their separate identity.") }}
         </p>
         <button data-testid="tab-spectral" :aria-pressed="tab === 'spectral'" @click="selectTab('spectral')">
-          Independent workspace: Spectrum / Modal Validation
+          {{ zh("Independent workspace: Spectrum / Modal Validation") }}
         </button>
 
         <p v-if="allocationDisabled" class="exp__tab-reason" data-testid="allocation-disabled-reason">
-          Allocation is not available for {{ configId }}: only D_u has a recorded terminal cumulative
-          native-face map. Other configs do not have a cumulative spatial map saved — this is a known
-          capability limit for this config, not a synthetic zero field.
+          {{ zh("Allocation is not available for") }} {{ zh(configId) }}{{ zh(": only D_u has a recorded terminal cumulative native-face map. Other configs do not have a cumulative spatial map saved — this is a known capability limit for this config, not a synthetic zero field.") }}
         </p>
         <p v-else-if="tab === 'allocation'" class="exp__tab-note" data-testid="allocation-note">
-          D_u FACE_FIELD is the recorded terminal cumulative native-face diagnostic (DIAGNOSTIC_RERUN).
-          The Gate CELL_FIELD views (Acoustic / Pressure / Ungated) are frozen production cell maps.
-          These are different scientific objects and are rendered separately.
+          {{ zh("D_u FACE_FIELD is the recorded terminal cumulative native-face diagnostic (DIAGNOSTIC_RERUN). The Gate CELL_FIELD views (Acoustic / Pressure / Ungated) are frozen production cell maps. These are different scientific objects and are rendered separately.") }}
         </p>
         <p v-else-if="tab === 'spectral'" class="exp__tab-note" data-testid="spectral-note">
-          Independent Spectral Lab (not Case8 data): <strong>Selective modal response</strong> — the Re(λ) growth signature of the most
-          unstable Fourier mode across four exact q_at configurations. This reports recorded spectral
-          facts; it is not a spatial field.
+          {{ zh("Independent Spectral Lab (not Case8 data):") }} <strong>{{ zh("Selective modal response") }}</strong> {{ zh("— the Re(λ) growth signature of the most unstable Fourier mode across four exact q_at configurations. This reports recorded spectral facts; it is not a spatial field.") }}
         </p>
 
-        <section class="exp__content" role="tabpanel" :aria-label="tab">
+        <section class="exp__content" role="tabpanel" :aria-label="zh(tab)">
           <OverviewTab v-if="tab === 'overview' && overview.data" :overview="overview.data" :config-id="configId" />
           <FlowTab
             v-else-if="tab === 'flow'"
@@ -223,9 +218,9 @@ watch(
 
     <!-- Unknown experiment: a system-level fallback, not a business page -->
     <section v-if="overview?.state === 'MISSING'" data-testid="experiment-fallback">
-      <h1>Unknown experiment</h1>
-      <p>{{ overview.reason }}</p>
-      <RouterLink :to="{ name: 'lab' }">← Back to Lab</RouterLink>
+      <h1>{{ zh("Unknown experiment") }}</h1>
+      <p>{{ zh(overview.reason) }}</p>
+      <RouterLink :to="{ name: 'lab' }">{{ zh("← Back to Lab") }}</RouterLink>
     </section>
   </main>
 </template>

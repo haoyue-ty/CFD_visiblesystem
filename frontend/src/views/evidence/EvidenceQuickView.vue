@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { createRequestGuard, type Loaded } from '../../data'
@@ -30,30 +32,30 @@ function keydown(event: KeyboardEvent) {
   <Teleport to="body">
     <div v-if="quickView" class="evidence-overlay" @click.self="closeEvidence">
       <section ref="panel" class="evidence-drawer" role="dialog" aria-modal="true" aria-labelledby="quick-title" data-testid="evidence-quick-view" @keydown="keydown">
-        <button data-testid="quick-close" @click="closeEvidence">Close quick view</button>
-        <h2 id="quick-title">Evidence Quick View</h2>
-        <LoadStateBlock :loaded="record" target="evidence quick view">
+        <button data-testid="quick-close" @click="closeEvidence">{{ zh("Close quick view") }}</button>
+        <h2 id="quick-title">{{ zh("Evidence Quick View") }}</h2>
+        <LoadStateBlock :loaded="record" :target="zh('evidence quick view')">
           <template v-if="record?.data">
-            <h3>{{ record.data.evidence_id }}</h3>
-            <p data-testid="quick-identity"><strong>Result identity:</strong> {{ record.data.result_ids.join(', ') || 'No numerical result identity — provenance / content record' }}</p>
-            <p v-if="nonNumerical(record.data)" data-testid="quick-non-numerical">NON-NUMERICAL EVIDENCE · no numerical availability claim.</p>
-            <p><strong>Experiment / config:</strong> {{ factText(record.data.experiment_id) }} / {{ factText(record.data.config_id) }}</p>
-            <p><strong>Semantic / scope:</strong> {{ supports(record.data) }}</p>
-            <p v-for="r in record.data.result_contexts" :key="r.result_id">{{ r.semantic_id }} · {{ r.scope.description }}</p>
-            <p><strong>Method:</strong> {{ factText(record.data.method_name) }}</p>
-            <p class="hash"><strong>Method hash:</strong> {{ factText(record.data.method_hash) }}</p>
-            <p class="hash"><strong>Recorded source hash:</strong> {{ factText(record.data.recorded_source_hash) }}<br><strong>Current source hash:</strong> {{ factText(record.data.current_source_hash) }}</p>
-            <p><strong>Freeze reference:</strong> {{ knownValue(record.data.freeze_reference)?.freeze_id ?? factText(record.data.freeze_reference) }}</p>
+            <h3>{{ zh(record.data.evidence_id) }}</h3>
+            <p data-testid="quick-identity"><strong>{{ zh("Result identity:") }}</strong> {{ zh(record.data.result_ids.join(', ') || 'No numerical result identity — provenance / content record') }}</p>
+            <p v-if="nonNumerical(record.data)" data-testid="quick-non-numerical">{{ zh("NON-NUMERICAL EVIDENCE · no numerical availability claim.") }}</p>
+            <p><strong>{{ zh("Experiment / config:") }}</strong> {{ zh(factText(record.data.experiment_id)) }} / {{ zh(factText(record.data.config_id)) }}</p>
+            <p><strong>{{ zh("Semantic / scope:") }}</strong> {{ zh(supports(record.data)) }}</p>
+            <p v-for="r in record.data.result_contexts" :key="r.result_id">{{ zh(r.semantic_id) }} · {{ zh(r.scope.description) }}</p>
+            <p><strong>{{ zh("Method:") }}</strong> {{ zh(factText(record.data.method_name)) }}</p>
+            <p class="hash"><strong>{{ zh("Method hash:") }}</strong> {{ zh(factText(record.data.method_hash)) }}</p>
+            <p class="hash"><strong>{{ zh("Recorded source hash:") }}</strong> {{ zh(factText(record.data.recorded_source_hash)) }}<br><strong>{{ zh("Current source hash:") }}</strong> {{ zh(factText(record.data.current_source_hash)) }}</p>
+            <p><strong>{{ zh("Freeze reference:") }}</strong> {{ zh(knownValue(record.data.freeze_reference)?.freeze_id ?? factText(record.data.freeze_reference)) }}</p>
             <EvidenceStatus primary :verification="record.data.verification" :drift="record.data.source_drift" :origins="record.data.result_contexts.map(r => r.data_origin)" />
-            <p><strong>Source summary:</strong> {{ record.data.source_assets.length }} registered assets</p>
-            <ul><li v-for="asset in record.data.source_assets" :key="asset.asset_id">{{ asset.role }} · {{ asset.source_display }}<p v-if="knownValue(asset.data_drift) === true" class="hash">SOURCE DRIFT · Recorded data hash: {{ factText(asset.recorded_data_hash) }}<br>Current data hash: {{ factText(asset.current_data_hash) }}</p></li></ul>
-            <p><strong>Important limitations:</strong></p>
-            <ul><li v-for="lim in record.data.limitations" :key="lim.id">{{ lim.severity }} · {{ lim.code }} — {{ lim.description }}</li></ul>
-            <p v-if="!record.data.limitations.length">No limitations recorded; this does not establish unrestricted support.</p>
+            <p><strong>{{ zh("Source summary:") }}</strong> {{ zh(record.data.source_assets.length) }} {{ zh("registered assets") }}</p>
+            <ul><li v-for="asset in record.data.source_assets" :key="asset.asset_id">{{ zh(asset.role) }} · {{ zh(asset.source_display) }}<p v-if="knownValue(asset.data_drift) === true" class="hash">{{ zh("SOURCE DRIFT · Recorded data hash:") }} {{ zh(factText(asset.recorded_data_hash)) }}<br>{{ zh("Current data hash:") }} {{ zh(factText(asset.current_data_hash)) }}</p></li></ul>
+            <p><strong>{{ zh("Important limitations:") }}</strong></p>
+            <ul><li v-for="lim in record.data.limitations" :key="lim.id">{{ zh(lim.severity) }} · {{ zh(lim.code) }} — {{ zh(lim.description) }}</li></ul>
+            <p v-if="!record.data.limitations.length">{{ zh("No limitations recorded; this does not establish unrestricted support.") }}</p>
           </template>
         </LoadStateBlock>
-        <p>Evidence records can remain inspectable when source-data drift blocks a scientific result. An evidence response does not certify numerical availability.</p>
-        <RouterLink :to="quickView.target" data-testid="quick-full-record">View full record →</RouterLink>
+        <p>{{ zh("Evidence records can remain inspectable when source-data drift blocks a scientific result. An evidence response does not certify numerical availability.") }}</p>
+        <RouterLink :to="quickView.target" data-testid="quick-full-record">{{ zh("View full record →") }}</RouterLink>
       </section>
     </div>
   </Teleport>

@@ -1,0 +1,431 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+数字实验室
+→ Mach 3 圆柱绕流
+Mach 3 圆柱绕流实验 — D_u
+
+真实数据 API · 已保存的原生瞬时场、已接受步标量历史与轨迹累计空间分配。
+
+A_u
+B_u
+D_u
+概览
+流场
+熵耗散
+扇区分配
+指标
+证据
+Case 8 ↔ Mach 3 圆柱绕流 · 跨流动对比
+
+全轨迹累计二维 Pi_at — 当前不可用 / 缺失: 所选冻结圆柱数据集中，全轨迹累计二维 Pi_at 缺失
+
+查看证据
+中心线宽度
+
+数值： 0.225334142697176 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+上游中心线径向压力 W10-90：最强局部 p50 区段锚点，最近有序 p90 <= p50 <= p10；width=p10-p90 cylinder_centerline_width
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+
+DETECTOR_LIMITED_SHARPNESS_READING — 相对于标称 dr=(8-.5)/32，B/D 径向宽度位于检测器下限附近；标称 dr 是分辨率背景，并非误差条或不确定性。宽度比值不能证明任意精度下的锐化。
+
+查看证据
+前沿平均宽度
+
+数值： 0.22582923367848612 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+上游 +/-12 度扇区内最近八条网格射线上的径向压力 W10-90 均值，采用相同有序局部 p50 检测器 cylinder_front_mean_width
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+
+DETECTOR_LIMITED_SHARPNESS_READING — 相对于标称 dr=(8-.5)/32，B/D 径向宽度位于检测器下限附近；标称 dr 是分辨率背景，并非误差条或不确定性。宽度比值不能证明任意精度下的锐化。
+
+查看证据
+前沿 RMS
+
+数值： 0.004165303448992105 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+八个已保存 p50 前沿半径的总体标准差：sqrt(mean((r-mean(r))**2))；并非二次去趋势 HF 统计量 cylinder_front_RMS
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+HF-RMS
+
+数值： 0.0003347280552015056 局部径向单元间距
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+展开八条上游射线角度，对前沿半径作二次拟合得到残差 h；取六条内部射线 (h[i]-.5*(h[i-1]+h[i+1]))/local_radial_spacing[i] 的 RMS；来源将 <=128*float64 eps 的值设为零 cylinder_front_HF_RMS
+单位
+局部径向单元间距 (无量纲)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+cylinder_high_angular_energy
+
+数值： 6.493644923599132e-11 模型长度平方单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+八条射线前沿残差二次去趋势后的非归一化 rfft；sum(abs(modes[k>=max(2,ray_count//4)])**2)/ray_count**2 cylinder_high_angular_energy
+单位
+模型长度平方单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+cylinder_centerline_standoff
+
+数值： 0.3112682593115539 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+中心线局部 p50 交点半径减去圆柱内半径 .5 cylinder_centerline_standoff
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+cylinder_front_standoff
+
+数值： 0.31565887502828616 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+八条射线 p50 半径均值减去圆柱内半径 .5 cylinder_front_standoff
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+cylinder_front_width_median
+
+数值： 0.22585149596955756 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+八个径向有序 p10-p90 宽度的中位数 cylinder_front_width_median
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+
+DETECTOR_LIMITED_SHARPNESS_READING — 相对于标称 dr=(8-.5)/32，B/D 径向宽度位于检测器下限附近；标称 dr 是分辨率背景，并非误差条或不确定性。宽度比值不能证明任意精度下的锐化。
+
+查看证据
+cylinder_front_width_std
+
+数值： 0.0003649112351714495 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+八个径向有序 p10-p90 宽度的总体标准差 cylinder_front_width_std
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+
+DETECTOR_LIMITED_SHARPNESS_READING — 相对于标称 dr=(8-.5)/32，B/D 径向宽度位于检测器下限附近；标称 dr 是分辨率背景，并非误差条或不确定性。宽度比值不能证明任意精度下的锐化。
+
+查看证据
+cylinder_front_width_min
+
+数值： 0.2253341422266817 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+八个径向有序 p10-p90 宽度的最小值 cylinder_front_width_min
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+
+DETECTOR_LIMITED_SHARPNESS_READING — 相对于标称 dr=(8-.5)/32，B/D 径向宽度位于检测器下限附近；标称 dr 是分辨率背景，并非误差条或不确定性。宽度比值不能证明任意精度下的锐化。
+
+查看证据
+cylinder_front_width_max
+
+数值： 0.226279800548148 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+八个径向有序 p10-p90 宽度的最大值 cylinder_front_width_max
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+
+DETECTOR_LIMITED_SHARPNESS_READING — 相对于标称 dr=(8-.5)/32，B/D 径向宽度位于检测器下限附近；标称 dr 是分辨率背景，并非误差条或不确定性。宽度比值不能证明任意精度下的锐化。
+
+查看证据
+cylinder_front_mismatch_absolute
+
+数值： 3.3306690738754696e-16 模型长度单位
+
+检测器： 冻结局部径向弓形前沿检测器 — solver/diagnostics/cylinder.py 的 local_bow_shock_crossing 与 bow_shock_front_diagnostics；solver/experiments/cylinder_b2_4_production.py 的 _row；不在浏览器重算
+
+ray_count: 8
+sector_half_angle_degrees: 12
+thresholds: p10/p50/p90
+nominal_dr_context_only: 0.234375
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+已保存八条射线检测器上的 max(abs(front_radii-front_radii[::-1])) cylinder_front_mismatch_absolute
+单位
+模型长度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+cylinder_symmetry_absolute
+
+数值： 7.22990146967877e-15 1
+
+检测器： 已保存终值 O 网格状态统计 — max(abs(state-reflected_state))/max(max(abs(state)),1)；反转角向索引并翻转 y 动量；来源为 cylinder_b2_4_production.py 的 _row 与 cylinder.py 的 upper_lower_symmetry_error
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+max(abs(state-reflected_state))/max(max(abs(state)),1)；反转角向索引并翻转 y 动量 cylinder_symmetry_absolute
+单位
+1 (无量纲)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+cylinder_rho_min
+
+数值： 0.05064228705742119 模型密度单位
+
+检测器： 已保存终值 O 网格状态统计 — 全部 O 网格单元已保存终值守恒密度的最小值；来源为 cylinder_b2_4_production.py 的 _row 与 cylinder.py 的 upper_lower_symmetry_error
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+全部 O 网格单元已保存终值守恒密度的最小值 cylinder_rho_min
+单位
+模型密度单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据
+cylinder_p_min
+
+数值： 0.07818781112885634 模型压力单位
+
+检测器： 已保存终值 O 网格状态统计 — 全部 O 网格单元终值理想气体压力的最小值；来源为 cylinder_b2_4_production.py 的 _row 与 cylinder.py 的 upper_lower_symmetry_error
+
+gamma: 1.4
+
+检测器下限 / 分辨率下限： 该指标尚未确定数值不确定性或检测器下限阈值
+
+定义
+全部 O 网格单元终值状态理想气体压力的最小值 cylinder_p_min
+单位
+模型压力单位 (模型单位)
+适用范围
+O 网格状态上已保存的终值物理指标检测器，与仅内部累计预算相互独立 · 已保存终值状态诊断，详见检测器定义
+时间语义
+终值 · 无 · t=2 · 区间=N/A · 已完成步=9757
+快照 1..5 对应完成步 0/2439/4878/7318/9757；历史来源步 0..9756 映射至正式完成端点 1..9757；阶段 s0/s1/s2 不是端点速率或精确阶段状态时间
+来源 / 验证状态
+已验证生产数据 · 已验证 · 未冻结 · 来源状态：已验证 · 未冻结
+适用边界
+未记录其他结果适用边界。
+查看证据

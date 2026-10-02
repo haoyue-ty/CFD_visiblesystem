@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { activeProvider } from '../../data'
 /**
  * Case8 Overview tab — parameters, protocol, availability and capabilities.
@@ -16,47 +18,47 @@ const config = computed(() => props.overview.configurations.find((c) => c.config
 
 <template>
   <section class="ov" data-testid="case8-overview">
-    <h2>{{ overview.name }} — {{ configId }}</h2>
-    <p class="ov__desc">{{ overview.description }}</p>
+    <h2>{{ zh(overview.name) }} — {{ zh(configId) }}</h2>
+    <p class="ov__desc">{{ zh(overview.description) }}</p>
 
     <div class="ov__grid">
       <div class="ov__block">
-        <h3>Config parameters</h3>
+        <h3>{{ zh("Config parameters") }}</h3>
         <table class="ov__table" data-testid="overview-parameters">
           <tbody>
-            <tr><th>Config</th><td data-testid="overview-config">{{ configId }}</td></tr>
-            <tr><th>q_aa</th><td data-testid="overview-q_aa">{{ config?.q_aa ?? '—' }}</td></tr>
-            <tr><th>q_at</th><td data-testid="overview-q_at">{{ config?.q_at ?? '—' }}</td></tr>
+            <tr><th>{{ zh("Config") }}</th><td data-testid="overview-config">{{ zh(configId) }}</td></tr>
+            <tr><th>q_aa</th><td data-testid="overview-q_aa">{{ zh(config?.q_aa ?? '—') }}</td></tr>
+            <tr><th>q_at</th><td data-testid="overview-q_at">{{ zh(config?.q_at ?? '—') }}</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="ov__block">
-        <h3>Protocol</h3>
+        <h3>{{ zh("Protocol") }}</h3>
         <table class="ov__table">
           <tbody>
-            <tr><th>Method</th><td>{{ overview.protocol.method_name ?? 'UNKNOWN' }}</td></tr>
-            <tr><th>Integrator</th><td>{{ overview.protocol.integrator ?? 'UNKNOWN' }}</td></tr>
-            <tr><th>Reconstruction</th><td>{{ overview.protocol.reconstruction ?? 'UNKNOWN' }}</td></tr>
-            <tr><th>Grid</th><td>{{ overview.protocol.grid ?? 'UNKNOWN' }}</td></tr>
-            <tr><th>Final time</th><td>{{ overview.protocol.final_time ?? 'UNKNOWN' }}</td></tr>
+            <tr><th>{{ zh("Method") }}</th><td>{{ zh(overview.protocol.method_name ?? 'UNKNOWN') }}</td></tr>
+            <tr><th>{{ zh("Integrator") }}</th><td>{{ zh(overview.protocol.integrator ?? 'UNKNOWN') }}</td></tr>
+            <tr><th>{{ zh("Reconstruction") }}</th><td>{{ zh(overview.protocol.reconstruction ?? 'UNKNOWN') }}</td></tr>
+            <tr><th>{{ zh("Grid") }}</th><td>{{ zh(overview.protocol.grid ?? 'UNKNOWN') }}</td></tr>
+            <tr><th>{{ zh("Final time") }}</th><td>{{ zh(overview.protocol.final_time ?? 'UNKNOWN') }}</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="ov__block">
-        <h3>Recorded data availability</h3>
+        <h3>{{ zh("Recorded data availability") }}</h3>
         <ul class="ov__list">
-          <li><strong>{{ overview.snapshot_count }}</strong> recorded spatial snapshots (indices 1…{{ overview.snapshot_count }})</li>
-          <li><strong>{{ overview.scalar_step_count }}</strong> accepted-step scalar points (1…{{ overview.scalar_step_count }})</li>
-          <li>Two independent time granularities (snapshot vs scalar)</li>
+          <li><strong>{{ zh(overview.snapshot_count) }}</strong> {{ zh("recorded spatial snapshots (indices 1…") }}{{ zh(overview.snapshot_count) }})</li>
+          <li><strong>{{ zh(overview.scalar_step_count) }}</strong> {{ zh("accepted-step scalar points (1…") }}{{ zh(overview.scalar_step_count) }})</li>
+          <li>{{ zh("Two independent time granularities (snapshot vs scalar)") }}</li>
         </ul>
-        <p class="ov__capability">Capability: SUPPORTED — {{ overview.snapshot_count }} snapshots + {{ overview.scalar_step_count }} scalar steps</p>
+        <p class="ov__capability">{{ zh("Capability: SUPPORTED —") }} {{ zh(overview.snapshot_count) }} {{ zh("snapshots +") }} {{ zh(overview.scalar_step_count) }} {{ zh("scalar steps") }}</p>
       </div>
     </div>
 
     <p v-if="overview.limitation" class="ov__limitation" data-testid="overview-limitation">
-      <strong>{{ overview.limitation.severity }}</strong> · {{ overview.limitation.description }}
+      <strong>{{ zh(overview.limitation.severity) }}</strong> · {{ zh(overview.limitation.description) }}
     </p>
     <MockBadge v-if="activeProvider.kind === 'MOCK'" origin="MOCK" :verification="activeProvider.kind === 'MOCK' ? 'NOT_APPLICABLE' : undefined" />
   </section>

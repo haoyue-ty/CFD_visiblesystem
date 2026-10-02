@@ -1,3 +1,4 @@
+import { zh } from '../src/presentation/zh-CN'
 import { test, expect, type Page } from '@playwright/test'
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -31,7 +32,7 @@ test('Lab opens Closure and traverses D_u .05 stages, steps, Evidence and B_u re
   await page.getByTestId('back-to-result').click()
   await page.getByTestId('closure-run').selectOption(legal[4])
   await page.getByTestId('tab-semi-discrete').click()
-  await expect(page.getByTestId('bu-zero-channel')).toContainText('recorded zero channel')
+  await expect(page.getByTestId('bu-zero-channel')).toContainText("已记录的零通道")
   await expect(page.getByTestId('closure-history')).toHaveAttribute('data-granularity', 'PER_STAGE')
   await page.getByRole('checkbox', { name: 'D_at', exact: true }).check()
   await expect(page.locator('[data-series="D_at"] td').first()).toHaveText('0')
@@ -61,9 +62,9 @@ test('Semi-discrete preserves PER_STAGE records, clocks, definitions and optiona
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message))
   await open(page, legal[0], 'semi-discrete')
   await expect(page.getByTestId('closure-history')).toHaveAttribute('data-granularity', 'PER_STAGE')
-  await expect(page.getByTestId('stage-clock')).toContainText('3 RK stages per accepted step')
+  await expect(page.getByTestId('stage-clock')).toContainText("每个已接受步含 3 个 RK 阶段")
   await expect(page.getByTestId('stage-clock')).toContainText('NOT_ESTABLISHED')
-  await expect(page.getByRole('img', { name: 'G, -D_total (display sign only)', exact: true })).toHaveAttribute('data-point-count', '1000')
+  await expect(page.getByRole('img', { name: "G, -D_total（仅改变展示符号）", exact: true })).toHaveAttribute('data-point-count', '1000')
   const raw = (await (await request.get(`/api/v1/experiments/entropy-closure/runs/${legal[0]}/stage-history?limit=1000`)).json()).data
   for (const field of ['G', 'D_total', 'R_SD', 'eps_SD']) {
     const s = raw.series.find((s: { series_id: string }) => s.series_id === field)
@@ -71,10 +72,10 @@ test('Semi-discrete preserves PER_STAGE records, clocks, definitions and optiona
   }
   for (const field of ['D_bg', 'D_aa', 'D_at', 'R_decomp']) { await page.getByRole('checkbox', { name: field, exact: true }).check(); await expect(page.locator(`[data-series="${field}"]`)).toBeVisible() }
   await page.getByTestId('record-selector').fill('2')
-  await expect(page.getByTestId('record-clock')).toContainText('accepted step=1 · source stage=3')
+  await expect(page.getByTestId('record-clock')).toContainText("已接受步=1 · 来源阶段=3")
   await page.getByTestId('history-next').click()
   await expect(page.getByTestId('history-range')).toContainText('1001–2000')
-  await expect(page.getByTestId('record-clock')).toContainText('accepted step=334 · source stage=2')
+  await expect(page.getByTestId('record-clock')).toContainText("已接受步=334 · 来源阶段=2")
   expect(errors).toEqual([])
   mkdirSync(output, { recursive: true }); await page.screenshot({ path: `${output}semi-discrete.png`, fullPage: true })
 })
@@ -85,13 +86,13 @@ test('Fully-discrete keeps increments, cumulative and terminal values distinct t
   for (const field of ['DeltaS', 'E_obs_step', 'R_time_step', 'R_time_cumulative', 'E_bg_step', 'E_aa_step', 'E_at_step', 'E_total_independent_step']) {
     const s = raw.series.find((s: { series_id: string }) => s.series_id === field)
     await expect(page.locator(`[data-series="${field}"] td`).first()).toHaveText(String(s.points[0].value.value))
-    await expect(page.locator(`[data-series="${field}"] td`).nth(2)).toHaveText(s.aggregation)
+    await expect(page.locator(`[data-series="${field}"] td`).nth(2)).toHaveText(zh(s.aggregation))
   }
   await expect(page.getByTestId('terminal-summary')).toContainText('R_total')
   await page.getByTestId('history-last').click()
   await expect(page.getByTestId('history-next')).toBeDisabled()
   const count = raw.series[0].total_point_count
-  await expect(page.getByTestId('history-range')).toContainText(`of ${count}`)
+  await expect(page.getByTestId('history-range')).toContainText(`/ 共 ${count}`)
   await page.getByTestId('record-selector').fill(String((count - 1) % 1000))
   const terminalText = await page.locator('[data-metric="R_total"] td').first().innerText()
   await expect(page.locator('[data-series="R_time_cumulative"] td').first()).toHaveText(terminalText)
@@ -99,7 +100,7 @@ test('Fully-discrete keeps increments, cumulative and terminal values distinct t
 })
 test('B_u D_at and E_at are recorded zeros, never missing', async ({ page }) => {
   await open(page, legal[4], 'semi-discrete')
-  await expect(page.getByTestId('bu-zero-channel')).toHaveText('D_at=0 — recorded zero channel. E_at step increments and terminal total are recorded zero.')
+  await expect(page.getByTestId('bu-zero-channel')).toHaveText("D_at=0 — 已记录的零通道。E_at 单步增量与终值均为记录中的零值。")
   await page.getByRole('checkbox', { name: 'D_at', exact: true }).check()
   await expect(page.locator('[data-series="D_at"] td').first()).toHaveText('0')
   await page.getByTestId('tab-fully-discrete').click()
@@ -122,17 +123,17 @@ test('four-point refinement and global/pairwise orders equal frozen CLO05', asyn
 test('scientific limitation remains visible on every tab, with no prohibited claim or spatial view', async ({ page }) => {
   const spatial: string[] = []; page.on('request', r => { if (/snapshots|fields|trajectory|arrays/.test(r.url())) spatial.push(r.url()) })
   await open(page)
-  await expect(page.getByTestId('spatial-trajectory')).toHaveText('Spatial trajectory: MISSING / not recorded')
-  await expect(page.getByRole('tab')).toHaveText(['Overview', 'Semi-discrete', 'Fully-discrete', 'Evidence'])
+  await expect(page.getByTestId('spatial-trajectory')).toHaveText("空间轨迹：缺失 / 未记录")
+  await expect(page.getByRole('tab')).toHaveText(["概览", "半离散", "全离散", "证据"])
   for (const tab of ['overview', 'semi-discrete', 'fully-discrete', 'evidence']) {
     await page.getByTestId(`tab-${tab}`).click()
-    await expect(page.getByTestId('fully-discrete-limitation')).toHaveText('Fully-discrete residual is a numerical diagnostic, not an exact fully-discrete entropy identity.')
+    await expect(page.getByTestId('fully-discrete-limitation')).toHaveText("全离散残差是数值诊断量，并非精确的全离散熵恒等式。")
   }
   expect(await page.locator('main').innerText()).not.toMatch(/exact entropy conservation|exact entropy stability theorem|SSP-RK3 guarantees exact closure/)
   expect(spatial).toEqual([])
   await page.goto(`${base}?run=${legal[0]}&tab=flow`)
   await expect(page.getByTestId('unsupported-tab')).toBeVisible()
-  await expect(page.getByRole('tab', { name: 'Flow', exact: true })).toHaveCount(0)
+  await expect(page.getByRole('tab', { name: "流场", exact: true })).toHaveCount(0)
 })
 for (const [tab, group] of [['overview', 'run'], ['semi-discrete', 'stage'], ['fully-discrete', 'step'], ['evidence', 'run']] as const) {
   test(`Evidence ${group} returns current run/tab/page from ${tab}`, async ({ page }) => {
@@ -177,7 +178,7 @@ test('changing run while history is in flight cannot show stale scientific data'
 test('scientific missing response remains missing, without a substitute chart', async ({ page }) => {
   await page.route('**/stage-history?*', route => route.fulfill({ status: 404, contentType: 'application/json', body: JSON.stringify({ availability: 'MISSING', error: { message: 'Registered saved scientific source is absent' } }) }))
   await open(page, legal[0], 'semi-discrete')
-  await expect(page.locator('[data-state="missing"]')).toContainText('Registered saved scientific source is absent')
+  await expect(page.locator('[data-state="missing"]')).toContainText("已登记的科学源资产缺失")
   await expect(page.getByTestId('closure-history')).toHaveCount(0)
 })
 test('non-production science is rejected even if API transport reports success', async ({ page }) => {
@@ -188,7 +189,7 @@ test('non-production science is rejected even if API transport reports success',
     await route.fulfill({ response, json: payload })
   })
   await page.goto(base)
-  await expect(page.getByRole('alert')).toContainText('API returned non-production science')
+  await expect(page.getByRole('alert')).toContainText(zh('API returned non-production science'))
   await expect(page.getByTestId('closure-run')).toHaveCount(0)
   await expect(page.getByTestId('closure-refinement')).toHaveCount(0)
 })
@@ -201,9 +202,9 @@ for (const [operation, path, tab, target] of [
   test(`API ${operation} failure displays error and no mock fallback`, async ({ page }) => {
     await page.route(path, route => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ availability: 'ERROR', error: { message: 'Scientific API deliberately unavailable' } }) }))
     await page.goto(`${base}?run=${legal[0]}&tab=${tab}`)
-    await expect(page.getByRole('alert')).toContainText(`Error loading ${target}`)
+    await expect(page.getByRole('alert')).toContainText(`数据加载失败： ${zh(target)}`)
     await expect(page.getByTestId('mock-badge')).toHaveCount(0)
-    await expect(page.getByTestId('provider-kind')).toHaveText('REAL API')
+    await expect(page.getByTestId('provider-kind')).toHaveText("真实数据 API")
     if (operation === 'stage' || operation === 'step') await expect(page.getByTestId('closure-history')).toHaveCount(0)
     if (operation === 'refinement') await expect(page.getByTestId('closure-refinement')).toHaveCount(0)
     if (operation === 'registry') await expect(page.getByTestId('closure-run')).toHaveCount(0)

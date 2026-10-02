@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { verificationText } from "../../data/evidence"
 /**
  * Case8 / Gate Allocation tab — Phase 6B Window 4.
@@ -101,36 +103,35 @@ watch(() => props.configId, () => {
 
 <template>
   <section class="al" data-testid="case8-allocation">
-    <button @click="showComparison = !showComparison">{{ showComparison ? 'Close' : 'Open' }} matched Gate comparison</button>
+    <button @click="showComparison = !showComparison">{{ zh(showComparison ? 'Close' : 'Open') }} {{ zh("matched Gate comparison") }}</button>
     <GateComparisonView v-if="showComparison" />
     <p class="al__intro">
-      Cumulative spatial allocation of the time-integrated entropy production. Both views are
-      trajectory-integrated (not snapshots, not time histories). The two representations below are
-      <strong>different scientific objects</strong>: native faces vs integrated cells.
+      {{ zh("Cumulative spatial allocation of the time-integrated entropy production. Both views are trajectory-integrated (not snapshots, not time histories). The two representations below are") }}
+      <strong>{{ zh("different scientific objects") }}</strong>{{ zh(": native faces vs integrated cells.") }}
     </p>
 
     <!-- Family switch: Case8 native faces vs Gate integrated cells -->
-    <div class="al__family" role="group" aria-label="Allocation representation family">
-      <span class="al__family-label">Representation:</span>
+    <div class="al__family" role="group" :aria-label="zh('Allocation representation family')">
+      <span class="al__family-label">{{ zh("Representation:") }}</span>
       <button
         class="al__fam-btn"
         :class="{ 'al__fam-btn--active': family === 'case8' }"
         data-testid="alloc-family-face"
         :aria-pressed="family === 'case8'"
         @click="family = 'case8'"
-      >Case8 · FACE_FIELD</button>
+      >{{ zh("Case8 · FACE_FIELD") }}</button>
       <button
         class="al__fam-btn"
         :class="{ 'al__fam-btn--active': family === 'gate' }"
         data-testid="alloc-family-cell"
         :aria-pressed="family === 'gate'"
         @click="family = 'gate'"
-      >Gate · CELL_FIELD</button>
+      >{{ zh("Gate · CELL_FIELD") }}</button>
     </div>
 
     <!-- Gate variant selector (only meaningful for the cell family) -->
-    <div v-if="family === 'gate'" class="al__gate" role="group" aria-label="Gate config">
-      <span class="al__family-label">Gate config:</span>
+    <div v-if="family === 'gate'" class="al__gate" role="group" :aria-label="zh('Gate config')">
+      <span class="al__family-label">{{ zh("Gate config:") }}</span>
       <button
         v-for="g in GATE_CONFIGS"
         :key="g"
@@ -139,13 +140,12 @@ watch(() => props.configId, () => {
         :data-testid="`alloc-gate-${g}`"
         :aria-pressed="g === gateConfig"
         @click="gateConfig = g"
-      >{{ g }}</button>
+      >{{ zh(g) }}</button>
     </div>
 
     <!-- Case8 config that has no recorded map -->
     <p v-if="family === 'case8' && !case8Available" class="al__gap" data-testid="alloc-case8-gap">
-      {{ configId }} has no recorded cumulative native-face map — only D_u does. This is a known
-      capability gap for this config, not a synthetic zero field.
+      {{ zh(configId) }} {{ zh("has no recorded cumulative native-face map — only D_u does. This is a known capability gap for this config, not a synthetic zero field.") }}
     </p>
 
     <LoadStateBlock :loaded="allocation" target="allocation">
@@ -155,77 +155,77 @@ watch(() => props.configId, () => {
         <!-- representation_type: the discriminator, stated in words -->
         <dl class="al__facts">
           <div>
-            <dt>representation_type</dt>
-            <dd data-testid="alloc-representation-type">{{ allocation.data.representation_type }}</dd>
+            <dt>{{ zh("representation_type") }}</dt>
+            <dd data-testid="alloc-representation-type">{{ zh(allocation.data.representation_type) }}</dd>
           </div>
           <div>
-            <dt>measure definition</dt>
-            <dd data-testid="alloc-measure-definition">{{ allocation.data.measure_definition }}</dd>
+            <dt>{{ zh("measure definition") }}</dt>
+            <dd data-testid="alloc-measure-definition">{{ zh(allocation.data.measure_definition) }}</dd>
           </div>
           <div>
-            <dt>semantic id</dt>
-            <dd data-testid="alloc-semantic-id">{{ allocation.data.semantic_id }}</dd>
+            <dt>{{ zh("semantic id") }}</dt>
+            <dd data-testid="alloc-semantic-id">{{ zh(allocation.data.semantic_id) }}</dd>
           </div>
           <div>
             <dt>data_origin</dt>
-            <dd data-testid="alloc-data-origin">{{ allocation.data.data_origin }}</dd>
+            <dd data-testid="alloc-data-origin">{{ zh(allocation.data.data_origin) }}</dd>
           </div>
           <div>
-            <dt>experiment / config</dt>
-            <dd data-testid="alloc-identity">{{ allocation.data.experiment_id }} / {{ allocation.data.config_id }}</dd>
+            <dt>{{ zh("experiment / config") }}</dt>
+            <dd data-testid="alloc-identity">{{ zh(allocation.data.experiment_id) }} / {{ zh(allocation.data.config_id) }}</dd>
           </div>
         </dl>
 
         <!-- definition -->
         <section class="al__block" data-testid="alloc-definition">
-          <h3>Definition</h3>
-          <p>{{ allocation.data.definition }}</p>
-          <p class="al__sub"><strong>Title:</strong> {{ allocation.data.title }}</p>
-          <p class="al__sub"><strong>Time rule:</strong> {{ allocation.data.time_rule }}</p>
-          <p class="al__sub"><strong>Spatial rule:</strong> {{ allocation.data.spatial_rule }}</p>
-          <p class="al__sub"><strong>Coordinate convention:</strong> {{ allocation.data.coordinate_convention }}</p>
+          <h3>{{ zh("Definition") }}</h3>
+          <p>{{ zh(allocation.data.definition) }}</p>
+          <p class="al__sub"><strong>{{ zh("Title:") }}</strong> {{ zh(allocation.data.title) }}</p>
+          <p class="al__sub"><strong>{{ zh("Time rule:") }}</strong> {{ zh(allocation.data.time_rule) }}</p>
+          <p class="al__sub"><strong>{{ zh("Spatial rule:") }}</strong> {{ zh(allocation.data.spatial_rule) }}</p>
+          <p class="al__sub"><strong>{{ zh("Coordinate convention:") }}</strong> {{ zh(allocation.data.coordinate_convention) }}</p>
         </section>
 
         <!-- mask (separate identity per representation; never shared) -->
         <section class="al__block" data-testid="alloc-mask">
-          <h3>Mask</h3>
+          <h3>{{ zh("Mask") }}</h3>
           <dl class="al__facts">
             <div>
-              <dt>mask_id</dt>
-              <dd data-testid="alloc-mask-id">{{ allocation.data.mask.mask_id }}</dd>
+              <dt>{{ zh("mask_id") }}</dt>
+              <dd data-testid="alloc-mask-id">{{ zh(allocation.data.mask.mask_id) }}</dd>
             </div>
             <div>
               <dt>mask_type</dt>
-              <dd data-testid="alloc-mask-type">{{ allocation.data.mask.mask_type }}</dd>
+              <dd data-testid="alloc-mask-type">{{ zh(allocation.data.mask.mask_type) }}</dd>
             </div>
             <div>
-              <dt>mask counts</dt>
-              <dd data-testid="alloc-mask-counts">{{ allocation.data.mask.counts.join(', ') }}</dd>
+              <dt>{{ zh("mask counts") }}</dt>
+              <dd data-testid="alloc-mask-counts">{{ zh(allocation.data.mask.counts.join(', ')) }}</dd>
             </div>
           </dl>
-          <p class="al__sub">{{ allocation.data.mask.definition }}</p>
+          <p class="al__sub">{{ zh(allocation.data.mask.definition) }}</p>
         </section>
 
         <!-- verification: its own layer, never merged with provenance or limits -->
         <section class="al__block" data-testid="alloc-verification">
-          <h3>Verification</h3>
-          <p>status: <strong>{{ verificationText(allocation.data.verification) }}</strong></p>
+          <h3>{{ zh("Verification") }}</h3>
+          <p>{{ zh("status:") }} <strong>{{ zh(verificationText(allocation.data.verification)) }}</strong></p>
           <ul class="al__list">
-            <li v-for="(basis, i) in allocation.data.verification.basis" :key="i">{{ basis }}</li>
+            <li v-for="(basis, i) in allocation.data.verification.basis" :key="i">{{ zh(basis) }}</li>
           </ul>
           <p v-if="allocation.data.limitations.length" class="al__sub">
-            Limitations:
-            <span v-for="lim in allocation.data.limitations" :key="lim.id" class="al__lim">{{ lim.code }}</span>
+            {{ zh("Limitations:") }}
+            <span v-for="lim in allocation.data.limitations" :key="lim.id" class="al__lim">{{ zh(lim.code) }}</span>
           </p>
         </section>
 
         <!-- evidence -->
         <section class="al__block" data-testid="alloc-evidence">
-          <h3>Evidence</h3>
+          <h3>{{ zh("Evidence") }}</h3>
           <ul class="al__ev-list">
             <li v-for="ref in allocation.data.evidence_refs" :key="ref" data-testid="alloc-evidence-link">
               <EvidenceLink :evidence-id="ref" context="allocation" :return-to="returnTo" />
-              <span class="al__ev-id">{{ ref }}</span>
+              <span class="al__ev-id">{{ zh(ref) }}</span>
             </li>
           </ul>
         </section>
@@ -235,11 +235,10 @@ watch(() => props.configId, () => {
 
         <!-- the map(s): two DIFFERENT renderers, chosen by the discriminated union -->
         <section class="al__map" data-testid="allocation-map">
-          <h3>Allocation map</h3>
+          <h3>{{ zh("Allocation map") }}</h3>
           <template v-if="allocation.data.representation_type === 'FACE_FIELD'">
             <p class="al__note" data-testid="alloc-face-note">
-              Native faces are shown as two separate figures. x-normal and y-normal arrays have
-              different shapes and different sample planes; they are never summed into one cell field.
+              {{ zh("Native faces are shown as two separate figures. x-normal and y-normal arrays have different shapes and different sample planes; they are never summed into one cell field.") }}
             </p>
             <div class="al__map-grid">
               <FaceAllocationView
@@ -252,8 +251,7 @@ watch(() => props.configId, () => {
           </template>
           <template v-else>
             <p class="al__note" data-testid="alloc-cell-note">
-              A single cell-centre field. Each value already includes the spatial measure, so it is
-              not a downsampled face field.
+              {{ zh("A single cell-centre field. Each value already includes the spatial measure, so it is not a downsampled face field.") }}
             </p>
             <div class="al__map-grid">
               <CellAllocationView

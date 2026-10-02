@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { computed, ref, watch } from 'vue'
 import { known, type HistoryBundle } from '../../data/closure'
 import ClosureChart from './ClosureChart.vue'
@@ -24,21 +26,21 @@ const page = computed(() => series.value[0]!.page)
 </script>
 <template>
   <section data-testid="closure-history" :data-granularity="bundle.history.granularity">
-    <h2>{{ stage ? 'Semi-discrete' : 'Fully-discrete' }} · {{ bundle.history.granularity }}</h2>
-    <p v-if="stage" data-testid="stage-clock">3 RK stages per accepted step. Record ordinal preserves source order. Recorded stage clock is the containing step time_n; actual stage-state physical time is NOT_ESTABLISHED. This is not a complete real state timeline.</p>
-    <p v-if="stage">The comparison plots G and -D_total; the table keeps recorded D_total. R_SD = G + D_total retains its frozen definition.</p>
-    <p v-else>PER_STEP · increment values belong to each accepted [time_n, time_np1] interval. Only R_time_cumulative is a recorded cumulative history; terminal R_total is displayed separately.</p>
-    <p data-testid="history-range">Recorded rows {{ page.offset + 1 }}–{{ page.offset + page.returned_count }} of {{ page.total_count }}. Charts show this page only.</p>
+    <h2>{{ zh(stage ? 'Semi-discrete' : 'Fully-discrete') }} · {{ zh(bundle.history.granularity) }}</h2>
+    <p v-if="stage" data-testid="stage-clock">{{ zh("3 RK stages per accepted step. Record ordinal preserves source order. Recorded stage clock is the containing step time_n; actual stage-state physical time is NOT_ESTABLISHED. This is not a complete real state timeline.") }}</p>
+    <p v-if="stage">{{ zh("The comparison plots G and -D_total; the table keeps recorded D_total. R_SD = G + D_total retains its frozen definition.") }}</p>
+    <p v-else>{{ zh("PER_STEP · increment values belong to each accepted [time_n, time_np1] interval. Only R_time_cumulative is a recorded cumulative history; terminal R_total is displayed separately.") }}</p>
+    <p data-testid="history-range">{{ zh("Recorded rows") }} {{ zh(page.offset + 1) }}–{{ zh(page.offset + page.returned_count) }} {{ zh("of") }} {{ zh(page.total_count) }}{{ zh(". Charts show this page only.") }}</p>
     <div v-for="group in groups.filter(g => g.ids.length)" :key="group.label">
-      <h3>{{ group.label }}</h3><ClosureChart :curves="curves(group.ids)" :x-label="stage ? 'Recorded stage ordinal (1-based)' : 'Accepted step (1-based)'" />
+      <h3>{{ zh(group.label) }}</h3><ClosureChart :curves="curves(group.ids)" :x-label="zh(stage ? 'Recorded stage ordinal (1-based)' : 'Accepted step (1-based)')" />
     </div>
-    <fieldset><legend>Additional recorded columns</legend><label v-for="s in optional" :key="s.series_id"><input v-model="extra" type="checkbox" :value="s.series_id" />{{ s.label }} </label></fieldset>
-    <label>Inspect record on this page <input v-model.number="selected" data-testid="record-selector" type="range" min="0" :max="page.returned_count - 1" /></label>
-    <p v-if="series[0]?.points[selected]" data-testid="record-clock">accepted step={{ known(series[0]!.points[selected]!.step_index) }} · source stage={{ known(series[0]!.points[selected]!.source_stage_index) ?? 'not applicable' }} · recorded clock={{ known(series[0]!.points[selected]!.physical_time) }} · interval={{ known(series[0]!.points[selected]!.interval) }}</p>
-    <table data-testid="recorded-values"><thead><tr><th>Recorded column</th><th>Value</th><th>Unit</th><th>Aggregation</th><th>Frozen definition</th></tr></thead><tbody>
-      <tr v-for="s in shown" :key="s.series_id" :data-series="s.series_id"><th>{{ s.label }}</th><td>{{ known(s.points[selected]!.value) ?? 'UNKNOWN' }}</td><td>{{ s.result.unit.label }}</td><td>{{ s.aggregation }}</td><td>{{ bundle.definitions.find(d => d.id === s.definition_id)?.definition }}</td></tr>
+    <fieldset><legend>{{ zh("Additional recorded columns") }}</legend><label v-for="s in optional" :key="s.series_id"><input v-model="extra" type="checkbox" :value="s.series_id" />{{ zh(s.label) }} </label></fieldset>
+    <label>{{ zh("Inspect record on this page") }} <input v-model.number="selected" data-testid="record-selector" type="range" min="0" :max="page.returned_count - 1" /></label>
+    <p v-if="series[0]?.points[selected]" data-testid="record-clock">{{ zh("accepted step=") }}{{ zh(known(series[0]!.points[selected]!.step_index)) }} {{ zh("· source stage=") }}{{ zh(known(series[0]!.points[selected]!.source_stage_index) ?? 'not applicable') }} {{ zh("· recorded clock=") }}{{ zh(known(series[0]!.points[selected]!.physical_time)) }} {{ zh("· interval=") }}{{ zh(known(series[0]!.points[selected]!.interval)) }}</p>
+    <table data-testid="recorded-values"><thead><tr><th>{{ zh("Recorded column") }}</th><th>{{ zh("Value") }}</th><th>{{ zh("Unit") }}</th><th>{{ zh("Aggregation") }}</th><th>{{ zh("Frozen definition") }}</th></tr></thead><tbody>
+      <tr v-for="s in shown" :key="s.series_id" :data-series="s.series_id"><th>{{ zh(s.label) }}</th><td>{{ zh(known(s.points[selected]!.value) ?? 'UNKNOWN') }}</td><td>{{ zh(s.result.unit.label) }}</td><td>{{ zh(s.aggregation) }}</td><td>{{ zh(bundle.definitions.find(d => d.id === s.definition_id)?.definition) }}</td></tr>
     </tbody></table>
-    <p>Independent D_total and E_total_independent_step retain their source definitions; channel attribution describes interface production, not separate state entropies.</p>
+    <p>{{ zh("Independent D_total and E_total_independent_step retain their source definitions; channel attribution describes interface production, not separate state entropies.") }}</p>
     <EvidenceLink v-for="id in bundle.history.evidence_refs" :key="id" :evidence-id="id" />
   </section>
 </template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * LoadStateBlock — renders the interface loading layer consistently.
  * Every data-backed region goes through this so Loading / Partial / Missing /
@@ -16,21 +18,21 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="!loaded" class="ls ls--loading" role="status">Loading {{ target }}…</div>
-  <div v-else-if="loaded.state === 'LOADING'" class="ls ls--loading" role="status">Loading {{ target }}…</div>
+  <div v-if="!loaded" class="ls ls--loading" role="status">{{ zh("Loading") }} {{ zh(target) }}…</div>
+  <div v-else-if="loaded.state === 'LOADING'" class="ls ls--loading" role="status">{{ zh("Loading") }} {{ zh(target) }}…</div>
   <div v-else-if="loaded.state === 'ERROR'" class="ls ls--error" role="alert">
-    <strong>Error loading {{ target }}.</strong>
-    <span v-if="loaded.reason"> {{ loaded.reason }}</span>
+    <strong>{{ zh("Error loading") }} {{ zh(target) }}.</strong>
+    <span v-if="loaded.reason"> {{ zh(loaded.reason) }}</span>
   </div>
   <div v-else-if="loaded.state === 'MISSING'" class="ls ls--missing" role="note" data-state="missing">
-    <strong>Missing:</strong> {{ target }} — {{ loaded.reason }}
+    <strong>{{ zh("Missing:") }}</strong> {{ zh(target) }} — {{ zh(loaded.reason) }}
   </div>
   <div v-else-if="loaded.state === 'UNSUPPORTED'" class="ls ls--unsupported" role="note" data-state="unsupported">
-    <strong>Unsupported:</strong> {{ target }} — {{ loaded.reason }}
+    <strong>{{ zh("Unsupported:") }}</strong> {{ zh(target) }} — {{ zh(loaded.reason) }}
   </div>
   <div v-else class="ls ls--ready">
     <p v-if="loaded.state === 'PARTIAL'" class="ls__partial" role="note" data-state="partial">
-      Partial: {{ loaded.reason }}
+      {{ zh("Partial:") }} {{ zh(loaded.reason) }}
     </p>
     <slot />
   </div>

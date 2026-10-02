@@ -1,0 +1,472 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+首页 → 证据中心 → evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history
+
+← 返回数字实验室
+
+证据： evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history
+验证状态
+记录时源码与当前源码一致
+已冻结验收 · 来源状态：已冻结验收
+
+证据仍然可读取，并不代表当前源码能够直接复现该结果。证据响应不能证明数值结果可用。
+
+结果标识 · 证据支持范围
+证据标识
+evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history
+实验
+modal-validation
+配置
+modal-validation.m01_q0p000_eps1e-04
+结构版本
+1.0.0
+结果数量
+1
+
+本证据支持： 保留上游公共 Mach6 冻结记录与有效性门槛；选定依赖的 SHA256 与固定 Phase1 清单及冻结 manifest 一致；不可变字节映射并重新观测依赖；不构成新的 CFD 认证
+
+本证据不支持： 超出已记录定义、适用范围与来源选择的结论。 正熵产 ≠ 所有模态统一增强阻尼；仅支持当前公共 Mach6 基态上已记录的模态。; 未保存线性 / RK3 振幅历史；保留已记录增长率及 CFD 历史。
+
+modal-validation.m01_q0p000_eps1e-04.history
+
+实验 / 配置： modal-validation / modal-validation.m01_q0p000_eps1e-04 · 来源： 冻结生产数据
+
+语义标识： modal_validation · 单位： 模型时间的倒数 (模型单位)
+
+适用范围： 公共 Mach6 零残差离散激波；选择性模态响应 · 边界： x_lower 为固定激波前流入；x_upper 为流出；y 方向周期性
+
+时间： 每步 / 无 · 记录的已接受步 0..32
+
+物理时间： 不适用 — 历史包含 33 个记录端点；未选定单一端点 · 区间： {"start":0,"end":0.0013389121338912135}
+
+结果验证状态： 已冻结验收 · 来源状态：已冻结验收 · 依赖漂移： 否
+
+步： 不适用 — 历史包含 33 个记录端点；未选定单一端点 · 阶段： 不适用 — 历史包含 33 个记录端点；未选定单一端点 · 快照： 不适用 — 历史包含 33 个记录端点；未选定单一端点
+
+方法与来源
+方法名称
+cross_mode_ec_unified_v1
+方法哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+记录时源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前源码哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+数据哈希
+bec63bf9e85db408fe3757fbeb6d2256456ff0d25f9a75fac5b3263e875dad34
+源码一致性
+记录时源码与当前源码一致
+保留上游公共 Mach6 冻结记录与有效性门槛
+选定依赖的 SHA256 与固定 Phase1 清单及冻结 manifest 一致
+不可变字节映射并重新观测依赖；不构成新的 CFD 认证
+
+创建时间： 未知 — 冻结元数据中未记录 · 验证时间： 未知 — 未记录上游验证时间戳
+
+配置
+
+冻结公共 Mach6 离散激波 · modal-validation.m01_q0p000_eps1e-04
+
+q_aa	3.96
+q_at	0
+gate	未知 — 未记录该配置字段
+CFL	未知 — 未记录该配置字段
+网格	{"coordinate_system":"CARTESIAN","dimensions":[{"axis":"x","size":128},{"axis":"y","size":32}],"extent":[{"axis":"x","lower":0,"upper":1},{"axis":"y","lower":0,"upper":1}]}
+终止时间	0.0013389121338912135
+积分器	SSP-RK3
+重构	none
+边界范围	x_lower 为固定激波前流入；x_upper 为流出；y 方向周期性
+mode	1
+epsilon	0.0001
+来源资产
+
+展示受控的来源描述；科学源文件保持只读，不提供下载。
+
+资产	用途 / 格式	验证状态 / 数据漂移
+asset_e1b9ba43e984 · SHA256_MANIFEST.json	FREEZE / JSON	未知 · 来源状态：可读取 · 验证未知 / 否
+asset_99701f5ec82d · config.json	CONFIG / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_da31ed0fd36c · method_identity.json	METHOD / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_46b73972e076 · validity_gates.json	ANALYSIS / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_6c6b9c35c1dc · base_state/base_state.npz	DATA / NPZ	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_d23dcd878d59 · base_state/base_state_audit.json	ANALYSIS / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_7b3c12f093bc · production_source/solver/fluxes/cross_mode_ec_unified_v1.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_076aa4872485 · scripts/common.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_86b8922823c0 · scripts/spectrum_scan.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_3b8c484e13f4 · spectrum/shock_mask.json	MASK / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_eef93c1945fd · cfd_validation/validation_summary.csv	DATA / CSV	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_f8ab2dd87368 · cfd_validation/runs/m01_q0p000_eps1e-04.csv	DATA / CSV	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_0169359b708b · cfd_validation/mode_selection.json	CONFIG / JSON	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_9e69ab916a06 · scripts/cfd_validation.py	METHOD / PY	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_bf6eb2f08545 · spectrum/eigenvalues.npz	DATA / NPZ	已冻结验收 · 来源状态：已冻结验收 / 否
+asset_e1b9ba43e984
+用途 / 来源标识
+FREEZE / passage6.linear-perturbation.freeze
+来源描述
+SHA256_MANIFEST.json
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/SHA256_MANIFEST.json
+格式
+JSON
+记录时数据哈希
+04174ca1db34b911636a9ac90522b9202401fc3c14fcfc093d0f1e6b1a597bcb
+当前数据哈希
+04174ca1db34b911636a9ac90522b9202401fc3c14fcfc093d0f1e6b1a597bcb
+正式选定
+是
+记录时数据与当前数据一致
+未知 · 来源状态：可读取 · 验证未知
+asset_99701f5ec82d
+用途 / 来源标识
+CONFIG / passage6.linear-perturbation.freeze
+来源描述
+config.json
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/config.json
+格式
+JSON
+记录时数据哈希
+a1fccc9b1664ff3486cd3105e9790e79f8d388e5fb93697aa869617b36108cf0
+当前数据哈希
+a1fccc9b1664ff3486cd3105e9790e79f8d388e5fb93697aa869617b36108cf0
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_da31ed0fd36c
+用途 / 来源标识
+METHOD / passage6.linear-perturbation.freeze
+来源描述
+method_identity.json
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/method_identity.json
+格式
+JSON
+记录时数据哈希
+e2426ee3036d8761907da47e008ee4f430a3aead6fa1c57bc8133ee6b3fa8eb8
+当前数据哈希
+e2426ee3036d8761907da47e008ee4f430a3aead6fa1c57bc8133ee6b3fa8eb8
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_46b73972e076
+用途 / 来源标识
+ANALYSIS / passage6.linear-perturbation.freeze
+来源描述
+validity_gates.json
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/validity_gates.json
+格式
+JSON
+记录时数据哈希
+ad6bd90a4905ef81cea797d0aee4905cdaa3fccba97c51a5acd3084144fddcb2
+当前数据哈希
+ad6bd90a4905ef81cea797d0aee4905cdaa3fccba97c51a5acd3084144fddcb2
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_6c6b9c35c1dc
+用途 / 来源标识
+DATA / passage6.linear-perturbation.freeze
+来源描述
+base_state/base_state.npz
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/base_state/base_state.npz
+格式
+NPZ
+记录时数据哈希
+2c4c096401264b6a61a0df2325135a1159c0e2d4e281fb929eaa085cf8baf862
+当前数据哈希
+2c4c096401264b6a61a0df2325135a1159c0e2d4e281fb929eaa085cf8baf862
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_d23dcd878d59
+用途 / 来源标识
+ANALYSIS / passage6.linear-perturbation.freeze
+来源描述
+base_state/base_state_audit.json
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/base_state/base_state_audit.json
+格式
+JSON
+记录时数据哈希
+809fdba2799c332238db3b222c6a4686719b131e771387e8a84d834b4aa74d69
+当前数据哈希
+809fdba2799c332238db3b222c6a4686719b131e771387e8a84d834b4aa74d69
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_7b3c12f093bc
+用途 / 来源标识
+METHOD / passage6.linear-perturbation.freeze
+来源描述
+production_source/solver/fluxes/cross_mode_ec_unified_v1.py
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/production_source/solver/fluxes/cross_mode_ec_unified_v1.py
+格式
+PY
+记录时数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前数据哈希
+98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_076aa4872485
+用途 / 来源标识
+METHOD / passage6.linear-perturbation.freeze
+来源描述
+scripts/common.py
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/scripts/common.py
+格式
+PY
+记录时数据哈希
+8b02d314db4367e0c248c9239018f2caeecdf8e946eb88ad14e0c3551139f4de
+当前数据哈希
+8b02d314db4367e0c248c9239018f2caeecdf8e946eb88ad14e0c3551139f4de
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_86b8922823c0
+用途 / 来源标识
+METHOD / passage6.linear-perturbation.freeze
+来源描述
+scripts/spectrum_scan.py
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/scripts/spectrum_scan.py
+格式
+PY
+记录时数据哈希
+bb65c1c0d0d43c2440a01e0a9082ae845edd68e6d8791685e75c8c2448c39463
+当前数据哈希
+bb65c1c0d0d43c2440a01e0a9082ae845edd68e6d8791685e75c8c2448c39463
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_3b8c484e13f4
+用途 / 来源标识
+MASK / passage6.linear-perturbation.freeze
+来源描述
+spectrum/shock_mask.json
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/spectrum/shock_mask.json
+格式
+JSON
+记录时数据哈希
+28cd62a0d6212763f13ddc677be457b6db0547244eb8ad9f57079a6e40a5ac09
+当前数据哈希
+28cd62a0d6212763f13ddc677be457b6db0547244eb8ad9f57079a6e40a5ac09
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_eef93c1945fd
+用途 / 来源标识
+DATA / passage6.linear-perturbation.freeze
+来源描述
+cfd_validation/validation_summary.csv
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/cfd_validation/validation_summary.csv
+格式
+CSV
+记录时数据哈希
+9205ee2d63061b13488dfc6f52b3786cc7c5e30e553cf77f6c8a387759c34cb3
+当前数据哈希
+9205ee2d63061b13488dfc6f52b3786cc7c5e30e553cf77f6c8a387759c34cb3
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_f8ab2dd87368
+用途 / 来源标识
+DATA / passage6.linear-perturbation.freeze
+来源描述
+cfd_validation/runs/m01_q0p000_eps1e-04.csv
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/cfd_validation/runs/m01_q0p000_eps1e-04.csv
+格式
+CSV
+记录时数据哈希
+bec63bf9e85db408fe3757fbeb6d2256456ff0d25f9a75fac5b3263e875dad34
+当前数据哈希
+bec63bf9e85db408fe3757fbeb6d2256456ff0d25f9a75fac5b3263e875dad34
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_0169359b708b
+用途 / 来源标识
+CONFIG / passage6.linear-perturbation.freeze
+来源描述
+cfd_validation/mode_selection.json
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/cfd_validation/mode_selection.json
+格式
+JSON
+记录时数据哈希
+cfbbaa8a6d121568a05a336e029b33210c1b07479ee87d3a99dd62b7d1812131
+当前数据哈希
+cfbbaa8a6d121568a05a336e029b33210c1b07479ee87d3a99dd62b7d1812131
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_9e69ab916a06
+用途 / 来源标识
+METHOD / passage6.linear-perturbation.freeze
+来源描述
+scripts/cfd_validation.py
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/scripts/cfd_validation.py
+格式
+PY
+记录时数据哈希
+880d7d42ae88a5782b54ea622a61e169e8c9fc314ffd763370e3062da9eebc09
+当前数据哈希
+880d7d42ae88a5782b54ea622a61e169e8c9fc314ffd763370e3062da9eebc09
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+asset_bf6eb2f08545
+用途 / 来源标识
+DATA / passage6.linear-perturbation.freeze
+来源描述
+spectrum/eigenvalues.npz
+相对来源
+experiments/linear_perturbation_analysis/FREEZE/spectrum/eigenvalues.npz
+格式
+NPZ
+记录时数据哈希
+064c478d63e317a8cfc9e885f514d240183167f72998a8e28abe410e31c07b93
+当前数据哈希
+064c478d63e317a8cfc9e885f514d240183167f72998a8e28abe410e31c07b93
+正式选定
+是
+记录时数据与当前数据一致
+已冻结验收 · 来源状态：已冻结验收
+记录时 / 当前来源观测
+
+asset_e1b9ba43e984 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 04174ca1db34b911636a9ac90522b9202401fc3c14fcfc093d0f1e6b1a597bcb
+当前： 04174ca1db34b911636a9ac90522b9202401fc3c14fcfc093d0f1e6b1a597bcb
+
+asset_99701f5ec82d · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： a1fccc9b1664ff3486cd3105e9790e79f8d388e5fb93697aa869617b36108cf0
+当前： a1fccc9b1664ff3486cd3105e9790e79f8d388e5fb93697aa869617b36108cf0
+
+asset_da31ed0fd36c · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： e2426ee3036d8761907da47e008ee4f430a3aead6fa1c57bc8133ee6b3fa8eb8
+当前： e2426ee3036d8761907da47e008ee4f430a3aead6fa1c57bc8133ee6b3fa8eb8
+
+asset_46b73972e076 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： ad6bd90a4905ef81cea797d0aee4905cdaa3fccba97c51a5acd3084144fddcb2
+当前： ad6bd90a4905ef81cea797d0aee4905cdaa3fccba97c51a5acd3084144fddcb2
+
+asset_6c6b9c35c1dc · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 2c4c096401264b6a61a0df2325135a1159c0e2d4e281fb929eaa085cf8baf862
+当前： 2c4c096401264b6a61a0df2325135a1159c0e2d4e281fb929eaa085cf8baf862
+
+asset_d23dcd878d59 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 809fdba2799c332238db3b222c6a4686719b131e771387e8a84d834b4aa74d69
+当前： 809fdba2799c332238db3b222c6a4686719b131e771387e8a84d834b4aa74d69
+
+asset_7b3c12f093bc · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+当前： 98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0
+
+asset_076aa4872485 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 8b02d314db4367e0c248c9239018f2caeecdf8e946eb88ad14e0c3551139f4de
+当前： 8b02d314db4367e0c248c9239018f2caeecdf8e946eb88ad14e0c3551139f4de
+
+asset_86b8922823c0 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： bb65c1c0d0d43c2440a01e0a9082ae845edd68e6d8791685e75c8c2448c39463
+当前： bb65c1c0d0d43c2440a01e0a9082ae845edd68e6d8791685e75c8c2448c39463
+
+asset_3b8c484e13f4 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 28cd62a0d6212763f13ddc677be457b6db0547244eb8ad9f57079a6e40a5ac09
+当前： 28cd62a0d6212763f13ddc677be457b6db0547244eb8ad9f57079a6e40a5ac09
+
+asset_eef93c1945fd · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 9205ee2d63061b13488dfc6f52b3786cc7c5e30e553cf77f6c8a387759c34cb3
+当前： 9205ee2d63061b13488dfc6f52b3786cc7c5e30e553cf77f6c8a387759c34cb3
+
+asset_f8ab2dd87368 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： bec63bf9e85db408fe3757fbeb6d2256456ff0d25f9a75fac5b3263e875dad34
+当前： bec63bf9e85db408fe3757fbeb6d2256456ff0d25f9a75fac5b3263e875dad34
+
+asset_0169359b708b · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： cfbbaa8a6d121568a05a336e029b33210c1b07479ee87d3a99dd62b7d1812131
+当前： cfbbaa8a6d121568a05a336e029b33210c1b07479ee87d3a99dd62b7d1812131
+
+asset_9e69ab916a06 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 880d7d42ae88a5782b54ea622a61e169e8c9fc314ffd763370e3062da9eebc09
+当前： 880d7d42ae88a5782b54ea622a61e169e8c9fc314ffd763370e3062da9eebc09
+
+asset_bf6eb2f08545 · 数据漂移： 否 · 观测时间： 未知 — 只读哈希观测，未保存事件时间戳
+
+记录时： 064c478d63e317a8cfc9e885f514d240183167f72998a8e28abe410e31c07b93
+当前： 064c478d63e317a8cfc9e885f514d240183167f72998a8e28abe410e31c07b93
+
+冻结记录
+冻结记录
+freeze.linear-perturbation.common-mach6
+清单标识
+asset_e1b9ba43e984
+记录时间
+未知 — 冻结元数据中未记录
+清单哈希
+04174ca1db34b911636a9ac90522b9202401fc3c14fcfc093d0f1e6b1a597bcb
+处理链路
+
+处理类型：格式映射、元数据校正、已验证派生、仅展示处理。下方仅列出实际登记的处理记录。
+
+尚未登记处理记录。
+
+科学定义
+
+未知 — 尚未登记科学定义。
+
+适用边界
+说明 · SELECTIVE_MODAL_RESPONSE — 正熵产 ≠ 所有模态统一增强阻尼；仅支持当前公共 Mach6 基态上已记录的模态。
+影响范围： modal-validation.m01_q0p000_eps1e-04.history
+说明 · MISSING_LINEAR_HISTORY — 未保存线性 / RK3 振幅历史；保留已记录增长率及 CFD 历史。
+影响范围： modal-validation.m01_q0p000_eps1e-04.history
+关联记录
+相关证据
+
+尚未登记相关证据。
+
+上游 / 来源结果
+
+未单独记录上游结果字段。已登记的结果 / 来源绑定如下：
+
+modal-validation.m01_q0p000_eps1e-04.history · 来源资产： asset_e1b9ba43e984, asset_99701f5ec82d, asset_da31ed0fd36c, asset_46b73972e076, asset_6c6b9c35c1dc, asset_d23dcd878d59, asset_7b3c12f093bc, asset_076aa4872485, asset_86b8922823c0, asset_3b8c484e13f4, asset_eef93c1945fd, asset_f8ab2dd87368, asset_0169359b708b, asset_9e69ab916a06, asset_bf6eb2f08545 · 证据： evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history
+
+已由以下记录替代： 不适用 — 未记录后继版本

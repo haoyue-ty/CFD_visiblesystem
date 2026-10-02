@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh, tabLabels, experimentLabels } from '../presentation/zh-CN'
+
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { api } from '../services/api'
@@ -34,13 +36,13 @@ onBeforeUnmount(() => guard.cancel())
 </script>
 <template>
   <main data-page="scientific-lab" class="science-lab">
-    <ExploreReturn /><RouterLink to="/lab">Lab</RouterLink>
-    <h1>{{ experiment_id === 'gate' ? 'Gate Allocation' : experiment_id === 'modal-validation' ? 'Modal Validation' : 'Spectral Lab' }}</h1>
-    <LoadStateBlock :loaded="overview" target="experiment capability metadata">
-      <nav role="tablist" :aria-label="`${experiment_id} tabs`"><button v-for="id in tabs" :key="id" role="tab" :data-testid="`tab-${id}`" :aria-selected="tab === id" @click="router.push({ query: { ...route.query, tab: id } })">{{ id.charAt(0).toUpperCase() + id.slice(1) }}</button></nav>
-      <p v-if="unsupported" data-testid="unsupported-tab" role="alert">UNSUPPORTED — {{ tab }} is not a capability of {{ experiment_id }}. Requested location retained.</p>
-      <section v-else role="tabpanel" :aria-label="tab">
-        <template v-if="tab === 'overview'"><p>{{ overview?.data?.description }}</p><p>Flow and entropy histories are not capabilities of this experiment family. The recorded scientific workspace remains separate from Case8.</p><p v-if="experiment_id === 'spectrum'">Spectrum serialized matrices: MISSING.</p><p v-if="experiment_id === 'modal-validation'">Linear/RK3 amplitude histories: MISSING. Recorded growth rates and CFD projected amplitude are available.</p></template>
+    <ExploreReturn /><RouterLink to="/lab">{{ zh("Lab") }}</RouterLink>
+    <h1>{{ zh(experiment_id === 'gate' ? 'Gate Allocation' : experiment_id === 'modal-validation' ? 'Modal Validation' : 'Spectral Lab') }}</h1>
+    <LoadStateBlock :loaded="overview" :target="zh('experiment capability metadata')">
+      <nav role="tablist" :aria-label="zh(`${experiment_id} tabs`)"><button v-for="id in tabs" :key="id" role="tab" :data-testid="`tab-${id}`" :aria-selected="tab === id" @click="router.push({ query: { ...route.query, tab: id } })">{{ tabLabels[id] ?? id }}</button></nav>
+      <p v-if="unsupported" data-testid="unsupported-tab" role="alert">{{ zh("UNSUPPORTED —") }} {{ zh(tab) }} {{ zh("is not a capability of") }} {{ zh(experiment_id) }}{{ zh(". Requested location retained.") }}</p>
+      <section v-else role="tabpanel" :aria-label="zh(tab)">
+        <template v-if="tab === 'overview'"><p>{{ zh(overview?.data?.description) }}</p><p>{{ zh("Flow and entropy histories are not capabilities of this experiment family. The recorded scientific workspace remains separate from Case8.") }}</p><p v-if="experiment_id === 'spectrum'">{{ zh("Spectrum serialized matrices: MISSING.") }}</p><p v-if="experiment_id === 'modal-validation'">{{ zh("Linear/RK3 amplitude histories: MISSING. Recorded growth rates and CFD projected amplitude are available.") }}</p></template>
         <template v-else-if="tab === 'evidence'"><EvidenceLink v-for="id in overview?.data?.evidence_refs" :key="id" :evidence-id="id" /></template>
         <GateComparisonView v-else-if="experiment_id === 'gate'" />
         <SpectralTab v-else />

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../../presentation/zh-CN'
+
 import { onMounted, ref, watch } from 'vue'
 import type { FieldBundle } from '../../data/cylinder'
 import ResultContext from './ResultContext.vue'
@@ -24,9 +26,9 @@ watch(() => props.bundle, draw)
 </script>
 <template>
   <figure>
-    <figcaption>{{ bundle.field.label }} · {{ bundle.field.domain.location_type }} · instantaneous</figcaption>
-    <canvas ref="canvas" data-testid="instantaneous-field" role="img" :aria-label="bundle.field.label + ' recorded native face samples'" />
-    <p>Native index raster: rows={{ bundle.field.array_ref.descriptor.axes[0] }}, columns={{ bundle.field.array_ref.descriptor.axes[1] }} · shape {{ bundle.field.array_ref.descriptor.shape.join(' × ') }}. Colour range: {{ Math.min(...bundle.values) }} … {{ Math.max(...bundle.values) }} {{ bundle.field.result.unit.label }}. No Cartesian projection or interpolation.</p>
+    <figcaption>{{ zh(bundle.field.label) }} · {{ zh(bundle.field.domain.location_type) }} {{ zh("· instantaneous") }}</figcaption>
+    <canvas ref="canvas" data-testid="instantaneous-field" role="img" :aria-label="zh(bundle.field.label) + ' · 已记录原生面样本'" />
+    <p>{{ zh("Native index raster: rows=") }}{{ zh(bundle.field.array_ref.descriptor.axes[0]) }}{{ zh(", columns=") }}{{ zh(bundle.field.array_ref.descriptor.axes[1]) }} {{ zh("· shape") }} {{ zh(bundle.field.array_ref.descriptor.shape.join(' × ')) }}{{ zh(". Colour range:") }} {{ zh(Math.min(...bundle.values)) }} … {{ zh(Math.max(...bundle.values)) }} {{ zh(bundle.field.result.unit.label) }}{{ zh(". No Cartesian projection or interpolation.") }}</p>
     <ResultContext :result="bundle.field.result" :definitions="bundle.definitions" />
   </figure>
 </template>

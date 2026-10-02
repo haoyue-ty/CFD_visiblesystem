@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * CellAllocationView — Gate CELL_FIELD renderer.
  *
@@ -85,14 +87,13 @@ watch(() => [props.array.array_id, props.array.values, props.mask, props.colourE
 <template>
   <figure class="cav" :data-array-id="array.array_id" :data-colour-min="colourExtent?.[0]" :data-colour-max="colourExtent?.[1]">
     <figcaption class="cav__cap">
-      <span class="cav__title">{{ array.label }}</span>
-      <span class="cav__loc">{{ array.location_type }}</span>
+      <span class="cav__title">{{ zh(array.label) }}</span>
+      <span class="cav__loc">{{ zh(array.location_type) }}</span>
     </figcaption>
-    <canvas ref="canvas" class="cav__canvas" data-testid="cell-allocation-canvas" :aria-label="`${array.label} cell field, recorded values only`"></canvas>
+    <canvas ref="canvas" class="cav__canvas" data-testid="cell-allocation-canvas" :aria-label="zh(`${array.label} cell field, recorded values only`)"></canvas>
     <p class="cav__meta">
-      Shape {{ array.shape.join(' × ') }} · axes {{ array.axes.join(',') }} · samples at
-      <strong>cell centres</strong> · spatial measure already included in each value ·
-      rendered from recorded values only (no interpolation)
+      {{ zh("Shape") }} {{ zh(array.shape.join(' × ')) }} {{ zh("· axes") }} {{ zh(array.axes.join(',')) }} {{ zh("· samples at") }}
+      <strong>{{ zh("cell centres") }}</strong> {{ zh("· spatial measure already included in each value · rendered from recorded values only (no interpolation)") }}
     </p>
   </figure>
 </template>

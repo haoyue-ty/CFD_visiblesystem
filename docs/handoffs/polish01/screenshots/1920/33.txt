@@ -1,0 +1,88 @@
+ShockPath
+首页
+引导探索
+数字实验室
+证据中心
+数据来源
+真实数据 API
+数字实验室
+→ 熵预算闭合
+熵预算闭合
+
+冻结周期 Case7 · 一阶有限体积 · SSP-RK3 · 已记录科学诊断
+
+全离散残差是数值诊断量，并非精确的全离散熵恒等式。
+运行
+D_u — CFL 0.2
+D_u — CFL 0.1
+D_u — CFL 0.05
+D_u — CFL 0.025
+B_u — CFL 0.05
+概览
+半离散
+全离散
+证据
+
+D_u — CFL 0.05 · 41406 阶段记录 · 13802 已接受步
+
+终值汇总
+
+R_total 为终值 R(T)。这些总量与每步增量、已记录的 R_time_cumulative 历史分别展示。
+
+指标	数值	单位	累积方式
+S0	3.575375951837614e-15	模型积分熵单位	无
+ST	-1.0566619093874456	模型积分熵单位	无
+DeltaS_total	-1.0566619093874492	模型积分熵单位	轨迹累计
+E_bg_total	1.0544364230471839	模型积分熵单位	轨迹累计
+E_aa_total	0.0020057407374988474	模型积分熵单位	轨迹累计
+E_at_total	0.00021974123795017082	模型积分熵单位	轨迹累计
+E_obs_total	1.056661905022633	模型积分熵单位	轨迹累计
+R_total	-4.3648162861842366e-9	模型积分熵单位	轨迹累计
+eps_time_total	2.0653797853513714e-9	无量纲	无
+查看证据
+全离散 · 每步
+
+每步增量对应已接受区间 [time_n, time_np1]。仅 R_time_cumulative 为已记录累计历史；终值 R_total 单独展示。
+
+已记录行 1–1000 / 共 13802。图表仅展示当前页。
+
+单步增量：DeltaS 与 E_obs
+残差增量
+已记录累计残差
+通道增量
+其他已记录列
+time_ntime_np1dtS_nS_np1D_bg_stage1D_bg_stage2D_bg_stage3D_aa_stage1D_aa_stage2D_aa_stage3D_at_stage1D_at_stage2D_at_stage3D_total_stage1D_total_stage2D_total_stage3
+查看当前页记录
+
+已接受步=1 · 来源阶段=不适用 · 记录时钟=0.0007245326764237067 · 区间={"start":0,"end":0.0007245326764237067}
+
+已记录列	数值	单位	聚合方式	冻结定义
+DeltaS	-0.00011879507053056872	模型积分熵单位	单步增量	S_np1 - S_n；单个已接受步的实际熵变化，并非总量 DeltaS(T)。
+E_bg_step	0.00011831922168539808	模型积分熵单位	单步增量	dt*(D_bg_stage1/6 + D_bg_stage2/6 + 2*D_bg_stage3/3)；SSP-RK3 阶段加权观测器增量。
+E_aa_step	4.3400099595592544e-7	模型积分熵单位	单步增量	dt*(D_aa_stage1/6 + D_aa_stage2/6 + 2*D_aa_stage3/3)；SSP-RK3 阶段加权观测器增量。
+E_at_step	4.1847359385345744e-8	模型积分熵单位	单步增量	dt*(D_at_stage1/6 + D_at_stage2/6 + 2*D_at_stage3/3)；SSP-RK3 阶段加权观测器增量。
+E_obs_step	0.00011879507004073935	模型积分熵单位	单步增量	E_bg_step + E_aa_step + E_at_step；通道归因的总观测器增量。
+E_total_independent_step	0.00011879507004073935	模型积分熵单位	单步增量	dt*(D_total_stage1/6 + D_total_stage2/6 + 2*D_total_stage3/3)；独立加权总二次形式。
+R_time_step	-4.898293684725552e-13	模型积分熵单位	单步增量	DeltaS + E_obs_step；该已接受步的残差。
+R_time_cumulative	-4.898293684725552e-13	模型积分熵单位	累计	S_np1 - S0 + sum_channels(sum_accepted_steps_to_current(E_channel_step))；日志分别累计各通道后求和。保留记录值，不以舍入方式不同的 R_time_step 累计和替代。
+
+独立 D_total 与 E_total_independent_step 保留来源定义；通道归因描述界面熵产，并非独立状态熵。
+
+查看证据
+上一页记录
+第 1 / 14
+下一页记录
+末页记录
+D_u 时间加密
+
+四个已记录点 · 终值 |R(T)| · 相对于 CFL 的双对数展示。冻结斜率 / 阶数采用 dt_eff，不进行前端拟合。
+
+运行	CFL	dt_eff	终值 |R(T)|	冻结相邻点斜率 / 阶数
+D_u-cfl-0.2	0.2	0.0028977108084613156	2.792197222323267e-7	pairwise_slope_to_D_u-cfl-0.1=2.9999637884197288
+D_u-cfl-0.1	0.1	0.0014490653528474134	3.491851652270839e-8	pairwise_slope_to_D_u-cfl-0.05=2.999999431211793
+D_u-cfl-0.05	0.05	0.0007245326764237067	4.3648162861842366e-9	pairwise_slope_to_D_u-cfl-0.025=3.000017724561341
+D_u-cfl-0.025	0.025	0.0003622794623772778	5.456546325888212e-10
+
+冻结全局斜率 / 阶数（dt_eff）： 可用 · 2.9999942283876795
+
+查看证据

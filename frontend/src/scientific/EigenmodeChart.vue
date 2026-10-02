@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * EigenmodeChart — a saved eigenmode vector or primitive amplitude profile.
  *
@@ -37,23 +39,23 @@ const option = computed(() => {
   const values = props.array.values
   const isComplex = props.mode.eigen_representation === 'COMPLEX_VECTOR'
   const cells = props.mode.shape[0]
-  const unitLabel = props.mode.result.unit.label
+  const unitLabel = zh(props.mode.result.unit.label)
 
   const base = {
     title: {
-      text: `Eigenmode — mode k=${props.mode.mode_index} · ${props.mode.side} · rank ${props.mode.rank}`,
-      subtext: `representation=${props.mode.eigen_representation} · projection=${props.mode.projection} · component=${props.mode.field_component} · shape ${props.mode.shape.join('×')}`,
+      text: `特征模态 — k=${props.mode.mode_index} · ${props.mode.side} · 特征对序号 ${props.mode.rank}`,
+      subtext: `表示=${zh(props.mode.eigen_representation)} · 投影=${zh(props.mode.projection)} · 分量=${props.mode.field_component} · 形状 ${props.mode.shape.join('×')}`,
       left: 'left', textStyle: { fontSize: 13 }, subtextStyle: { fontSize: 11, color: '#666' },
     },
     tooltip: { trigger: isComplex && props.mode.projection === 'COMPLEX' ? 'item' : 'axis' },
-    grid: { left: 62, right: 24, top: 72, bottom: 46, containLabel: false },
+    grid: { left: 62, right: 24, top: 92, bottom: 46, containLabel: false },
   }
 
   // COMPLEX projection of a raw vector: draw a parametric scatter of (Re, Im).
   if (isComplex && props.mode.projection === 'COMPLEX') {
     const pairs = (values as [number, number][])
     const slots = COMPONENTS.map((name, slot) => ({
-      name: `${name} (cell index)`, type: 'scatter' as const,
+      name: `${name}（单元索引）`, type: 'scatter' as const,
       data: pairs.map((pair, i) => (Math.floor(i % 4) === slot ? pair : null)).filter((v): v is [number, number] => v !== null),
       symbolSize: 4, itemStyle: { color: ['#1a4f8a', '#c0392b', '#27795b', '#8e44ad'][slot] },
       // cell index is the parameter; tooltip reports it.
@@ -61,11 +63,11 @@ const option = computed(() => {
     }))
     return {
       ...base,
-      legend: { top: 4, right: 4, data: COMPONENTS.map(n => `${n} (cell index)`), textStyle: { fontSize: 11 } },
+      legend: { top: 4, right: 4, data: COMPONENTS.map(n => `${n}（单元索引）`), textStyle: { fontSize: 11 } },
       xAxis: { type: 'value', name: `Re(v) [${unitLabel}]`, nameLocation: 'middle', nameGap: 30, scale: true, axisLabel: { fontSize: 10 } },
       yAxis: { type: 'value', name: `Im(v) [${unitLabel}]`, nameLocation: 'middle', nameGap: 48, scale: true, axisLabel: { fontSize: 10 } },
       series: slots,
-      graphic: [{ type: 'text', left: 62, top: 44, style: { text: 'Raw complex composite vector shown as a parametric (Re, Im) scatter per component slot (no single real ordering).', fontSize: 10, fill: '#555' } }],
+      graphic: [{ type: 'text', left: 62, top: 60, style: { text: 'Raw complex composite vector shown as a parametric (Re, Im) scatter per component slot (no single real ordering).', fontSize: 10, fill: '#555' } }],
     }
   }
 
@@ -89,7 +91,7 @@ const option = computed(() => {
     ...base,
     legend: { top: 4, right: 4, data: series.map(s => s.name), textStyle: { fontSize: 11 } },
     xAxis: { type: 'category', name: 'cell index along the saved axis', nameLocation: 'middle', nameGap: 30, data: x, axisLabel: { fontSize: 10 }, axisTick: { alignWithLabel: true }, boundaryGap: false },
-    yAxis: { type: 'value', name: `${props.mode.projection === 'AMPLITUDE' ? '|v|' : props.mode.projection} [${unitLabel}]`, nameLocation: 'middle', nameGap: 50, scale: true, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { type: 'dashed', color: '#e6e6e6' } } },
+    yAxis: { type: 'value', name: `${props.mode.projection === 'AMPLITUDE' ? '|v|' : zh(props.mode.projection)} [${unitLabel}]`, nameLocation: 'middle', nameGap: 50, scale: true, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { type: 'dashed', color: '#e6e6e6' } } },
     series,
   }
 })
@@ -100,7 +102,7 @@ const { el } = useEcharts(option as Ref<unknown>)
 <template>
   <figure class="emc" data-testid="eigenmode-chart">
     <div ref="el" class="emc__canvas" data-testid="eigenmode-canvas" role="img"
-         :aria-label="`Eigenmode vector for mode ${mode.mode_index}, ${mode.side} rank ${mode.rank}`"></div>
+         :aria-label="`模态 ${mode.mode_index} 的特征向量，${mode.side} 特征对序号 ${mode.rank}`"></div>
   </figure>
 </template>
 

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { zh } from '../presentation/zh-CN'
+
 /**
  * SnapshotViewer — Canvas 2D renderer for one recorded field.
  *
@@ -91,13 +93,12 @@ watch(() => [props.field.field_id, props.field.result.config_id, resolveValues()
 <template>
   <figure class="sv">
     <figcaption class="sv__caption">
-      <span class="sv__title">{{ field.label }}</span>
-      <span class="sv__unit">({{ field.unit_label }})</span>
+      <span class="sv__title">{{ zh(field.label) }}</span>
+      <span class="sv__unit">({{ zh(field.unit_label) }})</span>
     </figcaption>
-    <canvas ref="canvas" class="sv__canvas" data-testid="snapshot-canvas" :aria-label="`${field.label} field, recorded values only`"></canvas>
+    <canvas ref="canvas" class="sv__canvas" data-testid="snapshot-canvas" :aria-label="`${zh(field.label)}场 · 仅已记录数值`"></canvas>
     <p class="sv__meta">
-      Shape {{ field.shape.join(' × ') }} · axes {{ field.axes.join(',') }} ·
-      rendered from recorded values only (no interpolation)
+      {{ zh("Shape") }} {{ zh(field.shape.join(' × ')) }} {{ zh("· axes") }} {{ zh(field.axes.join(',')) }} {{ zh("· rendered from recorded values only (no interpolation)") }}
     </p>
   </figure>
 </template>
