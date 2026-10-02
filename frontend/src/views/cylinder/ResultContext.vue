@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { verificationText } from "../../data/evidence"
 import type { Science, Definitions } from '../../data/cylinder'
 import { known } from '../../data/cylinder'
 import EvidenceLink from '../../scientific/EvidenceLink.vue'
@@ -10,7 +11,7 @@ defineProps<{ result: Science['ScientificResult']; definitions: Definitions }>()
     <dt>Unit</dt><dd>{{ result.unit.label }} ({{ result.unit.system }})</dd>
     <dt>Scope</dt><dd>{{ result.scope.description }} · {{ known(result.scope.boundary_scope) ?? 'UNKNOWN' }}</dd>
     <dt>Time semantics</dt><dd>{{ result.time.sampling }} · {{ result.time.accumulation }} · t={{ known(result.time.physical_time) ?? 'N/A' }} · interval={{ known(result.time.interval) ?? 'N/A' }} · completed step={{ known(result.time.step_index) ?? 'N/A' }}<br>{{ result.time.index_convention }}</dd>
-    <dt>Origin / verification</dt><dd>{{ result.data_origin }} · {{ result.verification.status }}</dd>
+    <dt>Origin / verification</dt><dd>{{ result.data_origin }} · {{ verificationText(result.verification) }}</dd>
     <dt>Limitation</dt><dd><template v-if="result.limitations.length"><p v-for="l in result.limitations" :key="l.id">{{ l.code }} — {{ l.description }}</p></template><template v-else>No additional result limitation recorded.</template></dd>
   </dl>
   <footer><EvidenceLink v-for="id in result.provenance.evidence_refs.filter(id => id.startsWith('ev.'))" :key="id" :evidence-id="id" /></footer>

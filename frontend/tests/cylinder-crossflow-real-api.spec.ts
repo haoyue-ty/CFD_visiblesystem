@@ -134,8 +134,12 @@ test('field asset failure shows Missing without substituting another frame', asy
 })
 test('invalid snapshot and unsupported config deep links never create frames or C_u selector', async ({ page }) => {
   await page.goto('/lab/experiments/cylinder?config=C_u&tab=flow&snapshot=0')
-  await expect(page.getByRole('alert')).toContainText('only recorded indices 1…5')
+  await expect(page.locator('[data-state="unsupported"]').first()).toContainText('C_u is outside the verified configuration set')
+  await expect(page).toHaveURL(/config=C_u/)
   await expect(page.getByTestId('config-C_u')).toHaveCount(0)
+  await expect(page.getByTestId('instantaneous-field')).toHaveCount(0)
+  await page.goto('/lab/experiments/cylinder?config=D_u&tab=flow&snapshot=0')
+  await expect(page.getByRole('alert')).toContainText('only recorded indices 1…5')
   await expect(page.getByTestId('instantaneous-field')).toHaveCount(0)
 })
 test('Lab navigation opens Cylinder and cross-flow routes', async ({ page }) => {

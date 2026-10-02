@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { verificationText } from "../../data/evidence"
 /**
  * P07 / Spectral Lab tab — Phase 7B Window 3.
  *
@@ -225,7 +226,7 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           <template v-if="loaded.data">
             <MockBadge :origin="loaded.data.result.data_origin" :verification="loaded.data.verification.status" />
             <SpectralCurveChart :curve="loaded.data" />
-            <p>{{ loaded.data.provenance.registry_revision }} · {{ loaded.data.provenance.data_revision }} · {{ loaded.data.verification.status }}</p>
+            <p>{{ loaded.data.provenance.registry_revision }} · {{ loaded.data.provenance.data_revision }} · {{ verificationText(loaded.data.verification) }}</p>
             <EvidenceLink v-for="id in loaded.data.provenance.evidence_refs" :key="id" :evidence-id="id" :return-to="returnTo" />
           </template>
         </LoadStateBlock>
@@ -267,7 +268,7 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           <p class="sl__prov" data-testid="curve-provenance">
             registry_revision={{ curve.data.provenance.registry_revision }} ·
             data_revision={{ curve.data.provenance.data_revision }} ·
-            verification={{ curve.data.verification.status }}
+            verification={{ verificationText(curve.data.verification) }}
           </p>
         </template>
       </LoadStateBlock>
@@ -316,7 +317,7 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           <p class="sl__prov" data-testid="mode-provenance">
             registry_revision={{ mode.data.provenance.registry_revision }} ·
             data_revision={{ mode.data.provenance.data_revision }} ·
-            verification={{ mode.data.verification.status }}
+            verification={{ verificationText(mode.data.verification) }}
           </p>
         </template>
       </LoadStateBlock>
@@ -357,7 +358,7 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           <p class="sl__prov" data-testid="validation-provenance">
             registry_revision={{ validation.data.provenance.registry_revision }} ·
             data_revision={{ validation.data.provenance.data_revision }} ·
-            verification={{ validation.data.verification.status }} ·
+            verification={{ verificationText(validation.data.verification) }} ·
             amplitude={{ validation.data.amplitude_definition }}
           </p>
         </template>

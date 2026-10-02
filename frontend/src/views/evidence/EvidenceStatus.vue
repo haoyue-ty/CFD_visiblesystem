@@ -7,7 +7,7 @@ defineProps<{ verification: components['schemas']['Verification']; drift: Fact<b
   <div class="evidence-status">
     <strong v-if="knownValue(drift) === true" class="drift" role="alert">SOURCE DRIFT — recorded and current sources differ</strong>
     <span v-else>{{ knownValue(drift) === false ? 'NO SOURCE DRIFT' : `SOURCE DRIFT ${factText(drift)}` }}</span>
-    <strong :data-testid="primary ? 'evidence-verification' : undefined">{{ verificationLabels[verification.status] }} · DTO: {{ verification.status }}</strong>
+    <strong :data-testid="primary ? 'evidence-verification' : undefined">{{ verification.canonical_status }} · Source: {{ verificationLabels[verification.status] }} · DTO: {{ verification.status }}</strong>
     <strong v-if="origins?.includes('DIAGNOSTIC_RERUN')">DIAGNOSTIC_RERUN · recorded origin</strong>
   </div>
 </template>

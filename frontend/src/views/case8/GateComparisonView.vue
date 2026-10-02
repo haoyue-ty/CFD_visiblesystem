@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { verificationText } from "../../data/evidence"
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { contentService } from '../../data/content'
 import { dataService, createRequestGuard, type Loaded, type AllocationView, type EvidenceDetailView } from '../../data'
@@ -48,7 +49,7 @@ onBeforeUnmount(() => { guard.cancel() })
                 <CellAllocationView v-for="array in fields[entry.config_id]!.data!.arrays" :key="array.array_id" :array="array" :colour-extent="extent" />
                 <AllocationSummary :summary="fields[entry.config_id]!.data!.summary" />
                 <p data-testid="gate-window">{{ fields[entry.config_id]!.data!.mask.definition }} · counts={{ fields[entry.config_id]!.data!.mask.counts.join(',') }}</p>
-                <p>{{ fields[entry.config_id]!.data!.verification.status }} · {{ fields[entry.config_id]!.data!.data_origin }}</p>
+                <p>{{ verificationText(fields[entry.config_id]!.data!.verification) }} · {{ fields[entry.config_id]!.data!.data_origin }}</p>
                 <p>{{ fields[entry.config_id]!.data!.definition }} · {{ fields[entry.config_id]!.data!.time_rule }}</p>
                 <p v-for="lim in fields[entry.config_id]!.data!.limitations" :key="lim.id">{{ lim.code }} — {{ lim.description }}</p>
               </template>

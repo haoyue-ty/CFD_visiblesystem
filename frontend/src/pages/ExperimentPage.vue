@@ -67,6 +67,8 @@ const invalidSnapshot = computed(() => {
   const value = readQueryString('snapshot')
   return value !== null && (!Number.isInteger(Number(value)) || Number(value) < 1 || Number(value) > 6)
 })
+const invalidConfig = computed(() => readQueryString('config') !== null && !(VALID_CONFIGS as readonly string[]).includes(readQueryString('config')!))
+const unsupportedTab = computed(() => readQueryString('tab') !== null && !(VALID_TABS as readonly string[]).includes(readQueryString('tab')!))
 watch([snapshotIndex, fieldId, scalarStep], () => syncQuery({}))
 
 const isCase8 = computed(() => props.experiment_id === 'case8')
@@ -95,8 +97,7 @@ function selectConfig(value: string) {
   if (!(VALID_CONFIGS as readonly string[]).includes(value)) return
   configId.value = value
   scalarStep.value = null
-  // If the current config disables the active tab, fall back to Overview with a reason.
-  if (tab.value === 'allocation' && value !== 'D_u') tab.value = 'overview'
+  // Keep the requested location and explain unavailable configuration assets.
   syncQuery({}, true)
 }
 
@@ -137,7 +138,9 @@ watch(
     </nav>
     <RouterLink :to="{ name: 'cross-flow', query: { case8_config: configId, cylinder_config: 'D_u' } }">Case8 ↔ Cylinder · Cross-flow Compare</RouterLink>
 
-    <section v-if="invalidSnapshot" data-state="invalid-selector">Invalid snapshot selector: recorded indices are 1…6; index 0 is rejected.</section>
+    <section v-if="invalidConfig" data-state="invalid-selector">UNSUPPORTED config: {{ readQueryString('config') }}. Choose a recorded Case8 configuration; no default scientific result is substituted.</section>
+    <section v-else-if="unsupportedTab" data-testid="unsupported-tab" role="alert">UNSUPPORTED view: {{ readQueryString('tab') }}. Requested location retained.</section>
+    <section v-else-if="invalidSnapshot" data-state="invalid-selector">Invalid snapshot selector: recorded indices are 1…6; index 0 is rejected.</section>
     <LoadStateBlock v-else :loaded="overview" target="experiment overview">
       <template v-if="overview?.state === 'READY' || overview?.state === 'PARTIAL'">
         <header class="exp__header">
@@ -165,7 +168,7 @@ watch(
         <!-- Capability-driven tabs -->
         <nav class="exp__tabs" role="tablist" aria-label="Case8 tabs">
           <button
-            v-for="t in VALID_TABS"
+            v-for="t in VALID_TABS.filter(t => t !== 'spectral')"
             :key="t"
             role="tab"
             class="exp__tab"
@@ -177,7 +180,15 @@ watch(
           >{{ t.charAt(0).toUpperCase() + t.slice(1) }}</button>
         </nav>
 
-        <p v-if="tab === 'allocation' && allocationDisabled" class="exp__tab-reason" data-testid="allocation-disabled-reason">
+        <p v-if="tab === 'overview'" data-testid="case8-independent-workspace-note">
+          Case8 has no recorded spectral capability. Spectrum and Modal Validation use independent
+          recorded experiments; the legacy Spectral Lab shortcut keeps their separate identity.
+        </p>
+        <button data-testid="tab-spectral" :aria-pressed="tab === 'spectral'" @click="selectTab('spectral')">
+          Independent workspace: Spectrum / Modal Validation
+        </button>
+
+        <p v-if="allocationDisabled" class="exp__tab-reason" data-testid="allocation-disabled-reason">
           Allocation is not available for {{ configId }}: only D_u has a recorded terminal cumulative
           native-face map. Other configs do not have a cumulative spatial map saved — this is a known
           capability limit for this config, not a synthetic zero field.
@@ -188,7 +199,7 @@ watch(
           These are different scientific objects and are rendered separately.
         </p>
         <p v-else-if="tab === 'spectral'" class="exp__tab-note" data-testid="spectral-note">
-          Spectral Lab: <strong>Selective modal response</strong> — the Re(λ) growth signature of the most
+          Independent Spectral Lab (not Case8 data): <strong>Selective modal response</strong> — the Re(λ) growth signature of the most
           unstable Fourier mode across four exact q_at configurations. This reports recorded spectral
           facts; it is not a spatial field.
         </p>
@@ -202,7 +213,7 @@ watch(
             v-model:field-id="fieldId"
           />
           <EntropyTab v-else-if="tab === 'entropy'" :config-id="configId" v-model="scalarStep" />
-          <AllocationTab v-else-if="tab === 'allocation'" :config-id="configId" />
+          <AllocationTab v-else-if="tab === 'allocation' && !allocationDisabled" :config-id="configId" />
           <MetricsTab v-else-if="tab === 'metrics'" :config-id="configId" />
           <SpectralTab v-else-if="tab === 'spectral'" />
           <EvidenceTab v-else-if="tab === 'evidence'" :config-id="configId" />

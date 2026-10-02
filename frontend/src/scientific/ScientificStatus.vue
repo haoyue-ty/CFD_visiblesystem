@@ -27,7 +27,7 @@ defineProps<{
       </div>
       <div>
         <dt>Verification</dt>
-        <dd :data-verification="verification.status">{{ verification.status }}</dd>
+        <dd :data-verification="verification.status">{{ verification.canonical_status }} · Source: {{ verification.status }}</dd>
       </div>
     </dl>
     <p class="ss__note">

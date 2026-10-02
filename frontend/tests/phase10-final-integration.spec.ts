@@ -5,7 +5,11 @@ import { fileURLToPath } from 'node:url'
 test('Entry → Home → seven real Scenes → Evidence Detail → Scene → Lab → original Scene', async ({ page }) => {
   test.setTimeout(180_000)
   const errors: string[] = []
+  const fatalConsole: string[] = [], failedNetwork: string[] = [], serverErrors: string[] = []
   page.on('pageerror', error => errors.push(error.message))
+  page.on('console', message => { if (message.type() === 'error') fatalConsole.push(message.text()) })
+  page.on('requestfailed', request => { if (!request.failure()?.errorText.includes('ERR_ABORTED')) failedNetwork.push(`${request.url()}: ${request.failure()?.errorText}`) })
+  page.on('response', response => { if (response.status() >= 500) serverErrors.push(`${response.status()} ${response.url()}`) })
   const ready = ['entropy-terminal', 'mechanism-architecture', 'mechanism-architecture', 'gate-Ungated', 'guided-modal-table', 'sector-table', 'evidence-record']
   await page.goto('/')
   await page.getByTestId('enter-system').click()
@@ -61,4 +65,7 @@ test('Entry → Home → seven real Scenes → Evidence Detail → Scene → Lab
   await expect(page.getByTestId('mechanism-state')).toHaveValue('WEAKLY_2D')
   await expect(page.getByTestId('selected-node')).toContainText('δ_t does not enter gate')
   expect(errors).toEqual([])
+  expect(fatalConsole).toEqual([])
+  expect(failedNetwork).toEqual([])
+  expect(serverErrors).toEqual([])
 })

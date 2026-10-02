@@ -71,7 +71,16 @@ def test_exact_frozen_operations_openapi_and_generated_contract(app, client):
         assert path in generated and operation in generated
     assert CMP in generated and 'ranking_policy: "NO_UNIFIED_RANKING"' in generated
     baseline = json.loads(subprocess.check_output(["git", "show", "69a318b:config/openapi.json"]))
-    assert all(document["components"]["schemas"].get(k) == v for k, v in baseline["components"]["schemas"].items())
+    for key, value in baseline["components"]["schemas"].items():
+        current = document["components"]["schemas"][key]
+        if key == "Verification":
+            # The authorized Phase12 addition is the sole schema exception.
+            assert set(current["properties"]) == set(value["properties"]) | {"canonical_status"}
+            from typing import get_args
+            from backend.models.core import CanonicalVerificationStatus
+            assert current["properties"]["canonical_status"]["enum"] == list(get_args(CanonicalVerificationStatus))
+            current = {**current, "properties": {k: v for k, v in current["properties"].items() if k != "canonical_status"}}
+        assert current == value
 
 
 @pytest.mark.parametrize("operation", PATHS)

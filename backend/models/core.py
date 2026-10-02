@@ -17,6 +17,13 @@ Availability = Literal["AVAILABLE", "PARTIAL", "MISSING", "UNSUPPORTED", "ERROR"
 CapabilityStatus = Literal["SUPPORTED", "PARTIAL", "MISSING", "UNSUPPORTED"]
 DeliveryStatus = Literal["PLANNED", "IMPLEMENTED"]
 VerificationStatus = Literal["FROZEN_VERIFIED", "VERIFIED_NOT_FROZEN", "DERIVED_VERIFIED", "AVAILABLE_UNVERIFIED", "PARTIAL", "MISSING", "LEGACY", "SUPERSEDED", "NOT_APPLICABLE"]
+CanonicalVerificationStatus = Literal["FROZEN_ACCEPTED", "VERIFIED", "VERIFIED_NOT_FROZEN", "DIAGNOSTIC_RERUN", "PARTIAL", "MISSING", "HISTORY", "SUPERSEDED", "UNKNOWN"]
+VERIFICATION_CANONICAL = {
+    "FROZEN_VERIFIED": "FROZEN_ACCEPTED", "VERIFIED_NOT_FROZEN": "VERIFIED_NOT_FROZEN",
+    "DERIVED_VERIFIED": "VERIFIED", "AVAILABLE_UNVERIFIED": "UNKNOWN",
+    "PARTIAL": "PARTIAL", "MISSING": "MISSING", "LEGACY": "HISTORY",
+    "SUPERSEDED": "SUPERSEDED", "NOT_APPLICABLE": "UNKNOWN",
+}
 DataOrigin = Literal["FROZEN_PRODUCTION", "VERIFIED_PRODUCTION", "VERIFIED_POSTPROCESS", "DIAGNOSTIC_RERUN", "MOCK", "SCHEMATIC", "LIVE_DEMO"]
 
 
@@ -77,10 +84,21 @@ class UnitSpec(CanonicalModel):
 
 class Verification(CanonicalModel):
     status: VerificationStatus
+    canonical_status: CanonicalVerificationStatus = "UNKNOWN"
     basis: list[str]
     verified_at: Fact[AwareDatetime]
     observation_at: Fact[AwareDatetime]
     evidence_refs: list[ID]
+
+    @model_validator(mode="after")
+    def canonical_vocabulary(self):
+        # Preserve accepted source status and its basis; presentation never
+        # promotes evidence. DIAGNOSTIC_RERUN remains an independent origin.
+        expected = VERIFICATION_CANONICAL[self.status]
+        if "canonical_status" in self.model_fields_set and self.canonical_status != expected:
+            raise ValueError("Canonical verification must preserve source status semantics")
+        self.canonical_status = expected
+        return self
 
     @model_validator(mode="after")
     def verified_basis(self):

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { verificationText } from "../../data/evidence"
 import { computed } from 'vue'
 import type { Science, Definitions } from '../../data/cylinder'
 import { known, slotValue } from '../../data/cylinder'
@@ -28,7 +29,7 @@ function floorLabel(metric: Science['Metric']) {
         </template>
         <template v-else>
           <p>Detector: {{ known(slotValue(resource)!.detector)?.name ?? 'N/A' }} · {{ slotValue(resource)!.result.time.sampling }} / {{ slotValue(resource)!.result.time.accumulation }}</p>
-          <p>{{ slotValue(resource)!.result.scope.description }} · {{ slotValue(resource)!.result.verification.status }}</p>
+          <p>{{ slotValue(resource)!.result.scope.description }} · {{ verificationText(slotValue(resource)!.result.verification) }}</p>
           <details><summary>Definition, scope and provenance</summary><ResultContext :result="slotValue(resource)!.result" :definitions="definitions" /></details>
         </template>
       </article>

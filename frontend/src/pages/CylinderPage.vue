@@ -15,8 +15,9 @@ import ResourceState from '../views/cylinder/ResourceState.vue'
 const route = useRoute(), router = useRouter()
 const configs = ['A_u', 'B_u', 'D_u']
 const tabs = { overview: 'Overview', flow: 'Flow', entropy: 'Entropy', sectors: 'Sector Allocation', metrics: 'Metrics', evidence: 'Evidence' }
-const config = computed(() => typeof route.query.config === 'string' && configs.includes(route.query.config) ? route.query.config : 'D_u')
+const config = computed(() => typeof route.query.config === 'string' ? route.query.config : 'D_u')
 const tab = computed(() => typeof route.query.tab === 'string' && route.query.tab in tabs ? route.query.tab as keyof typeof tabs : 'overview')
+const unsupportedTab = computed(() => typeof route.query.tab === 'string' && !Object.hasOwn(tabs, route.query.tab))
 const snapshot = computed(() => Number(route.query.snapshot ?? 1))
 const fieldId = computed(() => typeof route.query.field === 'string' ? route.query.field : 'radial_interior_pi_at')
 const step = computed({ get: () => { const n = Number(route.query.step ?? 9757); return Number.isInteger(n) && n >= 1 && n <= 9757 ? n : 9757 }, set: value => update({ step: String(value) }) })
@@ -76,7 +77,8 @@ onBeforeUnmount(() => { frameGuard.cancel(); allocationGuard.cancel(); contentGu
     <nav role="tablist" aria-label="Cylinder tabs"><button v-for="(label, id) in tabs" :key="id" role="tab" :aria-selected="tab === id" :data-testid="`tab-${id}`" @click="update({ tab: id })">{{ label }}</button></nav>
     <RouterLink :to="{ name: 'cross-flow', query: { case8_config: 'D_u', cylinder_config: config } }">Case8 ↔ Cylinder · Cross-flow Compare</RouterLink>
     <aside data-testid="cylinder-capability-gap"><LoadStateBlock :loaded="allocation" target="Cylinder cumulative 2D capability"><ResourceState v-if="allocation?.data" :resource="allocation.data.overview.cumulative_2d" label="Full trajectory cumulative 2D Pi_at" /></LoadStateBlock></aside>
-    <section role="tabpanel" :aria-label="tabs[tab]">
+    <p v-if="unsupportedTab" data-testid="unsupported-tab" role="alert">UNSUPPORTED view: {{ route.query.tab }}. Requested location retained.</p>
+    <section v-else role="tabpanel" :aria-label="tabs[tab]">
       <template v-if="tab === 'overview'">
         <h2>Supported observations</h2>
         <LoadStateBlock :loaded="frames" target="Cylinder snapshots"><p v-if="frames?.data">{{ frames.data.snapshot_count }} recorded snapshots · 9757 accepted-step scalar records per series · 16 angular sectors + fixed cumulative front-band.</p></LoadStateBlock>

@@ -2,7 +2,7 @@
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { createRequestGuard, type Loaded } from '../data'
-import { evidenceService, factText, knownValue, type EvidenceIndex, type EvidenceQuery } from '../data/evidence'
+import { evidenceService, factText, knownValue, verificationLabels, type EvidenceIndex, type EvidenceQuery } from '../data/evidence'
 import LoadStateBlock from '../components/LoadStateBlock.vue'
 import EvidenceStatus from '../views/evidence/EvidenceStatus.vue'
 const route = useRoute(), router = useRouter(), guard = createRequestGuard()
@@ -53,7 +53,7 @@ function page(next: number) { void router.push({ query: { ...route.query, offset
       <p v-else role="note"><strong>HISTORICAL RECORDS — legacy, superseded and nonselected sources. These are not current formal results.</strong></p>
       <div class="filters">
         <label>Experiment <select :value="experiment" data-testid="evidence-experiment-filter" @change="set('experiment', ($event.target as HTMLSelectElement).value)"><option value="">All experiments</option><option v-for="id in experiments" :key="id" :value="id">{{ id }}</option></select></label>
-        <label>Verification <select :value="status ?? ''" data-testid="evidence-status-filter" @change="set('status', ($event.target as HTMLSelectElement).value)"><option value="">All verification states</option><option v-for="s in statuses" :key="s">{{ s }}</option></select></label>
+        <label>Verification <select :value="status ?? ''" data-testid="evidence-status-filter" @change="set('status', ($event.target as HTMLSelectElement).value)"><option value="">All verification states</option><option v-for="s in statuses" :key="s" :value="s">{{ verificationLabels[s] }} · Source: {{ s }}</option></select></label>
         <label>Source drift (this page) <select :value="drift" data-testid="evidence-drift-filter" @change="set('drift', ($event.target as HTMLSelectElement).value)"><option value="">All drift states</option><option>TRUE</option><option>FALSE</option><option>UNKNOWN</option></select></label>
       </div>
       <p class="note">Experiment, verification and section filter on EVI01 before pagination. The frozen API has no drift query: source drift filters the current server page only. Next / Previous inspect other pages; no complete-registry load.</p>

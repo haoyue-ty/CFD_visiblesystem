@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { verificationText } from "../../data/evidence"
 /**
  * Case8 / Gate Allocation tab — Phase 6B Window 4.
  *
@@ -208,7 +209,7 @@ watch(() => props.configId, () => {
         <!-- verification: its own layer, never merged with provenance or limits -->
         <section class="al__block" data-testid="alloc-verification">
           <h3>Verification</h3>
-          <p>status: <strong>{{ allocation.data.verification.status }}</strong></p>
+          <p>status: <strong>{{ verificationText(allocation.data.verification) }}</strong></p>
           <ul class="al__list">
             <li v-for="(basis, i) in allocation.data.verification.basis" :key="i">{{ basis }}</li>
           </ul>

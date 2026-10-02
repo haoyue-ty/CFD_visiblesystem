@@ -227,7 +227,21 @@ def test_reproduce_audit_with_scientific_write_guard(source_map, monkeypatch, tm
     # Worktree identity and checkout observations change at integration. Every
     # scientific observation, source hash, missing slot and policy stays exact.
     observation_keys = {"worktree", "frozen_prerequisites"}
-    assert {k: v for k, v in rebuilt.items() if k not in observation_keys} == {
+    # Phase12 adds a derived software vocabulary to Verification. Historical
+    # scientific source status/basis/hash remain exact; the old snapshot has
+    # no presentation alias. Check each alias before removing only that field.
+    from backend.models.core import VERIFICATION_CANONICAL
+
+    def historical_science(value):
+        if isinstance(value, dict):
+            if "canonical_status" in value:
+                assert value["canonical_status"] == VERIFICATION_CANONICAL[value["status"]]
+            return {k: historical_science(v) for k, v in value.items() if k != "canonical_status"}
+        if isinstance(value, list):
+            return [historical_science(v) for v in value]
+        return value
+
+    assert historical_science({k: v for k, v in rebuilt.items() if k not in observation_keys}) == {
         k: v for k, v in source_map.items() if k not in observation_keys}
     assert rebuilt["frozen_prerequisites"]["phase7_accepted_files_verified"] == 161
     assert all(item["checkout_sha256"] == item["frozen_windows_sha256"]

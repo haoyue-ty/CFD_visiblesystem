@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { verificationText } from "../../data/evidence"
 import { activeProvider } from '../../data'
 /**
  * Case8 Evidence tab — overview of the current experiment's result sources,
@@ -42,7 +43,7 @@ watch(() => props.configId, load)
             </span>
           </div>
           <p class="ev__meta">
-            verification: {{ item.verification.status }} · results:
+            verification: {{ verificationText(item.verification) }} · results:
             <code>{{ item.result_ids.join(', ') }}</code>
           </p>
           <EvidenceLink :evidence-id="item.evidence_id" />

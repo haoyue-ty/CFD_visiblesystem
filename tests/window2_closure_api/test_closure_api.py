@@ -286,7 +286,17 @@ def test_exact_five_openapi_operations_export_equality_and_wire_schema(app, clie
         Draft202012Validator(json.loads(encoded)).validate(response.json)
         ApiEnvelope[MODELS[operation]].model_validate_json(response.data)
     baseline = json.loads(subprocess.check_output(["git", "show", "5d6ceb4:config/openapi.json"]))
-    assert all(document["components"]["schemas"].get(key) == value for key, value in baseline["components"]["schemas"].items())
+    for key, value in baseline["components"]["schemas"].items():
+        current = document["components"]["schemas"][key]
+        if key == "Verification":
+            # Phase12 explicitly adds the canonical presentation vocabulary;
+            # the frozen source status and every other schema field stay exact.
+            assert set(current["properties"]) == set(value["properties"]) | {"canonical_status"}
+            from typing import get_args
+            from backend.models.core import CanonicalVerificationStatus
+            assert current["properties"]["canonical_status"]["enum"] == list(get_args(CanonicalVerificationStatus))
+            current = {**current, "properties": {k: v for k, v in current["properties"].items() if k != "canonical_status"}}
+        assert current == value
 
 
 def test_generated_types_are_repeatable_and_contain_exact_operations(tmp_path):

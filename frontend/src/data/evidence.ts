@@ -47,3 +47,7 @@ export const verificationLabels: Record<S['Verification']['status'], string> = {
   AVAILABLE_UNVERIFIED: 'UNKNOWN / AVAILABLE_UNVERIFIED', PARTIAL: 'PARTIAL', MISSING: 'MISSING', LEGACY: 'HISTORY / LEGACY',
   SUPERSEDED: 'HISTORY / SUPERSEDED', NOT_APPLICABLE: 'NOT_APPLICABLE',
 }
+/** One presentation vocabulary; keep source status visible without promoting it. */
+export function verificationText(verification: Pick<S['Verification'], 'status'> & Partial<Pick<S['Verification'], 'canonical_status'>>): string {
+  return `${verification.canonical_status ?? verificationLabels[verification.status]} · Source: ${verification.status}`
+}

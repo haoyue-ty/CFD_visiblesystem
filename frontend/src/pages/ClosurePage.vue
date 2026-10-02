@@ -65,8 +65,8 @@ onBeforeUnmount(() => { registryGuard.cancel(); historyGuard.cancel(); refinemen
       <label>Run <select data-testid="closure-run" :value="run?.run_id ?? ''" @change="update({ run: ($event.target as HTMLSelectElement).value, offset: '0' })"><option v-for="r in runs" :key="r.run_id" :value="r.run_id">{{ runLabel(r) }}</option></select></label>
       <p v-if="!run" role="alert" data-testid="invalid-run">Unsupported run selection: choose one of the five recorded CLO01 runs.</p>
       <nav role="tablist" aria-label="Entropy Closure tabs"><button v-for="(label, id) in tabs" :key="id" role="tab" :aria-selected="tab === id" :data-testid="`tab-${id}`" @click="update({ tab: id, offset: '0' })">{{ label }}</button></nav>
-      <p v-if="unsupportedTab" role="note" data-testid="unsupported-tab">Requested view is unavailable for Entropy Closure. No saved spatial trajectory; supported scalar views are shown below.</p>
-      <template v-if="run">
+      <p v-if="unsupportedTab" role="note" data-testid="unsupported-tab">UNSUPPORTED view for Entropy Closure. Requested location retained; choose a supported scalar view explicitly. No saved spatial trajectory.</p>
+      <template v-if="run && !unsupportedTab">
         <p data-testid="selected-run">{{ runLabel(run) }} · {{ run.stage_point_count }} stage records · {{ run.step_point_count }} accepted steps</p>
         <p v-if="zeroChannel" data-testid="bu-zero-channel">D_at=0 — recorded zero channel. E_at step increments and terminal total are recorded zero.</p>
         <section role="tabpanel" :aria-label="tabs[tab]">

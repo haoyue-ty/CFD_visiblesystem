@@ -45,7 +45,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Canonical experiment metadata including delivered Case8, Cylinder and Entropy Closure. */
+        /** @description Canonical metadata for all delivered V1 experiment workspaces. */
         get: operations["REG01"];
         put?: never;
         post?: never;
@@ -882,6 +882,12 @@ export interface components {
              * @enum {string}
              */
             status: "FROZEN_VERIFIED" | "VERIFIED_NOT_FROZEN" | "DERIVED_VERIFIED" | "AVAILABLE_UNVERIFIED" | "PARTIAL" | "MISSING" | "LEGACY" | "SUPERSEDED" | "NOT_APPLICABLE";
+            /**
+             * Canonical Status
+             * @default UNKNOWN
+             * @enum {string}
+             */
+            canonical_status: "FROZEN_ACCEPTED" | "VERIFIED" | "VERIFIED_NOT_FROZEN" | "DIAGNOSTIC_RERUN" | "PARTIAL" | "MISSING" | "HISTORY" | "SUPERSEDED" | "UNKNOWN";
             /** Basis */
             basis: string[];
             verified_at: components["schemas"]["Fact_AwareDatetime_"];

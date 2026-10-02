@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { verificationText } from "../../data/evidence"
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { createRequestGuard, type Loaded } from '../../data'
@@ -79,7 +80,7 @@ function relation(id: string) { return { name: 'evidence', params: { evidence_id
             <p>Scope: {{ r.scope.description }} · Boundary: {{ factText(r.scope.boundary_scope) }}</p>
             <p>Time: {{ r.time.sampling }} / {{ r.time.accumulation }} · {{ r.time.index_convention }}</p>
             <p>Physical time: {{ factText(r.time.physical_time) }} · Interval: {{ factText(r.time.interval) }}</p>
-            <p>Result verification: {{ r.verification.status }} · Dependency drift: {{ factText(r.provenance.source_drift) }}</p>
+            <p>Result verification: {{ verificationText(r.verification) }} · Dependency drift: {{ factText(r.provenance.source_drift) }}</p>
             <p>Step: {{ factText(r.time.step_index) }} · Stage: {{ factText(r.time.stage_index) }} · Snapshot: {{ factText(r.time.snapshot_index) }}</p>
             <ul><li v-for="lim in r.limitations" :key="lim.id">{{ lim.severity }} · {{ lim.code }} — {{ lim.description }}</li></ul>
           </article>
@@ -106,7 +107,7 @@ function relation(id: string) { return { name: 'evidence', params: { evidence_id
           <h2>Source assets</h2>
           <p>Controlled provenance descriptions only. Scientific files are not opened or downloaded.</p>
           <table data-testid="evidence-assets"><thead><tr><th>Asset</th><th>Role / format</th><th>Verification / drift</th></tr></thead><tbody>
-            <tr v-for="a in record.source_assets" :key="a.asset_id"><td>{{ a.asset_id }} · {{ a.source_display }}</td><td>{{ a.role }} / {{ a.format }}</td><td>{{ a.verification.status }} / {{ factText(a.data_drift) }}</td></tr>
+            <tr v-for="a in record.source_assets" :key="a.asset_id"><td>{{ a.asset_id }} · {{ a.source_display }}</td><td>{{ a.role }} / {{ a.format }}</td><td>{{ verificationText(a.verification) }} / {{ factText(a.data_drift) }}</td></tr>
           </tbody></table>
           <p v-if="!record.source_assets.length">No source assets registered.</p>
           <article v-for="a in record.source_assets" :key="a.asset_id" class="subrecord" data-testid="evidence-source-asset">
@@ -148,7 +149,7 @@ function relation(id: string) { return { name: 'evidence', params: { evidence_id
             <p>Input assets: {{ p.input_asset_ids.join(', ') || 'None recorded' }}</p>
             <p>Definition references: {{ p.definition_refs.join(', ') || 'None recorded' }}</p>
             <p class="hash">Processing hash: {{ factText(p.processing_hash) }}</p>
-            <p>Verification: {{ p.verification.status }} · {{ p.verification.basis.join('; ') }}</p>
+            <p>Verification: {{ verificationText(p.verification) }} · {{ p.verification.basis.join('; ') }}</p>
           </article>
         </section>
         <section data-testid="evidence-definitions">
@@ -169,7 +170,7 @@ function relation(id: string) { return { name: 'evidence', params: { evidence_id
           <article v-for="m in record.masks" :key="m.id" class="subrecord">
             <h3>Mask: {{ m.id }} · {{ m.type }}</h3><p>{{ m.definition }}</p><p>{{ m.scope.description }}</p>
             <p>Parameters: {{ m.parameters.map(p => `${p.name}: ${factText(p.value)}`).join('; ') }}</p>
-            <p>Domains: {{ m.domain_refs.join(', ') }} · Verification: {{ m.verification.status }}</p>
+            <p>Domains: {{ m.domain_refs.join(', ') }} · Verification: {{ verificationText(m.verification) }}</p>
             <p v-for="s in m.index_sets" :key="s.axis">{{ s.axis }}: {{ s.indices.join(', ') }} · index base {{ s.index_base }}</p>
             <p>Array references: {{ m.mask_array_refs.map(a => `${a.result_id} / ${a.descriptor.array_id}`).join(', ') || 'None recorded' }}</p>
           </article>

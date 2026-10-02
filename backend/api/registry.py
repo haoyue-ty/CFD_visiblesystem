@@ -34,7 +34,7 @@ def require_delivered(experiment_id: str) -> None:
                            "This experiment is not delivered in the Case8 slice", status=503)
 
 
-def register_registry_operations(catalog: OperationCatalog, project: ProjectInfo, service, cylinder_service=None, closure_service=None) -> None:
+def register_registry_operations(catalog: OperationCatalog, project: ProjectInfo, service, cylinder_service=None, closure_service=None, workspace_services=None) -> None:
     scientific_errors = {
         404: ("UNKNOWN_EXPERIMENT", "MISSING_SCIENTIFIC_ASSET"),
         409: ("REVISION_UNAVAILABLE", "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ"),
@@ -44,6 +44,8 @@ def register_registry_operations(catalog: OperationCatalog, project: ProjectInfo
         if identity not in {ref.experiment_id for ref in project.experiments}:
             raise missing_resource("UNKNOWN_EXPERIMENT", "Unknown experiment identity",
                                    resource_type="experiment", identity=unresolved("Not present in the registry index"))
+        if identity in (workspace_services or {}):
+            return workspace_services[identity]
         if identity == "cylinder" and cylinder_service is not None:
             return cylinder_service
         if identity == "entropy-closure" and closure_service is not None:
@@ -53,7 +55,7 @@ def register_registry_operations(catalog: OperationCatalog, project: ProjectInfo
 
     def experiments(query: RegistryQuery):
         check_registry_revision(query, project)
-        items = [delivered(ref.experiment_id).describe_experiment() if ref.experiment_id in ("case8", "cylinder", "entropy-closure") and ref.delivery_status == "IMPLEMENTED" else Experiment.model_validate({
+        items = [delivered(ref.experiment_id).describe_experiment() if ref.delivery_status == "IMPLEMENTED" else Experiment.model_validate({
             "schema_version": "1.0.0", "id": ref.experiment_id, "name": ref.name,
             "scientific_family": ref.experiment_id, "description": f"{ref.name} experiment",
             "capabilities": [], "available_configs": [], "status": "UNSUPPORTED",
@@ -85,7 +87,7 @@ def register_registry_operations(catalog: OperationCatalog, project: ProjectInfo
         service="RegistryService", request_model=RegistryQuery, response_model=ApiEnvelope[ExperimentList],
         documented_errors={400: ("INVALID_REQUEST",), 405: ("METHOD_NOT_ALLOWED",), **scientific_errors},
         delivery_phase="Alpha", handler=experiments,
-        description="Canonical experiment metadata including delivered Case8, Cylinder and Entropy Closure."))
+        description="Canonical metadata for all delivered V1 experiment workspaces."))
     catalog.register(Operation(
         method="GET", path="/api/v1/experiments/{experiment_id}", operation_id="REG02", blueprint="system_registry",
         service="RegistryService", request_model=ExperimentPath, response_model=ApiEnvelope[Experiment],

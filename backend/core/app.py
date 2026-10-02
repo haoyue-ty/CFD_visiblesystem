@@ -107,10 +107,22 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
             roots.update({a["asset_id"]: allocation_adapter.cell._root for a in allocation_adapter._gate_assets(config)})
     evidence_service = EvidenceService(settings.scientific_data_root or getattr(case8_adapter, "_root", "D:/Paper/passage6"), roots=roots)
     app.extensions["evidence_service"] = evidence_service
+    workspace_services = {}
+    if isinstance(case8_adapter, Case8Adapter):
+        from backend.services.workspace_metadata import WorkspaceMetadata
+        from backend.adapters.allocation_integration import IntegratedAllocationAdapter
+        from backend.adapters.spectral_data import SpectralAdapter
+        identities = (["gate"] if isinstance(allocation_adapter, IntegratedAllocationAdapter) else [])
+        if isinstance(spectral_adapter, SpectralAdapter):
+            identities += ["spectrum", "modal-validation"]
+        workspace_services = {id: WorkspaceMetadata(id, evidence_service.registry.catalog) for id in identities}
+        project = project.model_copy(update={"experiments": [
+            ref.model_copy(update={"delivery_status": "IMPLEMENTED"}) if ref.experiment_id in workspace_services else ref
+            for ref in project.experiments]})
     if isinstance(case8_adapter, Case8Adapter):
         service.evidence_guard = evidence_service
     register_system_operations(catalog, project)
-    register_registry_operations(catalog, project, service, cylinder_service, closure_service)
+    register_registry_operations(catalog, project, service, cylinder_service, closure_service, workspace_services)
     register_case8_operations(catalog, project, service)
     register_array_operations(catalog, project, resources)
     register_evidence_operations(catalog, project, resources, allocation_service, evidence_service)

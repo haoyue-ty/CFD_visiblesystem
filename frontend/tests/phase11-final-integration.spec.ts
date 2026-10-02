@@ -159,8 +159,7 @@ test('W3 Home→Lab reaches each implemented module and Evidence navigation', as
     await expect(page.getByTestId('provider-kind')).toHaveText('REAL API')
     expect(await page.locator('body').innerText()).not.toMatch(blockedClaims)
   }
-  // Gate, Spectrum and Modal Validation are delivered within the scientific
-  // workspace; the frozen experiment catalog still marks their standalone cards PLANNED.
+  // Preserve legacy shared-workspace shortcuts alongside delivered standalone cards.
   await page.goto('/home')
   await page.getByRole('navigation', { name: 'System navigation' }).getByRole('link', { name: 'Lab', exact: true }).click()
   await page.getByTestId('open-case8').click()

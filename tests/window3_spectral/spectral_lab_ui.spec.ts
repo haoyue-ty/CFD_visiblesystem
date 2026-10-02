@@ -22,10 +22,11 @@ async function openSpectral(page: Page) {
 }
 
 test.describe('Spectral Lab — route and scope', () => {
-  test('is reachable via the experiment tab and deep link', async ({ page }) => {
+  test('is reachable via the independent workspace shortcut and legacy deep link', async ({ page }) => {
     await page.goto('/lab/experiments/case8?tab=spectral')
     await expect(page.getByTestId('spectral-lab')).toBeVisible()
-    await expect(page.getByTestId('tab-spectral')).toHaveAttribute('aria-selected', 'true')
+    await expect(page.getByTestId('tab-spectral')).toHaveAttribute('aria-pressed', 'true')
+    await expect(page.getByRole('tablist', { name: 'Case8 tabs' }).getByRole('tab', { name: 'Spectral' })).toHaveCount(0)
   })
 
   test('states the scientific scope and never emits an evaluative verdict', async ({ page }) => {
@@ -101,4 +102,3 @@ test.describe('Spectral Lab — loading state', () => {
     await expect(page.getByTestId('spectral-lab')).toContainText('Loading')
   })
 })
-

@@ -10,7 +10,7 @@ export type CapabilityStatus = S['ExperimentCapability']['status']
 export type DeliveryStatus = S['Experiment']['delivery_status']
 export type LoadState = 'LOADING' | 'READY' | 'PARTIAL' | 'MISSING' | 'UNSUPPORTED' | 'ERROR'
 export type UnitSpec = Omit<S['UnitSpec'], 'si_mapping'> & { si_mapping: KnownValue<S['UnitSpec']['si_mapping']> | null }
-export type VerificationTag = Pick<S['Verification'], 'status' | 'basis' | 'evidence_refs'>
+export type VerificationTag = Pick<S['Verification'], 'status' | 'basis' | 'evidence_refs'> & Partial<Pick<S['Verification'], 'canonical_status'>>
 export type Limitation = Pick<S['ScientificLimitation'], 'id' | 'code' | 'description' | 'severity'>
 export type ResultHeader = Pick<S['ScientificResult'], 'result_id' | 'experiment_id' | 'config_id' | 'semantic_id' | 'data_origin' | 'availability'> & {
   unit: UnitSpec; verification: VerificationTag; evidence_refs: S['ProvenanceRef']['evidence_refs']; limitations: Limitation[]

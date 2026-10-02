@@ -172,7 +172,7 @@
     "/api/v1/experiments": {
       "get": {
         "operationId": "REG01",
-        "description": "Canonical experiment metadata including delivered Case8, Cylinder and Entropy Closure.",
+        "description": "Canonical metadata for all delivered V1 experiment workspaces.",
         "tags": [
           "system_registry"
         ],
@@ -7516,6 +7516,22 @@
               "NOT_APPLICABLE"
             ],
             "title": "Status",
+            "type": "string"
+          },
+          "canonical_status": {
+            "default": "UNKNOWN",
+            "enum": [
+              "FROZEN_ACCEPTED",
+              "VERIFIED",
+              "VERIFIED_NOT_FROZEN",
+              "DIAGNOSTIC_RERUN",
+              "PARTIAL",
+              "MISSING",
+              "HISTORY",
+              "SUPERSEDED",
+              "UNKNOWN"
+            ],
+            "title": "Canonical Status",
             "type": "string"
           },
           "basis": {
