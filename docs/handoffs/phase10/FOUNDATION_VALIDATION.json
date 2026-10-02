@@ -1,0 +1,399 @@
+{
+  "window": "0_PHASE10_FOUNDATION",
+  "status": "PASS",
+  "base_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+  "branch": "phase10/content-foundation",
+  "audit_date": "2026-10-01",
+  "timezone": "Asia/Shanghai",
+  "content_audit": {
+    "status": "PASS",
+    "mechanism_origin": "SCHEMATIC",
+    "supported_states": [
+      "STRICT_1D",
+      "WEAKLY_2D"
+    ],
+    "scene_count": 7,
+    "scene_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "real_targets": 14,
+    "registered_api_bindings": 28,
+    "near1d_numerical_scan": "MISSING",
+    "gap_code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+    "numerical_data_duplicated": false,
+    "numerical_reads": 0,
+    "cfd_runs_started": 0
+  },
+  "content_freeze": {
+    "content_registry_version": "1.0.0",
+    "status": "FROZEN",
+    "base_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+    "scope": "WINDOW_0_PHASE10_FOUNDATION",
+    "data_origin": "SCHEMATIC",
+    "scene_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "near1d_numerical_scan": "MISSING",
+    "gap_code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+    "sha256": {
+      "mechanism.json": "f747894509cf038fd06f03293def831a4109e77f97e9f13b6dcfa1bcee9a9474",
+      "scenes.json": "ee220d9e56f4eed297d64219931d30f91cf0f4809a2a316e485ef3db3b6980b4"
+    }
+  },
+  "backend_tests": {
+    "tests": 1045,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "seconds": 395.245,
+    "passed": 1044,
+    "xml_sha256": "0fd262e67dc4cd109f6dbd89db4cb5b3b62a9c99a0f7bece9323e9a70fb1b150"
+  },
+  "foundation_tests": {
+    "tests": 58,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 17.64,
+    "passed": 58,
+    "xml_sha256": "87dbd324057468df1378e6a25d5dfbbe554b122abae445bbe4fe82fd607b976f"
+  },
+  "preservation_followup": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 0.124,
+    "passed": 1,
+    "xml_sha256": "4c88a82c50f6f40510960d292ae1ff90823d737cb088b913f092eeb456f73636"
+  },
+  "backend_unique_checks_covered": 1045,
+  "initial_skip_reason": "Independent worktree initially lacked the legacy .cache/phase6/source-before.json. An actual 189-file accepted/current inventory was supplied locally and the single preservation check was rerun successfully.",
+  "scene_bindings": [
+    {
+      "scene_id": 1,
+      "view_kind": "ENTROPY",
+      "requests": [
+        {
+          "operation_id": "C805",
+          "url": "/api/v1/experiments/case8/configs/B_u/scalar-series/E_bg_cumulative"
+        },
+        {
+          "operation_id": "C805",
+          "url": "/api/v1/experiments/case8/configs/B_u/scalar-series/E_aa_cumulative"
+        },
+        {
+          "operation_id": "C805",
+          "url": "/api/v1/experiments/case8/configs/B_u/scalar-series/E_at_cumulative"
+        },
+        {
+          "operation_id": "C805",
+          "url": "/api/v1/experiments/case8/configs/D_u/scalar-series/E_bg_cumulative"
+        },
+        {
+          "operation_id": "C805",
+          "url": "/api/v1/experiments/case8/configs/D_u/scalar-series/E_aa_cumulative"
+        },
+        {
+          "operation_id": "C805",
+          "url": "/api/v1/experiments/case8/configs/D_u/scalar-series/E_at_cumulative"
+        }
+      ],
+      "targets": [
+        {
+          "experiment_id": "case8",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "B_u"
+          },
+          "result_ids": [
+            "case8.B_u.E_bg_cumulative",
+            "case8.B_u.E_aa_cumulative",
+            "case8.B_u.E_at_cumulative"
+          ],
+          "urls": [
+            "/api/v1/experiments/case8/configs/B_u/scalar-series/E_bg_cumulative",
+            "/api/v1/experiments/case8/configs/B_u/scalar-series/E_aa_cumulative",
+            "/api/v1/experiments/case8/configs/B_u/scalar-series/E_at_cumulative"
+          ]
+        },
+        {
+          "experiment_id": "case8",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "D_u"
+          },
+          "result_ids": [
+            "case8.D_u.E_bg_cumulative",
+            "case8.D_u.E_aa_cumulative",
+            "case8.D_u.E_at_cumulative"
+          ],
+          "urls": [
+            "/api/v1/experiments/case8/configs/D_u/scalar-series/E_bg_cumulative",
+            "/api/v1/experiments/case8/configs/D_u/scalar-series/E_aa_cumulative",
+            "/api/v1/experiments/case8/configs/D_u/scalar-series/E_at_cumulative"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "ev.case8.B_u.entropy",
+        "ev.case8.D_u.entropy"
+      ]
+    },
+    {
+      "scene_id": 2,
+      "view_kind": "MECHANISM",
+      "requests": [],
+      "targets": [],
+      "evidence_refs": [
+        "evidence.spectral.spectrum.q-0.000"
+      ]
+    },
+    {
+      "scene_id": 3,
+      "view_kind": "MECHANISM",
+      "requests": [],
+      "targets": [],
+      "evidence_refs": [
+        "evidence.spectral.spectrum.q-0.000"
+      ]
+    },
+    {
+      "scene_id": 4,
+      "view_kind": "ALLOCATION",
+      "requests": [
+        {
+          "operation_id": "ALLOC04",
+          "url": "/api/v1/allocations/comparison?experiment_id=gate&representation_type=CELL_FIELD"
+        }
+      ],
+      "targets": [
+        {
+          "experiment_id": "gate",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "Acoustic"
+          },
+          "result_ids": [
+            "gate.Acoustic.allocation"
+          ],
+          "urls": [
+            "/api/v1/allocations/gate.Acoustic.allocation/metadata"
+          ]
+        },
+        {
+          "experiment_id": "gate",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "Pressure"
+          },
+          "result_ids": [
+            "gate.Pressure.allocation"
+          ],
+          "urls": [
+            "/api/v1/allocations/gate.Pressure.allocation/metadata"
+          ]
+        },
+        {
+          "experiment_id": "gate",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "Ungated"
+          },
+          "result_ids": [
+            "gate.Ungated.allocation"
+          ],
+          "urls": [
+            "/api/v1/allocations/gate.Ungated.allocation/metadata"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "ev.gate.Acoustic.allocation",
+        "ev.gate.Pressure.allocation",
+        "ev.gate.Ungated.allocation"
+      ]
+    },
+    {
+      "scene_id": 5,
+      "view_kind": "SPECTRUM",
+      "requests": [
+        {
+          "operation_id": "SPEC02",
+          "url": "/api/v1/spectra/spectrum.q-0.000/points"
+        },
+        {
+          "operation_id": "SPEC02",
+          "url": "/api/v1/spectra/spectrum.q-0.396/points"
+        }
+      ],
+      "targets": [
+        {
+          "experiment_id": "spectrum",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "spectrum.q-0.000"
+          },
+          "result_ids": [
+            "spectrum.q-0.000"
+          ],
+          "urls": [
+            "/api/v1/spectra/spectrum.q-0.000/points"
+          ]
+        },
+        {
+          "experiment_id": "spectrum",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "spectrum.q-0.396"
+          },
+          "result_ids": [
+            "spectrum.q-0.396"
+          ],
+          "urls": [
+            "/api/v1/spectra/spectrum.q-0.396/points"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "evidence.spectral.spectrum.q-0.000",
+        "evidence.spectral.spectrum.q-0.396"
+      ]
+    },
+    {
+      "scene_id": 6,
+      "view_kind": "CROSS_FLOW",
+      "requests": [
+        {
+          "operation_id": "CMP01",
+          "url": "/api/v1/comparisons/case8-cylinder?case8_config=D_u&cylinder_config=D_u"
+        }
+      ],
+      "targets": [
+        {
+          "experiment_id": "case8",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "D_u"
+          },
+          "result_ids": [
+            "case8.D_u.allocation"
+          ],
+          "urls": [
+            "/api/v1/allocations/case8.D_u.allocation/metadata"
+          ]
+        },
+        {
+          "experiment_id": "cylinder",
+          "config_id": {
+            "state": "KNOWN",
+            "value": "D_u"
+          },
+          "result_ids": [
+            "cylinder.D_u.sectors",
+            "cylinder.D_u.front-band"
+          ],
+          "urls": [
+            "/api/v1/experiments/cylinder/configs/D_u/allocation/sectors",
+            "/api/v1/experiments/cylinder/configs/D_u/allocation/front-band"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "ev.case8.D_u.entropy",
+        "ev.case8.D_u.allocation",
+        "ev.cylinder.D_u.sectors",
+        "ev.cylinder.D_u.front-band",
+        "ev.cylinder.D_u.metrics",
+        "ev.missing.cylinder-cumulative2d"
+      ]
+    },
+    {
+      "scene_id": 7,
+      "view_kind": "EVIDENCE",
+      "requests": [
+        {
+          "operation_id": "EVI02",
+          "url": "/api/v1/evidence/ev.case8.D_u.entropy"
+        },
+        {
+          "operation_id": "EVI02",
+          "url": "/api/v1/evidence/ev.case8.D_u.allocation"
+        },
+        {
+          "operation_id": "EVI02",
+          "url": "/api/v1/evidence/ev.gate.Acoustic.allocation"
+        },
+        {
+          "operation_id": "EVI02",
+          "url": "/api/v1/evidence/evidence.spectral.spectrum.q-0.396"
+        },
+        {
+          "operation_id": "EVI02",
+          "url": "/api/v1/evidence/ev.cylinder.D_u.sectors"
+        }
+      ],
+      "targets": [],
+      "evidence_refs": [
+        "ev.case8.D_u.entropy",
+        "ev.case8.D_u.allocation",
+        "ev.gate.Acoustic.allocation",
+        "evidence.spectral.spectrum.q-0.396",
+        "ev.cylinder.D_u.sectors"
+      ]
+    }
+  ],
+  "frozen_contracts": {
+    "docs/03_USER_FLOW_AND_IA.md": {
+      "unchanged": true,
+      "sha256": "e78caab49e02c22ac4c92e166b05c7f54756f9b7ab24c6e8a56e7d95fb776973"
+    },
+    "docs/04_SYSTEM_ARCHITECTURE.md": {
+      "unchanged": true,
+      "sha256": "5a7193d4203ecd205f487fc38c2f64d09256388a9cb88f64d7201496ef58e2ea"
+    },
+    "docs/05_DATA_SCHEMA.md": {
+      "unchanged": true,
+      "sha256": "f61482eb917b81767864eb377a4db0c8b6dcf3e333676c2bd23201c7f0997099"
+    },
+    "docs/06_API_CONTRACT.md": {
+      "unchanged": true,
+      "sha256": "c115ef21d4c8ba2170cb888bfd4842ea12fe2c7f66cdf1b0519d08489dd4d9f1"
+    }
+  },
+  "existing_phase8_tracked_files_changed": [],
+  "source_preservation": {
+    "status": "PASS",
+    "scope": "189 accepted Phase8 selected dependencies",
+    "files": 189,
+    "changed_files": 0,
+    "inventory_sha256": "1b6ae1bb9c0d83a8a33b96ed100941c199be8024d32da6d228b992468d0bc878",
+    "checks": [
+      "relative paths",
+      "SHA-256",
+      "size_bytes",
+      "mtime_ns"
+    ],
+    "accepted_inventory": "docs/handoffs/phase8/WINDOW1_SOURCE_PRESERVATION.json"
+  },
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "new_numerical_apis": 0,
+  "new_content_http_apis": 0,
+  "vue_files_changed": [],
+  "phase9_dependencies": [],
+  "next": "WINDOW1",
+  "window1_started": false
+}
