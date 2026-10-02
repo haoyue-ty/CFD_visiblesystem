@@ -1,0 +1,80 @@
+```text
+PHASE11_REPRODUCIBILITY_CENTER=PASS
+BRANCH=codex/phase11-final-integration
+INITIAL_CANDIDATE_CLEAN=YES
+VALIDATED_CANDIDATE_HEAD=5d34be3233d5e215de47d71ced23ece3fed742b4
+PHASE8_COMMIT=fceb3b6c569cf381b04767da77b4b92418a4b5ed
+PHASE9_COMMIT=0df633ff6cd9bd939fdbd0eb2b39a3ec0ac7e880
+PHASE10_COMMIT=004b0e7e8081e5331ed7aa6291b83afdcdc4f45b
+PHASE11_W1_COMMIT=a09b928d5c48aa262293066ce3543fb37c575d0f
+PHASE11_W2_COMMIT=483999ced2c97e80af4df48c50da3ee7bcea9e6a
+PHASE11_W2_IMPLEMENTATION=a5087dc323e2f0bade186e7b7216e152f171a1c6
+PHASE8_PRESENT=PASS
+PHASE9_PRESENT=PASS
+PHASE10_PRESENT=PASS
+ACCEPTED_ANCESTRY=PASS; all accepted implementations are HEAD ancestors
+PHASE9_ORIGINAL_W1=31341e75da43f91fd4878edf7e41138aee22c0ff
+PHASE9_EFFECTIVE_W1=7dd3e36a279942351f39c00cde1e1ac5087e0d8b
+PHASE9_PATCH_EQUIVALENCE=PASS; stable patch-id 07b07cef49d3f36330f770b5aa803450fb5f84ce
+PRODUCT_OR_SCIENTIFIC_IMPLEMENTATION_CHANGES=0; independent QA/scripts/docs only
+EVIDENCE_CORE=PASS
+EVIDENCE_FRONTEND=PASS
+EVIDENCE_CENTER=PASS
+EVI01=PASS
+EVI02=PASS
+EVI03=PASS
+EVI04=PASS
+CURRENT=PASS
+GAPS=PASS
+HISTORY=PASS
+EVIDENCE_DETAIL=PASS
+QUICK_VIEW=PASS
+RESULT_PROVENANCE=PASS
+SOURCE_ASSET=PASS
+EXPERIMENT_COVERAGE=Case8; Gate; Entropy Closure; Spectrum; Eigenmode; Modal Validation; Cylinder; Cross-flow; Mechanism
+EVIDENCE_RECORDS=15480; CURRENT=13296; GAPS=11; HISTORY=2173
+HASH_SEMANTICS=PASS; method/data/recorded/current hashes distinct; ETag is not a scientific hash
+SOURCE_DRIFT=PASS; temp-copy drift injection preserves Evidence 200 and numerical 409; UNKNOWN retained
+PUBLIC_PATH_SAFETY=PASS; 2438 assets; no absolute locators/download routes; unsafe queries 400
+CASE8_TRACE=PASS; D_u Allocation -> Quick View -> Detail source/hash/processing -> restored result
+GATE_TRACE=PASS; Acoustic matched config/q_at/native map/mask/summary
+CLOSURE_TRACE=PASS; D_u CFL=.05 PER_STAGE/PER_STEP/freeze binding
+SPECTRUM_TRACE=PASS; q_at=.396 mode8/eigenmode -> Spectrum/eigen provenance
+VALIDATION_TRACE=PASS; saved 33-step history -> SPEC05 selected eigenpair -> EVI03/P09 actual record
+CYLINDER_TRACE=PASS; D_u sectors -> J2C-v2 -> limitation; VERIFIED_NOT_FROZEN
+CROSS_FLOW_TRACE=PASS; D_u/D_u independent chains; DESCRIPTIVE_ONLY; NO_UNIFIED_RANKING
+MECHANISM_TRACE=PASS; implementation/theory Evidence; SCHEMATIC; no numerical result context
+EXPLORE_TRACE=PASS; Scene7 -> existing Detail -> restored Scene; no duplicated numerical Evidence
+REQUIRED_GAPS=PASS; Cylinder cumulative2D / authoritative Near1D raw / serialized Spectrum matrices MISSING
+GAP_NUMERIC_VALUES_FAKE_PLOTS_RECONSTRUCT_ACTIONS=0
+ENTRY_HOME_EXPLORE_SCENES_1_TO_7_DETAIL=PASS; production browser, no page errors
+HOME_LAB_ALL_MODULES_AND_PRIMARY_EVIDENCE_NAVIGATION=PASS; delivered workspace paths
+BACKEND_TESTS=1343 passed; failures=0; errors=0; skipped=0; all phases/shared verification
+PHASE11_TESTS=62 backend + 10 unit + 32 production browser (22 accepted W2 + 10 independent W3)
+FRONTEND_TESTS=208 passed; 15 unit + 158 production browser + 35 isolated development mock browser
+E2E=193 passed; failures=0; errors=0; skipped=0; flaky=0; retries=0; workers=1
+TYPECHECK=PASS; application vue-tsc and independent strict tsc for W3 browser assertions
+PRODUCTION_BUILD=PASS; accepted W2 JS/CSS hashes unchanged; no production mock provider
+OPENAPI=PASS; 3.1 validation; 47 paths/298 schemas; runtime/saved/independent export equal
+GENERATED_TYPES=PASS; independently regenerated TS byte-identical
+PHASE4_10_REGRESSION=PASS; 1281 backend tests; all accepted frontend projects
+PRODUCTION_SCIENTIFIC_CONCLUSIONS=PASS; best/winner hits denials/internal names; no prohibited claims
+SCIENTIFIC_FILES_MODIFIED=NO
+CFD_RUNS_STARTED=0
+FULL_SOURCE_PRE_POST=PASS; 27843 files; 5429811970 bytes; paths/SHA-256/size/mtime_ns identical
+SOURCE_MANIFEST_FINGERPRINT=8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46
+SOURCE_AUDIT_REPORT=WINDOW3_SOURCE_PRESERVATION.json; full pre-manifest retained in .cache/phase11-final
+MACHINE_EVIDENCE=WINDOW3_VALIDATION.json; backend/frontend full JUnit and selected relation committed
+INITIAL_QA_ASSERTIONS=corrected wording/navigation/selector assumptions; final full run passes without retries
+KNOWN_LIMITATIONS=accepted scientific gaps and interface boundaries retained; details below
+LIMITATION_DRIFT=source-drift filter current server page only; experiment/status/section server-side
+LIMITATION_SOURCES=missing gaps remain missing; Case8 diagnostic rerun and Cylinder non-frozen status retained
+LIMITATION_UNKNOWNS=unknown recorded baseline/current source/freeze timestamp is not fabricated
+LIMITATION_CATALOG=Gate/Spectrum/Modal Validation cards PLANNED; shared workspace and deep links accessible
+LIMITATION_VALIDATION=selected relation SPEC05 -> EVI03; no dedicated P09 relation hyperlink
+LIMITATION_BUILD=preexisting Vite chunk-size advisory
+BLOCKERS=NONE
+NEXT=PHASE12_FINAL_V1_INTEGRATION
+STATUS=PASS
+STOP=final audit commit; no Phase12, CFD run, primary checkout merge or push
+```

@@ -1,0 +1,492 @@
+{
+  "window": "3_FINAL_REPRODUCIBILITY_CENTER_INTEGRATION_QA",
+  "status": "PASS",
+  "branch": "codex/phase11-final-integration",
+  "validated_candidate_head": "5d34be3233d5e215de47d71ced23ece3fed742b4",
+  "lineage": {
+    "status": "PASS",
+    "initial_candidate_head": "483999ced2c97e80af4df48c50da3ee7bcea9e6a",
+    "accepted": {
+      "PHASE8_COMMIT": {
+        "commit": "fceb3b6c569cf381b04767da77b4b92418a4b5ed",
+        "ancestry": "PASS"
+      },
+      "PHASE9_COMMIT": {
+        "commit": "0df633ff6cd9bd939fdbd0eb2b39a3ec0ac7e880",
+        "ancestry": "PASS"
+      },
+      "PHASE10_COMMIT": {
+        "commit": "004b0e7e8081e5331ed7aa6291b83afdcdc4f45b",
+        "ancestry": "PASS"
+      },
+      "PHASE11_W1_COMMIT": {
+        "commit": "a09b928d5c48aa262293066ce3543fb37c575d0f",
+        "ancestry": "PASS"
+      },
+      "PHASE11_W2_COMMIT": {
+        "commit": "483999ced2c97e80af4df48c50da3ee7bcea9e6a",
+        "ancestry": "PASS"
+      },
+      "PHASE11_W2_IMPLEMENTATION": {
+        "commit": "a5087dc323e2f0bade186e7b7216e152f171a1c6",
+        "ancestry": "PASS"
+      }
+    },
+    "phase9_w1_patch_equivalence": {
+      "original": "31341e75da43f91fd4878edf7e41138aee22c0ff",
+      "effective": "7dd3e36a279942351f39c00cde1e1ac5087e0d8b",
+      "stable_patch_id": "07b07cef49d3f36330f770b5aa803450fb5f84ce",
+      "effective_ancestor": true
+    }
+  },
+  "production_changes_vs_accepted_window2": [],
+  "backend": {
+    "status": "PASS",
+    "tests": 1343,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "groups": {
+      "test_bootstrap": 20,
+      "test_models": 39,
+      "verification": 169,
+      "window0_phase10_foundation": 58,
+      "window0_phase8_bootstrap": 35,
+      "window0_spectral_foundation": 147,
+      "window1_case8_data": 50,
+      "window1_closure_adapter": 76,
+      "window1_content_api": 43,
+      "window1_cylinder_adapter": 83,
+      "window1_du_allocation": 45,
+      "window1_evidence_core": 62,
+      "window1_spectral_adapter": 156,
+      "window2_case8_api": 58,
+      "window2_closure_api": 116,
+      "window2_cylinder_crossflow_api": 80,
+      "window2_gate_allocation": 56,
+      "window2_spectral_api": 34,
+      "window3_allocation_api": 16
+    },
+    "junit": "WINDOW3_BACKEND_FULL_TESTS.xml"
+  },
+  "frontend": {
+    "status": "PASS",
+    "stats": {
+      "startTime": "2026-10-02T08:13:53.565Z",
+      "duration": 672683.833,
+      "expected": 208,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "projects": {
+      "unit": 15,
+      "phase5-10-real-api": 157,
+      "phase8-real-api": 1,
+      "window3-mock-development": 16,
+      "window4-allocation-ui": 10,
+      "window3-spectral-ui": 9
+    },
+    "unit": 15,
+    "production_browser": 158,
+    "isolated_development_mock_browser": 35,
+    "retries": 0,
+    "runner_errors": 0,
+    "phase11_unit": 10,
+    "phase11_browser": 32,
+    "junit": "WINDOW3_FRONTEND_FULL_TESTS.xml"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "application_vue_tsc": true,
+    "new_browser_tests_strict_tsc": true
+  },
+  "build": {
+    "status": "PASS",
+    "command": "npm --prefix frontend run build",
+    "bundle_sha256": {
+      "frontend\\dist\\assets\\index-CmS2n_mf.js": "bfcafc38a48ef3f437e30afa452c22302314af7d7ff43dc459adf73c8c811537",
+      "frontend\\dist\\assets\\index-DSjXdraN.css": "fdd8f8f18cae8c98729ecf930915637ff4e36a108f63b7994a753c601d6e32f8"
+    },
+    "identical_to_accepted_window2": true,
+    "preexisting_chunk_size_advisory": true
+  },
+  "contracts": {
+    "status": "PASS",
+    "openapi_3_1": true,
+    "runtime_equal_saved": true,
+    "independent_export_byte_identical": true,
+    "generated_types_byte_identical": true,
+    "paths": 47,
+    "schemas": 298,
+    "openapi_sha256": "f453eccfba1c153f5a461bda4e97338f65278324c7c6f868b86a57dd11e321b3",
+    "types_sha256": "4ffcb0f103f247a81e58f1259948a23f7366431580c46b6bb8e76ee6c5d0fa10"
+  },
+  "public_api": {
+    "status": "PASS",
+    "counts": {
+      "CURRENT": 13296,
+      "GAPS": 11,
+      "HISTORY": 2173,
+      "ALL": 15480
+    },
+    "coverage": {
+      "Case8": {
+        "result_id": "case8.D_u.allocation",
+        "evidence_ids": [
+          "ev.case8.D_u.allocation"
+        ]
+      },
+      "Gate": {
+        "result_id": "gate.Acoustic.allocation",
+        "evidence_ids": [
+          "ev.gate.Acoustic.allocation"
+        ]
+      },
+      "Spectrum": {
+        "result_id": "spectrum.q-0.396.mode-08",
+        "evidence_ids": [
+          "evidence.spectral.spectrum.q-0.396.mode-08"
+        ]
+      },
+      "Eigenmode": {
+        "result_id": "spectrum.q-0.396.mode-08.right.rank-00.complex_vector.stored_vector",
+        "evidence_ids": [
+          "evidence.spectral.spectrum.q-0.396.mode-08.right.rank-00.complex_vector.stored_vector"
+        ]
+      },
+      "Modal Validation": {
+        "result_id": "modal-validation.m01_q0p000_eps1e-04.history",
+        "evidence_ids": [
+          "evidence.spectral.modal-validation.m01_q0p000_eps1e-04.history"
+        ]
+      },
+      "Cylinder": {
+        "result_id": "cylinder.D_u.sectors",
+        "evidence_ids": [
+          "ev.cylinder.D_u.sectors"
+        ]
+      },
+      "Cross-flow": {
+        "result_id": "case8-cylinder.D_u.D_u",
+        "evidence_ids": [
+          "ev.case8.D_u.entropy",
+          "ev.case8.D_u.metrics",
+          "ev.case8.D_u.allocation",
+          "ev.cylinder.D_u.protocol",
+          "ev.cylinder.D_u.snapshots",
+          "ev.cylinder.D_u.history",
+          "ev.cylinder.D_u.sectors",
+          "ev.cylinder.D_u.front-band",
+          "ev.cylinder.D_u.metrics",
+          "ev.missing.cylinder-cumulative2d"
+        ]
+      },
+      "Entropy Closure": {
+        "result_id": "entropy-closure.D_u-cfl-0.05.run.R_total",
+        "evidence_ids": [
+          "ev.entropy-closure.D_u-cfl-0.05.run"
+        ]
+      },
+      "Mechanism": {
+        "result_id": "mechanism.acoustic-pathways.v1",
+        "evidence_ids": [
+          "ev.mechanism.theory-implementation"
+        ]
+      }
+    },
+    "source_assets_scanned": 2438,
+    "asset_verification_counts": {
+      "PARTIAL": 5,
+      "VERIFIED_NOT_FROZEN": 382,
+      "AVAILABLE_UNVERIFIED": 938,
+      "SUPERSEDED": 609,
+      "FROZEN_VERIFIED": 444,
+      "LEGACY": 52,
+      "MISSING": 8
+    },
+    "absolute_locators_in_public_assets": 0,
+    "download_routes": 0,
+    "unsafe_query_rejections": 3,
+    "gap_records_no_numeric_payload": [
+      "ev.missing.cylinder-cumulative2d",
+      "ev.inventory.missing_near1d_raw_epsilon_scan",
+      "ev.inventory.missing_persisted_jacobian_fourier_blocks"
+    ],
+    "explore_evidence_duplication": false,
+    "hash_fields_separate": true,
+    "etag_used_as_scientific_hash": false
+  },
+  "production_scan": {
+    "status": "PASS",
+    "occurrences_for_context_review": [
+      {
+        "file": "backend/api/evidence.py",
+        "line": 90,
+        "category": "download",
+        "text": "description=\"Registered public source-asset explanation and live hash facts. No file contents, locator or download.\"))"
+      },
+      {
+        "file": "backend/core/app.py",
+        "line": 108,
+        "category": "scientific_root",
+        "text": "evidence_service = EvidenceService(settings.scientific_data_root or getattr(case8_adapter, \"_root\", \"D:/Paper/passage6\"), roots=roots)"
+      },
+      {
+        "file": "backend/models/core.py",
+        "line": 23,
+        "category": "file_uri",
+        "text": "_PUBLIC_LOCATOR = re.compile(r\"file://[^\\s]+|(?<![A-Za-z0-9])[A-Za-z]:[\\\\/][^\\s]+|\\\\\\\\[^\\s]+|(?<![\\w:])/(?:home|Users|tmp|var|mnt|opt|workspace)/[^\\s]+\", re.IGNORECASE)"
+      },
+      {
+        "file": "backend/registry/case8_source_constants.py",
+        "line": 4,
+        "category": "scientific_root",
+        "text": "``D:\\\\Paper\\\\passage6`` and its Phase-1 asset inventory. Nothing here is"
+      },
+      {
+        "file": "backend/registry/case8_source_constants.py",
+        "line": 11,
+        "category": "scientific_root",
+        "text": "SCIENTIFIC_ROOT_WINDOWS: Final[str] = r\"D:\\Paper\\passage6\""
+      },
+      {
+        "file": "backend/registry/closure_registry.py",
+        "line": 22,
+        "category": "scientific_root",
+        "text": "SCIENTIFIC_ROOT = \"D:/Paper/passage6\""
+      },
+      {
+        "file": "backend/registry/cylinder_registry.py",
+        "line": 16,
+        "category": "scientific_root",
+        "text": "SCIENTIFIC_ROOT = \"D:/Paper/passage6\""
+      },
+      {
+        "file": "backend/registry/gate_registry.py",
+        "line": 4,
+        "category": "scientific_root",
+        "text": "``D:\\\\Paper\\\\passage6\\\\experiments\\\\gate_ablation\\\\FREEZE`` and its checksums."
+      },
+      {
+        "file": "backend/registry/gate_registry.py",
+        "line": 22,
+        "category": "scientific_root",
+        "text": "SCIENTIFIC_ROOT_WINDOWS: Final[str] = r\"D:\\Paper\\passage6\""
+      },
+      {
+        "file": "backend/registry/spectral_registry.py",
+        "line": 7,
+        "category": "scientific_root",
+        "text": "SCIENTIFIC_ROOT = \"D:/Paper/passage6\""
+      },
+      {
+        "file": "backend/services/evidence.py",
+        "line": 18,
+        "category": "scientific_root",
+        "text": "def __init__(self, scientific_root=\"D:/Paper/passage6\", *, roots=None):"
+      },
+      {
+        "file": "frontend/src/data/mockProvider.ts",
+        "line": 9,
+        "category": "scientific_root",
+        "text": "*  - No file is copied from D:\\Paper\\passage6; all arrays are generated."
+      },
+      {
+        "file": "frontend/src/data/mockProvider.ts",
+        "line": 932,
+        "category": "prohibited_claim",
+        "text": "displayed = SNAPSHOT_ROWS.reduce((best, cur) =>"
+      },
+      {
+        "file": "frontend/src/data/mockProvider.ts",
+        "line": 933,
+        "category": "prohibited_claim",
+        "text": "Math.abs(cur.time - selectedTime) < Math.abs(best.time - selectedTime) ? cur : best,"
+      },
+      {
+        "file": "frontend/src/pages/LabPage.vue",
+        "line": 102,
+        "category": "prohibited_claim",
+        "text": "\"best\"."
+      },
+      {
+        "file": "frontend/src/scientific/EntropyChart.vue",
+        "line": 98,
+        "category": "prohibited_claim",
+        "text": "let best = steps[0]"
+      },
+      {
+        "file": "frontend/src/scientific/EntropyChart.vue",
+        "line": 104,
+        "category": "prohibited_claim",
+        "text": "best = step"
+      },
+      {
+        "file": "frontend/src/scientific/EntropyChart.vue",
+        "line": 107,
+        "category": "prohibited_claim",
+        "text": "return best"
+      },
+      {
+        "file": "frontend/src/types/generated/api.d.ts",
+        "line": 269,
+        "category": "download",
+        "text": "/** @description Registered public source-asset explanation and live hash facts. No file contents, locator or download. */"
+      },
+      {
+        "file": "frontend/src/views/evidence/EvidenceDetailView.vue",
+        "line": 107,
+        "category": "download",
+        "text": "<p>Controlled provenance descriptions only. Scientific files are not opened or downloaded.</p>"
+      },
+      {
+        "file": "config/content/scenes.json",
+        "line": 246,
+        "category": "prohibited_claim",
+        "text": "\"description\": \"Use the existing matched-budget Gate comparison API, its frozen matched q_at values, shared scale and fixed cell mask. Saved cell arrays already include time and spatial measure. No map timeline, free q_at, reweighting or universally best Gate is supported.\","
+      },
+      {
+        "file": "config/content/scenes.json",
+        "line": 393,
+        "category": "prohibited_claim",
+        "text": "\"description\": \"HF, width, localization and budget have different definitions across the flows. Keep CMP01 DESCRIPTIVE_ONLY comparability rules and NO_UNIFIED_RANKING. No common score, winner, ranking or normalized transfer conclusion is supported.\","
+      }
+    ],
+    "public_asset_path_audit": "public-audit.json;2438 assets",
+    "send_file_occurrences": 0,
+    "scientific_root_in_bundle": false,
+    "mock_in_production": false,
+    "prohibited_positive_claims_in_bundle": 0,
+    "context_review": "best/winner hits are explicit scientific denials or internal selection variable names; file URI pattern is a scrubber; download hits deny file serving. Private backend source-root defaults are not public API values."
+  },
+  "content_bindings": {
+    "status": "PASS",
+    "mechanism_origin": "SCHEMATIC",
+    "supported_states": [
+      "STRICT_1D",
+      "WEAKLY_2D"
+    ],
+    "scene_count": 7,
+    "scene_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "real_targets": 14,
+    "registered_api_bindings": 28,
+    "near1d_numerical_scan": "MISSING",
+    "gap_code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+    "numerical_data_duplicated": false,
+    "numerical_reads": 0,
+    "cfd_runs_started": 0
+  },
+  "scientific_preservation": {
+    "status": "PASS",
+    "source_root": "D:\\Paper\\passage6",
+    "files_before": 27843,
+    "files_after": 27843,
+    "bytes": 5429811970,
+    "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ]
+  },
+  "source_before_summary": {
+    "status": "PASS",
+    "files": 27843,
+    "bytes": 5429811970,
+    "fingerprint": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "phase6_fixture_dependencies": 18,
+    "scientific_writes": 0
+  },
+  "full_source_baseline_local": ".cache/phase11-final/source-before.json",
+  "full_source_baseline_file_sha256": "3a8a4f5fe16c4d75e4aeef00154178e3fbdac68f5623e7694804d9fde0954320",
+  "selected_eigenpair_relation": "WINDOW3_SELECTED_EIGENPAIR_RELATION.json",
+  "initial_qa_corrections": {
+    "initial_production_run": {
+      "passed": 155,
+      "failed": 2
+    },
+    "first_targeted_repair": {
+      "passed": 1,
+      "failed": 1
+    },
+    "corrected_targeted_repair": {
+      "passed": 2,
+      "failed": 0
+    },
+    "reason": "New QA assumed different Mechanism wording and nonexistent standalone catalog CTAs, then used the Cross-flow select locator on the Cylinder detail page. Assertions follow accepted wording and actual scientific workspace navigation; product unchanged.",
+    "final_full_run_zero_failure_error_skip_flaky": true
+  },
+  "known_limitations": [
+    "EVI01 rejects global source_drift query; labeled drift filter covers only current server page.",
+    "Cylinder cumulative2D, authoritative Near1D raw scan and serialized Spectrum matrices remain MISSING.",
+    "Case8 allocation is frozen accepted diagnostic rerun; Cylinder is VERIFIED_NOT_FROZEN.",
+    "Unknown recorded metrics baseline, missing source and absent freeze timestamp remain UNKNOWN/MISSING, never zero/false.",
+    "Gate/Spectrum/Modal Validation standalone cards remain PLANNED; delivered features accessible through Case8 scientific workspace and existing deep links.",
+    "Selected eigenpair relation verified through SPEC05 to EVI03; P09 has no dedicated relation hyperlink.",
+    "Preexisting Vite chunk-size advisory."
+  ],
+  "reports": {
+    "WINDOW3_BACKEND_FULL_TESTS.xml": {
+      "sha256": "da211cc7bedf570948514de030ef4ae34ec510b9859778d0e3a85dcb3ac3d454",
+      "bytes": 210753
+    },
+    "WINDOW3_CURRENT.png": {
+      "sha256": "6aae3fe4a9a653444ed19f58dc35300f6049f9dd9b585fb67cd09b9f98b83e33",
+      "bytes": 41977
+    },
+    "WINDOW3_CYLINDER_DETAIL.png": {
+      "sha256": "f967787e929ec6a5419e11334dcf49b216e351a302d48266d0e26d44ce4b9fa7",
+      "bytes": 919141
+    },
+    "WINDOW3_FRONTEND_FULL_TESTS.xml": {
+      "sha256": "c5b9c6ebf7655ce6e6d9a99f9b957e86f4fe9682da135a81a482e1272cf50f05",
+      "bytes": 38391
+    },
+    "WINDOW3_QUICK_VIEW.png": {
+      "sha256": "7e8b1b755dd3003ae371ca873256170068fc06637bce407cdd80d663783d2bdb",
+      "bytes": 118268
+    },
+    "WINDOW3_SELECTED_EIGENPAIR_RELATION.json": {
+      "sha256": "7f02b7c99bb6d6c73c572be39ed9eade33bacfa0c46019ebe660770598d314a7",
+      "bytes": 409
+    },
+    "WINDOW3_SOURCE_PRESERVATION.json": {
+      "sha256": "015f563971fecf29b85388627bed096909dd24e3c28f80373d8482f76d41dee0",
+      "bytes": 414
+    }
+  },
+  "screenshots_inspected": [
+    "WINDOW3_CURRENT.png",
+    "WINDOW3_QUICK_VIEW.png",
+    "WINDOW3_CYLINDER_DETAIL.png"
+  ],
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "merge_performed": false,
+  "phase12_started": false,
+  "reproduction_commands": [
+    ".venv/Scripts/python.exe -B -m scripts.verification.phase11_integration lineage",
+    ".venv/Scripts/python.exe -B -m scripts.verification.phase11_integration capture # exactly once BEFORE testing; preserve baseline",
+    ".venv/Scripts/python.exe -B -m pytest -q --junitxml=.cache/phase11-final/backend-full.xml",
+    "npm --prefix frontend run build",
+    ".venv/Scripts/python.exe -B -m scripts.verification.phase11_integration contracts",
+    ".venv/Scripts/python.exe -B -m scripts.verification.phase11_integration public",
+    ".venv/Scripts/python.exe -B -m scripts.verification.phase11_integration scan",
+    ".venv/Scripts/python.exe -B -m scripts.verification.phase10_content",
+    "cd frontend; node node_modules/vue-tsc/bin/vue-tsc.js --noEmit",
+    "node node_modules/typescript/bin/tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --lib ES2022,DOM src/types/generated/api.d.ts tests/phase11-final-integration.spec.ts",
+    "$env:E2E_API_PORT='5133'; $env:E2E_PRODUCTION_PORT='4433'; $env:E2E_MOCK_PORT='4533'; $env:PYTHONDONTWRITEBYTECODE='1'; node node_modules/@playwright/test/cli.js test --config=playwright.phase11.final.config.ts",
+    "cd ..; .venv/Scripts/python.exe -B -m scripts.verification.source_audit --root D:/Paper/passage6 --baseline .cache/phase11-final/source-before.json --output .cache/phase11-final/source-preservation.json"
+  ]
+}
