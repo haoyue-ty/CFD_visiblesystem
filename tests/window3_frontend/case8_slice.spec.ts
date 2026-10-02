@@ -23,12 +23,16 @@ test.describe('Entry -> Home -> Lab -> Case8 chain', () => {
     await expect(page.locator('main[data-page="home"]')).toBeVisible()
   })
 
-  test('Home shows the scientific question, Explore PLANNED, and Lab entry', async ({ page }) => {
+  test('Home shows the scientific question, implemented Explore, and Lab entry', async ({ page }) => {
     await page.goto('/home')
     await expect(page.getByTestId('home-question')).toContainText('dissipation')
-    await expect(page.getByTestId('explore-status')).toContainText('PLANNED')
-    // Explore must not be a clickable empty flow: the card is an article, not a link.
-    await expect(page.getByTestId('explore-entry').locator('a')).toHaveCount(0)
+    await expect(page.getByTestId('explore-status')).toContainText('IMPLEMENTED — 7 scenes')
+    // Phase10 delivers the guided entry alongside the existing Lab path.
+    await page.getByTestId('home-start-explore').click()
+    await expect(page).toHaveURL(/\/explore\?scene=1$/)
+    await expect(page.getByTestId('scene-progress')).toHaveText('Scene 1 / 7')
+    await page.goBack()
+    await expect(page.locator('main[data-page="home"]')).toBeVisible()
     await page.getByTestId('home-to-lab').click()
     await expect(page.locator('main[data-page="lab"]')).toBeVisible()
   })
