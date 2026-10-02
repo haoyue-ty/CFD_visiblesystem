@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.859" timestamp="2026-10-01T20:38:54.268515+08:00" hostname="haoyue"><testcase classname="tests.window0_phase8_bootstrap.test_cylinder_source_audit" name="test_reproduce_audit_with_scientific_write_guard" time="0.483"><failure message="AssertionError">source_map = {'schema': 'SHOCKPATH_PHASE8_SOURCE_MAP_V1', 'window': '0_PHASE8_BOOTSTRAP', 'status': 'PASS_WITH_SCOPE_DISCREPANCY', 'phase8_base_commit': '69a318b65b9378066b9a55e429dfca162cef32af', ...}
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001EB49F130E0&gt;
+
+    def test_reproduce_audit_with_scientific_write_guard(source_map, monkeypatch):
+        original_open = io.open
+
+        def guarded_open(file, mode="r", *args, **kwargs):
+            if isinstance(file, (str, Path)) and Path(file).resolve().is_relative_to(audit.SOURCE_ROOT.resolve()):
+                assert not any(flag in mode for flag in ("w", "a", "x", "+")), "Scientific write attempted"
+            return original_open(file, mode, *args, **kwargs)
+
+        monkeypatch.setattr(io, "open", guarded_open)
+&gt;       rebuilt = audit.audit()
+                  ^^^^^^^^^^^^^
+
+tests\window0_phase8_bootstrap\test_cylinder_source_audit.py:209:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\phase8\audit_cylinder_sources.py:303: in audit
+    prerequisites = frozen_prerequisites()
+                    ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def frozen_prerequisites() -&gt; dict:
+        manifest = read_json(WORKTREE / "docs/PHASE4_FREEZE_MANIFEST.json")
+        checks = []
+        for f in manifest["documents"] + [f for f in manifest["upstream_documents"] if f["role"] == "PHASE3_IA"]:
+            p = WORKTREE / "docs" / Path(f["path"]).name
+            actual = digest(p)
+            assert actual == f["sha256"].lower(), p.name
+            # Read all four documents. Their hashes freeze the complete contents.
+            p.read_text(encoding="utf-8")
+            checks.append({"path": p.relative_to(WORKTREE).as_posix(), "sha256": actual, "unchanged": True})
+        phase7 = read_json(WORKTREE / "docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE_MANIFEST.json")
+        archive = WORKTREE / "docs/handoffs/phase8/PHASE7_ACCEPTED_BASELINE.zip"
+        # Retain the exact mixed-line-ending accepted bytes independently of the
+        # mutable checkout, which will itself receive the integrated Phase8 slice.
+        with zipfile.ZipFile(archive) as baseline_archive:
+            accepted_bytes = {name: baseline_archive.read(name) for name in baseline_archive.namelist()}
+        assert set(accepted_bytes) == ({item["path"] for item in phase7["accepted_files"]}
+                                       | set(phase7["prerequisite_freeze_sha256"]))
+        prerequisite_hashes = []
+        for rel, expected in phase7["prerequisite_freeze_sha256"].items():
+            assert hashlib.sha256(accepted_bytes[rel]).hexdigest() == expected
+            assert digest(WORKTREE / rel) == expected
+            prerequisite_hashes.append({"path": rel, "frozen_windows_sha256": expected,
+                                        "checkout_sha256": digest(WORKTREE / rel), "content_unchanged": True})
+        assert read_json(WORKTREE / "docs/PHASE5_CASE8_FREEZE.json")["PHASE5_CASE8_STATUS"] == "FROZEN_ACCEPTED"
+        assert "PHASE6_ALLOCATION_STATUS=FROZEN_ACCEPTED" in (WORKTREE / "docs/handoffs/phase6/PHASE6_ALLOCATION_FREEZE.md").read_text()
+        assert phase7["status"] == "FROZEN_ACCEPTED"
+        # Bind the original accepted bytes and the materialized baseline separately
+        # from the authorized Window1--3 integration changes. A bootstrap-only audit
+        # must not require the integrated application's catalog to remain bootstrap.
+        integrated_paths = set(subprocess.check_output(
+            ["git", "diff", "--name-only", BASE_COMMIT, "aaf478da6b9c6302f4843b7c76b5466b686b960a"],
+            cwd=WORKTREE, text=True).splitlines())
+        integrated_paths.add(".gitattributes")  # exact Phase5 CRLF checkout preservation
+        normalized = []
+        integration_changes = []
+        for item in phase7["accepted_files"]:
+            previous, current = accepted_bytes[item["path"]], WORKTREE / item["path"]
+            assert hashlib.sha256(previous).hexdigest() == item["sha256"], f"Accepted source changed: {item['path']}"
+            baseline = subprocess.check_output(["git", "show", f"{BASE_COMMIT}:{item['path']}"], cwd=WORKTREE)
+            assert previous.replace(b"\r\n", b"\n") == baseline.replace(b"\r\n", b"\n")
+            if previous.replace(b"\r\n", b"\n") != current.read_bytes().replace(b"\r\n", b"\n"):
+                assert item["path"] in integrated_paths, f"Unapproved frozen slice change: {item['path']}"
+                if item["path"] != ".gitattributes":
+                    delivered = subprocess.check_output(["git", "show", f"aaf478da6b9c6302f4843b7c76b5466b686b960a:{item['path']}"], cwd=WORKTREE)
+&gt;                   assert current.read_bytes().replace(b"\r\n", b"\n") == delivered.replace(b"\r\n", b"\n")
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                   AssertionError
+
+scripts\phase8\audit_cylinder_sources.py:126: AssertionError</failure></testcase></testsuite></testsuites>

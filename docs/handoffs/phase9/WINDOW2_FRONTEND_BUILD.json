@@ -1,0 +1,7 @@
+{
+  "command": "npm run build --prefix frontend",
+  "exit_code": 0,
+  "typescript_check": "PASS",
+  "vite_build": "PASS",
+  "warning": "Existing production bundle exceeds the 500 kB chunk warning threshold."
+}

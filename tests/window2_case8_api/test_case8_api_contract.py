@@ -276,7 +276,10 @@ IMPLEMENTED = {"SYS01", "DOC01", "REG01", "REG02", "REG03", "REG04", "C801", "C8
                # Phase 8 Window 2 declares Cylinder/composite routes even when
                # this isolated Case8 fixture disables the Cylinder adapter.
                "CYL01", "CYL02", "CYL03", "CYL04", "CYL05", "CYL06", "CYL07", "CYL08", "CYL09", "CMP01",
-               "CONTENT01", "CONTENT02", "CONTENT03"}
+               "CONTENT01", "CONTENT02", "CONTENT03",
+               # Phase 9B Window 2 declares the frozen Closure API even when
+               # this isolated Case8 fixture disables the Closure adapter.
+               "CLO01", "CLO02", "CLO03", "CLO04", "CLO05"}
 
 
 def test_openapi_operations_match_the_catalog_and_runtime_routes(app):

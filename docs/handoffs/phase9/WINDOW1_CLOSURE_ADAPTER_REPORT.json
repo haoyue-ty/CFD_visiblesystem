@@ -1,0 +1,114 @@
+{
+  "WINDOW": "1_CLOSURE_ADAPTER",
+  "STATUS": "PASS",
+  "RUNS": "5/5",
+  "STAGE_ROWS": 196677,
+  "STEP_ROWS": 65559,
+  "SEMIDISCRETE": "PASS",
+  "FULLY_DISCRETE": "PASS",
+  "BU_ZERO_CHANNEL": "PASS",
+  "REFINEMENT": "PASS",
+  "EVIDENCE": "PASS",
+  "TESTS": {
+    "closure": {
+      "tests": 77,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "full_regression": {
+      "tests": 1063,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    }
+  },
+  "SCIENTIFIC_FILES_MODIFIED": "NO",
+  "CFD_RUNS_STARTED": 0,
+  "MERGE_READY": "YES",
+  "runs": [
+    {
+      "run_id": "D_u-cfl-0.2",
+      "stage_rows": 10353,
+      "step_rows": 3451,
+      "terminal_R_T": -2.792197222323267e-07,
+      "run_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.2.run"
+      ],
+      "stage_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.2.stage"
+      ],
+      "step_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.2.step"
+      ]
+    },
+    {
+      "run_id": "D_u-cfl-0.1",
+      "stage_rows": 20703,
+      "step_rows": 6901,
+      "terminal_R_T": -3.491851652270839e-08,
+      "run_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.1.run"
+      ],
+      "stage_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.1.stage"
+      ],
+      "step_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.1.step"
+      ]
+    },
+    {
+      "run_id": "D_u-cfl-0.05",
+      "stage_rows": 41406,
+      "step_rows": 13802,
+      "terminal_R_T": -4.3648162861842366e-09,
+      "run_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.05.run"
+      ],
+      "stage_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.05.stage"
+      ],
+      "step_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.05.step"
+      ]
+    },
+    {
+      "run_id": "D_u-cfl-0.025",
+      "stage_rows": 82809,
+      "step_rows": 27603,
+      "terminal_R_T": -5.456546325888212e-10,
+      "run_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.025.run"
+      ],
+      "stage_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.025.stage"
+      ],
+      "step_evidence_refs": [
+        "ev.entropy-closure.D_u-cfl-0.025.step"
+      ]
+    },
+    {
+      "run_id": "B_u-cfl-0.05",
+      "stage_rows": 41406,
+      "step_rows": 13802,
+      "terminal_R_T": -4.365394490335461e-09,
+      "run_evidence_refs": [
+        "ev.entropy-closure.B_u-cfl-0.05.run"
+      ],
+      "stage_evidence_refs": [
+        "ev.entropy-closure.B_u-cfl-0.05.stage"
+      ],
+      "step_evidence_refs": [
+        "ev.entropy-closure.B_u-cfl-0.05.step"
+      ]
+    }
+  ],
+  "refinement_global_slope": 2.9999942283876795,
+  "source_map_sha256": "fcc71bfa3cecb719b5d74943e639b836107af0e9837d7650dcee0f6088a9fc26",
+  "PHASE9_BASE_COMMIT": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+  "branch": "phase9/closure-adapter",
+  "independent_worktree": "D:\\code_project\\CFD_visiblesystem_phase9_closure_adapter",
+  "frozen_contract_frontend_api_diff": "",
+  "scientific_modules_imported": [],
+  "boundary": "Fully-discrete diagnostic and existing frozen slopes; no exact entropy identity, solver execution, experiment rerun, spatial trajectory, frontend or API activation"
+}

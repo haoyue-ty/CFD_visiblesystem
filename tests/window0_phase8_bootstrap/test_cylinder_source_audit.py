@@ -236,3 +236,16 @@ def test_reproduce_audit_with_scientific_write_guard(source_map, monkeypatch, tm
     imports = [node.module for node in ast.walk(tree) if isinstance(node, ast.ImportFrom)]
     assert not any(name and (name.startswith("solver") or name.startswith("diagnostics")) for name in imports)
     assert audit.OUTPUT.is_relative_to(audit.WORKTREE) and not audit.OUTPUT.is_relative_to(audit.SOURCE_ROOT)
+
+
+def test_closure_integration_does_not_authorize_other_frozen_changes(monkeypatch):
+    original = Path.read_bytes
+    protected = audit.WORKTREE / "backend/models/core.py"
+
+    def changed_bytes(path):
+        raw = original(path)
+        return raw + b"\n# injected unauthorized change\n" if path == protected else raw
+
+    monkeypatch.setattr(Path, "read_bytes", changed_bytes)
+    with pytest.raises(AssertionError, match="Unapproved frozen slice change: backend/models/core.py"):
+        audit.frozen_prerequisites()

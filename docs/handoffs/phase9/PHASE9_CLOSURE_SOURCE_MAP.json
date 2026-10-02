@@ -1,0 +1,3266 @@
+{
+  "schema_version": "phase9_closure_source_map_v1",
+  "window": "0_PHASE9_BOOTSTRAP",
+  "status": "PASS",
+  "created_at": "2026-10-01T20:22:36.387415+08:00",
+  "timezone": "Asia/Shanghai",
+  "baseline": {
+    "phase9_base_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+    "current_branch": "phase9/closure-bootstrap",
+    "worktree": "D:/code_project/CFD_visiblesystem_phase9_closure_bootstrap",
+    "initial_worktree_clean": true,
+    "baseline_verified_by": "git rev-parse HEAD and git branch --show-current before audit outputs were created"
+  },
+  "scientific_root": "D:/Paper/passage6",
+  "closure_root": "D:/Paper/passage6/experiments/entropy_budget_closure",
+  "source_access": "READ_ONLY",
+  "audit_boundary": {
+    "mode": "Frozen scientific asset audit and implementation boundary only",
+    "outputs": [
+      "docs/handoffs/phase9/PHASE9_CLOSURE_SOURCE_MAP.json",
+      "docs/handoffs/phase9/WINDOW_0_PHASE9_BOOTSTRAP.md"
+    ],
+    "adapter_implemented": false,
+    "api_implemented": false,
+    "vue_implemented": false,
+    "scientific_scripts_executed": false,
+    "cfd_runs_started": 0,
+    "asset_id_namespace": "Source-map-local audit locators; these IDs do not create or replace Phase1/application registry IDs. Window1 must bind production SourceAsset/evidence identities explicitly."
+  },
+  "frozen_contracts": [
+    {
+      "path": "docs/05_DATA_SCHEMA.md",
+      "baseline_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+      "sha256": "f61482eb917b81767864eb377a4db0c8b6dcf3e333676c2bd23201c7f0997099",
+      "sections": [
+        "2 UnitSpec/Verification",
+        "6 Time schema",
+        "10 Entropy closure"
+      ]
+    },
+    {
+      "path": "docs/03_USER_FLOW_AND_IA.md",
+      "baseline_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+      "sha256": "e78caab49e02c22ac4c92e166b05c7f54756f9b7ab24c6e8a56e7d95fb776973",
+      "sections": [
+        "9.6 Closure",
+        "11.1 Capability matrix",
+        "11.2 Capability-driven tabs"
+      ]
+    },
+    {
+      "path": "docs/06_API_CONTRACT.md",
+      "baseline_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
+      "sha256": "c115ef21d4c8ba2170cb888bfd4842ea12fe2c7f66cdf1b0519d08489dd4d9f1",
+      "sections": [
+        "9 Entropy closure operations"
+      ]
+    }
+  ],
+  "run_registry": {
+    "experiment_id": "entropy-closure",
+    "run_count": 5,
+    "B_u_runs": 1,
+    "D_u_runs": 4,
+    "selection_rule": "Explicit five-run allowlist; no config x CFL Cartesian product.",
+    "CFL_resolution": "Read exact CFL from frozen run_summary/summary/protocol, not output directory numeric suffix. Du_cfl_005 and Bu_cfl_005 mean 0.05, not 0.005; Du_cfl_0025 means 0.025, not 0.0025.",
+    "metadata_correction_processing": "For later adapter, record canonical-CFL resolution from frozen sources; do not edit existing inventory or scientific paths.",
+    "excluded_assets": "logs/preflight_Du_cfl_02 and logs/preflight_Du_cfl_0199 remain provenance-only; neither is a production run."
+  },
+  "protocol": {
+    "identity": "CANONICAL_2D_ISENTROPIC_VORTEX",
+    "grid": [
+      128,
+      128
+    ],
+    "spatial_order": 1,
+    "time_integrator": "SSP-RK3",
+    "gamma": 1.4,
+    "domain": [
+      [
+        0,
+        10
+      ],
+      [
+        0,
+        10
+      ]
+    ],
+    "boundary_scope": "Periodic on all four edges; each periodic seam counted once per direction.",
+    "T": 10,
+    "q_aa": 3.96,
+    "q_at_by_config": {
+      "B_u": 0.0,
+      "D_u": 0.396
+    },
+    "stage_weights": [
+      0.16666666666666666,
+      0.16666666666666666,
+      0.6666666666666666
+    ],
+    "eps0": 2.2250738585072014e-308,
+    "initial_maximum_wave_rate": 69.00525085828785,
+    "cfl_rule": "ceil(T * locked_protocol.initial_maximum_wave_rate / CFL); dt=T/N",
+    "fixed_dt_rule": "dt=T/N with N=ceil(T*initial_maximum_wave_rate/CFL)",
+    "frozen_config_default_CFL": 0.1,
+    "default_CFL_is_not_run_registry": "The inherited protocol default 0.1 must not override the five actual run CFL values.",
+    "method_sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+    "source_asset_refs": [
+      "closure.run_entropy_budget_closure.py",
+      "closure.FREEZE/frozen_config.json",
+      "closure.FREEZE/frozen_experiment_report.md"
+    ]
+  },
+  "runs": [
+    {
+      "run_id": "D_u-cfl-0.2",
+      "source_run_id": "Du_cfl_02",
+      "config": "D_u",
+      "CFL": 0.2,
+      "q_aa": 3.96,
+      "q_at": 0.396,
+      "steps": 3451,
+      "accepted_steps": 3451,
+      "stage_rows": 10353,
+      "step_rows": 3451,
+      "stage_point_count": 10353,
+      "step_point_count": 3451,
+      "grid": [
+        128,
+        128
+      ],
+      "dt": 0.0028977108084613156,
+      "T": 10.0,
+      "source_assets": {
+        "stage_closure.csv": "closure.outputs/Du_cfl_02/stage_closure.csv",
+        "step_closure.csv": "closure.outputs/Du_cfl_02/step_closure.csv",
+        "run_summary.json": "closure.outputs/Du_cfl_02/run_summary.json"
+      },
+      "stage_fields": [
+        "step",
+        "stage",
+        "t_stage_or_step_time",
+        "dt",
+        "G",
+        "D_bg",
+        "D_aa",
+        "D_at",
+        "D_total",
+        "R_SD",
+        "eps_SD",
+        "R_decomp",
+        "x_face_count",
+        "y_face_count"
+      ],
+      "step_fields": [
+        "step",
+        "time_n",
+        "time_np1",
+        "dt",
+        "S_n",
+        "S_np1",
+        "DeltaS",
+        "D_bg_stage1",
+        "D_bg_stage2",
+        "D_bg_stage3",
+        "D_aa_stage1",
+        "D_aa_stage2",
+        "D_aa_stage3",
+        "D_at_stage1",
+        "D_at_stage2",
+        "D_at_stage3",
+        "D_total_stage1",
+        "D_total_stage2",
+        "D_total_stage3",
+        "E_bg_step",
+        "E_aa_step",
+        "E_at_step",
+        "E_obs_step",
+        "E_total_independent_step",
+        "R_time_step",
+        "R_time_cumulative"
+      ],
+      "cumulative_fields_recorded_in_step_csv": [
+        "R_time_cumulative"
+      ],
+      "terminal_summary": {
+        "config": "D_u",
+        "grid": "128x128",
+        "CFL": 0.2,
+        "T": 10.0,
+        "N_steps": 3451,
+        "dt_min": 0.0028977108084613156,
+        "dt_mean": 0.0028977108084613156,
+        "dt_max": 0.0028977108084613156,
+        "dt_eff": 0.0028977108084613156,
+        "S0": 3.575375951837614e-15,
+        "ST": -1.0566620647871976,
+        "DeltaS_total": -1.0566620647872011,
+        "E_bg_total": 1.0544363040958782,
+        "E_aa_total": 0.00200574027977744,
+        "E_at_total": 0.00021974119182324332,
+        "E_obs_total": 1.056661785567479,
+        "R_total": -2.792197222323267e-07,
+        "eps_time_total": 1.3212348982171622e-07,
+        "median_eps_SD": 5.432425891745222e-16,
+        "p95_eps_SD": 1.5772201669260065e-15,
+        "p99_eps_SD": 2.098667951839039e-15,
+        "max_eps_SD": 3.3568269922542303e-15,
+        "max_abs_R_SD": 7.91033905045424e-16,
+        "min_D_bg": 0.06938799315280877,
+        "max_D_bg": 0.1633158555874476,
+        "min_D_aa": 4.715010814884215e-05,
+        "max_D_aa": 0.000599128887368821,
+        "min_D_at": 6.079053793443955e-06,
+        "max_D_at": 5.77668976731563e-05,
+        "max_abs_D_at": 5.77668976731563e-05,
+        "max_abs_R_decomp": 5.551115123125783e-17,
+        "telescoping_error": 0.0,
+        "min_rho": 0.4949561087792539,
+        "min_p": 0.3736280898337296,
+        "N_stages": 10353,
+        "rejected_steps": 0,
+        "elapsed_seconds": 1778.4958706999896
+      },
+      "zero_channel": null,
+      "verification": {
+        "status": "PASS",
+        "all_csv_rows_read": true,
+        "all_fields_finite": true,
+        "step_sequence": "1..N without gaps or duplicates",
+        "stage_sequence": "1,2,3 for each accepted step",
+        "stage_rows_equals_3_times_accepted_steps": true,
+        "stage_time_equals_step_time_n": true,
+        "raw_stage_values_match_step_D_stage_columns": true,
+        "face_count_per_direction": 16384,
+        "negative_channel_counts": {
+          "bg": 0,
+          "aa": 0,
+          "at": 0
+        },
+        "R_SD_identity_max_absolute_error": 0.0,
+        "eps_SD_identity_max_absolute_error": 0.0,
+        "R_decomp_identity_max_absolute_error": 0.0,
+        "stage_weighted_E_identity_max_absolute_error": 0.0,
+        "R_time_step_identity_max_absolute_error": 0.0,
+        "R_time_cumulative_identity_max_absolute_error": 0.0,
+        "entropy_telescoping_discrepancy": 0.0,
+        "terminal_csv_matches_run_and_frozen_summary": true,
+        "recomputed_stage_statistics": {
+          "max_abs_R_SD": 7.91033905045424e-16,
+          "max_eps_SD": 3.3568269922542303e-15,
+          "median_eps_SD": 5.432425891745222e-16,
+          "p95_eps_SD": 1.5772201669260065e-15,
+          "p99_eps_SD": 2.098667951839039e-15,
+          "max_abs_R_decomp": 5.551115123125783e-17,
+          "max_abs_D_at": 5.77668976731563e-05
+        }
+      },
+      "limitations": [
+        "PER_STAGE clock is the containing step start, not a reconstructed stage physical time.",
+        "No saved spatial state trajectory.",
+        "Fully-discrete residual is not an exact entropy identity."
+      ],
+      "definitions": {
+        "stage": {
+          "step": "phase9.closure.step",
+          "stage": "phase9.closure.stage",
+          "t_stage_or_step_time": "phase9.closure.t_stage_or_step_time",
+          "dt": "phase9.closure.dt",
+          "G": "phase9.closure.G",
+          "D_bg": "phase9.closure.D_bg",
+          "D_aa": "phase9.closure.D_aa",
+          "D_at": "phase9.closure.D_at",
+          "D_total": "phase9.closure.D_total",
+          "R_SD": "phase9.closure.R_SD",
+          "eps_SD": "phase9.closure.eps_SD",
+          "R_decomp": "phase9.closure.R_decomp",
+          "x_face_count": "phase9.closure.x_face_count",
+          "y_face_count": "phase9.closure.y_face_count"
+        },
+        "step": {
+          "step": "phase9.closure.step",
+          "time_n": "phase9.closure.time_n",
+          "time_np1": "phase9.closure.time_np1",
+          "dt": "phase9.closure.dt",
+          "S_n": "phase9.closure.S_n",
+          "S_np1": "phase9.closure.S_np1",
+          "DeltaS": "phase9.closure.DeltaS",
+          "D_bg_stage1": "phase9.closure.D_bg_stage1",
+          "D_bg_stage2": "phase9.closure.D_bg_stage2",
+          "D_bg_stage3": "phase9.closure.D_bg_stage3",
+          "D_aa_stage1": "phase9.closure.D_aa_stage1",
+          "D_aa_stage2": "phase9.closure.D_aa_stage2",
+          "D_aa_stage3": "phase9.closure.D_aa_stage3",
+          "D_at_stage1": "phase9.closure.D_at_stage1",
+          "D_at_stage2": "phase9.closure.D_at_stage2",
+          "D_at_stage3": "phase9.closure.D_at_stage3",
+          "D_total_stage1": "phase9.closure.D_total_stage1",
+          "D_total_stage2": "phase9.closure.D_total_stage2",
+          "D_total_stage3": "phase9.closure.D_total_stage3",
+          "E_bg_step": "phase9.closure.E_bg_step",
+          "E_aa_step": "phase9.closure.E_aa_step",
+          "E_at_step": "phase9.closure.E_at_step",
+          "E_obs_step": "phase9.closure.E_obs_step",
+          "E_total_independent_step": "phase9.closure.E_total_independent_step",
+          "R_time_step": "phase9.closure.R_time_step",
+          "R_time_cumulative": "phase9.closure.R_time_cumulative"
+        }
+      },
+      "hashes": {
+        "stage_closure.csv": "cf2c151f8676cfbd8aaed4230037d7a7d3ce56a96a7f9cc19d270f3ee2c11034",
+        "step_closure.csv": "8f5ac4314e8668c21a0b9b6f570243bf9ba57369527a6e7de94c309682fe04c0",
+        "run_summary.json": "a650f835a649b1086d7a53bcd9d8b82470b43f202b84ab58348a752cd7d30ee1"
+      },
+      "time_index_conventions_ref": "closure.time_index_conventions"
+    },
+    {
+      "run_id": "D_u-cfl-0.1",
+      "source_run_id": "Du_cfl_01",
+      "config": "D_u",
+      "CFL": 0.1,
+      "q_aa": 3.96,
+      "q_at": 0.396,
+      "steps": 6901,
+      "accepted_steps": 6901,
+      "stage_rows": 20703,
+      "step_rows": 6901,
+      "stage_point_count": 20703,
+      "step_point_count": 6901,
+      "grid": [
+        128,
+        128
+      ],
+      "dt": 0.0014490653528474134,
+      "T": 10.0,
+      "source_assets": {
+        "stage_closure.csv": "closure.outputs/Du_cfl_01/stage_closure.csv",
+        "step_closure.csv": "closure.outputs/Du_cfl_01/step_closure.csv",
+        "run_summary.json": "closure.outputs/Du_cfl_01/run_summary.json"
+      },
+      "stage_fields": [
+        "step",
+        "stage",
+        "t_stage_or_step_time",
+        "dt",
+        "G",
+        "D_bg",
+        "D_aa",
+        "D_at",
+        "D_total",
+        "R_SD",
+        "eps_SD",
+        "R_decomp",
+        "x_face_count",
+        "y_face_count"
+      ],
+      "step_fields": [
+        "step",
+        "time_n",
+        "time_np1",
+        "dt",
+        "S_n",
+        "S_np1",
+        "DeltaS",
+        "D_bg_stage1",
+        "D_bg_stage2",
+        "D_bg_stage3",
+        "D_aa_stage1",
+        "D_aa_stage2",
+        "D_aa_stage3",
+        "D_at_stage1",
+        "D_at_stage2",
+        "D_at_stage3",
+        "D_total_stage1",
+        "D_total_stage2",
+        "D_total_stage3",
+        "E_bg_step",
+        "E_aa_step",
+        "E_at_step",
+        "E_obs_step",
+        "E_total_independent_step",
+        "R_time_step",
+        "R_time_cumulative"
+      ],
+      "cumulative_fields_recorded_in_step_csv": [
+        "R_time_cumulative"
+      ],
+      "terminal_summary": {
+        "config": "D_u",
+        "grid": "128x128",
+        "CFL": 0.1,
+        "T": 10.0,
+        "N_steps": 6901,
+        "dt_min": 0.0014490653528474134,
+        "dt_mean": 0.0014490653528474134,
+        "dt_max": 0.0014490653528474134,
+        "dt_eff": 0.0014490653528474134,
+        "S0": 3.575375951837614e-15,
+        "ST": -1.0566619266599273,
+        "DeltaS_total": -1.0566619266599309,
+        "E_bg_total": 1.054436409822032,
+        "E_aa_total": 0.002005740686563695,
+        "E_at_total": 0.00021974123281872892,
+        "E_obs_total": 1.0566618917414143,
+        "R_total": -3.491851652270839e-08,
+        "eps_time_total": 1.6523031737333566e-08,
+        "median_eps_SD": 5.472844730609291e-16,
+        "p95_eps_SD": 1.5890338998868215e-15,
+        "p99_eps_SD": 2.109445932581393e-15,
+        "max_eps_SD": 3.4140864682034995e-15,
+        "max_abs_R_SD": 8.049116928532385e-16,
+        "min_D_bg": 0.06938679653503019,
+        "max_D_bg": 0.1633158555874476,
+        "min_D_aa": 4.714778844549363e-05,
+        "max_D_aa": 0.000599128887368821,
+        "min_D_at": 6.0787220614993134e-06,
+        "max_D_at": 5.77668976731563e-05,
+        "max_abs_D_at": 5.77668976731563e-05,
+        "max_abs_R_decomp": 8.326672684688674e-17,
+        "telescoping_error": -2.220446049250313e-16,
+        "min_rho": 0.49495463705176707,
+        "min_p": 0.373626540603939,
+        "N_stages": 20703,
+        "rejected_steps": 0,
+        "elapsed_seconds": 3339.1612100999337
+      },
+      "zero_channel": null,
+      "verification": {
+        "status": "PASS",
+        "all_csv_rows_read": true,
+        "all_fields_finite": true,
+        "step_sequence": "1..N without gaps or duplicates",
+        "stage_sequence": "1,2,3 for each accepted step",
+        "stage_rows_equals_3_times_accepted_steps": true,
+        "stage_time_equals_step_time_n": true,
+        "raw_stage_values_match_step_D_stage_columns": true,
+        "face_count_per_direction": 16384,
+        "negative_channel_counts": {
+          "bg": 0,
+          "aa": 0,
+          "at": 0
+        },
+        "R_SD_identity_max_absolute_error": 0.0,
+        "eps_SD_identity_max_absolute_error": 0.0,
+        "R_decomp_identity_max_absolute_error": 0.0,
+        "stage_weighted_E_identity_max_absolute_error": 0.0,
+        "R_time_step_identity_max_absolute_error": 0.0,
+        "R_time_cumulative_identity_max_absolute_error": 0.0,
+        "entropy_telescoping_discrepancy": -2.220446049250313e-16,
+        "terminal_csv_matches_run_and_frozen_summary": true,
+        "recomputed_stage_statistics": {
+          "max_abs_R_SD": 8.049116928532385e-16,
+          "max_eps_SD": 3.4140864682034995e-15,
+          "median_eps_SD": 5.472844730609291e-16,
+          "p95_eps_SD": 1.5890338998868215e-15,
+          "p99_eps_SD": 2.109445932581393e-15,
+          "max_abs_R_decomp": 8.326672684688674e-17,
+          "max_abs_D_at": 5.77668976731563e-05
+        }
+      },
+      "limitations": [
+        "PER_STAGE clock is the containing step start, not a reconstructed stage physical time.",
+        "No saved spatial state trajectory.",
+        "Fully-discrete residual is not an exact entropy identity."
+      ],
+      "definitions": {
+        "stage": {
+          "step": "phase9.closure.step",
+          "stage": "phase9.closure.stage",
+          "t_stage_or_step_time": "phase9.closure.t_stage_or_step_time",
+          "dt": "phase9.closure.dt",
+          "G": "phase9.closure.G",
+          "D_bg": "phase9.closure.D_bg",
+          "D_aa": "phase9.closure.D_aa",
+          "D_at": "phase9.closure.D_at",
+          "D_total": "phase9.closure.D_total",
+          "R_SD": "phase9.closure.R_SD",
+          "eps_SD": "phase9.closure.eps_SD",
+          "R_decomp": "phase9.closure.R_decomp",
+          "x_face_count": "phase9.closure.x_face_count",
+          "y_face_count": "phase9.closure.y_face_count"
+        },
+        "step": {
+          "step": "phase9.closure.step",
+          "time_n": "phase9.closure.time_n",
+          "time_np1": "phase9.closure.time_np1",
+          "dt": "phase9.closure.dt",
+          "S_n": "phase9.closure.S_n",
+          "S_np1": "phase9.closure.S_np1",
+          "DeltaS": "phase9.closure.DeltaS",
+          "D_bg_stage1": "phase9.closure.D_bg_stage1",
+          "D_bg_stage2": "phase9.closure.D_bg_stage2",
+          "D_bg_stage3": "phase9.closure.D_bg_stage3",
+          "D_aa_stage1": "phase9.closure.D_aa_stage1",
+          "D_aa_stage2": "phase9.closure.D_aa_stage2",
+          "D_aa_stage3": "phase9.closure.D_aa_stage3",
+          "D_at_stage1": "phase9.closure.D_at_stage1",
+          "D_at_stage2": "phase9.closure.D_at_stage2",
+          "D_at_stage3": "phase9.closure.D_at_stage3",
+          "D_total_stage1": "phase9.closure.D_total_stage1",
+          "D_total_stage2": "phase9.closure.D_total_stage2",
+          "D_total_stage3": "phase9.closure.D_total_stage3",
+          "E_bg_step": "phase9.closure.E_bg_step",
+          "E_aa_step": "phase9.closure.E_aa_step",
+          "E_at_step": "phase9.closure.E_at_step",
+          "E_obs_step": "phase9.closure.E_obs_step",
+          "E_total_independent_step": "phase9.closure.E_total_independent_step",
+          "R_time_step": "phase9.closure.R_time_step",
+          "R_time_cumulative": "phase9.closure.R_time_cumulative"
+        }
+      },
+      "hashes": {
+        "stage_closure.csv": "37f91616566f59fd9a0d61385a64f4400aaec2accb586cfcbe17529b5d458487",
+        "step_closure.csv": "2eaf3743ff6e3aab2831823d732a3ec9390c0e931f71c4f1c43bebbe1561663a",
+        "run_summary.json": "66c90cfe22908ffed1ce5fe7add7256e83e01cfa5e874a9c3366bc63e5018e2b"
+      },
+      "time_index_conventions_ref": "closure.time_index_conventions"
+    },
+    {
+      "run_id": "D_u-cfl-0.05",
+      "source_run_id": "Du_cfl_005",
+      "config": "D_u",
+      "CFL": 0.05,
+      "q_aa": 3.96,
+      "q_at": 0.396,
+      "steps": 13802,
+      "accepted_steps": 13802,
+      "stage_rows": 41406,
+      "step_rows": 13802,
+      "stage_point_count": 41406,
+      "step_point_count": 13802,
+      "grid": [
+        128,
+        128
+      ],
+      "dt": 0.0007245326764237067,
+      "T": 10.0,
+      "source_assets": {
+        "stage_closure.csv": "closure.outputs/Du_cfl_005/stage_closure.csv",
+        "step_closure.csv": "closure.outputs/Du_cfl_005/step_closure.csv",
+        "run_summary.json": "closure.outputs/Du_cfl_005/run_summary.json"
+      },
+      "stage_fields": [
+        "step",
+        "stage",
+        "t_stage_or_step_time",
+        "dt",
+        "G",
+        "D_bg",
+        "D_aa",
+        "D_at",
+        "D_total",
+        "R_SD",
+        "eps_SD",
+        "R_decomp",
+        "x_face_count",
+        "y_face_count"
+      ],
+      "step_fields": [
+        "step",
+        "time_n",
+        "time_np1",
+        "dt",
+        "S_n",
+        "S_np1",
+        "DeltaS",
+        "D_bg_stage1",
+        "D_bg_stage2",
+        "D_bg_stage3",
+        "D_aa_stage1",
+        "D_aa_stage2",
+        "D_aa_stage3",
+        "D_at_stage1",
+        "D_at_stage2",
+        "D_at_stage3",
+        "D_total_stage1",
+        "D_total_stage2",
+        "D_total_stage3",
+        "E_bg_step",
+        "E_aa_step",
+        "E_at_step",
+        "E_obs_step",
+        "E_total_independent_step",
+        "R_time_step",
+        "R_time_cumulative"
+      ],
+      "cumulative_fields_recorded_in_step_csv": [
+        "R_time_cumulative"
+      ],
+      "terminal_summary": {
+        "config": "D_u",
+        "grid": "128x128",
+        "CFL": 0.05,
+        "T": 10.0,
+        "N_steps": 13802,
+        "dt_min": 0.0007245326764237067,
+        "dt_mean": 0.0007245326764237067,
+        "dt_max": 0.0007245326764237067,
+        "dt_eff": 0.0007245326764237067,
+        "S0": 3.575375951837614e-15,
+        "ST": -1.0566619093874456,
+        "DeltaS_total": -1.0566619093874492,
+        "E_bg_total": 1.0544364230471839,
+        "E_aa_total": 0.0020057407374988474,
+        "E_at_total": 0.00021974123795017082,
+        "E_obs_total": 1.056661905022633,
+        "R_total": -4.3648162861842366e-09,
+        "eps_time_total": 2.0653797853513714e-09,
+        "median_eps_SD": 5.449127989207016e-16,
+        "p95_eps_SD": 1.5989911157742464e-15,
+        "p99_eps_SD": 2.0946056564001898e-15,
+        "max_eps_SD": 3.56751806308638e-15,
+        "max_abs_R_SD": 8.326672684688674e-16,
+        "min_D_bg": 0.06938649558685236,
+        "max_D_bg": 0.1633158555874476,
+        "min_D_aa": 4.714720490976105e-05,
+        "max_D_aa": 0.000599128887368821,
+        "min_D_at": 6.078638671606051e-06,
+        "max_D_at": 5.77668976731563e-05,
+        "max_abs_D_at": 5.77668976731563e-05,
+        "max_abs_R_decomp": 8.326672684688674e-17,
+        "telescoping_error": 0.0,
+        "min_rho": 0.49495463702021386,
+        "min_p": 0.3736265405831309,
+        "N_stages": 41406,
+        "rejected_steps": 0,
+        "elapsed_seconds": 6659.744830299984
+      },
+      "zero_channel": null,
+      "verification": {
+        "status": "PASS",
+        "all_csv_rows_read": true,
+        "all_fields_finite": true,
+        "step_sequence": "1..N without gaps or duplicates",
+        "stage_sequence": "1,2,3 for each accepted step",
+        "stage_rows_equals_3_times_accepted_steps": true,
+        "stage_time_equals_step_time_n": true,
+        "raw_stage_values_match_step_D_stage_columns": true,
+        "face_count_per_direction": 16384,
+        "negative_channel_counts": {
+          "bg": 0,
+          "aa": 0,
+          "at": 0
+        },
+        "R_SD_identity_max_absolute_error": 0.0,
+        "eps_SD_identity_max_absolute_error": 0.0,
+        "R_decomp_identity_max_absolute_error": 0.0,
+        "stage_weighted_E_identity_max_absolute_error": 0.0,
+        "R_time_step_identity_max_absolute_error": 0.0,
+        "R_time_cumulative_identity_max_absolute_error": 0.0,
+        "entropy_telescoping_discrepancy": 0.0,
+        "terminal_csv_matches_run_and_frozen_summary": true,
+        "recomputed_stage_statistics": {
+          "max_abs_R_SD": 8.326672684688674e-16,
+          "max_eps_SD": 3.56751806308638e-15,
+          "median_eps_SD": 5.449127989207016e-16,
+          "p95_eps_SD": 1.5989911157742464e-15,
+          "p99_eps_SD": 2.0946056564001898e-15,
+          "max_abs_R_decomp": 8.326672684688674e-17,
+          "max_abs_D_at": 5.77668976731563e-05
+        }
+      },
+      "limitations": [
+        "PER_STAGE clock is the containing step start, not a reconstructed stage physical time.",
+        "No saved spatial state trajectory.",
+        "Fully-discrete residual is not an exact entropy identity."
+      ],
+      "definitions": {
+        "stage": {
+          "step": "phase9.closure.step",
+          "stage": "phase9.closure.stage",
+          "t_stage_or_step_time": "phase9.closure.t_stage_or_step_time",
+          "dt": "phase9.closure.dt",
+          "G": "phase9.closure.G",
+          "D_bg": "phase9.closure.D_bg",
+          "D_aa": "phase9.closure.D_aa",
+          "D_at": "phase9.closure.D_at",
+          "D_total": "phase9.closure.D_total",
+          "R_SD": "phase9.closure.R_SD",
+          "eps_SD": "phase9.closure.eps_SD",
+          "R_decomp": "phase9.closure.R_decomp",
+          "x_face_count": "phase9.closure.x_face_count",
+          "y_face_count": "phase9.closure.y_face_count"
+        },
+        "step": {
+          "step": "phase9.closure.step",
+          "time_n": "phase9.closure.time_n",
+          "time_np1": "phase9.closure.time_np1",
+          "dt": "phase9.closure.dt",
+          "S_n": "phase9.closure.S_n",
+          "S_np1": "phase9.closure.S_np1",
+          "DeltaS": "phase9.closure.DeltaS",
+          "D_bg_stage1": "phase9.closure.D_bg_stage1",
+          "D_bg_stage2": "phase9.closure.D_bg_stage2",
+          "D_bg_stage3": "phase9.closure.D_bg_stage3",
+          "D_aa_stage1": "phase9.closure.D_aa_stage1",
+          "D_aa_stage2": "phase9.closure.D_aa_stage2",
+          "D_aa_stage3": "phase9.closure.D_aa_stage3",
+          "D_at_stage1": "phase9.closure.D_at_stage1",
+          "D_at_stage2": "phase9.closure.D_at_stage2",
+          "D_at_stage3": "phase9.closure.D_at_stage3",
+          "D_total_stage1": "phase9.closure.D_total_stage1",
+          "D_total_stage2": "phase9.closure.D_total_stage2",
+          "D_total_stage3": "phase9.closure.D_total_stage3",
+          "E_bg_step": "phase9.closure.E_bg_step",
+          "E_aa_step": "phase9.closure.E_aa_step",
+          "E_at_step": "phase9.closure.E_at_step",
+          "E_obs_step": "phase9.closure.E_obs_step",
+          "E_total_independent_step": "phase9.closure.E_total_independent_step",
+          "R_time_step": "phase9.closure.R_time_step",
+          "R_time_cumulative": "phase9.closure.R_time_cumulative"
+        }
+      },
+      "hashes": {
+        "stage_closure.csv": "2c9c960040f470a442bd45096ac951f5b01551f15810ef2dfc8f2c0514303d42",
+        "step_closure.csv": "c73957bf75da1c410bd8d864b8f7cb4a9f487a1cceffa547db0df00f1457815a",
+        "run_summary.json": "d60177cd0d14c22b43ce1a03f409047e65eccd7cc8f87214ea4bf7a4efc9a1d4"
+      },
+      "time_index_conventions_ref": "closure.time_index_conventions"
+    },
+    {
+      "run_id": "D_u-cfl-0.025",
+      "source_run_id": "Du_cfl_0025",
+      "config": "D_u",
+      "CFL": 0.025,
+      "q_aa": 3.96,
+      "q_at": 0.396,
+      "steps": 27603,
+      "accepted_steps": 27603,
+      "stage_rows": 82809,
+      "step_rows": 27603,
+      "stage_point_count": 82809,
+      "step_point_count": 27603,
+      "grid": [
+        128,
+        128
+      ],
+      "dt": 0.0003622794623772778,
+      "T": 10.0,
+      "source_assets": {
+        "stage_closure.csv": "closure.outputs/Du_cfl_0025/stage_closure.csv",
+        "step_closure.csv": "closure.outputs/Du_cfl_0025/step_closure.csv",
+        "run_summary.json": "closure.outputs/Du_cfl_0025/run_summary.json"
+      },
+      "stage_fields": [
+        "step",
+        "stage",
+        "t_stage_or_step_time",
+        "dt",
+        "G",
+        "D_bg",
+        "D_aa",
+        "D_at",
+        "D_total",
+        "R_SD",
+        "eps_SD",
+        "R_decomp",
+        "x_face_count",
+        "y_face_count"
+      ],
+      "step_fields": [
+        "step",
+        "time_n",
+        "time_np1",
+        "dt",
+        "S_n",
+        "S_np1",
+        "DeltaS",
+        "D_bg_stage1",
+        "D_bg_stage2",
+        "D_bg_stage3",
+        "D_aa_stage1",
+        "D_aa_stage2",
+        "D_aa_stage3",
+        "D_at_stage1",
+        "D_at_stage2",
+        "D_at_stage3",
+        "D_total_stage1",
+        "D_total_stage2",
+        "D_total_stage3",
+        "E_bg_step",
+        "E_aa_step",
+        "E_at_step",
+        "E_obs_step",
+        "E_total_independent_step",
+        "R_time_step",
+        "R_time_cumulative"
+      ],
+      "cumulative_fields_recorded_in_step_csv": [
+        "R_time_cumulative"
+      ],
+      "terminal_summary": {
+        "config": "D_u",
+        "grid": "128x128",
+        "CFL": 0.025,
+        "T": 10.0,
+        "N_steps": 27603,
+        "dt_min": 0.0003622794623772778,
+        "dt_mean": 0.0003622794623772778,
+        "dt_max": 0.0003622794623772778,
+        "dt_eff": 0.0003622794623772778,
+        "S0": 3.575375951837614e-15,
+        "ST": -1.0566619072289378,
+        "DeltaS_total": -1.0566619072289414,
+        "E_bg_total": 1.054436424700821,
+        "E_aa_total": 0.0020057407438733884,
+        "E_at_total": 0.00021974123859226852,
+        "E_obs_total": 1.0566619066832867,
+        "R_total": -5.456546325888212e-10,
+        "eps_time_total": 2.581973614250313e-10,
+        "median_eps_SD": 5.35033634309005e-16,
+        "p95_eps_SD": 1.5846731438588015e-15,
+        "p99_eps_SD": 2.107490004775121e-15,
+        "max_eps_SD": 3.661221675687927e-15,
+        "max_abs_R_SD": 8.604228440844963e-16,
+        "min_D_bg": 0.06938642014172322,
+        "max_D_bg": 0.1633158555874476,
+        "min_D_aa": 4.714705860427287e-05,
+        "max_D_aa": 0.000599128887368821,
+        "min_D_at": 6.078617771281889e-06,
+        "max_D_at": 5.77668976731563e-05,
+        "max_abs_D_at": 5.77668976731563e-05,
+        "max_abs_R_decomp": 8.326672684688674e-17,
+        "telescoping_error": 0.0,
+        "min_rho": 0.494954637066203,
+        "min_p": 0.3736265405424552,
+        "N_stages": 82809,
+        "rejected_steps": 0,
+        "elapsed_seconds": 12225.468973699957
+      },
+      "zero_channel": null,
+      "verification": {
+        "status": "PASS",
+        "all_csv_rows_read": true,
+        "all_fields_finite": true,
+        "step_sequence": "1..N without gaps or duplicates",
+        "stage_sequence": "1,2,3 for each accepted step",
+        "stage_rows_equals_3_times_accepted_steps": true,
+        "stage_time_equals_step_time_n": true,
+        "raw_stage_values_match_step_D_stage_columns": true,
+        "face_count_per_direction": 16384,
+        "negative_channel_counts": {
+          "bg": 0,
+          "aa": 0,
+          "at": 0
+        },
+        "R_SD_identity_max_absolute_error": 0.0,
+        "eps_SD_identity_max_absolute_error": 0.0,
+        "R_decomp_identity_max_absolute_error": 0.0,
+        "stage_weighted_E_identity_max_absolute_error": 0.0,
+        "R_time_step_identity_max_absolute_error": 0.0,
+        "R_time_cumulative_identity_max_absolute_error": 0.0,
+        "entropy_telescoping_discrepancy": 0.0,
+        "terminal_csv_matches_run_and_frozen_summary": true,
+        "recomputed_stage_statistics": {
+          "max_abs_R_SD": 8.604228440844963e-16,
+          "max_eps_SD": 3.661221675687927e-15,
+          "median_eps_SD": 5.35033634309005e-16,
+          "p95_eps_SD": 1.5846731438588015e-15,
+          "p99_eps_SD": 2.107490004775121e-15,
+          "max_abs_R_decomp": 8.326672684688674e-17,
+          "max_abs_D_at": 5.77668976731563e-05
+        }
+      },
+      "limitations": [
+        "PER_STAGE clock is the containing step start, not a reconstructed stage physical time.",
+        "No saved spatial state trajectory.",
+        "Fully-discrete residual is not an exact entropy identity."
+      ],
+      "definitions": {
+        "stage": {
+          "step": "phase9.closure.step",
+          "stage": "phase9.closure.stage",
+          "t_stage_or_step_time": "phase9.closure.t_stage_or_step_time",
+          "dt": "phase9.closure.dt",
+          "G": "phase9.closure.G",
+          "D_bg": "phase9.closure.D_bg",
+          "D_aa": "phase9.closure.D_aa",
+          "D_at": "phase9.closure.D_at",
+          "D_total": "phase9.closure.D_total",
+          "R_SD": "phase9.closure.R_SD",
+          "eps_SD": "phase9.closure.eps_SD",
+          "R_decomp": "phase9.closure.R_decomp",
+          "x_face_count": "phase9.closure.x_face_count",
+          "y_face_count": "phase9.closure.y_face_count"
+        },
+        "step": {
+          "step": "phase9.closure.step",
+          "time_n": "phase9.closure.time_n",
+          "time_np1": "phase9.closure.time_np1",
+          "dt": "phase9.closure.dt",
+          "S_n": "phase9.closure.S_n",
+          "S_np1": "phase9.closure.S_np1",
+          "DeltaS": "phase9.closure.DeltaS",
+          "D_bg_stage1": "phase9.closure.D_bg_stage1",
+          "D_bg_stage2": "phase9.closure.D_bg_stage2",
+          "D_bg_stage3": "phase9.closure.D_bg_stage3",
+          "D_aa_stage1": "phase9.closure.D_aa_stage1",
+          "D_aa_stage2": "phase9.closure.D_aa_stage2",
+          "D_aa_stage3": "phase9.closure.D_aa_stage3",
+          "D_at_stage1": "phase9.closure.D_at_stage1",
+          "D_at_stage2": "phase9.closure.D_at_stage2",
+          "D_at_stage3": "phase9.closure.D_at_stage3",
+          "D_total_stage1": "phase9.closure.D_total_stage1",
+          "D_total_stage2": "phase9.closure.D_total_stage2",
+          "D_total_stage3": "phase9.closure.D_total_stage3",
+          "E_bg_step": "phase9.closure.E_bg_step",
+          "E_aa_step": "phase9.closure.E_aa_step",
+          "E_at_step": "phase9.closure.E_at_step",
+          "E_obs_step": "phase9.closure.E_obs_step",
+          "E_total_independent_step": "phase9.closure.E_total_independent_step",
+          "R_time_step": "phase9.closure.R_time_step",
+          "R_time_cumulative": "phase9.closure.R_time_cumulative"
+        }
+      },
+      "hashes": {
+        "stage_closure.csv": "24de1c91e156e3bdc657618f0fbd2efedf9b933a439a7a9aacab0bbdef423aa8",
+        "step_closure.csv": "02755d4897a85684c5bf5aedfaf69f6fa79286b61412aeac258c1f292759648f",
+        "run_summary.json": "6aaffff46f2f43a33b52689033bd1737b6a145137720351c09e81800de631efd"
+      },
+      "time_index_conventions_ref": "closure.time_index_conventions"
+    },
+    {
+      "run_id": "B_u-cfl-0.05",
+      "source_run_id": "Bu_cfl_005",
+      "config": "B_u",
+      "CFL": 0.05,
+      "q_aa": 3.96,
+      "q_at": 0.0,
+      "steps": 13802,
+      "accepted_steps": 13802,
+      "stage_rows": 41406,
+      "step_rows": 13802,
+      "stage_point_count": 41406,
+      "step_point_count": 13802,
+      "grid": [
+        128,
+        128
+      ],
+      "dt": 0.0007245326764237067,
+      "T": 10.0,
+      "source_assets": {
+        "stage_closure.csv": "closure.outputs/Bu_cfl_005/stage_closure.csv",
+        "step_closure.csv": "closure.outputs/Bu_cfl_005/step_closure.csv",
+        "run_summary.json": "closure.outputs/Bu_cfl_005/run_summary.json"
+      },
+      "stage_fields": [
+        "step",
+        "stage",
+        "t_stage_or_step_time",
+        "dt",
+        "G",
+        "D_bg",
+        "D_aa",
+        "D_at",
+        "D_total",
+        "R_SD",
+        "eps_SD",
+        "R_decomp",
+        "x_face_count",
+        "y_face_count"
+      ],
+      "step_fields": [
+        "step",
+        "time_n",
+        "time_np1",
+        "dt",
+        "S_n",
+        "S_np1",
+        "DeltaS",
+        "D_bg_stage1",
+        "D_bg_stage2",
+        "D_bg_stage3",
+        "D_aa_stage1",
+        "D_aa_stage2",
+        "D_aa_stage3",
+        "D_at_stage1",
+        "D_at_stage2",
+        "D_at_stage3",
+        "D_total_stage1",
+        "D_total_stage2",
+        "D_total_stage3",
+        "E_bg_step",
+        "E_aa_step",
+        "E_at_step",
+        "E_obs_step",
+        "E_total_independent_step",
+        "R_time_step",
+        "R_time_cumulative"
+      ],
+      "cumulative_fields_recorded_in_step_csv": [
+        "R_time_cumulative"
+      ],
+      "terminal_summary": {
+        "config": "B_u",
+        "grid": "128x128",
+        "CFL": 0.05,
+        "T": 10.0,
+        "N_steps": 13802,
+        "dt_min": 0.0007245326764237067,
+        "dt_mean": 0.0007245326764237067,
+        "dt_max": 0.0007245326764237067,
+        "dt_eff": 0.0007245326764237067,
+        "S0": 3.575375951837614e-15,
+        "ST": -1.056538365300432,
+        "DeltaS_total": -1.0565383653004357,
+        "E_bg_total": 1.0545321596061328,
+        "E_aa_total": 0.002006201328908283,
+        "E_at_total": 0.0,
+        "E_obs_total": 1.0565383609350412,
+        "R_total": -4.365394490335461e-09,
+        "eps_time_total": 2.065894927588631e-09,
+        "median_eps_SD": 5.409757841910278e-16,
+        "p95_eps_SD": 1.5827472973743595e-15,
+        "p99_eps_SD": 2.0993553138994502e-15,
+        "max_eps_SD": 3.742752570252953e-15,
+        "max_abs_R_SD": 7.494005416219807e-16,
+        "min_D_bg": 0.06939641165546513,
+        "max_D_bg": 0.1633158555874476,
+        "min_D_aa": 4.7168496435168486e-05,
+        "max_D_aa": 0.000599128887368821,
+        "min_D_at": 0.0,
+        "max_D_at": 0.0,
+        "max_abs_D_at": 0.0,
+        "max_abs_R_decomp": 8.326672684688674e-17,
+        "telescoping_error": 0.0,
+        "min_rho": 0.4949546364575515,
+        "min_p": 0.37362653628855425,
+        "N_stages": 41406,
+        "rejected_steps": 0,
+        "elapsed_seconds": 6385.947442600038
+      },
+      "zero_channel": {
+        "q_at": 0,
+        "status": "RECORDED_ZERO",
+        "display_label": "RECORDED ZERO",
+        "missing_data": false,
+        "stage_D_at_zero_rows": 41406,
+        "step_E_at_step_zero_rows": 13802,
+        "step_D_at_stage_zero_values": 41406,
+        "frozen_E_at_total": 0.0,
+        "zero_fill_applied": false
+      },
+      "verification": {
+        "status": "PASS",
+        "all_csv_rows_read": true,
+        "all_fields_finite": true,
+        "step_sequence": "1..N without gaps or duplicates",
+        "stage_sequence": "1,2,3 for each accepted step",
+        "stage_rows_equals_3_times_accepted_steps": true,
+        "stage_time_equals_step_time_n": true,
+        "raw_stage_values_match_step_D_stage_columns": true,
+        "face_count_per_direction": 16384,
+        "negative_channel_counts": {
+          "bg": 0,
+          "aa": 0,
+          "at": 0
+        },
+        "R_SD_identity_max_absolute_error": 0.0,
+        "eps_SD_identity_max_absolute_error": 0.0,
+        "R_decomp_identity_max_absolute_error": 0.0,
+        "stage_weighted_E_identity_max_absolute_error": 0.0,
+        "R_time_step_identity_max_absolute_error": 0.0,
+        "R_time_cumulative_identity_max_absolute_error": 0.0,
+        "entropy_telescoping_discrepancy": 0.0,
+        "terminal_csv_matches_run_and_frozen_summary": true,
+        "recomputed_stage_statistics": {
+          "max_abs_R_SD": 7.494005416219807e-16,
+          "max_eps_SD": 3.742752570252953e-15,
+          "median_eps_SD": 5.409757841910278e-16,
+          "p95_eps_SD": 1.5827472973743595e-15,
+          "p99_eps_SD": 2.0993553138994502e-15,
+          "max_abs_R_decomp": 8.326672684688674e-17,
+          "max_abs_D_at": 0.0
+        }
+      },
+      "limitations": [
+        "PER_STAGE clock is the containing step start, not a reconstructed stage physical time.",
+        "No saved spatial state trajectory.",
+        "Fully-discrete residual is not an exact entropy identity."
+      ],
+      "definitions": {
+        "stage": {
+          "step": "phase9.closure.step",
+          "stage": "phase9.closure.stage",
+          "t_stage_or_step_time": "phase9.closure.t_stage_or_step_time",
+          "dt": "phase9.closure.dt",
+          "G": "phase9.closure.G",
+          "D_bg": "phase9.closure.D_bg",
+          "D_aa": "phase9.closure.D_aa",
+          "D_at": "phase9.closure.D_at",
+          "D_total": "phase9.closure.D_total",
+          "R_SD": "phase9.closure.R_SD",
+          "eps_SD": "phase9.closure.eps_SD",
+          "R_decomp": "phase9.closure.R_decomp",
+          "x_face_count": "phase9.closure.x_face_count",
+          "y_face_count": "phase9.closure.y_face_count"
+        },
+        "step": {
+          "step": "phase9.closure.step",
+          "time_n": "phase9.closure.time_n",
+          "time_np1": "phase9.closure.time_np1",
+          "dt": "phase9.closure.dt",
+          "S_n": "phase9.closure.S_n",
+          "S_np1": "phase9.closure.S_np1",
+          "DeltaS": "phase9.closure.DeltaS",
+          "D_bg_stage1": "phase9.closure.D_bg_stage1",
+          "D_bg_stage2": "phase9.closure.D_bg_stage2",
+          "D_bg_stage3": "phase9.closure.D_bg_stage3",
+          "D_aa_stage1": "phase9.closure.D_aa_stage1",
+          "D_aa_stage2": "phase9.closure.D_aa_stage2",
+          "D_aa_stage3": "phase9.closure.D_aa_stage3",
+          "D_at_stage1": "phase9.closure.D_at_stage1",
+          "D_at_stage2": "phase9.closure.D_at_stage2",
+          "D_at_stage3": "phase9.closure.D_at_stage3",
+          "D_total_stage1": "phase9.closure.D_total_stage1",
+          "D_total_stage2": "phase9.closure.D_total_stage2",
+          "D_total_stage3": "phase9.closure.D_total_stage3",
+          "E_bg_step": "phase9.closure.E_bg_step",
+          "E_aa_step": "phase9.closure.E_aa_step",
+          "E_at_step": "phase9.closure.E_at_step",
+          "E_obs_step": "phase9.closure.E_obs_step",
+          "E_total_independent_step": "phase9.closure.E_total_independent_step",
+          "R_time_step": "phase9.closure.R_time_step",
+          "R_time_cumulative": "phase9.closure.R_time_cumulative"
+        }
+      },
+      "hashes": {
+        "stage_closure.csv": "975edbb580e79aaf3e79c0e809ad408a795059c440d40c2eb850fb72f9afc164",
+        "step_closure.csv": "6b46dd818f68e7b5d0011f6c483b65ac2dfa46c2a2f5784f7aa0f1eccb987b7f",
+        "run_summary.json": "2567a92a09fb656a660486e75bc3cd3c1584433a90ddeceef104d5b694ee5d7f"
+      },
+      "time_index_conventions_ref": "closure.time_index_conventions"
+    }
+  ],
+  "source_assets": [
+    {
+      "asset_id": "closure.experiment_report.md",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/experiment_report.md",
+      "relative_path_from_closure": "experiment_report.md",
+      "category": "A_scientific_result_files",
+      "size_bytes": 6677,
+      "sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0",
+      "frozen_sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.temporal_refinement_summary.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/temporal_refinement_summary.csv",
+      "relative_path_from_closure": "temporal_refinement_summary.csv",
+      "category": "A_scientific_result_files",
+      "size_bytes": 3576,
+      "sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc",
+      "frozen_sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.temporal_slopes.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/temporal_slopes.csv",
+      "relative_path_from_closure": "temporal_slopes.csv",
+      "category": "A_scientific_result_files",
+      "size_bytes": 429,
+      "sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b",
+      "frozen_sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.audit_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/audit_summary.json",
+      "relative_path_from_closure": "audit_summary.json",
+      "category": "A_scientific_result_files",
+      "size_bytes": 9911,
+      "sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849",
+      "frozen_sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_02/stage_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_02/stage_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_02/stage_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 2310092,
+      "sha256": "cf2c151f8676cfbd8aaed4230037d7a7d3ce56a96a7f9cc19d270f3ee2c11034",
+      "frozen_sha256": "cf2c151f8676cfbd8aaed4230037d7a7d3ce56a96a7f9cc19d270f3ee2c11034",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_02",
+      "config": "D_u",
+      "CFL": 0.2,
+      "role": "stage_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_02/step_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_02/step_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_02/step_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 1863272,
+      "sha256": "8f5ac4314e8668c21a0b9b6f570243bf9ba57369527a6e7de94c309682fe04c0",
+      "frozen_sha256": "8f5ac4314e8668c21a0b9b6f570243bf9ba57369527a6e7de94c309682fe04c0",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_02",
+      "config": "D_u",
+      "CFL": 0.2,
+      "role": "step_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_01/stage_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_01/stage_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_01/stage_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 4621326,
+      "sha256": "37f91616566f59fd9a0d61385a64f4400aaec2accb586cfcbe17529b5d458487",
+      "frozen_sha256": "37f91616566f59fd9a0d61385a64f4400aaec2accb586cfcbe17529b5d458487",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_01",
+      "config": "D_u",
+      "CFL": 0.1,
+      "role": "stage_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_01/step_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_01/step_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_01/step_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 3734662,
+      "sha256": "2eaf3743ff6e3aab2831823d732a3ec9390c0e931f71c4f1c43bebbe1561663a",
+      "frozen_sha256": "2eaf3743ff6e3aab2831823d732a3ec9390c0e931f71c4f1c43bebbe1561663a",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_01",
+      "config": "D_u",
+      "CFL": 0.1,
+      "role": "step_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_005/stage_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_005/stage_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_005/stage_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 9257259,
+      "sha256": "2c9c960040f470a442bd45096ac951f5b01551f15810ef2dfc8f2c0514303d42",
+      "frozen_sha256": "2c9c960040f470a442bd45096ac951f5b01551f15810ef2dfc8f2c0514303d42",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_005",
+      "config": "D_u",
+      "CFL": 0.05,
+      "role": "stage_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_005/step_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_005/step_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_005/step_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 7441451,
+      "sha256": "c73957bf75da1c410bd8d864b8f7cb4a9f487a1cceffa547db0df00f1457815a",
+      "frozen_sha256": "c73957bf75da1c410bd8d864b8f7cb4a9f487a1cceffa547db0df00f1457815a",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_005",
+      "config": "D_u",
+      "CFL": 0.05,
+      "role": "step_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_0025/stage_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_0025/stage_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_0025/stage_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 18555881,
+      "sha256": "24de1c91e156e3bdc657618f0fbd2efedf9b933a439a7a9aacab0bbdef423aa8",
+      "frozen_sha256": "24de1c91e156e3bdc657618f0fbd2efedf9b933a439a7a9aacab0bbdef423aa8",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_0025",
+      "config": "D_u",
+      "CFL": 0.025,
+      "role": "stage_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_0025/step_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_0025/step_closure.csv",
+      "relative_path_from_closure": "outputs/Du_cfl_0025/step_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 14924038,
+      "sha256": "02755d4897a85684c5bf5aedfaf69f6fa79286b61412aeac258c1f292759648f",
+      "frozen_sha256": "02755d4897a85684c5bf5aedfaf69f6fa79286b61412aeac258c1f292759648f",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_0025",
+      "config": "D_u",
+      "CFL": 0.025,
+      "role": "step_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Bu_cfl_005/stage_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Bu_cfl_005/stage_closure.csv",
+      "relative_path_from_closure": "outputs/Bu_cfl_005/stage_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 8498611,
+      "sha256": "975edbb580e79aaf3e79c0e809ad408a795059c440d40c2eb850fb72f9afc164",
+      "frozen_sha256": "975edbb580e79aaf3e79c0e809ad408a795059c440d40c2eb850fb72f9afc164",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Bu_cfl_005",
+      "config": "B_u",
+      "CFL": 0.05,
+      "role": "stage_closure.csv"
+    },
+    {
+      "asset_id": "closure.outputs/Bu_cfl_005/step_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Bu_cfl_005/step_closure.csv",
+      "relative_path_from_closure": "outputs/Bu_cfl_005/step_closure.csv",
+      "category": "B_raw_per_stage_per_step_evidence",
+      "size_bytes": 6425445,
+      "sha256": "6b46dd818f68e7b5d0011f6c483b65ac2dfa46c2a2f5784f7aa0f1eccb987b7f",
+      "frozen_sha256": "6b46dd818f68e7b5d0011f6c483b65ac2dfa46c2a2f5784f7aa0f1eccb987b7f",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Bu_cfl_005",
+      "config": "B_u",
+      "CFL": 0.05,
+      "role": "step_closure.csv"
+    },
+    {
+      "asset_id": "closure.config.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/config.json",
+      "relative_path_from_closure": "config.json",
+      "category": "C_solver_method_identity_metadata",
+      "size_bytes": 3416,
+      "sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056",
+      "frozen_sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.imported_solver_hashes.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/imported_solver_hashes.json",
+      "relative_path_from_closure": "imported_solver_hashes.json",
+      "category": "C_solver_method_identity_metadata",
+      "size_bytes": 2872,
+      "sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771",
+      "frozen_sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/README.md",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/README.md",
+      "relative_path_from_closure": "FREEZE/README.md",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 2362,
+      "sha256": "aeb52b69a1c61db54f79eacd38c03e684060deae0b69c224c20eef99e98b65e5",
+      "frozen_sha256": "aeb52b69a1c61db54f79eacd38c03e684060deae0b69c224c20eef99e98b65e5",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/FREEZE_STATUS.txt",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/FREEZE_STATUS.txt",
+      "relative_path_from_closure": "FREEZE/FREEZE_STATUS.txt",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 622,
+      "sha256": "3b3d650293275f5787b88959a8c03e45bc27808e3f25ad149f758147d223e48f",
+      "frozen_sha256": "3b3d650293275f5787b88959a8c03e45bc27808e3f25ad149f758147d223e48f",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/verify_and_freeze.py",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/verify_and_freeze.py",
+      "relative_path_from_closure": "FREEZE/verify_and_freeze.py",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 18605,
+      "sha256": "d571373f95d4bbe079cec798281b74080cd793c71b2fd72e5a70b2c5dff9129a",
+      "frozen_sha256": "d571373f95d4bbe079cec798281b74080cd793c71b2fd72e5a70b2c5dff9129a",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/frozen_experiment_report.md",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_experiment_report.md",
+      "relative_path_from_closure": "FREEZE/frozen_experiment_report.md",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 6677,
+      "sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0",
+      "frozen_sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_temporal_refinement_summary.csv",
+      "relative_path_from_closure": "FREEZE/frozen_temporal_refinement_summary.csv",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 3576,
+      "sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc",
+      "frozen_sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/frozen_audit_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_audit_summary.json",
+      "relative_path_from_closure": "FREEZE/frozen_audit_summary.json",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 9911,
+      "sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849",
+      "frozen_sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/frozen_config.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_config.json",
+      "relative_path_from_closure": "FREEZE/frozen_config.json",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 3416,
+      "sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056",
+      "frozen_sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/frozen_imported_solver_hashes.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_imported_solver_hashes.json",
+      "relative_path_from_closure": "FREEZE/frozen_imported_solver_hashes.json",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 2872,
+      "sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771",
+      "frozen_sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/frozen_temporal_slopes.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_temporal_slopes.csv",
+      "relative_path_from_closure": "FREEZE/frozen_temporal_slopes.csv",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 429,
+      "sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b",
+      "frozen_sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.FREEZE/frozen_experiment_README.md",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_experiment_README.md",
+      "relative_path_from_closure": "FREEZE/frozen_experiment_README.md",
+      "category": "D_freeze_metadata_itself",
+      "size_bytes": 2902,
+      "sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b",
+      "frozen_sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.README.md",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/README.md",
+      "relative_path_from_closure": "README.md",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 2902,
+      "sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b",
+      "frozen_sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.run_entropy_budget_closure.py",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/run_entropy_budget_closure.py",
+      "relative_path_from_closure": "run_entropy_budget_closure.py",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 12245,
+      "sha256": "d43c0136ded283a7bfa408828d18c1eefbe424d98c34e1f6e77728c8f42ee54f",
+      "frozen_sha256": "d43c0136ded283a7bfa408828d18c1eefbe424d98c34e1f6e77728c8f42ee54f",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.analyze_entropy_budget_closure.py",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/analyze_entropy_budget_closure.py",
+      "relative_path_from_closure": "analyze_entropy_budget_closure.py",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 11489,
+      "sha256": "5a60d05928d978357ab43842136d4e4178532c4440bc7f9e4dec9d287b5b6423",
+      "frozen_sha256": "5a60d05928d978357ab43842136d4e4178532c4440bc7f9e4dec9d287b5b6423",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.finalize_when_done.py",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/finalize_when_done.py",
+      "relative_path_from_closure": "finalize_when_done.py",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1186,
+      "sha256": "c38d2806df80817c601f55752f0ec873c6bfb372fba571c259e7dcd7b2533c6d",
+      "frozen_sha256": "c38d2806df80817c601f55752f0ec873c6bfb372fba571c259e7dcd7b2533c6d",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED"
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_02/run_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_02/run_summary.json",
+      "relative_path_from_closure": "outputs/Du_cfl_02/run_summary.json",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1276,
+      "sha256": "a650f835a649b1086d7a53bcd9d8b82470b43f202b84ab58348a752cd7d30ee1",
+      "frozen_sha256": "a650f835a649b1086d7a53bcd9d8b82470b43f202b84ab58348a752cd7d30ee1",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_02",
+      "config": "D_u",
+      "CFL": 0.2
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_01/run_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_01/run_summary.json",
+      "relative_path_from_closure": "outputs/Du_cfl_01/run_summary.json",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1298,
+      "sha256": "66c90cfe22908ffed1ce5fe7add7256e83e01cfa5e874a9c3366bc63e5018e2b",
+      "frozen_sha256": "66c90cfe22908ffed1ce5fe7add7256e83e01cfa5e874a9c3366bc63e5018e2b",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_01",
+      "config": "D_u",
+      "CFL": 0.1
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_005/run_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_005/run_summary.json",
+      "relative_path_from_closure": "outputs/Du_cfl_005/run_summary.json",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1281,
+      "sha256": "d60177cd0d14c22b43ce1a03f409047e65eccd7cc8f87214ea4bf7a4efc9a1d4",
+      "frozen_sha256": "d60177cd0d14c22b43ce1a03f409047e65eccd7cc8f87214ea4bf7a4efc9a1d4",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_005",
+      "config": "D_u",
+      "CFL": 0.05
+    },
+    {
+      "asset_id": "closure.outputs/Du_cfl_0025/run_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_0025/run_summary.json",
+      "relative_path_from_closure": "outputs/Du_cfl_0025/run_summary.json",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1278,
+      "sha256": "6aaffff46f2f43a33b52689033bd1737b6a145137720351c09e81800de631efd",
+      "frozen_sha256": "6aaffff46f2f43a33b52689033bd1737b6a145137720351c09e81800de631efd",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Du_cfl_0025",
+      "config": "D_u",
+      "CFL": 0.025
+    },
+    {
+      "asset_id": "closure.outputs/Bu_cfl_005/run_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Bu_cfl_005/run_summary.json",
+      "relative_path_from_closure": "outputs/Bu_cfl_005/run_summary.json",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1209,
+      "sha256": "2567a92a09fb656a660486e75bc3cd3c1584433a90ddeceef104d5b694ee5d7f",
+      "frozen_sha256": "2567a92a09fb656a660486e75bc3cd3c1584433a90ddeceef104d5b694ee5d7f",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "run": "Bu_cfl_005",
+      "config": "B_u",
+      "CFL": 0.05
+    },
+    {
+      "asset_id": "closure.logs/Bu_005.stderr.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Bu_005.stderr.log",
+      "relative_path_from_closure": "logs/Bu_005.stderr.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Bu_005.stdout.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Bu_005.stdout.log",
+      "relative_path_from_closure": "logs/Bu_005.stdout.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 744,
+      "sha256": "720432ea85a04c15a7a59344890874b364fa012721c38efc69366737c3a56586",
+      "frozen_sha256": "720432ea85a04c15a7a59344890874b364fa012721c38efc69366737c3a56586",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_0025.stderr.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_0025.stderr.log",
+      "relative_path_from_closure": "logs/Du_0025.stderr.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_0025.stdout.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_0025.stdout.log",
+      "relative_path_from_closure": "logs/Du_0025.stdout.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1352,
+      "sha256": "555b679d6cfd404c78bc8d3d1692a403a12563bcade936855c49a2603b1008d3",
+      "frozen_sha256": "555b679d6cfd404c78bc8d3d1692a403a12563bcade936855c49a2603b1008d3",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_005.stderr.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_005.stderr.log",
+      "relative_path_from_closure": "logs/Du_005.stderr.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_005.stdout.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_005.stdout.log",
+      "relative_path_from_closure": "logs/Du_005.stdout.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 744,
+      "sha256": "da11b7caafcdd84d2fe1986de46e9d1b51f1fbe2da092825391c1d21452ffe0b",
+      "frozen_sha256": "da11b7caafcdd84d2fe1986de46e9d1b51f1fbe2da092825391c1d21452ffe0b",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_010.stderr.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_010.stderr.log",
+      "relative_path_from_closure": "logs/Du_010.stderr.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_010.stdout.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_010.stdout.log",
+      "relative_path_from_closure": "logs/Du_010.stdout.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 448,
+      "sha256": "32b97997badc16ccdec7926ed9663d0c6a481ed0b7bd204d2c5f3bdf6d23959a",
+      "frozen_sha256": "32b97997badc16ccdec7926ed9663d0c6a481ed0b7bd204d2c5f3bdf6d23959a",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_020.stderr.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_020.stderr.log",
+      "relative_path_from_closure": "logs/Du_020.stderr.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/Du_020.stdout.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_020.stdout.log",
+      "relative_path_from_closure": "logs/Du_020.stdout.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 334,
+      "sha256": "3628d4827a88d6410e2e562df86a2e559a1000bac4b1132234c42b79f1faad1f",
+      "frozen_sha256": "3628d4827a88d6410e2e562df86a2e559a1000bac4b1132234c42b79f1faad1f",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/finalizer.stderr.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/finalizer.stderr.log",
+      "relative_path_from_closure": "logs/finalizer.stderr.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/finalizer.stdout.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/finalizer.stdout.log",
+      "relative_path_from_closure": "logs/finalizer.stdout.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/finalizer_status.log",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/finalizer_status.log",
+      "relative_path_from_closure": "logs/finalizer_status.log",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 597,
+      "sha256": "c983600639522845709633f2485e37e730beec70d5227abc4db77566ec1e6c3e",
+      "frozen_sha256": "c983600639522845709633f2485e37e730beec70d5227abc4db77566ec1e6c3e",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/preflight_Du_cfl_0199/run_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/run_summary.json",
+      "relative_path_from_closure": "logs/preflight_Du_cfl_0199/run_summary.json",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1297,
+      "sha256": "600387b160d01869b3e28644af97edc021d8f4be785009c8cd593f601f2da9c6",
+      "frozen_sha256": "600387b160d01869b3e28644af97edc021d8f4be785009c8cd593f601f2da9c6",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/preflight_Du_cfl_0199/stage_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/stage_closure.csv",
+      "relative_path_from_closure": "logs/preflight_Du_cfl_0199/stage_closure.csv",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 3321,
+      "sha256": "e88a091a2150dae999d51c008b80aa4375572ff2d8c18bacfd61ad7a7618f362",
+      "frozen_sha256": "e88a091a2150dae999d51c008b80aa4375572ff2d8c18bacfd61ad7a7618f362",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/preflight_Du_cfl_0199/step_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/step_closure.csv",
+      "relative_path_from_closure": "logs/preflight_Du_cfl_0199/step_closure.csv",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 3010,
+      "sha256": "2879e81df386d23dbfdeccbd769076756a00f4387fca010d5fa70c5a4018b731",
+      "frozen_sha256": "2879e81df386d23dbfdeccbd769076756a00f4387fca010d5fa70c5a4018b731",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/preflight_Du_cfl_02/run_summary.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/run_summary.json",
+      "relative_path_from_closure": "logs/preflight_Du_cfl_02/run_summary.json",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 1318,
+      "sha256": "dc14487fef68fead3649cfea7ad47f41a3af2bbefb444a333c14728f395d80a7",
+      "frozen_sha256": "dc14487fef68fead3649cfea7ad47f41a3af2bbefb444a333c14728f395d80a7",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/preflight_Du_cfl_02/stage_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/stage_closure.csv",
+      "relative_path_from_closure": "logs/preflight_Du_cfl_02/stage_closure.csv",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 3351,
+      "sha256": "888c0724dc3131998b383553cd8c02a9596c3741f6de644fadd2e71c8ef92c0a",
+      "frozen_sha256": "888c0724dc3131998b383553cd8c02a9596c3741f6de644fadd2e71c8ef92c0a",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.logs/preflight_Du_cfl_02/step_closure.csv",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/step_closure.csv",
+      "relative_path_from_closure": "logs/preflight_Du_cfl_02/step_closure.csv",
+      "category": "execution_logs_and_metadata",
+      "size_bytes": 2993,
+      "sha256": "ddc02a200a6d7d39b47951201085c5e3d8403d12bf5fcb735bf59b8dbfd7c607",
+      "frozen_sha256": "ddc02a200a6d7d39b47951201085c5e3d8403d12bf5fcb735bf59b8dbfd7c607",
+      "hash_match": true,
+      "size_match": true,
+      "verification": "FROZEN_VERIFIED",
+      "role": "preflight_or_log"
+    },
+    {
+      "asset_id": "closure.FREEZE/FREEZE_MANIFEST.json",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/FREEZE_MANIFEST.json",
+      "relative_path_from_closure": "FREEZE/FREEZE_MANIFEST.json",
+      "category": "freeze_authority",
+      "size_bytes": 17593,
+      "sha256": "578b88266a9e84afbd17c8a9f34897d52561bd84243fc787dfe1015ff5cb22ab",
+      "verification": "FROZEN_VERIFIED",
+      "note": "Manifest hash checked against frozen checksum list."
+    },
+    {
+      "asset_id": "closure.FREEZE/FREEZE_HASHES.sha256",
+      "path": "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/FREEZE_HASHES.sha256",
+      "relative_path_from_closure": "FREEZE/FREEZE_HASHES.sha256",
+      "category": "freeze_authority",
+      "size_bytes": 5429,
+      "sha256": "cf7f0962ba608f6634047f092fcb77bf3515443f159771579398770e1d3490f6",
+      "verification": "VERIFIED_NOT_FROZEN",
+      "note": "Checksum list deliberately excludes its own hash; SHA-256 recorded by Phase9 audit."
+    }
+  ],
+  "units": {
+    "model_entropy": {
+      "id": "model_entropy",
+      "system": "MODEL",
+      "quantity": "domain-integrated mathematical entropy",
+      "label": "model integrated entropy",
+      "si_mapping": {
+        "state": "UNKNOWN",
+        "reason": "Frozen source supplies model values without established SI conversion; do not label J."
+      }
+    },
+    "model_entropy_rate": {
+      "id": "model_entropy_rate",
+      "system": "MODEL",
+      "quantity": "domain-integrated mathematical entropy rate",
+      "label": "model integrated entropy / model time",
+      "si_mapping": {
+        "state": "UNKNOWN",
+        "reason": "No established SI conversion."
+      }
+    },
+    "model_time": {
+      "id": "model_time",
+      "system": "MODEL",
+      "quantity": "time",
+      "label": "model time",
+      "si_mapping": {
+        "state": "UNKNOWN",
+        "reason": "No established SI conversion."
+      }
+    },
+    "dimensionless": {
+      "id": "dimensionless",
+      "system": "DIMENSIONLESS",
+      "quantity": "ratio or coefficient",
+      "label": "dimensionless",
+      "si_mapping": {
+        "state": "NOT_APPLICABLE",
+        "reason": "Dimensionless ratio/coefficient."
+      }
+    },
+    "count": {
+      "id": "count",
+      "system": "DIMENSIONLESS",
+      "quantity": "integer index or count",
+      "label": "count/index",
+      "si_mapping": {
+        "state": "NOT_APPLICABLE",
+        "reason": "Discrete index/count."
+      }
+    }
+  },
+  "definitions": {
+    "G": {
+      "definition_id": "phase9.closure.G",
+      "source_field": "G",
+      "definition": "cell_volume * sum(entropy_variables(U_stage) * actual finite_volume_rhs(U_stage)); actual FV RHS contraction, not minus an assumed observer rate.",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "D_bg": {
+      "definition_id": "phase9.closure.D_bg",
+      "source_field": "D_bg",
+      "definition": "Independent observer background production rate: dy*sum(pi_bg on unique periodic +x faces) + dx*sum(pi_bg on unique periodic +y faces).",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "D_aa": {
+      "definition_id": "phase9.closure.D_aa",
+      "source_field": "D_aa",
+      "definition": "Independent observer acoustic production rate: dy*sum(pi_aa on unique periodic +x faces) + dx*sum(pi_aa on unique periodic +y faces).",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "D_at": {
+      "definition_id": "phase9.closure.D_at",
+      "source_field": "D_at",
+      "definition": "Independent observer tangential production rate: dy*sum(pi_at on unique periodic +x faces) + dx*sum(pi_at on unique periodic +y faces).",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "D_total": {
+      "definition_id": "phase9.closure.D_total",
+      "source_field": "D_total",
+      "definition": "Observer independent total quadratic production form, integrated over unique periodic faces; not replaced by the sum of channel rates.",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "R_SD": {
+      "definition_id": "phase9.closure.R_SD",
+      "source_field": "R_SD",
+      "definition": "G + D_total",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "eps_SD": {
+      "definition_id": "phase9.closure.eps_SD",
+      "source_field": "eps_SD",
+      "definition": "abs(R_SD)/(abs(G)+abs(D_total)+eps0), eps0=2.2250738585072014e-308",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "dimensionless",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "R_decomp": {
+      "definition_id": "phase9.closure.R_decomp",
+      "source_field": "R_decomp",
+      "definition": "D_total - (D_bg+D_aa+D_at)",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "S_n": {
+      "definition_id": "phase9.closure.S_n",
+      "source_field": "S_n",
+      "definition": "S(U_n) = cell_volume*sum(-rho*(log(p)-gamma*log(rho))/(gamma-1)), gamma=1.4; single actual state mathematical entropy.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy",
+      "time_rule": "Value refers to time_n, the start of the accepted-step interval; preserve that alongside endpoint series convention.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "S_np1": {
+      "definition_id": "phase9.closure.S_np1",
+      "source_field": "S_np1",
+      "definition": "Same S(U) definition evaluated on the actual accepted updated state U_np1.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy",
+      "time_rule": "Value refers to recorded time_np1.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "DeltaS": {
+      "definition_id": "phase9.closure.DeltaS",
+      "source_field": "DeltaS",
+      "definition": "S_np1 - S_n; actual entropy change of one accepted step, not total DeltaS(T).",
+      "sampling": "PER_STEP",
+      "accumulation": "STEP_INCREMENT",
+      "unit_ref": "model_entropy",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "E_bg_step": {
+      "definition_id": "phase9.closure.E_bg_step",
+      "source_field": "E_bg_step",
+      "definition": "dt*(D_bg_stage1/6 + D_bg_stage2/6 + 2*D_bg_stage3/3); SSP-RK3 stage-weighted observer increment.",
+      "sampling": "PER_STEP",
+      "accumulation": "STAGE_WEIGHTED_INCREMENT",
+      "unit_ref": "model_entropy",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "value_role": "STEP_INCREMENT",
+      "not_cumulative": true
+    },
+    "E_aa_step": {
+      "definition_id": "phase9.closure.E_aa_step",
+      "source_field": "E_aa_step",
+      "definition": "dt*(D_aa_stage1/6 + D_aa_stage2/6 + 2*D_aa_stage3/3); SSP-RK3 stage-weighted observer increment.",
+      "sampling": "PER_STEP",
+      "accumulation": "STAGE_WEIGHTED_INCREMENT",
+      "unit_ref": "model_entropy",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "value_role": "STEP_INCREMENT",
+      "not_cumulative": true
+    },
+    "E_at_step": {
+      "definition_id": "phase9.closure.E_at_step",
+      "source_field": "E_at_step",
+      "definition": "dt*(D_at_stage1/6 + D_at_stage2/6 + 2*D_at_stage3/3); SSP-RK3 stage-weighted observer increment.",
+      "sampling": "PER_STEP",
+      "accumulation": "STAGE_WEIGHTED_INCREMENT",
+      "unit_ref": "model_entropy",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "value_role": "STEP_INCREMENT",
+      "not_cumulative": true
+    },
+    "E_obs_step": {
+      "definition_id": "phase9.closure.E_obs_step",
+      "source_field": "E_obs_step",
+      "definition": "E_bg_step + E_aa_step + E_at_step; channel-attributed total observer increment.",
+      "sampling": "PER_STEP",
+      "accumulation": "STAGE_WEIGHTED_INCREMENT",
+      "unit_ref": "model_entropy",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "value_role": "STEP_INCREMENT",
+      "not_cumulative": true
+    },
+    "E_total_independent_step": {
+      "definition_id": "phase9.closure.E_total_independent_step",
+      "source_field": "E_total_independent_step",
+      "definition": "dt*(D_total_stage1/6 + D_total_stage2/6 + 2*D_total_stage3/3); independently weighted total quadratic form.",
+      "sampling": "PER_STEP",
+      "accumulation": "STAGE_WEIGHTED_INCREMENT",
+      "unit_ref": "model_entropy",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "value_role": "STEP_INCREMENT",
+      "not_cumulative": true
+    },
+    "R_time_step": {
+      "definition_id": "phase9.closure.R_time_step",
+      "source_field": "R_time_step",
+      "definition": "DeltaS + E_obs_step; residual of this accepted step.",
+      "sampling": "PER_STEP",
+      "accumulation": "STEP_INCREMENT",
+      "unit_ref": "model_entropy",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "distinct_from": "R_time_cumulative",
+      "exact_entropy_identity": false
+    },
+    "R_time_cumulative": {
+      "definition_id": "phase9.closure.R_time_cumulative",
+      "source_field": "R_time_cumulative",
+      "definition": "S_np1 - S0 + sum_channels(sum_accepted_steps_to_current(E_channel_step)); the logger accumulates channels separately then sums them. Retain the recorded value, do not substitute a cumulative sum of R_time_step with different rounding.",
+      "sampling": "PER_STEP",
+      "accumulation": "TRAJECTORY_INTEGRATED",
+      "unit_ref": "model_entropy",
+      "time_rule": "Recorded current endpoint time_np1; accumulation from t=0 through that endpoint.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "recorded_column": true,
+      "distinct_from": "R_time_step",
+      "exact_entropy_identity": false
+    },
+    "D_bg_stage1": {
+      "definition_id": "phase9.closure.D_bg_stage1",
+      "source_field": "D_bg_stage1",
+      "definition": "D_bg from source stage 1, canonical stage 0, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 1,
+      "canonical_stage_index": 0,
+      "not_cumulative": true
+    },
+    "D_bg_stage2": {
+      "definition_id": "phase9.closure.D_bg_stage2",
+      "source_field": "D_bg_stage2",
+      "definition": "D_bg from source stage 2, canonical stage 1, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 2,
+      "canonical_stage_index": 1,
+      "not_cumulative": true
+    },
+    "D_bg_stage3": {
+      "definition_id": "phase9.closure.D_bg_stage3",
+      "source_field": "D_bg_stage3",
+      "definition": "D_bg from source stage 3, canonical stage 2, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 3,
+      "canonical_stage_index": 2,
+      "not_cumulative": true
+    },
+    "D_aa_stage1": {
+      "definition_id": "phase9.closure.D_aa_stage1",
+      "source_field": "D_aa_stage1",
+      "definition": "D_aa from source stage 1, canonical stage 0, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 1,
+      "canonical_stage_index": 0,
+      "not_cumulative": true
+    },
+    "D_aa_stage2": {
+      "definition_id": "phase9.closure.D_aa_stage2",
+      "source_field": "D_aa_stage2",
+      "definition": "D_aa from source stage 2, canonical stage 1, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 2,
+      "canonical_stage_index": 1,
+      "not_cumulative": true
+    },
+    "D_aa_stage3": {
+      "definition_id": "phase9.closure.D_aa_stage3",
+      "source_field": "D_aa_stage3",
+      "definition": "D_aa from source stage 3, canonical stage 2, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 3,
+      "canonical_stage_index": 2,
+      "not_cumulative": true
+    },
+    "D_at_stage1": {
+      "definition_id": "phase9.closure.D_at_stage1",
+      "source_field": "D_at_stage1",
+      "definition": "D_at from source stage 1, canonical stage 0, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 1,
+      "canonical_stage_index": 0,
+      "not_cumulative": true
+    },
+    "D_at_stage2": {
+      "definition_id": "phase9.closure.D_at_stage2",
+      "source_field": "D_at_stage2",
+      "definition": "D_at from source stage 2, canonical stage 1, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 2,
+      "canonical_stage_index": 1,
+      "not_cumulative": true
+    },
+    "D_at_stage3": {
+      "definition_id": "phase9.closure.D_at_stage3",
+      "source_field": "D_at_stage3",
+      "definition": "D_at from source stage 3, canonical stage 2, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 3,
+      "canonical_stage_index": 2,
+      "not_cumulative": true
+    },
+    "D_total_stage1": {
+      "definition_id": "phase9.closure.D_total_stage1",
+      "source_field": "D_total_stage1",
+      "definition": "D_total from source stage 1, canonical stage 0, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 1,
+      "canonical_stage_index": 0,
+      "not_cumulative": true
+    },
+    "D_total_stage2": {
+      "definition_id": "phase9.closure.D_total_stage2",
+      "source_field": "D_total_stage2",
+      "definition": "D_total from source stage 2, canonical stage 1, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 2,
+      "canonical_stage_index": 1,
+      "not_cumulative": true
+    },
+    "D_total_stage3": {
+      "definition_id": "phase9.closure.D_total_stage3",
+      "source_field": "D_total_stage3",
+      "definition": "D_total from source stage 3, canonical stage 2, in the containing accepted step; exact copied stage diagnostic.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy_rate",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "source_stage_index": 3,
+      "canonical_stage_index": 2,
+      "not_cumulative": true
+    },
+    "step": {
+      "definition_id": "phase9.closure.step",
+      "source_field": "step",
+      "definition": "Completed accepted-step index; source and canonical both 1..N; shared by stage and step rows.",
+      "sampling": "PER_STAGE|PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "count",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "stage": {
+      "definition_id": "phase9.closure.stage",
+      "source_field": "stage",
+      "definition": "Source RHS call order 1/2/3; preserve source_stage_index; canonical stage_index=source-1.",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "count",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "t_stage_or_step_time": {
+      "definition_id": "phase9.closure.t_stage_or_step_time",
+      "source_field": "t_stage_or_step_time",
+      "definition": "Original recorded containing-step start time; common to all three stages.",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "model_time",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "dt": {
+      "definition_id": "phase9.closure.dt",
+      "source_field": "dt",
+      "definition": "Recorded fixed accepted-step duration T/N.",
+      "sampling": "PER_STAGE|PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_time",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "time_n": {
+      "definition_id": "phase9.closure.time_n",
+      "source_field": "time_n",
+      "definition": "Recorded containing accepted-step start time.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_time",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "time_np1": {
+      "definition_id": "phase9.closure.time_np1",
+      "source_field": "time_np1",
+      "definition": "Recorded accepted-step endpoint time.",
+      "sampling": "PER_STEP",
+      "accumulation": "NONE",
+      "unit_ref": "model_time",
+      "time_rule": "Accepted-step interval [time_n,time_np1]; endpoint convention time_np1 unless field specifies time_n.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "x_face_count": {
+      "definition_id": "phase9.closure.x_face_count",
+      "source_field": "x_face_count",
+      "definition": "Count of unique periodic +x faces in each observer evaluation = 128*128=16384.",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "count",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "y_face_count": {
+      "definition_id": "phase9.closure.y_face_count",
+      "source_field": "y_face_count",
+      "definition": "Count of unique periodic +y faces in each observer evaluation = 128*128=16384.",
+      "sampling": "PER_STAGE",
+      "accumulation": "NONE",
+      "unit_ref": "count",
+      "time_rule": "Original t_stage_or_step_time = containing accepted step time_n for all three stages; not a physical SSP-RK3 stage-state timestamp.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.run_entropy_budget_closure.py",
+        "closure.FREEZE/frozen_config.json",
+        "closure.FREEZE/frozen_experiment_report.md"
+      ],
+      "verification": "FROZEN_VERIFIED"
+    },
+    "S0": {
+      "definition_id": "phase9.closure.S0",
+      "source_field": "S0",
+      "definition": "Initial single state entropy S(U0).",
+      "sampling": "TERMINAL",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "ST": {
+      "definition_id": "phase9.closure.ST",
+      "source_field": "ST",
+      "definition": "Single actual final state entropy S(U(T)).",
+      "sampling": "TERMINAL",
+      "accumulation": "NONE",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "DeltaS_total": {
+      "definition_id": "phase9.closure.DeltaS_total",
+      "source_field": "DeltaS_total",
+      "definition": "ST-S0; full-trajectory actual state entropy change.",
+      "sampling": "TERMINAL",
+      "accumulation": "TRAJECTORY_INTEGRATED",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "E_bg_total": {
+      "definition_id": "phase9.closure.E_bg_total",
+      "source_field": "E_bg_total",
+      "definition": "Recorded terminal sum of all accepted E_bg_step increments.",
+      "sampling": "TERMINAL",
+      "accumulation": "TRAJECTORY_INTEGRATED",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "E_aa_total": {
+      "definition_id": "phase9.closure.E_aa_total",
+      "source_field": "E_aa_total",
+      "definition": "Recorded terminal sum of all accepted E_aa_step increments.",
+      "sampling": "TERMINAL",
+      "accumulation": "TRAJECTORY_INTEGRATED",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "E_at_total": {
+      "definition_id": "phase9.closure.E_at_total",
+      "source_field": "E_at_total",
+      "definition": "Recorded terminal sum of all accepted E_at_step increments.",
+      "sampling": "TERMINAL",
+      "accumulation": "TRAJECTORY_INTEGRATED",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "E_obs_total": {
+      "definition_id": "phase9.closure.E_obs_total",
+      "source_field": "E_obs_total",
+      "definition": "Recorded sum E_bg_total+E_aa_total+E_at_total.",
+      "sampling": "TERMINAL",
+      "accumulation": "TRAJECTORY_INTEGRATED",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "R_total": {
+      "definition_id": "phase9.closure.R_total",
+      "source_field": "R_total",
+      "definition": "DeltaS_total+E_obs_total; matches last recorded step R_time_cumulative; this is R(T).",
+      "sampling": "TERMINAL",
+      "accumulation": "TRAJECTORY_INTEGRATED",
+      "unit_ref": "model_entropy",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    },
+    "eps_time_total": {
+      "definition_id": "phase9.closure.eps_time_total",
+      "source_field": "eps_time_total",
+      "definition": "abs(R_total)/(abs(DeltaS_total)+abs(E_obs_total)+eps0).",
+      "sampling": "TERMINAL",
+      "accumulation": "NONE",
+      "unit_ref": "dimensionless",
+      "time_rule": "S0 refers to 0; other terminal quantities cover/end at T=10.",
+      "scope": "Canonical periodic Case7, first-order FV, 128x128; unique +x/+y faces including each periodic seam once.",
+      "source_asset_refs": [
+        "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+        "closure.FREEZE/frozen_audit_summary.json",
+        "closure.run_entropy_budget_closure.py"
+      ],
+      "verification": "FROZEN_VERIFIED",
+      "history_column": false
+    }
+  },
+  "time_index_conventions": {
+    "id": "closure.time_index_conventions",
+    "sampling": {
+      "stage": "PER_STAGE",
+      "step": "PER_STEP"
+    },
+    "source_step_index": "1-based completed accepted steps, 1..N, no initial CSV row; stage rows refer to the containing accepted step.",
+    "canonical_step_index": "source_step_index unchanged, 1..N; do not apply the Case8 source+1 mapping.",
+    "source_stage_index_convention": "ONE_BASED_RHS_CALL_ORDER: 1/2/3",
+    "canonical_stage_index_convention": "ZERO_BASED_RHS_CALL_ORDER: 0/1/2",
+    "stage_mapping": [
+      {
+        "source_stage_index": 1,
+        "stage_index": 0
+      },
+      {
+        "source_stage_index": 2,
+        "stage_index": 1
+      },
+      {
+        "source_stage_index": 3,
+        "stage_index": 2
+      }
+    ],
+    "point_index": "Canonical 0-based row ordinal within its history: stage row 3*(step-1)+(source_stage-1), step row step-1.",
+    "stage_physical_time": {
+      "state": "KNOWN",
+      "source_field": "t_stage_or_step_time",
+      "meaning": "Recorded containing step start time_n, common to all three stage rows. Preserve original value and explain clock semantics.",
+      "actual_stage_state_physical_time": "NOT_ESTABLISHED",
+      "synthetic_stage_times_allowed": false
+    },
+    "step_physical_time": {
+      "state": "KNOWN",
+      "source_field": "time_np1",
+      "interval": [
+        "time_n",
+        "time_np1"
+      ],
+      "S_n_value_time": "time_n"
+    },
+    "stage_interval_context": "May reference the associated recorded step interval by step index; no spatial/time interpolation.",
+    "snapshot_index": {
+      "state": "NOT_APPLICABLE",
+      "reason": "No saved spatial trajectory or snapshot stream."
+    }
+  },
+  "cumulative_field_inventory": {
+    "step_csv_recorded": [
+      "R_time_cumulative"
+    ],
+    "terminal_summary_recorded": [
+      "DeltaS_total",
+      "E_bg_total",
+      "E_aa_total",
+      "E_at_total",
+      "E_obs_total",
+      "R_total"
+    ],
+    "terminal_state_fields": [
+      "S0",
+      "ST"
+    ],
+    "normalised_terminal_residual": "eps_time_total",
+    "step_csv_missing_channel_cumulative_columns": [
+      "E_bg_cumulative",
+      "E_aa_cumulative",
+      "E_at_cumulative",
+      "E_obs_cumulative"
+    ],
+    "policy": "These cumulative channel histories are not recorded columns. Preserve E_*_step as increments. A future history can only be an explicitly validated adapter derivation from accepted-step increments, with original values, order, source hashes and terminal agreement; no frontend scientific accumulation.",
+    "rounding_policy": "Frozen logger accumulates each channel separately; preserve that accumulation order when verifying terminal totals. E_total_independent_step is separate from E_obs_step."
+  },
+  "refinement": {
+    "status": "PASS",
+    "run_ids": [
+      "D_u-cfl-0.2",
+      "D_u-cfl-0.1",
+      "D_u-cfl-0.05",
+      "D_u-cfl-0.025"
+    ],
+    "terminal_R_T": [
+      {
+        "run_id": "D_u-cfl-0.2",
+        "CFL": 0.2,
+        "steps": 3451,
+        "dt_eff": 0.0028977108084613156,
+        "R_T": -2.792197222323267e-07,
+        "csv_binding": {
+          "asset_id": "closure.outputs/Du_cfl_02/step_closure.csv",
+          "field": "R_time_cumulative",
+          "source_step_index": 3451
+        },
+        "frozen_binding": {
+          "asset_id": "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+          "field": "R_total",
+          "config": "D_u",
+          "CFL": 0.2
+        },
+        "raw_csv_matches_frozen": true
+      },
+      {
+        "run_id": "D_u-cfl-0.1",
+        "CFL": 0.1,
+        "steps": 6901,
+        "dt_eff": 0.0014490653528474134,
+        "R_T": -3.491851652270839e-08,
+        "csv_binding": {
+          "asset_id": "closure.outputs/Du_cfl_01/step_closure.csv",
+          "field": "R_time_cumulative",
+          "source_step_index": 6901
+        },
+        "frozen_binding": {
+          "asset_id": "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+          "field": "R_total",
+          "config": "D_u",
+          "CFL": 0.1
+        },
+        "raw_csv_matches_frozen": true
+      },
+      {
+        "run_id": "D_u-cfl-0.05",
+        "CFL": 0.05,
+        "steps": 13802,
+        "dt_eff": 0.0007245326764237067,
+        "R_T": -4.3648162861842366e-09,
+        "csv_binding": {
+          "asset_id": "closure.outputs/Du_cfl_005/step_closure.csv",
+          "field": "R_time_cumulative",
+          "source_step_index": 13802
+        },
+        "frozen_binding": {
+          "asset_id": "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+          "field": "R_total",
+          "config": "D_u",
+          "CFL": 0.05
+        },
+        "raw_csv_matches_frozen": true
+      },
+      {
+        "run_id": "D_u-cfl-0.025",
+        "CFL": 0.025,
+        "steps": 27603,
+        "dt_eff": 0.0003622794623772778,
+        "R_T": -5.456546325888212e-10,
+        "csv_binding": {
+          "asset_id": "closure.outputs/Du_cfl_0025/step_closure.csv",
+          "field": "R_time_cumulative",
+          "source_step_index": 27603
+        },
+        "frozen_binding": {
+          "asset_id": "closure.FREEZE/frozen_temporal_refinement_summary.csv",
+          "field": "R_total",
+          "config": "D_u",
+          "CFL": 0.025
+        },
+        "raw_csv_matches_frozen": true
+      }
+    ],
+    "pairwise_slopes": [
+      {
+        "CFL_coarse": 0.2,
+        "CFL_fine": 0.1,
+        "dt_eff_coarse": 0.0028977108084613156,
+        "dt_eff_fine": 0.0014490653528474134,
+        "abs_R_coarse": 2.792197222323267e-07,
+        "abs_R_fine": 3.491851652270839e-08,
+        "slope": 2.9999637884197288
+      },
+      {
+        "CFL_coarse": 0.1,
+        "CFL_fine": 0.05,
+        "dt_eff_coarse": 0.0014490653528474134,
+        "dt_eff_fine": 0.0007245326764237067,
+        "abs_R_coarse": 3.491851652270839e-08,
+        "abs_R_fine": 4.3648162861842366e-09,
+        "slope": 2.999999431211793
+      },
+      {
+        "CFL_coarse": 0.05,
+        "CFL_fine": 0.025,
+        "dt_eff_coarse": 0.0007245326764237067,
+        "dt_eff_fine": 0.0003622794623772778,
+        "abs_R_coarse": 4.3648162861842366e-09,
+        "abs_R_fine": 5.456546325888212e-10,
+        "slope": 3.000017724561341
+      }
+    ],
+    "global_slope": 2.9999942283876795,
+    "slope_source_assets": [
+      "closure.FREEZE/frozen_temporal_slopes.csv",
+      "closure.FREEZE/frozen_audit_summary.json"
+    ],
+    "slope_verification": "FROZEN_VERIFIED",
+    "slope_abscissa": "dt_eff (fixed dt=T/accepted_steps), not CFL alone",
+    "frozen_pairwise_definition": "log(abs(R_coarse)/abs(R_fine))/log(dt_eff_coarse/dt_eff_fine)",
+    "frozen_global_definition": "Existing frozen least-squares log-log slope of abs(R(T)) versus dt_eff; value read from frozen_audit_summary.json, not refitted in Phase9.",
+    "monotonic_absolute_residual_decrease_verified_from_csv": true,
+    "observed_near_third_order": true,
+    "floating_point_floor": false,
+    "new_fit_performed": false,
+    "frozen_summary_overwritten": false,
+    "future_adapter_slope_policy": "Bind existing frozen pairwise/global slopes to their source hashes and run set. Any different derivation must be explicitly labeled VERIFIED_DERIVATION, with inputs, formula, processing identity and checks; translate to DERIVED_VERIFIED for the frozen schema VerificationStatus. Never replace frozen summary."
+  },
+  "capabilities": {
+    "semi_discrete": {
+      "status": "SUPPORTED",
+      "delivery_status": "PLANNED",
+      "sampling": "PER_STAGE"
+    },
+    "fully_discrete": {
+      "status": "SUPPORTED",
+      "delivery_status": "PLANNED",
+      "sampling": "PER_STEP"
+    },
+    "refinement": {
+      "status": "SUPPORTED",
+      "delivery_status": "PLANNED",
+      "run_scope": "D_u four stored CFL values only"
+    },
+    "flow": {
+      "status": "MISSING",
+      "trajectory_replay_status": "UNSUPPORTED",
+      "flow_tab_visible": false,
+      "reason": "Closure production outputs contain stage/step scalar CSV and run summaries; no spatial state trajectory is saved.",
+      "visible_tabs": [
+        "Overview",
+        "Semi-discrete",
+        "Fully-discrete",
+        "Evidence"
+      ],
+      "unsupported_deep_link_behavior": "EXPLAIN",
+      "forbidden_substitutions": [
+        "Case7 vortex field",
+        "Case8 field",
+        "Any other CFL spatial field"
+      ]
+    },
+    "allocation": {
+      "status": "UNSUPPORTED",
+      "reason": "No saved spatial map or trajectory."
+    },
+    "spectrum": {
+      "status": "UNSUPPORTED"
+    },
+    "validation": {
+      "status": "SUPPORTED",
+      "scope": "closure/refinement audit, not modal validation"
+    },
+    "provenance": {
+      "status": "SUPPORTED"
+    }
+  },
+  "scientific_claim_boundary": {
+    "supported": "Actual FV RHS entropy contraction and independent observer production achieve measured floating-point semi-discrete closure in the frozen periodic first-order Case7 protocol.",
+    "fully_discrete": "R_time_step and R_time_cumulative measure temporal residuals; they are not exact identities. Existing D_u temporal refinement approaches actual discrete state entropy change with observed slope near 3.",
+    "state_entropy": "DeltaS is one actual state entropy change; E_bg/E_aa/E_at attribute interface production and are not separate state entropies.",
+    "forbidden_claims": [
+      "SSP-RK3 establishes a new fully-discrete entropy theorem.",
+      "All time integrators have the same property.",
+      "Closure applies to all boundary conditions.",
+      "Exact fully-discrete entropy identity.",
+      "Universal entropy stability or physical-performance claims."
+    ],
+    "source_asset_refs": [
+      "closure.FREEZE/README.md",
+      "closure.FREEZE/frozen_experiment_report.md"
+    ]
+  },
+  "implementation_boundary": {
+    "next": "WINDOW1",
+    "allowed_next_scope": "Implement a source-bound Closure adapter against this audited map after Window0 ends; later API/UI slices must use frozen schema and IA.",
+    "adapter_requirements": [
+      "Explicit five-run registry; verify source hashes and immutable run identity before reading.",
+      "PER_STAGE and PER_STEP histories remain distinct.",
+      "Preserve every source index/clock and map source stages 1/2/3 to canonical 0/1/2.",
+      "Do not rename E_*_step to cumulative or combine temporal residual types.",
+      "B_u recorded zeros remain KNOWN,value:0; missing fields/assets remain MISSING with no zero-fill.",
+      "Bind refinement slopes to frozen assets or label VERIFIED_DERIVATION with full processing verification.",
+      "Source/code drift and raw-data drift are separate provenance conditions.",
+      "Flow remains MISSING with trajectory replay UNSUPPORTED, hidden Flow tab and explanatory deep-link handling."
+    ],
+    "not_done_in_this_window": [
+      "Adapter",
+      "API",
+      "Vue",
+      "CFD execution",
+      "New temporal fit",
+      "Scientific file changes"
+    ]
+  },
+  "verification": {
+    "status": "PASS",
+    "method": "All raw stage and step CSV rows read, fields checked and formulas recomputed; terminal outputs bound to hash-verified frozen assets.",
+    "run_count": 5,
+    "total_stage_rows": 196677,
+    "total_step_rows": 65559,
+    "frozen_manifest_entries_verified": 54,
+    "frozen_checksum_entries_verified": 55,
+    "manifest_hash_verified_by_checksum_list": true,
+    "checksum_list_self_hash_excluded_by_frozen_design": true,
+    "R_SD_identity_max_absolute_error": 0.0,
+    "max_abs_R_SD": 8.604228440844963e-16,
+    "max_eps_SD": 3.742752570252953e-15,
+    "stage_summary_statistic_comparison_absolute_tolerance": 1e-28,
+    "raw_formula_comparison_absolute_tolerance": 0.0,
+    "bu_recorded_zero_verified": true,
+    "refinement_terminal_csv_matches_frozen": true,
+    "source_drift_count": 0,
+    "source_identity_checks": [
+      {
+        "path": "D:/Paper/passage6/jcp_extension_v1/J2_entropy_diagnostics/J2D0_case7_integration/code/case7_entropy_observer.py",
+        "frozen_sha256": "d3d5e519b149872cb9c2f99a9e511fe7cfe76ba45a718ab5005242307f0374d5",
+        "current_sha256": "d3d5e519b149872cb9c2f99a9e511fe7cfe76ba45a718ab5005242307f0374d5",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/jcp_extension_v1/J2_entropy_diagnostics/diagnostics/channel_entropy_diagnostics.py",
+        "frozen_sha256": "dc893fd8401787fa34e82190586cc115c3793a06aa876c6c8d49fda99fe2d036",
+        "current_sha256": "dc893fd8401787fa34e82190586cc115c3793a06aa876c6c8d49fda99fe2d036",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/__init__.py",
+        "frozen_sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8",
+        "current_sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/cases/__init__.py",
+        "frozen_sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf",
+        "current_sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/cases/isentropic_vortex.py",
+        "frozen_sha256": "00000b5146cdfcf1cbedff8c7ab86f4a04cb242319f3cb76828f55929dd23656",
+        "current_sha256": "00000b5146cdfcf1cbedff8c7ab86f4a04cb242319f3cb76828f55929dd23656",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/core/__init__.py",
+        "frozen_sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab",
+        "current_sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/core/boundary.py",
+        "frozen_sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86",
+        "current_sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/core/entropy.py",
+        "frozen_sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc",
+        "current_sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/core/euler.py",
+        "frozen_sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b",
+        "current_sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/core/explicit_ssprk.py",
+        "frozen_sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3",
+        "current_sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/core/finite_volume.py",
+        "frozen_sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46",
+        "current_sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/core/mesh.py",
+        "frozen_sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159",
+        "current_sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/diagnostics/__init__.py",
+        "frozen_sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4",
+        "current_sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/diagnostics/isentropic_vortex.py",
+        "frozen_sha256": "1262965d1503d77f980c64674466523ac3159dccfaf590342728883c1b8c7ff5",
+        "current_sha256": "1262965d1503d77f980c64674466523ac3159dccfaf590342728883c1b8c7ff5",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/experiments/__init__.py",
+        "frozen_sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b",
+        "current_sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/experiments/baseline_case7_production.py",
+        "frozen_sha256": "6be2316d695a6a07cbb5e508ca70a27b9af493c7f24e30be42ecbe63d8ee3b6e",
+        "current_sha256": "6be2316d695a6a07cbb5e508ca70a27b9af493c7f24e30be42ecbe63d8ee3b6e",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/experiments/corrected_grid_dispatcher.py",
+        "frozen_sha256": "b785c122fc26059027009d81ad43665e14716f702caa42662c2005d8c27fa1b7",
+        "current_sha256": "b785c122fc26059027009d81ad43665e14716f702caa42662c2005d8c27fa1b7",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/__init__.py",
+        "frozen_sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921",
+        "current_sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/ausm_plus_up.py",
+        "frozen_sha256": "0cb13d31eb3eb96e7811735d8eeac9c3f655619fcd1a97e36a93882247246089",
+        "current_sha256": "0cb13d31eb3eb96e7811735d8eeac9c3f655619fcd1a97e36a93882247246089",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/chandrashekar_es.py",
+        "frozen_sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586",
+        "current_sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/common.py",
+        "frozen_sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0",
+        "current_sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/cross_mode_ec_unified_v1.py",
+        "frozen_sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+        "current_sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/hllc.py",
+        "frozen_sha256": "3525117d25f414cbadafed2c35d0b43029f55e230ba6c94d55f800e900c144d8",
+        "current_sha256": "3525117d25f414cbadafed2c35d0b43029f55e230ba6c94d55f800e900c144d8",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/hlle.py",
+        "frozen_sha256": "717e84a6a595f6603f49578cc8d09a6f9b01126e242d67a16004e24bdcb6d47a",
+        "current_sha256": "717e84a6a595f6603f49578cc8d09a6f9b01126e242d67a16004e24bdcb6d47a",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/hllemcc.py",
+        "frozen_sha256": "46363ea89601526cbd7ec6e8ca3bff8cd236ad9b357107af3ad85388a443c71a",
+        "current_sha256": "46363ea89601526cbd7ec6e8ca3bff8cd236ad9b357107af3ad85388a443c71a",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/proposed_cross_mode.py",
+        "frozen_sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1",
+        "current_sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/registry.py",
+        "frozen_sha256": "8004e5196750eb56a7a93f808888c74ce42f7a5b9ad29c7e11463a8c98634f48",
+        "current_sha256": "8004e5196750eb56a7a93f808888c74ce42f7a5b9ad29c7e11463a8c98634f48",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/roe.py",
+        "frozen_sha256": "3cddb2bb99abbd10e9d5d3af189dc163c9af5255e517b17afea4f203b09c4d0f",
+        "current_sha256": "3cddb2bb99abbd10e9d5d3af189dc163c9af5255e517b17afea4f203b09c4d0f",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/rusanov.py",
+        "frozen_sha256": "339f704f073be012a87ff189c763466d1a5988fb55871f3e5bc0e2ccdefa1b30",
+        "current_sha256": "339f704f073be012a87ff189c763466d1a5988fb55871f3e5bc0e2ccdefa1b30",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/sos_v4.py",
+        "frozen_sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b",
+        "current_sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b",
+        "source_drift": false
+      },
+      {
+        "path": "D:/Paper/passage6/solver/fluxes/unbounded_cross_mode.py",
+        "frozen_sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c",
+        "current_sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c",
+        "source_drift": false
+      }
+    ],
+    "source_preservation": {
+      "status": "PASS",
+      "closure_tree_before_after_file_set_equal": true,
+      "compared_files": 89,
+      "closure_files_compared": 58,
+      "imported_scientific_source_files_compared": 31,
+      "all_before_after_sizes_and_sha256_equal": true,
+      "scientific_files_modified": false,
+      "scope": "All files under closure root, including logs and __pycache__, plus every frozen-config/imported-solver identity file; other scientific-root files were not written.",
+      "read_only_method": "Python stdlib read-only CSV/JSON/hash inspection; scientific scripts not imported or executed; python -B.",
+      "cfd_runs_started": 0
+    }
+  },
+  "limitations": [
+    "Evidence is limited to five frozen periodic Case7 first-order FV runs with SSP-RK3, T=10, 128x128.",
+    "No spatial state trajectory, no spatial stage data and no substitute fields from other experiments/runs.",
+    "Stage clock is a containing-step start label, not an independently recorded physical stage-state time.",
+    "Only R_time_cumulative is a recorded step-history cumulative column; channel cumulative values are frozen terminal totals.",
+    "Model units have no established SI mapping.",
+    "Adapter/API/UI delivery remains PLANNED; scientific source availability is not software implementation status.",
+    "Preflight/profiling runs in logs are excluded from scientific production registry.",
+    "Hash preservation check covers the complete Closure tree and identified imported solver sources; it is not a whole-scientific-root inventory."
+  ]
+}

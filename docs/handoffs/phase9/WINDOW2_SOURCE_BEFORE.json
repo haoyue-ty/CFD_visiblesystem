@@ -1,0 +1,358 @@
+{
+  "D:/Paper/passage6/experiments/entropy_budget_closure/__pycache__/analyze_entropy_budget_closure.cpython-312.pyc": {
+    "size_bytes": 19627,
+    "sha256": "bba52bc5c68ed76cfb95b6aeaa008d6cec74c02fad90b0b86374c511531acea6"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/__pycache__/run_entropy_budget_closure.cpython-312.pyc": {
+    "size_bytes": 19080,
+    "sha256": "2438168cccc5bc6b1e560eb7b0fb0cf13d946d18ead9a4cd61e971202a5c91ab"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/analyze_entropy_budget_closure.py": {
+    "size_bytes": 11489,
+    "sha256": "5a60d05928d978357ab43842136d4e4178532c4440bc7f9e4dec9d287b5b6423"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/audit_summary.json": {
+    "size_bytes": 9911,
+    "sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/config.json": {
+    "size_bytes": 3416,
+    "sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/experiment_report.md": {
+    "size_bytes": 6677,
+    "sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/finalize_when_done.py": {
+    "size_bytes": 1186,
+    "sha256": "c38d2806df80817c601f55752f0ec873c6bfb372fba571c259e7dcd7b2533c6d"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/FREEZE_HASHES.sha256": {
+    "size_bytes": 5429,
+    "sha256": "cf7f0962ba608f6634047f092fcb77bf3515443f159771579398770e1d3490f6"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/FREEZE_MANIFEST.json": {
+    "size_bytes": 17593,
+    "sha256": "578b88266a9e84afbd17c8a9f34897d52561bd84243fc787dfe1015ff5cb22ab"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/FREEZE_STATUS.txt": {
+    "size_bytes": 622,
+    "sha256": "3b3d650293275f5787b88959a8c03e45bc27808e3f25ad149f758147d223e48f"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_audit_summary.json": {
+    "size_bytes": 9911,
+    "sha256": "8c5bd1ec29664b33fbd176e3d38f5e8d021ce3e448c3941265525656ca2f9849"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_config.json": {
+    "size_bytes": 3416,
+    "sha256": "1539c115e401c6f72b505faabf44f673db3cebdc6688f42ccadacbba7ad30056"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_experiment_README.md": {
+    "size_bytes": 2902,
+    "sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_experiment_report.md": {
+    "size_bytes": 6677,
+    "sha256": "bdb884db42a6069cc1085769f62e41345b624ce75ab334e108787a1d760b77a0"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_imported_solver_hashes.json": {
+    "size_bytes": 2872,
+    "sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_temporal_refinement_summary.csv": {
+    "size_bytes": 3576,
+    "sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/frozen_temporal_slopes.csv": {
+    "size_bytes": 429,
+    "sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/README.md": {
+    "size_bytes": 2362,
+    "sha256": "aeb52b69a1c61db54f79eacd38c03e684060deae0b69c224c20eef99e98b65e5"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/FREEZE/verify_and_freeze.py": {
+    "size_bytes": 18605,
+    "sha256": "d571373f95d4bbe079cec798281b74080cd793c71b2fd72e5a70b2c5dff9129a"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/imported_solver_hashes.json": {
+    "size_bytes": 2872,
+    "sha256": "9c3ad3c2a52c1ae5e3cfcd3f9eb446ed7b9a53f0621f4183d15db4ad9434c771"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Bu_005.stderr.log": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Bu_005.stdout.log": {
+    "size_bytes": 744,
+    "sha256": "720432ea85a04c15a7a59344890874b364fa012721c38efc69366737c3a56586"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_0025.stderr.log": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_0025.stdout.log": {
+    "size_bytes": 1352,
+    "sha256": "555b679d6cfd404c78bc8d3d1692a403a12563bcade936855c49a2603b1008d3"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_005.stderr.log": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_005.stdout.log": {
+    "size_bytes": 744,
+    "sha256": "da11b7caafcdd84d2fe1986de46e9d1b51f1fbe2da092825391c1d21452ffe0b"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_010.stderr.log": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_010.stdout.log": {
+    "size_bytes": 448,
+    "sha256": "32b97997badc16ccdec7926ed9663d0c6a481ed0b7bd204d2c5f3bdf6d23959a"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_020.stderr.log": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/Du_020.stdout.log": {
+    "size_bytes": 334,
+    "sha256": "3628d4827a88d6410e2e562df86a2e559a1000bac4b1132234c42b79f1faad1f"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/finalizer.stderr.log": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/finalizer.stdout.log": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/finalizer_status.log": {
+    "size_bytes": 597,
+    "sha256": "c983600639522845709633f2485e37e730beec70d5227abc4db77566ec1e6c3e"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/run_summary.json": {
+    "size_bytes": 1297,
+    "sha256": "600387b160d01869b3e28644af97edc021d8f4be785009c8cd593f601f2da9c6"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/stage_closure.csv": {
+    "size_bytes": 3321,
+    "sha256": "e88a091a2150dae999d51c008b80aa4375572ff2d8c18bacfd61ad7a7618f362"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_0199/step_closure.csv": {
+    "size_bytes": 3010,
+    "sha256": "2879e81df386d23dbfdeccbd769076756a00f4387fca010d5fa70c5a4018b731"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/run_summary.json": {
+    "size_bytes": 1318,
+    "sha256": "dc14487fef68fead3649cfea7ad47f41a3af2bbefb444a333c14728f395d80a7"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/stage_closure.csv": {
+    "size_bytes": 3351,
+    "sha256": "888c0724dc3131998b383553cd8c02a9596c3741f6de644fadd2e71c8ef92c0a"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/logs/preflight_Du_cfl_02/step_closure.csv": {
+    "size_bytes": 2993,
+    "sha256": "ddc02a200a6d7d39b47951201085c5e3d8403d12bf5fcb735bf59b8dbfd7c607"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Bu_cfl_005/run_summary.json": {
+    "size_bytes": 1209,
+    "sha256": "2567a92a09fb656a660486e75bc3cd3c1584433a90ddeceef104d5b694ee5d7f"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Bu_cfl_005/stage_closure.csv": {
+    "size_bytes": 8498611,
+    "sha256": "975edbb580e79aaf3e79c0e809ad408a795059c440d40c2eb850fb72f9afc164"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Bu_cfl_005/step_closure.csv": {
+    "size_bytes": 6425445,
+    "sha256": "6b46dd818f68e7b5d0011f6c483b65ac2dfa46c2a2f5784f7aa0f1eccb987b7f"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_0025/run_summary.json": {
+    "size_bytes": 1278,
+    "sha256": "6aaffff46f2f43a33b52689033bd1737b6a145137720351c09e81800de631efd"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_0025/stage_closure.csv": {
+    "size_bytes": 18555881,
+    "sha256": "24de1c91e156e3bdc657618f0fbd2efedf9b933a439a7a9aacab0bbdef423aa8"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_0025/step_closure.csv": {
+    "size_bytes": 14924038,
+    "sha256": "02755d4897a85684c5bf5aedfaf69f6fa79286b61412aeac258c1f292759648f"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_005/run_summary.json": {
+    "size_bytes": 1281,
+    "sha256": "d60177cd0d14c22b43ce1a03f409047e65eccd7cc8f87214ea4bf7a4efc9a1d4"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_005/stage_closure.csv": {
+    "size_bytes": 9257259,
+    "sha256": "2c9c960040f470a442bd45096ac951f5b01551f15810ef2dfc8f2c0514303d42"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_005/step_closure.csv": {
+    "size_bytes": 7441451,
+    "sha256": "c73957bf75da1c410bd8d864b8f7cb4a9f487a1cceffa547db0df00f1457815a"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_01/run_summary.json": {
+    "size_bytes": 1298,
+    "sha256": "66c90cfe22908ffed1ce5fe7add7256e83e01cfa5e874a9c3366bc63e5018e2b"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_01/stage_closure.csv": {
+    "size_bytes": 4621326,
+    "sha256": "37f91616566f59fd9a0d61385a64f4400aaec2accb586cfcbe17529b5d458487"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_01/step_closure.csv": {
+    "size_bytes": 3734662,
+    "sha256": "2eaf3743ff6e3aab2831823d732a3ec9390c0e931f71c4f1c43bebbe1561663a"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_02/run_summary.json": {
+    "size_bytes": 1276,
+    "sha256": "a650f835a649b1086d7a53bcd9d8b82470b43f202b84ab58348a752cd7d30ee1"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_02/stage_closure.csv": {
+    "size_bytes": 2310092,
+    "sha256": "cf2c151f8676cfbd8aaed4230037d7a7d3ce56a96a7f9cc19d270f3ee2c11034"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/outputs/Du_cfl_02/step_closure.csv": {
+    "size_bytes": 1863272,
+    "sha256": "8f5ac4314e8668c21a0b9b6f570243bf9ba57369527a6e7de94c309682fe04c0"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/README.md": {
+    "size_bytes": 2902,
+    "sha256": "007f70413c0063609f4c7abeab60d775f10f0d2406dc9eb325b2e465752ad65b"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/run_entropy_budget_closure.py": {
+    "size_bytes": 12245,
+    "sha256": "d43c0136ded283a7bfa408828d18c1eefbe424d98c34e1f6e77728c8f42ee54f"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/temporal_refinement_summary.csv": {
+    "size_bytes": 3576,
+    "sha256": "d9cdb9479aac3b36ee81a622b032e28c8b0794b6517196ed0138ccd9167284fc"
+  },
+  "D:/Paper/passage6/experiments/entropy_budget_closure/temporal_slopes.csv": {
+    "size_bytes": 429,
+    "sha256": "25b992073c9bcf7d12df54808bd0111e5acc681ae076001060fe13d87fef1f1b"
+  },
+  "D:/Paper/passage6/jcp_extension_v1/J2_entropy_diagnostics/diagnostics/channel_entropy_diagnostics.py": {
+    "size_bytes": 6455,
+    "sha256": "dc893fd8401787fa34e82190586cc115c3793a06aa876c6c8d49fda99fe2d036"
+  },
+  "D:/Paper/passage6/jcp_extension_v1/J2_entropy_diagnostics/J2D0_case7_integration/code/case7_entropy_observer.py": {
+    "size_bytes": 3250,
+    "sha256": "d3d5e519b149872cb9c2f99a9e511fe7cfe76ba45a718ab5005242307f0374d5"
+  },
+  "D:/Paper/passage6/solver/__init__.py": {
+    "size_bytes": 47,
+    "sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8"
+  },
+  "D:/Paper/passage6/solver/cases/__init__.py": {
+    "size_bytes": 26,
+    "sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf"
+  },
+  "D:/Paper/passage6/solver/cases/isentropic_vortex.py": {
+    "size_bytes": 6448,
+    "sha256": "00000b5146cdfcf1cbedff8c7ab86f4a04cb242319f3cb76828f55929dd23656"
+  },
+  "D:/Paper/passage6/solver/core/__init__.py": {
+    "size_bytes": 85,
+    "sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab"
+  },
+  "D:/Paper/passage6/solver/core/boundary.py": {
+    "size_bytes": 3486,
+    "sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86"
+  },
+  "D:/Paper/passage6/solver/core/entropy.py": {
+    "size_bytes": 1800,
+    "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc"
+  },
+  "D:/Paper/passage6/solver/core/euler.py": {
+    "size_bytes": 4265,
+    "sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b"
+  },
+  "D:/Paper/passage6/solver/core/explicit_ssprk.py": {
+    "size_bytes": 2458,
+    "sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3"
+  },
+  "D:/Paper/passage6/solver/core/finite_volume.py": {
+    "size_bytes": 1185,
+    "sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46"
+  },
+  "D:/Paper/passage6/solver/core/mesh.py": {
+    "size_bytes": 927,
+    "sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159"
+  },
+  "D:/Paper/passage6/solver/diagnostics/__init__.py": {
+    "size_bytes": 40,
+    "sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4"
+  },
+  "D:/Paper/passage6/solver/diagnostics/isentropic_vortex.py": {
+    "size_bytes": 16650,
+    "sha256": "1262965d1503d77f980c64674466523ac3159dccfaf590342728883c1b8c7ff5"
+  },
+  "D:/Paper/passage6/solver/experiments/__init__.py": {
+    "size_bytes": 54,
+    "sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b"
+  },
+  "D:/Paper/passage6/solver/experiments/baseline_case7_production.py": {
+    "size_bytes": 21045,
+    "sha256": "6be2316d695a6a07cbb5e508ca70a27b9af493c7f24e30be42ecbe63d8ee3b6e"
+  },
+  "D:/Paper/passage6/solver/experiments/corrected_grid_dispatcher.py": {
+    "size_bytes": 29714,
+    "sha256": "b785c122fc26059027009d81ad43665e14716f702caa42662c2005d8c27fa1b7"
+  },
+  "D:/Paper/passage6/solver/fluxes/__init__.py": {
+    "size_bytes": 48,
+    "sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921"
+  },
+  "D:/Paper/passage6/solver/fluxes/ausm_plus_up.py": {
+    "size_bytes": 8461,
+    "sha256": "0cb13d31eb3eb96e7811735d8eeac9c3f655619fcd1a97e36a93882247246089"
+  },
+  "D:/Paper/passage6/solver/fluxes/chandrashekar_es.py": {
+    "size_bytes": 9002,
+    "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586"
+  },
+  "D:/Paper/passage6/solver/fluxes/common.py": {
+    "size_bytes": 3001,
+    "sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0"
+  },
+  "D:/Paper/passage6/solver/fluxes/cross_mode_ec_unified_v1.py": {
+    "size_bytes": 2813,
+    "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0"
+  },
+  "D:/Paper/passage6/solver/fluxes/hllc.py": {
+    "size_bytes": 2134,
+    "sha256": "3525117d25f414cbadafed2c35d0b43029f55e230ba6c94d55f800e900c144d8"
+  },
+  "D:/Paper/passage6/solver/fluxes/hlle.py": {
+    "size_bytes": 1453,
+    "sha256": "717e84a6a595f6603f49578cc8d09a6f9b01126e242d67a16004e24bdcb6d47a"
+  },
+  "D:/Paper/passage6/solver/fluxes/hllemcc.py": {
+    "size_bytes": 5748,
+    "sha256": "46363ea89601526cbd7ec6e8ca3bff8cd236ad9b357107af3ad85388a443c71a"
+  },
+  "D:/Paper/passage6/solver/fluxes/proposed_cross_mode.py": {
+    "size_bytes": 5582,
+    "sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1"
+  },
+  "D:/Paper/passage6/solver/fluxes/registry.py": {
+    "size_bytes": 12752,
+    "sha256": "8004e5196750eb56a7a93f808888c74ce42f7a5b9ad29c7e11463a8c98634f48"
+  },
+  "D:/Paper/passage6/solver/fluxes/roe.py": {
+    "size_bytes": 3205,
+    "sha256": "3cddb2bb99abbd10e9d5d3af189dc163c9af5255e517b17afea4f203b09c4d0f"
+  },
+  "D:/Paper/passage6/solver/fluxes/rusanov.py": {
+    "size_bytes": 1283,
+    "sha256": "339f704f073be012a87ff189c763466d1a5988fb55871f3e5bc0e2ccdefa1b30"
+  },
+  "D:/Paper/passage6/solver/fluxes/sos_v4.py": {
+    "size_bytes": 3626,
+    "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b"
+  },
+  "D:/Paper/passage6/solver/fluxes/unbounded_cross_mode.py": {
+    "size_bytes": 7556,
+    "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c"
+  }
+}

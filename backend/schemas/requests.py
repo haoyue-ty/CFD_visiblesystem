@@ -151,3 +151,16 @@ class ValidationQuery(RegistryQuery):
     """Path-only modal-validation run selector (24 registered Fig13 combinations)."""
 
     run_id: ID
+
+
+class ClosureRunQuery(RegistryQuery):
+    """The URL alone selects the complete frozen config/CFL combination."""
+
+    run_id: ID
+
+
+class ClosureHistoryQuery(ClosureRunQuery):
+    """HistoryQuery pagination bounds; granularity and saved columns are fixed."""
+
+    offset: NonNegativeInt = 0
+    limit: Annotated[Integer, Field(ge=1, le=5000)] = 2000

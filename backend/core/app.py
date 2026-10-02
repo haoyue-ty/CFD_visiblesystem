@@ -9,6 +9,7 @@ from backend.api.case8 import register_case8_operations
 from backend.api.cylinder import register_cylinder_operations
 from backend.api.crossflow import register_crossflow_operations
 from backend.api.content import register_content_operations
+from backend.api.closure import register_closure_operations
 from backend.api.catalog import OperationCatalog
 from backend.api.evidence import register_evidence_operations
 from backend.api.registry import register_registry_operations
@@ -27,6 +28,7 @@ _DEFAULT_ADAPTER = object()
 def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterProtocol | None | object = _DEFAULT_ADAPTER,
                allocation_adapter=_DEFAULT_ADAPTER, spectral_adapter=_DEFAULT_ADAPTER,
                cylinder_adapter=_DEFAULT_ADAPTER,
+               closure_adapter=_DEFAULT_ADAPTER,
                project: ProjectInfo | None = None,
                configure_catalog=None) -> Flask:
     settings = settings or Settings.from_env()
@@ -43,6 +45,9 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     if cylinder_adapter is _DEFAULT_ADAPTER:
         from backend.adapters.cylinder import CylinderAdapter
         cylinder_adapter = CylinderAdapter(settings.scientific_data_root) if settings.scientific_data_root else CylinderAdapter()
+    if closure_adapter is _DEFAULT_ADAPTER:
+        from backend.adapters.entropy_closure import EntropyClosureAdapter
+        closure_adapter = EntropyClosureAdapter(settings.scientific_data_root) if settings.scientific_data_root else EntropyClosureAdapter()
     app = Flask(__name__, static_folder=None)
     app.config.update(TESTING=False, JSON_SORT_KEYS=False)
     app.extensions["settings"] = settings
@@ -51,6 +56,8 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     app.extensions["spectral_service"] = SpectralServiceImpl(spectral_adapter)
     from backend.services.cylinder import CylinderService
     app.extensions["cylinder_service"] = CylinderService(cylinder_adapter)
+    from backend.services.closure import ClosureService
+    app.extensions["closure_service"] = ClosureService(closure_adapter)
     project = project or load_bootstrap_project()
     if project.account_extension.enabled:
         raise ValueError("Bootstrap project metadata must disable accounts")
@@ -66,21 +73,27 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
         project = project.model_copy(update={"experiments": [
             ref.model_copy(update={"delivery_status": "IMPLEMENTED"}) if ref.experiment_id == "cylinder" else ref
             for ref in project.experiments]})
+    if closure_adapter is not None:
+        project = project.model_copy(update={"experiments": [
+            ref.model_copy(update={"delivery_status": "IMPLEMENTED"}) if ref.experiment_id == "entropy-closure" else ref
+            for ref in project.experiments]})
     catalog = OperationCatalog()
     service = app.extensions["case8_service"]
     allocation_service = app.extensions["allocation_service"]
     spectral_service = app.extensions["spectral_service"]
     from backend.services.spectral_resources import ResultResourceRouter, SpectralResources
     from backend.services.cylinder_resources import CylinderResources
+    from backend.services.closure_resources import ClosureResources
     from backend.services.crossflow import ComparisonService
     cylinder_service = app.extensions["cylinder_service"]
+    closure_service = app.extensions["closure_service"]
     resources = ResultResourceRouter(service, SpectralResources(spectral_service), project,
-                                     CylinderResources(cylinder_service), allocation_service)
+                                     CylinderResources(cylinder_service), allocation_service, ClosureResources(closure_service))
     app.extensions["result_resources"] = resources
     comparison_service = ComparisonService(service, cylinder_service, allocation_service)
     app.extensions["comparison_service"] = comparison_service
     register_system_operations(catalog, project)
-    register_registry_operations(catalog, project, service, cylinder_service)
+    register_registry_operations(catalog, project, service, cylinder_service, closure_service)
     register_case8_operations(catalog, project, service)
     register_array_operations(catalog, project, resources)
     register_evidence_operations(catalog, project, resources, allocation_service)
@@ -95,6 +108,10 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     content_service = ContentService()
     app.extensions["content_service"] = content_service
     register_content_operations(catalog, content_service)
+    from backend.registry import closure_registry
+    closure_project = project.model_copy(update={"registry_revision": closure_registry.REGISTRY_REVISION,
+                                                 "data_revision": closure_registry.DATA_REVISION})
+    register_closure_operations(catalog, closure_project, closure_service)
     if configure_catalog is not None:
         configure_catalog(catalog, service)
     app.extensions["operation_catalog"] = catalog

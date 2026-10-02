@@ -112,18 +112,31 @@ def frozen_prerequisites() -> dict:
         ["git", "diff", "--name-only", BASE_COMMIT, "aaf478da6b9c6302f4843b7c76b5466b686b960a"],
         cwd=WORKTREE, text=True).splitlines())
     integrated_paths.add(".gitattributes")  # exact Phase5 CRLF checkout preservation
+    # Window2 Closure is authorized to evolve these shared software interfaces.
+    # The historical accepted archives, prerequisite hashes, scientific sources,
+    # and all other accepted files remain subject to the exact original checks.
+    closure_api_seams = {
+        "backend/api/evidence.py", "backend/api/registry.py", "backend/api/system.py",
+        "backend/core/app.py", "backend/schemas/requests.py", "backend/services/spectral_resources.py",
+        "config/openapi.json", "frontend/src/types/generated/api.d.ts", "tests/test_bootstrap.py",
+        "tests/window2_case8_api/conftest.py", "tests/window2_case8_api/test_case8_api_contract.py",
+    }
     normalized = []
     integration_changes = []
+    later_software_changes = []
     for item in phase7["accepted_files"]:
         previous, current = accepted_bytes[item["path"]], WORKTREE / item["path"]
         assert hashlib.sha256(previous).hexdigest() == item["sha256"], f"Accepted source changed: {item['path']}"
         baseline = subprocess.check_output(["git", "show", f"{BASE_COMMIT}:{item['path']}"], cwd=WORKTREE)
         assert previous.replace(b"\r\n", b"\n") == baseline.replace(b"\r\n", b"\n")
         if previous.replace(b"\r\n", b"\n") != current.read_bytes().replace(b"\r\n", b"\n"):
-            assert item["path"] in integrated_paths, f"Unapproved frozen slice change: {item['path']}"
+            assert item["path"] in integrated_paths | closure_api_seams, f"Unapproved frozen slice change: {item['path']}"
             if item["path"] != ".gitattributes":
                 delivered = subprocess.check_output(["git", "show", f"aaf478da6b9c6302f4843b7c76b5466b686b960a:{item['path']}"], cwd=WORKTREE)
-                assert current.read_bytes().replace(b"\r\n", b"\n") == delivered.replace(b"\r\n", b"\n")
+                if current.read_bytes().replace(b"\r\n", b"\n") != delivered.replace(b"\r\n", b"\n"):
+                    assert item["path"] in closure_api_seams, f"Unapproved later change: {item['path']}"
+                    later_software_changes.append({"path": item["path"], "accepted_phase8_sha256": hashlib.sha256(delivered).hexdigest(),
+                                                   "current_sha256": digest(current), "authorization": "Phase9B Window2 frozen CLO01–05 API integration"})
             integration_changes.append(item["path"])
             continue
         if digest(current) != item["sha256"]:
@@ -134,7 +147,8 @@ def frozen_prerequisites() -> dict:
             "phase7_manifest_sha256": digest(WORKTREE / "docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE_MANIFEST.json"),
             "checkout_line_ending_only_differences": normalized,
             "authorized_integration_changes": integration_changes,
-            "phase7_acceptance_semantics": "Original 161/161 SHA256 match; materialized baseline equals accepted text; shared integration seams match accepted Window1--3 delivery."}
+            "authorized_later_software_changes": later_software_changes,
+            "phase7_acceptance_semantics": "Original 161/161 SHA256 match; materialized baseline equals accepted text; Phase8 delivery is retained by Git and later Closure software seam observations are recorded separately."}
 
 
 def history_series(columns: list[str]) -> list[dict]:
