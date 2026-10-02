@@ -310,7 +310,17 @@ def test_scientific_sources_and_window1_adapter_bytes_preserved():
     before = json.loads((R.ROOT / "docs/handoffs/phase9/WINDOW1_SOURCE_BEFORE.json").read_text())
     assert all(Path(path).stat().st_size == item["size_bytes"] and hashlib.sha256(Path(path).read_bytes()).hexdigest() == item["sha256"]
                for path, item in before.items())
-    for name in ("backend/adapters/entropy_closure.py", "backend/registry/closure_registry.py", "backend/models/closure.py",
+    name = "backend/adapters/entropy_closure.py"
+    accepted = subprocess.check_output(["git", "show", f"31341e7:{name}"]).decode()
+    # Phase11 only removes the invented composite evidence hash. All scientific
+    # parsing, numeric outputs, arithmetic checks and freeze bindings stay exact.
+    accepted = accepted.replace(
+        '        data_inputs = sorted((asset["asset_id"], asset["sha256"]) for path, asset in R.ASSETS.items() if path in deps and path not in R.IMPORTED_METHODS)\n'
+        '        digest = hashlib.sha256(json.dumps(data_inputs, separators=(",", ":")).encode()).hexdigest()\n', '')
+    accepted = accepted.replace('"data_hash": known(digest)',
+        '"data_hash": unresolved("No authoritative composite data hash recorded")')
+    assert (R.ROOT / name).read_text() == accepted
+    for name in ("backend/registry/closure_registry.py", "backend/models/closure.py",
                  "data/closure/source_manifest.json", "docs/handoffs/phase9/PHASE9_CLOSURE_SOURCE_MAP.json"):
         assert (R.ROOT / name).read_bytes() == subprocess.check_output(["git", "show", f"31341e7:{name}"])
     assert not [name for name in sys.modules if name == "solver" or name.startswith("solver.")]

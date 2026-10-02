@@ -1,4 +1,5 @@
 from typing import Literal
+from pathlib import PureWindowsPath, PurePosixPath
 
 from pydantic import AwareDatetime, model_validator
 
@@ -35,6 +36,15 @@ class SourceAsset(CanonicalModel):
     verification: Verification
     canonical_selected: bool
     limitations: list[ScientificLimitation]
+
+    @model_validator(mode="after")
+    def controlled_relative_origin(self):
+        if self.relative_origin.root.state == "KNOWN":
+            origin = self.relative_origin.root.value
+            path = PureWindowsPath(origin)
+            if path.drive or path.is_absolute() or PurePosixPath(origin).is_absolute() or ".." in path.parts or ":" in origin:
+                raise ValueError("Public source origins must be controlled relative descriptions")
+        return self
 
 
 class SourceObservation(CanonicalModel):

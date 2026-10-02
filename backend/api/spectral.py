@@ -84,7 +84,7 @@ def register_spectral_operations(catalog: OperationCatalog, project: ProjectInfo
     common_errors = {
         400: ("INVALID_REQUEST",), 405: ("METHOD_NOT_ALLOWED",),
         404: ("UNKNOWN_SPECTRUM", "UNKNOWN_MODE", "MISSING_EIGENMODE", "MISSING_ASSET"),
-        409: ("REVISION_UNAVAILABLE",),
+        409: ("REVISION_UNAVAILABLE", "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ"),
         422: ("UNSUPPORTED_PARAMETER",),
         500: ("SOURCE_ERROR", "CANONICAL_SCHEMA_MISMATCH", "INTERNAL_ERROR"),
         503: ("FEATURE_NOT_ENABLED",),

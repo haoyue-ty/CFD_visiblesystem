@@ -92,11 +92,28 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     app.extensions["result_resources"] = resources
     comparison_service = ComparisonService(service, cylinder_service, allocation_service)
     app.extensions["comparison_service"] = comparison_service
+    from backend.services.evidence import EvidenceService
+    from backend.registry import cylinder_registry, closure_registry
+    from backend.registry import case8_allocation, spectral_registry
+    roots = {}
+    for adapter, assets in ((cylinder_adapter, cylinder_registry.ASSETS), (closure_adapter, closure_registry.ASSETS)):
+        if hasattr(adapter, "_root"):
+            roots.update({a["asset_id"]: adapter._root for a in assets.values()})
+    if hasattr(spectral_adapter, "_root"):
+        roots.update({a[0]: spectral_adapter._root for a in spectral_registry.ASSETS.values()})
+    if hasattr(allocation_adapter, "face"):
+        roots.update({a[0]: allocation_adapter.face._root for a in case8_allocation.ASSETS.values()})
+        for config in ("Acoustic", "Pressure", "Ungated"):
+            roots.update({a["asset_id"]: allocation_adapter.cell._root for a in allocation_adapter._gate_assets(config)})
+    evidence_service = EvidenceService(settings.scientific_data_root or getattr(case8_adapter, "_root", "D:/Paper/passage6"), roots=roots)
+    app.extensions["evidence_service"] = evidence_service
+    if isinstance(case8_adapter, Case8Adapter):
+        service.evidence_guard = evidence_service
     register_system_operations(catalog, project)
     register_registry_operations(catalog, project, service, cylinder_service, closure_service)
     register_case8_operations(catalog, project, service)
     register_array_operations(catalog, project, resources)
-    register_evidence_operations(catalog, project, resources, allocation_service)
+    register_evidence_operations(catalog, project, resources, allocation_service, evidence_service)
     register_allocation_operations(catalog, project, allocation_service)
     register_spectral_operations(catalog, project, spectral_service)
     from backend.registry import cylinder_registry as cylinder_registry

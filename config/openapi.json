@@ -2044,6 +2044,341 @@
         ]
       }
     },
+    "/api/v1/evidence": {
+      "get": {
+        "operationId": "EVI01",
+        "description": "Server-filtered CURRENT/GAPS/HISTORY evidence metadata; default limit 50, maximum 200. Frozen status filter is VerificationStatus; no arbitrary query fields.",
+        "tags": [
+          "evidence"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "EvidenceService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_EvidenceIndex_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "experiment_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Experiment Id"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "FROZEN_VERIFIED",
+                    "VERIFIED_NOT_FROZEN",
+                    "DERIVED_VERIFIED",
+                    "AVAILABLE_UNVERIFIED",
+                    "PARTIAL",
+                    "MISSING",
+                    "LEGACY",
+                    "SUPERSEDED",
+                    "NOT_APPLICABLE"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Status"
+            }
+          },
+          {
+            "name": "section",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "CURRENT",
+              "enum": [
+                "CURRENT",
+                "GAPS",
+                "HISTORY",
+                "ALL"
+              ],
+              "title": "Section",
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/assets/{asset_id}": {
+      "get": {
+        "operationId": "EVI04",
+        "description": "Registered public source-asset explanation and live hash facts. No file contents, locator or download.",
+        "tags": [
+          "evidence"
+        ],
+        "x-delivery-phase": "Alpha",
+        "x-service": "EvidenceService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_SourceAsset_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_ASSET_ID",
+            "x-error-codes": [
+              "UNKNOWN_ASSET_ID"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED",
+            "x-error-codes": [
+              "METHOD_NOT_ALLOWED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "REVISION_UNAVAILABLE",
+            "x-error-codes": [
+              "REVISION_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR",
+            "x-error-codes": [
+              "CANONICAL_SCHEMA_MISMATCH",
+              "INTERNAL_ERROR"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registry_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Registry Revision"
+            }
+          },
+          {
+            "name": "evidence_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Evidence Id"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "anyOf": [
+                {
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_.-]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Asset Id"
+            }
+          }
+        ]
+      }
+    },
     "/api/v1/evidence/{evidence_id}": {
       "get": {
         "operationId": "EVI02",
@@ -2422,9 +2757,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -2574,9 +2911,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -2737,9 +3076,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -2889,9 +3230,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -3066,9 +3409,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -3208,9 +3553,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -3361,9 +3708,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -3514,9 +3863,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -3676,9 +4027,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -3904,9 +4257,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -4046,9 +4401,11 @@
             }
           },
           "409": {
-            "description": "REVISION_UNAVAILABLE",
+            "description": "REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ",
             "x-error-codes": [
-              "REVISION_UNAVAILABLE"
+              "REVISION_UNAVAILABLE",
+              "SOURCE_DATA_DRIFT",
+              "SOURCE_CHANGED_DURING_READ"
             ],
             "content": {
               "application/json": {
@@ -14217,6 +14574,403 @@
         "title": "ArrayQuery",
         "type": "object"
       },
+      "AvailableEnvelope_EvidenceIndex_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EvidenceIndex"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[EvidenceIndex]",
+        "type": "object"
+      },
+      "EvidenceIndex": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceIndexItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageWindow"
+          }
+        },
+        "required": [
+          "items",
+          "page"
+        ],
+        "title": "EvidenceIndex",
+        "type": "object"
+      },
+      "PartialEnvelope_EvidenceIndex_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EvidenceIndex"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[EvidenceIndex]",
+        "type": "object"
+      },
+      "ApiEnvelope_EvidenceIndex_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_EvidenceIndex_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_EvidenceIndex_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_EvidenceIndex_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_EvidenceIndex_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[EvidenceIndex]"
+      },
+      "Input_EvidenceQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "experiment_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Experiment Id"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "enum": [
+                  "FROZEN_VERIFIED",
+                  "VERIFIED_NOT_FROZEN",
+                  "DERIVED_VERIFIED",
+                  "AVAILABLE_UNVERIFIED",
+                  "PARTIAL",
+                  "MISSING",
+                  "LEGACY",
+                  "SUPERSEDED",
+                  "NOT_APPLICABLE"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status"
+          },
+          "section": {
+            "default": "CURRENT",
+            "enum": [
+              "CURRENT",
+              "GAPS",
+              "HISTORY",
+              "ALL"
+            ],
+            "title": "Section",
+            "type": "string"
+          },
+          "offset": {
+            "default": 0,
+            "minimum": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "limit": {
+            "default": 50,
+            "maximum": 200,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "EvidenceQuery",
+        "type": "object"
+      },
+      "AvailableEnvelope_SourceAsset_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "AVAILABLE",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SourceAsset"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "maxItems": 0,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "AvailableEnvelope[SourceAsset]",
+        "type": "object"
+      },
+      "PartialEnvelope_SourceAsset_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "1.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "registry_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "data_revision": {
+            "$ref": "#/components/schemas/Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"
+          },
+          "availability": {
+            "const": "PARTIAL",
+            "title": "Availability",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SourceAsset"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorBody"
+            },
+            "minItems": 1,
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "registry_revision",
+          "data_revision",
+          "availability",
+          "data",
+          "issues"
+        ],
+        "title": "PartialEnvelope[SourceAsset]",
+        "type": "object"
+      },
+      "ApiEnvelope_SourceAsset_": {
+        "discriminator": {
+          "mapping": {
+            "AVAILABLE": "#/components/schemas/AvailableEnvelope_SourceAsset_",
+            "ERROR": "#/components/schemas/FailedEnvelope",
+            "MISSING": "#/components/schemas/FailedEnvelope",
+            "PARTIAL": "#/components/schemas/PartialEnvelope_SourceAsset_",
+            "UNSUPPORTED": "#/components/schemas/FailedEnvelope"
+          },
+          "propertyName": "availability"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AvailableEnvelope_SourceAsset_"
+          },
+          {
+            "$ref": "#/components/schemas/PartialEnvelope_SourceAsset_"
+          },
+          {
+            "$ref": "#/components/schemas/FailedEnvelope"
+          }
+        ],
+        "title": "ApiEnvelope[SourceAsset]"
+      },
+      "Input_IdentityQuery": {
+        "additionalProperties": false,
+        "description": "Path-only identity selector for EVI02 and EVI04.",
+        "properties": {
+          "registry_revision": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Registry Revision"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Evidence Id"
+          },
+          "asset_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Asset Id"
+          }
+        },
+        "title": "IdentityQuery",
+        "type": "object"
+      },
       "AvailableEnvelope_EvidenceRecord_": {
         "additionalProperties": false,
         "properties": {
@@ -14338,56 +15092,6 @@
           }
         ],
         "title": "ApiEnvelope[EvidenceRecord]"
-      },
-      "Input_IdentityQuery": {
-        "additionalProperties": false,
-        "description": "Path-only identity selector for EVI02 and EVI04.",
-        "properties": {
-          "registry_revision": {
-            "anyOf": [
-              {
-                "minLength": 1,
-                "pattern": "^[A-Za-z0-9_.-]+$",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Registry Revision"
-          },
-          "evidence_id": {
-            "anyOf": [
-              {
-                "minLength": 1,
-                "pattern": "^[A-Za-z0-9_.-]+$",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Evidence Id"
-          },
-          "asset_id": {
-            "anyOf": [
-              {
-                "minLength": 1,
-                "pattern": "^[A-Za-z0-9_.-]+$",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Asset Id"
-          }
-        },
-        "title": "IdentityQuery",
-        "type": "object"
       },
       "AvailableEnvelope_ResultProvenance_": {
         "additionalProperties": false,

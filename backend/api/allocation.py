@@ -60,7 +60,7 @@ def register_allocation_operations(catalog: OperationCatalog, project: ProjectIn
     common_errors = {
         400: ("INVALID_REQUEST",), 405: ("METHOD_NOT_ALLOWED",),
         404: ("MISSING_ASSET", "INVALID_RESULT_ID"),
-        409: ("REVISION_UNAVAILABLE",),
+        409: ("REVISION_UNAVAILABLE", "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ"),
         422: ("UNSUPPORTED_REPRESENTATION", "UNSUPPORTED_COMBINATION"),
         500: ("SOURCE_ERROR", "CANONICAL_SCHEMA_MISMATCH", "INTERNAL_ERROR"),
         503: ("FEATURE_NOT_ENABLED",),

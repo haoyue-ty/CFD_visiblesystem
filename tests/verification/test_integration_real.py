@@ -58,11 +58,18 @@ def test_metrics_definitions_and_provenance_are_source_bound(real_app):
     assert {item['id'] for item in evidence['definitions']} == {slot['value']['definition_id'] for slot in metrics['items']}
     assert evidence['data_hash']['state'] == 'UNKNOWN'
     assert evidence['verification']['status'] == 'PARTIAL'
-    assert len(evidence['source_assets']) == 2
+    assert len(evidence['source_assets']) == 3
+    method = next(asset for asset in evidence['source_assets'] if asset['role'] == 'METHOD')
+    assert method['relative_origin']['value'] == 'solver/fluxes/cross_mode_ec_unified_v1.py'
+    assert method['recorded_data_hash'] == evidence['method_hash']
+    assert evidence['recorded_source_hash'] == evidence['method_hash']
     for slot in metrics['items']:
         result = slot['value']['result']
         provenance = client.get(f"/api/v1/results/{result['result_id']}/provenance").json['data']['provenance']
-        assert provenance == result['provenance']
+        for key in ('registry_revision', 'data_revision', 'release_id', 'evidence_refs'):
+            assert provenance[key] == result['provenance'][key]
+        assert provenance['source_asset_ids'] == result['provenance']['source_asset_ids'] + [method['asset_id']]
+        assert provenance['source_drift']['state'] == result['provenance']['source_drift']['state'] == 'UNKNOWN'
         assert result['result_id'] in evidence['result_ids']
         assert result['verification']['status'] == 'VERIFIED_NOT_FROZEN'
 

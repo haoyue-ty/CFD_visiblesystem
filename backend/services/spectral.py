@@ -112,7 +112,10 @@ class SpectralServiceImpl:
             if unresolved_identity:
                 return unknown_spectrum(error.body.message, resource_type=resource, identity=identity)
             return unsupported_parameter(error.body.message, resource_type=resource, identity=identity)
-        if code in {"SOURCE_READ_ERROR", "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ",
+        if code in {"SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ"}:
+            return system_error(code, error.body.message, status=409, domain="SCIENTIFIC",
+                                resource_type=resource, identity=identity, evidence_refs=error.body.evidence_refs)
+        if code in {"SOURCE_READ_ERROR",
                     "CANONICAL_SCHEMA_MISMATCH"}:
             return source_error(error.body.message, retryable=False,
                                 resource_type=resource, identity=identity)
@@ -141,6 +144,9 @@ class SpectralServiceImpl:
                 raise unknown_spectrum(root.error.message, resource_type=resource_type, identity=identity)
             raise unsupported_parameter(root.error.message, resource_type=resource_type,
                                         identity=identity)
+        if root.error.code in {"SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ"}:
+            raise system_error(root.error.code, root.error.message, status=409, domain="SCIENTIFIC",
+                               resource_type=resource_type, identity=identity, evidence_refs=root.error.evidence_refs)
         raise source_error(root.error.message, retryable=False, resource_type=resource_type,
                            identity=identity)
 

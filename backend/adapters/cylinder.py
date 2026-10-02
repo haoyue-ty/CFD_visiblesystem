@@ -498,7 +498,6 @@ class CylinderAdapter:
         protocol, _ = self._context(selected)
         masks = [self._mask(selected, protocol)] if evidence_id.endswith(("sectors", "front-band")) else []
         method_hash = R.ASSETS[COMMON[5]]["sha256"]
-        bundle_hash = hashlib.sha256("\n".join(f"{p}:{R.ASSETS[p]['sha256']}" for p in paths).encode()).hexdigest()
         adapter_hash = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
         processing = [{"id": f"processing.cylinder.{selected}.format-mapping", "kind": "FORMAT_MAPPING",
             "description": "Source step+1 maps accepted interval to canonical endpoint; snapshots remain 1-based, completed step0 retained; NPZ members preserve native shape/C-order; units and stage/cumulative definitions remain separate; no scientific arrays reconstructed",
@@ -512,7 +511,7 @@ class CylinderAdapter:
             "config_id": known(selected), "config": known(self._config(selected)), "definitions": definitions, "masks": masks,
             "method_name": known(protocol["method"]), "method_hash": known(method_hash), "recorded_source_hash": known(method_hash), "current_source_hash": known(method_hash),
             "source_observations": [{"asset_id": a["asset_id"], "recorded_hash": a["recorded_data_hash"], "current_hash": a["current_data_hash"], "drift": known(False), "observation_at": v["observation_at"]} for a in assets],
-            "source_assets": assets, "data_hash": known(bundle_hash), "freeze_reference": unresolved("Selected formal-v2 gate verification has no numerical release FREEZE", "NOT_APPLICABLE"),
+            "source_assets": assets, "data_hash": unresolved("No authoritative composite data hash recorded"), "freeze_reference": unresolved("Selected formal-v2 gate verification has no numerical release FREEZE", "NOT_APPLICABLE"),
             "processing": processing, "verification": v, "limitations": [R.NO_MAP] if masks else [lim for r in contexts for lim in r["limitations"]],
             "source_drift": known(False), "created_at": unresolved("Evidence creation date not scientifically established"), "verified_at": v["verified_at"],
             "related_evidence_refs": ["ev.missing.cylinder-cumulative2d", f"ev.cylinder.{selected}.front-band" if evidence_id.endswith("sectors") else f"ev.cylinder.{selected}.sectors"] if masks else [], "superseded_by": unresolved("Current selected dataset", "NOT_APPLICABLE")})

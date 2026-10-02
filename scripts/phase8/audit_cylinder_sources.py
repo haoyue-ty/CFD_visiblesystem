@@ -121,6 +121,18 @@ def frozen_prerequisites() -> dict:
         "config/openapi.json", "frontend/src/types/generated/api.d.ts", "tests/test_bootstrap.py",
         "tests/window2_case8_api/conftest.py", "tests/window2_case8_api/test_case8_api_contract.py",
     }
+    # Phase11 explicitly authorizes evidence/schema and source-drift transport
+    # seams. Apply this narrow extension only to the consolidated accepted base;
+    # a historical Phase8 checkout still uses its original exact-byte policy.
+    evidence_seams = set()
+    metadata = WORKTREE / "data/evidence/canonical_metadata.json"
+    if metadata.exists():
+        assert read_json(metadata)["accepted_base"] == "884bcd382f8d6fe67062e779ce37bbeeebe7816f"
+        evidence_seams = {"backend/api/evidence.py", "backend/core/app.py", "backend/api/allocation.py",
+            "backend/api/spectral.py", "backend/models/evidence.py", "backend/services/allocation.py",
+            "backend/services/case8.py", "backend/services/spectral.py", "config/openapi.json",
+            "frontend/src/types/generated/api.d.ts", "tests/window2_case8_api/test_case8_api_contract.py"}
+    later_seams = closure_api_seams | evidence_seams
     normalized = []
     integration_changes = []
     later_software_changes = []
@@ -130,13 +142,13 @@ def frozen_prerequisites() -> dict:
         baseline = subprocess.check_output(["git", "show", f"{BASE_COMMIT}:{item['path']}"], cwd=WORKTREE)
         assert previous.replace(b"\r\n", b"\n") == baseline.replace(b"\r\n", b"\n")
         if previous.replace(b"\r\n", b"\n") != current.read_bytes().replace(b"\r\n", b"\n"):
-            assert item["path"] in integrated_paths | closure_api_seams, f"Unapproved frozen slice change: {item['path']}"
+            assert item["path"] in integrated_paths | later_seams, f"Unapproved frozen slice change: {item['path']}"
             if item["path"] != ".gitattributes":
                 delivered = subprocess.check_output(["git", "show", f"aaf478da6b9c6302f4843b7c76b5466b686b960a:{item['path']}"], cwd=WORKTREE)
                 if current.read_bytes().replace(b"\r\n", b"\n") != delivered.replace(b"\r\n", b"\n"):
-                    assert item["path"] in closure_api_seams, f"Unapproved later change: {item['path']}"
+                    assert item["path"] in later_seams, f"Unapproved later change: {item['path']}"
                     later_software_changes.append({"path": item["path"], "accepted_phase8_sha256": hashlib.sha256(delivered).hexdigest(),
-                                                   "current_sha256": digest(current), "authorization": "Phase9B Window2 frozen CLO01–05 API integration"})
+                                                   "current_sha256": digest(current), "authorization": "Phase11 Window1 evidence and source-drift transport consolidation" if item["path"] in evidence_seams else "Phase9B Window2 frozen CLO01–05 API integration"})
             integration_changes.append(item["path"])
             continue
         if digest(current) != item["sha256"]:

@@ -191,7 +191,7 @@ def test_all_evidence_binding(service, run_id, group):
     assert value(evidence.current_source_hash) == R.METHOD_HASH
     assert value(evidence.source_drift) is False
     assert value(evidence.freeze_reference).manifest_asset_id == R.ASSETS[f"{R.BASE}/FREEZE/FREEZE_MANIFEST.json"]["asset_id"]
-    assert len(value(evidence.data_hash)) == 64
+    assert evidence.data_hash.root.state == "UNKNOWN"
     assets = {asset.asset_id: asset for asset in evidence.source_assets}
     assert len(assets) == len(evidence.source_assets)
     for asset in assets.values():

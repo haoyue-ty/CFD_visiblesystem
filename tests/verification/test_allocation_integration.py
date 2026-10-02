@@ -126,8 +126,8 @@ def test_gate_drift_blocks_delivery_without_modifying_scientific_sources(tmp_pat
         if target.name == member:
             target.write_bytes(target.read_bytes() + b'\n')
     response = create_app(allocation_adapter=adapter).test_client().get('/api/v1/allocations/gate.Acoustic.allocation/metadata')
-    assert response.status_code == 500
-    assert response.json['error']['code'] == 'SOURCE_ERROR'
+    assert response.status_code == 409
+    assert response.json['error']['code'] == 'SOURCE_DATA_DRIFT'
     assert 'data' not in response.json
 
 

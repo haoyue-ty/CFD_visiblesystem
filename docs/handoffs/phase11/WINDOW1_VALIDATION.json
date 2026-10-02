@@ -1,0 +1,254 @@
+{
+  "status": "PASS",
+  "branch": "phase11/evidence-core",
+  "accepted_commits": {
+    "phase8": "fceb3b6c569cf381b04767da77b4b92418a4b5ed",
+    "phase9": "0df633ff6cd9bd939fdbd0eb2b39a3ec0ac7e880",
+    "phase10": "004b0e7e8081e5331ed7aa6291b83afdcdc4f45b"
+  },
+  "phase11_base": "884bcd382f8d6fe67062e779ce37bbeeebe7816f",
+  "all_accepted_ancestors": true,
+  "accepted_handoffs_unchanged": true,
+  "evidence_counts": {
+    "CURRENT": 13296,
+    "GAPS": 11,
+    "HISTORY": 2173,
+    "ALL": 15480
+  },
+  "current_family_counts": {
+    "case8": 105,
+    "gate": 3,
+    "cylinder": 18,
+    "entropy-closure": 16,
+    "spectrum": 13128,
+    "modal-validation": 24,
+    "shared-method": 1,
+    "mechanism": 1
+  },
+  "original_checkout": {
+    "head": "b8eb0b8ff261b064c6c71390f6c023059347a90a",
+    "clean": true,
+    "unchanged": true
+  },
+  "registered_assets": 2438,
+  "registered_result_and_content_ids": 14140,
+  "canonical_metadata_groups_templates": 199,
+  "canonical_metadata_contexts": 1031,
+  "backend": {
+    "tests": 1343,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "startTime": "2026-10-02T04:27:59.671Z",
+    "duration": 510206.58900000004,
+    "expected": 166,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "evidence_acceptance": {
+    "tests": 62,
+    "status": "PASS"
+  },
+  "openapi": {
+    "status": "PASS",
+    "version": "3.1.0",
+    "preexisting_component_changes": [],
+    "runtime_saved_independent_equal": true
+  },
+  "types": {
+    "status": "PASS",
+    "independent_bytes_equal": true
+  },
+  "typecheck_and_production_build": "PASS",
+  "public_source_assets": {
+    "all_registered_dtos_validated": 2438,
+    "absolute_locator_matches": 0
+  },
+  "source_preservation": {
+    "status": "PASS",
+    "source_root": "D:\\Paper\\passage6",
+    "files_before": 27742,
+    "files_after": 27742,
+    "bytes": 5429246095,
+    "before_manifest_sha256": "47ed91e8dbf02b88edb8a87768687d474cd24b8dde9165e17c3c0b83d62a001b",
+    "after_manifest_sha256": "47ed91e8dbf02b88edb8a87768687d474cd24b8dde9165e17c3c0b83d62a001b",
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ]
+  },
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "initial_regressions": {
+    "backend": {
+      "tests": 1343,
+      "failures": 35,
+      "errors": 0,
+      "skipped": 0
+    },
+    "browser_initial": {
+      "startTime": "2026-10-02T04:08:51.773Z",
+      "duration": 554038.1399999999,
+      "expected": 165,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "browser_second": {
+      "startTime": "2026-10-02T04:18:48.082Z",
+      "duration": 520877.072,
+      "expected": 165,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "repairs": [
+      "Preserve original spectral provenance asset order while appending dependencies",
+      "Extend only authorized Phase11 software seams in the Phase8 preservation audit",
+      "Update Case8 evidence assertions for explicit method dependency and retain scientific revisions",
+      "Keep exact Closure adapter preservation except removal of invented evidence composite hash",
+      "Update browser asset counts and display the actual unified method source origin"
+    ]
+  },
+  "artifacts": {
+    "config/openapi.json": {
+      "sha256": "f453eccfba1c153f5a461bda4e97338f65278324c7c6f868b86a57dd11e321b3",
+      "size_bytes": 585734
+    },
+    "frontend/src/types/generated/api.d.ts": {
+      "sha256": "4ffcb0f103f247a81e58f1259948a23f7366431580c46b6bb8e76ee6c5d0fa10",
+      "size_bytes": 342508
+    },
+    "data/evidence/canonical_metadata.json": {
+      "sha256": "0494822294d4b3f485543ade9575bafdb37f7e4f458ab16df20f515b0d05ab4c",
+      "size_bytes": 7417679
+    },
+    "docs/handoffs/phase11/WINDOW1_BACKEND_TESTS.xml": {
+      "sha256": "3306c61a93c583a71d0200c129a67da4649ee1dfceca11e847f0c8e5a7b7c566",
+      "size_bytes": 210753
+    },
+    "docs/handoffs/phase11/WINDOW1_BROWSER_TESTS.xml": {
+      "sha256": "3a460f3f64015ab31340c5bfdfb965b4bb62022168443bc939919dfc69f0000b",
+      "size_bytes": 30591
+    },
+    "docs/handoffs/phase11/WINDOW1_SOURCE_PRESERVATION.json": {
+      "sha256": "e0be0f6be3846d9fcdc6ee691104b6e0e4362e9a3a53e9ed55d8ec72fa611629",
+      "size_bytes": 414
+    }
+  },
+  "validated_software_artifacts": {
+    "backend/adapters/cylinder.py": {
+      "sha256": "a68b4c740448405efe623dff7ad3e425320b917df23c55b6058b3aa844a77ba6",
+      "size_bytes": 42617
+    },
+    "backend/adapters/entropy_closure.py": {
+      "sha256": "241023b82cb69fa277181bf674d0fc9b583ebb82b2281c3243214a58f6ff31d0",
+      "size_bytes": 32108
+    },
+    "backend/adapters/evidence_sources.py": {
+      "sha256": "292fa84ff6101aeb87f7ec2a78d8b1d90ffaa2b4900f882e958999d300b1ba75",
+      "size_bytes": 3579
+    },
+    "backend/api/allocation.py": {
+      "sha256": "ab053fd206f5c606fc5276205e1110f97d13e9727b4b5156010de2252f28cc0f",
+      "size_bytes": 5467
+    },
+    "backend/api/evidence.py": {
+      "sha256": "e0195b0d0a8d407d8b6d801a6bdf6bf83ec95881114ca70d2e18a4803e02f387",
+      "size_bytes": 8088
+    },
+    "backend/api/spectral.py": {
+      "sha256": "de50d77ab16e9a39b751beb81b5ce89e3004ee673ce774ebd54941047ab58fdf",
+      "size_bytes": 8489
+    },
+    "backend/core/app.py": {
+      "sha256": "2f9bd46d0939e551081375969e417e75072cc4bea98c8c51fa080a3b4cf16216",
+      "size_bytes": 8761
+    },
+    "backend/models/evidence.py": {
+      "sha256": "b83b857070b744693c9a9f76a150ea4fb07b87d17c9ab8646dd4b4011af727e5",
+      "size_bytes": 4178
+    },
+    "backend/registry/evidence_registry.py": {
+      "sha256": "b5cf082585e4fa808025e43ec657883b5492a31f27fae5616dc129e12bffa9bd",
+      "size_bytes": 14742
+    },
+    "backend/services/allocation.py": {
+      "sha256": "c150b7735fdbbbe84e124e651a37323ce29f3c82f46e6c67254b7504811e8c74",
+      "size_bytes": 9026
+    },
+    "backend/services/case8.py": {
+      "sha256": "b4786c32131c433241481ff1e9cd43051bacd94b596fbac105bcaeee2c1b9726",
+      "size_bytes": 5285
+    },
+    "backend/services/evidence.py": {
+      "sha256": "1bec17cee3c84d4ec8a426b9f3b89a1e18b467afc1f2a41897465ca6d443b4c1",
+      "size_bytes": 10441
+    },
+    "backend/services/spectral.py": {
+      "sha256": "4f996318eda3f0c902fd4b10d68662a4050a876220e1bd7023221350ca3a2944",
+      "size_bytes": 17210
+    },
+    "config/openapi.json": {
+      "sha256": "f453eccfba1c153f5a461bda4e97338f65278324c7c6f868b86a57dd11e321b3",
+      "size_bytes": 585734
+    },
+    "data/evidence/canonical_metadata.json": {
+      "sha256": "0494822294d4b3f485543ade9575bafdb37f7e4f458ab16df20f515b0d05ab4c",
+      "size_bytes": 7417679
+    },
+    "frontend/playwright.phase11.integration.config.ts": {
+      "sha256": "cea232656a135ffcec2d496b642c09e6784a5564c4cf45cd7936f3241a93a7fa",
+      "size_bytes": 564
+    },
+    "frontend/src/types/generated/api.d.ts": {
+      "sha256": "4ffcb0f103f247a81e58f1259948a23f7366431580c46b6bb8e76ee6c5d0fa10",
+      "size_bytes": 342508
+    },
+    "frontend/tests/allocation-real-api.spec.ts": {
+      "sha256": "ade619582cfd3de463fcf8a8bfe199584a524a11aa277567b2631e5fe5b3eadd",
+      "size_bytes": 7049
+    },
+    "scripts/phase11/__init__.py": {
+      "sha256": "060d3a40f4dcd4a9332e2f252fbfc9702b27a1ad86456dde5bdea4c55e821ffe",
+      "size_bytes": 78
+    },
+    "scripts/phase11/consolidate_evidence.py": {
+      "sha256": "c842a44c5f827856973627c051f9268774388ca871e57354154aaca2f9b69bcd",
+      "size_bytes": 6127
+    },
+    "scripts/phase8/audit_cylinder_sources.py": {
+      "sha256": "46cbb9f7b2a5fdcaf24448f59807aed245c8e25c2b15d6235fa5eff0f42a3efa",
+      "size_bytes": 39250
+    },
+    "tests/verification/test_allocation_integration.py": {
+      "sha256": "0591c3d2cab0a052cd4c8363c4cc6b7c623929e0427df1424bab1571fd6f51ad",
+      "size_bytes": 8496
+    },
+    "tests/verification/test_integration_real.py": {
+      "sha256": "ff06ba8911f19374eafd3e6ab61e0c00eca63afb96439222c2f3ab616a213970",
+      "size_bytes": 5948
+    },
+    "tests/window1_closure_adapter/test_closure_adapter.py": {
+      "sha256": "76f234694f1cc9897bc001ff892d5f1d20bd56c16feb9a5d4554586716a7e601",
+      "size_bytes": 19683
+    },
+    "tests/window1_evidence_core/test_evidence_core.py": {
+      "sha256": "6c1a93b1e75227d4116eed16ea7291db420ec063a59eaff5998fbf7fb20c12ae",
+      "size_bytes": 19398
+    },
+    "tests/window2_case8_api/test_case8_api_contract.py": {
+      "sha256": "07050ced12e584885e4d6a83ea68bf1114ad1daaec00d2c0d8e2df519b452896",
+      "size_bytes": 19990
+    },
+    "tests/window2_closure_api/test_closure_api.py": {
+      "sha256": "8208eea6f3395bf1f0257b92b2caf10702a93fa4369dfd2ff4f5caf18e22730d",
+      "size_bytes": 19396
+    }
+  }
+}

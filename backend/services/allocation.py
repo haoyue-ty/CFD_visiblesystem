@@ -62,7 +62,9 @@ class AllocationServiceImpl:
                 raise missing_asset(error.body.message, resource_type='allocation', identity=None) from None
             if error.body.code == 'UNSUPPORTED_COMBINATION':
                 raise unsupported_representation(error.body.message, resource_type='allocation', identity=None) from None
-            if error.body.code in {'SOURCE_READ_ERROR', 'SOURCE_DATA_DRIFT', 'SOURCE_CHANGED_DURING_READ'}:
+            if error.body.code in {'SOURCE_DATA_DRIFT', 'SOURCE_CHANGED_DURING_READ'}:
+                raise system_error(error.body.code, error.body.message, status=409, domain='SCIENTIFIC', evidence_refs=error.body.evidence_refs) from None
+            if error.body.code == 'SOURCE_READ_ERROR':
                 raise source_error(error.body.message, retryable=False) from None
             raise
         except KeyError:

@@ -267,7 +267,7 @@ def test_undelivered_adapter_reports_feature_not_enabled():
 # --- OpenAPI coverage ------------------------------------------------------------
 
 IMPLEMENTED = {"SYS01", "DOC01", "REG01", "REG02", "REG03", "REG04", "C801", "C802",
-               "C803", "C804", "C805", "C806", "C808", "ARRAY01", "EVI02", "EVI03",
+               "C803", "C804", "C805", "C806", "C808", "ARRAY01", "EVI01", "EVI02", "EVI03", "EVI04",
                # Phase 6B Window 3 delivered the four allocation operations.
                "ALLOC01", "ALLOC02", "ALLOC03", "ALLOC04",
                # Phase 7B Window 2 delivered the spectral dataset/curve/record/eigenmode/validation ops.

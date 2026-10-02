@@ -17,6 +17,21 @@ class Case8Service:
         if self.adapter is None:
             raise system_error("FEATURE_NOT_ENABLED", "Case8 adapter has not been delivered",
                                status=503, retryable=True)
+        guard = getattr(self, "evidence_guard", None)
+        if guard and args:
+            config = args[0]
+            identities = []
+            if method in ("load_snapshot_metadata", "load_field") and len(args) >= 2:
+                identities = [f"case8.{config}.snapshot.{args[1]}"]
+            elif method in ("load_scalar_series", "load_entropy_history"):
+                identities = [f"case8.{config}.E_at_cumulative"]
+            elif method == "load_array":
+                identities = [args[0]]
+            elif method == "load_metrics":
+                from backend.registry.case8_semantics import DEFINITIONS
+                identities = [f"case8.{config}.metrics.{name}" for name in DEFINITIONS]
+            for identity in identities:
+                guard.guard_result(identity)
         try:
             value = getattr(self.adapter, method)(*args, **kwargs)
         except KeyError:

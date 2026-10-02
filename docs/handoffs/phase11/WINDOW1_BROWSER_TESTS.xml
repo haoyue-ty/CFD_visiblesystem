@@ -1,0 +1,364 @@
+<testsuites id="" name="" tests="166" failures="0" skipped="0" errors="0" time="510.206589">
+<testsuite name="tests\data-projection.unit.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="unit" tests="5" failures="0" skipped="0" time="0.005" errors="0">
+<testcase name="recorded zero remains zero" classname="tests\data-projection.unit.spec.ts" time="0.004">
+</testcase>
+<testcase name="UNKNOWN is never projected to zero" classname="tests\data-projection.unit.spec.ts" time="0.001">
+</testcase>
+<testcase name="MISSING is never projected to zero" classname="tests\data-projection.unit.spec.ts" time="0">
+</testcase>
+<testcase name="NOT_APPLICABLE is never projected to zero" classname="tests\data-projection.unit.spec.ts" time="0">
+</testcase>
+<testcase name="recorded physical time keeps its full precision" classname="tests\data-projection.unit.spec.ts" time="0">
+</testcase>
+</testsuite>
+<testsuite name="tests\allocation-real-api.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="6" failures="0" skipped="0" time="11.387" errors="0">
+<testcase name="explicit allocation outage stays unsupported without a fake map" classname="tests\allocation-real-api.spec.ts" time="0.661">
+</testcase>
+<testcase name="real Lab -&gt; Case8 -&gt; Allocation -&gt; D_u -&gt; all Gates -&gt; Evidence" classname="tests\allocation-real-api.spec.ts" time="8.671">
+</testcase>
+<testcase name="rejects an API representation mismatch without drawing a field" classname="tests\allocation-real-api.spec.ts" time="0.564">
+</testcase>
+<testcase name="rejects an API semantic mismatch without drawing a field" classname="tests\allocation-real-api.spec.ts" time="0.43">
+</testcase>
+<testcase name="rejects an API mask mismatch without drawing a field" classname="tests\allocation-real-api.spec.ts" time="0.571">
+</testcase>
+<testcase name="rejects an API measure mismatch without drawing a field" classname="tests\allocation-real-api.spec.ts" time="0.49">
+</testcase>
+</testsuite>
+<testsuite name="tests\case8-acceptance.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="12" failures="0" skipped="0" time="10.171" errors="0">
+<testcase name="Case8 acceptance chain › every recorded snapshot index is addressable and index 0 is refused" classname="tests\case8-acceptance.spec.ts" time="0.489">
+</testcase>
+<testcase name="Case8 acceptance chain › the initial frame is snapshot 1 with step 0, not snapshot 0" classname="tests\case8-acceptance.spec.ts" time="0.585">
+</testcase>
+<testcase name="Case8 acceptance chain › snapshot 6 of D_u shows step 1912 and physical time 0.08" classname="tests\case8-acceptance.spec.ts" time="0.458">
+</testcase>
+<testcase name="Case8 acceptance chain › entropy tab reports a 1912-record series for the selected configuration" classname="tests\case8-acceptance.spec.ts" time="3.725">
+</testcase>
+<testcase name="Case8 acceptance chain › metrics tab reports the recorded snapshot scope and definitions" classname="tests\case8-acceptance.spec.ts" time="0.449">
+</testcase>
+<testcase name="Case8 acceptance chain › an absent metric is rendered as missing, never as zero" classname="tests\case8-acceptance.spec.ts" time="0.238">
+</testcase>
+<testcase name="Case8 acceptance chain › evidence view exposes provenance without an absolute source path" classname="tests\case8-acceptance.spec.ts" time="0.259">
+</testcase>
+<testcase name="state restoration › reloading a deep link restores the selection" classname="tests\case8-acceptance.spec.ts" time="0.494">
+</testcase>
+<testcase name="state restoration › back navigation restores the previous tab selection" classname="tests\case8-acceptance.spec.ts" time="0.269">
+</testcase>
+<testcase name="state restoration › switching configuration clears the previous selection" classname="tests\case8-acceptance.spec.ts" time="0.459">
+</testcase>
+<testcase name="state restoration › the snapshot timeline offers exactly the six recorded frames" classname="tests\case8-acceptance.spec.ts" time="0.46">
+</testcase>
+<testcase name="bootstrap chain still holds › the frozen bootstrap route chain is unchanged" classname="tests\case8-acceptance.spec.ts" time="2.286">
+</testcase>
+</testsuite>
+<testsuite name="tests\case8-real-integration.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="2" failures="0" skipped="0" time="25.829" errors="0">
+<testcase name="real vertical slice and four-configuration acceptance" classname="tests\case8-real-integration.spec.ts" time="25.544">
+</testcase>
+<testcase name="real API outage shows an error without a mock fallback" classname="tests\case8-real-integration.spec.ts" time="0.285">
+</testcase>
+</testsuite>
+<testsuite name="tests\closure-real-api.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="21" failures="0" skipped="0" time="188.341" errors="0">
+<testcase name="Lab opens Closure and traverses D_u .05 stages, steps, Evidence and B_u recorded zero" classname="tests\closure-real-api.spec.ts" time="43.023">
+</testcase>
+<testcase name="CLO01 supplies exactly five complete legal selections; every run is selectable" classname="tests\closure-real-api.spec.ts" time="2.319">
+</testcase>
+<testcase name="invalid config × CFL deep link produces no history request or result" classname="tests\closure-real-api.spec.ts" time="1.59">
+</testcase>
+<testcase name="Semi-discrete preserves PER_STAGE records, clocks, definitions and optional channels" classname="tests\closure-real-api.spec.ts" time="18.051">
+</testcase>
+<testcase name="Fully-discrete keeps increments, cumulative and terminal values distinct through final page" classname="tests\closure-real-api.spec.ts" time="20.661">
+</testcase>
+<testcase name="B_u D_at and E_at are recorded zeros, never missing" classname="tests\closure-real-api.spec.ts" time="19.406">
+</testcase>
+<testcase name="four-point refinement and global/pairwise orders equal frozen CLO05" classname="tests\closure-real-api.spec.ts" time="1.467">
+</testcase>
+<testcase name="scientific limitation remains visible on every tab, with no prohibited claim or spatial view" classname="tests\closure-real-api.spec.ts" time="19.508">
+</testcase>
+<testcase name="Evidence run returns current run/tab/page from overview" classname="tests\closure-real-api.spec.ts" time="2.71">
+</testcase>
+<testcase name="Evidence stage returns current run/tab/page from semi-discrete" classname="tests\closure-real-api.spec.ts" time="8.721">
+</testcase>
+<testcase name="Evidence step returns current run/tab/page from fully-discrete" classname="tests\closure-real-api.spec.ts" time="19.595">
+</testcase>
+<testcase name="Evidence run returns current run/tab/page from evidence" classname="tests\closure-real-api.spec.ts" time="14.511">
+</testcase>
+<testcase name="Evidence tab exposes all runs, both history groups, and refinement; refinement returns same run" classname="tests\closure-real-api.spec.ts" time="1.968">
+</testcase>
+<testcase name="changing run while history is in flight cannot show stale scientific data" classname="tests\closure-real-api.spec.ts" time="7.66">
+</testcase>
+<testcase name="scientific missing response remains missing, without a substitute chart" classname="tests\closure-real-api.spec.ts" time="1.08">
+</testcase>
+<testcase name="non-production science is rejected even if API transport reports success" classname="tests\closure-real-api.spec.ts" time="1.571">
+</testcase>
+<testcase name="API registry failure displays error and no mock fallback" classname="tests\closure-real-api.spec.ts" time="0.243">
+</testcase>
+<testcase name="API stage failure displays error and no mock fallback" classname="tests\closure-real-api.spec.ts" time="1.588">
+</testcase>
+<testcase name="API step failure displays error and no mock fallback" classname="tests\closure-real-api.spec.ts" time="1.569">
+</testcase>
+<testcase name="API refinement failure displays error and no mock fallback" classname="tests\closure-real-api.spec.ts" time="1.066">
+</testcase>
+<testcase name="production artifacts contain no mock provider or synthetic scientific payload" classname="tests\closure-real-api.spec.ts" time="0.034">
+</testcase>
+</testsuite>
+<testsuite name="tests\cylinder-crossflow-real-api.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="20" failures="0" skipped="0" time="83.8" errors="0">
+<testcase name="Cylinder A_u: exact tabs, selectors and five actual snapshots" classname="tests\cylinder-crossflow-real-api.spec.ts" time="6.116">
+</testcase>
+<testcase name="Cylinder A_u: 16 trajectory sectors, front-band and cumulative2D Missing" classname="tests\cylinder-crossflow-real-api.spec.ts" time="1.094">
+</testcase>
+<testcase name="Cylinder B_u: exact tabs, selectors and five actual snapshots" classname="tests\cylinder-crossflow-real-api.spec.ts" time="5.809">
+</testcase>
+<testcase name="Cylinder B_u: 16 trajectory sectors, front-band and cumulative2D Missing" classname="tests\cylinder-crossflow-real-api.spec.ts" time="1.084">
+</testcase>
+<testcase name="Cylinder D_u: exact tabs, selectors and five actual snapshots" classname="tests\cylinder-crossflow-real-api.spec.ts" time="6.105">
+</testcase>
+<testcase name="Cylinder D_u: 16 trajectory sectors, front-band and cumulative2D Missing" classname="tests\cylinder-crossflow-real-api.spec.ts" time="1.091">
+</testcase>
+<testcase name="Cylinder full 9757-record history retains scalar semantics and independent snapshot state" classname="tests\cylinder-crossflow-real-api.spec.ts" time="40.43">
+</testcase>
+<testcase name="Cylinder local canonical metrics retain definitions, detectors, units, time and detector floor" classname="tests\cylinder-crossflow-real-api.spec.ts" time="0.684">
+</testcase>
+<testcase name="Cylinder evidence return restores config, tab, snapshot, field and scalar state" classname="tests\cylinder-crossflow-real-api.spec.ts" time="3.806">
+</testcase>
+<testcase name="Cross-flow renders distinct scientific objects, policies, comparability and both evidence contexts" classname="tests\cylinder-crossflow-real-api.spec.ts" time="8.517">
+</testcase>
+<testcase name="API outage has no mock fallback: /lab/experiments/cylinder?tab=flow" classname="tests\cylinder-crossflow-real-api.spec.ts" time="0.279">
+</testcase>
+<testcase name="API outage has no mock fallback: /lab/experiments/cylinder?tab=entropy" classname="tests\cylinder-crossflow-real-api.spec.ts" time="0.255">
+</testcase>
+<testcase name="API outage has no mock fallback: /lab/experiments/cylinder?tab=sectors" classname="tests\cylinder-crossflow-real-api.spec.ts" time="0.257">
+</testcase>
+<testcase name="API outage has no mock fallback: /lab/experiments/cylinder?tab=metrics" classname="tests\cylinder-crossflow-real-api.spec.ts" time="0.274">
+</testcase>
+<testcase name="API outage has no mock fallback: /cross-flow" classname="tests\cylinder-crossflow-real-api.spec.ts" time="0.28">
+</testcase>
+<testcase name="field asset failure shows Missing without substituting another frame" classname="tests\cylinder-crossflow-real-api.spec.ts" time="1.069">
+</testcase>
+<testcase name="invalid snapshot and unsupported config deep links never create frames or C_u selector" classname="tests\cylinder-crossflow-real-api.spec.ts" time="1.065">
+</testcase>
+<testcase name="Lab navigation opens Cylinder and cross-flow routes" classname="tests\cylinder-crossflow-real-api.spec.ts" time="1.183">
+</testcase>
+<testcase name="production bundle contains zero mock implementation or fixture identifiers" classname="tests\cylinder-crossflow-real-api.spec.ts" time="0.015">
+</testcase>
+<testcase name="Cylinder config changes retain selected tab and replace allocation identity" classname="tests\cylinder-crossflow-real-api.spec.ts" time="4.387">
+</testcase>
+</testsuite>
+<testsuite name="tests\explore-real-api.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="35" failures="0" skipped="0" time="64.591" errors="0">
+<testcase name="Home and Lab enter implemented Explore; CONTENT01 returns exactly seven presets" classname="tests\explore-real-api.spec.ts" time="0.463">
+</testcase>
+<testcase name="Scene 1 direct deep link, reload and production screenshot" classname="tests\explore-real-api.spec.ts" time="8.575">
+</testcase>
+<testcase name="Scene 2 direct deep link, reload and production screenshot" classname="tests\explore-real-api.spec.ts" time="0.508">
+</testcase>
+<testcase name="Scene 3 direct deep link, reload and production screenshot" classname="tests\explore-real-api.spec.ts" time="0.476">
+</testcase>
+<testcase name="Scene 4 direct deep link, reload and production screenshot" classname="tests\explore-real-api.spec.ts" time="1.232">
+</testcase>
+<testcase name="Scene 5 direct deep link, reload and production screenshot" classname="tests\explore-real-api.spec.ts" time="1.587">
+</testcase>
+<testcase name="Scene 6 direct deep link, reload and production screenshot" classname="tests\explore-real-api.spec.ts" time="5.344">
+</testcase>
+<testcase name="Scene 7 direct deep link, reload and production screenshot" classname="tests\explore-real-api.spec.ts" time="0.523">
+</testcase>
+<testcase name="S1 reads B_u / D_u Case8 accepted histories and terminal facts verbatim" classname="tests\explore-real-api.spec.ts" time="6.233">
+</testcase>
+<testcase name="S2 schematic and S3 strict/weak plus off/enabled use shared MechanismView" classname="tests\explore-real-api.spec.ts" time="0.426">
+</testcase>
+<testcase name="S4 Gate matched q_at, common API scale, fixed window and saved fractions" classname="tests\explore-real-api.spec.ts" time="0.868">
+</testcase>
+<testcase name="S5 complete real SPEC02 curves retain negative, positive and near-zero directions" classname="tests\explore-real-api.spec.ts" time="0.976">
+</testcase>
+<testcase name="S6 CMP01 fixed D_u pair keeps independent renderers, policies and missing 2D" classname="tests\explore-real-api.spec.ts" time="2.735">
+</testcase>
+<testcase name="S7 real per-result evidence loads one record with identity/config/hash/limits; Detail returns" classname="tests\explore-real-api.spec.ts" time="0.455">
+</testcase>
+<testcase name="Previous / Next, scene navigation and browser Back restore only Scene/page" classname="tests\explore-real-api.spec.ts" time="3.493">
+</testcase>
+<testcase name="S1 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload" classname="tests\explore-real-api.spec.ts" time="5.705">
+</testcase>
+<testcase name="S4 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload" classname="tests\explore-real-api.spec.ts" time="3.615">
+</testcase>
+<testcase name="S5 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload" classname="tests\explore-real-api.spec.ts" time="0.772">
+</testcase>
+<testcase name="S6 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload" classname="tests\explore-real-api.spec.ts" time="3.845">
+</testcase>
+<testcase name="S7 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload" classname="tests\explore-real-api.spec.ts" time="1.39">
+</testcase>
+<testcase name="invalid scene &quot;0&quot; has error and no scientific content" classname="tests\explore-real-api.spec.ts" time="0.252">
+</testcase>
+<testcase name="invalid scene &quot;8&quot; has error and no scientific content" classname="tests\explore-real-api.spec.ts" time="0.267">
+</testcase>
+<testcase name="invalid scene &quot;-1&quot; has error and no scientific content" classname="tests\explore-real-api.spec.ts" time="0.258">
+</testcase>
+<testcase name="invalid scene &quot;abc&quot; has error and no scientific content" classname="tests\explore-real-api.spec.ts" time="0.258">
+</testcase>
+<testcase name="invalid scene &quot;1.5&quot; has error and no scientific content" classname="tests\explore-real-api.spec.ts" time="0.261">
+</testcase>
+<testcase name="invalid scene &quot;&quot; has error and no scientific content" classname="tests\explore-real-api.spec.ts" time="0.26">
+</testcase>
+<testcase name="S1 scientific API failure is explicit with no mock fallback" classname="tests\explore-real-api.spec.ts" time="0.277">
+</testcase>
+<testcase name="S2 scientific API failure is explicit with no mock fallback" classname="tests\explore-real-api.spec.ts" time="0.273">
+</testcase>
+<testcase name="S4 scientific API failure is explicit with no mock fallback" classname="tests\explore-real-api.spec.ts" time="0.262">
+</testcase>
+<testcase name="S5 scientific API failure is explicit with no mock fallback" classname="tests\explore-real-api.spec.ts" time="0.278">
+</testcase>
+<testcase name="S6 scientific API failure is explicit with no mock fallback" classname="tests\explore-real-api.spec.ts" time="0.277">
+</testcase>
+<testcase name="S7 scientific API failure is explicit with no mock fallback" classname="tests\explore-real-api.spec.ts" time="0.271">
+</testcase>
+<testcase name="CONTENT01 outage prevents science; production bundle excludes synthetic providers" classname="tests\explore-real-api.spec.ts" time="0.257">
+</testcase>
+<testcase name="Lab edits preserve the original Explore return context" classname="tests\explore-real-api.spec.ts" time="6.413">
+</testcase>
+<testcase name="rapid Scene changes and selected S7 evidence cannot display stale data" classname="tests\explore-real-api.spec.ts" time="5.506">
+</testcase>
+</testsuite>
+<testsuite name="tests\mechanism-real-api.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="17" failures="0" skipped="0" time="7" errors="0">
+<testcase name="Lab route opens/reloads CONTENT03 real API with every registered node and edge" classname="tests\mechanism-real-api.spec.ts" time="0.97">
+</testcase>
+<testcase name="STRICT_1D / q_at OFF: receiving content and output remain separate from trigger" classname="tests\mechanism-real-api.spec.ts" time="0.369">
+</testcase>
+<testcase name="STRICT_1D / q_at ENABLED: receiving content and output remain separate from trigger" classname="tests\mechanism-real-api.spec.ts" time="0.419">
+</testcase>
+<testcase name="WEAKLY_2D / q_at OFF: receiving content and output remain separate from trigger" classname="tests\mechanism-real-api.spec.ts" time="0.338">
+</testcase>
+<testcase name="WEAKLY_2D / q_at ENABLED: receiving content and output remain separate from trigger" classname="tests\mechanism-real-api.spec.ts" time="0.328">
+</testcase>
+<testcase name="trigger/output have distinct visual and semantic roles; keyboard and delta_t wording" classname="tests\mechanism-real-api.spec.ts" time="0.343">
+</testcase>
+<testcase name="Near1D theory only; no sliders, numeric points or numerical chart" classname="tests\mechanism-real-api.spec.ts" time="0.278">
+</testcase>
+<testcase name="node evidence quick/detail uses EVI02 and restores full mechanism state" classname="tests\mechanism-real-api.spec.ts" time="0.507">
+</testcase>
+<testcase name="Explore S2 shares MechanismView, returns to source_scene and browser Back works" classname="tests\mechanism-real-api.spec.ts" time="0.616">
+</testcase>
+<testcase name="Explore S3 shares MechanismView, returns to source_scene and browser Back works" classname="tests\mechanism-real-api.spec.ts" time="0.576">
+</testcase>
+<testcase name="browser Back restores discrete state and node selection" classname="tests\mechanism-real-api.spec.ts" time="0.323">
+</testcase>
+<testcase name="CONTENT03 network failure shows error, no mock fallback; retry recovers" classname="tests\mechanism-real-api.spec.ts" time="0.321">
+</testcase>
+<testcase name="CONTENT03 http failure shows error, no mock fallback; retry recovers" classname="tests\mechanism-real-api.spec.ts" time="0.327">
+</testcase>
+<testcase name="CONTENT03 envelope failure shows error, no mock fallback; retry recovers" classname="tests\mechanism-real-api.spec.ts" time="0.31">
+</testcase>
+<testcase name="CONTENT03 origin failure shows error, no mock fallback; retry recovers" classname="tests\mechanism-real-api.spec.ts" time="0.33">
+</testcase>
+<testcase name="evidence outage leaves schematic visible and shows no fabricated record" classname="tests\mechanism-real-api.spec.ts" time="0.312">
+</testcase>
+<testcase name="Explore metadata outage and invalid scene cannot fabricate S2/S3" classname="tests\mechanism-real-api.spec.ts" time="0.333">
+</testcase>
+</testsuite>
+<testsuite name="tests\phase10-final-integration.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="1" failures="0" skipped="0" time="7.575" errors="0">
+<testcase name="Entry → Home → seven real Scenes → Evidence Detail → Scene → Lab → original Scene" classname="tests\phase10-final-integration.spec.ts" time="7.575">
+</testcase>
+</testsuite>
+<testsuite name="tests\routes.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="5" failures="0" skipped="0" time="1.544" errors="0">
+<testcase name="opens and reloads /" classname="tests\routes.spec.ts" time="0.297">
+</testcase>
+<testcase name="opens and reloads /home" classname="tests\routes.spec.ts" time="0.309">
+</testcase>
+<testcase name="opens and reloads /lab" classname="tests\routes.spec.ts" time="0.332">
+</testcase>
+<testcase name="opens and reloads /lab/experiments/case8" classname="tests\routes.spec.ts" time="0.298">
+</testcase>
+<testcase name="opens and reloads /evidence/ev.case8.D_u.snapshot.6.density" classname="tests\routes.spec.ts" time="0.308">
+</testcase>
+</testsuite>
+<testsuite name="tests\spectral-real-api.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase5-10-real-api" tests="6" failures="0" skipped="0" time="40.441" errors="0">
+<testcase name="real spectral outage is surfaced honestly with no fabricated curve" classname="tests\spectral-real-api.spec.ts" time="0.577">
+</testcase>
+<testcase name="real Spectral Lab reads recorded frozen facts" classname="tests\spectral-real-api.spec.ts" time="1.556">
+</testcase>
+<testcase name="all four real configurations expose every recorded mode and restore evidence context" classname="tests\spectral-real-api.spec.ts" time="34.063">
+</testcase>
+<testcase name="real provider reports a missing saved vector explicitly" classname="tests\spectral-real-api.spec.ts" time="1.038">
+</testcase>
+<testcase name="real eigenmode rejects an array result identity mismatch" classname="tests\spectral-real-api.spec.ts" time="1.593">
+</testcase>
+<testcase name="real eigenmode rejects an array element count mismatch" classname="tests\spectral-real-api.spec.ts" time="1.614">
+</testcase>
+</testsuite>
+<testsuite name="tests\phase8-final-integration.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="phase8-real-api" tests="1" failures="0" skipped="0" time="27.238" errors="0">
+<testcase name="Phase8D real Cylinder D_u journey, D_u versus D_u and actual cumulative2D absence" classname="tests\phase8-final-integration.spec.ts" time="27.238">
+</testcase>
+</testsuite>
+<testsuite name="..\tests\window3_frontend\case8_slice.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="window3-mock-development" tests="16" failures="0" skipped="0" time="11.862" errors="0">
+<testcase name="Entry -&gt; Home -&gt; Lab -&gt; Case8 chain › Entry shows identity and enters the system" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.671">
+</testcase>
+<testcase name="Entry -&gt; Home -&gt; Lab -&gt; Case8 chain › Home shows the scientific question, implemented Explore, and Lab entry" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.502">
+</testcase>
+<testcase name="Entry -&gt; Home -&gt; Lab -&gt; Case8 chain › Lab marks only Case8 IMPLEMENTED and others PLANNED (never MISSING data)" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.505">
+</testcase>
+<testcase name="Case8 config switching › A/B/C/D are selectable and update the overview" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.582">
+</testcase>
+<testcase name="Case8 config switching › Allocation is family-present but disabled for A/B/C and explained" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.509">
+</testcase>
+<testcase name="Flow snapshots › snapshots 1..6 render with &quot;Snapshot n / 6&quot; and actual step/time" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="1.857">
+</testcase>
+<testcase name="Flow snapshots › snapshot 0 is not offered as a recorded index" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.54">
+</testcase>
+<testcase name="Flow snapshots › field switch re-renders density / pressure / front" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="1.254">
+</testcase>
+<testcase name="Entropy + dual time › entropy chart renders and selecting a step shows both times" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.808">
+</testcase>
+<testcase name="Entropy + dual time › selecting a scalar step also works via a chart click" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.827">
+</testcase>
+<testcase name="Metrics › each metric shows value with definition, unit, detector and evidence link" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.631">
+</testcase>
+<testcase name="Evidence navigation and return context › Evidence tab -&gt; P09 -&gt; back restores experiment/config/tab" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.852">
+</testcase>
+<testcase name="Evidence navigation and return context › direct evidence deep link has no fake back target" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.498">
+</testcase>
+<testcase name="Refresh / deep-link recovery › refresh keeps config, tab and snapshot" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.906">
+</testcase>
+<testcase name="Refresh / deep-link recovery › unknown experiment shows a system fallback" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.394">
+</testcase>
+<testcase name="MOCK labelling › mock badge is visibly present on data pages" classname="..\tests\window3_frontend\case8_slice.spec.ts" time="0.526">
+</testcase>
+</testsuite>
+<testsuite name="..\tests\window4_allocation\allocation_ui.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="window4-allocation-ui" tests="10" failures="0" skipped="0" time="7.879" errors="0">
+<testcase name="Allocation tab — Case8 D_u FACE_FIELD › shows representation_type FACE_FIELD with face measure and two orientations" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.808">
+</testcase>
+<testcase name="Allocation tab — Case8 D_u FACE_FIELD › shows the per-orientation mask identity and both mask counts" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.681">
+</testcase>
+<testcase name="Allocation tab — Case8 D_u FACE_FIELD › shows definition, verification and evidence blocks" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.67">
+</testcase>
+<testcase name="Allocation tab — Case8 D_u FACE_FIELD › summary shows budget and inside fraction" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.675">
+</testcase>
+<testcase name="Allocation tab — Gate CELL_FIELD › switching family shows CELL_FIELD with cell measure and one field" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.709">
+</testcase>
+<testcase name="Allocation tab — Gate CELL_FIELD › all three Gate configs render a cell map with matched-budget summaries" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="1.244">
+</testcase>
+<testcase name="Allocation tab — Gate CELL_FIELD › cell mask identity is distinct from the Case8 face mask" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.96">
+</testcase>
+<testcase name="The two representations are never the same object › FACE and CELL differ in representation, measure, mask and raster" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.919">
+</testcase>
+<testcase name="Allocation capability gating › allocation tab stays disabled for A/B/C and enabled for D_u" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.513">
+</testcase>
+<testcase name="Allocation capability gating › mock badge is visible on the allocation tab" classname="..\tests\window4_allocation\allocation_ui.spec.ts" time="0.7">
+</testcase>
+</testsuite>
+<testsuite name="..\tests\window3_spectral\spectral_lab_ui.spec.ts" timestamp="2026-10-02T04:28:05.677Z" hostname="window3-spectral-ui" tests="9" failures="0" skipped="0" time="6.955" errors="0">
+<testcase name="Spectral Lab — route and scope › is reachable via the experiment tab and deep link" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="0.558">
+</testcase>
+<testcase name="Spectral Lab — route and scope › states the scientific scope and never emits an evaluative verdict" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="0.466">
+</testcase>
+<testcase name="Spectral Lab — region 1 (spectral abscissa curve) › renders x = mode k, y = Re(λ) with the recorded q_at" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="0.715">
+</testcase>
+<testcase name="Spectral Lab — region 1 (spectral abscissa curve) › switching configuration changes the resolved q_at (four exact values)" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="1.143">
+</testcase>
+<testcase name="Spectral Lab — region 2 (mode detail) › renders the eigenmode for a saved selection with its index spaces" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="0.799">
+</testcase>
+<testcase name="Spectral Lab — region 2 (mode detail) › a registered-but-unsaved mode rank shows Unavailable, never a blank frame" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="0.652">
+</testcase>
+<testcase name="Spectral Lab — region 2 (mode detail) › selecting a different mode index re-reads the eigenmode" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="0.768">
+</testcase>
+<testcase name="Spectral Lab — region 3 (growth validation) › renders linear vs CFD with recorded rates and an explicit missing history" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="1.365">
+</testcase>
+<testcase name="Spectral Lab — loading state › a slow spectral provider surfaces a Loading state first" classname="..\tests\window3_spectral\spectral_lab_ui.spec.ts" time="0.489">
+</testcase>
+</testsuite>
+</testsuites>

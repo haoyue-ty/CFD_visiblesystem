@@ -389,8 +389,6 @@ class EntropyClosureAdapter:
             processing.append(self._processing("closure.frozen-slope-binding-v1", "FORMAT_MAPPING",
                 "Bind existing frozen pairwise slopes and global log-log slope versus dt_eff to the four D_u runs and terminal recorded residuals. No refit; observed refinement remains a fully-discrete diagnostic.", inputs, definition_ids, evidence_id))
         freeze_path = f"{R.BASE}/FREEZE/FREEZE_MANIFEST.json"
-        data_inputs = sorted((asset["asset_id"], asset["sha256"]) for path, asset in R.ASSETS.items() if path in deps and path not in R.IMPORTED_METHODS)
-        digest = hashlib.sha256(json.dumps(data_inputs, separators=(",", ":")).encode()).hexdigest()
         limitations = list(R.LIMITATIONS)
         if source_drift:
             limitations.append({"id": "lim.closure.source-drift", "code": "SOURCE_CODE_DRIFT", "description": "Current imported scientific code differs from frozen identity; frozen numeric bytes are unchanged and no scientific code was executed.", "affected_refs": [], "severity": "WARNING"})
@@ -401,7 +399,7 @@ class EntropyClosureAdapter:
             "method_name": known("cross_mode_ec_unified_v1; periodic first-order FV; independent observer; SSP-RK3"),
             "method_hash": known(R.METHOD_HASH), "recorded_source_hash": known(R.METHOD_HASH),
             "current_source_hash": known(self._observations[R.METHOD_PATH]), "source_observations": observations, "source_assets": assets,
-            "data_hash": known(digest), "freeze_reference": known({"freeze_id": "entropy-budget-closure-freeze-v1",
+            "data_hash": unresolved("No authoritative composite data hash recorded"), "freeze_reference": known({"freeze_id": "entropy-budget-closure-freeze-v1",
                 "manifest_asset_id": R.ASSETS[freeze_path]["asset_id"], "recorded_at": unresolved("Freeze timestamp not recorded"), "hash": known(R.ASSETS[freeze_path]["sha256"])}),
             "processing": processing, "verification": R.verification(evidence_id, ("Saved CSV arithmetic audits and terminal frozen bindings; checksum list excludes its own hash by design",)),
             "limitations": limitations, "source_drift": known(source_drift), "created_at": unresolved("No evidence creation event in the frozen scientific record"),

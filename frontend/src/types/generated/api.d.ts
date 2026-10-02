@@ -242,6 +242,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/evidence": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Server-filtered CURRENT/GAPS/HISTORY evidence metadata; default limit 50, maximum 200. Frozen status filter is VerificationStatus; no arbitrary query fields. */
+        get: operations["EVI01"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/assets/{asset_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Registered public source-asset explanation and live hash facts. No file contents, locator or download. */
+        get: operations["EVI04"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/evidence/{evidence_id}": {
         parameters: {
             query?: never;
@@ -3241,6 +3275,151 @@ export interface components {
             /** Array Id */
             array_id: string;
         };
+        /** AvailableEnvelope[EvidenceIndex] */
+        AvailableEnvelope_EvidenceIndex_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["EvidenceIndex"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** EvidenceIndex */
+        EvidenceIndex: {
+            /** Items */
+            items: components["schemas"]["EvidenceIndexItem"][];
+            page: components["schemas"]["PageWindow"];
+        };
+        /** PartialEnvelope[EvidenceIndex] */
+        PartialEnvelope_EvidenceIndex_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["EvidenceIndex"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[EvidenceIndex] */
+        ApiEnvelope_EvidenceIndex_: components["schemas"]["AvailableEnvelope_EvidenceIndex_"] | components["schemas"]["PartialEnvelope_EvidenceIndex_"] | components["schemas"]["FailedEnvelope"];
+        /** EvidenceQuery */
+        Input_EvidenceQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /**
+             * Experiment Id
+             * @default null
+             */
+            experiment_id: string | null;
+            /**
+             * Status
+             * @default null
+             */
+            status: ("FROZEN_VERIFIED" | "VERIFIED_NOT_FROZEN" | "DERIVED_VERIFIED" | "AVAILABLE_UNVERIFIED" | "PARTIAL" | "MISSING" | "LEGACY" | "SUPERSEDED" | "NOT_APPLICABLE") | null;
+            /**
+             * Section
+             * @default CURRENT
+             * @enum {string}
+             */
+            section: "CURRENT" | "GAPS" | "HISTORY" | "ALL";
+            /**
+             * Offset
+             * @default 0
+             */
+            offset: number;
+            /**
+             * Limit
+             * @default 50
+             */
+            limit: number;
+        };
+        /** AvailableEnvelope[SourceAsset] */
+        AvailableEnvelope_SourceAsset_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "AVAILABLE";
+            data: components["schemas"]["SourceAsset"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** PartialEnvelope[SourceAsset] */
+        PartialEnvelope_SourceAsset_: {
+            /**
+             * Schema Version
+             * @constant
+             */
+            schema_version: "1.0.0";
+            /** Request Id */
+            request_id: string;
+            registry_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            data_revision: components["schemas"]["Fact_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata__MinLen_min_length_1____PydanticGeneralMetadata_pattern____-_________"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            availability: "PARTIAL";
+            data: components["schemas"]["SourceAsset"];
+            /** Issues */
+            issues: components["schemas"]["ErrorBody"][];
+        };
+        /** ApiEnvelope[SourceAsset] */
+        ApiEnvelope_SourceAsset_: components["schemas"]["AvailableEnvelope_SourceAsset_"] | components["schemas"]["PartialEnvelope_SourceAsset_"] | components["schemas"]["FailedEnvelope"];
+        /**
+         * IdentityQuery
+         * @description Path-only identity selector for EVI02 and EVI04.
+         */
+        Input_IdentityQuery: {
+            /**
+             * Registry Revision
+             * @default null
+             */
+            registry_revision: string | null;
+            /**
+             * Evidence Id
+             * @default null
+             */
+            evidence_id: string | null;
+            /**
+             * Asset Id
+             * @default null
+             */
+            asset_id: string | null;
+        };
         /** AvailableEnvelope[EvidenceRecord] */
         AvailableEnvelope_EvidenceRecord_: {
             /**
@@ -3283,27 +3462,6 @@ export interface components {
         };
         /** ApiEnvelope[EvidenceRecord] */
         ApiEnvelope_EvidenceRecord_: components["schemas"]["AvailableEnvelope_EvidenceRecord_"] | components["schemas"]["PartialEnvelope_EvidenceRecord_"] | components["schemas"]["FailedEnvelope"];
-        /**
-         * IdentityQuery
-         * @description Path-only identity selector for EVI02 and EVI04.
-         */
-        Input_IdentityQuery: {
-            /**
-             * Registry Revision
-             * @default null
-             */
-            registry_revision: string | null;
-            /**
-             * Evidence Id
-             * @default null
-             */
-            evidence_id: string | null;
-            /**
-             * Asset Id
-             * @default null
-             */
-            asset_id: string | null;
-        };
         /** AvailableEnvelope[ResultProvenance] */
         AvailableEnvelope_ResultProvenance_: {
             /**
@@ -5820,6 +5978,139 @@ export interface operations {
             };
         };
     };
+    EVI01: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                experiment_id?: string | null;
+                status?: ("FROZEN_VERIFIED" | "VERIFIED_NOT_FROZEN" | "DERIVED_VERIFIED" | "AVAILABLE_UNVERIFIED" | "PARTIAL" | "MISSING" | "LEGACY" | "SUPERSEDED" | "NOT_APPLICABLE") | null;
+                section?: "CURRENT" | "GAPS" | "HISTORY" | "ALL";
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_EvidenceIndex_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    EVI04: {
+        parameters: {
+            query?: {
+                registry_revision?: string | null;
+                evidence_id?: string | null;
+            };
+            header?: never;
+            path: {
+                asset_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_SourceAsset_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_ASSET_ID */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description METHOD_NOT_ALLOWED */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description REVISION_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CANONICAL_SCHEMA_MISMATCH, INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
     EVI02: {
         parameters: {
             query?: {
@@ -6026,7 +6317,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6114,7 +6405,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6201,7 +6492,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6288,7 +6579,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6373,7 +6664,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6460,7 +6751,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6547,7 +6838,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6635,7 +6926,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6728,7 +7019,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6813,7 +7104,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6900,7 +7191,7 @@ export interface operations {
                     "application/json": components["schemas"]["FailedEnvelope"];
                 };
             };
-            /** @description REVISION_UNAVAILABLE */
+            /** @description REVISION_UNAVAILABLE, SOURCE_DATA_DRIFT, SOURCE_CHANGED_DURING_READ */
             409: {
                 headers: {
                     [name: string]: unknown;
