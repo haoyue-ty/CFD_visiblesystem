@@ -1,0 +1,19 @@
+
+> shockpath-frontend@0.1.0 build
+> vue-tsc --noEmit && vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 834 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.37 kB │ gzip:   0.27 kB
+dist/assets/index-BKHOjAST.css     27.89 kB │ gzip:   5.58 kB
+dist/assets/index-By65cFav.js   1,452.89 kB │ gzip: 474.56 kB
+
+✓ built in 902ms
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

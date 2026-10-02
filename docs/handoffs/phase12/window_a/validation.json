@@ -1,0 +1,93 @@
+{
+  "window": "PHASE12_A",
+  "status": "PASS",
+  "candidate_head": "d9f2f1b66bf146cf3c42217f8509752f970755a1",
+  "backend": {
+    "tests": 1356,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 1356
+  },
+  "frontend": {
+    "total": 217,
+    "unit": 15,
+    "e2e_total": 202,
+    "production_real_api": 167,
+    "dev_mock": 35,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "project_counts": {
+      "unit": 15,
+      "phase5-10-real-api": 166,
+      "phase8-real-api": 1,
+      "window3-mock-development": 16,
+      "window4-allocation-ui": 10,
+      "window3-spectral-ui": 9
+    }
+  },
+  "typecheck": "PASS",
+  "production_build": "PASS",
+  "runner": "playwright.phase11.integration.config.ts; all projects, workers=1, retries=0, fresh Waitress + Vite preview + isolated DEV server, reuseExistingServer=false",
+  "commands": [
+    ".venv/Scripts/python.exe -B -m pytest -q --junitxml=.cache/phase12-a/backend-full.xml",
+    "npm run build --prefix frontend",
+    "npx playwright test --config=playwright.phase11.integration.config.ts",
+    "scripts.verification.phase11_integration lineage/capture/contracts/public/scan",
+    "scripts.verification.source_audit --baseline .cache/phase11-final/source-before.json"
+  ],
+  "source_preservation": {
+    "status": "PASS",
+    "source_root": "D:\\Paper\\passage6",
+    "files_before": 27843,
+    "files_after": 27843,
+    "bytes": 5429811970,
+    "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ]
+  },
+  "scientific_files_modified": "NO",
+  "cfd_runs_started": 0,
+  "production_reachable_scientific_mock": 0,
+  "public_source_path_exposure": 0,
+  "explore_full_flow": "PASS",
+  "lab_full_flow": "PASS",
+  "evidence_deep_link": "PASS",
+  "state_restore": "PASS",
+  "browser_network_monitor": "Complete Entry/Explore7/Evidence/Lab-return journey checks page errors, console errors, HTTP>=500 and failed requests; expected aborts excluded; injected outages are separate negative tests.",
+  "known_scientific_gaps": [
+    "Cylinder cumulative2D = MISSING",
+    "Near1D authoritative five-epsilon raw = MISSING",
+    "Spectrum serialized matrices = MISSING",
+    "Saved linear/RK3 amplitude histories = MISSING"
+  ],
+  "cross_flow_comparability": "DESCRIPTIVE_ONLY",
+  "cross_flow_ranking_policy": "NO_UNIFIED_RANKING",
+  "build_advisory": "Existing >500kB bundle advisory; no compile/type errors. No code splitting scope expansion.",
+  "artifact_hash_encoding": "SHA256 of LF-normalized committed software QA artifacts; not scientific provenance",
+  "artifact_sha256": {
+    "backend-full.log": "9e7b86a6ee1c2804b4727aac35902b0d9d5c18977d672c564e07a5edb7c75397",
+    "backend-full.xml": "103f39335e54f71a8c660ca56c612b41052f161cfbb29c81187d7cbd24d7bc5a",
+    "build.log": "99e32f21d5ae901ae05fc0cd9f5ab73d5b30bcc5bda1a12efd73651adf95f7fb",
+    "contracts.json": "0e331ea794512b6e453876ad43dfef3659fe33533a586e6fe227140251390af1",
+    "frontend-full.json": "6e8350ea3341553f08c528b75bbb6bf098755759039a91dc52dbabb88898bea6",
+    "frontend-full.log": "ea4ee39f4b3eced06dd14634e7efe0aa0bd1bf06aa8dab7ea22cd8cc1e3d9fc5",
+    "frontend-full.xml": "36f05c83aa9edb8f33ed6cd1cd079b434e6c4c4a1f7de03108853d12d0a1a917",
+    "lineage.json": "96b045d82b7913303d35d4f56fc6b1a0ddc2083c8b093650afa09c5060685015",
+    "PHASE12_WINDOW_A_HANDOFF.md": "9b87af9340901ae4a135a6c59ee5f1c94ea8bc30fa3dbba0b4f6d93a45848c27",
+    "production-scan.json": "f080cab1e25d54dc37fd9766ab217f8eb7db66144bd94bd6628bc4693b2fcb8b",
+    "public-audit.json": "6950dd4fbb5262f3a67db30ad45d5ac6d3e7c9eea221375d0971e2a9567f1b68",
+    "repository-audit.json": "cd7e0ab70270ba42b258e9585d060684e4c7e59a4551dad2f8529e09c0772c46",
+    "source-before-summary.json": "6886ad48d498d5f398c447503f9124bbc3a0e36e09fb40d1cb85e647b5200256",
+    "source-preservation.json": "015f563971fecf29b85388627bed096909dd24e3c28f80373d8482f76d41dee0",
+    "static-scan.json": "d3be76a197c256db12bee10650b2210adebdd79b708e2153922e409aa38bf1cd",
+    "ts-regeneration.json": "d0853daa506d71bdbaa08e57002f38165669147e4b78f2a5f35e49c7373bf71e",
+    "ts-regeneration.log": "25adc5caacbf892c44cacbf09d3250e061627fcd21c1aabadc2237f0283667bc"
+  }
+}

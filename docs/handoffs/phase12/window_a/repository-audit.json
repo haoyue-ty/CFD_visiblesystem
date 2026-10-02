@@ -1,0 +1,192 @@
+{
+  "base_head": "49f29f1c1a4817640aee757e520692395baf17b2",
+  "initial_primary_branch": "phase9/closure-ui",
+  "initial_primary_head": "b8eb0b8ff261b064c6c71390f6c023059347a90a",
+  "initial_primary_clean": true,
+  "integration_initial_clean": true,
+  "owned": [
+    {
+      "path": "README.md",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "backend/api/registry.py",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "backend/core/app.py",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "backend/models/core.py",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "config/openapi.json",
+      "classification": "OWNED",
+      "purpose": "generated shared contract"
+    },
+    {
+      "path": "frontend/src/data/domain.ts",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/data/evidence.ts",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/pages/ClosurePage.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/pages/CylinderPage.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/pages/EvidenceCenterPage.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/pages/ExperimentDetailPage.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/pages/ExperimentPage.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/pages/ScientificLabPage.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/scientific/ScientificStatus.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/types/generated/api.d.ts",
+      "classification": "OWNED",
+      "purpose": "generated shared contract"
+    },
+    {
+      "path": "frontend/src/views/case8/AllocationTab.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/views/case8/EvidenceTab.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/views/case8/GateComparisonView.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/views/case8/SpectralTab.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/views/cylinder/CanonicalMetrics.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/views/cylinder/ResultContext.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/views/evidence/EvidenceDetailView.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/src/views/evidence/EvidenceStatus.vue",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/tests/cylinder-crossflow-real-api.spec.ts",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "frontend/tests/phase10-final-integration.spec.ts",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "frontend/tests/phase11-final-integration.spec.ts",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "tests/test_bootstrap.py",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "tests/window0_phase8_bootstrap/test_cylinder_source_audit.py",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "tests/window2_closure_api/test_closure_api.py",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "tests/window2_cylinder_crossflow_api/test_cylinder_crossflow_api.py",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "tests/window3_spectral/spectral_lab_ui.spec.ts",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "backend/services/workspace_metadata.py",
+      "classification": "OWNED",
+      "purpose": "minimal integration seam or current launch documentation"
+    },
+    {
+      "path": "frontend/tests/phase12-final-integration.spec.ts",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    },
+    {
+      "path": "tests/verification/test_phase12_integration.py",
+      "classification": "OWNED",
+      "purpose": "acceptance QA"
+    }
+  ],
+  "preexisting": [],
+  "unrelated": [],
+  "temporary_artifacts": "ignored .cache, node_modules, dist, test-results and runtime junction",
+  "scientific_adapters_and_registries_changed": false,
+  "accepted_metadata_and_scientific_arrays_changed": false,
+  "implementation_commit": "d9f2f1b66bf146cf3c42217f8509752f970755a1",
+  "implementation_committed_clean": true,
+  "accepted_final_lineage": {
+    "phase8": "fceb3b6c569cf381b04767da77b4b92418a4b5ed",
+    "phase9": "0df633ff6cd9bd939fdbd0eb2b39a3ec0ac7e880",
+    "phase10": "004b0e7e8081e5331ed7aa6291b83afdcdc4f45b",
+    "phase11": "49f29f1c1a4817640aee757e520692395baf17b2"
+  }
+}
