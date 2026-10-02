@@ -155,12 +155,13 @@ test.describe('Metrics', () => {
 })
 
 test.describe('Evidence navigation and return context', () => {
-  test('Evidence tab -> P09 -> back restores experiment/config/tab', async ({ page }) => {
+  test('mock Evidence tab -> Quick -> P09 missing state -> back restores experiment/config/tab', async ({ page }) => {
     await page.goto('/lab/experiments/case8?config=C_u&tab=evidence')
     await page.getByTestId('evidence-source-list').locator('a').first().click()
+    await page.getByTestId('quick-full-record').click()
     await expect(page.locator('main[data-page="evidence"]')).toBeVisible()
-    await expect(page.getByTestId('evidence-record')).toBeVisible()
-    await expect(page.getByTestId('evidence-config')).toHaveText('C_u')
+    await expect(page.getByTestId('evidence-fallback')).toBeVisible()
+    await expect(page.getByTestId('evidence-record')).toHaveCount(0)
 
     await page.getByTestId('back-to-result').click()
     await expect(page.locator('main[data-page="experiment"]')).toBeVisible()
@@ -170,7 +171,7 @@ test.describe('Evidence navigation and return context', () => {
   })
 
   test('direct evidence deep link has no fake back target', async ({ page }) => {
-    await page.goto('/evidence/mock.evidence.case8.D_u.metric.width')
+    await page.goto('/evidence/ev.case8.D_u.metrics')
     await expect(page.getByTestId('evidence-record')).toBeVisible()
     await expect(page.getByTestId('back-to-result')).toHaveCount(0)
     await expect(page.getByTestId('back-to-lab')).toBeVisible()

@@ -129,10 +129,11 @@ test('S7 real per-result evidence loads one record with identity/config/hash/lim
   const scienceRequests: string[] = []
   page.on('request', r => { if (r.url().includes('/api/v1/')) scienceRequests.push(r.url()) })
   await open(page, 7)
-  for (const heading of ['Config parameters', 'Method & source', 'Verification', 'Source assets', 'Limitations']) await expect(page.getByRole('heading', { name: heading, exact: true })).toBeVisible()
+  for (const heading of ['Configuration', 'Method & source', 'Verification', 'Source assets', 'Limitations']) await expect(page.getByRole('heading', { name: heading, exact: true })).toBeVisible()
   expect(scienceRequests.filter(s => s.includes('/evidence/'))).toHaveLength(1)
   expect(scienceRequests.filter(s => /\/arrays\/|entropy-history|\/spectra\/|\/comparisons\//.test(s))).toEqual([])
   await page.locator('a[data-testid="evidence-link"][href*="ev.case8.D_u.entropy"]').first().click()
+  await page.getByTestId('quick-full-record').click()
   await expect(page.getByTestId('evidence-record')).toBeVisible()
   await page.getByTestId('back-to-result').click()
   await expect(page.getByTestId('scene-progress')).toHaveText('Scene 7 / 7')

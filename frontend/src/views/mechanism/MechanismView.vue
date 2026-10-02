@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { contentService, type MechanismContent, type MechanismEvidence } from '../../data/content'
+import { contentService, type MechanismContent } from '../../data/content'
 import type { Loaded } from '../../data/domain'
 import LoadStateBlock from '../../components/LoadStateBlock.vue'
 import EvidenceLink from '../../scientific/EvidenceLink.vue'
+import { evidenceService } from '../../data/evidence'
+import type { components } from '../../types/generated/api'
 
 withDefaults(defineProps<{ controlsEnabled?: boolean }>(), { controlsEnabled: true })
 const route = useRoute()
 const router = useRouter()
 const content = ref<Loaded<MechanismContent> | null>(null)
-const evidence = ref<Loaded<MechanismEvidence> | null>(null)
-const quickOpen = ref(false)
+const provenance = ref<Loaded<components['schemas']['ResultProvenance']> | null>(null)
 const controller = new AbortController()
 async function loadMechanism() {
   content.value = null
-  try { content.value = await contentService.mechanism(controller.signal) }
+  try {
+    content.value = await contentService.mechanism(controller.signal)
+    if (content.value.data) provenance.value = await evidenceService.provenance(content.value.data.content_id, controller.signal)
+  }
   catch (error) { if ((error as Error).name !== 'AbortError') throw error }
 }
 onMounted(loadMechanism)
@@ -27,12 +31,6 @@ const output = computed(() => qat.value === 'OFF' ? 'Pathway disabled' : state.v
 function update(key: string, value: string) { return router.push({ query: { ...route.query, [key]: value } }) }
 function select(event: Event, key: string) { void update(key, (event.target as HTMLSelectElement).value) }
 const returnTo = computed(() => ({ name: route.name as string, params: route.params, query: { ...route.query } }))
-async function quickEvidence(id: string) {
-  quickOpen.value = true
-  evidence.value = { state: 'LOADING', data: null, origin: 'VERIFIED_PRODUCTION', reason: null }
-  try { evidence.value = await contentService.evidence(id, controller.signal) }
-  catch (error) { if ((error as Error).name !== 'AbortError') throw error }
-}
 
 // Coordinates only; graph identities, prose and directed edges come from CONTENT03.
 const positions: Record<string, [number, number]> = {
@@ -120,22 +118,15 @@ function nodeState(id: string) {
             <p><strong>Theory:</strong> schematic explanations and conditional scaling; no numerical verification claim.</p>
             <p><strong>Implementation:</strong> frozen production method and source hash in the linked record.</p>
             <p><strong>Numerical result:</strong> linked spectra retain their own verification; they do not certify Near-1D scaling or this schematic as CFD numerical verification.</p>
+            <LoadStateBlock :loaded="provenance" target="mechanism provenance">
+              <div v-for="record in provenance?.data?.evidence_records" :key="record.evidence_id" class="evidence-actions">
+                <EvidenceLink :evidence-id="record.evidence_id" context="mechanism" :return-to="returnTo" />
+              </div>
+            </LoadStateBlock>
+            <p>Related numerical evidence retains separate result scope:</p>
             <div v-for="id in content.data.evidence_refs" :key="id" class="evidence-actions">
-              <button data-testid="evidence-quick" @click="quickEvidence(id)">Evidence quick</button>
               <EvidenceLink :evidence-id="id" context="mechanism" :return-to="returnTo" />
             </div>
-            <section v-if="quickOpen" aria-label="Evidence quick view" data-testid="evidence-quick-view">
-              <button @click="quickOpen = false">Close quick view</button>
-              <LoadStateBlock :loaded="evidence" target="mechanism evidence">
-                <template v-if="evidence?.data">
-                  <p>{{ evidence.data.evidence_id }}</p>
-                  <p>Record verification: {{ evidence.data.verification.status }} (linked result / sources).</p>
-                  <p>Implementation method: {{ evidence.data.method_name.state === 'KNOWN' ? evidence.data.method_name.value : 'UNKNOWN' }}</p>
-                  <p class="hash">Method hash: {{ evidence.data.method_hash.state === 'KNOWN' ? evidence.data.method_hash.value : 'UNKNOWN' }}</p>
-                  <ul><li v-for="lim in evidence.data.limitations" :key="lim.id">{{ lim.description }}</li></ul>
-                </template>
-              </LoadStateBlock>
-            </section>
           </section>
         </aside>
       </div>

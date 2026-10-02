@@ -75,6 +75,7 @@ test('Cylinder evidence return restores config, tab, snapshot, field and scalar 
   await page.goto('/lab/experiments/cylinder?config=B_u&tab=flow&snapshot=4&field=angular_interior_pi_at&step=123')
   await expect(page.getByTestId('instantaneous-field')).toBeVisible()
   await page.locator('figure').getByTestId('evidence-link').first().click()
+  await page.getByTestId('quick-full-record').click()
   await expect(page.getByTestId('evidence-record')).toBeVisible()
   await expect(page.getByTestId('evidence-config')).toHaveText('B_u')
   await page.getByTestId('back-to-result').click()
@@ -100,6 +101,7 @@ test('Cross-flow renders distinct scientific objects, policies, comparability an
   await page.screenshot({ path: info.outputPath('cross-flow-renderers.png') })
   for (const side of [left, right]) {
     await side.getByTestId('evidence-link').first().click()
+    await page.getByTestId('quick-full-record').click()
     await expect(page.getByTestId('evidence-record')).toBeVisible()
     await page.getByTestId('back-to-result').click()
     expect(new URL(page.url()).searchParams.get('case8_config')).toBe('D_u')

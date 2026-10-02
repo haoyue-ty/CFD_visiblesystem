@@ -38,6 +38,7 @@ test('Phase8D real Cylinder D_u journey, D_u versus D_u and actual cumulative2D 
   const metricEvidence = page.locator('a[data-testid="evidence-link"][href*="ev.cylinder.D_u.metrics"]')
   await expect(metricEvidence).toBeVisible()
   await metricEvidence.click()
+  await page.getByTestId('quick-full-record').click()
   await expect(page.getByTestId('evidence-record')).toBeVisible()
   await expect(page.getByTestId('evidence-config')).toHaveText('D_u')
   await shot('05-cylinder-du-evidence')

@@ -41,6 +41,7 @@ test('Entry → Home → seven real Scenes → Evidence Detail → Scene → Lab
   }
   await expect(page.getByRole('heading', { name: 'Source assets', exact: true })).toBeVisible()
   await page.locator('a[data-testid="evidence-link"][href*="ev.case8.D_u.entropy"]').first().click()
+  await page.getByTestId('quick-full-record').click()
   await expect(page.locator('main[data-page="evidence"]')).toBeVisible()
   await expect(page.getByTestId('evidence-record')).toBeVisible()
   const output = fileURLToPath(new URL('../../.cache/phase10-final/', import.meta.url))

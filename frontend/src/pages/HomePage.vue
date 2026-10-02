@@ -66,7 +66,8 @@ onMounted(async () => {
       <article class="card">
         <h2>Evidence</h2>
         <p>Every scientific result can be traced to its method, config, source and verification state.</p>
-        <p class="card__hint">Open a result's "View evidence" link to reach a full evidence record.</p>
+        <p class="card__hint">A result's "View evidence" opens Quick View, then its full record. Browse current evidence, known gaps and history in the center.</p>
+        <RouterLink class="card__cta" :to="{ name: 'evidence-center' }">Open Evidence Center</RouterLink>
       </article>
     </section>
 

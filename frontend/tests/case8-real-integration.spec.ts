@@ -26,6 +26,7 @@ test('real vertical slice and four-configuration acceptance', async ({ page }) =
   await page.getByTestId('tab-metrics').click()
   await expect(page.getByTestId('metrics-panel')).toContainText('MULTI_SNAPSHOT')
   await page.getByTestId('evidence-link').first().click()
+  await page.getByTestId('quick-full-record').click()
   await expect(page.getByTestId('evidence-record')).toBeVisible()
   await expect(page.getByTestId('evidence-config')).toHaveText('D_u')
   await expect(page.getByTestId('evidence-verification')).not.toContainText('FROZEN_VERIFIED')

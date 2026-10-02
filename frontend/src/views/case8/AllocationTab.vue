@@ -27,8 +27,8 @@
  *   are shown as explicit, dedicated blocks — not as decoration. The mock banner
  *   is always visible while the mock provider is active.
  */
-import { computed, onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { activeProvider, dataService, createRequestGuard, type Loaded, type AllocationSelector } from '../../data'
 import type { AllocationView } from '../../data/domain'
 import LoadStateBlock from '../../components/LoadStateBlock.vue'
@@ -41,6 +41,7 @@ import EvidenceLink from '../../scientific/EvidenceLink.vue'
 
 const props = defineProps<{ configId: string }>()
 const route = useRoute()
+const router = useRouter()
 
 /** The allocation "family" this tab can display. Both are read via one provider. */
 type Family = 'case8' | 'gate'
@@ -54,10 +55,9 @@ const GATE_CONFIGS = ['Acoustic', 'Pressure', 'Ungated'] as const
  */
 const family = ref<Family>(route.query.allocation_family === 'gate' ? 'gate' : 'case8')
 const gateConfig = ref<string>(GATE_CONFIGS.find(c => c === route.query.allocation_gate) ?? 'Acoustic')
-const returnTo = computed(() => ({ name: 'experiment', params: route.params,
-  query: { ...route.query, allocation_family: family.value, allocation_gate: gateConfig.value } }))
+const returnTo = computed(() => ({ name: 'experiment', params: route.params, query: { ...route.query } }))
 
-const showComparison = ref(false)
+const showComparison = ref(route.query.allocation_comparison === 'true')
 const allocation = ref<Loaded<AllocationView> | null>(null)
 const guard = createRequestGuard()
 
@@ -75,7 +75,22 @@ async function load() {
 }
 
 onMounted(load)
+onBeforeUnmount(() => guard.cancel())
 watch(selector, load, { deep: true })
+// Persist local controls on the result's actual history entry, so browser Back
+// restores the same family/gate/comparison as the explicit return link.
+watch([family, gateConfig, showComparison], () => {
+  if (route.name !== 'experiment' || route.query.tab !== 'allocation') return
+  const query = { ...route.query, allocation_family: family.value, allocation_gate: gateConfig.value,
+    allocation_comparison: showComparison.value ? 'true' : undefined }
+  if (router.resolve({ query }).fullPath !== route.fullPath) void router.replace({ query })
+}, { immediate: true })
+watch(() => route.query, query => {
+  if (route.name !== 'experiment' || query.tab !== 'allocation') return
+  family.value = query.allocation_family === 'gate' ? 'gate' : 'case8'
+  gateConfig.value = GATE_CONFIGS.find(c => c === query.allocation_gate) ?? 'Acoustic'
+  showComparison.value = query.allocation_comparison === 'true'
+})
 // Selecting a config without a Case8 map while the Case8 family is active must
 // fall back to the Gate family rather than showing an unexplained blank.
 watch(() => props.configId, () => {

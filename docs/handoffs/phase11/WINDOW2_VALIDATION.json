@@ -1,0 +1,102 @@
+{
+  "window": "2_EVIDENCE_UI",
+  "status": "PASS",
+  "branch": "phase11/evidence-ui",
+  "accepted_base_commit": "a09b928d5c48aa262293066ce3543fb37c575d0f",
+  "frontend": {
+    "status": "PASS",
+    "total": 198,
+    "unit": 15,
+    "browser": 183,
+    "production_browser": 148,
+    "isolated_mock_development_browser": 35,
+    "new_evidence_unit": 10,
+    "new_evidence_browser": 22,
+    "retries": 0,
+    "stats": {
+      "startTime": "2026-10-02T07:04:27.976Z",
+      "duration": 584289.661,
+      "expected": 198,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "junit": "WINDOW2_FRONTEND_TESTS.xml"
+  },
+  "backend_evidence": {
+    "status": "PASS",
+    "tests": 62,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junit": "WINDOW2_BACKEND_EVIDENCE_TESTS.xml"
+  },
+  "build": {
+    "status": "PASS",
+    "checks": [
+      "vue-tsc --noEmit",
+      "vite build",
+      "production synthetic-provider exclusion checks"
+    ],
+    "preexisting_chunk_size_advisory": true,
+    "bundle_sha256": {
+      "frontend\\dist\\assets\\index-CmS2n_mf.js": "bfcafc38a48ef3f437e30afa452c22302314af7d7ff43dc459adf73c8c811537",
+      "frontend\\dist\\assets\\index-DSjXdraN.css": "fdd8f8f18cae8c98729ecf930915637ff4e36a108f63b7994a753c601d6e32f8"
+    }
+  },
+  "preservation": {
+    "status": "PASS_ACCEPTED_BASELINE",
+    "baseline_files": 27742,
+    "baseline_files_modified_or_removed": 0,
+    "whole_tree_identical": false,
+    "observed_unregistered_additions": 101,
+    "registered_source_overlap": 0,
+    "report": "WINDOW2_SOURCE_PRESERVATION.json"
+  },
+  "backend_contract_canonical_metadata_generated_types_modified": false,
+  "scientific_files_modified_by_task": false,
+  "scientific_source_writes_by_task": 0,
+  "cfd_runs_started_by_task": 0,
+  "absolute_path_exposed_in_ui": false,
+  "file_download_exposed_in_ui": false,
+  "mock_in_production": false,
+  "evi01_drift_filter_scope": "CURRENT_SERVER_PAGE_ONLY; frozen query has no source_drift parameter",
+  "public_safety_checks": [
+    "API-only evidence reads",
+    "unsafe display/error locator stripping",
+    "internal named return routes only",
+    "no source/download links"
+  ],
+  "reviewed_screenshots": [
+    "WINDOW2_CURRENT.png",
+    "WINDOW2_DETAIL.png",
+    "WINDOW2_QUICK_VIEW.png"
+  ],
+  "initial_validation": {
+    "full_run_stats": {
+      "startTime": "2026-10-02T06:50:31.195Z",
+      "duration": 633557.365,
+      "expected": 196,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "repair_run_stats": {
+      "startTime": "2026-10-02T07:03:16.188Z",
+      "duration": 40957.901,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "repairs": [
+      "old Configuration heading assertion updated",
+      "Allocation controls persisted on actual result history entry",
+      "Quick-outage test waits for Allocation initialization before recording return URL"
+    ],
+    "local_reports": ".cache/phase11-window2/initial-full.json;repair.json"
+  },
+  "merge_ready": true,
+  "blockers": [],
+  "stop_boundary": "Window2 commit only; no merge or next window"
+}

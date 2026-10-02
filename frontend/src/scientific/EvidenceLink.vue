@@ -1,14 +1,14 @@
 <script setup lang="ts">
 /**
- * EvidenceLink — navigates from any scientific result to the full evidence
- * record (P09). It carries a compact `context` string plus an optional `return`
- * object so that going back restores the originating experiment / config / tab /
- * selection.
+ * EvidenceLink opens the shared Quick View without unmounting the result.
+ * The full-record link retains the experiment / config / tab / selection in an
+ * internal return context. Modified clicks still open the independently shareable P09.
  *
  * Public prop kept stable per README: `evidenceId`. `context` and `return` are
  * additive and optional.
  */
 import { useRoute, type RouteLocationRaw } from 'vue-router'
+import { openEvidence } from '../views/evidence/quickView'
 const route = useRoute()
 
 const props = defineProps<{
@@ -25,13 +25,18 @@ function target(): RouteLocationRaw {
     // Encode the return target compactly so P09 can offer "back to result".
     query.back = JSON.stringify({ ...props.returnTo })
   }
-  if (!query.back && (route.name === 'experiment' || route.name === 'cross-flow' || route.name === 'explore')) query.back = JSON.stringify({ name: route.name, params: route.params, query: route.query })
+  if (!query.back) query.back = JSON.stringify({ name: route.name, params: route.params, query: route.query })
   return { name: 'evidence', params: { evidence_id: props.evidenceId }, query }
+}
+function open(event: MouseEvent) {
+  if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return
+  event.preventDefault()
+  openEvidence(props.evidenceId, target())
 }
 </script>
 
 <template>
-  <RouterLink class="evidence-link" :to="target()" data-testid="evidence-link">View evidence</RouterLink>
+  <a class="evidence-link" :href="$router.resolve(target()).href" data-testid="evidence-link" @click="open">View evidence</a>
 </template>
 
 <style scoped>

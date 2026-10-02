@@ -79,6 +79,7 @@ test('all four real configurations expose every recorded mode and restore eviden
   expect(refs).toHaveLength(4)
   for (const ref of refs) {
     await page.getByText(ref, { exact: true }).locator('..').getByTestId('evidence-link').click()
+    await page.getByTestId('quick-full-record').click()
     await expect(page.getByTestId('evidence-record')).toBeVisible()
     await expect(page.getByTestId('evidence-drift')).toHaveText('No')
     await expect(page.getByTestId('evidence-verification')).toContainText('FROZEN_VERIFIED')

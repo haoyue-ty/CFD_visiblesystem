@@ -10,6 +10,7 @@ import { dataService, createRequestGuard, type Loaded } from '../../data'
 import type { EvidenceSummaryView } from '../../data/domain'
 import LoadStateBlock from '../../components/LoadStateBlock.vue'
 import MockBadge from '../../components/MockBadge.vue'
+import EvidenceLink from '../../scientific/EvidenceLink.vue'
 
 const props = defineProps<{ configId: string }>()
 const items = ref<Loaded<EvidenceSummaryView[]> | null>(null)
@@ -44,11 +45,7 @@ watch(() => props.configId, load)
             verification: {{ item.verification.status }} · results:
             <code>{{ item.result_ids.join(', ') }}</code>
           </p>
-          <RouterLink
-            class="ev__link"
-            :to="{ name: 'evidence', params: { evidence_id: item.evidence_id }, query: { back: JSON.stringify({ name: 'experiment', params: { experiment_id: 'case8' }, query: { config: props.configId, tab: 'evidence' } }) } }"
-            :data-testid="`evidence-link-${item.evidence_id}`"
-          >View full evidence →</RouterLink>
+          <EvidenceLink :evidence-id="item.evidence_id" />
         </li>
       </ul>
       <MockBadge v-if="activeProvider.kind === 'MOCK'" origin="MOCK" :verification="activeProvider.kind === 'MOCK' ? 'NOT_APPLICABLE' : undefined" />

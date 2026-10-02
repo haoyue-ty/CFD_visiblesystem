@@ -111,6 +111,7 @@ test.describe('bootstrap chain still holds', () => {
     await page.getByTestId('open-case8').click()
     await page.getByTestId('tab-evidence').click()
     await page.getByTestId('evidence-source-list').locator('a').first().click()
+    await page.getByTestId('quick-full-record').click()
     await expect(page.getByTestId('evidence-record')).toBeVisible()
     await page.goBack()
     await expect(page.locator('main[data-page="experiment"]')).toBeVisible()

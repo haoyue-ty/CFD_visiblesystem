@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { activeProvider } from './data'
 import MockBadge from './components/MockBadge.vue'
+import EvidenceQuickView from './views/evidence/EvidenceQuickView.vue'
+import { quickView } from './views/evidence/quickView'
 </script>
 
 <template>
+  <div :inert="Boolean(quickView)">
   <header class="appbar">
     <nav aria-label="System navigation" class="appbar__nav">
       <RouterLink :to="{ name: 'entry' }" class="appbar__brand">ShockPath</RouterLink>
       <RouterLink :to="{ name: 'home' }">Home</RouterLink>
       <RouterLink :to="{ name: 'explore', query: { scene: '1' } }">Explore</RouterLink>
       <RouterLink :to="{ name: 'lab' }">Lab</RouterLink>
+      <RouterLink :to="{ name: 'evidence-center' }">Evidence</RouterLink>
     </nav>
     <div class="appbar__env">
       <span class="appbar__env-label">data source</span>
@@ -18,6 +22,8 @@ import MockBadge from './components/MockBadge.vue'
     </div>
   </header>
   <RouterView />
+  </div>
+  <EvidenceQuickView />
 </template>
 
 <style scoped>
