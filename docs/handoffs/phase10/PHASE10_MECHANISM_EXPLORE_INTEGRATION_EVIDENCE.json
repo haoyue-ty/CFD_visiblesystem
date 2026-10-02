@@ -1,0 +1,277 @@
+{
+  "phase": "PHASE10D",
+  "status": "PASS",
+  "audit_time": "2026-10-02T10:38:56.974729+08:00",
+  "branch": "codex/phase10-final-integration",
+  "validated_code_commit": "f4acffe81781209fcd4d0d29ac0a066659ef73d0",
+  "delivery_merge_commit": "b0da144",
+  "accepted_ancestry": {
+    "Phase8": "fceb3b6",
+    "W0": "48286e3",
+    "W1": "152e7d5",
+    "W2": "d6280fc",
+    "W3": "0cdb23b"
+  },
+  "W4_prior_status": "AUDITED_TREE_INVALID; original W0 ancestry missing; functional QA NOT_RUN",
+  "W4_final_status": "PASS; original ancestry retained through merge; functional QA and full regression executed",
+  "initial_frontend_run": {
+    "startTime": "2026-10-02T02:22:40.708Z",
+    "duration": 356600.268,
+    "expected": 144,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "runner_correction": "Historical Phase5 development Home test expected Explore PLANNED and no link. Updated it to assert the accepted Phase10 IMPLEMENTED delivery, Scene1 entry and Back/Home/Lab navigation. No product code, scientific assertions, timeout or retry settings were changed. Targeted test and final full runner passed.",
+  "backend": {
+    "passed": 1088,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "phase_counts": {
+      "Phase5/shared": 273,
+      "Phase6": 146,
+      "Phase7": 371,
+      "Phase10": 101,
+      "Phase8": 197
+    }
+  },
+  "frontend": {
+    "unit_passed": 5,
+    "browser_passed": 140,
+    "real_api_browser_passed": 105,
+    "historical_mock_development_passed": 35,
+    "full_runner": {
+      "startTime": "2026-10-02T02:30:47.295Z",
+      "duration": 320550.166,
+      "expected": 145,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "project_counts": {
+      "unit": 5,
+      "phase5-10-real-api": 104,
+      "phase8-real-api": 1,
+      "window3-mock-development": 16,
+      "window4-allocation-ui": 10,
+      "window3-spectral-ui": 9
+    },
+    "retries": 0,
+    "typecheck": "PASS",
+    "build": "PASS"
+  },
+  "browser_journey": "Entry -> Home -> Start Explore -> Scene1 -> Scene2 -> Scene3 -> Scene4 -> Scene5 -> Scene6 -> Scene7 -> Evidence Detail; Scene3 -> Open in Lab -> reload -> Scene3 with state/node preserved",
+  "scientific_acceptance": {
+    "S1": "budget != explanation",
+    "S2": "trigger/location separation",
+    "S3": "trigger != output",
+    "S4": "same budget != same allocation",
+    "S5": "positive entropy != uniform modal damping",
+    "S6": "pathway budget != pathway allocation != macroscopic consequence",
+    "S7": "real source/evidence/hash"
+  },
+  "content": {
+    "status": "PASS",
+    "mechanism_origin": "SCHEMATIC",
+    "supported_states": [
+      "STRICT_1D",
+      "WEAKLY_2D"
+    ],
+    "scene_count": 7,
+    "scene_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "real_targets": 14,
+    "registered_api_bindings": 28,
+    "near1d_numerical_scan": "MISSING",
+    "gap_code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
+    "numerical_data_duplicated": false,
+    "numerical_reads": 0,
+    "cfd_runs_started": 0
+  },
+  "contracts": {
+    "status": "PASS",
+    "scope": "Phase8 + Phase10",
+    "content_operations": [
+      "CONTENT01",
+      "CONTENT02",
+      "CONTENT03"
+    ],
+    "preexisting_paths_unchanged": 37,
+    "preexisting_schemas_unchanged": 255,
+    "openapi_sha256": "544a972fea11ae3b505255d7467126af3a2330c9198e347f664764fa053b5792",
+    "types_sha256": "ad988d9f3f44f1033b206db32c4678c788c0b33d5472be2675b0a8f050389adf",
+    "openapi_export_byte_identical": true,
+    "types_regeneration_byte_identical": true,
+    "parallel_phase9_merge_required": true
+  },
+  "source_preservation": {
+    "status": "PASS",
+    "source_root": "D:\\Paper\\passage6",
+    "files_before": 27742,
+    "files_after": 27742,
+    "bytes": 5429246095,
+    "before_manifest_sha256": "47ed91e8dbf02b88edb8a87768687d474cd24b8dde9165e17c3c0b83d62a001b",
+    "after_manifest_sha256": "47ed91e8dbf02b88edb8a87768687d474cd24b8dde9165e17c3c0b83d62a001b",
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ]
+  },
+  "selected_dependencies": 189,
+  "phase8_original_scientific_files_unchanged": 24842,
+  "preexisting_source_additions": {
+    "count": 2900,
+    "location": "D:/Paper/passage6/deliverables",
+    "included_in_current_pre_post_audit": true
+  },
+  "frozen_hashes": {
+    "docs/04_SYSTEM_ARCHITECTURE.md": "5a7193d4203ecd205f487fc38c2f64d09256388a9cb88f64d7201496ef58e2ea",
+    "docs/05_DATA_SCHEMA.md": "f61482eb917b81767864eb377a4db0c8b6dcf3e333676c2bd23201c7f0997099",
+    "docs/06_API_CONTRACT.md": "c115ef21d4c8ba2170cb888bfd4842ea12fe2c7f66cdf1b0519d08489dd4d9f1",
+    "docs/PHASE5_CASE8_FREEZE.json": "f75ae3cbe0b551ef3bf8dd8c3f16c9f68f3a21cbacc1c4be08b1cd7e7fdf53ee",
+    "docs/PHASE5_CASE8_FREEZE_MANIFEST.json": "44c82e9bc8d0d4dc692f847107917bf201f37be15166650d349e5f0a1ee925c8",
+    "docs/handoffs/phase6/PHASE6_ALLOCATION_FREEZE.md": "ee12d9fc703030db4c97a6d8d42dc887079d064c57f0d10ade59d4c41150b42b",
+    "docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE.md": "d2d8fbb302f71f2ee0a6503dc9165617543a18618bd495ee9cc1b6117061f4a9",
+    "docs/handoffs/phase7/PHASE7_SPECTRAL_FREEZE_MANIFEST.json": "b838b771fd78b720696594c7cbc132ae5a9fa2514956eb460373762a1f816fa1",
+    "docs/handoffs/phase7/PHASE7_SPECTRAL_INTEGRATION_AUDIT.md": "750403f01fb55c9dec36bb78c28b3d197ca14ef726d6b85cddee952b4b217381",
+    "docs/handoffs/phase7/PHASE7_SPECTRAL_INTEGRATION_EVIDENCE.json": "ac1dd7fa868786ef0b883a10cdd4902dc1d576de4c01697a917dc1469f070642"
+  },
+  "phase8_freeze_artifacts_unchanged": true,
+  "scientific_adapters_unchanged": true,
+  "scientific_files_modified": false,
+  "cfd_runs_started": 0,
+  "parallel_phase9_merge_required": true,
+  "phase9_included": false,
+  "local_execution_directory": "C:\\Users\\t\\.codex\\worktrees\\phase10-final-integration\\CFD_visiblesystem\\.cache\\phase10-final",
+  "execution_artifacts": {
+    "backend-full.xml": {
+      "sha256": "4c47a7bc8848dbce11d2bb0c7cf7433bd01e855fdae87a0c0bb3af0797e31891",
+      "bytes": 170251
+    },
+    "backend-full.log": {
+      "sha256": "22ab7bb75ced7f3b070b7e8c44def5572fb9dfa500f3b497558e505bf2268943",
+      "bytes": 1330
+    },
+    "playwright.json": {
+      "sha256": "a8e362811e9e06cb4b354aeebd09081ee3893868e027ce92197f4afad1ea62af",
+      "bytes": 178645
+    },
+    "frontend-full.log": {
+      "sha256": "d33a46afaa7fcc775c1a70fa8b6647419133c862a6ec6c6525e9f7a9f5445526",
+      "bytes": 40470
+    },
+    "playwright-initial.json": {
+      "sha256": "f55b4a12db96412ac8c0ff70140f3e416f7c17be7d5f62e415bc99b26c2930f1",
+      "bytes": 184284
+    },
+    "frontend-initial.log": {
+      "sha256": "33ff954a65103aabc1c5ba768db0522ff6c95cebbc8b016ed741a1e00b7846d3",
+      "bytes": 42968
+    },
+    "home-targeted-playwright.json": {
+      "sha256": "77ee420b8bb598f44adc560cb3dc8bf5ed74c10581a2d045e2eb4ce3fee63d67",
+      "bytes": 6902
+    },
+    "home-targeted.log": {
+      "sha256": "69a35fb50f246dce1412e48c33d7c453cdcbf7d3cdbc5526e08e74e0bba5564a",
+      "bytes": 1196
+    },
+    "journey-playwright.json": {
+      "sha256": "c950b7b16dc6b0015bca46551953eb234f07bd7b285acb321413284c0d5f43c5",
+      "bytes": 6525
+    },
+    "journey.log": {
+      "sha256": "2b1ca96f292e81ea0da2a43554b58f58f884590722016888ccd76b8059af0dfd",
+      "bytes": 1860
+    },
+    "contracts.json": {
+      "sha256": "55aeb7d2a5cac23a55a58963b240c5e6b7631d252a5e8186f023153df54788ed",
+      "bytes": 528
+    },
+    "source-before.json": {
+      "sha256": "82737ddb3f9e04b4249faa84a538c2e3c3169c79818b2212d30312a1f05ef9dd",
+      "bytes": 7267047
+    },
+    "source-preservation.json": {
+      "sha256": "b00de6f6e45cd415bfc187c53df13fa3c34f71b5772f1ae59ed58c066c2506f5",
+      "bytes": 429
+    },
+    "preflight.json": {
+      "sha256": "d15c212c7d51a38350ffc93dc322f9142ff55a642b3b43fcf22fd1621e967d08",
+      "bytes": 1644
+    },
+    "content-audit.json": {
+      "sha256": "a0a45a34ed6f417b77f6d88a9981d35e42b9ee5bed6e6f8fbcc9442e11ca1181",
+      "bytes": 465
+    },
+    "build.log": {
+      "sha256": "eb01c0d1ceb714872b404366c1083c0ff78ce4a7c290d55c4d68575993a2fd01",
+      "bytes": 1021
+    },
+    "typecheck.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "screenshots": {
+    ".cache\\phase10-window3\\scene-1.png": {
+      "sha256": "351f50962d6477399e22db7347e280064a11e398ed7b9c9297041ad2e295ebc6",
+      "bytes": 88531
+    },
+    ".cache\\phase10-window3\\scene-2.png": {
+      "sha256": "d4ef903d3558036fd903662353d2b89319c5440c062ce642974ada989a59811d",
+      "bytes": 155357
+    },
+    ".cache\\phase10-window3\\scene-3.png": {
+      "sha256": "5797f7eb7e0057b59b764d8d324d983aaf82faa0a317ae9735856df212437515",
+      "bytes": 153621
+    },
+    ".cache\\phase10-window3\\scene-4.png": {
+      "sha256": "ee0145d292c5da6c10406192381abea1542bbdbe6edb7da0a4e2fff70b39f5f1",
+      "bytes": 200691
+    },
+    ".cache\\phase10-window3\\scene-5.png": {
+      "sha256": "821750de5c692de68fe9a4ccc5ff67d409a86a279b2477244ca5b23ef7af755b",
+      "bytes": 168406
+    },
+    ".cache\\phase10-window3\\scene-6.png": {
+      "sha256": "51ab0c3f11a50ebd68f67d2fdebbdc98eee5932cc9a8ff8ccc3383a247357417",
+      "bytes": 629181
+    },
+    ".cache\\phase10-window3\\scene-7.png": {
+      "sha256": "d1b32c07d6a3f1c708cdb3a62c4908cfe93e4af562acadcc99e1a4db81fa3018",
+      "bytes": 118421
+    },
+    ".cache\\phase10-window2\\mechanism-workspace.png": {
+      "sha256": "c63e30d4e0b92fbbdc2a481a19547d958d2f26df94bf52546c4456ee381aea3d",
+      "bytes": 126339
+    },
+    ".cache\\phase10-window2\\mechanism-narrow.png": {
+      "sha256": "17cbe47cf421adab519f70ae3f56cbe94b6033d18955927619001d3dcbeba75a",
+      "bytes": 96225
+    },
+    ".cache\\phase10-final\\journey-evidence.png": {
+      "sha256": "6fd09b37d2ebc70119a3a2fb9e573bfca21c398bc299e5ae13609278e93b8462",
+      "bytes": 81043
+    }
+  },
+  "limitations": [
+    "Near1D numerical scan MISSING; theoretical scaling and SCHEMATIC content only",
+    "Cylinder cumulative2D MISSING; distinct native representations and descriptive comparison only",
+    "Case8 allocation DIAGNOSTIC_RERUN; per-result UNKNOWN/VERIFIED_NOT_FROZEN retained",
+    "No automatic pacing or final UI styling; narrow mechanism diagram scrolls horizontally",
+    "Existing Vite large-chunk advisory"
+  ],
+  "blockers": [],
+  "next": "STOP_AND_REVIEW"
+}
