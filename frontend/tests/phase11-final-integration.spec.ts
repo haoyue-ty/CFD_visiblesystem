@@ -151,7 +151,7 @@ test('W3 three required GAPS have no values, fake plots or reconstruct actions',
   }
 })
 test('W3 Home→Lab reaches each implemented module and Evidence navigation', async ({ page }) => {
-  for (const [id, ready] of [['case8', 'config-D_u'], ['gate', 'gate-Acoustic'], ['entropy-closure', 'closure-run'], ['spectrum', 'spectral-lab'], ['modal-validation', 'growth-validation-canvas'], ['cylinder', 'cylinder-config']] as const) {
+  for (const [id, ready] of [['case8', 'config-D_u'], ['entropy-closure', 'closure-run'], ['cylinder', 'config-D_u']] as const) {
     await page.goto('/home')
     await page.getByRole('navigation', { name: 'System navigation' }).getByRole('link', { name: 'Lab', exact: true }).click()
     await page.getByTestId(`open-${id}`).click()
@@ -159,6 +159,20 @@ test('W3 Home→Lab reaches each implemented module and Evidence navigation', as
     await expect(page.getByTestId('provider-kind')).toHaveText('REAL API')
     expect(await page.locator('body').innerText()).not.toMatch(blockedClaims)
   }
+  // Gate, Spectrum and Modal Validation are delivered within the scientific
+  // workspace; the frozen experiment catalog still marks their standalone cards PLANNED.
+  await page.goto('/home')
+  await page.getByRole('navigation', { name: 'System navigation' }).getByRole('link', { name: 'Lab', exact: true }).click()
+  await page.getByTestId('open-case8').click()
+  await page.getByTestId('tab-allocation').click()
+  await page.getByTestId('alloc-family-cell').click()
+  await page.getByTestId('alloc-gate-Acoustic').click()
+  await expect(page.getByTestId('alloc-identity')).toHaveText('gate / Acoustic')
+  await expect(page.getByTestId('cell-allocation-canvas').first()).toBeVisible()
+  await page.getByTestId('tab-spectral').click()
+  await expect(page.getByTestId('spectral-curve-canvas')).toBeVisible()
+  await expect(page.getByTestId('growth-validation-canvas')).toBeVisible()
+  await expect(page.getByTestId('growth-cfd')).not.toHaveText('unavailable')
   await page.goto('/lab')
   await page.getByRole('link', { name: '跨流动比较 Cross-flow', exact: true }).click()
   await expect(page.getByTestId('descriptive-only')).toBeVisible()
