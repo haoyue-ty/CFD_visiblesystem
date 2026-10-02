@@ -1,4 +1,4 @@
-"""Lightweight frozen content registry; CONTENT01–03 delivery is deferred.
+"""Lightweight frozen content registry for CONTENT01–03.
 
 Every call yields independently owned validated metadata. Numerical resources
 remain in their existing registries, adapters and APIs.
@@ -15,6 +15,7 @@ from backend.registry.content_bindings import (DU_CROSS_FLOW, GATE_COMPARISON,
 
 CONTENT_ROOT = Path(__file__).resolve().parents[2] / "config" / "content"
 BASE_COMMIT = "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3"
+CONTENT_VERSION = "1.0.1"
 TITLES = (
     "How much dissipation?", "What triggers it? Where does it act?",
     "Trigger ≠ Output", "Same budget ≠ Same allocation",
@@ -43,7 +44,8 @@ CONTROL_VALUES = {
 
 def _read_frozen(name: str) -> bytes:
     manifest = json.loads((CONTENT_ROOT / "freeze_manifest.json").read_text(encoding="utf-8"))
-    if manifest["base_commit"] != BASE_COMMIT or manifest["status"] != "FROZEN":
+    if (manifest["base_commit"] != BASE_COMMIT or manifest["status"] != "FROZEN"
+            or manifest["content_registry_version"] != CONTENT_VERSION):
         raise ValueError("Content freeze baseline/status mismatch")
     payload = (CONTENT_ROOT / name).read_bytes()
     if hashlib.sha256(payload).hexdigest() != manifest["sha256"][name]:
@@ -91,7 +93,9 @@ def validate_foundation(mechanism: MechanismContent, scenes: SceneList) -> None:
     required = {("interface-state", "background-psd"), ("interface-state", "acoustic-information"),
         ("acoustic-information", "acoustic-gate"), ("acoustic-gate", "q-aa"),
         ("q-aa", "normal-output"), ("acoustic-gate", "q-at"), ("q-at", "tangential-output"),
-        ("interface-state", "tangential-content"), ("tangential-content", "tangential-output")}
+        ("interface-state", "tangential-content"), ("tangential-content", "tangential-output"),
+        ("background-psd", "combiner"), ("normal-output", "combiner"),
+        ("tangential-output", "combiner"), ("combiner", "entropy-variable-mapping")}
     if pairs != required:
         raise ValueError("Frozen trigger/output graph changed; delta_t must not enter the gate")
     if "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN" not in {lim.code for lim in mechanism.limitations}:

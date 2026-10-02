@@ -1,0 +1,64 @@
+{
+  "window": "3_EXPLORE_GUIDED_FLOW",
+  "status": "PASS",
+  "branch": "phase10/explore-ui",
+  "base": "d6280fcbedd17d861af839c29191984a9031eb17",
+  "scenes": "7/7",
+  "scene_checks": {
+    "S1_ENTROPY": "PASS",
+    "S2_MECHANISM": "PASS",
+    "S3_TRIGGER_OUTPUT": "PASS",
+    "S4_GATE_ALLOCATION": "PASS",
+    "S5_SPECTRAL": "PASS",
+    "S6_CROSS_FLOW": "PASS",
+    "S7_EVIDENCE": "PASS"
+  },
+  "lab_reuse": "PASS",
+  "scientific_data_duplicated": false,
+  "formal_metrics_recomputed": false,
+  "url_state": "PASS",
+  "return_context": "PASS",
+  "build": "PASS",
+  "frontend_regression": {
+    "startTime": "2026-10-01T15:08:24.403Z",
+    "duration": 279220.876,
+    "expected": 109,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "final_affected_view_regression": {
+    "startTime": "2026-10-01T15:14:47.149Z",
+    "duration": 177198.022,
+    "expected": 67,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "content_contracts": {
+    "passed": 101,
+    "failed": 0
+  },
+  "mock_in_production": false,
+  "production_scan": {
+    "status": "PASS",
+    "mock_in_production": false,
+    "bundles": [
+      {
+        "file": "index-RPbWssgG.js",
+        "sha256": "fb1f605eab1c5b864e4ed031dea6fd952a89572e55a0d3f6e4b7a2254e2721e6",
+        "bytes": 1401762,
+        "found_markers": []
+      }
+    ]
+  },
+  "source_preservation": {
+    "base": "d6280fc",
+    "scientific_backend_contract_content_changes": [],
+    "preserved": true,
+    "source_data_duplicated": false,
+    "formal_metrics_recomputed": false
+  },
+  "cfd_runs_started": 0,
+  "stop": "Window 3 complete"
+}

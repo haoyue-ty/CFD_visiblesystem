@@ -8,6 +8,7 @@ import MockBadge from './components/MockBadge.vue'
     <nav aria-label="System navigation" class="appbar__nav">
       <RouterLink :to="{ name: 'entry' }" class="appbar__brand">ShockPath</RouterLink>
       <RouterLink :to="{ name: 'home' }">Home</RouterLink>
+      <RouterLink :to="{ name: 'explore', query: { scene: '1' } }">Explore</RouterLink>
       <RouterLink :to="{ name: 'lab' }">Lab</RouterLink>
     </nav>
     <div class="appbar__env">

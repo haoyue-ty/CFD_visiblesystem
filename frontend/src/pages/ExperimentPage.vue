@@ -19,6 +19,7 @@ import { dataService, createRequestGuard, type Loaded } from '../data'
 import type { ExperimentOverview } from '../data/domain'
 import LoadStateBlock from '../components/LoadStateBlock.vue'
 import MockBadge from '../components/MockBadge.vue'
+import ExploreReturn from '../components/ExploreReturn.vue'
 import OverviewTab from '../views/case8/OverviewTab.vue'
 import FlowTab from '../views/case8/FlowTab.vue'
 import EntropyTab from '../views/case8/EntropyTab.vue'
@@ -76,6 +77,10 @@ const allocationDisabled = computed(() => configId.value !== 'D_u')
 /** Pushing a new query is the single writer of URL state. */
 function syncQuery(patch: Record<string, string | number | null>, push = false) {
   const query: Record<string, string> = {}
+  for (const key of ['source_scene', 'explore_return', 'allocation_family', 'allocation_gate', 'spectral_q', 'spectral_mode', 'spectral_rank', 'spectral_run']) {
+    const value = readQueryString(key)
+    if (value !== null) query[key] = value
+  }
   const current = { config: configId.value, tab: tab.value, snapshot: String(snapshotIndex.value), field: fieldId.value }
   const merged = { ...current, ...patch } as Record<string, string | number | null>
   if (merged.config) query.config = String(merged.config)
@@ -123,6 +128,7 @@ watch(
 
 <template>
   <main data-page="experiment" class="exp">
+    <ExploreReturn />
     <nav class="exp__crumb" aria-label="Breadcrumb">
       <RouterLink :to="{ name: 'home' }">Home</RouterLink> →
       <RouterLink :to="{ name: 'lab' }">Lab</RouterLink> →

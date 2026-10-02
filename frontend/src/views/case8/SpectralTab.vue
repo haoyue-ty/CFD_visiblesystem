@@ -27,7 +27,7 @@
  *   q_at is a property of the resolved dataset (SPEC01), so the front end never
  *   constructs a `spectrum.q-*` string from a free-form number.
  */
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { activeProvider, dataService, createRequestGuard, type Loaded } from '../../data'
 import type {
@@ -47,6 +47,10 @@ import SpectralCurveChart from '../../scientific/SpectralCurveChart.vue'
 import EigenmodeChart from '../../scientific/EigenmodeChart.vue'
 import GrowthValidationChart from '../../scientific/GrowthValidationChart.vue'
 
+const props = defineProps<{ guidedTargets?: string[] }>()
+const guided = computed(() => Boolean(props.guidedTargets))
+const guidedCurves = ref<Loaded<SpectrumCurveView>[] | null>(null)
+const guidedGuard = createRequestGuard()
 const route = useRoute()
 const router = useRouter()
 
@@ -84,7 +88,7 @@ function normalizeRank(value: unknown): number {
   return Number.isInteger(n) && n >= 0 && n <= 31 ? n : 0
 }
 
-const returnTo = computed(() => ({ name: 'experiment', params: route.params, query: route.query }))
+const returnTo = computed(() => ({ name: route.name as string, params: route.params, query: route.query }))
 
 // --- loaders ----------------------------------------------------------------
 
@@ -149,15 +153,37 @@ async function loadValidation() {
   if (result) validation.value = result
 }
 
+onBeforeUnmount(() => { [datasetsGuard, curveGuard, datasetGuard, modeGuard, validationGuard, guidedGuard].forEach(g => g.cancel()) })
 onMounted(async () => {
+  if (guided.value) {
+    await guidedGuard.run(async signal => {
+      const curves = await Promise.all((props.guidedTargets ?? []).map(datasetId => dataService.getSpectralCurve({ datasetId }, signal)))
+      if (!signal.aborted) guidedCurves.value = curves
+      return { state: 'READY', data: curves, reason: null, origin: 'FROZEN_PRODUCTION' }
+    })
+    return
+  }
   await loadDatasets()
   await Promise.all([loadCurve(), loadMode(), loadValidation()])
 })
 
-watch(selectedDatasetId, () => { void loadCurve(); void loadMode() })
-watch([selectedModeIndex, selectedRank, selectedSide], () => void loadMode())
-watch(selectedRunId, () => void loadValidation())
+watch(selectedDatasetId, () => { if (!guided.value) { void loadCurve(); void loadMode() } })
+watch([selectedModeIndex, selectedRank, selectedSide], () => { if (!guided.value) void loadMode() })
+watch(selectedRunId, () => { if (!guided.value) void loadValidation() })
 
+function direction(a: number | null, b: number | null) {
+  if (a === null || b === null) return 'unavailable'
+  if (a.toFixed(10) === b.toFixed(10)) return 'near-zero shift (at displayed precision)'
+  return b < a ? 'negative shift' : 'positive shift'
+}
+const guidedRows = computed(() => {
+  const [base, enabled] = guidedCurves.value ?? []
+  if (!base?.data || !enabled?.data) return []
+  return base.data.points.map(point => {
+    const other = enabled.data!.points.find(p => p.mode_index === point.mode_index)
+    return { mode: point.mode_index, baseline: point.real_lambda, enabled: other?.real_lambda ?? null, direction: direction(point.real_lambda, other?.real_lambda ?? null) }
+  })
+})
 // --- derived facts ----------------------------------------------------------
 
 /** The recorded q of the resolved dataset — read from the API, never from the id. */
@@ -167,6 +193,7 @@ const qAt = computed(() => dataset.value?.data?.q_at ?? curve.value?.data?.q_at 
 const modeUnavailable = computed(() => mode.value?.state === 'MISSING')
 
 function updateQuery() {
+  if (guided.value) return
   // URL is the owner of selection state (README): a deep link restores the view.
   const query: Record<string, string> = { ...(route.query as Record<string, string>),
     spectral_q: selectedDatasetId.value, spectral_mode: String(selectedModeIndex.value),
@@ -189,6 +216,26 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
       <p data-testid="spectral-scientific-limit">Positive entropy production does not imply uniform modal damping.</p>
     </header>
 
+    <section v-if="guided" data-testid="guided-spectral">
+      <p>q_at=0 and q_at=.396 · emphasis: mode 4 / mode 8. All recorded ell 0…16 remain visible.</p>
+      <p>Negative shift, positive shift and near-zero shift compare recorded Re(λ) values. Near-zero means equal at ten decimal places for display; it is not a formal stability threshold or a recalculated metric.</p>
+      <LoadStateBlock v-if="!guidedCurves" :loaded="null" target="recorded spectrum comparison" />
+      <div v-for="(loaded, i) in guidedCurves ?? []" :key="i">
+        <LoadStateBlock :loaded="loaded" target="recorded spectrum curve">
+          <template v-if="loaded.data">
+            <MockBadge :origin="loaded.data.result.data_origin" :verification="loaded.data.verification.status" />
+            <SpectralCurveChart :curve="loaded.data" />
+            <p>{{ loaded.data.provenance.registry_revision }} · {{ loaded.data.provenance.data_revision }} · {{ loaded.data.verification.status }}</p>
+            <EvidenceLink v-for="id in loaded.data.provenance.evidence_refs" :key="id" :evidence-id="id" :return-to="returnTo" />
+          </template>
+        </LoadStateBlock>
+      </div>
+      <table v-if="guidedRows.length" data-testid="guided-modal-table">
+        <thead><tr><th>ell</th><th>Recorded Re(λ), q_at=0</th><th>Recorded Re(λ), q_at=.396</th><th>Direction at displayed precision</th></tr></thead>
+        <tbody><tr v-for="row in guidedRows" :key="row.mode" :data-mode="row.mode" :class="{ emphasized: [4, 8].includes(row.mode) }"><th>{{ row.mode }}</th><td>{{ row.baseline?.toFixed(10) ?? 'UNKNOWN' }}</td><td>{{ row.enabled?.toFixed(10) ?? 'UNKNOWN' }}</td><td>{{ row.direction }}</td></tr></tbody>
+      </table>
+    </section>
+    <template v-else>
     <!-- SELECTION: configuration (dataset) + exact q_at -->
     <LoadStateBlock :loaded="datasets" target="spectral datasets">
       <div class="sl__select" role="group" aria-label="Spectral dataset">
@@ -326,11 +373,12 @@ watch([selectedDatasetId, selectedModeIndex, selectedRank, selectedRunId], updat
           <span class="sl__ev-id">{{ ref }}</span>
         </li>
       </ul>
-    </section>
+    </section>    </template>
   </section>
 </template>
 
 <style scoped>
+table { border-collapse: collapse; width: 100%; font-size: .8rem; } th, td { text-align: left; padding: .4rem; border: 1px solid #ddd; overflow-wrap: anywhere; } .emphasized { background: #eef4fc; font-weight: bold; }
 .sl { display: grid; gap: 1.1rem; }
 .sl__scope { border-left: 3px solid #1a4f8a; background: #f2f6fb; padding: 0.6rem 0.9rem; }
 .sl__scope h2 { margin: 0 0 0.3rem; font-size: 1.15rem; color: #1a4f8a; }

@@ -46,6 +46,16 @@
       "id": "tangential-output",
       "label": "Tangential output",
       "explanation": "Actual dissipative amplitude depends on tangential receiving content as well as q_at and the acoustic trigger. In STRICT_1D, trigger may exist but cross-mode tangential output = 0 because tangential receiving content vanishes. In WEAKLY_2D, nonzero tangential content can activate the enabled q_at pathway."
+    },
+    {
+      "id": "combiner",
+      "label": "Entropy-scaled combination",
+      "explanation": "The background PSD kernel and the normal acoustic and tangential pathways combine in entropy-scaled coordinates as the selected positive-semidefinite dissipation operator. Combining output pathways does not add tangential receiving content to the acoustic gate input."
+    },
+    {
+      "id": "entropy-variable-mapping",
+      "label": "Physical entropy-variable dissipation",
+      "explanation": "The combined operator is mapped to physical entropy variables and acts on the right-minus-left entropy-variable jump. The frozen production method applies this dissipative action with its entropy-conservative central flux. This schematic explains the mapping only; it evaluates no state, matrix or flux."
     }
   ],
   "edges": [
@@ -93,6 +103,26 @@
       "from_node": "tangential-content",
       "to_node": "tangential-output",
       "label": "Controls actual tangential dissipative amplitude; no input to J"
+    },
+    {
+      "from_node": "background-psd",
+      "to_node": "combiner",
+      "label": "Combines this dissipation pathway in entropy-scaled coordinates"
+    },
+    {
+      "from_node": "normal-output",
+      "to_node": "combiner",
+      "label": "Combines this dissipation pathway in entropy-scaled coordinates"
+    },
+    {
+      "from_node": "tangential-output",
+      "to_node": "combiner",
+      "label": "Combines this dissipation pathway in entropy-scaled coordinates"
+    },
+    {
+      "from_node": "combiner",
+      "to_node": "entropy-variable-mapping",
+      "label": "Maps the combined operator to physical entropy-variable dissipation"
     }
   ],
   "supported_states": [

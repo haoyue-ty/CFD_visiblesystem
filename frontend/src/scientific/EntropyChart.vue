@@ -18,7 +18,7 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import * as echarts from 'echarts'
 import type { EntropyHistoryView } from '../data/domain'
 
-const props = defineProps<{ history: EntropyHistoryView }>()
+const props = withDefaults(defineProps<{ history: EntropyHistoryView; selectable?: boolean }>(), { selectable: true })
 const emit = defineEmits<{ (e: 'select-scalar-step', step: number): void }>()
 
 const host = ref<HTMLDivElement | null>(null)
@@ -78,6 +78,7 @@ function render() {
   // reliable even with showSymbol:false, and never invents an interpolated
   // point — the snapped step is one of the recorded step values.
   chart.off('click')
+  if (!props.selectable) return
   chart.on('click', (params: { value?: unknown }) => {
     const value = params.value as [number, number] | undefined
     if (value && typeof value[0] === 'number') emit('select-scalar-step', value[0])
@@ -127,11 +128,12 @@ watch(() => props.history, render, { deep: false })
 <template>
   <div class="ec">
     <div ref="host" class="ec__canvas" data-testid="entropy-chart" :style="{ height: '20rem' }"></div>
-    <p class="ec__hint">Click a point to select a real accepted step. The nearest recorded snapshot is shown alongside.</p>
+    <p v-if="selectable" class="ec__hint">Click a point to select a real accepted step. The nearest recorded snapshot is shown alongside.</p>
   </div>
 </template>
 
 <style scoped>
+.ec { width: 100%; min-width: 0; }
 .ec__canvas { width: 100%; }
 .ec__hint { font-size: 0.75rem; color: #777; }
 </style>

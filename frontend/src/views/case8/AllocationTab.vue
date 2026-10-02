@@ -36,6 +36,7 @@ import MockBadge from '../../components/MockBadge.vue'
 import FaceAllocationView from '../../scientific/FaceAllocationView.vue'
 import CellAllocationView from '../../scientific/CellAllocationView.vue'
 import AllocationSummary from '../../scientific/AllocationSummary.vue'
+import GateComparisonView from './GateComparisonView.vue'
 import EvidenceLink from '../../scientific/EvidenceLink.vue'
 
 const props = defineProps<{ configId: string }>()
@@ -56,6 +57,7 @@ const gateConfig = ref<string>(GATE_CONFIGS.find(c => c === route.query.allocati
 const returnTo = computed(() => ({ name: 'experiment', params: route.params,
   query: { ...route.query, allocation_family: family.value, allocation_gate: gateConfig.value } }))
 
+const showComparison = ref(false)
 const allocation = ref<Loaded<AllocationView> | null>(null)
 const guard = createRequestGuard()
 
@@ -83,6 +85,8 @@ watch(() => props.configId, () => {
 
 <template>
   <section class="al" data-testid="case8-allocation">
+    <button @click="showComparison = !showComparison">{{ showComparison ? 'Close' : 'Open' }} matched Gate comparison</button>
+    <GateComparisonView v-if="showComparison" />
     <p class="al__intro">
       Cumulative spatial allocation of the time-integrated entropy production. Both views are
       trajectory-integrated (not snapshots, not time histories). The two representations below are

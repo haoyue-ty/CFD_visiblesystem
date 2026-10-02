@@ -275,7 +275,8 @@ IMPLEMENTED = {"SYS01", "DOC01", "REG01", "REG02", "REG03", "REG04", "C801", "C8
                "SPEC00", "SPEC01", "SPEC02", "SPEC03", "SPEC04", "SPEC05", "SPEC06",
                # Phase 8 Window 2 declares Cylinder/composite routes even when
                # this isolated Case8 fixture disables the Cylinder adapter.
-               "CYL01", "CYL02", "CYL03", "CYL04", "CYL05", "CYL06", "CYL07", "CYL08", "CYL09", "CMP01"}
+               "CYL01", "CYL02", "CYL03", "CYL04", "CYL05", "CYL06", "CYL07", "CYL08", "CYL09", "CMP01",
+               "CONTENT01", "CONTENT02", "CONTENT03"}
 
 
 def test_openapi_operations_match_the_catalog_and_runtime_routes(app):

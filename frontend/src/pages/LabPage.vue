@@ -28,11 +28,12 @@ onMounted(async () => {
   <main data-page="lab" class="lab">
     <nav class="lab__subnav" aria-label="Lab sections">
       <span class="lab__subnav-current">实验目录 / Experiment catalog</span>
-      <span class="lab__subnav-item lab__subnav-item--planned">机制工作台 Mechanism · PLANNED</span>
+      <RouterLink :to="{ name: 'mechanism' }" data-testid="lab-open-mechanism">Mechanism Explorer</RouterLink>
       <RouterLink :to="{ name: 'cross-flow' }">跨流动比较 Cross-flow</RouterLink>
     </nav>
 
     <h1>Lab Workspace</h1>
+    <RouterLink :to="{ name: 'explore', query: { scene: '1' } }" data-testid="lab-open-explore">Explore / Guided Story</RouterLink>
     <p class="lab__intro">
       The Lab opens real experiments and their supported controls. Availability below is
       <strong>software delivery status</strong>; it does not report scientific capability or asset

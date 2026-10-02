@@ -9,6 +9,7 @@ import io
 import json
 import subprocess
 from pathlib import Path
+import zipfile
 
 import numpy as np
 import pytest
@@ -197,7 +198,23 @@ def test_all_audited_source_hashes_and_preservation(source_map):
     assert source_map["scientific_files_modified"] is False and source_map["cfd_runs_started"] == 0
 
 
-def test_reproduce_audit_with_scientific_write_guard(source_map, monkeypatch):
+def test_reproduce_audit_with_scientific_write_guard(source_map, monkeypatch, tmp_path):
+    # Reproduce the historical software audit against its accepted Phase8
+    # checkout. Later authorized API windows change app/OpenAPI/types seams;
+    # they must not be required to equal the old application byte-for-byte.
+    # SOURCE_ROOT remains live and all scientific inventories stay exact.
+    accepted_phase8 = "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3"
+    archived = subprocess.check_output(
+        ["git", "archive", "--format=zip", accepted_phase8], cwd=audit.WORKTREE)
+    with zipfile.ZipFile(io.BytesIO(archived)) as snapshot:
+        snapshot.extractall(tmp_path)
+    # The archive has no .git directory; resolve immutable Git objects in the
+    # actual repository while inspecting the archived checkout bytes.
+    git_dir = subprocess.check_output(
+        ["git", "rev-parse", "--absolute-git-dir"], cwd=audit.WORKTREE, text=True).strip()
+    monkeypatch.setenv("GIT_DIR", git_dir)
+    monkeypatch.setattr(audit, "WORKTREE", tmp_path)
+    monkeypatch.setattr(audit, "OUTPUT", tmp_path / "docs/handoffs/phase8/PHASE8_CYLINDER_SOURCE_MAP.json")
     original_open = io.open
 
     def guarded_open(file, mode="r", *args, **kwargs):

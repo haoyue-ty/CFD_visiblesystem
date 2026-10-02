@@ -1,8 +1,8 @@
 {
-  "content_registry_version": "1.0.0",
+  "content_registry_version": "1.0.1",
   "status": "FROZEN",
   "base_commit": "5d6ceb4bb64e15a5db51ecc77b297add5c9c39e3",
-  "scope": "WINDOW_0_PHASE10_FOUNDATION",
+  "scope": "WINDOW_1_CONTENT_API",
   "data_origin": "SCHEMATIC",
   "scene_ids": [
     1,
@@ -16,7 +16,7 @@
   "near1d_numerical_scan": "MISSING",
   "gap_code": "NO_AUTHORITATIVE_NEAR1D_RAW_SCAN",
   "sha256": {
-    "mechanism.json": "f747894509cf038fd06f03293def831a4109e77f97e9f13b6dcfa1bcee9a9474",
+    "mechanism.json": "fc4ba5533c9d79e07ace1d4fe0c50cb7024295972a169fc2a8bfda5a32a134c4",
     "scenes.json": "ee220d9e56f4eed297d64219931d30f91cf0f4809a2a316e485ef3db3b6980b4"
   }
 }

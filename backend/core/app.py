@@ -8,6 +8,7 @@ from backend.api.arrays import register_array_operations
 from backend.api.case8 import register_case8_operations
 from backend.api.cylinder import register_cylinder_operations
 from backend.api.crossflow import register_crossflow_operations
+from backend.api.content import register_content_operations
 from backend.api.catalog import OperationCatalog
 from backend.api.evidence import register_evidence_operations
 from backend.api.registry import register_registry_operations
@@ -90,6 +91,10 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
                                                   "data_revision": cylinder_registry.DATA_REVISION})
     register_cylinder_operations(catalog, cylinder_project, cylinder_service)
     register_crossflow_operations(catalog, project, comparison_service)
+    from backend.services.content import ContentService
+    content_service = ContentService()
+    app.extensions["content_service"] = content_service
+    register_content_operations(catalog, content_service)
     if configure_catalog is not None:
         configure_catalog(catalog, service)
     app.extensions["operation_catalog"] = catalog

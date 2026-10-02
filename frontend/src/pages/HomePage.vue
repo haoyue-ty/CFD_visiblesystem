@@ -4,7 +4,7 @@ import { activeProvider } from '../data'
  * P02 — Home (system home).
  *
  * Shows: the core scientific question, a short mechanism chain, the Explore
- * entry (explicitly PLANNED and NOT a clickable empty flow), the Lab entry, the
+ * entry (implemented seven-scene guided flow), the Lab entry, the
  * Evidence explanation, and the per-experiment DELIVERY status summary.
  *
  * CRITICAL: an unimplemented capability is marked by DELIVERY status
@@ -53,11 +53,8 @@ onMounted(async () => {
       <article class="card" data-testid="explore-entry">
         <h2>Explore</h2>
         <p>A guided ~4-minute seven-scene scientific story.</p>
-        <p class="badge badge--planned" data-testid="explore-status">PLANNED — not yet available</p>
-        <p class="card__hint">
-          The guided flow is not implemented in this slice. It is intentionally not a clickable
-          empty page; it will be delivered in a later window.
-        </p>
+        <p class="badge" data-testid="explore-status">IMPLEMENTED — 7 scenes</p>
+        <RouterLink class="card__cta" :to="{ name: 'explore', query: { scene: '1' } }" data-testid="home-start-explore">Start Explore</RouterLink>
       </article>
 
       <article class="card card--active">

@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { cylinderService, createRequestGuard, type Loaded } from '../data'
 import type { Science, AllocationBundle, HistoryBundle, MetricsBundle, FieldBundle } from '../data/cylinder'
 import LoadStateBlock from '../components/LoadStateBlock.vue'
+import ExploreReturn from '../components/ExploreReturn.vue'
 import EvidenceLink from '../scientific/EvidenceLink.vue'
 import SectorAllocation from '../views/cylinder/SectorAllocation.vue'
 import ScalarHistory from '../views/cylinder/ScalarHistory.vue'
@@ -67,6 +68,7 @@ onBeforeUnmount(() => { frameGuard.cancel(); allocationGuard.cancel(); contentGu
 </script>
 <template>
   <main data-page="cylinder" class="cylinder">
+    <ExploreReturn />
     <nav><RouterLink to="/lab">Lab</RouterLink> → Cylinder</nav>
     <h1>Cylinder Experiment Detail — {{ config }}</h1>
     <p>REAL API · saved native instantaneous fields, accepted-step scalar history and trajectory-integrated allocation.</p>

@@ -230,7 +230,7 @@ def test_all_references_match_actual_phase8_catalog(app):
         pattern = re.sub(r'\{[^}]+\}', '[^/]+', operation.path)
         assert re.fullmatch(pattern, binding.path), binding
         assert operation.method == 'GET'
-    assert not any(key.startswith('CONTENT') for key in catalog)
+    assert {key for key in catalog if key.startswith('CONTENT')} == {'CONTENT01', 'CONTENT02', 'CONTENT03'}
 
 
 def test_every_real_target_and_evidence_loads_from_existing_api(app):
