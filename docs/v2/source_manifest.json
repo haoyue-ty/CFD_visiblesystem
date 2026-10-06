@@ -1,0 +1,623 @@
+{
+  "manifest_version": "v2-p0.1",
+  "source_root": "D:\\Paper\\passage6",
+  "selection": {
+    "solver": "",
+    "diagnostics": "jcp_extension_v1/J2_entropy_diagnostics",
+    "case8_entropy_observer": "jcp_extension_v1/J2_entropy_diagnostics/J2B0_case8_integration/code",
+    "case8_j2_driver": "jcp_extension_v1/J2_entropy_diagnostics/J2B0_case8_integration/code"
+  },
+  "seeds": [
+    "solver.fluxes.cross_mode_ec_unified_v1",
+    "solver.cases.flagship_cross_modal_case8",
+    "solver.core.finite_volume",
+    "solver.core.explicit_ssprk",
+    "case8_j2_driver",
+    "case8_entropy_observer",
+    "solver.experiments.baseline_case8_production"
+  ],
+  "files": [
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2B0_case8_integration/code/case8_entropy_observer.py",
+      "module": "case8_entropy_observer",
+      "role": "dependency",
+      "size": 4543,
+      "mtime_ns": 1789496500163475200,
+      "sha256": "68e57a87e2e59fc744c239568d8dc0a0103e9b1fee0b884abf3f16057ec92035",
+      "imports": [
+        "__future__",
+        "diagnostics.aggregation",
+        "diagnostics.channel_entropy_diagnostics",
+        "numpy",
+        "pathlib",
+        "solver.core.boundary",
+        "sys"
+      ]
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2B0_case8_integration/code/case8_j2_driver.py",
+      "module": "case8_j2_driver",
+      "role": "dependency",
+      "size": 5866,
+      "mtime_ns": 1789496383117054800,
+      "sha256": "48fd4da9c65e993ea942a208c8c9532f73c075d35523f3926ae6aa7ac11cf436",
+      "imports": [
+        "__future__",
+        "case8_entropy_observer",
+        "functools",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "solver.cases.flagship_cross_modal_case8",
+        "solver.core.explicit_ssprk",
+        "solver.core.finite_volume",
+        "solver.fluxes.cross_mode_ec_unified_v1",
+        "sys"
+      ]
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/diagnostics/__init__.py",
+      "module": "diagnostics",
+      "role": "dependency",
+      "size": 189,
+      "mtime_ns": 1789489388734601300,
+      "sha256": "4ebda64d7f5c0520054d7bdd681a6457f91cf450e67d739530329ab38ebc15f2",
+      "imports": [
+        "diagnostics.channel_entropy_diagnostics"
+      ]
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/diagnostics/aggregation.py",
+      "module": "diagnostics.aggregation",
+      "role": "dependency",
+      "size": 1890,
+      "mtime_ns": 1789489437058375300,
+      "sha256": "afae2ed2ad01061d5fbab95e792bc90efeff44447dac88e30e2136a5ace14d24",
+      "imports": [
+        "__future__",
+        "collections.abc",
+        "numpy"
+      ]
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/diagnostics/channel_entropy_diagnostics.py",
+      "module": "diagnostics.channel_entropy_diagnostics",
+      "role": "dependency",
+      "size": 6455,
+      "mtime_ns": 1789953811157292700,
+      "sha256": "dc893fd8401787fa34e82190586cc115c3793a06aa876c6c8d49fda99fe2d036",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.fluxes.common",
+        "solver.fluxes.cross_mode_ec_unified_v1",
+        "solver.fluxes.sos_v4",
+        "solver.fluxes.unbounded_cross_mode"
+      ]
+    },
+    {
+      "path": "solver/__init__.py",
+      "module": "solver",
+      "role": "dependency",
+      "size": 47,
+      "mtime_ns": 1787383792490785300,
+      "sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8",
+      "imports": []
+    },
+    {
+      "path": "solver/cases/__init__.py",
+      "module": "solver.cases",
+      "role": "dependency",
+      "size": 26,
+      "mtime_ns": 1787411487926886100,
+      "sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf",
+      "imports": []
+    },
+    {
+      "path": "solver/cases/flagship_cross_modal_case8.py",
+      "module": "solver.cases.flagship_cross_modal_case8",
+      "role": "dependency",
+      "size": 7231,
+      "mtime_ns": 1787972700425080200,
+      "sha256": "1556604504e343835097361a73c2538201c91c691faf9d57f0bc5587929d1d53",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy",
+        "solver.cases.normal_shock",
+        "solver.core.boundary",
+        "solver.core.euler",
+        "solver.core.mesh",
+        "typing"
+      ]
+    },
+    {
+      "path": "solver/cases/normal_shock.py",
+      "module": "solver.cases.normal_shock",
+      "role": "dependency",
+      "size": 26844,
+      "mtime_ns": 1787579307534207800,
+      "sha256": "a89b597ffad1730eb57f86ef0f3f862949218b0ff27d3aa722781456fcfe546d",
+      "imports": [
+        "__future__",
+        "collections.abc",
+        "csv",
+        "dataclasses",
+        "functools",
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "solver.core.boundary",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.core.finite_volume",
+        "solver.core.implicit_integrator",
+        "solver.core.jfnk",
+        "solver.core.mesh",
+        "solver.core.steady_ptc",
+        "solver.core.time_integrator",
+        "solver.diagnostics.steady_normal_shock",
+        "solver.experiments.cross_mode_variants",
+        "solver.fluxes.proposed_cross_mode",
+        "solver.fluxes.unbounded_cross_mode"
+      ]
+    },
+    {
+      "path": "solver/core/__init__.py",
+      "module": "solver.core",
+      "role": "dependency",
+      "size": 85,
+      "mtime_ns": 1787383792493504100,
+      "sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab",
+      "imports": []
+    },
+    {
+      "path": "solver/core/boundary.py",
+      "module": "solver.core.boundary",
+      "role": "dependency",
+      "size": 3486,
+      "mtime_ns": 1787383870336230700,
+      "sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy",
+        "solver.core.euler"
+      ]
+    },
+    {
+      "path": "solver/core/entropy.py",
+      "module": "solver.core.entropy",
+      "role": "dependency",
+      "size": 1800,
+      "mtime_ns": 1787411100027510800,
+      "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.euler",
+        "solver.fluxes.common"
+      ]
+    },
+    {
+      "path": "solver/core/euler.py",
+      "module": "solver.core.euler",
+      "role": "dependency",
+      "size": 4265,
+      "mtime_ns": 1787416577548325300,
+      "sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy"
+      ]
+    },
+    {
+      "path": "solver/core/explicit_ssprk.py",
+      "module": "solver.core.explicit_ssprk",
+      "role": "dependency",
+      "size": 2458,
+      "mtime_ns": 1787587688603276400,
+      "sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3",
+      "imports": [
+        "__future__",
+        "collections.abc",
+        "numpy",
+        "solver.core.euler"
+      ]
+    },
+    {
+      "path": "solver/core/finite_volume.py",
+      "module": "solver.core.finite_volume",
+      "role": "dependency",
+      "size": 1185,
+      "mtime_ns": 1787383928851127100,
+      "sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46",
+      "imports": [
+        "__future__",
+        "collections.abc",
+        "numpy",
+        "solver.core.boundary",
+        "solver.core.euler",
+        "solver.core.mesh"
+      ]
+    },
+    {
+      "path": "solver/core/implicit_integrator.py",
+      "module": "solver.core.implicit_integrator",
+      "role": "dependency",
+      "size": 16007,
+      "mtime_ns": 1787504685115416000,
+      "sha256": "dc4de135e6b9111474e9b67afece94a70d4ee914fc2deca66833aa1803e11f92",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy",
+        "scipy.sparse",
+        "scipy.sparse.linalg",
+        "solver.core.euler",
+        "typing"
+      ]
+    },
+    {
+      "path": "solver/core/jfnk.py",
+      "module": "solver.core.jfnk",
+      "role": "dependency",
+      "size": 22897,
+      "mtime_ns": 1787579232375797800,
+      "sha256": "c517ca87eba5ce4f236a339697d27c8eaa92c6c4821d214b3074927fb2c069d2",
+      "imports": [
+        "__future__",
+        "collections.abc",
+        "dataclasses",
+        "math",
+        "numpy",
+        "scipy.sparse.linalg",
+        "solver.core.euler",
+        "typing"
+      ]
+    },
+    {
+      "path": "solver/core/mesh.py",
+      "module": "solver.core.mesh",
+      "role": "dependency",
+      "size": 927,
+      "mtime_ns": 1787383870335237100,
+      "sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159",
+      "imports": [
+        "__future__",
+        "dataclasses"
+      ]
+    },
+    {
+      "path": "solver/core/steady_ptc.py",
+      "module": "solver.core.steady_ptc",
+      "role": "dependency",
+      "size": 24089,
+      "mtime_ns": 1787579301495631800,
+      "sha256": "f7b15cbd11fb09fd6b7ab5ca4839352b47d855b8d76a67043fd25546694726fb",
+      "imports": [
+        "__future__",
+        "collections.abc",
+        "dataclasses",
+        "numpy",
+        "solver.core.jfnk",
+        "time",
+        "typing"
+      ]
+    },
+    {
+      "path": "solver/core/time_integrator.py",
+      "module": "solver.core.time_integrator",
+      "role": "dependency",
+      "size": 4632,
+      "mtime_ns": 1787416638959524800,
+      "sha256": "05e6d9deb3414236a5b9bff8b96c54bfe42014b1cd8bb6eaf2a36d9819164055",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy",
+        "solver.core.boundary",
+        "solver.core.euler",
+        "solver.core.finite_volume",
+        "solver.core.mesh"
+      ]
+    },
+    {
+      "path": "solver/diagnostics/__init__.py",
+      "module": "solver.diagnostics",
+      "role": "dependency",
+      "size": 40,
+      "mtime_ns": 1787416001792867300,
+      "sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4",
+      "imports": []
+    },
+    {
+      "path": "solver/diagnostics/flagship_cross_modal_case8.py",
+      "module": "solver.diagnostics.flagship_cross_modal_case8",
+      "role": "dependency",
+      "size": 10261,
+      "mtime_ns": 1787972023847205800,
+      "sha256": "ad48014806dfe71e49ba7c332e1e3c4883cb0cd46d7a7fbcec41b2ef2c81affe",
+      "imports": [
+        "__future__",
+        "collections.abc",
+        "numpy",
+        "solver.cases.flagship_cross_modal_case8",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.core.finite_volume",
+        "solver.experiments.unbounded_variants",
+        "typing"
+      ]
+    },
+    {
+      "path": "solver/diagnostics/steady_normal_shock.py",
+      "module": "solver.diagnostics.steady_normal_shock",
+      "role": "dependency",
+      "size": 13613,
+      "mtime_ns": 1787539740757063900,
+      "sha256": "207877b18105eafebdcbe3f276af466ad09cb4d7bb5cbc45c619c7b7f6a0f4e7",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy",
+        "solver.core.euler"
+      ]
+    },
+    {
+      "path": "solver/experiments/__init__.py",
+      "module": "solver.experiments",
+      "role": "dependency",
+      "size": 54,
+      "mtime_ns": 1787458299404415700,
+      "sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b",
+      "imports": []
+    },
+    {
+      "path": "solver/experiments/baseline_case8_production.py",
+      "module": "solver.experiments.baseline_case8_production",
+      "role": "dependency",
+      "size": 36613,
+      "mtime_ns": 1788136135059175600,
+      "sha256": "71a8c1239209ef76948aa2d1d5742b8ea2abe52b1df361102c1ecc82c3573374",
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "collections.abc",
+        "dataclasses",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "solver.cases.flagship_cross_modal_case8",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.core.explicit_ssprk",
+        "solver.core.finite_volume",
+        "solver.diagnostics.flagship_cross_modal_case8",
+        "solver.experiments.unbounded_variants",
+        "solver.fluxes",
+        "solver.fluxes.ausm_plus_up",
+        "time",
+        "types",
+        "typing"
+      ]
+    },
+    {
+      "path": "solver/experiments/cross_mode_variants.py",
+      "module": "solver.experiments.cross_mode_variants",
+      "role": "dependency",
+      "size": 2244,
+      "mtime_ns": 1787458299405439600,
+      "sha256": "e61cc521239b860888a48d401c956290a3104a65476d76ce0f2abb666b538ecf",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "functools",
+        "numpy",
+        "pathlib",
+        "solver.core.euler",
+        "solver.fluxes.proposed_cross_mode",
+        "typing",
+        "yaml"
+      ]
+    },
+    {
+      "path": "solver/experiments/unbounded_variants.py",
+      "module": "solver.experiments.unbounded_variants",
+      "role": "dependency",
+      "size": 1327,
+      "mtime_ns": 1787504046239806300,
+      "sha256": "756a83ee3bfcccd9dc4e215948664d38a6ec0b9816cc303a246262d8b7f9458a",
+      "imports": [
+        "functools",
+        "numpy",
+        "solver.cases.normal_shock",
+        "solver.fluxes.unbounded_cross_mode"
+      ]
+    },
+    {
+      "path": "solver/fluxes/__init__.py",
+      "module": "solver.fluxes",
+      "role": "dependency",
+      "size": 48,
+      "mtime_ns": 1787383928848350700,
+      "sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921",
+      "imports": []
+    },
+    {
+      "path": "solver/fluxes/ausm_plus_up.py",
+      "module": "solver.fluxes.ausm_plus_up",
+      "role": "dependency",
+      "size": 8461,
+      "mtime_ns": 1788056490918597700,
+      "sha256": "0cb13d31eb3eb96e7811735d8eeac9c3f655619fcd1a97e36a93882247246089",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "functools",
+        "numpy",
+        "solver.core.euler",
+        "solver.core.finite_volume",
+        "solver.fluxes.common",
+        "typing"
+      ]
+    },
+    {
+      "path": "solver/fluxes/chandrashekar_es.py",
+      "module": "solver.fluxes.chandrashekar_es",
+      "role": "dependency",
+      "size": 9002,
+      "mtime_ns": 1788057010138410900,
+      "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.euler",
+        "solver.fluxes.common"
+      ]
+    },
+    {
+      "path": "solver/fluxes/common.py",
+      "module": "solver.fluxes.common",
+      "role": "dependency",
+      "size": 3001,
+      "mtime_ns": 1787416577549876300,
+      "sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.euler"
+      ]
+    },
+    {
+      "path": "solver/fluxes/cross_mode_ec_unified_v1.py",
+      "module": "solver.fluxes.cross_mode_ec_unified_v1",
+      "role": "dependency",
+      "size": 2813,
+      "mtime_ns": 1788436998388720900,
+      "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.fluxes.chandrashekar_es",
+        "solver.fluxes.unbounded_cross_mode"
+      ]
+    },
+    {
+      "path": "solver/fluxes/proposed_cross_mode.py",
+      "module": "solver.fluxes.proposed_cross_mode",
+      "role": "dependency",
+      "size": 5582,
+      "mtime_ns": 1787457849691650000,
+      "sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.fluxes.common",
+        "solver.fluxes.sos_v4"
+      ]
+    },
+    {
+      "path": "solver/fluxes/sos_v4.py",
+      "module": "solver.fluxes.sos_v4",
+      "role": "dependency",
+      "size": 3626,
+      "mtime_ns": 1787416577551399800,
+      "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.fluxes.common"
+      ]
+    },
+    {
+      "path": "solver/fluxes/unbounded_cross_mode.py",
+      "module": "solver.fluxes.unbounded_cross_mode",
+      "role": "dependency",
+      "size": 7556,
+      "mtime_ns": 1787507272086779500,
+      "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c",
+      "imports": [
+        "__future__",
+        "numpy",
+        "solver.core.entropy",
+        "solver.core.euler",
+        "solver.fluxes.common",
+        "solver.fluxes.sos_v4"
+      ]
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2B_case8_formal/J2B_PROTOCOL_LOCK.json",
+      "module": null,
+      "role": "protocol",
+      "size": 3388,
+      "mtime_ns": 1789524173281927000,
+      "sha256": "86c589ac1ea7d6f7720c4b5e17ab61e4c0d7645053ea0521ff391a4ffd6311b7"
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2B_case8_formal/analysis/case8_j2b_formal.py",
+      "module": null,
+      "role": "reference_only_do_not_execute",
+      "size": 22213,
+      "mtime_ns": 1789524145645046200,
+      "sha256": "fa2f6f721c0dc35e86b84e7e20ac2bf2e3602cf2100a5ab5381fe7925c6b4f1c"
+    }
+  ],
+  "external_imports": [
+    "__future__",
+    "argparse",
+    "ast",
+    "collections",
+    "csv",
+    "dataclasses",
+    "functools",
+    "hashlib",
+    "json",
+    "math",
+    "matplotlib",
+    "numpy",
+    "pathlib",
+    "scipy",
+    "sys",
+    "time",
+    "types",
+    "typing",
+    "yaml"
+  ],
+  "python": "3.12.9 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 18:49:16) [MSC v.1929 64 bit (AMD64)]",
+  "external_packages": {
+    "numpy": {
+      "version": "2.5.3",
+      "available": true
+    },
+    "scipy": {
+      "version": null,
+      "available": false
+    },
+    "matplotlib": {
+      "version": null,
+      "available": false
+    },
+    "PyYAML": {
+      "version": "6.0.3",
+      "available": true
+    }
+  },
+  "method_hash_matches_v1": true,
+  "scope": "Static import closure plus protocol and reference driver; no scientific imports or CFD execution",
+  "dynamic_import_policy": "P2 must verify loaded module.__file__ against this allowlist in an isolated worker"
+}

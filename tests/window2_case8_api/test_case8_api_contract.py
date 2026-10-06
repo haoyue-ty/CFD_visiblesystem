@@ -286,8 +286,11 @@ def test_openapi_operations_match_the_catalog_and_runtime_routes(app):
     catalog = app.extensions["operation_catalog"]
     document = export_openapi(catalog)
     validate(document)
-    assert {item.operation_id for item in catalog.operations} == IMPLEMENTED
-    documented = {entry["operationId"] for path in document["paths"].values()
+    # This freezes the V1 contract. V2 product operations have their own
+    # independent DTO/error contracts and tests; all runtime routes still
+    # participate in the catalog equality check below.
+    assert {item.operation_id for item in catalog.operations if item.path.startswith("/api/v1/")} == IMPLEMENTED
+    documented = {entry["operationId"] for name, path in document["paths"].items() if name.startswith("/api/v1/")
                   for entry in path.values()}
     assert documented == IMPLEMENTED
     catalog.assert_routes(app)
@@ -330,6 +333,8 @@ def test_documented_errors_are_real_contract_codes(app):
         "MAIL_SERVICE_UNAVAILABLE", "ACCOUNT_STORE_UNAVAILABLE", "UNKNOWN_EVIDENCE_ID",
         "UNKNOWN_ASSET_ID", "UNKNOWN_DEFINITION_ID"}
     for operation in app.extensions["operation_catalog"].operations:
+        if not operation.path.startswith("/api/v1/"):
+            continue
         for status, codes in operation.documented_errors.items():
             assert codes, operation.operation_id
             for code in codes:
@@ -380,7 +385,8 @@ def test_openapi_declares_a_documented_error_schema_too(app):
         for status, codes in operation.documented_errors.items():
             declared = entry["responses"][str(status)]
             assert declared["x-error-codes"] == list(codes)
-            assert declared["content"]["application/json"]["schema"]["$ref"].endswith("/FailedEnvelope")
+            expected = "/V2FailedEnvelope" if operation.path.startswith("/api/v2/") else "/FailedEnvelope"
+            assert declared["content"]["application/json"]["schema"]["$ref"].endswith(expected)
 
 
 def test_service_revalidates_adapter_output_before_the_handler_sees_it():

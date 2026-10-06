@@ -1,0 +1,147 @@
+........................................................................ [  4%]
+.......................s................................................ [  9%]
+........................................................................ [ 14%]
+........................................................................ [ 19%]
+........................................................................ [ 23%]
+........................................................................ [ 28%]
+........................................................................ [ 33%]
+........................................................................ [ 38%]
+........................................................................ [ 43%]
+........................................................................ [ 47%]
+........................................................................ [ 52%]
+........................................................................ [ 57%]
+........................................................................ [ 62%]
+.....................................................F.................. [ 66%]
+........................................................................ [ 71%]
+........................................................................ [ 76%]
+...........................F....F...............F....................... [ 81%]
+........................................................................ [ 86%]
+.....................F..F............................................... [ 90%]
+........................................................................ [ 95%]
+..................................................................       [100%]
+================================== FAILURES ===================================
+_______ test_openapi_runtime_saved_document_and_four_frozen_operations ________
+
+app = <Flask 'backend.core.app'>
+client = <FlaskClient <Flask 'backend.core.app'>>
+
+    def test_openapi_runtime_saved_document_and_four_frozen_operations(app, client):
+        document = export_openapi(app.extensions["operation_catalog"])
+        validate(document)
+        assert document == client.get("/api/v1/openapi.json").json
+>       assert document == json.loads((ROOT / "config/openapi.json").read_text(encoding="utf-8"))
+E       AssertionError: assert {'openapi': '...}}, ...}, ...} == {'openapi': '...}}, ...}, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'paths': {'/api/v1/system': {'get': {'operationId': 'SYS01', 'description': 'Project metadata and current experiment ...ed experiment metadata for a delivered family.', 'tags': ['system_registry'], 'x-delivery-phase': 'Alpha', ...}}, ...}} != {'paths': {'/api/v1/system': {'get': {'operationId': 'SYS01', 'description': 'Project metadata and current experiment ...ed experiment metadata for a delivered family.', 'tags': ['system_registry'], 'x-delivery-phase': 'Alpha', ...}}, ...}}
+E         Use -v to get more diff
+
+tests\window1_evidence_core\test_evidence_core.py:327: AssertionError
+________ test_openapi_operations_match_the_catalog_and_runtime_routes _________
+
+app = <Flask 'backend.core.app'>
+
+    def test_openapi_operations_match_the_catalog_and_runtime_routes(app):
+        catalog = app.extensions["operation_catalog"]
+        document = export_openapi(catalog)
+        validate(document)
+>       assert {item.operation_id for item in catalog.operations} == IMPLEMENTED
+E       AssertionError: assert {'ALLOC01', '..., 'C801', ...} == {'ALLOC01', '..., 'C801', ...}
+E         
+E         Extra items in the left set:
+E         'V2_VALIDATE_EXPERIMENT'
+E         'V2_CASES'
+E         'V2_PARSE_EXPERIMENT'
+E         Use -v to get more diff
+
+tests\window2_case8_api\test_case8_api_contract.py:289: AssertionError
+_______________ test_documented_errors_are_real_contract_codes ________________
+
+app = <Flask 'backend.core.app'>
+
+    def test_documented_errors_are_real_contract_codes(app):
+        from backend.core.errors import SCIENTIFIC_CODES, SERVER_SIDE_CODES, SYSTEM_CODES
+        known = SYSTEM_CODES | SCIENTIFIC_CODES | SERVER_SIDE_CODES | {
+            "INVALID_EMAIL", "UNAUTHENTICATED", "INVALID_CREDENTIALS", "CSRF_FAILED",
+            "METHOD_NOT_ALLOWED", "UNSUPPORTED_MEDIA_TYPE", "API_ROUTE_NOT_FOUND",
+            "SOURCE_DATA_DRIFT", "SOURCE_CHANGED_DURING_READ", "REVISION_UNAVAILABLE",
+            "ACCOUNT_ALREADY_EXISTS", "INVALID_OR_EXPIRED_CODE", "RATE_LIMITED",
+            "MAIL_SERVICE_UNAVAILABLE", "ACCOUNT_STORE_UNAVAILABLE", "UNKNOWN_EVIDENCE_ID",
+            "UNKNOWN_ASSET_ID", "UNKNOWN_DEFINITION_ID"}
+        for operation in app.extensions["operation_catalog"].operations:
+            for status, codes in operation.documented_errors.items():
+                assert codes, operation.operation_id
+                for code in codes:
+>                   assert code in known, f"{operation.operation_id} documents unknown {code}"
+E                   AssertionError: V2_VALIDATE_EXPERIMENT documents unknown CAPABILITY_REVISION_CONFLICT
+E                   assert 'CAPABILITY_REVISION_CONFLICT' in frozenset({'ACCOUNT_ALREADY_EXISTS', 'ACCOUNT_STORE_UNAVAILABLE', 'API_ROUTE_NOT_FOUND', 'CANONICAL_SCHEMA_MISMATCH', 'CSRF_FAILED', 'FEATURE_NOT_ENABLED', ...})
+
+tests\window2_case8_api\test_case8_api_contract.py:336: AssertionError
+_____________ test_openapi_declares_a_documented_error_schema_too _____________
+
+app = <Flask 'backend.core.app'>
+
+    def test_openapi_declares_a_documented_error_schema_too(app):
+        document = export_openapi(app.extensions["operation_catalog"])
+        for operation in app.extensions["operation_catalog"].operations:
+            entry = document["paths"][operation.path][operation.method.lower()]
+            for status, codes in operation.documented_errors.items():
+                declared = entry["responses"][str(status)]
+                assert declared["x-error-codes"] == list(codes)
+>               assert declared["content"]["application/json"]["schema"]["$ref"].endswith("/FailedEnvelope")
+E               AssertionError: assert False
+E                +  where False = <built-in method endswith of str object at 0x00000212039074B0>('/FailedEnvelope')
+E                +    where <built-in method endswith of str object at 0x00000212039074B0> = '#/components/schemas/V2FailedEnvelope'.endswith
+
+tests\window2_case8_api\test_case8_api_contract.py:383: AssertionError
+_____ test_exact_five_openapi_operations_export_equality_and_wire_schema ______
+
+app = <Flask 'backend.core.app'>
+client = <FlaskClient <Flask 'backend.core.app'>>
+
+    def test_exact_five_openapi_operations_export_equality_and_wire_schema(app, client):
+        document = export_openapi(app.extensions["operation_catalog"])
+        validate(document)
+        assert document["openapi"] == "3.1.0"
+        assert document == client.get("/api/v1/openapi.json").json
+>       assert document == json.loads((R.ROOT / "config/openapi.json").read_text(encoding="utf-8"))
+E       AssertionError: assert {'openapi': '...}}, ...}, ...} == {'openapi': '...}}, ...}, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'paths': {'/api/v1/system': {'get': {'operationId': 'SYS01', 'description': 'Project metadata and current experiment ...ed experiment metadata for a delivered family.', 'tags': ['system_registry'], 'x-delivery-phase': 'Alpha', ...}}, ...}} != {'paths': {'/api/v1/system': {'get': {'operationId': 'SYS01', 'description': 'Project metadata and current experiment ...ed experiment metadata for a delivered family.', 'tags': ['system_registry'], 'x-delivery-phase': 'Alpha', ...}}, ...}}
+E         Use -v to get more diff
+
+tests\window2_closure_api\test_closure_api.py:273: AssertionError
+_________ test_exact_frozen_operations_openapi_and_generated_contract _________
+
+app = <Flask 'backend.core.app'>
+client = <FlaskClient <Flask 'backend.core.app'>>
+
+    def test_exact_frozen_operations_openapi_and_generated_contract(app, client):
+        document = export_openapi(app.extensions["operation_catalog"])
+        validate(document)
+        assert document["openapi"] == "3.1.0"
+        expected = {f"{BASE}/{{config_id}}{suffix}": operation for operation, suffix in PATHS.items()}
+        actual = {p: v["get"]["operationId"] for p, v in document["paths"].items() if p.startswith(BASE)}
+        assert actual == expected
+        assert document["paths"][CMP]["get"]["operationId"] == "CMP01"
+        assert document == read(client, "/api/v1/openapi.json")
+>       assert document == json.loads(Path("config/openapi.json").read_text(encoding="utf-8"))
+E       AssertionError: assert {'openapi': '...}}, ...}, ...} == {'openapi': '...}}, ...}, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'paths': {'/api/v1/system': {'get': {'operationId': 'SYS01', 'description': 'Project metadata and current experiment ...ed experiment metadata for a delivered family.', 'tags': ['system_registry'], 'x-delivery-phase': 'Alpha', ...}}, ...}} != {'paths': {'/api/v1/system': {'get': {'operationId': 'SYS01', 'description': 'Project metadata and current experiment ...ed experiment metadata for a delivered family.', 'tags': ['system_registry'], 'x-delivery-phase': 'Alpha', ...}}, ...}}
+E         Use -v to get more diff
+
+tests\window2_cylinder_crossflow_api\test_cylinder_crossflow_api.py:64: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/window1_evidence_core/test_evidence_core.py::test_openapi_runtime_saved_document_and_four_frozen_operations
+FAILED tests/window2_case8_api/test_case8_api_contract.py::test_openapi_operations_match_the_catalog_and_runtime_routes
+FAILED tests/window2_case8_api/test_case8_api_contract.py::test_documented_errors_are_real_contract_codes
+FAILED tests/window2_case8_api/test_case8_api_contract.py::test_openapi_declares_a_documented_error_schema_too
+FAILED tests/window2_closure_api/test_closure_api.py::test_exact_five_openapi_operations_export_equality_and_wire_schema
+FAILED tests/window2_cylinder_crossflow_api/test_cylinder_crossflow_api.py::test_exact_frozen_operations_openapi_and_generated_contract
+6 failed, 1499 passed, 1 skipped in 782.92s (0:13:02)

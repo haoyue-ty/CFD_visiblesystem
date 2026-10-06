@@ -1,0 +1,66 @@
+{
+  "stage": "V2-P0",
+  "status": "PASS",
+  "started_on": "2026-10-02",
+  "accepted_on": "2026-10-03",
+  "timezone": "Asia/Shanghai",
+  "branch": "codex/shockpath-v2",
+  "baseline_head": "d4abbac4c7cd479ad2e927d5e1902a48df7e26b8",
+  "rollback_tag": "V1_PRE_V2_P0_20261002",
+  "v1_freeze_commit": "061cac00e7dc41211a7d347124328b92ac9aff82",
+  "tests": {
+    "full_backend": {
+      "passed": 1387,
+      "skipped": 1,
+      "log": "p0_regression.log"
+    },
+    "latest_p0": {
+      "passed": 38,
+      "skipped": 1,
+      "log": "p0_tests.log"
+    },
+    "final_catalog_and_v1_bootstrap": {
+      "passed": 58,
+      "skipped": 1,
+      "log": "p0_catalog_tests.log"
+    },
+    "frontend": {
+      "passed": 220,
+      "log": "baseline_frontend.log"
+    }
+  },
+  "build": "PASS",
+  "v1_contracts": "BYTE_IDENTICAL",
+  "scientific_source": {
+    "status": "PASS",
+    "source_root": "D:\\Paper\\passage6",
+    "files_before": 27843,
+    "files_after": 27843,
+    "bytes": 5429811970,
+    "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ]
+  },
+  "solver_runs_started": 0,
+  "production_v2_routes": 0,
+  "limitations": [
+    "Windows symlink privilege test skipped; two junction escape tests passed",
+    "Initial baseline test interfered with by early edit; original guard passed in immutable baseline archive",
+    "SciPy and Matplotlib absent; solver execution not implemented",
+    "Full suite and final targeted suite collected at different times; counts refer to their individual logs"
+  ],
+  "artifacts_sha256": {
+    "01_CAPABILITY_AUDIT.md": "fc1ec873e7a0ea23f2bb08c8632a06e5b00a8a88d1faf9524ed6fefd9852daca",
+    "02_CONTRACTS.md": "64298ada84c9babf79c0a032503df265bdc312a66cf03222b9f9a6a10ac4b85b",
+    "03_SOLVER_BINDING.md": "49d152263660c4015574222bfd28539f760c24c496a7fd28427172ae70c64f3f",
+    "04_BASELINE_REPORT.md": "243497489f65b72220c2ca550a5892da7d1602f7d3c808a0a63a86bf3b60d1de",
+    "05_ACCEPTANCE.md": "3ea6674033fb6d76e64d7e2a039fc1566dd974b5e73794c61ee6a4500d8feb61",
+    "source_manifest.json": "da6d1679c3b29ca0a3faa3dcf4eb0984bcfe1b1708de0f76edc34833e260db4f",
+    "source_preservation.json": "f82f99a3253fbed027943aa87b34e9acf7f76993de003072860822b921fec50f"
+  }
+}

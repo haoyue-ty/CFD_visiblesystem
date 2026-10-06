@@ -1,0 +1,100 @@
+{
+  "current_contract": {
+    "openapi_sha256": "49ab00eb6f42e1e0eef2f092ec1d64517c06315d7c60006131ce9305c411997c",
+    "paths": 57,
+    "schemas": 350,
+    "types_sha256": "538071f4802692259c75e33024c879c97f1d6b688d065d8ddd5935611655ee0f"
+  },
+  "implementation": [
+    {
+      "path": "backend/solver_runtime/run_store.py",
+      "sha256": "cbb67488e5229f25c93f2bd8e53a530d7c713a84941b9820b9093cadf36ad24e"
+    },
+    {
+      "path": "backend/solver_runtime/run_manager.py",
+      "sha256": "af17ca3e47d2e06ed83573824c35429790ab3e77a834599b187e30943e3f75cd"
+    },
+    {
+      "path": "backend/solver_runtime/processes.py",
+      "sha256": "011db82b6af74c9ba747949589322c22decab7fd94b6681110540df16171d5f8"
+    },
+    {
+      "path": "backend/solver_runtime/worker.py",
+      "sha256": "6a3f617ae98bb9f5e1aa29387e843033d479492f7581b1cd56b4d3fc5ec0432e"
+    },
+    {
+      "path": "backend/solver_runtime/artifacts.py",
+      "sha256": "bf6e7cc23798a9192bbe2ef0e9e5ce10eaa9620b4cb987707a84b27562f19b3f"
+    },
+    {
+      "path": "backend/models/v2/run.py",
+      "sha256": "6ed76ecd6a9df1886c58629745ef0536a54574647f526385bf5a09f6e0a85e6b"
+    },
+    {
+      "path": "backend/api/v2/runs.py",
+      "sha256": "3cd7d68c7fb328cf4abaf839cb55993bb9989f946962ecc08cec9929d21c56f5"
+    },
+    {
+      "path": "backend/services/v2/runs.py",
+      "sha256": "43e82be6b4efffd7e772826b52002c391abe67ba3d38f671665fcb9d4df4ec73"
+    },
+    {
+      "path": "scripts/serve_backend.py",
+      "sha256": "3838af2db31fb6c8788a6d71adf1fbeff4f36cb3e6eb8d8f4cfa0303f0caa38f"
+    },
+    {
+      "path": "frontend/src/pages/RunListPage.vue",
+      "sha256": "9bd1e1696b90d4147ddb11089d24706c0b09f3be29aa0903ed1c43467656cbfa"
+    },
+    {
+      "path": "frontend/src/pages/RunWorkspacePage.vue",
+      "sha256": "f195f7de6ce45bad3deba89a6d69c658a7ab08743373236a3ddb88a24118b7a1"
+    },
+    {
+      "path": "frontend/src/pages/ExperimentBuilderPage.vue",
+      "sha256": "c582a56edeb52710c6962b3678cc1dd407d3fa0c36d33ea2a5570d635903ae18"
+    },
+    {
+      "path": "backend/api/v2/errors.py",
+      "sha256": "d5a596ed0bedf9cfc44a0f27a87a672f2e09cf7a2e494175d6b958a010c3916d"
+    }
+  ],
+  "managed_fast_matches_p2_benchmark": {
+    "final_state_hash": "a8a8bbb4ef8ba37fb39856987ac5a0c5b84797d92d2d96c109e58512daf44cd9",
+    "run_id": "ea852646-72ce-40fc-b5f3-99329ff0895b"
+  },
+  "source_preservation": {
+    "bytes": 5429811970,
+    "files": 27843,
+    "fingerprint": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "unchanged": true,
+    "verified_at": "2026-10-03T07:46:04.619556+00:00"
+  },
+  "status": "PASS",
+  "tests": {
+    "p3_backend_results.xml": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 1,
+      "tests": 1575
+    },
+    "p3_browser_results.xml": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 225
+    },
+    "p3_targeted_results.xml": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 69
+    }
+  },
+  "v1_contract_subset": {
+    "paths": 47,
+    "schemas": 298,
+    "unchanged": true
+  },
+  "verified_at": "2026-10-03T07:46:04.620557+00:00"
+}

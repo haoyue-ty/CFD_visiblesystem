@@ -13,6 +13,8 @@ import { quickView } from './views/evidence/quickView'
     <nav :aria-label="zh('System navigation')" class="appbar__nav">
       <RouterLink :to="{ name: 'entry' }" class="appbar__brand">ShockPath</RouterLink>
       <RouterLink :to="{ name: 'home' }">{{ zh("Home") }}</RouterLink>
+      <RouterLink :to="{ name: 'experiment-builder' }">新建实验</RouterLink>
+      <RouterLink :to="{ name: 'run-list' }">实验工作台</RouterLink>
       <RouterLink :to="{ name: 'explore', query: { scene: '1' } }">{{ zh("Explore") }}</RouterLink>
       <RouterLink :to="{ name: 'lab' }">{{ zh("Lab") }}</RouterLink>
       <RouterLink :to="{ name: 'evidence-center' }">{{ zh("Evidence Center") }}</RouterLink>
@@ -39,4 +41,5 @@ import { quickView } from './views/evidence/quickView'
 .appbar__nav a.router-link-active { color: #1a4f8a; font-weight: 600; }
 .appbar__env { display: flex; align-items: center; gap: 0.4rem; }
 .appbar__env-label { font-size: 0.72rem; color: #888; text-transform: uppercase; letter-spacing: 0.04em; }
+@media (max-width: 780px) { .appbar { align-items: flex-start; flex-wrap: wrap; gap: .5rem; padding: .6rem 1rem; }.appbar__nav { flex-wrap: wrap; gap: .8rem; } }
 </style>

@@ -1,0 +1,1 @@
+{"status": "PASS", "source_root": "D:\\Paper\\passage6", "files_before": 27843, "files_after": 27843, "bytes": 5429811970, "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46", "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46", "checks": ["relative paths", "size", "mtime_ns", "file SHA-256"]}

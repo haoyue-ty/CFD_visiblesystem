@@ -1,0 +1,777 @@
+{
+  "status": "PASS",
+  "model": "deepseek-flash",
+  "scenarios": [
+    {
+      "scenario": "equivalent-paper",
+      "status": "PASS",
+      "http_status": 200,
+      "checks": {
+        "http_200": true,
+        "readiness": true,
+        "no_execution": true,
+        "validated": true,
+        "same_normalized_config": true,
+        "same_config_hash": true
+      },
+      "response": {
+        "schema_version": "2.0.0",
+        "request_id": "3150eb42-4e65-414b-8ef8-85f77ecbca13",
+        "data": {
+          "config": {
+            "schema_version": "2.0.0",
+            "protocol_revision": "case8.protocol.p1.1",
+            "case_id": "case8",
+            "profile": "paper",
+            "physics": {
+              "mach": 6.0,
+              "gamma": 1.4,
+              "initial_condition": {
+                "base": "STATIONARY_NORMAL_SHOCK",
+                "front_center": 0.5,
+                "corrugation_amplitude": 0.0125,
+                "wavelength_count": 4,
+                "transition_cells": 1.0,
+                "transverse_seed_sound_speed_factor": 0.01,
+                "transverse_seed_width": 0.04,
+                "transverse_seed_phase": 0.0
+              }
+            },
+            "grid": {
+              "nx": 128,
+              "ny": 32,
+              "domain": {
+                "x": [
+                  0.0,
+                  1.0
+                ],
+                "y": [
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            "time": {
+              "cfl": 0.05,
+              "final_time": 0.08,
+              "integrator": "SSP_RK3",
+              "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+            },
+            "method": {
+              "method_id": "cross_mode_ec_unified_v1",
+              "q_aa": 3.96,
+              "q_at": 0.396
+            },
+            "discretization": {
+              "reconstruction": "FIRST_ORDER",
+              "x_lower": "PRE_SHOCK_INFLOW",
+              "x_upper": "OUTFLOW",
+              "y_boundary": "PERIODIC",
+              "positivity_clipping": false,
+              "artificial_viscosity": false
+            },
+            "output": {
+              "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+              "checkpoint_fractions": [
+                0.0,
+                0.2,
+                0.4,
+                0.6,
+                0.8,
+                1.0
+              ]
+            }
+          },
+          "template_id": "case8.paper.D_u",
+          "unresolved_fields": [],
+          "unsupported_fields": [],
+          "warnings": [
+            "AI 仅提供草稿；请核对模板、数字与原文后确认。"
+          ],
+          "parser_version": "case8.nl.p1.1",
+          "source_text": "使用 Case 8 的 D_u 论文标准模板，保持模板的全部参数不变。",
+          "capability_revision": "case8.capability.p1.1",
+          "validated": {
+            "normalized_config": {
+              "schema_version": "2.0.0",
+              "protocol_revision": "case8.protocol.p1.1",
+              "case_id": "case8",
+              "profile": "paper",
+              "physics": {
+                "mach": 6.0,
+                "gamma": 1.4,
+                "initial_condition": {
+                  "base": "STATIONARY_NORMAL_SHOCK",
+                  "front_center": 0.5,
+                  "corrugation_amplitude": 0.0125,
+                  "wavelength_count": 4,
+                  "transition_cells": 1.0,
+                  "transverse_seed_sound_speed_factor": 0.01,
+                  "transverse_seed_width": 0.04,
+                  "transverse_seed_phase": 0.0
+                }
+              },
+              "grid": {
+                "nx": 128,
+                "ny": 32,
+                "domain": {
+                  "x": [
+                    0.0,
+                    1.0
+                  ],
+                  "y": [
+                    0.0,
+                    1.0
+                  ]
+                }
+              },
+              "time": {
+                "cfl": 0.05,
+                "final_time": 0.08,
+                "integrator": "SSP_RK3",
+                "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+              },
+              "method": {
+                "method_id": "cross_mode_ec_unified_v1",
+                "q_aa": 3.96,
+                "q_at": 0.396
+              },
+              "discretization": {
+                "reconstruction": "FIRST_ORDER",
+                "x_lower": "PRE_SHOCK_INFLOW",
+                "x_upper": "OUTFLOW",
+                "y_boundary": "PERIODIC",
+                "positivity_clipping": false,
+                "artificial_viscosity": false
+              },
+              "output": {
+                "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                "checkpoint_fractions": [
+                  0.0,
+                  0.2,
+                  0.4,
+                  0.6,
+                  0.8,
+                  1.0
+                ]
+              }
+            },
+            "requested_profile": "paper",
+            "classification": "LIVE_PAPER_PROFILE",
+            "protocol_diff": [],
+            "output_diff": [],
+            "warnings": [
+              "运行能力尚未开放；本页仅生成与确认配置。",
+              "fast 候选待 benchmark，未承诺耗时或稳定性。",
+              "论文标准配置不代表本次科学复现已成功。"
+            ],
+            "unsupported_fields": [],
+            "config_hash": "d8776593b7190e098de4e0f8219f50638070547a7fd8cd58a3880aeddbf232a8",
+            "capability_revision": "case8.capability.p1.1",
+            "execution_available": false
+          },
+          "ready_for_confirmation": true
+        },
+        "warnings": []
+      }
+    },
+    {
+      "scenario": "modified-paper",
+      "status": "PASS",
+      "http_status": 200,
+      "checks": {
+        "http_200": true,
+        "readiness": true,
+        "no_execution": true,
+        "validated": true,
+        "lineage_preserved": true,
+        "explicit_parameter": true
+      },
+      "response": {
+        "schema_version": "2.0.0",
+        "request_id": "21e5b134-5ae9-42bd-8992-a82f1c05389f",
+        "data": {
+          "config": {
+            "schema_version": "2.0.0",
+            "protocol_revision": "case8.protocol.p1.1",
+            "case_id": "case8",
+            "profile": "paper",
+            "physics": {
+              "mach": 6.0,
+              "gamma": 1.4,
+              "initial_condition": {
+                "base": "STATIONARY_NORMAL_SHOCK",
+                "front_center": 0.5,
+                "corrugation_amplitude": 0.0125,
+                "wavelength_count": 4,
+                "transition_cells": 1.0,
+                "transverse_seed_sound_speed_factor": 0.01,
+                "transverse_seed_width": 0.04,
+                "transverse_seed_phase": 0.0
+              }
+            },
+            "grid": {
+              "nx": 128,
+              "ny": 32,
+              "domain": {
+                "x": [
+                  0.0,
+                  1.0
+                ],
+                "y": [
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            "time": {
+              "cfl": 0.05,
+              "final_time": 0.08,
+              "integrator": "SSP_RK3",
+              "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+            },
+            "method": {
+              "method_id": "cross_mode_ec_unified_v1",
+              "q_aa": 3.96,
+              "q_at": 0.0
+            },
+            "discretization": {
+              "reconstruction": "FIRST_ORDER",
+              "x_lower": "PRE_SHOCK_INFLOW",
+              "x_upper": "OUTFLOW",
+              "y_boundary": "PERIODIC",
+              "positivity_clipping": false,
+              "artificial_viscosity": false
+            },
+            "output": {
+              "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+              "checkpoint_fractions": [
+                0.0,
+                0.2,
+                0.4,
+                0.6,
+                0.8,
+                1.0
+              ]
+            }
+          },
+          "template_id": "case8.paper.D_u",
+          "unresolved_fields": [],
+          "unsupported_fields": [],
+          "warnings": [
+            "模板 case8.paper.D_u 的 q_at 原为 0.396，已改为 0；其余参数沿用模板，不单独填写。",
+            "AI 仅提供草稿；请核对模板、数字与原文后确认。"
+          ],
+          "parser_version": "case8.nl.p1.1",
+          "source_text": "使用 Case 8 的 D_u 论文标准模板，把 q_at 改为 0，其他保持模板不变。",
+          "capability_revision": "case8.capability.p1.1",
+          "validated": {
+            "normalized_config": {
+              "schema_version": "2.0.0",
+              "protocol_revision": "case8.protocol.p1.1",
+              "case_id": "case8",
+              "profile": "paper",
+              "physics": {
+                "mach": 6.0,
+                "gamma": 1.4,
+                "initial_condition": {
+                  "base": "STATIONARY_NORMAL_SHOCK",
+                  "front_center": 0.5,
+                  "corrugation_amplitude": 0.0125,
+                  "wavelength_count": 4,
+                  "transition_cells": 1.0,
+                  "transverse_seed_sound_speed_factor": 0.01,
+                  "transverse_seed_width": 0.04,
+                  "transverse_seed_phase": 0.0
+                }
+              },
+              "grid": {
+                "nx": 128,
+                "ny": 32,
+                "domain": {
+                  "x": [
+                    0.0,
+                    1.0
+                  ],
+                  "y": [
+                    0.0,
+                    1.0
+                  ]
+                }
+              },
+              "time": {
+                "cfl": 0.05,
+                "final_time": 0.08,
+                "integrator": "SSP_RK3",
+                "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+              },
+              "method": {
+                "method_id": "cross_mode_ec_unified_v1",
+                "q_aa": 3.96,
+                "q_at": 0.0
+              },
+              "discretization": {
+                "reconstruction": "FIRST_ORDER",
+                "x_lower": "PRE_SHOCK_INFLOW",
+                "x_upper": "OUTFLOW",
+                "y_boundary": "PERIODIC",
+                "positivity_clipping": false,
+                "artificial_viscosity": false
+              },
+              "output": {
+                "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                "checkpoint_fractions": [
+                  0.0,
+                  0.2,
+                  0.4,
+                  0.6,
+                  0.8,
+                  1.0
+                ]
+              }
+            },
+            "requested_profile": "paper",
+            "classification": "PAPER_SCALE_CUSTOM",
+            "protocol_diff": [
+              {
+                "field": "method.q_at",
+                "expected": 0.396,
+                "actual": 0.0
+              }
+            ],
+            "output_diff": [],
+            "warnings": [
+              "运行能力尚未开放；本页仅生成与确认配置。",
+              "fast 候选待 benchmark，未承诺耗时或稳定性。",
+              "论文标准配置不代表本次科学复现已成功。",
+              "请求 paper profile 不会赋予论文标准身份；请检查模板来源与协议差异。",
+              "论文模板参数已修改；按实际网格与时间展示自定义实验。"
+            ],
+            "unsupported_fields": [],
+            "config_hash": "3d8667da0125175732caae8efce496c9cfb4cd81ee9accf99fa6415346cc457b",
+            "capability_revision": "case8.capability.p1.1",
+            "execution_available": false
+          },
+          "ready_for_confirmation": true
+        },
+        "warnings": []
+      }
+    },
+    {
+      "scenario": "fast-candidate",
+      "status": "PASS",
+      "http_status": 200,
+      "checks": {
+        "http_200": true,
+        "readiness": true,
+        "no_execution": true,
+        "validated": true,
+        "pending_fast": true
+      },
+      "response": {
+        "schema_version": "2.0.0",
+        "request_id": "d03e74dd-a3e8-4099-9d15-87723fdd8ae7",
+        "data": {
+          "config": {
+            "schema_version": "2.0.0",
+            "protocol_revision": "case8.protocol.p1.1",
+            "case_id": "case8",
+            "profile": "fast",
+            "physics": {
+              "mach": 6.0,
+              "gamma": 1.4,
+              "initial_condition": {
+                "base": "STATIONARY_NORMAL_SHOCK",
+                "front_center": 0.5,
+                "corrugation_amplitude": 0.0125,
+                "wavelength_count": 4,
+                "transition_cells": 1.0,
+                "transverse_seed_sound_speed_factor": 0.01,
+                "transverse_seed_width": 0.04,
+                "transverse_seed_phase": 0.0
+              }
+            },
+            "grid": {
+              "nx": 64,
+              "ny": 16,
+              "domain": {
+                "x": [
+                  0.0,
+                  1.0
+                ],
+                "y": [
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            "time": {
+              "cfl": 0.05,
+              "final_time": 0.04,
+              "integrator": "SSP_RK3",
+              "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+            },
+            "method": {
+              "method_id": "cross_mode_ec_unified_v1",
+              "q_aa": 3.96,
+              "q_at": 0.396
+            },
+            "discretization": {
+              "reconstruction": "FIRST_ORDER",
+              "x_lower": "PRE_SHOCK_INFLOW",
+              "x_upper": "OUTFLOW",
+              "y_boundary": "PERIODIC",
+              "positivity_clipping": false,
+              "artificial_viscosity": false
+            },
+            "output": {
+              "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+              "checkpoint_fractions": [
+                0.0,
+                0.2,
+                0.4,
+                0.6,
+                0.8,
+                1.0
+              ]
+            }
+          },
+          "template_id": "case8.fast.D_u",
+          "unresolved_fields": [],
+          "unsupported_fields": [],
+          "warnings": [
+            "AI 仅提供草稿；请核对模板、数字与原文后确认。"
+          ],
+          "parser_version": "case8.nl.p1.1",
+          "source_text": "使用 Case 8 的 fast 快速实验模板，保持已登记 fast 候选的参数不变。",
+          "capability_revision": "case8.capability.p1.1",
+          "validated": {
+            "normalized_config": {
+              "schema_version": "2.0.0",
+              "protocol_revision": "case8.protocol.p1.1",
+              "case_id": "case8",
+              "profile": "fast",
+              "physics": {
+                "mach": 6.0,
+                "gamma": 1.4,
+                "initial_condition": {
+                  "base": "STATIONARY_NORMAL_SHOCK",
+                  "front_center": 0.5,
+                  "corrugation_amplitude": 0.0125,
+                  "wavelength_count": 4,
+                  "transition_cells": 1.0,
+                  "transverse_seed_sound_speed_factor": 0.01,
+                  "transverse_seed_width": 0.04,
+                  "transverse_seed_phase": 0.0
+                }
+              },
+              "grid": {
+                "nx": 64,
+                "ny": 16,
+                "domain": {
+                  "x": [
+                    0.0,
+                    1.0
+                  ],
+                  "y": [
+                    0.0,
+                    1.0
+                  ]
+                }
+              },
+              "time": {
+                "cfl": 0.05,
+                "final_time": 0.04,
+                "integrator": "SSP_RK3",
+                "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+              },
+              "method": {
+                "method_id": "cross_mode_ec_unified_v1",
+                "q_aa": 3.96,
+                "q_at": 0.396
+              },
+              "discretization": {
+                "reconstruction": "FIRST_ORDER",
+                "x_lower": "PRE_SHOCK_INFLOW",
+                "x_upper": "OUTFLOW",
+                "y_boundary": "PERIODIC",
+                "positivity_clipping": false,
+                "artificial_viscosity": false
+              },
+              "output": {
+                "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                "checkpoint_fractions": [
+                  0.0,
+                  0.2,
+                  0.4,
+                  0.6,
+                  0.8,
+                  1.0
+                ]
+              }
+            },
+            "requested_profile": "fast",
+            "classification": "CUSTOM_RUN",
+            "protocol_diff": [],
+            "output_diff": [],
+            "warnings": [
+              "运行能力尚未开放；本页仅生成与确认配置。",
+              "fast 候选待 benchmark，未承诺耗时或稳定性。",
+              "论文标准配置不代表本次科学复现已成功。"
+            ],
+            "unsupported_fields": [],
+            "config_hash": "9b5263971c7a0814203080c1ad33303aaa0496fb4d738be5a7c73f225a7acd85",
+            "capability_revision": "case8.capability.p1.1",
+            "execution_available": false
+          },
+          "ready_for_confirmation": true
+        },
+        "warnings": []
+      }
+    },
+    {
+      "scenario": "unsupported-epsilon",
+      "status": "PASS",
+      "http_status": 200,
+      "checks": {
+        "http_200": true,
+        "readiness": true,
+        "no_execution": true,
+        "unresolved_or_unsupported": true,
+        "not_validated": true
+      },
+      "response": {
+        "schema_version": "2.0.0",
+        "request_id": "90f667a9-cdef-420f-a63c-b16b67198bb3",
+        "data": {
+          "config": {
+            "schema_version": "2.0.0",
+            "protocol_revision": "case8.protocol.p1.1",
+            "case_id": "case8",
+            "profile": "paper",
+            "physics": {
+              "mach": 6.0,
+              "gamma": 1.4,
+              "initial_condition": {
+                "base": "STATIONARY_NORMAL_SHOCK",
+                "front_center": 0.5,
+                "corrugation_amplitude": 0.0125,
+                "wavelength_count": 4,
+                "transition_cells": 1.0,
+                "transverse_seed_sound_speed_factor": 0.01,
+                "transverse_seed_width": 0.04,
+                "transverse_seed_phase": 0.0
+              }
+            },
+            "grid": {
+              "nx": 128,
+              "ny": 32,
+              "domain": {
+                "x": [
+                  0.0,
+                  1.0
+                ],
+                "y": [
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            "time": {
+              "cfl": 0.05,
+              "final_time": 0.08,
+              "integrator": "SSP_RK3",
+              "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+            },
+            "method": {
+              "method_id": "cross_mode_ec_unified_v1",
+              "q_aa": 3.96,
+              "q_at": 0.396
+            },
+            "discretization": {
+              "reconstruction": "FIRST_ORDER",
+              "x_lower": "PRE_SHOCK_INFLOW",
+              "x_upper": "OUTFLOW",
+              "y_boundary": "PERIODIC",
+              "positivity_clipping": false,
+              "artificial_viscosity": false
+            },
+            "output": {
+              "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+              "checkpoint_fractions": [
+                0.0,
+                0.2,
+                0.4,
+                0.6,
+                0.8,
+                1.0
+              ]
+            }
+          },
+          "template_id": "case8.paper.D_u",
+          "unresolved_fields": [],
+          "unsupported_fields": [
+            {
+              "field": "epsilon",
+              "reason": "Case 8 存在两种不同物理扰动；通用 epsilon 语义未确定且未支持。"
+            },
+            {
+              "field": "physics.epsilon",
+              "reason": "epsilon 的物理含义未确定且未支持。"
+            }
+          ],
+          "warnings": [
+            "AI 仅提供草稿；请核对模板、数字与原文后确认。"
+          ],
+          "parser_version": "case8.nl.p1.1",
+          "source_text": "使用 Case 8 的 D_u 论文模板，epsilon=0.0001。",
+          "capability_revision": "case8.capability.p1.1",
+          "validated": null,
+          "ready_for_confirmation": false
+        },
+        "warnings": []
+      }
+    },
+    {
+      "scenario": "ambiguous-paper",
+      "status": "PASS",
+      "http_status": 200,
+      "checks": {
+        "http_200": true,
+        "readiness": true,
+        "no_execution": true,
+        "unresolved_or_unsupported": true,
+        "not_validated": true
+      },
+      "response": {
+        "schema_version": "2.0.0",
+        "request_id": "d9161182-5494-48a4-91e5-1fe62c5626cb",
+        "data": {
+          "config": null,
+          "template_id": null,
+          "unresolved_fields": [
+            {
+              "field": "template_id",
+              "reason": "用户称“论文标准实验”但未指定 A/B/C/D 哪个模板，需要澄清。"
+            },
+            {
+              "field": "q_aa",
+              "reason": "用户要求“更稳定的配置”，但未明确 q_aa 取值；论文标准候选有 3.96 与 13.2，无法判定“更稳定”对应哪个。"
+            },
+            {
+              "field": "q_at",
+              "reason": "用户要求“更稳定的配置”，但未明确 q_at 取值；论文标准候选有 0.0 与 0.396，无法判定“更稳定”对应哪个。"
+            },
+            {
+              "field": "objective",
+              "reason": "性能或稳定性目标不能自动换成参数，请明确实验配置。"
+            },
+            {
+              "field": "grid.nx",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "grid.ny",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "time.cfl",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "time.final_time",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "method.q_aa",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "method.q_at",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            }
+          ],
+          "unsupported_fields": [],
+          "warnings": [
+            "未指定论文标准模板 A/B/C/D，且“更稳定”的目标含义不明确；未形成可执行配置。",
+            "AI 仅提供草稿；请核对模板、数字与原文后确认。"
+          ],
+          "parser_version": "case8.nl.p1.1",
+          "source_text": "创建 Case 8 论文标准实验，选择更稳定的配置。",
+          "capability_revision": "case8.capability.p1.1",
+          "validated": null,
+          "ready_for_confirmation": false
+        },
+        "warnings": []
+      }
+    },
+    {
+      "scenario": "unsupported-mach",
+      "status": "PASS",
+      "http_status": 200,
+      "checks": {
+        "http_200": true,
+        "readiness": true,
+        "no_execution": true,
+        "unresolved_or_unsupported": true,
+        "not_validated": true
+      },
+      "response": {
+        "schema_version": "2.0.0",
+        "request_id": "ccb7fb4e-48de-4da0-9748-b4d8caffefcf",
+        "data": {
+          "config": null,
+          "template_id": null,
+          "unresolved_fields": [
+            {
+              "field": "template_id",
+              "reason": "用户说“D_u 论文模板”，但 q_aa/q_at 未指定，无法确定是 D_u fast 还是 D_u paper；若为 paper 也需确认 A/B/C/D 中哪个 D_u 组合，当前澄清为 D_u 模板但需区分 fast 与 paper 及 q_aa/q_at 具体值。"
+            },
+            {
+              "field": "grid.nx",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "grid.ny",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "time.cfl",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "time.final_time",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "method.q_aa",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            },
+            {
+              "field": "method.q_at",
+              "reason": "草稿字段缺失或类型/范围不合法。"
+            }
+          ],
+          "unsupported_fields": [
+            {
+              "field": "mach",
+              "reason": "Case 8 要求 Mach=6 为固定物理条件，改为 5 不受支持。"
+            }
+          ],
+          "warnings": [
+            "无法确定 template_id：'D_u 论文模板' 可能指 case8.paper.D_u，但未明确 q_aa/q_at 是否沿用 D_u 的 3.96/0.396，也未指定 fast 或 paper；未指定模板且未给出全部自定义参数，需澄清。",
+            "Mach 已按要求保留为 5，但 Case 8 的固定物理条件 Mach=6，该修改不受支持。",
+            "AI 仅提供草稿；请核对模板、数字与原文后确认。"
+          ],
+          "parser_version": "case8.nl.p1.1",
+          "source_text": "使用 Case 8 的 D_u 论文模板，把 Mach 改为 5。",
+          "capability_revision": "case8.capability.p1.1",
+          "validated": null,
+          "ready_for_confirmation": false
+        },
+        "warnings": []
+      }
+    }
+  ],
+  "cfd_runs_started": 0
+}

@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "sse_thread_capacity": {
+      "fifth_status": 429,
+      "max_normal_api_seconds": 0.031999999890103936,
+      "status": "PASS",
+      "streams": 4
+    }
+  },
+  "error_type": "AssertionError",
+  "message": "{'run_id': '9893876d-9265-4fdb-ae6f-a3007fd0dcea', 'status': 'FAILED', 'created_at': '2026-10-03T07:01:47.636082+00:00', 'started_at': '2026-10-03T07:01:47.814358+00:00', 'finished_at': '2026-10-03T07:02:08.421445+00:00', 'heartbeat_at': '2026-10-03T07:02:08.049757+00:00', 'worker_pid': 43716, 'worker_identity': '43716:134354845078315694', 'manager_identity': '33788:134354845060240054', 'cancel_requested': False, 'completed_steps': 478, 'planned_steps': 478, 'physical_time': 0.04, 'requested_final_time': 0.04, 'failure': 'WORKER_FAILED', 'last_event_id': 16, 'experiment': {'normalized_config': {'schema_version': '2.0.0', 'protocol_revision': 'case8.protocol.p1.1', 'case_id': 'case8', 'profile': 'fast', 'physics': {'mach': 6.0, 'gamma': 1.4, 'initial_condition': {'base': 'STATIONARY_NORMAL_SHOCK', 'front_center': 0.5, 'corrugation_amplitude': 0.0125, 'wavelength_count': 4, 'transition_cells': 1.0, 'transverse_seed_sound_speed_factor': 0.01, 'transverse_seed_width': 0.04, 'transverse_seed_phase': 0.0}}, 'grid': {'nx': 64, 'ny': 16, 'domain': {'x': [0.0, 1.0], 'y': [0.0, 1.0]}}, 'time': {'cfl': 0.05, 'final_time': 0.04, 'integrator': 'SSP_RK3', 'dt_strategy': 'INITIAL_STATE_FIXED_STEP'}, 'method': {'method_id': 'cross_mode_ec_unified_v1', 'q_aa': 3.96, 'q_at': 0.396}, 'discretization': {'reconstruction': 'FIRST_ORDER', 'x_lower': 'PRE_SHOCK_INFLOW', 'x_upper': 'OUTFLOW', 'y_boundary': 'PERIODIC', 'positivity_clipping': False, 'artificial_viscosity': False}, 'output': {'snapshot_policy': 'SOURCE_CHECKPOINT_FRACTIONS', 'checkpoint_fractions': [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]}}, 'requested_profile': 'fast', 'classification': 'LIVE_FAST_RUN', 'protocol_diff': [], 'output_diff': [], 'warnings': ['独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。', 'fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。', '论文标准配置不代表本次科学复现已成功。'], 'unsupported_fields': [], 'config_hash': '9b5263971c7a0814203080c1ad33303aaa0496fb4d738be5a7c73f225a7acd85', 'capability_revision': 'case8.capability.p2.1', 'execution_available': False}, 'data_origin': 'V2_LIVE_COMPUTATION', 'log_tail': ['step=50/478 t=0.00418410041841', 'step=100/478 t=0.00836820083682', 'step=150/478 t=0.0125523012552', 'step=200/478 t=0.0167364016736', 'step=250/478 t=0.0209205020921', 'step=300/478 t=0.0251046025105', 'step=350/478 t=0.0292887029289', 'step=400/478 t=0.0334728033473', 'step=450/478 t=0.0376569037657', 'step=478/478 t=0.04']}",
+  "started_at": "2026-10-03T07:01:43.659482+00:00",
+  "status": "FAIL"
+}

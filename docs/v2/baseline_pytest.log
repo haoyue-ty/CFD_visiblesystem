@@ -1,0 +1,43 @@
+........................................................................ [  5%]
+........................................................................ [ 10%]
+........................................................................ [ 15%]
+........................................................................ [ 21%]
+.............................................F.......................... [ 26%]
+........................................................................ [ 31%]
+........................................................................ [ 37%]
+........................................................................ [ 42%]
+........................................................................ [ 47%]
+........................................................................ [ 53%]
+........................................................................ [ 58%]
+........................................................................ [ 63%]
+........................................................................ [ 69%]
+........................................................................ [ 74%]
+........................................................................ [ 79%]
+........................................................................ [ 84%]
+........................................................................ [ 90%]
+........................................................................ [ 95%]
+............................................................             [100%]
+================================== FAILURES ===================================
+______ test_closure_integration_does_not_authorize_other_frozen_changes _______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001BE08EF5C70>
+
+    def test_closure_integration_does_not_authorize_other_frozen_changes(monkeypatch):
+        original = Path.read_bytes
+        protected = audit.WORKTREE / "backend/models/core.py"
+    
+        def changed_bytes(path):
+            raw = original(path)
+            return raw + b"\n# injected unauthorized change\n" if path == protected else raw
+    
+        monkeypatch.setattr(Path, "read_bytes", changed_bytes)
+>       with pytest.raises(AssertionError, match="Unapproved frozen slice change: backend/models/core.py"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'Unapproved frozen slice change: backend/models/core.py'
+E         Actual message: 'Unapproved frozen slice change: .gitignore'
+
+tests\window0_phase8_bootstrap\test_cylinder_source_audit.py:264: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/window0_phase8_bootstrap/test_cylinder_source_audit.py::test_closure_integration_does_not_authorize_other_frozen_changes
+1 failed, 1355 passed in 526.34s (0:08:46)

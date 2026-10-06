@@ -1,0 +1,14 @@
+[WebServer] (node:35864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:2752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 live-tests\v2-p5.spec.ts:4:1 › 真实结果自动解读、缓存刷新和真实区域问答 (7.3s)
+  ok 2 live-tests\v2-p5.spec.ts:41:1 › 无密钥和重试不影响流场；手机无横向溢出 (2.8s)
+  ok 3 live-tests\v2-p5.spec.ts:57:1 › 旧 Run 缺失累计 face 有真实限制且仍可解读 (1.3s)
+
+  3 passed (22.2s)

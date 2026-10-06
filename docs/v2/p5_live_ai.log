@@ -1,0 +1,6 @@
+{"scenario": "fast-interpretation", "status": "PASS", "cached": false}
+{"scenario": "refresh-cache", "status": "PASS", "cached": true}
+{"scenario": "q-at-boundary", "status": "PASS", "cached": false}
+{"scenario": "region-context", "status": "PASS", "cached": false}
+{"scenario": "injection-boundary", "status": "PASS", "cached": false}
+{"scenario": "legacy-missing-allocation", "status": "PASS", "cached": false}

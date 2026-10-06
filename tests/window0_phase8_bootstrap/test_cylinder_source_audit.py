@@ -252,7 +252,19 @@ def test_reproduce_audit_with_scientific_write_guard(source_map, monkeypatch, tm
     assert audit.OUTPUT.is_relative_to(audit.WORKTREE) and not audit.OUTPUT.is_relative_to(audit.SOURCE_ROOT)
 
 
-def test_closure_integration_does_not_authorize_other_frozen_changes(monkeypatch):
+def test_closure_integration_does_not_authorize_other_frozen_changes(monkeypatch, tmp_path):
+    # This is a historical Closure authorization test. Inspect accepted V1
+    # bytes, as the audit reproduction above does for accepted Phase8 bytes;
+    # otherwise explicitly authorized V2 software changes mask the injected
+    # unauthorized change before this test can exercise its intended guard.
+    accepted_v1 = "061cac00e7dc41211a7d347124328b92ac9aff82"
+    archived = subprocess.check_output(["git", "archive", "--format=zip", accepted_v1], cwd=audit.WORKTREE)
+    git_dir = subprocess.check_output(
+        ["git", "rev-parse", "--absolute-git-dir"], cwd=audit.WORKTREE, text=True).strip()
+    with zipfile.ZipFile(io.BytesIO(archived)) as snapshot:
+        snapshot.extractall(tmp_path)
+    monkeypatch.setenv("GIT_DIR", git_dir)
+    monkeypatch.setattr(audit, "WORKTREE", tmp_path)
     original = Path.read_bytes
     protected = audit.WORKTREE / "backend/models/core.py"
 

@@ -10,6 +10,11 @@ frontend/test-results/
 frontend/playwright-report/
 node_modules/
 .cache/
+runtime/
+.playwright-cli/
+
+# Verification / browser screenshots and generated reports
+/output/
 
 # Local agent workspace (not part of any delivery)
 .workbuddy/

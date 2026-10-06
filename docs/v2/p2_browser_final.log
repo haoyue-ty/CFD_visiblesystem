@@ -1,0 +1,908 @@
+
+[WebServer] (node:41172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:49516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[WebServer] (node:44620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:39360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 225 tests using 1 worker
+
+(node:44040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/225] [unit] › tests\data-projection.unit.spec.ts:4:1 › recorded zero remains zero
+[2/225] [unit] › tests\data-projection.unit.spec.ts:6:3 › UNKNOWN is never projected to zero
+[3/225] [unit] › tests\data-projection.unit.spec.ts:6:3 › MISSING is never projected to zero
+[4/225] [unit] › tests\data-projection.unit.spec.ts:6:3 › NOT_APPLICABLE is never projected to zero
+[5/225] [unit] › tests\data-projection.unit.spec.ts:8:1 › recorded physical time keeps its full precision
+[6/225] [unit] › tests\evidence.unit.spec.ts:5:1 › recorded zero and false remain known; unknown facts carry reasons
+[7/225] [unit] › tests\evidence.unit.spec.ts:11:1 › verification mapping retains every frozen status and distinguishes history and unfrozen evidence
+[8/225] [unit] › tests\evidence.unit.spec.ts:19:1 › public provenance and error text strip locators while preserving controlled relative origins
+[9/225] [unit] › tests\evidence.unit.spec.ts:26:3 › unsafe return context rejected: null
+[10/225] [unit] › tests\evidence.unit.spec.ts:26:3 › unsafe return context rejected: {broken
+[11/225] [unit] › tests\evidence.unit.spec.ts:26:3 › unsafe return context rejected: {"name":"https://evil.example"}
+[12/225] [unit] › tests\evidence.unit.spec.ts:26:3 › unsafe return context rejected: {"name":"lab","path":"file:///D:/science"}
+[13/225] [unit] › tests\evidence.unit.spec.ts:26:3 › unsafe return context rejected: {"name":"experiment"}
+[14/225] [unit] › tests\evidence.unit.spec.ts:26:3 › unsafe return context rejected: {"name":"lab","query":{"nested":{}}}
+[15/225] [unit] › tests\evidence.unit.spec.ts:28:1 › result and center return contexts preserve exact selectors
+[16/225] [unit] › tests\localization.unit.spec.ts:4:1 › presentation preserves scientific identities, formulas, precision and recorded zero
+[17/225] [unit] › tests\localization.unit.spec.ts:16:1 › chart localization copies labels without rewriting or mutating scientific data
+[18/225] [unit] › tests\localization.unit.spec.ts:29:1 › seven scenes retain strict-1D zero-output and modal/comparison boundaries
+
+(node:9292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[19/225] [phase5-10-real-api] › tests\allocation-real-api.spec.ts:3:1 › explicit allocation outage stays unsupported without a fake map
+[20/225] [phase5-10-real-api] › tests\allocation-real-api.spec.ts:23:1 › real Lab -> Case8 -> Allocation -> D_u -> all Gates -> Evidence
+[21/225] [phase5-10-real-api] › tests\allocation-real-api.spec.ts:94:3 › rejects an API representation mismatch without drawing a field
+[22/225] [phase5-10-real-api] › tests\allocation-real-api.spec.ts:94:3 › rejects an API semantic mismatch without drawing a field
+[23/225] [phase5-10-real-api] › tests\allocation-real-api.spec.ts:94:3 › rejects an API mask mismatch without drawing a field
+[24/225] [phase5-10-real-api] › tests\allocation-real-api.spec.ts:94:3 › rejects an API measure mismatch without drawing a field
+[25/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:25:3 › Case8 acceptance chain › every recorded snapshot index is addressable and index 0 is refused
+[26/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:34:3 › Case8 acceptance chain › the initial frame is snapshot 1 with step 0, not snapshot 0
+[27/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:40:3 › Case8 acceptance chain › snapshot 6 of D_u shows step 1912 and physical time 0.08
+[28/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:47:3 › Case8 acceptance chain › entropy tab reports a 1912-record series for the selected configuration
+[29/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:53:3 › Case8 acceptance chain › metrics tab reports the recorded snapshot scope and definitions
+[30/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:59:3 › Case8 acceptance chain › an absent metric is rendered as missing, never as zero
+[31/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:68:3 › Case8 acceptance chain › evidence view exposes provenance without an absolute source path
+[32/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:77:3 › state restoration › reloading a deep link restores the selection
+[33/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:84:3 › state restoration › back navigation restores the previous tab selection
+[34/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:91:3 › state restoration › switching configuration clears the previous selection
+[35/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:98:3 › state restoration › the snapshot timeline offers exactly the six recorded frames
+[36/225] [phase5-10-real-api] › tests\case8-acceptance.spec.ts:107:3 › bootstrap chain still holds › the frozen bootstrap route chain is unchanged
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[37/225] [phase5-10-real-api] › tests\case8-real-integration.spec.ts:3:1 › real vertical slice and four-configuration acceptance
+[38/225] [phase5-10-real-api] › tests\case8-real-integration.spec.ts:66:1 › real API outage shows an error without a mock fallback
+[39/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:12:1 › Lab opens Closure and traverses D_u .05 stages, steps, Evidence and B_u recorded zero
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[40/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:41:1 › CLO01 supplies exactly five complete legal selections; every run is selectable
+[41/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:53:1 › invalid config × CFL deep link produces no history request or result
+[42/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:61:1 › Semi-discrete preserves PER_STAGE records, clocks, definitions and optional channels
+[43/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:82:1 › Fully-discrete keeps increments, cumulative and terminal values distinct through final page
+[44/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:101:1 › B_u D_at and E_at are recorded zeros, never missing
+[45/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:110:1 › four-point refinement and global/pairwise orders equal frozen CLO05
+[46/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:123:1 › scientific limitation remains visible on every tab, with no prohibited claim or spatial view
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[47/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:139:3 › Evidence run returns current run/tab/page from overview
+[48/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:139:3 › Evidence stage returns current run/tab/page from semi-discrete
+[49/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:139:3 › Evidence step returns current run/tab/page from fully-discrete
+[50/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:139:3 › Evidence run returns current run/tab/page from evidence
+[51/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:152:1 › Evidence tab exposes all runs, both history groups, and refinement; refinement returns same run
+[52/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:162:1 › changing run while history is in flight cannot show stale scientific data
+[53/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:178:1 › scientific missing response remains missing, without a substitute chart
+[54/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:184:1 › non-production science is rejected even if API transport reports success
+[55/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:202:3 › API registry failure displays error and no mock fallback
+[56/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:202:3 › API stage failure displays error and no mock fallback
+[57/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:202:3 › API step failure displays error and no mock fallback
+[58/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:202:3 › API refinement failure displays error and no mock fallback
+[59/225] [phase5-10-real-api] › tests\closure-real-api.spec.ts:213:1 › production artifacts contain no mock provider or synthetic scientific payload
+[60/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:7:3 › Cylinder A_u: exact tabs, selectors and five actual snapshots
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[61/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:33:3 › Cylinder A_u: 16 trajectory sectors, front-band and cumulative2D Missing
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[62/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:7:3 › Cylinder B_u: exact tabs, selectors and five actual snapshots
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[63/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:33:3 › Cylinder B_u: 16 trajectory sectors, front-band and cumulative2D Missing
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[64/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:7:3 › Cylinder D_u: exact tabs, selectors and five actual snapshots
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[65/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:33:3 › Cylinder D_u: 16 trajectory sectors, front-band and cumulative2D Missing
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[66/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:48:1 › Cylinder full 9757-record history retains scalar semantics and independent snapshot state
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[67/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:65:1 › Cylinder local canonical metrics retain definitions, detectors, units, time and detector floor
+[68/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:75:1 › Cylinder evidence return restores config, tab, snapshot, field and scalar state
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[69/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:86:1 › Cross-flow renders distinct scientific objects, policies, comparability and both evidence contexts
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[70/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:122:3 › API outage has no mock fallback: /lab/experiments/cylinder?tab=flow
+[71/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:122:3 › API outage has no mock fallback: /lab/experiments/cylinder?tab=entropy
+[72/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:122:3 › API outage has no mock fallback: /lab/experiments/cylinder?tab=sectors
+[73/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:122:3 › API outage has no mock fallback: /lab/experiments/cylinder?tab=metrics
+[74/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:122:3 › API outage has no mock fallback: /cross-flow
+[75/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:130:1 › field asset failure shows Missing without substituting another frame
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[76/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:136:1 › invalid snapshot and unsupported config deep links never create frames or C_u selector
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[77/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:146:1 › Lab navigation opens Cylinder and cross-flow routes
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[78/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:153:1 › production bundle contains zero mock implementation or fixture identifiers
+[79/225] [phase5-10-real-api] › tests\cylinder-crossflow-real-api.spec.ts:158:1 › Cylinder config changes retain selected tab and replace allocation identity
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[80/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:15:1 › Evidence navigation opens CURRENT with bounded EVI01 pagination and server filters
+[81/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:45:1 › GAPS exposes actual missing sources, effects and limits without repair actions
+[82/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:60:1 › HISTORY is a separate historical selection; details return exact center filters/page
+[83/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:73:1 › P09 renders complete canonical method/config/assets/freeze/processing/definitions/limitations/relations
+[84/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:94:1 › drift response remains inspectable, with distinct recorded/current facts and no availability claim
+[85/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:109:1 › source drift filters the current server page honestly without a forbidden query
+[86/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:128:1 › public text strips unsafe locators; all links are application routes and never downloads
+[87/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:139:1 › known superseded_by links to registered successor; unknown fields are never inferred
+[88/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:158:3 › Quick close, Quick→Detail, Detail→Result and browser Back preserve /lab/experiments/case8?config=D_u&tab=allocation
+[89/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:158:3 › Quick close, Quick→Detail, Detail→Result and browser Back preserve /lab/experiments/case8?config=D_u&tab=spectral&spectral_q=spectrum.q-0.396&spectral_mode=8
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[90/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:158:3 › Quick close, Quick→Detail, Detail→Result and browser Back preserve /explore?scene=6&case8_config=D_u&cylinder_config=B_u&view=allocation
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[91/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:187:1 › Quick View traps focus, Escape closes, and changing route aborts stale evidence
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[92/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:204:1 › Mechanism own EVI03 evidence is non-numerical in Quick and P09
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[93/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:214:1 › Cylinder missing cumulative evidence stays MISSING and inspectable
+[94/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:220:1 › Closure evidence exposes recorded run and actual stage processing
+[95/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:228:53 › evidence index http error is explicit and retry uses real API without fallback
+[96/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:228:53 › evidence index network error is explicit and retry uses real API without fallback
+[97/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:228:53 › evidence record http error is explicit and retry uses real API without fallback
+[98/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:228:53 › evidence record network error is explicit and retry uses real API without fallback
+[99/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:242:1 › Quick evidence API outage does not fabricate record; close preserves live result
+[100/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:255:1 › Allocation family, gate and comparison survive full record, browser Back and reload
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[101/225] [phase5-10-real-api] › tests\evidence-real-api.spec.ts:276:1 › unknown evidence ID has explicit missing state and no fabricated metadata
+[102/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:16:1 › Home and Lab enter implemented Explore; CONTENT01 returns exactly seven presets
+[103/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:31:3 › Scene 1 direct deep link, reload and production screenshot
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[104/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:31:3 › Scene 2 direct deep link, reload and production screenshot
+[105/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:31:3 › Scene 3 direct deep link, reload and production screenshot
+[106/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:31:3 › Scene 4 direct deep link, reload and production screenshot
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[107/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:31:3 › Scene 5 direct deep link, reload and production screenshot
+[108/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:31:3 › Scene 6 direct deep link, reload and production screenshot
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[109/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:31:3 › Scene 7 direct deep link, reload and production screenshot
+[110/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:53:1 › S1 reads B_u / D_u Case8 accepted histories and terminal facts verbatim
+[111/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:70:1 › S2 schematic and S3 strict/weak plus off/enabled use shared MechanismView
+[112/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:85:1 › S4 Gate matched q_at, common API scale, fixed window and saved fractions
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[113/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:103:1 › S5 complete real SPEC02 curves retain negative, positive and near-zero directions
+[114/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:116:1 › S6 CMP01 fixed D_u pair keeps independent renderers, policies and missing 2D
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[115/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:129:1 › S7 real per-result evidence loads one record with identity/config/hash/limits; Detail returns
+[116/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:143:1 › Previous / Next, scene navigation and browser Back restore only Scene/page
+[117/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:157:3 › S1 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[118/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:157:3 › S4 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[119/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:157:3 › S5 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload
+[120/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:157:3 › S6 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 4
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[121/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:157:3 › S7 Open in Lab carries legal configuration/tab/source_scene and explicit return survives reload
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 4
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[122/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:171:3 › invalid scene "0" has error and no scientific content
+[123/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:171:3 › invalid scene "8" has error and no scientific content
+[124/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:171:3 › invalid scene "-1" has error and no scientific content
+[125/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:171:3 › invalid scene "abc" has error and no scientific content
+[126/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:171:3 › invalid scene "1.5" has error and no scientific content
+[127/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:171:3 › invalid scene "" has error and no scientific content
+[128/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:186:3 › S1 scientific API failure is explicit with no mock fallback
+[129/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:186:3 › S2 scientific API failure is explicit with no mock fallback
+[130/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:186:3 › S4 scientific API failure is explicit with no mock fallback
+[131/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:186:3 › S5 scientific API failure is explicit with no mock fallback
+[132/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:186:3 › S6 scientific API failure is explicit with no mock fallback
+[133/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:186:3 › S7 scientific API failure is explicit with no mock fallback
+[134/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:195:1 › CONTENT01 outage prevents science; production bundle excludes synthetic providers
+[135/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:206:1 › Lab edits preserve the original Explore return context
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[136/225] [phase5-10-real-api] › tests\explore-real-api.spec.ts:217:1 › rapid Scene changes and selected S7 evidence cannot display stale data
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 4
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[137/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:13:1 › Lab route opens/reloads CONTENT03 real API with every registered node and edge
+[138/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:45:5 › STRICT_1D / q_at OFF: receiving content and output remain separate from trigger
+[139/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:45:5 › STRICT_1D / q_at ENABLED: receiving content and output remain separate from trigger
+[140/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:45:5 › WEAKLY_2D / q_at OFF: receiving content and output remain separate from trigger
+[141/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:45:5 › WEAKLY_2D / q_at ENABLED: receiving content and output remain separate from trigger
+[142/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:65:1 › trigger/output have distinct visual and semantic roles; keyboard and delta_t wording
+[143/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:83:1 › Near1D theory only; no sliders, numeric points or numerical chart
+[144/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:95:1 › node evidence quick/detail uses EVI02 and restores full mechanism state
+[145/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:116:3 › Explore S2 shares MechanismView, returns to source_scene and browser Back works
+[146/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:116:3 › Explore S3 shares MechanismView, returns to source_scene and browser Back works
+[147/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:139:1 › browser Back restores discrete state and node selection
+[148/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:153:3 › CONTENT03 network failure shows error, no mock fallback; retry recovers
+[149/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:153:3 › CONTENT03 http failure shows error, no mock fallback; retry recovers
+[150/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:153:3 › CONTENT03 envelope failure shows error, no mock fallback; retry recovers
+[151/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:153:3 › CONTENT03 origin failure shows error, no mock fallback; retry recovers
+[152/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:176:1 › evidence outage leaves schematic visible and shows no fabricated record
+[153/225] [phase5-10-real-api] › tests\mechanism-real-api.spec.ts:185:1 › Explore metadata outage and invalid scene cannot fabricate S2/S3
+[154/225] [phase5-10-real-api] › tests\phase10-final-integration.spec.ts:5:1 › Entry → Home → seven real Scenes → Evidence Detail → Scene → Lab → original Scene
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[155/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:25:1 › W3 Case8 D_u Allocation traces source/hash/processing and restores result
+[156/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:38:1 › W3 Gate Acoustic traces matched configuration, native map, mask and summary
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[157/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:52:1 › W3 q_at=.396 mode8 traces eigenmode and Spectrum provenance without changing selectors
+[158/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:69:1 › W3 Modal Validation history resolves the actual selected eigenpair via SPEC05 and EVI03
+[159/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:93:1 › W3 Cylinder D_u sectors trace J2C-v2 sources and limitation
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[160/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:105:1 › W3 Cross-flow D_u/D_u preserves independent evidence and descriptive policies
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[161/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:120:1 › W3 Closure D_u CFL=.05 stage and step records retain freeze binding
+[162/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:134:1 › W3 Mechanism SCHEMATIC theory/implementation stays nonnumerical
+[163/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:142:1 › W3 three required GAPS have no values, fake plots or reconstruct actions
+[164/225] [phase5-10-real-api] › tests\phase11-final-integration.spec.ts:154:1 › W3 Home→Lab reaches each implemented module and Evidence navigation
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[165/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:3:1 › V1 Lab catalog opens all six delivered experiments from production API
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[166/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:20:1 › V1 config-disabled Allocation keeps URL, explanation, Back/Forward and no invented field
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[167/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:43:3 › V1 gate hides absent capabilities and preserves unsupported deep link
+[168/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:43:3 › V1 spectrum hides absent capabilities and preserves unsupported deep link
+[169/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:43:3 › V1 modal-validation hides absent capabilities and preserves unsupported deep link
+[170/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:62:1 › V1 metadata API failure preserves location and explicit error without scientific fallback
+[171/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:73:3 › V1 case8 unknown view remains an explicit unsupported location
+[172/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:73:3 › V1 cylinder unknown view remains an explicit unsupported location
+[173/225] [phase5-10-real-api] › tests\phase12-final-integration.spec.ts:73:3 › V1 entropy-closure unknown view remains an explicit unsupported location
+[174/225] [phase5-10-real-api] › tests\routes.spec.ts:12:3 › opens and reloads /
+[175/225] [phase5-10-real-api] › tests\routes.spec.ts:12:3 › opens and reloads /home
+[176/225] [phase5-10-real-api] › tests\routes.spec.ts:12:3 › opens and reloads /lab
+[177/225] [phase5-10-real-api] › tests\routes.spec.ts:12:3 › opens and reloads /lab/experiments/case8
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+[178/225] [phase5-10-real-api] › tests\routes.spec.ts:12:3 › opens and reloads /evidence/ev.case8.D_u.snapshot.6.density
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[WebServer] WARNING:waitress.queue:Task queue depth is 4
+
+[179/225] [phase5-10-real-api] › tests\spectral-real-api.spec.ts:14:1 › real spectral outage is surfaced honestly with no fabricated curve
+[180/225] [phase5-10-real-api] › tests\spectral-real-api.spec.ts:34:1 › real Spectral Lab reads recorded frozen facts
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[181/225] [phase5-10-real-api] › tests\spectral-real-api.spec.ts:59:1 › all four real configurations expose every recorded mode and restore evidence context
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+
+[182/225] [phase5-10-real-api] › tests\spectral-real-api.spec.ts:96:1 › real provider reports a missing saved vector explicitly
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+[183/225] [phase5-10-real-api] › tests\spectral-real-api.spec.ts:110:3 › real eigenmode rejects an array result identity mismatch
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[184/225] [phase5-10-real-api] › tests\spectral-real-api.spec.ts:110:3 › real eigenmode rejects an array element count mismatch
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 3
+[185/225] [phase5-10-real-api] › tests\v2-p1-experiments.spec.ts:14:1 › template and form share hash, paper changes preserve lineage, confirmation invalidates
+[186/225] [phase5-10-real-api] › tests\v2-p1-experiments.spec.ts:44:1 › fast candidate and unavailable AI stay explicit; reload and navigation work
+[187/225] [phase5-10-real-api] › tests\v2-p1-experiments.spec.ts:62:1 › natural language UI uses real validation summary and requires clarification
+[188/225] [phase5-10-real-api] › tests\v2-p1-experiments.spec.ts:99:1 › backend capability errors are shown and retry can validate
+[189/225] [phase5-10-real-api] › tests\v2-p1-experiments.spec.ts:112:1 › mobile builder has no horizontal overflow and can confirm configuration
+(node:23012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[190/225] [phase8-real-api] › tests\phase8-final-integration.spec.ts:6:1 › Phase8D real Cylinder D_u journey, D_u versus D_u and actual cumulative2D absence
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 1
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+
+[WebServer] WARNING:waitress.queue:Task queue depth is 2
+
+(node:13324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[191/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:18:7 › Entry -> Home -> Lab -> Case8 chain › Entry shows identity and enters the system
+[192/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:26:7 › Entry -> Home -> Lab -> Case8 chain › Home shows the scientific question, implemented Explore, and Lab entry
+[193/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:40:7 › Entry -> Home -> Lab -> Case8 chain › Lab marks only Case8 IMPLEMENTED and others PLANNED (never MISSING data)
+[194/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:57:7 › Case8 config switching › A/B/C/D are selectable and update the overview
+[195/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:67:7 › Case8 config switching › Allocation is family-present but disabled for A/B/C and explained
+[196/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:77:7 › Flow snapshots › snapshots 1..6 render with "Snapshot n / 6" and actual step/time
+[197/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:93:7 › Flow snapshots › snapshot 0 is not offered as a recorded index
+[198/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:102:7 › Flow snapshots › field switch re-renders density / pressure / front
+[199/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:112:7 › Entropy + dual time › entropy chart renders and selecting a step shows both times
+[200/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:127:7 › Entropy + dual time › selecting a scalar step also works via a chart click
+[201/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:143:7 › Metrics › each metric shows value with definition, unit, detector and evidence link
+[202/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:158:7 › Evidence navigation and return context › mock Evidence tab -> Quick -> P09 missing state -> back restores experiment/config/tab
+[203/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:173:7 › Evidence navigation and return context › direct evidence deep link has no fake back target
+[204/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:182:7 › Refresh / deep-link recovery › refresh keeps config, tab and snapshot
+[205/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:191:7 › Refresh / deep-link recovery › unknown experiment shows a system fallback
+[206/225] [window3-mock-development] › ..\tests\window3_frontend\case8_slice.spec.ts:198:7 › MOCK labelling › mock badge is visibly present on data pages
+(node:39688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[207/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:24:7 › Allocation tab — Case8 D_u FACE_FIELD › shows representation_type FACE_FIELD with face measure and two orientations
+[208/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:42:7 › Allocation tab — Case8 D_u FACE_FIELD › shows the per-orientation mask identity and both mask counts
+[209/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:49:7 › Allocation tab — Case8 D_u FACE_FIELD › shows definition, verification and evidence blocks
+[210/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:56:7 › Allocation tab — Case8 D_u FACE_FIELD › summary shows budget and inside fraction
+[211/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:65:7 › Allocation tab — Gate CELL_FIELD › switching family shows CELL_FIELD with cell measure and one field
+[212/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:82:7 › Allocation tab — Gate CELL_FIELD › all three Gate configs render a cell map with matched-budget summaries
+[213/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:100:7 › Allocation tab — Gate CELL_FIELD › cell mask identity is distinct from the Case8 face mask
+[214/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:115:7 › The two representations are never the same object › FACE and CELL differ in representation, measure, mask and raster
+[215/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:152:7 › Allocation capability gating › allocation tab stays disabled for A/B/C and enabled for D_u
+[216/225] [window4-allocation-ui] › ..\tests\window4_allocation\allocation_ui.spec.ts:159:7 › Allocation capability gating › mock badge is visible on the allocation tab
+(node:46796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[217/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:25:7 › Spectral Lab — route and scope › is reachable via the independent workspace shortcut and legacy deep link
+[218/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:32:7 › Spectral Lab — route and scope › states the scientific scope and never emits an evaluative verdict
+[219/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:46:7 › Spectral Lab — region 1 (spectral abscissa curve) › renders x = mode k, y = Re(λ) with the recorded q_at
+[220/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:54:7 › Spectral Lab — region 1 (spectral abscissa curve) › switching configuration changes the resolved q_at (four exact values)
+[221/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:64:7 › Spectral Lab — region 2 (mode detail) › renders the eigenmode for a saved selection with its index spaces
+[222/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:71:7 › Spectral Lab — region 2 (mode detail) › a registered-but-unsaved mode rank shows Unavailable, never a blank frame
+[223/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:80:7 › Spectral Lab — region 2 (mode detail) › selecting a different mode index re-reads the eigenmode
+[224/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:88:7 › Spectral Lab — region 3 (growth validation) › renders linear vs CFD with recorded rates and an explicit missing history
+[225/225] [window3-spectral-ui] › ..\tests\window3_spectral\spectral_lab_ui.spec.ts:99:7 › Spectral Lab — loading state › a slow spectral provider surfaces a Loading state first
+  225 passed (10.1m)

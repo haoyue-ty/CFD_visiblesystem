@@ -1,0 +1,1136 @@
+{
+  "status": "PASS",
+  "started_at": "2026-10-03T16:24:27.750Z",
+  "checks": {
+    "real_four_combination_serial_scan": {
+      "status": "PASS",
+      "sweep_id": "3627fc5a-0681-4846-b0ed-b5150644fa52",
+      "base_run": "08f92162-b308-47ac-9a61-4aa1af08c048",
+      "sweep_hash": "554b483ace13ffbcda1c4ed8fda11063879baf53e5248885f8c3046c083566db",
+      "results": [
+        {
+          "run_id": "76cecb10-44ee-4837-a07d-488477fa4bc3",
+          "result_hash": "1c6bcfea1f21bf2b7c61aecbfd823e83f85ce728109ad694e0543fd398fdb5ad",
+          "config_hash": "092b2d773c90cc07fe4b402f429ed54f7cf5094c87d07b704b4ad0b8f4627bc1",
+          "accepted_steps": 478,
+          "solver_seconds": 22.76816300000064,
+          "entropy": {
+            "E_aa": 0.7653665145020011,
+            "E_at": 0,
+            "E_bg": 0.26196563316526983,
+            "E_total": 1.0273321476672717
+          },
+          "metrics": [
+            {
+              "metric_id": "front_width_mean",
+              "label": "Shock width",
+              "value": 0.052644584240516976,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50",
+              "normalization": "none",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.76cecb10-44ee-4837-a07d-488477fa4bc3"
+            },
+            {
+              "metric_id": "front_rms",
+              "label": "Front RMS",
+              "value": 0.005227854055003368,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "same local p10/p50/p90 detector as Shock width",
+              "normalization": "mean-subtracted front",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.76cecb10-44ee-4837-a07d-488477fa4bc3"
+            },
+            {
+              "metric_id": "front_high_k_fraction",
+              "label": "HF (front)",
+              "value": 0.0000016243251306185087,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "dimensionless",
+              "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "entire periodic y; source replaces missing front rows by zero for spectrum",
+              "normalization": "rfft / Ny; energy fraction; no extra factor of two",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": null,
+              "evidence_id": "ev.run.76cecb10-44ee-4837-a07d-488477fa4bc3"
+            }
+          ]
+        },
+        {
+          "run_id": "2008b1f3-fcb9-4d2c-9d0c-fdbf33e9215b",
+          "result_hash": "c6433b3c92c9929dc37d4d23c37641d6835d6be91efeda888f7b3d072fbbb646",
+          "config_hash": "7c4e1e3795fc6761da8cfede97923dd08edf0a4e1ea1c2f782f956252ac88204",
+          "accepted_steps": 478,
+          "solver_seconds": 24.089893700089306,
+          "entropy": {
+            "E_aa": 0.7657586414927807,
+            "E_at": 0.0015385656281803953,
+            "E_bg": 0.2603519778427781,
+            "E_total": 1.0276491849637395
+          },
+          "metrics": [
+            {
+              "metric_id": "front_width_mean",
+              "label": "Shock width",
+              "value": 0.052367158241523305,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50",
+              "normalization": "none",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.2008b1f3-fcb9-4d2c-9d0c-fdbf33e9215b"
+            },
+            {
+              "metric_id": "front_rms",
+              "label": "Front RMS",
+              "value": 0.005027795894162013,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "same local p10/p50/p90 detector as Shock width",
+              "normalization": "mean-subtracted front",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.2008b1f3-fcb9-4d2c-9d0c-fdbf33e9215b"
+            },
+            {
+              "metric_id": "front_high_k_fraction",
+              "label": "HF (front)",
+              "value": 0.0000016331715857923473,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "dimensionless",
+              "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "entire periodic y; source replaces missing front rows by zero for spectrum",
+              "normalization": "rfft / Ny; energy fraction; no extra factor of two",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": null,
+              "evidence_id": "ev.run.2008b1f3-fcb9-4d2c-9d0c-fdbf33e9215b"
+            }
+          ]
+        },
+        {
+          "run_id": "ea1a6fca-a4ee-4f73-92f8-f588e45af1f9",
+          "result_hash": "74be73fa1a4f674c6578285b4a511340f876bc91fa18b286811c8d7f55aab5b7",
+          "config_hash": "0596c7a316c0c501bee8818f0371a00b1fc173e87ef0c63688a4c405a41a2afe",
+          "accepted_steps": 478,
+          "solver_seconds": 26.13379759993404,
+          "entropy": {
+            "E_aa": 0.9321209859318303,
+            "E_at": 0,
+            "E_bg": 0.16170192684994356,
+            "E_total": 1.0938229127817733
+          },
+          "metrics": [
+            {
+              "metric_id": "front_width_mean",
+              "label": "Shock width",
+              "value": 0.07289624373013184,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50",
+              "normalization": "none",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.ea1a6fca-a4ee-4f73-92f8-f588e45af1f9"
+            },
+            {
+              "metric_id": "front_rms",
+              "label": "Front RMS",
+              "value": 0.0045658273669787535,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "same local p10/p50/p90 detector as Shock width",
+              "normalization": "mean-subtracted front",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.ea1a6fca-a4ee-4f73-92f8-f588e45af1f9"
+            },
+            {
+              "metric_id": "front_high_k_fraction",
+              "label": "HF (front)",
+              "value": 1.1836719515151289e-8,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "dimensionless",
+              "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "entire periodic y; source replaces missing front rows by zero for spectrum",
+              "normalization": "rfft / Ny; energy fraction; no extra factor of two",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": null,
+              "evidence_id": "ev.run.ea1a6fca-a4ee-4f73-92f8-f588e45af1f9"
+            }
+          ]
+        },
+        {
+          "run_id": "8c030ad6-1ddf-4d39-8811-64c9d3b4ed34",
+          "result_hash": "9ed43e9bec0d49aee58fb332521c37dce979cafb7faf309c52f0f1024f2311cb",
+          "config_hash": "e1217e7cbf2c865bd9041df558a70c84d0333bd631703c793b0a666e2df37aaa",
+          "accepted_steps": 478,
+          "solver_seconds": 26.55312900012359,
+          "entropy": {
+            "E_aa": 0.9322543880633923,
+            "E_at": 0.0005597079681873309,
+            "E_bg": 0.16117284307351978,
+            "E_total": 1.0939869391050974
+          },
+          "metrics": [
+            {
+              "metric_id": "front_width_mean",
+              "label": "Shock width",
+              "value": 0.07221122240382322,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50",
+              "normalization": "none",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.8c030ad6-1ddf-4d39-8811-64c9d3b4ed34"
+            },
+            {
+              "metric_id": "front_rms",
+              "label": "Front RMS",
+              "value": 0.004489349442218867,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "model length",
+              "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "same local p10/p50/p90 detector as Shock width",
+              "normalization": "mean-subtracted front",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": 0.015625,
+              "evidence_id": "ev.run.8c030ad6-1ddf-4d39-8811-64c9d3b4ed34"
+            },
+            {
+              "metric_id": "front_high_k_fraction",
+              "label": "HF (front)",
+              "value": 9.02815655635156e-9,
+              "availability": "AVAILABLE",
+              "reason": null,
+              "unit": "dimensionless",
+              "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0",
+              "detector": "solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content",
+              "window": "entire periodic y; source replaces missing front rows by zero for spectrum",
+              "normalization": "rfft / Ny; energy fraction; no extra factor of two",
+              "applicable_conditions": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+              "time": 0.04,
+              "resolution_limit": null,
+              "evidence_id": "ev.run.8c030ad6-1ddf-4d39-8811-64c9d3b4ed34"
+            }
+          ]
+        }
+      ],
+      "records": [
+        {
+          "run_id": "76cecb10-44ee-4837-a07d-488477fa4bc3",
+          "status": "COMPLETED",
+          "created_at": "2026-10-03T16:24:36.713233+00:00",
+          "started_at": "2026-10-03T16:24:37.177351+00:00",
+          "finished_at": "2026-10-03T16:25:02.842586+00:00",
+          "heartbeat_at": "2026-10-03T16:25:02.842586+00:00",
+          "worker_pid": 52584,
+          "worker_identity": "52584:134355182772072711",
+          "manager_identity": "53816:134355182699731549",
+          "cancel_requested": false,
+          "completed_steps": 478,
+          "planned_steps": 478,
+          "physical_time": 0.04,
+          "requested_final_time": 0.04,
+          "failure": null,
+          "last_event_id": 16,
+          "experiment": {
+            "normalized_config": {
+              "schema_version": "2.0.0",
+              "protocol_revision": "case8.protocol.p1.1",
+              "case_id": "case8",
+              "profile": "custom",
+              "physics": {
+                "mach": 6,
+                "gamma": 1.4,
+                "initial_condition": {
+                  "base": "STATIONARY_NORMAL_SHOCK",
+                  "front_center": 0.5,
+                  "corrugation_amplitude": 0.0125,
+                  "wavelength_count": 4,
+                  "transition_cells": 1,
+                  "transverse_seed_sound_speed_factor": 0.01,
+                  "transverse_seed_width": 0.04,
+                  "transverse_seed_phase": 0
+                }
+              },
+              "grid": {
+                "nx": 64,
+                "ny": 16,
+                "domain": {
+                  "x": [
+                    0,
+                    1
+                  ],
+                  "y": [
+                    0,
+                    1
+                  ]
+                }
+              },
+              "time": {
+                "cfl": 0.05,
+                "final_time": 0.04,
+                "integrator": "SSP_RK3",
+                "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+              },
+              "method": {
+                "method_id": "cross_mode_ec_unified_v1",
+                "q_aa": 3.96,
+                "q_at": 0
+              },
+              "discretization": {
+                "reconstruction": "FIRST_ORDER",
+                "x_lower": "PRE_SHOCK_INFLOW",
+                "x_upper": "OUTFLOW",
+                "y_boundary": "PERIODIC",
+                "positivity_clipping": false,
+                "artificial_viscosity": false
+              },
+              "output": {
+                "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                "checkpoint_fractions": [
+                  0,
+                  0.2,
+                  0.4,
+                  0.6,
+                  0.8,
+                  1
+                ]
+              }
+            },
+            "requested_profile": "custom",
+            "classification": "CUSTOM_RUN",
+            "protocol_diff": [],
+            "output_diff": [],
+            "warnings": [
+              "独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。",
+              "fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。",
+              "论文标准配置不代表本次科学复现已成功。"
+            ],
+            "unsupported_fields": [],
+            "config_hash": "092b2d773c90cc07fe4b402f429ed54f7cf5094c87d07b704b4ad0b8f4627bc1",
+            "capability_revision": "case8.capability.p2.1",
+            "execution_available": false
+          },
+          "data_origin": "V2_LIVE_COMPUTATION",
+          "log_tail": []
+        },
+        {
+          "run_id": "2008b1f3-fcb9-4d2c-9d0c-fdbf33e9215b",
+          "status": "COMPLETED",
+          "created_at": "2026-10-03T16:25:03.353621+00:00",
+          "started_at": "2026-10-03T16:25:03.878604+00:00",
+          "finished_at": "2026-10-03T16:25:30.696900+00:00",
+          "heartbeat_at": "2026-10-03T16:25:30.696900+00:00",
+          "worker_pid": 20976,
+          "worker_identity": "20976:134355183039047950",
+          "manager_identity": "53816:134355182699731549",
+          "cancel_requested": false,
+          "completed_steps": 478,
+          "planned_steps": 478,
+          "physical_time": 0.04,
+          "requested_final_time": 0.04,
+          "failure": null,
+          "last_event_id": 16,
+          "experiment": {
+            "normalized_config": {
+              "schema_version": "2.0.0",
+              "protocol_revision": "case8.protocol.p1.1",
+              "case_id": "case8",
+              "profile": "custom",
+              "physics": {
+                "mach": 6,
+                "gamma": 1.4,
+                "initial_condition": {
+                  "base": "STATIONARY_NORMAL_SHOCK",
+                  "front_center": 0.5,
+                  "corrugation_amplitude": 0.0125,
+                  "wavelength_count": 4,
+                  "transition_cells": 1,
+                  "transverse_seed_sound_speed_factor": 0.01,
+                  "transverse_seed_width": 0.04,
+                  "transverse_seed_phase": 0
+                }
+              },
+              "grid": {
+                "nx": 64,
+                "ny": 16,
+                "domain": {
+                  "x": [
+                    0,
+                    1
+                  ],
+                  "y": [
+                    0,
+                    1
+                  ]
+                }
+              },
+              "time": {
+                "cfl": 0.05,
+                "final_time": 0.04,
+                "integrator": "SSP_RK3",
+                "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+              },
+              "method": {
+                "method_id": "cross_mode_ec_unified_v1",
+                "q_aa": 3.96,
+                "q_at": 0.396
+              },
+              "discretization": {
+                "reconstruction": "FIRST_ORDER",
+                "x_lower": "PRE_SHOCK_INFLOW",
+                "x_upper": "OUTFLOW",
+                "y_boundary": "PERIODIC",
+                "positivity_clipping": false,
+                "artificial_viscosity": false
+              },
+              "output": {
+                "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                "checkpoint_fractions": [
+                  0,
+                  0.2,
+                  0.4,
+                  0.6,
+                  0.8,
+                  1
+                ]
+              }
+            },
+            "requested_profile": "custom",
+            "classification": "CUSTOM_RUN",
+            "protocol_diff": [],
+            "output_diff": [],
+            "warnings": [
+              "独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。",
+              "fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。",
+              "论文标准配置不代表本次科学复现已成功。"
+            ],
+            "unsupported_fields": [],
+            "config_hash": "7c4e1e3795fc6761da8cfede97923dd08edf0a4e1ea1c2f782f956252ac88204",
+            "capability_revision": "case8.capability.p2.1",
+            "execution_available": false
+          },
+          "data_origin": "V2_LIVE_COMPUTATION",
+          "log_tail": []
+        },
+        {
+          "run_id": "ea1a6fca-a4ee-4f73-92f8-f588e45af1f9",
+          "status": "COMPLETED",
+          "created_at": "2026-10-03T16:25:31.377649+00:00",
+          "started_at": "2026-10-03T16:25:31.965860+00:00",
+          "finished_at": "2026-10-03T16:26:01.340050+00:00",
+          "heartbeat_at": "2026-10-03T16:26:01.340050+00:00",
+          "worker_pid": 25260,
+          "worker_identity": "25260:134355183319932686",
+          "manager_identity": "53816:134355182699731549",
+          "cancel_requested": false,
+          "completed_steps": 478,
+          "planned_steps": 478,
+          "physical_time": 0.04,
+          "requested_final_time": 0.04,
+          "failure": null,
+          "last_event_id": 16,
+          "experiment": {
+            "normalized_config": {
+              "schema_version": "2.0.0",
+              "protocol_revision": "case8.protocol.p1.1",
+              "case_id": "case8",
+              "profile": "custom",
+              "physics": {
+                "mach": 6,
+                "gamma": 1.4,
+                "initial_condition": {
+                  "base": "STATIONARY_NORMAL_SHOCK",
+                  "front_center": 0.5,
+                  "corrugation_amplitude": 0.0125,
+                  "wavelength_count": 4,
+                  "transition_cells": 1,
+                  "transverse_seed_sound_speed_factor": 0.01,
+                  "transverse_seed_width": 0.04,
+                  "transverse_seed_phase": 0
+                }
+              },
+              "grid": {
+                "nx": 64,
+                "ny": 16,
+                "domain": {
+                  "x": [
+                    0,
+                    1
+                  ],
+                  "y": [
+                    0,
+                    1
+                  ]
+                }
+              },
+              "time": {
+                "cfl": 0.05,
+                "final_time": 0.04,
+                "integrator": "SSP_RK3",
+                "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+              },
+              "method": {
+                "method_id": "cross_mode_ec_unified_v1",
+                "q_aa": 13.2,
+                "q_at": 0
+              },
+              "discretization": {
+                "reconstruction": "FIRST_ORDER",
+                "x_lower": "PRE_SHOCK_INFLOW",
+                "x_upper": "OUTFLOW",
+                "y_boundary": "PERIODIC",
+                "positivity_clipping": false,
+                "artificial_viscosity": false
+              },
+              "output": {
+                "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                "checkpoint_fractions": [
+                  0,
+                  0.2,
+                  0.4,
+                  0.6,
+                  0.8,
+                  1
+                ]
+              }
+            },
+            "requested_profile": "custom",
+            "classification": "CUSTOM_RUN",
+            "protocol_diff": [],
+            "output_diff": [],
+            "warnings": [
+              "独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。",
+              "fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。",
+              "论文标准配置不代表本次科学复现已成功。"
+            ],
+            "unsupported_fields": [],
+            "config_hash": "0596c7a316c0c501bee8818f0371a00b1fc173e87ef0c63688a4c405a41a2afe",
+            "capability_revision": "case8.capability.p2.1",
+            "execution_available": false
+          },
+          "data_origin": "V2_LIVE_COMPUTATION",
+          "log_tail": []
+        },
+        {
+          "run_id": "8c030ad6-1ddf-4d39-8811-64c9d3b4ed34",
+          "status": "COMPLETED",
+          "created_at": "2026-10-03T16:26:01.932389+00:00",
+          "started_at": "2026-10-03T16:26:02.543647+00:00",
+          "finished_at": "2026-10-03T16:26:32.076778+00:00",
+          "heartbeat_at": "2026-10-03T16:26:32.076778+00:00",
+          "worker_pid": 51800,
+          "worker_identity": "51800:134355183625724406",
+          "manager_identity": "53816:134355182699731549",
+          "cancel_requested": false,
+          "completed_steps": 478,
+          "planned_steps": 478,
+          "physical_time": 0.04,
+          "requested_final_time": 0.04,
+          "failure": null,
+          "last_event_id": 16,
+          "experiment": {
+            "normalized_config": {
+              "schema_version": "2.0.0",
+              "protocol_revision": "case8.protocol.p1.1",
+              "case_id": "case8",
+              "profile": "custom",
+              "physics": {
+                "mach": 6,
+                "gamma": 1.4,
+                "initial_condition": {
+                  "base": "STATIONARY_NORMAL_SHOCK",
+                  "front_center": 0.5,
+                  "corrugation_amplitude": 0.0125,
+                  "wavelength_count": 4,
+                  "transition_cells": 1,
+                  "transverse_seed_sound_speed_factor": 0.01,
+                  "transverse_seed_width": 0.04,
+                  "transverse_seed_phase": 0
+                }
+              },
+              "grid": {
+                "nx": 64,
+                "ny": 16,
+                "domain": {
+                  "x": [
+                    0,
+                    1
+                  ],
+                  "y": [
+                    0,
+                    1
+                  ]
+                }
+              },
+              "time": {
+                "cfl": 0.05,
+                "final_time": 0.04,
+                "integrator": "SSP_RK3",
+                "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+              },
+              "method": {
+                "method_id": "cross_mode_ec_unified_v1",
+                "q_aa": 13.2,
+                "q_at": 0.396
+              },
+              "discretization": {
+                "reconstruction": "FIRST_ORDER",
+                "x_lower": "PRE_SHOCK_INFLOW",
+                "x_upper": "OUTFLOW",
+                "y_boundary": "PERIODIC",
+                "positivity_clipping": false,
+                "artificial_viscosity": false
+              },
+              "output": {
+                "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                "checkpoint_fractions": [
+                  0,
+                  0.2,
+                  0.4,
+                  0.6,
+                  0.8,
+                  1
+                ]
+              }
+            },
+            "requested_profile": "custom",
+            "classification": "CUSTOM_RUN",
+            "protocol_diff": [],
+            "output_diff": [],
+            "warnings": [
+              "独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。",
+              "fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。",
+              "论文标准配置不代表本次科学复现已成功。"
+            ],
+            "unsupported_fields": [],
+            "config_hash": "e1217e7cbf2c865bd9041df558a70c84d0333bd631703c793b0a666e2df37aaa",
+            "capability_revision": "case8.capability.p2.1",
+            "execution_available": false
+          },
+          "data_origin": "V2_LIVE_COMPUTATION",
+          "log_tail": []
+        }
+      ]
+    },
+    "same_conditions_time_color_metrics": {
+      "status": "PASS",
+      "run_a": "76cecb10-44ee-4837-a07d-488477fa4bc3",
+      "run_b": "2008b1f3-fcb9-4d2c-9d0c-fdbf33e9215b",
+      "common_snapshot_times": [
+        0,
+        0.008033472803347281,
+        0.01598326359832636,
+        0.024016736401673643,
+        0.03196652719665272,
+        0.04
+      ],
+      "differences": [
+        {
+          "field": "method.q_at",
+          "a": 0,
+          "b": 0.396,
+          "affects_conditions": false
+        }
+      ],
+      "initial_mach_color": [
+        0.40416161810075024,
+        6
+      ],
+      "metrics": [
+        {
+          "metric_id": "front_high_k_fraction",
+          "label": "HF (front)",
+          "unit": "dimensionless",
+          "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0",
+          "comparable": true,
+          "reason": null,
+          "a": 0.0000016243251306185087,
+          "b": 0.0000016331715857923473,
+          "b_minus_a": 8.846455173838565e-9
+        },
+        {
+          "metric_id": "front_rms",
+          "label": "Front RMS",
+          "unit": "model length",
+          "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows",
+          "comparable": true,
+          "reason": null,
+          "a": 0.005227854055003368,
+          "b": 0.005027795894162013,
+          "b_minus_a": -0.00020005816084135448
+        },
+        {
+          "metric_id": "front_width_mean",
+          "label": "Shock width",
+          "unit": "model length",
+          "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front",
+          "comparable": true,
+          "reason": null,
+          "a": 0.052644584240516976,
+          "b": 0.052367158241523305,
+          "b_minus_a": -0.0002774259989936703
+        }
+      ]
+    },
+    "non_matching_grid_no_ranking": {
+      "status": "PASS",
+      "run_b": "bc8cc641-951f-493c-a484-cd6b6f4eb0c6",
+      "differences": [
+        {
+          "field": "detectors.front_high_k_fraction.applicable_conditions",
+          "a": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+          "b": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 32/32; first order; no universal stability inference",
+          "affects_conditions": true
+        },
+        {
+          "field": "detectors.front_rms.applicable_conditions",
+          "a": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+          "b": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 32/32; first order; no universal stability inference",
+          "affects_conditions": true
+        },
+        {
+          "field": "detectors.front_width_mean.applicable_conditions",
+          "a": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+          "b": "stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 32/32; first order; no universal stability inference",
+          "affects_conditions": true
+        },
+        {
+          "field": "grid.nx",
+          "a": 64,
+          "b": 128,
+          "affects_conditions": true
+        },
+        {
+          "field": "grid.ny",
+          "a": 16,
+          "b": 32,
+          "affects_conditions": true
+        },
+        {
+          "field": "profile",
+          "a": "custom",
+          "b": "fast",
+          "affects_conditions": false
+        }
+      ],
+      "metrics": [
+        {
+          "metric_id": "front_high_k_fraction",
+          "label": "HF (front)",
+          "unit": "dimensionless",
+          "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0",
+          "comparable": false,
+          "reason": "非同条件或指标定义/测量时间不一致。",
+          "a": 0.0000016243251306185087,
+          "b": 0.23810031538980447,
+          "b_minus_a": null
+        },
+        {
+          "metric_id": "front_rms",
+          "label": "Front RMS",
+          "unit": "model length",
+          "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows",
+          "comparable": false,
+          "reason": "非同条件或指标定义/测量时间不一致。",
+          "a": 0.005227854055003368,
+          "b": 0.0033059087345297025,
+          "b_minus_a": null
+        },
+        {
+          "metric_id": "front_width_mean",
+          "label": "Shock width",
+          "unit": "model length",
+          "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front",
+          "comparable": false,
+          "reason": "非同条件或指标定义/测量时间不一致。",
+          "a": 0.052644584240516976,
+          "b": 0.026460821787927455,
+          "b_minus_a": null
+        }
+      ]
+    },
+    "cancel_real_active_worker": {
+      "status": "PASS",
+      "record": {
+        "sweep_id": "4b79e20e-a447-4a70-86f8-5ce284dbad56",
+        "sweep_hash": "d49f3b3601ab54a6a882b48c565c66915d5764fcf611c20bf66676cffe8bcc29",
+        "status": "CANCELLED",
+        "created_at": "2026-10-03T16:26:51.818399+00:00",
+        "finished_at": "2026-10-03T16:27:00.659652+00:00",
+        "time_budget_seconds": 300,
+        "elapsed_seconds": 8.841253,
+        "max_tasks": 4,
+        "total_tasks": 4,
+        "settled_tasks": 4,
+        "successful_tasks": 0,
+        "cancel_requested": true,
+        "failure": null,
+        "items": [
+          {
+            "index": 0,
+            "q_aa": 3.96,
+            "q_at": 0,
+            "config_hash": "3f03fe408069d5c49ccc5a4a71616da0584f071bea856181b34f0d78427607ac",
+            "run": {
+              "run_id": "fa7aabb8-55e6-4597-865c-fde673e39685",
+              "status": "CANCELLED",
+              "created_at": "2026-10-03T16:26:52.679878+00:00",
+              "started_at": "2026-10-03T16:26:53.354849+00:00",
+              "finished_at": "2026-10-03T16:27:00.565844+00:00",
+              "heartbeat_at": "2026-10-03T16:26:58.875820+00:00",
+              "worker_pid": 34004,
+              "worker_identity": "34004:134355184133870800",
+              "manager_identity": "53816:134355182699731549",
+              "cancel_requested": true,
+              "completed_steps": 50,
+              "planned_steps": 478,
+              "physical_time": 0.004184100418410042,
+              "requested_final_time": 0.04,
+              "failure": null,
+              "last_event_id": 7,
+              "experiment": {
+                "normalized_config": {
+                  "schema_version": "2.0.0",
+                  "protocol_revision": "case8.protocol.p1.1",
+                  "case_id": "case8",
+                  "profile": "fast",
+                  "physics": {
+                    "mach": 6,
+                    "gamma": 1.4,
+                    "initial_condition": {
+                      "base": "STATIONARY_NORMAL_SHOCK",
+                      "front_center": 0.5,
+                      "corrugation_amplitude": 0.0125,
+                      "wavelength_count": 4,
+                      "transition_cells": 1,
+                      "transverse_seed_sound_speed_factor": 0.01,
+                      "transverse_seed_width": 0.04,
+                      "transverse_seed_phase": 0
+                    }
+                  },
+                  "grid": {
+                    "nx": 64,
+                    "ny": 16,
+                    "domain": {
+                      "x": [
+                        0,
+                        1
+                      ],
+                      "y": [
+                        0,
+                        1
+                      ]
+                    }
+                  },
+                  "time": {
+                    "cfl": 0.05,
+                    "final_time": 0.04,
+                    "integrator": "SSP_RK3",
+                    "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+                  },
+                  "method": {
+                    "method_id": "cross_mode_ec_unified_v1",
+                    "q_aa": 3.96,
+                    "q_at": 0
+                  },
+                  "discretization": {
+                    "reconstruction": "FIRST_ORDER",
+                    "x_lower": "PRE_SHOCK_INFLOW",
+                    "x_upper": "OUTFLOW",
+                    "y_boundary": "PERIODIC",
+                    "positivity_clipping": false,
+                    "artificial_viscosity": false
+                  },
+                  "output": {
+                    "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                    "checkpoint_fractions": [
+                      0,
+                      0.2,
+                      0.4,
+                      0.6,
+                      0.8,
+                      1
+                    ]
+                  }
+                },
+                "requested_profile": "fast",
+                "classification": "CUSTOM_RUN",
+                "protocol_diff": [
+                  {
+                    "field": "method.q_at",
+                    "expected": 0.396,
+                    "actual": 0
+                  }
+                ],
+                "output_diff": [],
+                "warnings": [
+                  "独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。",
+                  "fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。",
+                  "论文标准配置不代表本次科学复现已成功。"
+                ],
+                "unsupported_fields": [],
+                "config_hash": "3f03fe408069d5c49ccc5a4a71616da0584f071bea856181b34f0d78427607ac",
+                "capability_revision": "case8.capability.p2.1",
+                "execution_available": false
+              },
+              "data_origin": "V2_LIVE_COMPUTATION",
+              "log_tail": []
+            },
+            "status": "CANCELLED"
+          },
+          {
+            "index": 1,
+            "q_aa": 3.96,
+            "q_at": 0.396,
+            "config_hash": "9b5263971c7a0814203080c1ad33303aaa0496fb4d738be5a7c73f225a7acd85",
+            "run": null,
+            "status": "SKIPPED"
+          },
+          {
+            "index": 2,
+            "q_aa": 13.2,
+            "q_at": 0,
+            "config_hash": "4e15954273969a1f568d6f4f25f96e42785e24b546f195a240ada4de5a82c7f8",
+            "run": null,
+            "status": "SKIPPED"
+          },
+          {
+            "index": 3,
+            "q_aa": 13.2,
+            "q_at": 0.396,
+            "config_hash": "8fec2232962fe6ce871555e5664a89cd0fcd248c91b7126e8f79c2c195c1ffc0",
+            "run": null,
+            "status": "SKIPPED"
+          }
+        ],
+        "warnings": [
+          "仅扫描 q_aa/q_at，所有组合均重新验证，分类由后端决定。",
+          "复用单 worker，逐项入队；时间预算从提交时起计入排队、求解和后处理。",
+          "预算耗尽会取消正在排队/执行的子运行并跳过未提交项；取消完成需等待 worker 停止。",
+          "epsilon 尚未完成物理语义与生效验证；新 Case 需单独登记 adapter，当前不开放。",
+          "扫描仅提供 Case 8 结果，不建立通用性能排行榜。"
+        ]
+      },
+      "completed_steps_before_cancel": 50
+    },
+    "real_time_budget": {
+      "status": "PASS",
+      "record": {
+        "sweep_id": "a3290dea-1fa7-4e3c-948b-7374e47930f4",
+        "sweep_hash": "c760aef0c9c0ca0ac44e7a311a5e2a432bcc54bb6e9f050ab337f8252d558c4c",
+        "status": "FAILED",
+        "created_at": "2026-10-03T16:27:00.866513+00:00",
+        "finished_at": "2026-10-03T16:27:04.491429+00:00",
+        "time_budget_seconds": 1,
+        "elapsed_seconds": 3.624916,
+        "max_tasks": 4,
+        "total_tasks": 4,
+        "settled_tasks": 4,
+        "successful_tasks": 0,
+        "cancel_requested": true,
+        "failure": "SWEEP_TIME_BUDGET_EXCEEDED",
+        "items": [
+          {
+            "index": 0,
+            "q_aa": 3.96,
+            "q_at": 0,
+            "config_hash": "3f03fe408069d5c49ccc5a4a71616da0584f071bea856181b34f0d78427607ac",
+            "run": {
+              "run_id": "02c578e9-3382-470b-9e98-b5c461ed3c73",
+              "status": "CANCELLED",
+              "created_at": "2026-10-03T16:27:01.857535+00:00",
+              "started_at": "2026-10-03T16:27:02.522556+00:00",
+              "finished_at": "2026-10-03T16:27:04.126564+00:00",
+              "heartbeat_at": null,
+              "worker_pid": 35792,
+              "worker_identity": "35792:134355184225565295",
+              "manager_identity": "53816:134355182699731549",
+              "cancel_requested": true,
+              "completed_steps": 0,
+              "planned_steps": null,
+              "physical_time": 0,
+              "requested_final_time": 0.04,
+              "failure": null,
+              "last_event_id": 5,
+              "experiment": {
+                "normalized_config": {
+                  "schema_version": "2.0.0",
+                  "protocol_revision": "case8.protocol.p1.1",
+                  "case_id": "case8",
+                  "profile": "fast",
+                  "physics": {
+                    "mach": 6,
+                    "gamma": 1.4,
+                    "initial_condition": {
+                      "base": "STATIONARY_NORMAL_SHOCK",
+                      "front_center": 0.5,
+                      "corrugation_amplitude": 0.0125,
+                      "wavelength_count": 4,
+                      "transition_cells": 1,
+                      "transverse_seed_sound_speed_factor": 0.01,
+                      "transverse_seed_width": 0.04,
+                      "transverse_seed_phase": 0
+                    }
+                  },
+                  "grid": {
+                    "nx": 64,
+                    "ny": 16,
+                    "domain": {
+                      "x": [
+                        0,
+                        1
+                      ],
+                      "y": [
+                        0,
+                        1
+                      ]
+                    }
+                  },
+                  "time": {
+                    "cfl": 0.05,
+                    "final_time": 0.04,
+                    "integrator": "SSP_RK3",
+                    "dt_strategy": "INITIAL_STATE_FIXED_STEP"
+                  },
+                  "method": {
+                    "method_id": "cross_mode_ec_unified_v1",
+                    "q_aa": 3.96,
+                    "q_at": 0
+                  },
+                  "discretization": {
+                    "reconstruction": "FIRST_ORDER",
+                    "x_lower": "PRE_SHOCK_INFLOW",
+                    "x_upper": "OUTFLOW",
+                    "y_boundary": "PERIODIC",
+                    "positivity_clipping": false,
+                    "artificial_viscosity": false
+                  },
+                  "output": {
+                    "snapshot_policy": "SOURCE_CHECKPOINT_FRACTIONS",
+                    "checkpoint_fractions": [
+                      0,
+                      0.2,
+                      0.4,
+                      0.6,
+                      0.8,
+                      1
+                    ]
+                  }
+                },
+                "requested_profile": "fast",
+                "classification": "CUSTOM_RUN",
+                "protocol_diff": [
+                  {
+                    "field": "method.q_at",
+                    "expected": 0.396,
+                    "actual": 0
+                  }
+                ],
+                "output_diff": [],
+                "warnings": [
+                  "独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。",
+                  "fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。",
+                  "论文标准配置不代表本次科学复现已成功。"
+                ],
+                "unsupported_fields": [],
+                "config_hash": "3f03fe408069d5c49ccc5a4a71616da0584f071bea856181b34f0d78427607ac",
+                "capability_revision": "case8.capability.p2.1",
+                "execution_available": false
+              },
+              "data_origin": "V2_LIVE_COMPUTATION",
+              "log_tail": []
+            },
+            "status": "CANCELLED"
+          },
+          {
+            "index": 1,
+            "q_aa": 3.96,
+            "q_at": 0.396,
+            "config_hash": "9b5263971c7a0814203080c1ad33303aaa0496fb4d738be5a7c73f225a7acd85",
+            "run": null,
+            "status": "SKIPPED"
+          },
+          {
+            "index": 2,
+            "q_aa": 13.2,
+            "q_at": 0,
+            "config_hash": "4e15954273969a1f568d6f4f25f96e42785e24b546f195a240ada4de5a82c7f8",
+            "run": null,
+            "status": "SKIPPED"
+          },
+          {
+            "index": 3,
+            "q_aa": 13.2,
+            "q_at": 0.396,
+            "config_hash": "8fec2232962fe6ce871555e5664a89cd0fcd248c91b7126e8f79c2c195c1ffc0",
+            "run": null,
+            "status": "SKIPPED"
+          }
+        ],
+        "warnings": [
+          "仅扫描 q_aa/q_at，所有组合均重新验证，分类由后端决定。",
+          "复用单 worker，逐项入队；时间预算从提交时起计入排队、求解和后处理。",
+          "预算耗尽会取消正在排队/执行的子运行并跳过未提交项；取消完成需等待 worker 停止。",
+          "epsilon 尚未完成物理语义与生效验证；新 Case 需单独登记 adapter，当前不开放。",
+          "扫描仅提供 Case 8 结果，不建立通用性能排行榜。"
+        ]
+      }
+    },
+    "browser_navigation_mobile_unsupported": {
+      "status": "PASS",
+      "page_errors": [],
+      "mobile_width": 390,
+      "provider_disabled": true,
+      "runs_before": 36
+    }
+  },
+  "finished_at": "2026-10-03T16:27:07.327Z"
+}

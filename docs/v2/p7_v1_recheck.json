@@ -1,0 +1,536 @@
+{
+  "config": {
+    "argv": [
+      "D:\\softwords\\nodejs\\node.exe",
+      "D:\\code_project\\CFD_visiblesystem\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.v2.p7.recheck.config.ts",
+      "--grep",
+      "template and form share hash|entropy|scalar|timeline"
+    ],
+    "configFile": "D:\\code_project\\CFD_visiblesystem\\frontend\\playwright.v2.p7.recheck.config.ts",
+    "rootDir": "D:/code_project/CFD_visiblesystem/frontend",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/code_project/CFD_visiblesystem/frontend/test-results/v2-p7-recheck",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "unit",
+        "name": "unit",
+        "testDir": "D:/code_project/CFD_visiblesystem/frontend/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.unit.spec.ts"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "D:/code_project/CFD_visiblesystem/frontend/test-results/v2-p7-recheck",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "phase5-10-real-api",
+        "name": "phase5-10-real-api",
+        "testDir": "D:/code_project/CFD_visiblesystem/frontend/tests",
+        "testIgnore": [
+          "**/*.unit.spec.ts",
+          "**/phase8-final-integration.spec.ts"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "D:/code_project/CFD_visiblesystem/frontend/test-results/v2-p7-recheck",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "phase8-real-api",
+        "name": "phase8-real-api",
+        "testDir": "D:/code_project/CFD_visiblesystem/frontend/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/phase8-final-integration.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/code_project/CFD_visiblesystem/frontend/test-results/v2-p7-recheck",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "window3-mock-development",
+        "name": "window3-mock-development",
+        "testDir": "D:/code_project/CFD_visiblesystem/tests/window3_frontend",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "D:/code_project/CFD_visiblesystem/frontend/test-results/v2-p7-recheck",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "window4-allocation-ui",
+        "name": "window4-allocation-ui",
+        "testDir": "D:/code_project/CFD_visiblesystem/tests/window4_allocation",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "D:/code_project/CFD_visiblesystem/frontend/test-results/v2-p7-recheck",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "window3-spectral-ui",
+        "name": "window3-spectral-ui",
+        "testDir": "D:/code_project/CFD_visiblesystem/tests/window3_spectral",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "D:\\code_project\\CFD_visiblesystem\\docs\\v2\\p7_v1_recheck.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\case8-acceptance.spec.ts",
+      "file": "tests/case8-acceptance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Case8 acceptance chain",
+          "file": "tests/case8-acceptance.spec.ts",
+          "line": 24,
+          "column": 6,
+          "specs": [
+            {
+              "title": "entropy tab reports a 1912-record series for the selected configuration",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "phase5-10-real-api",
+                  "projectName": "phase5-10-real-api",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4396,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-03T16:39:49.245Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "05629faca89c683c776f-ae04cba87704169486e4",
+              "file": "tests/case8-acceptance.spec.ts",
+              "line": 47,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "state restoration",
+          "file": "tests/case8-acceptance.spec.ts",
+          "line": 76,
+          "column": 6,
+          "specs": [
+            {
+              "title": "the snapshot timeline offers exactly the six recorded frames",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "phase5-10-real-api",
+                  "projectName": "phase5-10-real-api",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 657,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-03T16:39:53.915Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "05629faca89c683c776f-eaa01f693261281c039d",
+              "file": "tests/case8-acceptance.spec.ts",
+              "line": 98,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests\\cylinder-crossflow-real-api.spec.ts",
+      "file": "tests/cylinder-crossflow-real-api.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Cylinder full 9757-record history retains scalar semantics and independent snapshot state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phase5-10-real-api",
+              "projectName": "phase5-10-real-api",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 47318,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T16:39:54.605Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3d2a965a640c8ae9ff35-57c46ed6a7ec2dc3b97b",
+          "file": "tests/cylinder-crossflow-real-api.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "Cylinder evidence return restores config, tab, snapshot, field and scalar state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phase5-10-real-api",
+              "projectName": "phase5-10-real-api",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4444,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T16:40:41.935Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3d2a965a640c8ae9ff35-6991e42373603360d9d1",
+          "file": "tests/cylinder-crossflow-real-api.spec.ts",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "API outage has no mock fallback: /lab/experiments/cylinder?tab=entropy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phase5-10-real-api",
+              "projectName": "phase5-10-real-api",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 335,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T16:40:46.388Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3d2a965a640c8ae9ff35-57de268bc9f15fc4602a",
+          "file": "tests/cylinder-crossflow-real-api.spec.ts",
+          "line": 122,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "tests\\phase12-final-integration.spec.ts",
+      "file": "tests/phase12-final-integration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "V1 entropy-closure unknown view remains an explicit unsupported location",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phase5-10-real-api",
+              "projectName": "phase5-10-real-api",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11398,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T16:40:46.746Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a2141b77dff026d0b2a9-29663d782aab9a4be477",
+          "file": "tests/phase12-final-integration.spec.ts",
+          "line": 73,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "tests\\v2-p1-experiments.spec.ts",
+      "file": "tests/v2-p1-experiments.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "template and form share hash, paper changes preserve lineage, confirmation invalidates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phase5-10-real-api",
+              "projectName": "phase5-10-real-api",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 778,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T16:40:58.167Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b5ee35fdee40cbc7e9b-8190bdb5eee8329f0979",
+          "file": "tests/v2-p1-experiments.spec.ts",
+          "line": 14,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "..\\tests\\window3_frontend\\case8_slice.spec.ts",
+      "file": "../tests/window3_frontend/case8_slice.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Entropy + dual time",
+          "file": "../tests/window3_frontend/case8_slice.spec.ts",
+          "line": 111,
+          "column": 6,
+          "specs": [
+            {
+              "title": "entropy chart renders and selecting a step shows both times",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "window3-mock-development",
+                  "projectName": "window3-mock-development",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 964,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-03T16:40:59.630Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8f71fa70d4a1e28d225a-0a38bb79e822a01fa5ad",
+              "file": "../tests/window3_frontend/case8_slice.spec.ts",
+              "line": 112,
+              "column": 7
+            },
+            {
+              "title": "selecting a scalar step also works via a chart click",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "window3-mock-development",
+                  "projectName": "window3-mock-development",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 859,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-03T16:41:00.775Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8f71fa70d4a1e28d225a-f4ffe1f050166a039ab2",
+              "file": "../tests/window3_frontend/case8_slice.spec.ts",
+              "line": 127,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T16:39:40.565Z",
+    "duration": 83518.65699999999,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

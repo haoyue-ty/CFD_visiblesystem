@@ -1,0 +1,198 @@
+{
+  "active_cancel": true,
+  "backend": {
+    "errors": 0.0,
+    "failures": 0.0,
+    "skipped": 1.0,
+    "tests": 1675.0,
+    "time": 1238.057
+  },
+  "browser_environment_incident": "First existing suite shared the live verifier manager; its owner exited before the online-capability test. 224 passed, one service-availability failure; the unchanged failing test and affected entropy/chart flows pass in an isolated server recheck.",
+  "browsers": {
+    "existing_first_attempt": {
+      "duration": 773027.208,
+      "expected": 224,
+      "flaky": 0,
+      "skipped": 0,
+      "startTime": "2026-10-03T16:25:25.564Z",
+      "unexpected": 1
+    },
+    "p7": {
+      "duration": 40291.676,
+      "expected": 4,
+      "flaky": 0,
+      "skipped": 0,
+      "startTime": "2026-10-03T16:35:05.867Z",
+      "unexpected": 0
+    },
+    "v1_recheck": {
+      "duration": 83518.65699999999,
+      "expected": 9,
+      "flaky": 0,
+      "skipped": 0,
+      "startTime": "2026-10-03T16:39:40.565Z",
+      "unexpected": 0
+    }
+  },
+  "checked_at": "2026-10-03T16:48:08.580565+00:00",
+  "comparison_grid_mismatch": true,
+  "comparison_same_conditions": true,
+  "current_contract": {
+    "openapi_sha256": "c289462759558901dc8651e1ddd555d89aa2ed8c17e064d70a935e0b664db063",
+    "paths": 71,
+    "schemas": 396,
+    "types_sha256": "df63a5804c5cbf9dd88b2e1c912929fa71456ec0c77ca5d5ad87fee6af9f3aa1"
+  },
+  "delivered_files": [
+    {
+      "path": "backend/models/v2/comparison.py",
+      "sha256": "7f8bdb3c5042737b4e27c595e5babe8369e4bd52c06009c467fee2cb3095215d"
+    },
+    {
+      "path": "backend/models/v2/sweep.py",
+      "sha256": "33374d0cdb7be5a748858ca673ec7446a3f9fab36b37c6c2cf83df57a1c8fc5f"
+    },
+    {
+      "path": "backend/services/v2/comparison.py",
+      "sha256": "666d4aa89d010ae860abbaa7999602b458d910631d71d1d79f75ef6cea3382d0"
+    },
+    {
+      "path": "backend/services/v2/sweeps.py",
+      "sha256": "33e4984db066ade39add1dfdbbd7ee794fcbb1e3bef054a718d1d399a95aa385"
+    },
+    {
+      "path": "backend/api/v2/comparison.py",
+      "sha256": "8894f9882984659c8d4a181051d28740473002d71d0fc992233c51cc72c266a5"
+    },
+    {
+      "path": "backend/api/v2/errors.py",
+      "sha256": "28137ae3cdc3dd1180dcf2aa673788aedcf8510f7df94cc9698a557561326347"
+    },
+    {
+      "path": "backend/solver_runtime/run_manager.py",
+      "sha256": "d9809fdd67256cdd402451bc47ad49041d4d7dd56a0668cacad29aeeb0d7aae1"
+    },
+    {
+      "path": "frontend/src/pages/RunComparisonPage.vue",
+      "sha256": "5ae980703c31bfd8c68f13113bcf91da93dccc840831b9c67fd092aebbf8c384"
+    },
+    {
+      "path": "frontend/src/pages/ParameterSweepPage.vue",
+      "sha256": "ad40bfc95547d9ca49a3eb5418461ade3443d8af925a6656c8fb17a6b0ccd140"
+    },
+    {
+      "path": "frontend/src/views/runs/ComparisonField.vue",
+      "sha256": "dd34578808aeff0eb742c601fef93c28e5208ba86e7bc80f05b8d07cfc7fa54e"
+    },
+    {
+      "path": "frontend/src/views/runs/p7.css",
+      "sha256": "4ae4ad397402d29376e23f206d54b7d5aec7cca1c5ce5215aed939a352b80f5a"
+    },
+    {
+      "path": "frontend/src/scientific/EntropyChart.vue",
+      "sha256": "f387f802c7022bb547dc1d9755c68375e2eec7b14e896a74089df1a39b847122"
+    },
+    {
+      "path": "frontend/src/data/v2/comparison.ts",
+      "sha256": "e5f189b4f67bed263f028f9298440fd779bac2fe55a38e6e02e4a733aefe733e"
+    },
+    {
+      "path": "frontend/live-tests/v2-p7.spec.ts",
+      "sha256": "68440abf31b6a1093d54735dcce01d2acaac70316b41d9f312fae622cc4455eb"
+    },
+    {
+      "path": "scripts/verification/v2_p7_browser.mjs",
+      "sha256": "dad48d5f684b769784a7516c5003df9975f7a46cfc104a3007bb03291bc2d22b"
+    },
+    {
+      "path": "scripts/verification/v2_p7_finalize.py",
+      "sha256": "8d921e08500a95f8539cabcf46939cb6bdf2256a014305b0793ce1dbd63a8903"
+    },
+    {
+      "path": "tests/v2_p7/test_comparison.py",
+      "sha256": "145658ff3dcf4d140f5df795764a40bef0f7ed6301136830244547d84be8588e"
+    },
+    {
+      "path": "tests/v2_p7/test_sweeps.py",
+      "sha256": "3aa2af859ee1f5a3cfc0751a09b73468435e24f04a4d74541916cc909b965cda"
+    }
+  ],
+  "git_committed": false,
+  "git_head": "d4abbac4c7cd479ad2e927d5e1902a48df7e26b8",
+  "git_pushed": false,
+  "real_scan": {
+    "results": [
+      {
+        "accepted_steps": 478,
+        "config_hash": "092b2d773c90cc07fe4b402f429ed54f7cf5094c87d07b704b4ad0b8f4627bc1",
+        "output_hashes_verified": 22,
+        "q_aa": 3.96,
+        "q_at": 0.0,
+        "result_hash": "1c6bcfea1f21bf2b7c61aecbfd823e83f85ce728109ad694e0543fd398fdb5ad",
+        "run_id": "76cecb10-44ee-4837-a07d-488477fa4bc3",
+        "solver_seconds": 22.76816300000064
+      },
+      {
+        "accepted_steps": 478,
+        "config_hash": "7c4e1e3795fc6761da8cfede97923dd08edf0a4e1ea1c2f782f956252ac88204",
+        "output_hashes_verified": 22,
+        "q_aa": 3.96,
+        "q_at": 0.396,
+        "result_hash": "c6433b3c92c9929dc37d4d23c37641d6835d6be91efeda888f7b3d072fbbb646",
+        "run_id": "2008b1f3-fcb9-4d2c-9d0c-fdbf33e9215b",
+        "solver_seconds": 24.089893700089306
+      },
+      {
+        "accepted_steps": 478,
+        "config_hash": "0596c7a316c0c501bee8818f0371a00b1fc173e87ef0c63688a4c405a41a2afe",
+        "output_hashes_verified": 22,
+        "q_aa": 13.2,
+        "q_at": 0.0,
+        "result_hash": "74be73fa1a4f674c6578285b4a511340f876bc91fa18b286811c8d7f55aab5b7",
+        "run_id": "ea1a6fca-a4ee-4f73-92f8-f588e45af1f9",
+        "solver_seconds": 26.13379759993404
+      },
+      {
+        "accepted_steps": 478,
+        "config_hash": "e1217e7cbf2c865bd9041df558a70c84d0333bd631703c793b0a666e2df37aaa",
+        "output_hashes_verified": 22,
+        "q_aa": 13.2,
+        "q_at": 0.396,
+        "result_hash": "9ed43e9bec0d49aee58fb332521c37dce979cafb7faf309c52f0f1024f2311cb",
+        "run_id": "8c030ad6-1ddf-4d39-8811-64c9d3b4ed34",
+        "solver_seconds": 26.55312900012359
+      }
+    ],
+    "serial_execution": true,
+    "sweep_id": "3627fc5a-0681-4846-b0ed-b5150644fa52"
+  },
+  "source_preservation": {
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "bytes": 5429811970,
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ],
+    "files_after": 27843,
+    "files_before": 27843,
+    "source_root": "D:\\Paper\\passage6",
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "targeted": {
+    "errors": 0.0,
+    "failures": 0.0,
+    "skipped": 0.0,
+    "tests": 128.0,
+    "time": 105.148
+  },
+  "time_budget": true,
+  "v1_contract_subset": {
+    "identical": true,
+    "paths": 47,
+    "schemas": 298
+  }
+}

@@ -1,0 +1,4 @@
+Exported OpenAPI 3.1: D:\code_project\CFD_visiblesystem\.cache\phase11-final\openapi-independent.json
+✨ openapi-typescript 7.13.0
+🚀 D:\code_project\CFD_visiblesystem\.cache\phase11-final\openapi-independent.json → D:\code_project\CFD_visiblesystem\.cache\phase11-final\api-independent.d.ts [501.1ms]
+{"status": "PASS", "openapi_3_1": true, "runtime_equal_saved": true, "independent_export_byte_identical": true, "generated_types_byte_identical": true, "paths": 66, "schemas": 380, "openapi_sha256": "a713adbd6e03da488c0df105294ef3d0aa28633f11ad58af77c426ba30e8c03d", "types_sha256": "5fe1d0278bc8443f5691aec3ce9830d75ae200347b769cfef1e82ae4474bf758"}

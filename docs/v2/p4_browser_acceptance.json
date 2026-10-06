@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "date": "2026-10-03",
+  "timezone": "Asia/Shanghai",
+  "method": "Playwright CLI 0.1.22, real Chrome, built production app, real Waitress API; DOM snapshots and evaluated observations",
+  "checks": {
+    "fast_result": {
+      "status": "PASS",
+      "run_id": "463bf7f2-8143-483a-9db2-81559203771b",
+      "canvas_shape_yx": [16, 64],
+      "field": "mach",
+      "selected_snapshot": "step_000191",
+      "selected_time": 0.01598326359832636,
+      "refresh_preserves_field_and_snapshot": true,
+      "native_faces_shape_yx": [[16, 65], [16, 64], [16, 65], [16, 64]],
+      "region": {"x_min": 0.25, "x_max": 0.75, "y_min": 0.25, "y_max": 0.75},
+      "selected_cell_centers": 256,
+      "selected_region_mean": 2.88896459480732,
+      "region_refresh_preserved": true,
+      "playback_reaches_real_final_snapshot": "step_000478",
+      "playback_pauses_at_final": true
+    },
+    "invalid_region": {
+      "status": "PASS",
+      "x_min": -1,
+      "api_status": 400,
+      "ui_error": "区域必须位于本次计算域内。",
+      "valid_field_remains_visible": true,
+      "native_face_canvases_remain": 4
+    },
+    "evidence_link": {
+      "status": "PASS",
+      "trigger": "Shock width metric evidence link",
+      "route": "/runs/463bf7f2-8143-483a-9db2-81559203771b/evidence",
+      "title": "本次运行证据 · ShockPath",
+      "result_hash_matches_result_page": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1"
+    },
+    "custom_result": {
+      "status": "PASS",
+      "run_id": "bc8cc641-951f-493c-a484-cd6b6f4eb0c6",
+      "canvas_shape_yx": [32, 128],
+      "native_faces_shape_yx": [[32, 129], [32, 128], [32, 129], [32, 128]]
+    },
+    "legacy_result": {
+      "status": "PASS",
+      "run_id": "ea852646-72ce-40fc-b5f3-99329ff0895b",
+      "has_real_field": true,
+      "instantaneous_face_canvases": 2,
+      "cumulative_allocation": "UNAVAILABLE",
+      "ui_reason": "该 Run 未记录全轨迹累计 face 数据；终态 Pi 不能替代。",
+      "console_errors": 0,
+      "console_warnings": 0
+    },
+    "mobile": {
+      "status": "PASS",
+      "viewport": [390, 844],
+      "fast_document_width": 390,
+      "custom_document_width": 390,
+      "evidence_document_width": 390,
+      "legacy_document_width": 390,
+      "initial_metric_overflow_fixed": true
+    }
+  },
+  "artifacts": [
+    "output/playwright/p4-fast-desktop.png",
+    "output/playwright/p4-fast-mobile.png",
+    "output/playwright/p4-custom-mobile.png",
+    "output/playwright/p4-evidence-mobile.png",
+    "output/playwright/p4-legacy-mobile.png",
+    "output/playwright/p4-selected.yml",
+    "output/playwright/p4-mobile.yml",
+    "output/playwright/p4-invalid-region.yml",
+    "output/playwright/p4-evidence.yml",
+    "output/playwright/p4-custom.yml",
+    "output/playwright/p4-legacy.yml"
+  ],
+  "notes": [
+    "Initial console included an existing favicon.ico 404; intentionally invalid region produced expected HTTP 400. No application JavaScript exception was observed.",
+    "The first mobile inspection found metric definition overflow; final screenshots and DOM widths were captured after the scoped CSS correction.",
+    "CLI used a workspace-local npm cache because the user's global npm cache rename failed; no global package or runtime was changed."
+  ]
+}

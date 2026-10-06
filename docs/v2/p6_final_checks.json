@@ -1,0 +1,133 @@
+{
+  "backend": {
+    "errors": 0.0,
+    "failures": 0.0,
+    "skipped": 1.0,
+    "tests": 1646.0,
+    "time": 1045.001
+  },
+  "browser": {
+    "duration": 711589.245,
+    "expected": 225,
+    "flaky": 0,
+    "skipped": 0,
+    "startTime": "2026-10-03T13:41:53.474Z",
+    "unexpected": 0
+  },
+  "checked_at": "2026-10-03T14:26:19.782426+00:00",
+  "current_contract": {
+    "openapi_sha256": "a713adbd6e03da488c0df105294ef3d0aa28633f11ad58af77c426ba30e8c03d",
+    "paths": 66,
+    "schemas": 380,
+    "types_sha256": "5fe1d0278bc8443f5691aec3ce9830d75ae200347b769cfef1e82ae4474bf758"
+  },
+  "delivered_files": [
+    {
+      "path": "backend/models/v2/report.py",
+      "sha256": "0231757a4a4759aa75cf3295284e0ba515cef1df6583b3eeb3299f9271f749c7"
+    },
+    {
+      "path": "backend/services/v2/reports.py",
+      "sha256": "bd297ef3a1719fb1f23ca3a60c8d6c1c711512e27fa27be2a9b054d0a28c13d4"
+    },
+    {
+      "path": "backend/services/v2/report_renderer.py",
+      "sha256": "3745a74ff1a079dcb61f8e32192c429a317303079e62fc8b6fe920808fea4613"
+    },
+    {
+      "path": "backend/api/v2/reports.py",
+      "sha256": "e1504937e3100489b99cfa3c98a01c3028cdcb742fdee5fc11ed580943be56e2"
+    },
+    {
+      "path": "backend/ai/analysis.py",
+      "sha256": "b7b3bc748efa58a333e202e7a2985cfa6985f7b9fa63146e0aa82d42a8c1b8f4"
+    },
+    {
+      "path": "frontend/src/pages/RunReportPage.vue",
+      "sha256": "fde98774ada4d98d65e36a65a4cf587e41f2dfe22fb32d50db258488998999fd"
+    },
+    {
+      "path": "frontend/src/data/v2/reports.ts",
+      "sha256": "6c49ea717a152014eacf5113324c1942393798eebf79c7ecd04a51abeb66e842"
+    },
+    {
+      "path": "frontend/src/router.ts",
+      "sha256": "0b6dcad82d6afbb9d39a2e858e5a16c7d7ecfc2a7c75aa95ff919ca79af12a9b"
+    },
+    {
+      "path": "frontend/src/pages/RunWorkspacePage.vue",
+      "sha256": "1496858b529085384a76b81f5ed69561861a08cd1528aeeb2da34724173a9dd5"
+    },
+    {
+      "path": "scripts/verification/v2_p6_browser.mjs",
+      "sha256": "2a2968b2562eca3e7949adda3249ac9b2700f5aa598599a1e8b965f22563b63e"
+    },
+    {
+      "path": "scripts/verification/v2_p6_finalize.py",
+      "sha256": "d08faf027ca564a747c681824189c9362a48b3a82f867070432ef1b8fd57fd81"
+    }
+  ],
+  "dependency_files": 43,
+  "git_committed": false,
+  "git_head": "d4abbac4c7cd479ad2e927d5e1902a48df7e26b8",
+  "git_pushed": false,
+  "live_three_entry_closed_loop": "PASS",
+  "report_provider_calls": 0,
+  "reports": [
+    {
+      "html_sha256": "9c218cdc34d727f8ecb9026ede05bb711054ca889caef0974d1a4b3bfa5213bb",
+      "input_mode": "template",
+      "offline_validated_with_provider_disabled": true,
+      "report_id": "890b8db7d0f58285c6551284882a372163bb54e7daec43e51632262157466185",
+      "result_hash": "2ae44046772b2f2fe4018e29a161e1737812078b83e7ad2a07c6dbcb8daf621c",
+      "run_id": "08f92162-b308-47ac-9a61-4aa1af08c048",
+      "size_bytes": 1040444
+    },
+    {
+      "html_sha256": "1e88f29eca77700531f67e1e2486320593dd17b60fec6a421b0f029f82fd4a70",
+      "input_mode": "form",
+      "offline_validated_with_provider_disabled": true,
+      "report_id": "fc7bfe0049d2ff56cbe21ccc67869b4ba6441965306a0cd99e4403bba386593e",
+      "result_hash": "ccf247e582a9c659034913945a1ca93873eac625cd61c000c34c44533dd17351",
+      "run_id": "91eb2644-fbfc-47ae-8be1-be5b879f8237",
+      "size_bytes": 1040465
+    },
+    {
+      "html_sha256": "ea50f30cc0571ed7f8d9d95c7ad669d3844f290d6b59a54f41d35596a2eab3d7",
+      "input_mode": "natural_language",
+      "offline_validated_with_provider_disabled": true,
+      "report_id": "a9e0d7fc600ab4676788fbcbf34e9c7f6d5e8dd211bb0e85bac699d3b4271b77",
+      "result_hash": "f95581e2c0b4eb05cb6946714aad1b7169babea293b5910869e25dbcdb524aed",
+      "run_id": "912e0b54-c745-49eb-b3a8-f8ef3d2260e8",
+      "size_bytes": 1040069
+    }
+  ],
+  "source_preservation": {
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "bytes": 5429811970,
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ],
+    "files_after": 27843,
+    "files_before": 27843,
+    "source_root": "D:\\Paper\\passage6",
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "targeted": {
+    "errors": 0.0,
+    "failures": 0.0,
+    "skipped": 0.0,
+    "tests": 88.0,
+    "time": 87.678
+  },
+  "v1_contract_subset": {
+    "identical": true,
+    "paths": 47,
+    "schemas": 298
+  }
+}

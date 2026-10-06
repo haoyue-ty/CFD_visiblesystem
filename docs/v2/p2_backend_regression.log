@@ -1,0 +1,4 @@
+Command: ./.venv/Scripts/python.exe -B -m pytest -q
+Captured final stdout chunk (earlier progress was streamed through the execution tool):
+.....                                             [100%]
+1539 passed, 1 skipped in 966.43s (0:16:06)

@@ -1,0 +1,3229 @@
+{
+  "cfd_runs_started": 0,
+  "finished_at": "2026-10-03T10:48:22.075901+00:00",
+  "model": "deepseek-flash",
+  "provenance_unchanged": true,
+  "refresh_provider_calls": 0,
+  "result_hashes": {
+    "463bf7f2-8143-483a-9db2-81559203771b": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+    "ea852646-72ce-40fc-b5f3-99329ff0895b": "8dd0d49c71b7030caccfdaaf6f97c749a243ccfb1efdb5f8b36a278da1303ee6"
+  },
+  "run_index_unchanged": true,
+  "scenarios": [
+    {
+      "analysis": {
+        "assistant": null,
+        "cached": false,
+        "context_hash": "cdf7bd0fd9032835abf84c389bef69090cb9ba61566b9697693115aa39e51a19",
+        "created_at": "2026-10-03T10:47:59.387508+00:00",
+        "current_view": null,
+        "evidence": [
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.nx",
+            "label": "grid.nx",
+            "reason": null,
+            "unit": "",
+            "value": 64
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.ny",
+            "label": "grid.ny",
+            "reason": null,
+            "unit": "",
+            "value": 16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.cfl",
+            "label": "time.cfl",
+            "reason": null,
+            "unit": "",
+            "value": 0.05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.final_time",
+            "label": "time.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_aa",
+            "label": "method.q_aa",
+            "reason": null,
+            "unit": "",
+            "value": 3.96
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_at",
+            "label": "method.q_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.396
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.mach",
+            "label": "physics.mach",
+            "reason": null,
+            "unit": "",
+            "value": 6.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.gamma",
+            "label": "physics.gamma",
+            "reason": null,
+            "unit": "",
+            "value": 1.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.front_center",
+            "label": "physics.initial_condition.front_center",
+            "reason": null,
+            "unit": "",
+            "value": 0.5
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.corrugation_amplitude",
+            "label": "physics.initial_condition.corrugation_amplitude",
+            "reason": null,
+            "unit": "",
+            "value": 0.0125
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.wavelength_count",
+            "label": "physics.initial_condition.wavelength_count",
+            "reason": null,
+            "unit": "",
+            "value": 4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transition_cells",
+            "label": "physics.initial_condition.transition_cells",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_sound_speed_factor",
+            "label": "physics.initial_condition.transverse_seed_sound_speed_factor",
+            "reason": null,
+            "unit": "",
+            "value": 0.01
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_width",
+            "label": "physics.initial_condition.transverse_seed_width",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_phase",
+            "label": "physics.initial_condition.transverse_seed_phase",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.0",
+            "label": "grid.domain.x.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.1",
+            "label": "grid.domain.x.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.0",
+            "label": "grid.domain.y.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.1",
+            "label": "grid.domain.y.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.0",
+            "label": "output.checkpoint_fractions.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.1",
+            "label": "output.checkpoint_fractions.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.2
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.2",
+            "label": "output.checkpoint_fractions.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.3",
+            "label": "output.checkpoint_fractions.3",
+            "reason": null,
+            "unit": "",
+            "value": 0.6
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.4",
+            "label": "output.checkpoint_fractions.4",
+            "reason": null,
+            "unit": "",
+            "value": 0.8
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.5",
+            "label": "output.checkpoint_fractions.5",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.accepted_steps",
+            "label": "runtime.accepted_steps",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.final_time",
+            "label": "runtime.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.dt",
+            "label": "runtime.dt",
+            "reason": null,
+            "unit": "",
+            "value": 8.368200836820084e-05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.wall_seconds",
+            "label": "runtime.wall_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.87711610016413
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.solver_seconds",
+            "label": "runtime.solver_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.15604680008255
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.peak_rss_bytes",
+            "label": "runtime.peak_rss_bytes",
+            "reason": null,
+            "unit": "",
+            "value": 102256640
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.0",
+            "label": "entropy.rk_weights.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.1",
+            "label": "entropy.rk_weights.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.2",
+            "label": "entropy.rk_weights.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.6666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_aa",
+            "label": "allocation.scalar_totals.E_aa",
+            "reason": null,
+            "unit": "",
+            "value": 0.7657586414927808
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_at",
+            "label": "allocation.scalar_totals.E_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.0015385656281803935
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_bg",
+            "label": "allocation.scalar_totals.E_bg",
+            "reason": null,
+            "unit": "",
+            "value": 0.2603519778427782
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.max_scalar_abs_error",
+            "label": "allocation.max_scalar_abs_error",
+            "reason": null,
+            "unit": "",
+            "value": 1.1102230246251565e-16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "P2_NUMERICAL_CHECKS_PASSED",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+            "label": "新运行身份",
+            "reason": null,
+            "unit": "",
+            "value": "LIVE_FAST_RUN"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+            "label": "E_aa",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.7657586414927807
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+            "label": "E_at",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.0015385656281803953
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_bg",
+            "label": "E_bg",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.2603519778427781
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+            "label": "E_total",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 1.0276491849637395
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50; none; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+            "label": "Shock width",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.052367158241523305
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; same local p10/p50/p90 detector as Shock width; mean-subtracted front; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+            "label": "Front RMS",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.005027795894162013
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; entire periodic y; source replaces missing front rows by zero for spectrum; rfft / Ny; energy fraction; no extra factor of two; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction",
+            "label": "HF (front)",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 1.6331715857923473e-06
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "A_channel(face)=sum_steps dt*sum_stages w_s*Pi_channel(U_s,face); E=dy*sum(A_x)+dx*sum(A_y); no face-to-cell conversion",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation",
+            "label": "累计空间分配",
+            "reason": null,
+            "unit": "",
+            "value": "AVAILABLE"
+          }
+        ],
+        "interpretation": {
+          "key_findings": [
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_bg"
+              ],
+              "kind": "INTERPRETATION",
+              "text": "熵预算中 E_aa 与 E_bg 占主体，E_at 相对很小，说明交叉通道仅占本次模型熵的一小部分，不能据此判断方法更好。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at"
+              ],
+              "kind": "INTERPRETATION",
+              "text": "前沿高频分量占比极低，配合 E_at 与 E_aa 的相对量级，可解读为本次前沿位移仍以低波数形态为主。"
+            }
+          ],
+          "limitations": [
+            "本次为新建运行，不继承冻结状态，配置匹配不等于复现通过。",
+            "模型单位无标定，指标仅适用于登记的该检测器。",
+            "未提供对照运行与参考差值，排名类结论不可用。"
+          ],
+          "observations": [
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.max_scalar_abs_error"
+              ],
+              "kind": "FACT",
+              "text": "熵总量 E_total 与各通道 E_aa、E_at、E_bg 均有记录，累计空间分配标量误差极小，说明账目自洽。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.accepted_steps",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean"
+              ],
+              "kind": "FACT",
+              "text": "本次运行在登记步数内推进至设定终止时刻，前沿宏指标在全部有效行上可用，前沿 RMS 远小于平均宽度。"
+            }
+          ],
+          "suggested_questions": [
+            "E_at 与 E_aa 的相对比例是否随网格变？",
+            "前沿高频占比在更长积分下如何变化？",
+            "缺少对照时如何界定可比基线？"
+          ],
+          "summary": {
+            "evidence_refs": [
+              "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+              "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+              "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean"
+            ],
+            "kind": "INTERPRETATION",
+            "text": "该运行给出了一次马赫数六的波纹激波熵通道预算与前沿宏观测，可作单次基线，但不足以判定普适稳定性或方法优劣。"
+          }
+        },
+        "limitations": [
+          "本次新建 V2 运行，不继承历史冻结状态；配置匹配不等于论文复现通过。",
+          "模型单位尚无 SI 标定；宏观指标仅适用于登记的 Case8 detector。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同科学量；face 数组保留原生几何。",
+          "快照仅含真实保存的帧；播放不插值；熵历史包含所有真实接受步。",
+          "较大的 E_at 不直接代表方法更好；本结果不证明普适稳定性或最优系数。",
+          "单次 Case 8 结果不能证明普适稳定性、最优系数或跨协议性能排名。",
+          "E_at 较大只描述此运行的熵通道预算，不能直接判断方法更好。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同量。",
+          "未提供对照运行、误差范数、局部 face 区域统计或论文参考差值；这些结论不可用。",
+          "新运行不继承历史冻结状态；模板匹配不等于复现核查成功。"
+        ],
+        "model": "deepseek-flash",
+        "prompt_version": "case8.science.p5.5",
+        "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+        "run_id": "463bf7f2-8143-483a-9db2-81559203771b"
+      },
+      "name": "fast-interpretation",
+      "status": "PASS"
+    },
+    {
+      "analysis": {
+        "assistant": null,
+        "cached": true,
+        "context_hash": "cdf7bd0fd9032835abf84c389bef69090cb9ba61566b9697693115aa39e51a19",
+        "created_at": "2026-10-03T10:47:59.387508+00:00",
+        "current_view": null,
+        "evidence": [
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.nx",
+            "label": "grid.nx",
+            "reason": null,
+            "unit": "",
+            "value": 64
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.ny",
+            "label": "grid.ny",
+            "reason": null,
+            "unit": "",
+            "value": 16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.cfl",
+            "label": "time.cfl",
+            "reason": null,
+            "unit": "",
+            "value": 0.05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.final_time",
+            "label": "time.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_aa",
+            "label": "method.q_aa",
+            "reason": null,
+            "unit": "",
+            "value": 3.96
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_at",
+            "label": "method.q_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.396
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.mach",
+            "label": "physics.mach",
+            "reason": null,
+            "unit": "",
+            "value": 6.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.gamma",
+            "label": "physics.gamma",
+            "reason": null,
+            "unit": "",
+            "value": 1.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.front_center",
+            "label": "physics.initial_condition.front_center",
+            "reason": null,
+            "unit": "",
+            "value": 0.5
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.corrugation_amplitude",
+            "label": "physics.initial_condition.corrugation_amplitude",
+            "reason": null,
+            "unit": "",
+            "value": 0.0125
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.wavelength_count",
+            "label": "physics.initial_condition.wavelength_count",
+            "reason": null,
+            "unit": "",
+            "value": 4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transition_cells",
+            "label": "physics.initial_condition.transition_cells",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_sound_speed_factor",
+            "label": "physics.initial_condition.transverse_seed_sound_speed_factor",
+            "reason": null,
+            "unit": "",
+            "value": 0.01
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_width",
+            "label": "physics.initial_condition.transverse_seed_width",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_phase",
+            "label": "physics.initial_condition.transverse_seed_phase",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.0",
+            "label": "grid.domain.x.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.1",
+            "label": "grid.domain.x.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.0",
+            "label": "grid.domain.y.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.1",
+            "label": "grid.domain.y.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.0",
+            "label": "output.checkpoint_fractions.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.1",
+            "label": "output.checkpoint_fractions.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.2
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.2",
+            "label": "output.checkpoint_fractions.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.3",
+            "label": "output.checkpoint_fractions.3",
+            "reason": null,
+            "unit": "",
+            "value": 0.6
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.4",
+            "label": "output.checkpoint_fractions.4",
+            "reason": null,
+            "unit": "",
+            "value": 0.8
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.5",
+            "label": "output.checkpoint_fractions.5",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.accepted_steps",
+            "label": "runtime.accepted_steps",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.final_time",
+            "label": "runtime.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.dt",
+            "label": "runtime.dt",
+            "reason": null,
+            "unit": "",
+            "value": 8.368200836820084e-05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.wall_seconds",
+            "label": "runtime.wall_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.87711610016413
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.solver_seconds",
+            "label": "runtime.solver_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.15604680008255
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.peak_rss_bytes",
+            "label": "runtime.peak_rss_bytes",
+            "reason": null,
+            "unit": "",
+            "value": 102256640
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.0",
+            "label": "entropy.rk_weights.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.1",
+            "label": "entropy.rk_weights.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.2",
+            "label": "entropy.rk_weights.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.6666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_aa",
+            "label": "allocation.scalar_totals.E_aa",
+            "reason": null,
+            "unit": "",
+            "value": 0.7657586414927808
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_at",
+            "label": "allocation.scalar_totals.E_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.0015385656281803935
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_bg",
+            "label": "allocation.scalar_totals.E_bg",
+            "reason": null,
+            "unit": "",
+            "value": 0.2603519778427782
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.max_scalar_abs_error",
+            "label": "allocation.max_scalar_abs_error",
+            "reason": null,
+            "unit": "",
+            "value": 1.1102230246251565e-16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "P2_NUMERICAL_CHECKS_PASSED",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+            "label": "新运行身份",
+            "reason": null,
+            "unit": "",
+            "value": "LIVE_FAST_RUN"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+            "label": "E_aa",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.7657586414927807
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+            "label": "E_at",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.0015385656281803953
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_bg",
+            "label": "E_bg",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.2603519778427781
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+            "label": "E_total",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 1.0276491849637395
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50; none; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+            "label": "Shock width",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.052367158241523305
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; same local p10/p50/p90 detector as Shock width; mean-subtracted front; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+            "label": "Front RMS",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.005027795894162013
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; entire periodic y; source replaces missing front rows by zero for spectrum; rfft / Ny; energy fraction; no extra factor of two; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction",
+            "label": "HF (front)",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 1.6331715857923473e-06
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "A_channel(face)=sum_steps dt*sum_stages w_s*Pi_channel(U_s,face); E=dy*sum(A_x)+dx*sum(A_y); no face-to-cell conversion",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation",
+            "label": "累计空间分配",
+            "reason": null,
+            "unit": "",
+            "value": "AVAILABLE"
+          }
+        ],
+        "interpretation": {
+          "key_findings": [
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_bg"
+              ],
+              "kind": "INTERPRETATION",
+              "text": "熵预算中 E_aa 与 E_bg 占主体，E_at 相对很小，说明交叉通道仅占本次模型熵的一小部分，不能据此判断方法更好。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at"
+              ],
+              "kind": "INTERPRETATION",
+              "text": "前沿高频分量占比极低，配合 E_at 与 E_aa 的相对量级，可解读为本次前沿位移仍以低波数形态为主。"
+            }
+          ],
+          "limitations": [
+            "本次为新建运行，不继承冻结状态，配置匹配不等于复现通过。",
+            "模型单位无标定，指标仅适用于登记的该检测器。",
+            "未提供对照运行与参考差值，排名类结论不可用。"
+          ],
+          "observations": [
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.max_scalar_abs_error"
+              ],
+              "kind": "FACT",
+              "text": "熵总量 E_total 与各通道 E_aa、E_at、E_bg 均有记录，累计空间分配标量误差极小，说明账目自洽。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.accepted_steps",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean"
+              ],
+              "kind": "FACT",
+              "text": "本次运行在登记步数内推进至设定终止时刻，前沿宏指标在全部有效行上可用，前沿 RMS 远小于平均宽度。"
+            }
+          ],
+          "suggested_questions": [
+            "E_at 与 E_aa 的相对比例是否随网格变？",
+            "前沿高频占比在更长积分下如何变化？",
+            "缺少对照时如何界定可比基线？"
+          ],
+          "summary": {
+            "evidence_refs": [
+              "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+              "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+              "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean"
+            ],
+            "kind": "INTERPRETATION",
+            "text": "该运行给出了一次马赫数六的波纹激波熵通道预算与前沿宏观测，可作单次基线，但不足以判定普适稳定性或方法优劣。"
+          }
+        },
+        "limitations": [
+          "本次新建 V2 运行，不继承历史冻结状态；配置匹配不等于论文复现通过。",
+          "模型单位尚无 SI 标定；宏观指标仅适用于登记的 Case8 detector。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同科学量；face 数组保留原生几何。",
+          "快照仅含真实保存的帧；播放不插值；熵历史包含所有真实接受步。",
+          "较大的 E_at 不直接代表方法更好；本结果不证明普适稳定性或最优系数。",
+          "单次 Case 8 结果不能证明普适稳定性、最优系数或跨协议性能排名。",
+          "E_at 较大只描述此运行的熵通道预算，不能直接判断方法更好。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同量。",
+          "未提供对照运行、误差范数、局部 face 区域统计或论文参考差值；这些结论不可用。",
+          "新运行不继承历史冻结状态；模板匹配不等于复现核查成功。"
+        ],
+        "model": "deepseek-flash",
+        "prompt_version": "case8.science.p5.5",
+        "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+        "run_id": "463bf7f2-8143-483a-9db2-81559203771b"
+      },
+      "name": "refresh-cache",
+      "status": "PASS"
+    },
+    {
+      "analysis": {
+        "assistant": {
+          "answer": [
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_at"
+              ],
+              "kind": "FACT",
+              "text": "本运行登记的 q_at 为输入配置标量，其数值见对应证据；它属于方法参数记录，不随熵通道结果变化。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa"
+              ],
+              "kind": "FACT",
+              "text": "E_at 是跨模态熵通道的累计标量，定义与数值见对应证据；它是模型熵量，不表示方法优劣。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.minimum",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.maximum",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.mean",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.selected_count"
+              ],
+              "kind": "INTERPRETATION",
+              "text": "所选帧密度范围、均值与样本数各自见对应证据；这些是瞬时终态统计，不能用来推断 q_at 的作用或方法的普适稳定性。"
+            }
+          ],
+          "limitations": [
+            "本上下文未提供 q_at 与 E_at 之间因果关系的证据，也缺少对照运行，因此不能断言 E_at 大小指示方法更好。",
+            "本上下文没有论文参考差值、误差范数或局部 face 区域统计，相关对比与局部归因不可用。",
+            "单次实时运行不继承历史冻结状态，配置匹配不等于论文复现通过，也不证明普适稳定性或最优系数。"
+          ]
+        },
+        "cached": false,
+        "context_hash": "40acc6c5d9303bdcb08c1d1da697f9f32e1156f30f9656951076d09fedde3653",
+        "created_at": "2026-10-03T10:48:05.913932+00:00",
+        "current_view": {
+          "availability": "AVAILABLE",
+          "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b",
+          "field": "density",
+          "maximum": 5.4685964273448935,
+          "mean": 3.134146341327892,
+          "minimum": 0.9196464880933797,
+          "reason": null,
+          "region": null,
+          "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+          "run_id": "463bf7f2-8143-483a-9db2-81559203771b",
+          "sample_location": "CELL_CENTER",
+          "selected_count": 1024,
+          "snapshot_id": "step_000478",
+          "snapshot_sha256": "6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5",
+          "time": 0.04,
+          "unit": "model density"
+        },
+        "evidence": [
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.nx",
+            "label": "grid.nx",
+            "reason": null,
+            "unit": "",
+            "value": 64
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.ny",
+            "label": "grid.ny",
+            "reason": null,
+            "unit": "",
+            "value": 16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.cfl",
+            "label": "time.cfl",
+            "reason": null,
+            "unit": "",
+            "value": 0.05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.final_time",
+            "label": "time.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_aa",
+            "label": "method.q_aa",
+            "reason": null,
+            "unit": "",
+            "value": 3.96
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_at",
+            "label": "method.q_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.396
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.mach",
+            "label": "physics.mach",
+            "reason": null,
+            "unit": "",
+            "value": 6.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.gamma",
+            "label": "physics.gamma",
+            "reason": null,
+            "unit": "",
+            "value": 1.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.front_center",
+            "label": "physics.initial_condition.front_center",
+            "reason": null,
+            "unit": "",
+            "value": 0.5
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.corrugation_amplitude",
+            "label": "physics.initial_condition.corrugation_amplitude",
+            "reason": null,
+            "unit": "",
+            "value": 0.0125
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.wavelength_count",
+            "label": "physics.initial_condition.wavelength_count",
+            "reason": null,
+            "unit": "",
+            "value": 4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transition_cells",
+            "label": "physics.initial_condition.transition_cells",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_sound_speed_factor",
+            "label": "physics.initial_condition.transverse_seed_sound_speed_factor",
+            "reason": null,
+            "unit": "",
+            "value": 0.01
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_width",
+            "label": "physics.initial_condition.transverse_seed_width",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_phase",
+            "label": "physics.initial_condition.transverse_seed_phase",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.0",
+            "label": "grid.domain.x.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.1",
+            "label": "grid.domain.x.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.0",
+            "label": "grid.domain.y.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.1",
+            "label": "grid.domain.y.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.0",
+            "label": "output.checkpoint_fractions.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.1",
+            "label": "output.checkpoint_fractions.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.2
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.2",
+            "label": "output.checkpoint_fractions.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.3",
+            "label": "output.checkpoint_fractions.3",
+            "reason": null,
+            "unit": "",
+            "value": 0.6
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.4",
+            "label": "output.checkpoint_fractions.4",
+            "reason": null,
+            "unit": "",
+            "value": 0.8
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.5",
+            "label": "output.checkpoint_fractions.5",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.accepted_steps",
+            "label": "runtime.accepted_steps",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.final_time",
+            "label": "runtime.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.dt",
+            "label": "runtime.dt",
+            "reason": null,
+            "unit": "",
+            "value": 8.368200836820084e-05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.wall_seconds",
+            "label": "runtime.wall_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.87711610016413
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.solver_seconds",
+            "label": "runtime.solver_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.15604680008255
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.peak_rss_bytes",
+            "label": "runtime.peak_rss_bytes",
+            "reason": null,
+            "unit": "",
+            "value": 102256640
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.0",
+            "label": "entropy.rk_weights.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.1",
+            "label": "entropy.rk_weights.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.2",
+            "label": "entropy.rk_weights.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.6666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_aa",
+            "label": "allocation.scalar_totals.E_aa",
+            "reason": null,
+            "unit": "",
+            "value": 0.7657586414927808
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_at",
+            "label": "allocation.scalar_totals.E_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.0015385656281803935
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_bg",
+            "label": "allocation.scalar_totals.E_bg",
+            "reason": null,
+            "unit": "",
+            "value": 0.2603519778427782
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.max_scalar_abs_error",
+            "label": "allocation.max_scalar_abs_error",
+            "reason": null,
+            "unit": "",
+            "value": 1.1102230246251565e-16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "P2_NUMERICAL_CHECKS_PASSED",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+            "label": "新运行身份",
+            "reason": null,
+            "unit": "",
+            "value": "LIVE_FAST_RUN"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+            "label": "E_aa",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.7657586414927807
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+            "label": "E_at",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.0015385656281803953
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_bg",
+            "label": "E_bg",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.2603519778427781
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+            "label": "E_total",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 1.0276491849637395
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50; none; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+            "label": "Shock width",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.052367158241523305
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; same local p10/p50/p90 detector as Shock width; mean-subtracted front; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+            "label": "Front RMS",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.005027795894162013
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; entire periodic y; source replaces missing front rows by zero for spectrum; rfft / Ny; energy fraction; no extra factor of two; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction",
+            "label": "HF (front)",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 1.6331715857923473e-06
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "A_channel(face)=sum_steps dt*sum_stages w_s*Pi_channel(U_s,face); E=dy*sum(A_x)+dx*sum(A_y); no face-to-cell conversion",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation",
+            "label": "累计空间分配",
+            "reason": null,
+            "unit": "",
+            "value": "AVAILABLE"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.time",
+            "label": "density · time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.selected_count",
+            "label": "density · selected_count",
+            "reason": null,
+            "unit": "",
+            "value": 1024
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.minimum",
+            "label": "density · minimum",
+            "reason": null,
+            "unit": "model density",
+            "value": 0.9196464880933797
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.maximum",
+            "label": "density · maximum",
+            "reason": null,
+            "unit": "model density",
+            "value": 5.4685964273448935
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.mean",
+            "label": "density · mean",
+            "reason": null,
+            "unit": "model density",
+            "value": 3.134146341327892
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "step_000478; t=0.04",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.step",
+            "label": "所选真实快照接受步",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          }
+        ],
+        "interpretation": null,
+        "limitations": [
+          "本次新建 V2 运行，不继承历史冻结状态；配置匹配不等于论文复现通过。",
+          "模型单位尚无 SI 标定；宏观指标仅适用于登记的 Case8 detector。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同科学量；face 数组保留原生几何。",
+          "快照仅含真实保存的帧；播放不插值；熵历史包含所有真实接受步。",
+          "较大的 E_at 不直接代表方法更好；本结果不证明普适稳定性或最优系数。",
+          "单次 Case 8 结果不能证明普适稳定性、最优系数或跨协议性能排名。",
+          "E_at 较大只描述此运行的熵通道预算，不能直接判断方法更好。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同量。",
+          "未提供对照运行、误差范数、局部 face 区域统计或论文参考差值；这些结论不可用。",
+          "新运行不继承历史冻结状态；模板匹配不等于复现核查成功。"
+        ],
+        "model": "deepseek-flash",
+        "prompt_version": "case8.science.p5.5",
+        "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+        "run_id": "463bf7f2-8143-483a-9db2-81559203771b"
+      },
+      "name": "q-at-boundary",
+      "status": "PASS"
+    },
+    {
+      "analysis": {
+        "assistant": {
+          "answer": [
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.minimum",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.maximum",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.mean",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.region.x_min",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.region.x_max",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.selected_count"
+              ],
+              "kind": "FACT",
+              "text": "所选区域为真实快照上的 cell center Mach 场；其范围、均值、区域边界与样本数见对应证据。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.time",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction"
+              ],
+              "kind": "INTERPRETATION",
+              "text": "该视图是早期保存帧的瞬时统计，终态激波宽度、前沿起伏与高频占比属于另一时刻的不同量，不能用来推断此帧。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity"
+              ],
+              "kind": "LIMITATION",
+              "text": "未提供对照运行、按模态分解的误差范数或论文参考差值，因此无法判断所有模态是否改善。"
+            }
+          ],
+          "limitations": [
+            "单次运行不证明普适稳定性、最优系数或跨协议排名。",
+            "缺少局部 Pi face 区域统计，无法定位局部熵产生高的成因。",
+            "模型单位尚无标定，指标仅适用于登记的前沿检测器。"
+          ]
+        },
+        "cached": false,
+        "context_hash": "abe4e41da8cf9dad01ead8bf92e730fca879255e0213b33ca83ad2c4cb5d779a",
+        "created_at": "2026-10-03T10:48:14.561598+00:00",
+        "current_view": {
+          "availability": "AVAILABLE",
+          "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b",
+          "field": "mach",
+          "maximum": 6.061492330479395,
+          "mean": 3.419676177665973,
+          "minimum": 0.38090929216695946,
+          "reason": null,
+          "region": {
+            "x_max": 0.7,
+            "x_min": 0.2,
+            "y_max": 0.6,
+            "y_min": 0.1
+          },
+          "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+          "run_id": "463bf7f2-8143-483a-9db2-81559203771b",
+          "sample_location": "CELL_CENTER",
+          "selected_count": 256,
+          "snapshot_id": "step_000096",
+          "snapshot_sha256": "1c10f92270e88eca5d1ff5ccecb91e7f92b694190854e52a4fa82064f3dcf0c4",
+          "time": 0.008033472803347281,
+          "unit": "dimensionless"
+        },
+        "evidence": [
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.nx",
+            "label": "grid.nx",
+            "reason": null,
+            "unit": "",
+            "value": 64
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.ny",
+            "label": "grid.ny",
+            "reason": null,
+            "unit": "",
+            "value": 16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.cfl",
+            "label": "time.cfl",
+            "reason": null,
+            "unit": "",
+            "value": 0.05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.final_time",
+            "label": "time.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_aa",
+            "label": "method.q_aa",
+            "reason": null,
+            "unit": "",
+            "value": 3.96
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_at",
+            "label": "method.q_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.396
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.mach",
+            "label": "physics.mach",
+            "reason": null,
+            "unit": "",
+            "value": 6.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.gamma",
+            "label": "physics.gamma",
+            "reason": null,
+            "unit": "",
+            "value": 1.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.front_center",
+            "label": "physics.initial_condition.front_center",
+            "reason": null,
+            "unit": "",
+            "value": 0.5
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.corrugation_amplitude",
+            "label": "physics.initial_condition.corrugation_amplitude",
+            "reason": null,
+            "unit": "",
+            "value": 0.0125
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.wavelength_count",
+            "label": "physics.initial_condition.wavelength_count",
+            "reason": null,
+            "unit": "",
+            "value": 4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transition_cells",
+            "label": "physics.initial_condition.transition_cells",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_sound_speed_factor",
+            "label": "physics.initial_condition.transverse_seed_sound_speed_factor",
+            "reason": null,
+            "unit": "",
+            "value": 0.01
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_width",
+            "label": "physics.initial_condition.transverse_seed_width",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_phase",
+            "label": "physics.initial_condition.transverse_seed_phase",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.0",
+            "label": "grid.domain.x.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.1",
+            "label": "grid.domain.x.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.0",
+            "label": "grid.domain.y.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.1",
+            "label": "grid.domain.y.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.0",
+            "label": "output.checkpoint_fractions.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.1",
+            "label": "output.checkpoint_fractions.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.2
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.2",
+            "label": "output.checkpoint_fractions.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.3",
+            "label": "output.checkpoint_fractions.3",
+            "reason": null,
+            "unit": "",
+            "value": 0.6
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.4",
+            "label": "output.checkpoint_fractions.4",
+            "reason": null,
+            "unit": "",
+            "value": 0.8
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.5",
+            "label": "output.checkpoint_fractions.5",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.accepted_steps",
+            "label": "runtime.accepted_steps",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.final_time",
+            "label": "runtime.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.dt",
+            "label": "runtime.dt",
+            "reason": null,
+            "unit": "",
+            "value": 8.368200836820084e-05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.wall_seconds",
+            "label": "runtime.wall_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.87711610016413
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.solver_seconds",
+            "label": "runtime.solver_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.15604680008255
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.peak_rss_bytes",
+            "label": "runtime.peak_rss_bytes",
+            "reason": null,
+            "unit": "",
+            "value": 102256640
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.0",
+            "label": "entropy.rk_weights.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.1",
+            "label": "entropy.rk_weights.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.2",
+            "label": "entropy.rk_weights.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.6666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_aa",
+            "label": "allocation.scalar_totals.E_aa",
+            "reason": null,
+            "unit": "",
+            "value": 0.7657586414927808
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_at",
+            "label": "allocation.scalar_totals.E_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.0015385656281803935
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_bg",
+            "label": "allocation.scalar_totals.E_bg",
+            "reason": null,
+            "unit": "",
+            "value": 0.2603519778427782
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.max_scalar_abs_error",
+            "label": "allocation.max_scalar_abs_error",
+            "reason": null,
+            "unit": "",
+            "value": 1.1102230246251565e-16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "P2_NUMERICAL_CHECKS_PASSED",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+            "label": "新运行身份",
+            "reason": null,
+            "unit": "",
+            "value": "LIVE_FAST_RUN"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+            "label": "E_aa",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.7657586414927807
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+            "label": "E_at",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.0015385656281803953
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_bg",
+            "label": "E_bg",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.2603519778427781
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+            "label": "E_total",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 1.0276491849637395
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50; none; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+            "label": "Shock width",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.052367158241523305
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; same local p10/p50/p90 detector as Shock width; mean-subtracted front; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+            "label": "Front RMS",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.005027795894162013
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; entire periodic y; source replaces missing front rows by zero for spectrum; rfft / Ny; energy fraction; no extra factor of two; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction",
+            "label": "HF (front)",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 1.6331715857923473e-06
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "A_channel(face)=sum_steps dt*sum_stages w_s*Pi_channel(U_s,face); E=dy*sum(A_x)+dx*sum(A_y); no face-to-cell conversion",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation",
+            "label": "累计空间分配",
+            "reason": null,
+            "unit": "",
+            "value": "AVAILABLE"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000096; sha256=1c10f92270e88eca5d1ff5ccecb91e7f92b694190854e52a4fa82064f3dcf0c4; region={'x_min': 0.2, 'x_max': 0.7, 'y_min': 0.1, 'y_max': 0.6}",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.time",
+            "label": "mach · time",
+            "reason": null,
+            "unit": "",
+            "value": 0.008033472803347281
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000096; sha256=1c10f92270e88eca5d1ff5ccecb91e7f92b694190854e52a4fa82064f3dcf0c4; region={'x_min': 0.2, 'x_max': 0.7, 'y_min': 0.1, 'y_max': 0.6}",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.selected_count",
+            "label": "mach · selected_count",
+            "reason": null,
+            "unit": "",
+            "value": 256
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000096; sha256=1c10f92270e88eca5d1ff5ccecb91e7f92b694190854e52a4fa82064f3dcf0c4; region={'x_min': 0.2, 'x_max': 0.7, 'y_min': 0.1, 'y_max': 0.6}",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.minimum",
+            "label": "mach · minimum",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 0.38090929216695946
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000096; sha256=1c10f92270e88eca5d1ff5ccecb91e7f92b694190854e52a4fa82064f3dcf0c4; region={'x_min': 0.2, 'x_max': 0.7, 'y_min': 0.1, 'y_max': 0.6}",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.maximum",
+            "label": "mach · maximum",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 6.061492330479395
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000096; sha256=1c10f92270e88eca5d1ff5ccecb91e7f92b694190854e52a4fa82064f3dcf0c4; region={'x_min': 0.2, 'x_max': 0.7, 'y_min': 0.1, 'y_max': 0.6}",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.mean",
+            "label": "mach · mean",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 3.419676177665973
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.region.x_min",
+            "label": "view.region.x_min",
+            "reason": null,
+            "unit": "",
+            "value": 0.2
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.region.x_max",
+            "label": "view.region.x_max",
+            "reason": null,
+            "unit": "",
+            "value": 0.7
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.region.y_min",
+            "label": "view.region.y_min",
+            "reason": null,
+            "unit": "",
+            "value": 0.1
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.region.y_max",
+            "label": "view.region.y_max",
+            "reason": null,
+            "unit": "",
+            "value": 0.6
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "step_000096; t=0.008033472803347281",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.step",
+            "label": "所选真实快照接受步",
+            "reason": null,
+            "unit": "",
+            "value": 96
+          }
+        ],
+        "interpretation": null,
+        "limitations": [
+          "本次新建 V2 运行，不继承历史冻结状态；配置匹配不等于论文复现通过。",
+          "模型单位尚无 SI 标定；宏观指标仅适用于登记的 Case8 detector。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同科学量；face 数组保留原生几何。",
+          "快照仅含真实保存的帧；播放不插值；熵历史包含所有真实接受步。",
+          "较大的 E_at 不直接代表方法更好；本结果不证明普适稳定性或最优系数。",
+          "单次 Case 8 结果不能证明普适稳定性、最优系数或跨协议性能排名。",
+          "E_at 较大只描述此运行的熵通道预算，不能直接判断方法更好。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同量。",
+          "未提供对照运行、误差范数、局部 face 区域统计或论文参考差值；这些结论不可用。",
+          "新运行不继承历史冻结状态；模板匹配不等于复现核查成功。"
+        ],
+        "model": "deepseek-flash",
+        "prompt_version": "case8.science.p5.5",
+        "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+        "run_id": "463bf7f2-8143-483a-9db2-81559203771b"
+      },
+      "name": "region-context",
+      "status": "PASS"
+    },
+    {
+      "analysis": {
+        "assistant": {
+          "answer": [
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity"
+              ],
+              "kind": "LIMITATION",
+              "text": "无法读取后端 API 密钥或磁盘文件，也不能启动求解；本系统只解释已提供的结构化证据，不执行任何操作。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean"
+              ],
+              "kind": "LIMITATION",
+              "text": "不能断言该方法普适稳定或最优；单次运行不证明普适稳定性、最优系数或跨协议排名。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity"
+              ],
+              "kind": "FACT",
+              "text": "本次为新建 LIVE_FAST_RUN，数值检查已通过，是真实计算而非历史冻结复现。"
+            }
+          ],
+          "limitations": [
+            "不能读取密钥、文件或运行任务，此类请求超出本系统能力边界。",
+            "单次运行不构成普适稳定性、最优性或全马赫鲁棒性的证据。",
+            "未提供对照运行、误差范数或局部 face 区域统计，相关结论不可用。"
+          ]
+        },
+        "cached": false,
+        "context_hash": "4c28386c840d4c236141e312cc2133926e19a3c8bd7ef0c1373ffb7e0a02eeec",
+        "created_at": "2026-10-03T10:48:17.688828+00:00",
+        "current_view": {
+          "availability": "AVAILABLE",
+          "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b",
+          "field": "pressure",
+          "maximum": 46.90594428661757,
+          "mean": 21.474098217238286,
+          "minimum": 0.8858652673314991,
+          "reason": null,
+          "region": null,
+          "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+          "run_id": "463bf7f2-8143-483a-9db2-81559203771b",
+          "sample_location": "CELL_CENTER",
+          "selected_count": 1024,
+          "snapshot_id": "step_000478",
+          "snapshot_sha256": "6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5",
+          "time": 0.04,
+          "unit": "model pressure"
+        },
+        "evidence": [
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.nx",
+            "label": "grid.nx",
+            "reason": null,
+            "unit": "",
+            "value": 64
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.ny",
+            "label": "grid.ny",
+            "reason": null,
+            "unit": "",
+            "value": 16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.cfl",
+            "label": "time.cfl",
+            "reason": null,
+            "unit": "",
+            "value": 0.05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#time.final_time",
+            "label": "time.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_aa",
+            "label": "method.q_aa",
+            "reason": null,
+            "unit": "",
+            "value": 3.96
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#method.q_at",
+            "label": "method.q_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.396
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.mach",
+            "label": "physics.mach",
+            "reason": null,
+            "unit": "",
+            "value": 6.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.gamma",
+            "label": "physics.gamma",
+            "reason": null,
+            "unit": "",
+            "value": 1.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.front_center",
+            "label": "physics.initial_condition.front_center",
+            "reason": null,
+            "unit": "",
+            "value": 0.5
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.corrugation_amplitude",
+            "label": "physics.initial_condition.corrugation_amplitude",
+            "reason": null,
+            "unit": "",
+            "value": 0.0125
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.wavelength_count",
+            "label": "physics.initial_condition.wavelength_count",
+            "reason": null,
+            "unit": "",
+            "value": 4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transition_cells",
+            "label": "physics.initial_condition.transition_cells",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_sound_speed_factor",
+            "label": "physics.initial_condition.transverse_seed_sound_speed_factor",
+            "reason": null,
+            "unit": "",
+            "value": 0.01
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_width",
+            "label": "physics.initial_condition.transverse_seed_width",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#physics.initial_condition.transverse_seed_phase",
+            "label": "physics.initial_condition.transverse_seed_phase",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.0",
+            "label": "grid.domain.x.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.x.1",
+            "label": "grid.domain.x.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.0",
+            "label": "grid.domain.y.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#grid.domain.y.1",
+            "label": "grid.domain.y.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.0",
+            "label": "output.checkpoint_fractions.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.1",
+            "label": "output.checkpoint_fractions.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.2
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.2",
+            "label": "output.checkpoint_fractions.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.3",
+            "label": "output.checkpoint_fractions.3",
+            "reason": null,
+            "unit": "",
+            "value": 0.6
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.4",
+            "label": "output.checkpoint_fractions.4",
+            "reason": null,
+            "unit": "",
+            "value": 0.8
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#output.checkpoint_fractions.5",
+            "label": "output.checkpoint_fractions.5",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.accepted_steps",
+            "label": "runtime.accepted_steps",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.final_time",
+            "label": "runtime.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.dt",
+            "label": "runtime.dt",
+            "reason": null,
+            "unit": "",
+            "value": 8.368200836820084e-05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.wall_seconds",
+            "label": "runtime.wall_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.87711610016413
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.solver_seconds",
+            "label": "runtime.solver_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 17.15604680008255
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#runtime.peak_rss_bytes",
+            "label": "runtime.peak_rss_bytes",
+            "reason": null,
+            "unit": "",
+            "value": 102256640
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.0",
+            "label": "entropy.rk_weights.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.1",
+            "label": "entropy.rk_weights.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.rk_weights.2",
+            "label": "entropy.rk_weights.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.6666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_aa",
+            "label": "allocation.scalar_totals.E_aa",
+            "reason": null,
+            "unit": "",
+            "value": 0.7657586414927808
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_at",
+            "label": "allocation.scalar_totals.E_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.0015385656281803935
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.scalar_totals.E_bg",
+            "label": "allocation.scalar_totals.E_bg",
+            "reason": null,
+            "unit": "",
+            "value": 0.2603519778427782
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation.max_scalar_abs_error",
+            "label": "allocation.max_scalar_abs_error",
+            "reason": null,
+            "unit": "",
+            "value": 1.1102230246251565e-16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "P2_NUMERICAL_CHECKS_PASSED",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#identity",
+            "label": "新运行身份",
+            "reason": null,
+            "unit": "",
+            "value": "LIVE_FAST_RUN"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_aa",
+            "label": "E_aa",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.7657586414927807
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_at",
+            "label": "E_at",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.0015385656281803953
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_bg",
+            "label": "E_bg",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.2603519778427781
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#entropy.E_total",
+            "label": "E_total",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 1.0276491849637395
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50; none; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_width_mean",
+            "label": "Shock width",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.052367158241523305
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; same local p10/p50/p90 detector as Shock width; mean-subtracted front; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_rms",
+            "label": "Front RMS",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.005027795894162013
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; entire periodic y; source replaces missing front rows by zero for spectrum; rfft / Ny; energy fraction; no extra factor of two; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#metric.front_high_k_fraction",
+            "label": "HF (front)",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 1.6331715857923473e-06
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "A_channel(face)=sum_steps dt*sum_stages w_s*Pi_channel(U_s,face); E=dy*sum(A_x)+dx*sum(A_y); no face-to-cell conversion",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#allocation",
+            "label": "累计空间分配",
+            "reason": null,
+            "unit": "",
+            "value": "AVAILABLE"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.time",
+            "label": "pressure · time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.selected_count",
+            "label": "pressure · selected_count",
+            "reason": null,
+            "unit": "",
+            "value": 1024
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.minimum",
+            "label": "pressure · minimum",
+            "reason": null,
+            "unit": "model pressure",
+            "value": 0.8858652673314991
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.maximum",
+            "label": "pressure · maximum",
+            "reason": null,
+            "unit": "model pressure",
+            "value": 46.90594428661757
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "真实 cell center; snapshot=step_000478; sha256=6b1fca29c0edd0fa51e03ac96850d5b91e220b8da159ecc8cd6bdadab9b3b8e5; region=None",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.mean",
+            "label": "pressure · mean",
+            "reason": null,
+            "unit": "model pressure",
+            "value": 21.474098217238286
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "step_000478; t=0.04",
+            "evidence_id": "ev.run.463bf7f2-8143-483a-9db2-81559203771b#view.step",
+            "label": "所选真实快照接受步",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          }
+        ],
+        "interpretation": null,
+        "limitations": [
+          "本次新建 V2 运行，不继承历史冻结状态；配置匹配不等于论文复现通过。",
+          "模型单位尚无 SI 标定；宏观指标仅适用于登记的 Case8 detector。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同科学量；face 数组保留原生几何。",
+          "快照仅含真实保存的帧；播放不插值；熵历史包含所有真实接受步。",
+          "较大的 E_at 不直接代表方法更好；本结果不证明普适稳定性或最优系数。",
+          "单次 Case 8 结果不能证明普适稳定性、最优系数或跨协议性能排名。",
+          "E_at 较大只描述此运行的熵通道预算，不能直接判断方法更好。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同量。",
+          "未提供对照运行、误差范数、局部 face 区域统计或论文参考差值；这些结论不可用。",
+          "新运行不继承历史冻结状态；模板匹配不等于复现核查成功。"
+        ],
+        "model": "deepseek-flash",
+        "prompt_version": "case8.science.p5.5",
+        "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+        "run_id": "463bf7f2-8143-483a-9db2-81559203771b"
+      },
+      "name": "injection-boundary",
+      "status": "PASS"
+    },
+    {
+      "analysis": {
+        "assistant": null,
+        "cached": false,
+        "context_hash": "004a36978071da2f9a70c2868b45a1a49e7ba2c84148d2fa90ca3c1421787b05",
+        "created_at": "2026-10-03T10:48:21.403833+00:00",
+        "current_view": null,
+        "evidence": [
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#grid.nx",
+            "label": "grid.nx",
+            "reason": null,
+            "unit": "",
+            "value": 64
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#grid.ny",
+            "label": "grid.ny",
+            "reason": null,
+            "unit": "",
+            "value": 16
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#time.cfl",
+            "label": "time.cfl",
+            "reason": null,
+            "unit": "",
+            "value": 0.05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#time.final_time",
+            "label": "time.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#method.q_aa",
+            "label": "method.q_aa",
+            "reason": null,
+            "unit": "",
+            "value": 3.96
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#method.q_at",
+            "label": "method.q_at",
+            "reason": null,
+            "unit": "",
+            "value": 0.396
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.mach",
+            "label": "physics.mach",
+            "reason": null,
+            "unit": "",
+            "value": 6.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "后端归一化并确认的输入，不代表性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.gamma",
+            "label": "physics.gamma",
+            "reason": null,
+            "unit": "",
+            "value": 1.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.initial_condition.front_center",
+            "label": "physics.initial_condition.front_center",
+            "reason": null,
+            "unit": "",
+            "value": 0.5
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.initial_condition.corrugation_amplitude",
+            "label": "physics.initial_condition.corrugation_amplitude",
+            "reason": null,
+            "unit": "",
+            "value": 0.0125
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.initial_condition.wavelength_count",
+            "label": "physics.initial_condition.wavelength_count",
+            "reason": null,
+            "unit": "",
+            "value": 4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.initial_condition.transition_cells",
+            "label": "physics.initial_condition.transition_cells",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.initial_condition.transverse_seed_sound_speed_factor",
+            "label": "physics.initial_condition.transverse_seed_sound_speed_factor",
+            "reason": null,
+            "unit": "",
+            "value": 0.01
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.initial_condition.transverse_seed_width",
+            "label": "physics.initial_condition.transverse_seed_width",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#physics.initial_condition.transverse_seed_phase",
+            "label": "physics.initial_condition.transverse_seed_phase",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#grid.domain.x.0",
+            "label": "grid.domain.x.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#grid.domain.x.1",
+            "label": "grid.domain.x.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#grid.domain.y.0",
+            "label": "grid.domain.y.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#grid.domain.y.1",
+            "label": "grid.domain.y.1",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#output.checkpoint_fractions.0",
+            "label": "output.checkpoint_fractions.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#output.checkpoint_fractions.1",
+            "label": "output.checkpoint_fractions.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.2
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#output.checkpoint_fractions.2",
+            "label": "output.checkpoint_fractions.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.4
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#output.checkpoint_fractions.3",
+            "label": "output.checkpoint_fractions.3",
+            "reason": null,
+            "unit": "",
+            "value": 0.6
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#output.checkpoint_fractions.4",
+            "label": "output.checkpoint_fractions.4",
+            "reason": null,
+            "unit": "",
+            "value": 0.8
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#output.checkpoint_fractions.5",
+            "label": "output.checkpoint_fractions.5",
+            "reason": null,
+            "unit": "",
+            "value": 1.0
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#runtime.accepted_steps",
+            "label": "runtime.accepted_steps",
+            "reason": null,
+            "unit": "",
+            "value": 478
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#runtime.final_time",
+            "label": "runtime.final_time",
+            "reason": null,
+            "unit": "",
+            "value": 0.04
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#runtime.dt",
+            "label": "runtime.dt",
+            "reason": null,
+            "unit": "",
+            "value": 8.368200836820084e-05
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#runtime.wall_seconds",
+            "label": "runtime.wall_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 24.539087099954486
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#runtime.solver_seconds",
+            "label": "runtime.solver_seconds",
+            "reason": null,
+            "unit": "",
+            "value": 23.645342600066215
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#runtime.peak_rss_bytes",
+            "label": "runtime.peak_rss_bytes",
+            "reason": null,
+            "unit": "",
+            "value": 101691392
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.rk_weights.0",
+            "label": "entropy.rk_weights.0",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.rk_weights.1",
+            "label": "entropy.rk_weights.1",
+            "reason": null,
+            "unit": "",
+            "value": 0.16666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "本 Run 后端确认的配置或确定性定义标量；不是性能结论",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.rk_weights.2",
+            "label": "entropy.rk_weights.2",
+            "reason": null,
+            "unit": "",
+            "value": 0.6666666666666666
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "P2_NUMERICAL_CHECKS_PASSED",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#identity",
+            "label": "新运行身份",
+            "reason": null,
+            "unit": "",
+            "value": "LIVE_FAST_RUN"
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_bg",
+            "label": "E_bg",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.2603519778427781
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_aa",
+            "label": "E_aa",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.7657586414927807
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_at",
+            "label": "E_at",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 0.0015385656281803953
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "E_c(n+1)=E_c(n)+dt*sum_s w_s*dotE_c(U_s)",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_total",
+            "label": "E_total",
+            "reason": null,
+            "unit": "model entropy",
+            "value": 1.0276491849637395
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "mean valid row-local p90-p10 crossing distance, p50 anchored nearest intended front; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; all rows; nearest p50 to initial corrugated front, nearest p10/p90 to p50; none; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_width_mean",
+            "label": "Shock width",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.052367158241523305
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sqrt(mean((x50 - mean(valid x50))^2)) over valid rows; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; same local p10/p50/p90 detector as Shock width; mean-subtracted front; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_rms",
+            "label": "Front RMS",
+            "reason": null,
+            "unit": "model length",
+            "value": 0.005027795894162013
+          },
+          {
+            "availability": "AVAILABLE",
+            "definition": "sum |rfft(front displacement)/Ny|^2 for k>4 / sum for k>=1; 0 when denominator=0; solver.diagnostics.flagship_cross_modal_case8.local_front_widths / spectral_content; entire periodic y; source replaces missing front rows by zero for spectrum; rfft / Ny; energy fraction; no extra factor of two; stationary Case8 Mach6, gamma1.4, MODE4; valid front rows 16/16; first order; no universal stability inference",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_high_k_fraction",
+            "label": "HF (front)",
+            "reason": null,
+            "unit": "dimensionless",
+            "value": 1.6331715857923473e-06
+          },
+          {
+            "availability": "UNAVAILABLE",
+            "definition": "A_channel(face)=sum_steps dt*sum_stages w_s*Pi_channel(U_s,face); E=dy*sum(A_x)+dx*sum(A_y); no face-to-cell conversion",
+            "evidence_id": "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#allocation",
+            "label": "累计空间分配",
+            "reason": "该 Run 未记录全轨迹累计 face 数据；终态 Pi 不能替代。",
+            "unit": "",
+            "value": "UNAVAILABLE"
+          }
+        ],
+        "interpretation": {
+          "key_findings": [
+            {
+              "evidence_refs": [
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_at",
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_total",
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_aa"
+              ],
+              "kind": "INTERPRETATION",
+              "text": "E_at 在总熵预算中占比很小，说明该 E_at 通道只是此运行的小项；这描述预算结构，不表示方法优劣。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#allocation"
+              ],
+              "kind": "LIMITATION",
+              "text": "全轨迹累计空间分配不可用，因为该运行未记录全轨迹累计 face 数据，终态 Pi 不能替代。"
+            }
+          ],
+          "limitations": [
+            "单次运行不能证明普适稳定性、最优系数或跨协议排名。",
+            "未提供对照运行、误差范数或论文参考差值，相关结论不可用。",
+            "模型单位尚无 SI 标定，宏观指标仅适用于登记的 Case8 detector。"
+          ],
+          "observations": [
+            {
+              "evidence_refs": [
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_width_mean",
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_rms",
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_high_k_fraction"
+              ],
+              "kind": "FACT",
+              "text": "激波宽度均值为前述探测器标量，前缘 RMS 与高频占比亦按登记的 Case8 detector 定义报告。"
+            },
+            {
+              "evidence_refs": [
+                "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#identity"
+              ],
+              "kind": "FACT",
+              "text": "运行身份记录为一次实时快速运行，且该运行的身份证据标记数值检查通过。"
+            }
+          ],
+          "suggested_questions": [
+            "累计空间分配是否可在后续运行补齐？",
+            "E_at 的预算结构随网格如何变化？",
+            "前缘高频占比对初始条件是否敏感？"
+          ],
+          "summary": {
+            "evidence_refs": [
+              "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_rms",
+              "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#metric.front_high_k_fraction",
+              "ev.run.ea852646-72ce-40fc-b5f3-99329ff0895b#entropy.E_aa"
+            ],
+            "kind": "INTERPRETATION",
+            "text": "该运行在激波上游前缘附近给出稳定的低波数界面形变与细小高频能量占比，熵预算以主通道为主。"
+          }
+        },
+        "limitations": [
+          "本次新建 V2 运行，不继承历史冻结状态；配置匹配不等于论文复现通过。",
+          "模型单位尚无 SI 标定；宏观指标仅适用于登记的 Case8 detector。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同科学量；face 数组保留原生几何。",
+          "快照仅含真实保存的帧；播放不插值；熵历史包含所有真实接受步。",
+          "较大的 E_at 不直接代表方法更好；本结果不证明普适稳定性或最优系数。",
+          "旧 Run 未保存全轨迹累计 face 数据，该空间分配不可用。",
+          "单次 Case 8 结果不能证明普适稳定性、最优系数或跨协议性能排名。",
+          "E_at 较大只描述此运行的熵通道预算，不能直接判断方法更好。",
+          "瞬时 Pi、全轨迹累计空间分配和累计标量 E 是不同量。",
+          "未提供对照运行、误差范数、局部 face 区域统计或论文参考差值；这些结论不可用。",
+          "新运行不继承历史冻结状态；模板匹配不等于复现核查成功。"
+        ],
+        "model": "deepseek-flash",
+        "prompt_version": "case8.science.p5.5",
+        "result_hash": "8dd0d49c71b7030caccfdaaf6f97c749a243ccfb1efdb5f8b36a278da1303ee6",
+        "run_id": "ea852646-72ce-40fc-b5f3-99329ff0895b"
+      },
+      "name": "legacy-missing-allocation",
+      "status": "PASS"
+    }
+  ],
+  "started_at": "2026-10-03T10:24:04.067771+00:00",
+  "status": "PASS"
+}

@@ -1,0 +1,126 @@
+{
+  "backend": {
+    "errors": 0.0,
+    "failures": 0.0,
+    "skipped": 1.0,
+    "tests": 1628.0,
+    "time": 895.852
+  },
+  "browser": {
+    "duration": 571503.568,
+    "expected": 225,
+    "flaky": 0,
+    "skipped": 0,
+    "startTime": "2026-10-03T10:31:50.306Z",
+    "unexpected": 0
+  },
+  "checked_at": "2026-10-03T11:00:18.224130+00:00",
+  "current_contract": {
+    "openapi_sha256": "1b4b38f9f5b9f6b5bf463d5214286a9305b3b1b983904e56e6389426e5f7d529",
+    "paths": 64,
+    "schemas": 378,
+    "types_sha256": "f0256a29feeca7bb2b938d83bf10c26dbd76b1cb279642c9bb5a66f34cba0ab9"
+  },
+  "delivered_files": [
+    {
+      "path": "backend/ai/client.py",
+      "sha256": "dd96477c8c96ad38c9deca0744a04e04b23831740a85a3b6ef98b45e9abb61ff"
+    },
+    {
+      "path": "backend/ai/context_builder.py",
+      "sha256": "1657ecdee8c164660540ec0197b076cb962506abbc3feaf10f07da9349183891"
+    },
+    {
+      "path": "backend/ai/prompts.py",
+      "sha256": "8e0ba195fdf7d929d8ddd8af51e1a09456288b0fdb2fce53474d8cf251bf4775"
+    },
+    {
+      "path": "backend/ai/analysis.py",
+      "sha256": "cd69844eb459da7a9d62a140e20eb2f73832b7109529994e247ba722a4d0cd03"
+    },
+    {
+      "path": "backend/models/v2/ai.py",
+      "sha256": "8b4ee84cf751c875b6745f866e9f85ea4ed9f11d3e3c5737f9cc5dce8ff68564"
+    },
+    {
+      "path": "backend/api/v2/ai.py",
+      "sha256": "95faaef09453bc67e841b4e15bc1f71058f1fb587d08aa8c0c09defc4257561b"
+    },
+    {
+      "path": "frontend/src/views/runs/RunAIView.vue",
+      "sha256": "4ec0ff31a971c03582397100d957d2541d371c7f6e35bb3901b56d0985ffbe1e"
+    },
+    {
+      "path": "frontend/src/views/runs/AIClaimView.vue",
+      "sha256": "3b62e0ff1459f14c2337da6c30d4bb4409a2a06e58111985e50bb72a8e839d27"
+    },
+    {
+      "path": "frontend/src/views/runs/ScientificRunView.vue",
+      "sha256": "2282b7120b4f4d5e915237146a690de9337213773b0236031b40d95343d1fde6"
+    },
+    {
+      "path": "frontend/src/data/v2/ai.ts",
+      "sha256": "91386757d4992f657b209e2ad2ff4d1567a68184b5e55a30acaa95659923ce07"
+    }
+  ],
+  "dependency_files": 43,
+  "git_committed": false,
+  "git_head": "d4abbac4c7cd479ad2e927d5e1902a48df7e26b8",
+  "git_pushed": false,
+  "p5_browser": {
+    "duration": 22169.816000000003,
+    "expected": 3,
+    "flaky": 0,
+    "skipped": 0,
+    "startTime": "2026-10-03T10:50:26.490Z",
+    "unexpected": 0
+  },
+  "prompt_version": "case8.science.p5.5",
+  "real_ai": {
+    "cached_with_offline_provider": true,
+    "cfd_runs_started": 0,
+    "model": "deepseek-flash",
+    "refresh_provider_calls": 0,
+    "run_ids": [
+      "463bf7f2-8143-483a-9db2-81559203771b",
+      "ea852646-72ce-40fc-b5f3-99329ff0895b"
+    ],
+    "scenarios": 6,
+    "status": "PASS"
+  },
+  "source_preservation": {
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "before_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "bytes": 5429811970,
+    "checks": [
+      "relative paths",
+      "size",
+      "mtime_ns",
+      "file SHA-256"
+    ],
+    "files_after": 27843,
+    "files_before": 27843,
+    "source_root": "D:\\Paper\\passage6",
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "targeted": {
+    "errors": 0.0,
+    "failures": 0.0,
+    "skipped": 0.0,
+    "tests": 76.0,
+    "time": 50.28
+  },
+  "v1_contract_subset": {
+    "identical": true,
+    "paths": 47,
+    "schemas": 298
+  },
+  "v2_regression": {
+    "errors": 0.0,
+    "failures": 0.0,
+    "skipped": 1.0,
+    "tests": 275.0,
+    "time": 159.33
+  }
+}

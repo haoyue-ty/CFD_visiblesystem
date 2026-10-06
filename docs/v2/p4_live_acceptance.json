@@ -1,0 +1,577 @@
+{
+  "checks": {
+    "allocation_observer_source_evolution": {
+      "invalid_state_guard": "PASS",
+      "loaded_modules": [
+        {
+          "module": "solver",
+          "path": "solver/__init__.py",
+          "sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8"
+        },
+        {
+          "module": "solver.cases",
+          "path": "solver/cases/__init__.py",
+          "sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf"
+        },
+        {
+          "module": "solver.cases.flagship_cross_modal_case8",
+          "path": "solver/cases/flagship_cross_modal_case8.py",
+          "sha256": "1556604504e343835097361a73c2538201c91c691faf9d57f0bc5587929d1d53"
+        },
+        {
+          "module": "solver.cases.normal_shock",
+          "path": "solver/cases/normal_shock.py",
+          "sha256": "a89b597ffad1730eb57f86ef0f3f862949218b0ff27d3aa722781456fcfe546d"
+        },
+        {
+          "module": "solver.core",
+          "path": "solver/core/__init__.py",
+          "sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab"
+        },
+        {
+          "module": "solver.core.boundary",
+          "path": "solver/core/boundary.py",
+          "sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86"
+        },
+        {
+          "module": "solver.core.entropy",
+          "path": "solver/core/entropy.py",
+          "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc"
+        },
+        {
+          "module": "solver.core.euler",
+          "path": "solver/core/euler.py",
+          "sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b"
+        },
+        {
+          "module": "solver.core.explicit_ssprk",
+          "path": "solver/core/explicit_ssprk.py",
+          "sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3"
+        },
+        {
+          "module": "solver.core.finite_volume",
+          "path": "solver/core/finite_volume.py",
+          "sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46"
+        },
+        {
+          "module": "solver.core.implicit_integrator",
+          "path": "solver/core/implicit_integrator.py",
+          "sha256": "dc4de135e6b9111474e9b67afece94a70d4ee914fc2deca66833aa1803e11f92"
+        },
+        {
+          "module": "solver.core.jfnk",
+          "path": "solver/core/jfnk.py",
+          "sha256": "c517ca87eba5ce4f236a339697d27c8eaa92c6c4821d214b3074927fb2c069d2"
+        },
+        {
+          "module": "solver.core.mesh",
+          "path": "solver/core/mesh.py",
+          "sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159"
+        },
+        {
+          "module": "solver.core.steady_ptc",
+          "path": "solver/core/steady_ptc.py",
+          "sha256": "f7b15cbd11fb09fd6b7ab5ca4839352b47d855b8d76a67043fd25546694726fb"
+        },
+        {
+          "module": "solver.core.time_integrator",
+          "path": "solver/core/time_integrator.py",
+          "sha256": "05e6d9deb3414236a5b9bff8b96c54bfe42014b1cd8bb6eaf2a36d9819164055"
+        },
+        {
+          "module": "solver.diagnostics",
+          "path": "solver/diagnostics/__init__.py",
+          "sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4"
+        },
+        {
+          "module": "solver.diagnostics.steady_normal_shock",
+          "path": "solver/diagnostics/steady_normal_shock.py",
+          "sha256": "207877b18105eafebdcbe3f276af466ad09cb4d7bb5cbc45c619c7b7f6a0f4e7"
+        },
+        {
+          "module": "solver.experiments",
+          "path": "solver/experiments/__init__.py",
+          "sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b"
+        },
+        {
+          "module": "solver.experiments.cross_mode_variants",
+          "path": "solver/experiments/cross_mode_variants.py",
+          "sha256": "e61cc521239b860888a48d401c956290a3104a65476d76ce0f2abb666b538ecf"
+        },
+        {
+          "module": "solver.fluxes",
+          "path": "solver/fluxes/__init__.py",
+          "sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921"
+        },
+        {
+          "module": "solver.fluxes.chandrashekar_es",
+          "path": "solver/fluxes/chandrashekar_es.py",
+          "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586"
+        },
+        {
+          "module": "solver.fluxes.common",
+          "path": "solver/fluxes/common.py",
+          "sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0"
+        },
+        {
+          "module": "solver.fluxes.cross_mode_ec_unified_v1",
+          "path": "solver/fluxes/cross_mode_ec_unified_v1.py",
+          "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0"
+        },
+        {
+          "module": "solver.fluxes.proposed_cross_mode",
+          "path": "solver/fluxes/proposed_cross_mode.py",
+          "sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1"
+        },
+        {
+          "module": "solver.fluxes.sos_v4",
+          "path": "solver/fluxes/sos_v4.py",
+          "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b"
+        },
+        {
+          "module": "solver.fluxes.unbounded_cross_mode",
+          "path": "solver/fluxes/unbounded_cross_mode.py",
+          "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c"
+        }
+      ],
+      "result_sha256": "e04cb1c716c32b84dff52e8808f0f5a3312791ad1ab51439238fa47e37cd48a4",
+      "rk_history_max_abs_error": 1.734723475976807e-18,
+      "run_id": "d52d3af2-d880-42bc-9e69-648aa2bee249",
+      "source_ssprk3_state_equivalence": "BITWISE",
+      "status": "PASS"
+    },
+    "custom_128x32_qat_zero": {
+      "accepted_steps": 956,
+      "allocation_scalar_max_abs_error": 5.551115123125783e-16,
+      "field_max_abs_error": 1.4210854715202004e-14,
+      "fields_compared": 36,
+      "output_hashes_verified": 22,
+      "result_hash": "63a092fe5f22844c9e408960970d2cc1d6b179774ea72809ec20d38bb041285e",
+      "run_id": "bc8cc641-951f-493c-a484-cd6b6f4eb0c6",
+      "selected_region_count": 1024,
+      "snapshots": 6,
+      "source_direct_comparison": {
+        "field_max_abs_errors": {
+          "density": 0,
+          "mach": 0,
+          "pressure": 0,
+          "speed": 0,
+          "velocity_x": 0,
+          "velocity_y": 0
+        },
+        "loaded_modules": [
+          {
+            "module": "solver",
+            "path": "solver/__init__.py",
+            "sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8"
+          },
+          {
+            "module": "solver.cases",
+            "path": "solver/cases/__init__.py",
+            "sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf"
+          },
+          {
+            "module": "solver.cases.flagship_cross_modal_case8",
+            "path": "solver/cases/flagship_cross_modal_case8.py",
+            "sha256": "1556604504e343835097361a73c2538201c91c691faf9d57f0bc5587929d1d53"
+          },
+          {
+            "module": "solver.cases.normal_shock",
+            "path": "solver/cases/normal_shock.py",
+            "sha256": "a89b597ffad1730eb57f86ef0f3f862949218b0ff27d3aa722781456fcfe546d"
+          },
+          {
+            "module": "solver.core",
+            "path": "solver/core/__init__.py",
+            "sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab"
+          },
+          {
+            "module": "solver.core.boundary",
+            "path": "solver/core/boundary.py",
+            "sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86"
+          },
+          {
+            "module": "solver.core.entropy",
+            "path": "solver/core/entropy.py",
+            "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc"
+          },
+          {
+            "module": "solver.core.euler",
+            "path": "solver/core/euler.py",
+            "sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b"
+          },
+          {
+            "module": "solver.core.explicit_ssprk",
+            "path": "solver/core/explicit_ssprk.py",
+            "sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3"
+          },
+          {
+            "module": "solver.core.finite_volume",
+            "path": "solver/core/finite_volume.py",
+            "sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46"
+          },
+          {
+            "module": "solver.core.implicit_integrator",
+            "path": "solver/core/implicit_integrator.py",
+            "sha256": "dc4de135e6b9111474e9b67afece94a70d4ee914fc2deca66833aa1803e11f92"
+          },
+          {
+            "module": "solver.core.jfnk",
+            "path": "solver/core/jfnk.py",
+            "sha256": "c517ca87eba5ce4f236a339697d27c8eaa92c6c4821d214b3074927fb2c069d2"
+          },
+          {
+            "module": "solver.core.mesh",
+            "path": "solver/core/mesh.py",
+            "sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159"
+          },
+          {
+            "module": "solver.core.steady_ptc",
+            "path": "solver/core/steady_ptc.py",
+            "sha256": "f7b15cbd11fb09fd6b7ab5ca4839352b47d855b8d76a67043fd25546694726fb"
+          },
+          {
+            "module": "solver.core.time_integrator",
+            "path": "solver/core/time_integrator.py",
+            "sha256": "05e6d9deb3414236a5b9bff8b96c54bfe42014b1cd8bb6eaf2a36d9819164055"
+          },
+          {
+            "module": "solver.diagnostics",
+            "path": "solver/diagnostics/__init__.py",
+            "sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4"
+          },
+          {
+            "module": "solver.diagnostics.flagship_cross_modal_case8",
+            "path": "solver/diagnostics/flagship_cross_modal_case8.py",
+            "sha256": "ad48014806dfe71e49ba7c332e1e3c4883cb0cd46d7a7fbcec41b2ef2c81affe"
+          },
+          {
+            "module": "solver.diagnostics.steady_normal_shock",
+            "path": "solver/diagnostics/steady_normal_shock.py",
+            "sha256": "207877b18105eafebdcbe3f276af466ad09cb4d7bb5cbc45c619c7b7f6a0f4e7"
+          },
+          {
+            "module": "solver.experiments",
+            "path": "solver/experiments/__init__.py",
+            "sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b"
+          },
+          {
+            "module": "solver.experiments.baseline_case8_production",
+            "path": "solver/experiments/baseline_case8_production.py",
+            "sha256": "71a8c1239209ef76948aa2d1d5742b8ea2abe52b1df361102c1ecc82c3573374"
+          },
+          {
+            "module": "solver.experiments.cross_mode_variants",
+            "path": "solver/experiments/cross_mode_variants.py",
+            "sha256": "e61cc521239b860888a48d401c956290a3104a65476d76ce0f2abb666b538ecf"
+          },
+          {
+            "module": "solver.experiments.unbounded_variants",
+            "path": "solver/experiments/unbounded_variants.py",
+            "sha256": "756a83ee3bfcccd9dc4e215948664d38a6ec0b9816cc303a246262d8b7f9458a"
+          },
+          {
+            "module": "solver.fluxes",
+            "path": "solver/fluxes/__init__.py",
+            "sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921"
+          },
+          {
+            "module": "solver.fluxes.ausm_plus_up",
+            "path": "solver/fluxes/ausm_plus_up.py",
+            "sha256": "0cb13d31eb3eb96e7811735d8eeac9c3f655619fcd1a97e36a93882247246089"
+          },
+          {
+            "module": "solver.fluxes.chandrashekar_es",
+            "path": "solver/fluxes/chandrashekar_es.py",
+            "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586"
+          },
+          {
+            "module": "solver.fluxes.common",
+            "path": "solver/fluxes/common.py",
+            "sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0"
+          },
+          {
+            "module": "solver.fluxes.cross_mode_ec_unified_v1",
+            "path": "solver/fluxes/cross_mode_ec_unified_v1.py",
+            "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0"
+          },
+          {
+            "module": "solver.fluxes.hllc",
+            "path": "solver/fluxes/hllc.py",
+            "sha256": "3525117d25f414cbadafed2c35d0b43029f55e230ba6c94d55f800e900c144d8"
+          },
+          {
+            "module": "solver.fluxes.hlle",
+            "path": "solver/fluxes/hlle.py",
+            "sha256": "717e84a6a595f6603f49578cc8d09a6f9b01126e242d67a16004e24bdcb6d47a"
+          },
+          {
+            "module": "solver.fluxes.hllemcc",
+            "path": "solver/fluxes/hllemcc.py",
+            "sha256": "46363ea89601526cbd7ec6e8ca3bff8cd236ad9b357107af3ad85388a443c71a"
+          },
+          {
+            "module": "solver.fluxes.proposed_cross_mode",
+            "path": "solver/fluxes/proposed_cross_mode.py",
+            "sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1"
+          },
+          {
+            "module": "solver.fluxes.registry",
+            "path": "solver/fluxes/registry.py",
+            "sha256": "8004e5196750eb56a7a93f808888c74ce42f7a5b9ad29c7e11463a8c98634f48"
+          },
+          {
+            "module": "solver.fluxes.roe",
+            "path": "solver/fluxes/roe.py",
+            "sha256": "3cddb2bb99abbd10e9d5d3af189dc163c9af5255e517b17afea4f203b09c4d0f"
+          },
+          {
+            "module": "solver.fluxes.rusanov",
+            "path": "solver/fluxes/rusanov.py",
+            "sha256": "339f704f073be012a87ff189c763466d1a5988fb55871f3e5bc0e2ccdefa1b30"
+          },
+          {
+            "module": "solver.fluxes.sos_v4",
+            "path": "solver/fluxes/sos_v4.py",
+            "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b"
+          },
+          {
+            "module": "solver.fluxes.unbounded_cross_mode",
+            "path": "solver/fluxes/unbounded_cross_mode.py",
+            "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c"
+          }
+        ],
+        "metric_abs_errors": {
+          "front_high_k_fraction": 0.0,
+          "front_rms": 0.0,
+          "front_width_mean": 0.0
+        },
+        "run_id": "bc8cc641-951f-493c-a484-cd6b6f4eb0c6",
+        "snapshots_compared": 6,
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    "fast_64x16": {
+      "accepted_steps": 478,
+      "allocation_scalar_max_abs_error": 1.1102230246251565e-16,
+      "field_max_abs_error": 1.4210854715202004e-14,
+      "fields_compared": 36,
+      "output_hashes_verified": 22,
+      "result_hash": "cd7ae1078f27f8950efdd5c1ce1470e439d279e0665f4c8b47f30978a28c19e1",
+      "run_id": "463bf7f2-8143-483a-9db2-81559203771b",
+      "selected_region_count": 256,
+      "snapshots": 6,
+      "source_direct_comparison": {
+        "field_max_abs_errors": {
+          "density": 0,
+          "mach": 0,
+          "pressure": 0,
+          "speed": 0,
+          "velocity_x": 0,
+          "velocity_y": 0
+        },
+        "loaded_modules": [
+          {
+            "module": "solver",
+            "path": "solver/__init__.py",
+            "sha256": "57629010d2ce3d19b09f0bdca589246f4bcda614512a54bdb9e91436a5add0a8"
+          },
+          {
+            "module": "solver.cases",
+            "path": "solver/cases/__init__.py",
+            "sha256": "23886f698a2c994724048b0bdcabec947c6dc873c505e65316ad4993cae47dbf"
+          },
+          {
+            "module": "solver.cases.flagship_cross_modal_case8",
+            "path": "solver/cases/flagship_cross_modal_case8.py",
+            "sha256": "1556604504e343835097361a73c2538201c91c691faf9d57f0bc5587929d1d53"
+          },
+          {
+            "module": "solver.cases.normal_shock",
+            "path": "solver/cases/normal_shock.py",
+            "sha256": "a89b597ffad1730eb57f86ef0f3f862949218b0ff27d3aa722781456fcfe546d"
+          },
+          {
+            "module": "solver.core",
+            "path": "solver/core/__init__.py",
+            "sha256": "7c4a3031684b54456a5611a4b8c3c8f11d70d797e3ee3c19835b527afeb3c5ab"
+          },
+          {
+            "module": "solver.core.boundary",
+            "path": "solver/core/boundary.py",
+            "sha256": "0e2ca2f48efa4df619899da6fa8694ad25297d7e74754291196f1288fab39b86"
+          },
+          {
+            "module": "solver.core.entropy",
+            "path": "solver/core/entropy.py",
+            "sha256": "340814d2e30e58526f53aeee6dd2988964c917fcfd6d280e08217d5fbc7e10cc"
+          },
+          {
+            "module": "solver.core.euler",
+            "path": "solver/core/euler.py",
+            "sha256": "e3713c8b332db78cf8909f0733ea21c1bfc6e7fb764b21b3b1044673b4fecf7b"
+          },
+          {
+            "module": "solver.core.explicit_ssprk",
+            "path": "solver/core/explicit_ssprk.py",
+            "sha256": "bc6dc98c210f1131776262f3525c107e6f14785c2dc4c71f84bd6feb2e0e10c3"
+          },
+          {
+            "module": "solver.core.finite_volume",
+            "path": "solver/core/finite_volume.py",
+            "sha256": "895114f50ab054d9c104f68b330af2bae7cc4f9a20d636767c529be62b949c46"
+          },
+          {
+            "module": "solver.core.implicit_integrator",
+            "path": "solver/core/implicit_integrator.py",
+            "sha256": "dc4de135e6b9111474e9b67afece94a70d4ee914fc2deca66833aa1803e11f92"
+          },
+          {
+            "module": "solver.core.jfnk",
+            "path": "solver/core/jfnk.py",
+            "sha256": "c517ca87eba5ce4f236a339697d27c8eaa92c6c4821d214b3074927fb2c069d2"
+          },
+          {
+            "module": "solver.core.mesh",
+            "path": "solver/core/mesh.py",
+            "sha256": "7889d2e23b18ed1d10b992727a116e20fa793bb6b1677be458baf2c6f31dc159"
+          },
+          {
+            "module": "solver.core.steady_ptc",
+            "path": "solver/core/steady_ptc.py",
+            "sha256": "f7b15cbd11fb09fd6b7ab5ca4839352b47d855b8d76a67043fd25546694726fb"
+          },
+          {
+            "module": "solver.core.time_integrator",
+            "path": "solver/core/time_integrator.py",
+            "sha256": "05e6d9deb3414236a5b9bff8b96c54bfe42014b1cd8bb6eaf2a36d9819164055"
+          },
+          {
+            "module": "solver.diagnostics",
+            "path": "solver/diagnostics/__init__.py",
+            "sha256": "e0261b1ffdd77a55460841e939c6effab16c7740233fe143cd1fd979e2cd48b4"
+          },
+          {
+            "module": "solver.diagnostics.flagship_cross_modal_case8",
+            "path": "solver/diagnostics/flagship_cross_modal_case8.py",
+            "sha256": "ad48014806dfe71e49ba7c332e1e3c4883cb0cd46d7a7fbcec41b2ef2c81affe"
+          },
+          {
+            "module": "solver.diagnostics.steady_normal_shock",
+            "path": "solver/diagnostics/steady_normal_shock.py",
+            "sha256": "207877b18105eafebdcbe3f276af466ad09cb4d7bb5cbc45c619c7b7f6a0f4e7"
+          },
+          {
+            "module": "solver.experiments",
+            "path": "solver/experiments/__init__.py",
+            "sha256": "b42b26c0e040c906c075c48ddc7f3dde6d4a6cf0c87b14844559c288064f108b"
+          },
+          {
+            "module": "solver.experiments.baseline_case8_production",
+            "path": "solver/experiments/baseline_case8_production.py",
+            "sha256": "71a8c1239209ef76948aa2d1d5742b8ea2abe52b1df361102c1ecc82c3573374"
+          },
+          {
+            "module": "solver.experiments.cross_mode_variants",
+            "path": "solver/experiments/cross_mode_variants.py",
+            "sha256": "e61cc521239b860888a48d401c956290a3104a65476d76ce0f2abb666b538ecf"
+          },
+          {
+            "module": "solver.experiments.unbounded_variants",
+            "path": "solver/experiments/unbounded_variants.py",
+            "sha256": "756a83ee3bfcccd9dc4e215948664d38a6ec0b9816cc303a246262d8b7f9458a"
+          },
+          {
+            "module": "solver.fluxes",
+            "path": "solver/fluxes/__init__.py",
+            "sha256": "407b3b52e4a4bade6d7420a07c80ff02b6ed751db80fa41f3ad43e0e896c5921"
+          },
+          {
+            "module": "solver.fluxes.ausm_plus_up",
+            "path": "solver/fluxes/ausm_plus_up.py",
+            "sha256": "0cb13d31eb3eb96e7811735d8eeac9c3f655619fcd1a97e36a93882247246089"
+          },
+          {
+            "module": "solver.fluxes.chandrashekar_es",
+            "path": "solver/fluxes/chandrashekar_es.py",
+            "sha256": "a1d5f2346bee45b041fe854ae0eb9e0dab165d2b6a5829757b3734b06c0d4586"
+          },
+          {
+            "module": "solver.fluxes.common",
+            "path": "solver/fluxes/common.py",
+            "sha256": "69e4712b8e8bf625695d11241e63d3ccbb1b6ba4cda2c3ec806d2120a0290be0"
+          },
+          {
+            "module": "solver.fluxes.cross_mode_ec_unified_v1",
+            "path": "solver/fluxes/cross_mode_ec_unified_v1.py",
+            "sha256": "98776078f19fa4b31826e88e8851222f217210c3c2ae341d68aeb60aad3a27e0"
+          },
+          {
+            "module": "solver.fluxes.hllc",
+            "path": "solver/fluxes/hllc.py",
+            "sha256": "3525117d25f414cbadafed2c35d0b43029f55e230ba6c94d55f800e900c144d8"
+          },
+          {
+            "module": "solver.fluxes.hlle",
+            "path": "solver/fluxes/hlle.py",
+            "sha256": "717e84a6a595f6603f49578cc8d09a6f9b01126e242d67a16004e24bdcb6d47a"
+          },
+          {
+            "module": "solver.fluxes.hllemcc",
+            "path": "solver/fluxes/hllemcc.py",
+            "sha256": "46363ea89601526cbd7ec6e8ca3bff8cd236ad9b357107af3ad85388a443c71a"
+          },
+          {
+            "module": "solver.fluxes.proposed_cross_mode",
+            "path": "solver/fluxes/proposed_cross_mode.py",
+            "sha256": "3928a85cde49062723639cf7c6b219e03ac665eb5248fd117a4a558f766056e1"
+          },
+          {
+            "module": "solver.fluxes.registry",
+            "path": "solver/fluxes/registry.py",
+            "sha256": "8004e5196750eb56a7a93f808888c74ce42f7a5b9ad29c7e11463a8c98634f48"
+          },
+          {
+            "module": "solver.fluxes.roe",
+            "path": "solver/fluxes/roe.py",
+            "sha256": "3cddb2bb99abbd10e9d5d3af189dc163c9af5255e517b17afea4f203b09c4d0f"
+          },
+          {
+            "module": "solver.fluxes.rusanov",
+            "path": "solver/fluxes/rusanov.py",
+            "sha256": "339f704f073be012a87ff189c763466d1a5988fb55871f3e5bc0e2ccdefa1b30"
+          },
+          {
+            "module": "solver.fluxes.sos_v4",
+            "path": "solver/fluxes/sos_v4.py",
+            "sha256": "642333709f435a6d26fe02b0934b2ee6d66d468f47033bec4c0f02187804952b"
+          },
+          {
+            "module": "solver.fluxes.unbounded_cross_mode",
+            "path": "solver/fluxes/unbounded_cross_mode.py",
+            "sha256": "907848e1a4d005402efd982a6f9939a3b6249b95df74445e5c5f3283e1fe662c"
+          }
+        ],
+        "metric_abs_errors": {
+          "front_high_k_fraction": 0.0,
+          "front_rms": 0.0,
+          "front_width_mean": 0.0
+        },
+        "run_id": "463bf7f2-8143-483a-9db2-81559203771b",
+        "snapshots_compared": 6,
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    "legacy_absence": {
+      "availability": "UNAVAILABLE",
+      "result_hash": "8dd0d49c71b7030caccfdaaf6f97c749a243ccfb1efdb5f8b36a278da1303ee6",
+      "run_id": "ea852646-72ce-40fc-b5f3-99329ff0895b",
+      "status": "PASS"
+    }
+  },
+  "finished_at": "2026-10-03T09:38:19.345106+00:00",
+  "started_at": "2026-10-03T09:34:39.148071+00:00",
+  "status": "PASS"
+}

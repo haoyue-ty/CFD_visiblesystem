@@ -39,7 +39,8 @@ def export_openapi(catalog: OperationCatalog) -> dict:
     error_ref = register_model(FailedEnvelope)
     paths: dict = {}
     for operation in catalog.operations:
-        response_ref = register_model(operation.response_model)
+        response_ref = (register_model(operation.response_model) if operation.response_model is not None
+                        else {"type": "string"})
         entry = {
             "operationId": operation.operation_id,
             "description": operation.description,
@@ -48,12 +49,14 @@ def export_openapi(catalog: OperationCatalog) -> dict:
             "x-service": operation.service,
             "x-auth-policy": operation.auth_policy,
             "x-cache-policy": operation.cache_policy,
-            "responses": {"200": {"description": "Success", "content": {"application/json": {"schema": response_ref}}}},
+            "responses": {str(operation.success_status): {"description": "Success", "content": {
+                operation.response_media_type: {"schema": response_ref}}}},
         }
         for status, codes in operation.documented_errors.items():
+            operation_error_ref = register_model(operation.error_response_model) if operation.error_response_model else error_ref
             entry["responses"][str(status)] = {
                 "description": ", ".join(codes), "x-error-codes": list(codes),
-                "content": {"application/json": {"schema": error_ref}},
+                "content": {"application/json": {"schema": operation_error_ref}},
             }
         if operation.request_model is not None:
             query_ref = register_model(operation.request_model, "validation")
@@ -66,6 +69,14 @@ def export_openapi(catalog: OperationCatalog) -> dict:
                                    for name, prop in query_schema.get("properties", {}).items()]
             if set(path_fields) - set(query_schema.get("properties", {})):
                 raise ValueError("Path selectors must be declared by the request model")
+        elif re.findall(r"\{([^}]+)\}", operation.path):
+            raise ValueError("Path selectors must be declared by the request model")
+        if operation.request_body_model is not None:
+            entry["requestBody"] = {"required": True, "content": {"application/json": {
+                "schema": register_model(operation.request_body_model, "validation")}}}
+        for name in operation.request_headers:
+            entry.setdefault("parameters", []).append({"name": name, "in": "header", "required": False,
+                                                       "schema": {"type": "string", "pattern": "^[0-9]{1,10}$"}})
         paths.setdefault(operation.path, {})[operation.method.lower()] = entry
     return OpenAPIDocument(
         openapi="3.1.0", jsonSchemaDialect="https://json-schema.org/draft/2020-12/schema",

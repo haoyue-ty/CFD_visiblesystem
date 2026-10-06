@@ -53,6 +53,12 @@ onMounted(async () => {
     </header>
 
     <section class="home__modes" :aria-label="zh('Modes')">
+      <article class="card" data-testid="new-experiment-entry">
+        <h2>新建实验</h2>
+        <p>从模板、专业参数或自然语言创建 Case 8 配置，核对协议与差异。</p>
+        <p class="card__hint">当前网页仅验证与确认配置，网页运行能力尚未开放。</p>
+        <RouterLink class="card__cta" :to="{ name: 'experiment-builder' }">配置新实验</RouterLink>
+      </article>
       <article class="card" data-testid="explore-entry">
         <h2>{{ zh("Explore") }}</h2>
         <p>{{ zh("A guided ~4-minute seven-scene scientific story.") }}</p>

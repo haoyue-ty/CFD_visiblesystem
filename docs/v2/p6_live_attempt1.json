@@ -1,0 +1,7 @@
+{
+  "status": "FAIL",
+  "started_at": "2026-10-03T13:53:02.198Z",
+  "scenarios": [],
+  "checks": {},
+  "error": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByTestId('run-status')\nExpected: \"已完成\"\nReceived: \"正在求解\"\nTimeout:  180000ms\n\nCall log:\n  - Expect \"toHaveText\" getByTestId('run-status') with timeout 180000ms\n  - waiting for getByTestId('run-status')\n    6 × locator resolved to <strong data-v-5522cd04=\"\" data-testid=\"run-status\">正在启动</strong>\n      - unexpected value \"正在启动\"\n    344 × locator resolved to <strong data-v-5522cd04=\"\" data-testid=\"run-status\">正在求解</strong>\n        - unexpected value \"正在求解\"\n"
+}

@@ -215,7 +215,7 @@ def production_scan():
         'public_asset_path_audit': 'public-audit.json;2438 assets', 'send_file_occurrences': 0,
         'scientific_root_in_bundle': False, 'mock_in_production': False,
         'prohibited_positive_claims_in_bundle': 0,
-        'context_review': 'best/winner hits are explicit scientific denials or internal selection variable names; file URI pattern is a scrubber; download hits deny file serving. Private backend source-root defaults are not public API values.'})
+        'context_review': 'best/winner hits are explicit scientific denials or internal selection variable names; file URI pattern is a scrubber. Evidence download hits deny source-file serving; V2 reports.ts downloads only the controlled, hash-verified self-contained report HTML endpoint as a Blob. Private backend source-root defaults are not public API values.'})
 
 
 def main():

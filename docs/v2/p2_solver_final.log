@@ -1,0 +1,15 @@
+{"label": "smoke_B_u", "run_id": "195de019-df3c-4611-bfa9-c80248b878fe", "status": "STARTING"}
+{"label": "smoke_B_u", "run_id": "195de019-df3c-4611-bfa9-c80248b878fe", "status": "PASS", "wall_seconds": 2.8887243000790477}
+{"label": "smoke_D_u", "run_id": "58dde3c3-80e2-4289-a5cc-7315cf9a2cb1", "status": "STARTING"}
+{"label": "smoke_D_u", "run_id": "58dde3c3-80e2-4289-a5cc-7315cf9a2cb1", "status": "PASS", "wall_seconds": 2.9535034999717027}
+{"label": "Run_A_B_u_coefficients_fast_grid", "run_id": "736affcb-1602-46a3-8013-5e9189c360bb", "status": "STARTING"}
+{"label": "Run_A_B_u_coefficients_fast_grid", "run_id": "736affcb-1602-46a3-8013-5e9189c360bb", "status": "PASS", "wall_seconds": 27.084253000095487}
+{"label": "Run_B_D_u_coefficients_fast_grid_repeat_1", "run_id": "a7d0f5a1-245a-493c-a0d3-e495bfb95d7c", "status": "STARTING"}
+{"label": "Run_B_D_u_coefficients_fast_grid_repeat_1", "run_id": "a7d0f5a1-245a-493c-a0d3-e495bfb95d7c", "status": "PASS", "wall_seconds": 26.196091700112447}
+{"label": "fast_D_u_repeat_2", "run_id": "8b49e861-c341-4aeb-b810-0fb41c067a72", "status": "STARTING"}
+{"label": "fast_D_u_repeat_2", "run_id": "8b49e861-c341-4aeb-b810-0fb41c067a72", "status": "PASS", "wall_seconds": 27.700950200203806}
+{"label": "fast_D_u_repeat_3", "run_id": "c681cf67-5ad5-4920-b901-b88ef631ee87", "status": "STARTING"}
+{"label": "fast_D_u_repeat_3", "run_id": "c681cf67-5ad5-4920-b901-b88ef631ee87", "status": "PASS", "wall_seconds": 26.150453899987042}
+{"label": "paper_D_u_full_protocol", "run_id": "e97042be-e24d-40a7-b5e4-c39f56f84c0e", "status": "STARTING"}
+{"label": "paper_D_u_full_protocol", "run_id": "e97042be-e24d-40a7-b5e4-c39f56f84c0e", "status": "PASS", "wall_seconds": 344.93771099997684}
+{"status": "PASS", "fast_benchmark": {"status": "PASS", "repeats": 3, "failures": 0, "wall_seconds": [26.196091700112447, 27.700950200203806, 26.150453899987042], "median_wall_seconds": 26.196091700112447, "min_wall_seconds": 26.150453899987042, "max_wall_seconds": 27.700950200203806, "peak_rss_bytes": [101572608, 101974016, 102256640], "output_bytes": [1076138, 1076137, 1076138], "state_hash_identical": true, "scope": "64x16 CFL=.05 T=.04 q_aa=3.96 q_at=.396; local serial process, one BLAS/OMP thread; no ETA promise"}, "reference": "BITWISE"}

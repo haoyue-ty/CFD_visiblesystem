@@ -16,7 +16,7 @@ import { onMounted, ref, watch } from 'vue'
 import type { FieldData, FieldMeta } from '../data/domain'
 
 const props = defineProps<{
-  field: FieldMeta
+  field: Pick<FieldMeta, 'field_id' | 'label' | 'shape' | 'axes' | 'unit_label' | 'extent'> & { result?: Pick<FieldMeta['result'], 'config_id'> }
   values?: number[]
   /** Alias kept for the README-fixed `array` prop; same meaning as `values`. */
   array?: FieldData
@@ -87,7 +87,7 @@ function colormap(t: number): [number, number, number] {
 }
 
 onMounted(draw)
-watch(() => [props.field.field_id, props.field.result.config_id, resolveValues()], draw)
+watch(() => [props.field.field_id, props.field.result?.config_id, resolveValues()], draw)
 </script>
 
 <template>

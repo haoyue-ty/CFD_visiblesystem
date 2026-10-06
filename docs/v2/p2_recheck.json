@@ -1,0 +1,315 @@
+{
+  "comparison_rule": {
+    "atol": 1e-12,
+    "preferred": "bitwise",
+    "rtol": 1e-10
+  },
+  "finished_at": "2026-10-03T04:42:19.206191+00:00",
+  "formal_D_u": {
+    "absolute_tolerance": 1e-12,
+    "accepted_steps": 1912,
+    "current_software_identity_matches": true,
+    "history_max_abs_errors": {
+      "E_aa": 0.0,
+      "E_at": 0.0,
+      "E_bg": 0.0,
+      "E_total": 0.0,
+      "J_max_s0": 0.0,
+      "J_max_s1": 0.0,
+      "J_max_s2": 0.0,
+      "deltaE_aa": 0.0,
+      "deltaE_at": 0.0,
+      "deltaE_bg": 0.0,
+      "deltaE_total": 0.0,
+      "dotE_aa_s0": 0.0,
+      "dotE_aa_s1": 0.0,
+      "dotE_aa_s2": 0.0,
+      "dotE_additivity_abs_error_s0": 0.0,
+      "dotE_additivity_abs_error_s1": 0.0,
+      "dotE_additivity_abs_error_s2": 0.0,
+      "dotE_additivity_rel_error_s0": 0.0,
+      "dotE_additivity_rel_error_s1": 0.0,
+      "dotE_additivity_rel_error_s2": 0.0,
+      "dotE_at_s0": 0.0,
+      "dotE_at_s1": 0.0,
+      "dotE_at_s2": 0.0,
+      "dotE_bg_s0": 0.0,
+      "dotE_bg_s1": 0.0,
+      "dotE_bg_s2": 0.0,
+      "dotE_total_s0": 0.0,
+      "dotE_total_s1": 0.0,
+      "dotE_total_s2": 0.0,
+      "dt": 0.0,
+      "pi_at_max_s0": 0.0,
+      "pi_at_max_s1": 0.0,
+      "pi_at_max_s2": 0.0,
+      "pt_z_norm2_max_s0": 0.0,
+      "pt_z_norm2_max_s1": 0.0,
+      "pt_z_norm2_max_s2": 0.0,
+      "step": 0.0,
+      "time_end": 0.0,
+      "time_start": 0.0
+    },
+    "history_rows": 1912,
+    "metric_abs_errors": {
+      "common_entropy_residual": 0.0,
+      "density_overshoot": 0.0,
+      "density_tv_excess": 0.0,
+      "density_undershoot": 0.0,
+      "entropy_interface_count": 0,
+      "entropy_violation_count": 0,
+      "front_generated_harmonic_2": 0.0,
+      "front_generated_harmonic_3": 0.0,
+      "front_high_k_energy": 0.0,
+      "front_high_k_fraction": 0.0,
+      "front_position_mean": 0.0,
+      "front_rms": 0.0,
+      "front_seeded_amplitude": 0.0,
+      "front_width_max": 0.0,
+      "front_width_mean": 0.0,
+      "front_width_median": 0.0,
+      "front_width_min": 0.0,
+      "front_width_std": 0.0,
+      "minimum_common_entropy_residual": 0.0,
+      "p_min": 0.0,
+      "pressure_overshoot": 0.0,
+      "pressure_tv_excess": 0.0,
+      "pressure_undershoot": 0.0,
+      "rho_min": 0.0,
+      "step": 0,
+      "time": 0.0,
+      "transverse_generated_harmonic_2": 0.0,
+      "transverse_high_k_energy": 0.0,
+      "transverse_high_k_fraction": 0.0,
+      "transverse_kinetic_energy": 0.0,
+      "transverse_seeded_amplitude": 0.0
+    },
+    "new_integration": true,
+    "note": "Only recorded global channel/stage columns compared; localization integrals deferred to P4.",
+    "relative_tolerance": 1e-10,
+    "result_sha256": "55b793a5621ae66358f201b093b318e62a3e1b6a1a0fb323403302033be26dbe",
+    "run_id": "784371a2-e1f2-4d7e-becd-35db931253a2",
+    "state_comparison": "BITWISE",
+    "state_l2_relative_error": 0.0,
+    "state_max_abs_error": 0.0,
+    "status": "PASS",
+    "wall_seconds": 317.3163413000293
+  },
+  "formal_run_id": "784371a2-e1f2-4d7e-becd-35db931253a2",
+  "p2_tests": {
+    "passed": 37
+  },
+  "parameter_effect": {
+    "final_state_max_abs_difference": 0.7445417394433349,
+    "same_initialization_and_time_protocol": true,
+    "status": "PASS",
+    "zero_channel_exact": true
+  },
+  "references_before": [
+    {
+      "path": "corrected_physics_reproduction_v1/case8/05_case8_D_u/final_state.npz",
+      "sha256": "ccd5a9197df56240e15afc734cdffc421df8e50cd5660d8ba8341c5ade45c889"
+    },
+    {
+      "path": "corrected_physics_reproduction_v1/case8/05_case8_D_u/case_row.json",
+      "sha256": "1de2da7939ce64b2b7ca9c5b4afe7be81cd132e4cf7338220133696ed89443ab"
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2B_case8_formal/runs/case8_D_u/run_result.json",
+      "sha256": "e98253812bb7c3b4eb0f78514e3aa4b8ead67f27b22f77a3eed44ceebb87bd64"
+    },
+    {
+      "path": "jcp_extension_v1/J2_entropy_diagnostics/J2B_case8_formal/runs/case8_D_u/stage_weighted_history.csv",
+      "sha256": "a4fe0ec332b623df3ed7001fd9839ba7ad8c474924588dae419f4e8741db1ea9"
+    }
+  ],
+  "runs": [
+    {
+      "accepted_steps": 478,
+      "actual_calls": {
+        "evolution_flux_calls": 2868,
+        "flux": 2870,
+        "observed_shapes": [
+          {
+            "left": [
+              16,
+              65,
+              4
+            ],
+            "normal": [
+              1.0,
+              0.0
+            ],
+            "right": [
+              16,
+              65,
+              4
+            ]
+          },
+          {
+            "left": [
+              17,
+              64,
+              4
+            ],
+            "normal": [
+              0.0,
+              1.0
+            ],
+            "right": [
+              17,
+              64,
+              4
+            ]
+          }
+        ],
+        "q_aa": 3.96,
+        "q_at": 0.0,
+        "rhs": 1434
+      },
+      "channel_totals": {
+        "E_aa": 0.7653665145020011,
+        "E_at": 0.0,
+        "E_bg": 0.26196563316526983,
+        "E_total": 1.0273321476672717
+      },
+      "dt": 8.368200836820084e-05,
+      "effective_time": {
+        "checkpoint_steps": [
+          0,
+          96,
+          191,
+          287,
+          382,
+          478
+        ],
+        "checkpoint_times": [
+          0.0,
+          0.008033472803347281,
+          0.01598326359832636,
+          0.024016736401673643,
+          0.03196652719665272,
+          0.04
+        ],
+        "dt": 8.368200836820084e-05,
+        "executed_final_time": 0.04,
+        "executed_steps": 478,
+        "initial_wave_rate": 597.1128821220123,
+        "paper_protocol_match": false,
+        "raw_dt": 8.373626075912252e-05,
+        "requested_final_time": 0.04,
+        "steps": 478
+      },
+      "final_state_hash": "b321d4d0f414d4c5e905ef020000487667f8b147b602f49e866ba2d9202c43b1",
+      "finished_at": "2026-10-03T04:34:53.387245+00:00",
+      "initial_state_hash": "9e2500a632e4dca360119598f2645f1898f68569ccfcd6ce94cd202efbd72cb9",
+      "label": "Run_A_B_u_coefficients",
+      "result_sha256": "e1d93bc79c8c1aa46fa73cbf27e4e527f8fce3c4cfa3af6c6ba379a04df60d02",
+      "run_id": "62ef250d-c95f-4719-9e11-6ca65886e648",
+      "started_at": "2026-10-03T04:34:36.994376+00:00",
+      "wall_seconds": 18.5724122999236
+    },
+    {
+      "accepted_steps": 478,
+      "actual_calls": {
+        "evolution_flux_calls": 2868,
+        "flux": 2870,
+        "observed_shapes": [
+          {
+            "left": [
+              16,
+              65,
+              4
+            ],
+            "normal": [
+              1.0,
+              0.0
+            ],
+            "right": [
+              16,
+              65,
+              4
+            ]
+          },
+          {
+            "left": [
+              17,
+              64,
+              4
+            ],
+            "normal": [
+              0.0,
+              1.0
+            ],
+            "right": [
+              17,
+              64,
+              4
+            ]
+          }
+        ],
+        "q_aa": 3.96,
+        "q_at": 0.396,
+        "rhs": 1434
+      },
+      "channel_totals": {
+        "E_aa": 0.7657586414927807,
+        "E_at": 0.0015385656281803953,
+        "E_bg": 0.2603519778427781,
+        "E_total": 1.0276491849637395
+      },
+      "dt": 8.368200836820084e-05,
+      "effective_time": {
+        "checkpoint_steps": [
+          0,
+          96,
+          191,
+          287,
+          382,
+          478
+        ],
+        "checkpoint_times": [
+          0.0,
+          0.008033472803347281,
+          0.01598326359832636,
+          0.024016736401673643,
+          0.03196652719665272,
+          0.04
+        ],
+        "dt": 8.368200836820084e-05,
+        "executed_final_time": 0.04,
+        "executed_steps": 478,
+        "initial_wave_rate": 597.1128821220123,
+        "paper_protocol_match": false,
+        "raw_dt": 8.373626075912252e-05,
+        "requested_final_time": 0.04,
+        "steps": 478
+      },
+      "final_state_hash": "a8a8bbb4ef8ba37fb39856987ac5a0c5b84797d92d2d96c109e58512daf44cd9",
+      "finished_at": "2026-10-03T04:35:10.997185+00:00",
+      "initial_state_hash": "9e2500a632e4dca360119598f2645f1898f68569ccfcd6ce94cd202efbd72cb9",
+      "label": "Run_B_D_u_coefficients",
+      "result_sha256": "63fe71bbd3b92b87fd84cc4f927e20161ef57b95fc46e73359d4cd4b0568eede",
+      "run_id": "f49bd79a-d4d1-480d-93da-00890496b8bf",
+      "started_at": "2026-10-03T04:34:55.048116+00:00",
+      "wall_seconds": 17.552406899863854
+    }
+  ],
+  "scope": "Current-workspace P2 recheck: two new full fast runs and one new full formal D_u integration. Historical acceptance and benchmark preserved.",
+  "source_manifest_sha256": "4469ae2bb772fcb7741ee516128bab85c2dd8cadcfe3e8953b03c90d2f4b3691",
+  "source_preservation": {
+    "after_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "bytes": 5429811970,
+    "checks": [
+      "paths",
+      "size",
+      "mtime_ns",
+      "SHA-256"
+    ],
+    "files": 27843,
+    "original_locked_manifest_sha256": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+    "status": "PASS"
+  },
+  "started_at": "2026-10-03T04:34:02.502956+00:00",
+  "status": "PASS"
+}

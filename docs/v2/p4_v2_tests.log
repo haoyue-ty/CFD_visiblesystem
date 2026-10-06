@@ -1,0 +1,29 @@
+....................................s........................F.......... [ 29%]
+........................................................................ [ 58%]
+........................................................................ [ 88%]
+.............................                                            [100%]
+================================== FAILURES ===================================
+__________ test_standalone_capabilities_do_not_enable_web_execution ___________
+
+client = <FlaskClient <Flask 'backend.core.app'>>
+
+    def test_standalone_capabilities_do_not_enable_web_execution(client):
+        response = client.get('/api/v2/cases')
+        assert response.status_code == 200
+        case = response.json['data']['cases'][0]
+        assert response.json['request_id'] == response.headers['X-Request-ID']
+        assert not response.json['data']['natural_language_available']
+        assert case['input_validation_status'] == 'IMPLEMENTED'
+        assert case['execution_status'] == 'STANDALONE_VERIFIED'
+        assert not case['execution_available']
+        assert len(case['templates']) == 5
+        assert case['templates'][0]['benchmark_status'] == 'PASSED'
+        assert all(c['execution_verified'] for c in case['capabilities'] if c['scope'] == 'INPUT' and c['validation_ready'])
+>       assert all(not c['execution_verified'] for c in case['capabilities'] if c['scope'] == 'OUTPUT' or not c['validation_ready'])
+E       assert False
+E        +  where False = all(<generator object test_standalone_capabilities_do_not_enable_web_execution.<locals>.<genexpr> at 0x00000242AA4FC450>)
+
+tests\v2_p1\test_experiments.py:63: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/v2_p1/test_experiments.py::test_standalone_capabilities_do_not_enable_web_execution
+1 failed, 243 passed, 1 skipped in 125.49s (0:02:05)

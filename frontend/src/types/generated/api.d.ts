@@ -803,6 +803,417 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v2/cases": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Case 8 配置创建与验证；不创建 Run、不启动 CFD。 */
+        get: operations["V2_CASES"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/experiments/validate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Case 8 配置创建与验证；不创建 Run、不启动 CFD。 */
+        post: operations["V2_VALIDATE_EXPERIMENT"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/experiments/parse-natural-language": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Case 8 配置创建与验证；不创建 Run、不启动 CFD。 */
+        post: operations["V2_PARSE_EXPERIMENT"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_LIST_RUNS"];
+        put?: never;
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        post: operations["V2_CREATE_RUN"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_GET_RUN"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        post: operations["V2_CANCEL_RUN"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_EVENTS"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_HISTORY"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/snapshots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_SNAPSHOTS"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/snapshot/{snapshot_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_DENSITY"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/result": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_RESULT"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/evidence": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_EVIDENCE"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/snapshot/{snapshot_id}/field": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_FIELD"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/snapshot/{snapshot_id}/faces": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_FACES"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/snapshot/{snapshot_id}/view-context": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 持久运行、单 worker 队列、真实进度与 Density。 */
+        get: operations["V2_RUN_VIEW_CONTEXT"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/ai/runs/{run_id}/interpret": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description 基于已验证科学结果的证据约束解读；按结果、prompt 和模型缓存。 */
+        post: operations["V2_AI_INTERPRET"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/ai/chat": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description 绑定 Run 和后端重算 view-context 的无工具科研问答。 */
+        post: operations["V2_AI_CHAT"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/reports/{run_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 生成或核查自包含、版本化 HTML 报告；只读已验证 AI 缓存，不调用 provider。 */
+        get: operations["V2_REPORT_STATUS"];
+        put?: never;
+        /** @description 生成或核查自包含、版本化 HTML 报告；只读已验证 AI 缓存，不调用 provider。 */
+        post: operations["V2_REPORT_GENERATE"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/reports/{run_id}/html": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 校验后的独立 HTML；全部 SVG 与数据内嵌。 */
+        get: operations["V2_REPORT_HTML"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/comparisons": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description 同条件科学对比与预算受控的串行 q_aa/q_at 扫描。 */
+        post: operations["V2_COMPARE_RUNS"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/sweeps/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description 同条件科学对比与预算受控的串行 q_aa/q_at 扫描。 */
+        post: operations["V2_PREVIEW_SWEEP"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/sweeps": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 同条件科学对比与预算受控的串行 q_aa/q_at 扫描。 */
+        get: operations["V2_LIST_SWEEPS"];
+        put?: never;
+        /** @description 同条件科学对比与预算受控的串行 q_aa/q_at 扫描。 */
+        post: operations["V2_CREATE_SWEEP"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/sweeps/{sweep_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 同条件科学对比与预算受控的串行 q_aa/q_at 扫描。 */
+        get: operations["V2_GET_SWEEP"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/sweeps/{sweep_id}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description 同条件科学对比与预算受控的串行 q_aa/q_at 扫描。 */
+        post: operations["V2_CANCEL_SWEEP"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -4911,6 +5322,2024 @@ export interface components {
         };
         /** ApiEnvelope[RefinementSummary] */
         ApiEnvelope_RefinementSummary_: components["schemas"]["AvailableEnvelope_RefinementSummary_"] | components["schemas"]["PartialEnvelope_RefinementSummary_"] | components["schemas"]["FailedEnvelope"];
+        /** LiveCase */
+        LiveCase: {
+            /**
+             * Case Id
+             * @default case8
+             * @constant
+             */
+            case_id: "case8";
+            /** Label */
+            label: string;
+            /** Capability Revision */
+            capability_revision: string;
+            /** Source Manifest Revision */
+            source_manifest_revision: string;
+            /** Protocol Id */
+            protocol_id: string;
+            /**
+             * Input Validation Status
+             * @default IMPLEMENTED
+             * @constant
+             */
+            input_validation_status: "IMPLEMENTED";
+            /**
+             * Execution Status
+             * @default STANDALONE_VERIFIED
+             * @enum {string}
+             */
+            execution_status: "STANDALONE_VERIFIED" | "LIVE_AVAILABLE";
+            /**
+             * Execution Available
+             * @default false
+             */
+            execution_available: boolean;
+            /** Limitations */
+            limitations: string[];
+            /** Grid Pairs */
+            grid_pairs: [
+                number,
+                number
+            ][];
+            /** Capabilities */
+            capabilities: components["schemas"]["ParameterCapability"][];
+            /** Templates */
+            templates: components["schemas"]["LiveTemplate"][];
+        };
+        /** LiveCases */
+        LiveCases: {
+            /** Cases */
+            cases: components["schemas"]["LiveCase"][];
+            /** Natural Language Available */
+            natural_language_available: boolean;
+        };
+        /** LiveDiscretization */
+        LiveDiscretization: {
+            /**
+             * Reconstruction
+             * @default FIRST_ORDER
+             * @constant
+             */
+            reconstruction: "FIRST_ORDER";
+            /**
+             * X Lower
+             * @default PRE_SHOCK_INFLOW
+             * @constant
+             */
+            x_lower: "PRE_SHOCK_INFLOW";
+            /**
+             * X Upper
+             * @default OUTFLOW
+             * @constant
+             */
+            x_upper: "OUTFLOW";
+            /**
+             * Y Boundary
+             * @default PERIODIC
+             * @constant
+             */
+            y_boundary: "PERIODIC";
+            /**
+             * Positivity Clipping
+             * @default false
+             */
+            positivity_clipping: boolean;
+            /**
+             * Artificial Viscosity
+             * @default false
+             */
+            artificial_viscosity: boolean;
+        };
+        /** LiveDomain */
+        LiveDomain: {
+            /**
+             * X
+             * @default [
+             *       0,
+             *       1
+             *     ]
+             */
+            x: [
+                number,
+                number
+            ];
+            /**
+             * Y
+             * @default [
+             *       0,
+             *       1
+             *     ]
+             */
+            y: [
+                number,
+                number
+            ];
+        };
+        /** LiveExperimentConfig */
+        LiveExperimentConfig: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /**
+             * Protocol Revision
+             * @default case8.protocol.p1.1
+             * @constant
+             */
+            protocol_revision: "case8.protocol.p1.1";
+            /**
+             * Case Id
+             * @constant
+             */
+            case_id: "case8";
+            /**
+             * Profile
+             * @enum {string}
+             */
+            profile: "fast" | "paper" | "custom";
+            physics: components["schemas"]["LivePhysics"];
+            grid: components["schemas"]["LiveGrid"];
+            time: components["schemas"]["LiveTime"];
+            method: components["schemas"]["LiveMethod"];
+            discretization: components["schemas"]["LiveDiscretization"];
+            output: components["schemas"]["LiveOutput"];
+        };
+        /** LiveGrid */
+        LiveGrid: {
+            /** Nx */
+            nx: number;
+            /** Ny */
+            ny: number;
+            domain: components["schemas"]["LiveDomain"];
+        };
+        /** LiveInitialCondition */
+        LiveInitialCondition: {
+            /**
+             * Base
+             * @default STATIONARY_NORMAL_SHOCK
+             * @constant
+             */
+            base: "STATIONARY_NORMAL_SHOCK";
+            /**
+             * Front Center
+             * @default 0.5
+             */
+            front_center: number;
+            /**
+             * Corrugation Amplitude
+             * @default 0.0125
+             */
+            corrugation_amplitude: number;
+            /**
+             * Wavelength Count
+             * @default 4
+             */
+            wavelength_count: number;
+            /**
+             * Transition Cells
+             * @default 1
+             */
+            transition_cells: number;
+            /**
+             * Transverse Seed Sound Speed Factor
+             * @default 0.01
+             */
+            transverse_seed_sound_speed_factor: number;
+            /**
+             * Transverse Seed Width
+             * @default 0.04
+             */
+            transverse_seed_width: number;
+            /**
+             * Transverse Seed Phase
+             * @default 0
+             */
+            transverse_seed_phase: number;
+        };
+        /** LiveMethod */
+        LiveMethod: {
+            /**
+             * Method Id
+             * @default cross_mode_ec_unified_v1
+             * @constant
+             */
+            method_id: "cross_mode_ec_unified_v1";
+            /** Q Aa */
+            q_aa: number;
+            /** Q At */
+            q_at: number;
+        };
+        /** LiveOutput */
+        LiveOutput: {
+            /**
+             * Snapshot Policy
+             * @default SOURCE_CHECKPOINT_FRACTIONS
+             * @constant
+             */
+            snapshot_policy: "SOURCE_CHECKPOINT_FRACTIONS";
+            /**
+             * Checkpoint Fractions
+             * @default [
+             *       0,
+             *       0.2,
+             *       0.4,
+             *       0.6,
+             *       0.8,
+             *       1
+             *     ]
+             */
+            checkpoint_fractions: [
+                number,
+                number,
+                number,
+                number,
+                number,
+                number
+            ];
+        };
+        /** LivePhysics */
+        LivePhysics: {
+            /**
+             * Mach
+             * @default 6
+             */
+            mach: number;
+            /**
+             * Gamma
+             * @default 1.4
+             */
+            gamma: number;
+            initial_condition: components["schemas"]["LiveInitialCondition"];
+        };
+        /** LiveTemplate */
+        LiveTemplate: {
+            /** Template Id */
+            template_id: string;
+            /** Label */
+            label: string;
+            /**
+             * Profile
+             * @enum {string}
+             */
+            profile: "fast" | "paper";
+            /**
+             * Benchmark Status
+             * @enum {string}
+             */
+            benchmark_status: "PENDING" | "PASSED" | "NOT_APPLICABLE";
+            config: components["schemas"]["LiveExperimentConfig"];
+        };
+        /** LiveTime */
+        LiveTime: {
+            /** Cfl */
+            cfl: number;
+            /** Final Time */
+            final_time: number;
+            /**
+             * Integrator
+             * @default SSP_RK3
+             * @constant
+             */
+            integrator: "SSP_RK3";
+            /**
+             * Dt Strategy
+             * @default INITIAL_STATE_FIXED_STEP
+             * @constant
+             */
+            dt_strategy: "INITIAL_STATE_FIXED_STEP";
+        };
+        /** ParameterCapability */
+        ParameterCapability: {
+            /** Field Path */
+            field_path: string;
+            /** Label */
+            label: string;
+            /**
+             * Scope
+             * @default INPUT
+             * @enum {string}
+             */
+            scope: "INPUT" | "OUTPUT";
+            /**
+             * Support
+             * @enum {string}
+             */
+            support: "FIXED" | "CANDIDATE" | "UNSUPPORTED";
+            /** Verified Values */
+            verified_values: unknown[];
+            /** Candidate Values */
+            candidate_values: unknown[];
+            /** Unit */
+            unit: string;
+            /** Source Refs */
+            source_refs: string[];
+            /** Required Stage */
+            required_stage: string;
+            /** Validation Ready */
+            validation_ready: boolean;
+            /**
+             * Execution Verified
+             * @default false
+             */
+            execution_verified: boolean;
+            /** Reason */
+            reason: string;
+        };
+        /** V2Envelope[LiveCases] */
+        V2Envelope_LiveCases_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["LiveCases"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** V2ErrorBody */
+        V2ErrorBody: {
+            /** Code */
+            code: string;
+            /** Message */
+            message: string;
+            /** Retryable */
+            retryable: boolean;
+            target: components["schemas"]["V2ErrorTarget"];
+            /** Details */
+            details: components["schemas"]["V2FieldIssue"][];
+        };
+        /** V2ErrorTarget */
+        V2ErrorTarget: {
+            /**
+             * Resource Type
+             * @default experiment
+             */
+            resource_type: string;
+            /**
+             * Identity
+             * @default null
+             */
+            identity: string | null;
+        };
+        /** V2FieldIssue */
+        V2FieldIssue: {
+            /** Field */
+            field: string;
+            /** Reason */
+            reason: string;
+        };
+        /** V2FailedEnvelope */
+        V2FailedEnvelope: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            error: components["schemas"]["V2ErrorBody"];
+        };
+        /** V2ProtocolDiff */
+        V2ProtocolDiff: {
+            /** Field */
+            field: string;
+            /** Expected */
+            expected: unknown;
+            /** Actual */
+            actual: unknown;
+        };
+        /** ValidatedExperiment */
+        ValidatedExperiment: {
+            normalized_config: components["schemas"]["LiveExperimentConfig"];
+            /**
+             * Requested Profile
+             * @enum {string}
+             */
+            requested_profile: "fast" | "paper" | "custom";
+            /**
+             * Classification
+             * @enum {string}
+             */
+            classification: "LIVE_FAST_RUN" | "LIVE_PAPER_PROFILE" | "PAPER_SCALE_CUSTOM" | "CUSTOM_RUN";
+            /** Protocol Diff */
+            protocol_diff: components["schemas"]["V2ProtocolDiff"][];
+            /** Output Diff */
+            output_diff: components["schemas"]["V2ProtocolDiff"][];
+            /** Warnings */
+            warnings: string[];
+            /** Unsupported Fields */
+            unsupported_fields: components["schemas"]["V2FieldIssue"][];
+            /** Config Hash */
+            config_hash: string;
+            /** Capability Revision */
+            capability_revision: string;
+            /**
+             * Execution Available
+             * @default false
+             */
+            execution_available: boolean;
+        };
+        /** V2Envelope[ValidatedExperiment] */
+        V2Envelope_ValidatedExperiment_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["ValidatedExperiment"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** ExperimentSubmission */
+        Input_ExperimentSubmission: {
+            /**
+             * Input Mode
+             * @enum {string}
+             */
+            input_mode: "template" | "form" | "natural_language";
+            /**
+             * Template Id
+             * @default null
+             */
+            template_id: string | null;
+            /**
+             * Natural Language Text
+             * @default null
+             */
+            natural_language_text: string | null;
+            /**
+             * Parser Version
+             * @default null
+             */
+            parser_version: string | null;
+            /** Capability Revision */
+            capability_revision: string;
+        };
+        /** LiveDiscretization */
+        Input_LiveDiscretization: {
+            /**
+             * Reconstruction
+             * @default FIRST_ORDER
+             * @constant
+             */
+            reconstruction: "FIRST_ORDER";
+            /**
+             * X Lower
+             * @default PRE_SHOCK_INFLOW
+             * @constant
+             */
+            x_lower: "PRE_SHOCK_INFLOW";
+            /**
+             * X Upper
+             * @default OUTFLOW
+             * @constant
+             */
+            x_upper: "OUTFLOW";
+            /**
+             * Y Boundary
+             * @default PERIODIC
+             * @constant
+             */
+            y_boundary: "PERIODIC";
+            /**
+             * Positivity Clipping
+             * @default false
+             */
+            positivity_clipping: boolean;
+            /**
+             * Artificial Viscosity
+             * @default false
+             */
+            artificial_viscosity: boolean;
+        };
+        /** LiveDomain */
+        Input_LiveDomain: {
+            /**
+             * X
+             * @default [
+             *       0,
+             *       1
+             *     ]
+             */
+            x: [
+                number,
+                number
+            ];
+            /**
+             * Y
+             * @default [
+             *       0,
+             *       1
+             *     ]
+             */
+            y: [
+                number,
+                number
+            ];
+        };
+        /** LiveExperimentConfig */
+        Input_LiveExperimentConfig: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /**
+             * Protocol Revision
+             * @default case8.protocol.p1.1
+             * @constant
+             */
+            protocol_revision: "case8.protocol.p1.1";
+            /**
+             * Case Id
+             * @constant
+             */
+            case_id: "case8";
+            /**
+             * Profile
+             * @enum {string}
+             */
+            profile: "fast" | "paper" | "custom";
+            physics?: components["schemas"]["Input_LivePhysics"];
+            grid: components["schemas"]["Input_LiveGrid"];
+            time: components["schemas"]["Input_LiveTime"];
+            method: components["schemas"]["Input_LiveMethod"];
+            discretization?: components["schemas"]["Input_LiveDiscretization"];
+            output?: components["schemas"]["Input_LiveOutput"];
+        };
+        /** LiveGrid */
+        Input_LiveGrid: {
+            /** Nx */
+            nx: number;
+            /** Ny */
+            ny: number;
+            domain?: components["schemas"]["Input_LiveDomain"];
+        };
+        /** LiveInitialCondition */
+        Input_LiveInitialCondition: {
+            /**
+             * Base
+             * @default STATIONARY_NORMAL_SHOCK
+             * @constant
+             */
+            base: "STATIONARY_NORMAL_SHOCK";
+            /**
+             * Front Center
+             * @default 0.5
+             */
+            front_center: number;
+            /**
+             * Corrugation Amplitude
+             * @default 0.0125
+             */
+            corrugation_amplitude: number;
+            /**
+             * Wavelength Count
+             * @default 4
+             */
+            wavelength_count: number;
+            /**
+             * Transition Cells
+             * @default 1
+             */
+            transition_cells: number;
+            /**
+             * Transverse Seed Sound Speed Factor
+             * @default 0.01
+             */
+            transverse_seed_sound_speed_factor: number;
+            /**
+             * Transverse Seed Width
+             * @default 0.04
+             */
+            transverse_seed_width: number;
+            /**
+             * Transverse Seed Phase
+             * @default 0
+             */
+            transverse_seed_phase: number;
+        };
+        /** LiveMethod */
+        Input_LiveMethod: {
+            /**
+             * Method Id
+             * @default cross_mode_ec_unified_v1
+             * @constant
+             */
+            method_id: "cross_mode_ec_unified_v1";
+            /** Q Aa */
+            q_aa: number;
+            /** Q At */
+            q_at: number;
+        };
+        /** LiveOutput */
+        Input_LiveOutput: {
+            /**
+             * Snapshot Policy
+             * @default SOURCE_CHECKPOINT_FRACTIONS
+             * @constant
+             */
+            snapshot_policy: "SOURCE_CHECKPOINT_FRACTIONS";
+            /**
+             * Checkpoint Fractions
+             * @default [
+             *       0,
+             *       0.2,
+             *       0.4,
+             *       0.6,
+             *       0.8,
+             *       1
+             *     ]
+             */
+            checkpoint_fractions: [
+                number,
+                number,
+                number,
+                number,
+                number,
+                number
+            ];
+        };
+        /** LivePhysics */
+        Input_LivePhysics: {
+            /**
+             * Mach
+             * @default 6
+             */
+            mach: number;
+            /**
+             * Gamma
+             * @default 1.4
+             */
+            gamma: number;
+            initial_condition?: components["schemas"]["Input_LiveInitialCondition"];
+        };
+        /** LiveTime */
+        Input_LiveTime: {
+            /** Cfl */
+            cfl: number;
+            /** Final Time */
+            final_time: number;
+            /**
+             * Integrator
+             * @default SSP_RK3
+             * @constant
+             */
+            integrator: "SSP_RK3";
+            /**
+             * Dt Strategy
+             * @default INITIAL_STATE_FIXED_STEP
+             * @constant
+             */
+            dt_strategy: "INITIAL_STATE_FIXED_STEP";
+        };
+        /** ValidateExperimentRequest */
+        Input_ValidateExperimentRequest: {
+            config: components["schemas"]["Input_LiveExperimentConfig"];
+            submission: components["schemas"]["Input_ExperimentSubmission"];
+        };
+        /** ExperimentConfigDraft */
+        ExperimentConfigDraft: {
+            config: components["schemas"]["LiveExperimentConfig"] | null;
+            /** Template Id */
+            template_id: string | null;
+            /** Unresolved Fields */
+            unresolved_fields: components["schemas"]["V2FieldIssue"][];
+            /** Unsupported Fields */
+            unsupported_fields: components["schemas"]["V2FieldIssue"][];
+            /** Warnings */
+            warnings: string[];
+            /** Parser Version */
+            parser_version: string;
+            /** Source Text */
+            source_text: string;
+            /** Capability Revision */
+            capability_revision: string;
+            validated: components["schemas"]["ValidatedExperiment"] | null;
+            /** Ready For Confirmation */
+            ready_for_confirmation: boolean;
+        };
+        /** V2Envelope[ExperimentConfigDraft] */
+        V2Envelope_ExperimentConfigDraft_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["ExperimentConfigDraft"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** NaturalLanguageRequest */
+        Input_NaturalLanguageRequest: {
+            /** Text */
+            text: string;
+            /** Capability Revision */
+            capability_revision: string;
+        };
+        /** RunRecord */
+        RunRecord: {
+            /** Run Id */
+            run_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "QUEUED" | "STARTING" | "RUNNING" | "POSTPROCESSING" | "COMPLETED" | "FAILED" | "CANCELLED";
+            /** Created At */
+            created_at: string;
+            /**
+             * Started At
+             * @default null
+             */
+            started_at: string | null;
+            /**
+             * Finished At
+             * @default null
+             */
+            finished_at: string | null;
+            /**
+             * Heartbeat At
+             * @default null
+             */
+            heartbeat_at: string | null;
+            /**
+             * Worker Pid
+             * @default null
+             */
+            worker_pid: number | null;
+            /**
+             * Worker Identity
+             * @default null
+             */
+            worker_identity: string | null;
+            /**
+             * Manager Identity
+             * @default null
+             */
+            manager_identity: string | null;
+            /**
+             * Cancel Requested
+             * @default false
+             */
+            cancel_requested: boolean;
+            /**
+             * Completed Steps
+             * @default 0
+             */
+            completed_steps: number;
+            /**
+             * Planned Steps
+             * @default null
+             */
+            planned_steps: number | null;
+            /**
+             * Physical Time
+             * @default 0
+             */
+            physical_time: number;
+            /** Requested Final Time */
+            requested_final_time: number;
+            /**
+             * Failure
+             * @default null
+             */
+            failure: string | null;
+            /**
+             * Last Event Id
+             * @default 0
+             */
+            last_event_id: number;
+            experiment: components["schemas"]["ValidatedExperiment"];
+            /**
+             * Data Origin
+             * @default V2_LIVE_COMPUTATION
+             * @constant
+             */
+            data_origin: "V2_LIVE_COMPUTATION";
+            /** Log Tail */
+            log_tail: string[];
+        };
+        /** V2Envelope[RunRecord] */
+        V2Envelope_RunRecord_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunRecord"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** CreateRunRequest */
+        Input_CreateRunRequest: {
+            config: components["schemas"]["Input_LiveExperimentConfig"];
+            submission: components["schemas"]["Input_ExperimentSubmission"];
+            /** Idempotency Key */
+            idempotency_key: string;
+            /** Confirmed Config Hash */
+            confirmed_config_hash: string;
+        };
+        /** RunList */
+        RunList: {
+            /** Runs */
+            runs: components["schemas"]["RunRecord"][];
+            /** Total */
+            total: number;
+            /** Offset */
+            offset: number;
+            /** Limit */
+            limit: number;
+        };
+        /** V2Envelope[RunList] */
+        V2Envelope_RunList_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunList"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** RunListQuery */
+        Input_RunListQuery: {
+            /**
+             * Offset
+             * @default 0
+             */
+            offset: number;
+            /**
+             * Limit
+             * @default 20
+             */
+            limit: number;
+            /**
+             * Status
+             * @default null
+             */
+            status: ("QUEUED" | "STARTING" | "RUNNING" | "POSTPROCESSING" | "COMPLETED" | "FAILED" | "CANCELLED") | null;
+        };
+        /** RunPath */
+        Input_RunPath: {
+            /** Run Id */
+            run_id: string;
+        };
+        /** RunEventsQuery */
+        Input_RunEventsQuery: {
+            /** Run Id */
+            run_id: string;
+            /**
+             * After
+             * @default 0
+             */
+            after: number;
+        };
+        /** RunHistory */
+        RunHistory: {
+            /** Rows */
+            rows: {
+                [key: string]: number;
+            }[];
+            /** Total */
+            total: number;
+            /** Offset */
+            offset: number;
+        };
+        /** V2Envelope[RunHistory] */
+        V2Envelope_RunHistory_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunHistory"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** RunHistoryQuery */
+        Input_RunHistoryQuery: {
+            /** Run Id */
+            run_id: string;
+            /**
+             * Offset
+             * @default 0
+             */
+            offset: number;
+            /**
+             * Limit
+             * @default 100
+             */
+            limit: number;
+        };
+        /** RunSnapshotMeta */
+        RunSnapshotMeta: {
+            /** Snapshot Id */
+            snapshot_id: string;
+            /** Step */
+            step: number;
+            /** Time */
+            time: number;
+            /** Cell Shape */
+            cell_shape: number[];
+        };
+        /** RunSnapshots */
+        RunSnapshots: {
+            /** Snapshots */
+            snapshots: components["schemas"]["RunSnapshotMeta"][];
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "AVAILABLE" | "PENDING";
+        };
+        /** V2Envelope[RunSnapshots] */
+        V2Envelope_RunSnapshots_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunSnapshots"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** RunDensity */
+        RunDensity: {
+            /** Run Id */
+            run_id: string;
+            /** Snapshot Id */
+            snapshot_id: string;
+            /** Time */
+            time: number;
+            /** Shape */
+            shape: number[];
+            /** Axes */
+            axes: string[];
+            /** X */
+            x: number[];
+            /** Y */
+            y: number[];
+            /** Extent X */
+            extent_x: number[];
+            /** Extent Y */
+            extent_y: number[];
+            /**
+             * Unit
+             * @default model density
+             * @constant
+             */
+            unit: "model density";
+            /** Values */
+            values: number[];
+            /** Minimum */
+            minimum: number;
+            /** Maximum */
+            maximum: number;
+            /** Source Sha256 */
+            source_sha256: string;
+            /**
+             * Definition
+             * @default rho = conservative state[..., 0]; C order, y then x
+             * @constant
+             */
+            definition: "rho = conservative state[..., 0]; C order, y then x";
+        };
+        /** V2Envelope[RunDensity] */
+        V2Envelope_RunDensity_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunDensity"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** RunSnapshotQuery */
+        Input_RunSnapshotQuery: {
+            /** Run Id */
+            run_id: string;
+            /** Snapshot Id */
+            snapshot_id: string;
+        };
+        /** FieldDefinition */
+        FieldDefinition: {
+            /**
+             * Field Id
+             * @enum {string}
+             */
+            field_id: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+            /** Label */
+            label: string;
+            /** Unit */
+            unit: string;
+            /** Definition */
+            definition: string;
+        };
+        /** HashAsset */
+        HashAsset: {
+            /** Path */
+            path: string;
+            /** Sha256 */
+            sha256: string;
+        };
+        /** NativeFaceArray */
+        NativeFaceArray: {
+            /** Array Id */
+            array_id: string;
+            /** Label */
+            label: string;
+            /**
+             * Channel
+             * @enum {string}
+             */
+            channel: "bg" | "aa" | "at";
+            /**
+             * Location Type
+             * @enum {string}
+             */
+            location_type: "CARTESIAN_X_FACE" | "CARTESIAN_Y_FACE";
+            /**
+             * Quantity
+             * @enum {string}
+             */
+            quantity: "INSTANTANEOUS_PI" | "CUMULATIVE_SPATIAL_ALLOCATION";
+            /** Shape */
+            shape: number[];
+            /** Axes */
+            axes: string[];
+            /** X */
+            x: number[];
+            /** Y */
+            y: number[];
+            /** Unit */
+            unit: string;
+            /** Face Measure */
+            face_measure: number;
+            /** Time Start */
+            time_start: number;
+            /** Time End */
+            time_end: number;
+            /** Values */
+            values: number[];
+            /** Source Sha256 */
+            source_sha256: string;
+        };
+        /** ResultRuntime */
+        ResultRuntime: {
+            /** Started At */
+            started_at: string;
+            /** Finished At */
+            finished_at: string;
+            /** Accepted Steps */
+            accepted_steps: number;
+            /** Final Time */
+            final_time: number;
+            /** Dt */
+            dt: number;
+            /** Wall Seconds */
+            wall_seconds: number;
+            /** Solver Seconds */
+            solver_seconds: number;
+            /** Peak Rss Bytes */
+            peak_rss_bytes: number;
+        };
+        /** RunAllocation */
+        RunAllocation: {
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "AVAILABLE" | "UNAVAILABLE";
+            /** Reason */
+            reason: string | null;
+            /** Arrays */
+            arrays: components["schemas"]["NativeFaceArray"][] | null;
+            /** Scalar Totals */
+            scalar_totals: {
+                [key: string]: number;
+            } | null;
+            /** Definition */
+            definition: string;
+            /** Max Scalar Abs Error */
+            max_scalar_abs_error: number | null;
+        };
+        /** RunEntropy */
+        RunEntropy: {
+            /**
+             * Availability
+             * @default AVAILABLE
+             * @constant
+             */
+            availability: "AVAILABLE";
+            /** Unit */
+            unit: string;
+            /** Rk Weights */
+            rk_weights: number[];
+            /** Stage States */
+            stage_states: string[];
+            /** Face Measure Rule */
+            face_measure_rule: string;
+            /** Spatial Scope */
+            spatial_scope: string;
+            /** Cumulative Rule */
+            cumulative_rule: string;
+            /** Rows */
+            rows: {
+                [key: string]: number;
+            }[];
+            /** Totals */
+            totals: {
+                [key: string]: number;
+            };
+            /** Source Sha256 */
+            source_sha256: string;
+        };
+        /** RunMetric */
+        RunMetric: {
+            /** Metric Id */
+            metric_id: string;
+            /** Label */
+            label: string;
+            /** Value */
+            value: number | null;
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "AVAILABLE" | "UNAVAILABLE";
+            /** Reason */
+            reason: string | null;
+            /** Unit */
+            unit: string;
+            /** Definition */
+            definition: string;
+            /** Detector */
+            detector: string;
+            /** Window */
+            window: string;
+            /** Normalization */
+            normalization: string;
+            /** Applicable Conditions */
+            applicable_conditions: string;
+            /** Time */
+            time: number;
+            /** Resolution Limit */
+            resolution_limit: number | null;
+            /** Evidence Id */
+            evidence_id: string;
+        };
+        /** RunProvenance */
+        RunProvenance: {
+            /** Method Id */
+            method_id: string;
+            /** Method Sha256 */
+            method_sha256: string;
+            /** Source Manifest Revision */
+            source_manifest_revision: string;
+            /** Source Manifest Sha256 */
+            source_manifest_sha256: string;
+            /** Dependencies */
+            dependencies: components["schemas"]["HashAsset"][];
+            /** Software */
+            software: components["schemas"]["HashAsset"][];
+            /** Postprocess Version */
+            postprocess_version: string;
+            /** Postprocess Sha256 */
+            postprocess_sha256: string;
+            /** Solver Result Sha256 */
+            solver_result_sha256: string;
+            /** Effective Config Sha256 */
+            effective_config_sha256: string;
+            /** Outputs */
+            outputs: components["schemas"]["HashAsset"][];
+        };
+        /** ScientificIdentity */
+        ScientificIdentity: {
+            /** Run Id */
+            run_id: string;
+            /** Result Id */
+            result_id: string;
+            /** Evidence Id */
+            evidence_id: string;
+            /** Config Hash */
+            config_hash: string;
+            /** Classification */
+            classification: string;
+            /**
+             * Data Origin
+             * @default V2_LIVE_COMPUTATION
+             * @constant
+             */
+            data_origin: "V2_LIVE_COMPUTATION";
+            /** Verification */
+            verification: string;
+            /**
+             * Frozen
+             * @default false
+             * @constant
+             */
+            frozen: false;
+        };
+        /** ScientificRunResult */
+        ScientificRunResult: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Result Hash */
+            result_hash: string;
+            identity: components["schemas"]["ScientificIdentity"];
+            config: components["schemas"]["ValidatedExperiment"];
+            runtime: components["schemas"]["ResultRuntime"];
+            /** Fields */
+            fields: components["schemas"]["FieldDefinition"][];
+            /** Snapshots */
+            snapshots: components["schemas"]["RunSnapshotMeta"][];
+            entropy: components["schemas"]["RunEntropy"];
+            /** Metrics */
+            metrics: components["schemas"]["RunMetric"][];
+            allocation: components["schemas"]["RunAllocation"];
+            /** Limitations */
+            limitations: string[];
+            provenance: components["schemas"]["RunProvenance"];
+        };
+        /** V2Envelope[ScientificRunResult] */
+        V2Envelope_ScientificRunResult_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["ScientificRunResult"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** RunEvidence */
+        RunEvidence: {
+            /** Evidence Id */
+            evidence_id: string;
+            /** Result Hash */
+            result_hash: string;
+            identity: components["schemas"]["ScientificIdentity"];
+            config: components["schemas"]["ValidatedExperiment"];
+            /** Effective Config */
+            effective_config: {
+                [key: string]: unknown;
+            };
+            provenance: components["schemas"]["RunProvenance"];
+            /** Outputs */
+            outputs: components["schemas"]["HashAsset"][];
+            /** Supports */
+            supports: string[];
+            /** Does Not Support */
+            does_not_support: string[];
+            /** Limitations */
+            limitations: string[];
+        };
+        /** V2Envelope[RunEvidence] */
+        V2Envelope_RunEvidence_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunEvidence"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** ScientificField */
+        ScientificField: {
+            /** Run Id */
+            run_id: string;
+            /** Snapshot Id */
+            snapshot_id: string;
+            /**
+             * Field Id
+             * @enum {string}
+             */
+            field_id: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+            /** Label */
+            label: string;
+            /** Time */
+            time: number;
+            /** Shape */
+            shape: number[];
+            /** Axes */
+            axes: string[];
+            /** X */
+            x: number[];
+            /** Y */
+            y: number[];
+            /** Extent X */
+            extent_x: number[];
+            /** Extent Y */
+            extent_y: number[];
+            /** Unit */
+            unit: string;
+            /** Definition */
+            definition: string;
+            /** Values */
+            values: number[];
+            /** Minimum */
+            minimum: number;
+            /** Maximum */
+            maximum: number;
+            /** Source Sha256 */
+            source_sha256: string;
+            /**
+             * Availability
+             * @default AVAILABLE
+             * @constant
+             */
+            availability: "AVAILABLE";
+        };
+        /** V2Envelope[ScientificField] */
+        V2Envelope_ScientificField_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["ScientificField"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** RunFieldQuery */
+        Input_RunFieldQuery: {
+            /** Run Id */
+            run_id: string;
+            /** Snapshot Id */
+            snapshot_id: string;
+            /**
+             * Field
+             * @default density
+             * @enum {string}
+             */
+            field: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+        };
+        /** V2Envelope[list[NativeFaceArray]] */
+        V2Envelope_list_NativeFaceArray__: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            /** Data */
+            data: components["schemas"]["NativeFaceArray"][];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** RunViewContext */
+        RunViewContext: {
+            /** Run Id */
+            run_id: string;
+            /** Result Hash */
+            result_hash: string;
+            /** Evidence Id */
+            evidence_id: string;
+            /** Snapshot Id */
+            snapshot_id: string;
+            /** Snapshot Sha256 */
+            snapshot_sha256: string;
+            /**
+             * Field
+             * @enum {string}
+             */
+            field: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+            /** Time */
+            time: number;
+            /** Unit */
+            unit: string;
+            /** Region */
+            region: {
+                [key: string]: number;
+            } | null;
+            /**
+             * Sample Location
+             * @default CELL_CENTER
+             * @constant
+             */
+            sample_location: "CELL_CENTER";
+            /** Selected Count */
+            selected_count: number;
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "AVAILABLE" | "UNAVAILABLE";
+            /** Reason */
+            reason: string | null;
+            /** Minimum */
+            minimum: number | null;
+            /** Maximum */
+            maximum: number | null;
+            /** Mean */
+            mean: number | null;
+        };
+        /** V2Envelope[RunViewContext] */
+        V2Envelope_RunViewContext_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunViewContext"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** ViewContextQuery */
+        Input_ViewContextQuery: {
+            /** Run Id */
+            run_id: string;
+            /** Snapshot Id */
+            snapshot_id: string;
+            /**
+             * Field
+             * @default density
+             * @enum {string}
+             */
+            field: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+            /**
+             * X Min
+             * @default null
+             */
+            x_min: number | null;
+            /**
+             * X Max
+             * @default null
+             */
+            x_max: number | null;
+            /**
+             * Y Min
+             * @default null
+             */
+            y_min: number | null;
+            /**
+             * Y Max
+             * @default null
+             */
+            y_max: number | null;
+        };
+        /** AIAnalysis */
+        AIAnalysis: {
+            /** Run Id */
+            run_id: string;
+            /** Result Hash */
+            result_hash: string;
+            /** Context Hash */
+            context_hash: string;
+            /** Prompt Version */
+            prompt_version: string;
+            /** Model */
+            model: string;
+            /** Created At */
+            created_at: string;
+            /** Cached */
+            cached: boolean;
+            /** @default null */
+            interpretation: components["schemas"]["InterpretationContent"] | null;
+            /** @default null */
+            assistant: components["schemas"]["AssistantContent"] | null;
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceFact"][];
+            /** Limitations */
+            limitations: string[];
+            /** @default null */
+            current_view: components["schemas"]["RunViewContext"] | null;
+        };
+        /** AIClaim */
+        AIClaim: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "FACT" | "INTERPRETATION" | "LIMITATION";
+            /** Text */
+            text: string;
+            /** Evidence Refs */
+            evidence_refs: string[];
+        };
+        /** AssistantContent */
+        AssistantContent: {
+            /** Answer */
+            answer: components["schemas"]["AIClaim"][];
+            /** Limitations */
+            limitations: string[];
+        };
+        /** EvidenceFact */
+        EvidenceFact: {
+            /** Evidence Id */
+            evidence_id: string;
+            /** Label */
+            label: string;
+            /** Value */
+            value: number | string | boolean | null;
+            /** Unit */
+            unit: string;
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "AVAILABLE" | "UNAVAILABLE";
+            /**
+             * Reason
+             * @default null
+             */
+            reason: string | null;
+            /** Definition */
+            definition: string;
+        };
+        /** InterpretationContent */
+        InterpretationContent: {
+            summary: components["schemas"]["AIClaim"];
+            /** Key Findings */
+            key_findings: components["schemas"]["AIClaim"][];
+            /** Observations */
+            observations: components["schemas"]["AIClaim"][];
+            /** Limitations */
+            limitations: string[];
+            /** Suggested Questions */
+            suggested_questions: string[];
+        };
+        /** V2Envelope[AIAnalysis] */
+        V2Envelope_AIAnalysis_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["AIAnalysis"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** AIViewSelection */
+        Input_AIViewSelection: {
+            /** Snapshot Id */
+            snapshot_id: string;
+            /**
+             * Field
+             * @default density
+             * @enum {string}
+             */
+            field: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+            /**
+             * X Min
+             * @default null
+             */
+            x_min: number | null;
+            /**
+             * X Max
+             * @default null
+             */
+            x_max: number | null;
+            /**
+             * Y Min
+             * @default null
+             */
+            y_min: number | null;
+            /**
+             * Y Max
+             * @default null
+             */
+            y_max: number | null;
+        };
+        /** AIChatRequest */
+        Input_AIChatRequest: {
+            /** Run Id */
+            run_id: string;
+            /** Message */
+            message: string;
+            view: components["schemas"]["Input_AIViewSelection"];
+        };
+        /** ReportMetadata */
+        ReportMetadata: {
+            /** Run Id */
+            run_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "NOT_GENERATED" | "READY" | "STALE";
+            /** Result Hash */
+            result_hash: string;
+            /** Report Version */
+            report_version: string;
+            /** Renderer Sha256 */
+            renderer_sha256: string;
+            /** Scientific Context Hash */
+            scientific_context_hash: string;
+            /**
+             * Report Id
+             * @default null
+             */
+            report_id: string | null;
+            /**
+             * Created At
+             * @default null
+             */
+            created_at: string | null;
+            /**
+             * Html Sha256
+             * @default null
+             */
+            html_sha256: string | null;
+            /**
+             * Size Bytes
+             * @default null
+             */
+            size_bytes: number | null;
+            /**
+             * Ai Status
+             * @enum {string}
+             */
+            ai_status: "AVAILABLE" | "UNAVAILABLE";
+            /**
+             * Ai Reason
+             * @default null
+             */
+            ai_reason: string | null;
+            /**
+             * Ai Model
+             * @default null
+             */
+            ai_model: string | null;
+            /**
+             * Ai Prompt Version
+             * @default null
+             */
+            ai_prompt_version: string | null;
+            /**
+             * Ai Content Sha256
+             * @default null
+             */
+            ai_content_sha256: string | null;
+            /**
+             * Html Url
+             * @default null
+             */
+            html_url: string | null;
+        };
+        /** V2Envelope[ReportMetadata] */
+        V2Envelope_ReportMetadata_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["ReportMetadata"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** MetricComparison */
+        MetricComparison: {
+            /** Metric Id */
+            metric_id: string;
+            /** Label */
+            label: string;
+            /** Unit */
+            unit: string;
+            /** Definition */
+            definition: string;
+            /** Comparable */
+            comparable: boolean;
+            /** Reason */
+            reason: string | null;
+            /** A */
+            a: number | null;
+            /** B */
+            b: number | null;
+            /** B Minus A */
+            b_minus_a: number | null;
+        };
+        /** ProtocolDifference */
+        ProtocolDifference: {
+            /** Field */
+            field: string;
+            /** A */
+            a: unknown;
+            /** B */
+            b: unknown;
+            /** Affects Conditions */
+            affects_conditions: boolean;
+        };
+        /** RunComparison */
+        RunComparison: {
+            /**
+             * Version
+             * @default case8.comparison.p7.1
+             * @constant
+             */
+            version: "case8.comparison.p7.1";
+            /** Same Conditions */
+            same_conditions: boolean;
+            /** Differences */
+            differences: components["schemas"]["ProtocolDifference"][];
+            a: components["schemas"]["ScientificRunResult"];
+            b: components["schemas"]["ScientificRunResult"];
+            /** Common Snapshot Times */
+            common_snapshot_times: number[];
+            /** Snapshot Time */
+            snapshot_time: number | null;
+            field_a: components["schemas"]["ScientificField"] | null;
+            field_b: components["schemas"]["ScientificField"] | null;
+            /** Color Min */
+            color_min: number | null;
+            /** Color Max */
+            color_max: number | null;
+            /** Field Reason */
+            field_reason: string | null;
+            /** Metrics */
+            metrics: components["schemas"]["MetricComparison"][];
+            /** Limitations */
+            limitations: string[];
+        };
+        /** V2Envelope[RunComparison] */
+        V2Envelope_RunComparison_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunComparison"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** CompareRunsRequest */
+        Input_CompareRunsRequest: {
+            /** Run A */
+            run_a: string;
+            /** Run B */
+            run_b: string;
+            /**
+             * Field
+             * @default density
+             * @enum {string}
+             */
+            field: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+            /**
+             * Snapshot Time
+             * @default null
+             */
+            snapshot_time: number | null;
+        };
+        /** SweepPreview */
+        SweepPreview: {
+            /** Sweep Hash */
+            sweep_hash: string;
+            /** Experiments */
+            experiments: components["schemas"]["ValidatedExperiment"][];
+            /** Total Tasks */
+            total_tasks: number;
+            /** Max Tasks */
+            max_tasks: number;
+            /** Time Budget Seconds */
+            time_budget_seconds: number;
+            /** Warnings */
+            warnings: string[];
+        };
+        /** V2Envelope[SweepPreview] */
+        V2Envelope_SweepPreview_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["SweepPreview"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** SweepRequest */
+        Input_SweepRequest: {
+            config: components["schemas"]["Input_LiveExperimentConfig"];
+            submission: components["schemas"]["Input_ExperimentSubmission"];
+            /** Q Aa Values */
+            q_aa_values: number[];
+            /** Q At Values */
+            q_at_values: number[];
+            /**
+             * Max Tasks
+             * @default 4
+             */
+            max_tasks: number;
+            /**
+             * Time Budget Seconds
+             * @default 300
+             */
+            time_budget_seconds: number;
+        };
+        /** SweepItem */
+        SweepItem: {
+            /** Index */
+            index: number;
+            /** Q Aa */
+            q_aa: number;
+            /** Q At */
+            q_at: number;
+            /** Config Hash */
+            config_hash: string;
+            /** @default null */
+            run: components["schemas"]["RunRecord"] | null;
+            /**
+             * Status
+             * @default PENDING
+             * @enum {string}
+             */
+            status: "PENDING" | "QUEUED" | "STARTING" | "RUNNING" | "POSTPROCESSING" | "COMPLETED" | "FAILED" | "CANCELLED" | "SKIPPED";
+        };
+        /** SweepRecord */
+        SweepRecord: {
+            /** Sweep Id */
+            sweep_id: string;
+            /** Sweep Hash */
+            sweep_hash: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "QUEUED" | "RUNNING" | "CANCELLING" | "COMPLETED" | "FAILED" | "CANCELLED";
+            /** Created At */
+            created_at: string;
+            /**
+             * Finished At
+             * @default null
+             */
+            finished_at: string | null;
+            /** Time Budget Seconds */
+            time_budget_seconds: number;
+            /**
+             * Elapsed Seconds
+             * @default 0
+             */
+            elapsed_seconds: number;
+            /** Max Tasks */
+            max_tasks: number;
+            /** Total Tasks */
+            total_tasks: number;
+            /**
+             * Settled Tasks
+             * @default 0
+             */
+            settled_tasks: number;
+            /**
+             * Successful Tasks
+             * @default 0
+             */
+            successful_tasks: number;
+            /**
+             * Cancel Requested
+             * @default false
+             */
+            cancel_requested: boolean;
+            /**
+             * Failure
+             * @default null
+             */
+            failure: string | null;
+            /** Items */
+            items: components["schemas"]["SweepItem"][];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** V2Envelope[SweepRecord] */
+        V2Envelope_SweepRecord_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["SweepRecord"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** CreateSweepRequest */
+        Input_CreateSweepRequest: {
+            config: components["schemas"]["Input_LiveExperimentConfig"];
+            submission: components["schemas"]["Input_ExperimentSubmission"];
+            /** Q Aa Values */
+            q_aa_values: number[];
+            /** Q At Values */
+            q_at_values: number[];
+            /**
+             * Max Tasks
+             * @default 4
+             */
+            max_tasks: number;
+            /**
+             * Time Budget Seconds
+             * @default 300
+             */
+            time_budget_seconds: number;
+            /** Idempotency Key */
+            idempotency_key: string;
+            /** Confirmed Sweep Hash */
+            confirmed_sweep_hash: string;
+        };
+        /** SweepList */
+        SweepList: {
+            /** Sweeps */
+            sweeps: components["schemas"]["SweepRecord"][];
+            /** Total */
+            total: number;
+            /** Offset */
+            offset: number;
+            /** Limit */
+            limit: number;
+        };
+        /** V2Envelope[SweepList] */
+        V2Envelope_SweepList_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["SweepList"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** SweepListQuery */
+        Input_SweepListQuery: {
+            /**
+             * Offset
+             * @default 0
+             */
+            offset: number;
+            /**
+             * Limit
+             * @default 20
+             */
+            limit: number;
+        };
+        /** SweepPath */
+        Input_SweepPath: {
+            /** Sweep Id */
+            sweep_id: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -8724,6 +11153,2614 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_CASES: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_LiveCases_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_VALIDATE_EXPERIMENT: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_ValidateExperimentRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_ValidatedExperiment_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_PARSE_EXPERIMENT: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_NaturalLanguageRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_ExperimentConfigDraft_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_INVALID_OUTPUT */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_LIST_RUNS: {
+        parameters: {
+            query?: {
+                offset?: number;
+                limit?: number;
+                status?: ("QUEUED" | "STARTING" | "RUNNING" | "POSTPROCESSING" | "COMPLETED" | "FAILED" | "CANCELLED") | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunList_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_CREATE_RUN: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_CreateRunRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunRecord_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_GET_RUN: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunRecord_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_CANCEL_RUN: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunRecord_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_EVENTS: {
+        parameters: {
+            query?: {
+                after?: number;
+            };
+            header?: {
+                "Last-Event-ID"?: string;
+            };
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/event-stream": string;
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_HISTORY: {
+        parameters: {
+            query?: {
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunHistory_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_SNAPSHOTS: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunSnapshots_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_DENSITY: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+                snapshot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunDensity_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_RESULT: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_ScientificRunResult_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_EVIDENCE: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunEvidence_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_FIELD: {
+        parameters: {
+            query?: {
+                field?: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+            };
+            header?: never;
+            path: {
+                run_id: string;
+                snapshot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_ScientificField_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_FACES: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+                snapshot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_list_NativeFaceArray__"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_RUN_VIEW_CONTEXT: {
+        parameters: {
+            query?: {
+                field?: "density" | "pressure" | "velocity_x" | "velocity_y" | "speed" | "mach";
+                x_min?: number | null;
+                x_max?: number | null;
+                y_min?: number | null;
+                y_max?: number | null;
+            };
+            header?: never;
+            path: {
+                run_id: string;
+                snapshot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunViewContext_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CONFIG_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, RUN_RESULT_NOT_READY, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_QUEUE_FULL, EVENT_STREAM_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_AI_INTERPRET: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_AIAnalysis_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST, AI_INPUT_LIMIT */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_BUSY, AI_BUDGET_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, AI_CACHE_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_INVALID_OUTPUT */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_AI_CHAT: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_AIChatRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_AIAnalysis_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST, AI_INPUT_LIMIT */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_BUSY, AI_BUDGET_LIMIT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, AI_CACHE_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_INVALID_OUTPUT */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description AI_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_REPORT_STATUS: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_ReportMetadata_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, REPORT_NOT_READY */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description REPORT_BUSY */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_REPORT_GENERATE: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_ReportMetadata_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, REPORT_NOT_READY */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description REPORT_BUSY */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_REPORT_HTML: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/html": string;
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, REPORT_NOT_READY */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description REPORT_BUSY */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_COMPARE_RUNS: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_CompareRunsRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunComparison_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, COMPARISON_TIME_UNAVAILABLE, COMPARISON_DEFINITION_MISMATCH, SWEEP_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description SWEEP_QUEUE_FULL */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_OUTPUT_INVALID, INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_PREVIEW_SWEEP: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_SweepRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_SweepPreview_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, COMPARISON_TIME_UNAVAILABLE, COMPARISON_DEFINITION_MISMATCH, SWEEP_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description SWEEP_QUEUE_FULL */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_OUTPUT_INVALID, INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_LIST_SWEEPS: {
+        parameters: {
+            query?: {
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_SweepList_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, COMPARISON_TIME_UNAVAILABLE, COMPARISON_DEFINITION_MISMATCH, SWEEP_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description SWEEP_QUEUE_FULL */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_OUTPUT_INVALID, INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_CREATE_SWEEP: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_CreateSweepRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_SweepRecord_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, COMPARISON_TIME_UNAVAILABLE, COMPARISON_DEFINITION_MISMATCH, SWEEP_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description SWEEP_QUEUE_FULL */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_OUTPUT_INVALID, INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_GET_SWEEP: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sweep_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_SweepRecord_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, COMPARISON_TIME_UNAVAILABLE, COMPARISON_DEFINITION_MISMATCH, SWEEP_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description SWEEP_QUEUE_FULL */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_OUTPUT_INVALID, INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_CANCEL_SWEEP: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sweep_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_SweepRecord_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, COMPARISON_TIME_UNAVAILABLE, COMPARISON_DEFINITION_MISMATCH, SWEEP_CONFIRMATION_CONFLICT, IDEMPOTENCY_CONFLICT, CAPABILITY_REVISION_CONFLICT */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_PARAMETER, UNSUPPORTED_COMBINATION */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description SWEEP_QUEUE_FULL */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_OUTPUT_INVALID, INTERNAL_ERROR, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_SERVICE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
         };

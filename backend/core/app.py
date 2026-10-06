@@ -1,6 +1,6 @@
 from uuid import uuid4
 
-from flask import Flask, g
+from flask import Flask, g, request
 
 from backend.adapters import Case8Adapter, Case8AdapterProtocol
 from backend.api.allocation import register_allocation_operations
@@ -30,7 +30,7 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
                cylinder_adapter=_DEFAULT_ADAPTER,
                closure_adapter=_DEFAULT_ADAPTER,
                project: ProjectInfo | None = None,
-               configure_catalog=None) -> Flask:
+               configure_catalog=None, ai_client=None, run_store=None) -> Flask:
     settings = settings or Settings.from_env()
     if settings.enable_accounts:
         raise ValueError("Accounts must remain disabled in Phase 5A")
@@ -141,6 +141,22 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     closure_project = project.model_copy(update={"registry_revision": closure_registry.REGISTRY_REVISION,
                                                  "data_revision": closure_registry.DATA_REVISION})
     register_closure_operations(catalog, closure_project, closure_service)
+    from backend.ai.client import DeepSeekClient
+    from backend.api.v2.experiments import register_experiment_operations
+    ai_client = ai_client if ai_client is not None else DeepSeekClient(settings)
+    app.extensions["ai_client"] = ai_client
+    from backend.solver_runtime.run_store import RunStore
+    from backend.api.v2.runs import register_run_operations
+    run_store = run_store if run_store is not None else RunStore(settings)
+    app.extensions["run_store"] = run_store
+    register_experiment_operations(catalog, ai_client, run_store.manager_available)
+    register_run_operations(catalog, run_store)
+    from backend.api.v2.ai import register_ai_operations
+    register_ai_operations(catalog, run_store, ai_client)
+    from backend.api.v2.reports import register_report_operations
+    register_report_operations(catalog, run_store, ai_client)
+    from backend.api.v2.comparison import register_comparison_operations
+    register_comparison_operations(catalog, run_store)
     if configure_catalog is not None:
         configure_catalog(catalog, service)
     app.extensions["operation_catalog"] = catalog
@@ -148,6 +164,8 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     @app.before_request
     def request_identity():
         g.request_id = str(uuid4())
+        if request.path.startswith("/api/v2/"):
+            request.max_content_length = 65536
 
     @app.after_request
     def response_headers(response):

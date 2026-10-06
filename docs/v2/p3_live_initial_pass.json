@@ -1,0 +1,73 @@
+{
+  "checks": {
+    "density_history_sse_replay": {
+      "density": "array exact",
+      "history_rows": 478,
+      "last_event_id": 16,
+      "run_ids": [
+        "179acb0c-d174-493b-8bfb-7913bd15b9b3",
+        "72576abe-6463-4340-9d57-b210b2623794"
+      ],
+      "snapshots": 6,
+      "status": "PASS"
+    },
+    "output_capacity": {
+      "failure": "RUN_OUTPUT_LIMIT",
+      "limit_bytes": 1048576,
+      "run_id": "b207790f-09dd-4298-b824-0cc6001bdfcf",
+      "status": "PASS"
+    },
+    "queue_capacity_and_cancellation": {
+      "active_run": "ebfc353b-5970-4edc-b3d5-37b0685b7e6c",
+      "queue_full_status": 429,
+      "queued_runs": [
+        "d2cc7011-5a11-4d18-b5ca-f0a40ab3fde0",
+        "b2f2926e-9eb8-40e0-a09f-4891681a82d5",
+        "5e52ab18-a789-4b2e-82e7-380a938e7d0a"
+      ],
+      "status": "PASS",
+      "worker_stopped": true
+    },
+    "restart_and_duplicate_leader": {
+      "duplicate_leader_rejected": true,
+      "failure": "WORKER_INTERRUPTED",
+      "interrupted_run": "a45a872c-3fe7-4235-a36f-a05f70f1a089",
+      "preserved_queued_run": "cd790f88-3ff3-4662-8ce7-c152a9c5693c",
+      "status": "PASS"
+    },
+    "scientific_source_preservation": {
+      "bytes": 5429811970,
+      "files": 27843,
+      "fingerprint": "8c9bf82f0e0caa69ce671e057c4202faf42f4b579e92deee94aef7ad6f05ad46",
+      "status": "PASS"
+    },
+    "serial_execution_and_idempotency": {
+      "first_finished": "2026-10-03T07:04:19.453793+00:00",
+      "retry_count": 8,
+      "run_a": "179acb0c-d174-493b-8bfb-7913bd15b9b3",
+      "run_b": "72576abe-6463-4340-9d57-b210b2623794",
+      "second_started": "2026-10-03T07:04:19.543138+00:00",
+      "status": "PASS"
+    },
+    "sse_thread_capacity": {
+      "fifth_status": 429,
+      "max_normal_api_seconds": 0.031999999890103936,
+      "status": "PASS",
+      "streams": 4
+    },
+    "timeout": {
+      "failure": "WORKER_TIMEOUT",
+      "run_id": "f010f6e5-4d69-48cb-b9bb-69e754666891",
+      "status": "PASS",
+      "worker_stopped": true
+    },
+    "worker_crash": {
+      "failure": "WORKER_EXIT",
+      "run_id": "3ba08cd1-1d02-4a6b-826a-696485502a89",
+      "status": "PASS"
+    }
+  },
+  "finished_at": "2026-10-03T07:06:23.184440+00:00",
+  "started_at": "2026-10-03T07:03:52.326752+00:00",
+  "status": "PASS"
+}

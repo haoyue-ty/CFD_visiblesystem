@@ -1,0 +1,5 @@
+
+> shockpath-frontend@0.1.0 preview
+> vite preview --host 127.0.0.1 --port 4434 --strictPort
+
+  ➜  Local:   http://127.0.0.1:4434/

@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "started_at": "2026-10-03T07:39:08.884Z",
+  "checks": {
+    "builder_and_lost_response_retry": {
+      "status": "PASS",
+      "run_id": "ea852646-72ce-40fc-b5f3-99329ff0895b",
+      "same_idempotency_key": true,
+      "accepted_status": 202
+    },
+    "professional_submission_and_queued_cancel": {
+      "status": "CANCELLED",
+      "run_id": "71326592-90af-47fc-b831-a74758f71736"
+    },
+    "reload_polling_final_density_and_mobile": {
+      "status": "PASS",
+      "run_id": "ea852646-72ce-40fc-b5f3-99329ff0895b",
+      "completed_steps": 478,
+      "canvas": [
+        16,
+        64
+      ],
+      "screenshots": [
+        "p3_workspace_desktop.png",
+        "p3_workspace_mobile.png"
+      ],
+      "mobile_no_overflow": true
+    },
+    "list_filter_unknown_run_and_console": {
+      "status": "PASS",
+      "unknown_run": 404,
+      "page_errors": []
+    }
+  },
+  "finished_at": "2026-10-03T07:39:46.513Z"
+}

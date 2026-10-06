@@ -1,0 +1,9 @@
+{
+  "cores": 10,
+  "benchmark_context": "Local Windows workstation; backend and Playwright regression processes were active during final benchmark; one solver at a time",
+  "machine_model": "OMEN by HP Gaming Laptop 16-wd0xxx",
+  "physical_memory_bytes": 16858472448,
+  "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+  "logical_cpus": 16,
+  "blas_omp_threads": 1
+}

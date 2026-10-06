@@ -21,6 +21,9 @@ const props = defineProps<{
 }>()
 
 function target(): RouteLocationRaw {
+  if (props.evidenceId.startsWith('ev.run.')) {
+    return { name: 'run-evidence', params: { runId: props.evidenceId.slice(7) } }
+  }
   const query: Record<string, string> = {}
   if (props.context) query.from = props.context
   if (props.returnTo && typeof props.returnTo === 'object' && 'query' in props.returnTo && props.returnTo.query) {
@@ -31,6 +34,7 @@ function target(): RouteLocationRaw {
   return { name: 'evidence', params: { evidence_id: props.evidenceId }, query }
 }
 function open(event: MouseEvent) {
+  if (props.evidenceId.startsWith('ev.run.')) return
   if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return
   event.preventDefault()
   openEvidence(props.evidenceId, target())

@@ -129,6 +129,11 @@ def unsupported_parameter(message: str, *, resource_type: str = "spectrum", iden
 
 def register_error_handlers(app: Flask) -> None:
     def domain_response(error: DomainError):
+        if request.path.startswith("/api/v2/"):
+            from backend.api.v2.errors import v2_error_response
+            from backend.services.v2.experiments import ExperimentError
+            return v2_error_response(app, ExperimentError(error.body.code, error.body.message,
+                                     error.status, retryable=error.body.retryable))
         envelope = FailedEnvelope(
             schema_version="1.0.0", request_id=g.request_id,
             registry_revision=unresolved("Registry not resolved for this failure"),
@@ -139,13 +144,17 @@ def register_error_handlers(app: Flask) -> None:
                                   content_type="application/json; charset=utf-8")
 
     app.register_error_handler(DomainError, domain_response)
+    from backend.api.v2.errors import v2_error_response
+    from backend.services.v2.experiments import ExperimentError
+    app.register_error_handler(ExperimentError, lambda error: v2_error_response(app, error))
 
     @app.errorhandler(HTTPException)
     def http_error(error):
         if not (request.path == "/api" or request.path.startswith("/api/")):
             return error
         codes = {404: ("API_ROUTE_NOT_FOUND", "MISSING"), 405: ("METHOD_NOT_ALLOWED", "ERROR"),
-                 400: ("INVALID_REQUEST", "ERROR"), 415: ("UNSUPPORTED_MEDIA_TYPE", "ERROR")}
+                 400: ("INVALID_REQUEST", "ERROR"), 415: ("UNSUPPORTED_MEDIA_TYPE", "ERROR"),
+                 413: ("INVALID_REQUEST", "ERROR")}
         code, availability = codes.get(error.code, ("INTERNAL_ERROR", "ERROR"))
         response = domain_response(system_error(code, error.name, status=error.code, availability=availability))
         if error.code == 405:

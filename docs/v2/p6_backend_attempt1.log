@@ -1,0 +1,105 @@
+........................................................................ [  4%]
+.......................s................................................ [  8%]
+........................................................................ [ 13%]
+........................................................................ [ 17%]
+........................................................................ [ 21%]
+........................................................................ [ 26%]
+........................................................................ [ 30%]
+........................................................................ [ 35%]
+........................................................................ [ 39%]
+........................................................................ [ 43%]
+........................................................................ [ 48%]
+........................................................................ [ 52%]
+........................................................................ [ 56%]
+F....................................................................... [ 61%]
+........................................................................ [ 65%]
+...............................................F........................ [ 70%]
+........................................................................ [ 74%]
+........................................................................ [ 78%]
+........................................................................ [ 83%]
+........................................................................ [ 87%]
+...............F..F..................................................... [ 91%]
+........................................................................ [ 96%]
+............................................................             [100%]
+================================== FAILURES ===================================
+________________ test_openapi_consistency_and_actual_payloads _________________
+
+app = <Flask 'backend.core.app'>
+
+    def test_openapi_consistency_and_actual_payloads(app):
+        document = export_openapi(app.extensions['operation_catalog'])
+>       assert json.loads((ROOT/'config/openapi.json').read_text(encoding='utf-8')) == document
+E       AssertionError: assert {'openapi': '...}}, ...}, ...} == {'openapi': '...}}, ...}, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}} != {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}}
+E         Use -v to get more diff
+
+tests\window1_content_api\test_content_api.py:196: AssertionError
+_______ test_openapi_runtime_saved_document_and_four_frozen_operations ________
+
+app = <Flask 'backend.core.app'>
+client = <FlaskClient <Flask 'backend.core.app'>>
+
+    def test_openapi_runtime_saved_document_and_four_frozen_operations(app, client):
+        document = export_openapi(app.extensions["operation_catalog"])
+        validate(document)
+        assert document == client.get("/api/v1/openapi.json").json
+>       assert document == json.loads((ROOT / "config/openapi.json").read_text(encoding="utf-8"))
+E       AssertionError: assert {'openapi': '...}}, ...}, ...} == {'openapi': '...}}, ...}, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}} != {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}}
+E         Use -v to get more diff
+
+tests\window1_evidence_core\test_evidence_core.py:327: AssertionError
+_____ test_exact_five_openapi_operations_export_equality_and_wire_schema ______
+
+app = <Flask 'backend.core.app'>
+client = <FlaskClient <Flask 'backend.core.app'>>
+
+    def test_exact_five_openapi_operations_export_equality_and_wire_schema(app, client):
+        document = export_openapi(app.extensions["operation_catalog"])
+        validate(document)
+        assert document["openapi"] == "3.1.0"
+        assert document == client.get("/api/v1/openapi.json").json
+>       assert document == json.loads((R.ROOT / "config/openapi.json").read_text(encoding="utf-8"))
+E       AssertionError: assert {'openapi': '...}}, ...}, ...} == {'openapi': '...}}, ...}, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}} != {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}}
+E         Use -v to get more diff
+
+tests\window2_closure_api\test_closure_api.py:273: AssertionError
+_________ test_exact_frozen_operations_openapi_and_generated_contract _________
+
+app = <Flask 'backend.core.app'>
+client = <FlaskClient <Flask 'backend.core.app'>>
+
+    def test_exact_frozen_operations_openapi_and_generated_contract(app, client):
+        document = export_openapi(app.extensions["operation_catalog"])
+        validate(document)
+        assert document["openapi"] == "3.1.0"
+        expected = {f"{BASE}/{{config_id}}{suffix}": operation for operation, suffix in PATHS.items()}
+        actual = {p: v["get"]["operationId"] for p, v in document["paths"].items() if p.startswith(BASE)}
+        assert actual == expected
+        assert document["paths"][CMP]["get"]["operationId"] == "CMP01"
+        assert document == read(client, "/api/v1/openapi.json")
+>       assert document == json.loads(Path("config/openapi.json").read_text(encoding="utf-8"))
+E       AssertionError: assert {'openapi': '...}}, ...}, ...} == {'openapi': '...}}, ...}, ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}} != {'components': {'schemas': {'Fact_str_': {'discriminator': {'mapping': {'KNOWN': '#/components/schemas/KnownFact_str_'...e': 'string'}, ...}, 'required': ['id', 'system', 'quantity', 'label', 'si_mapping'], 'title': 'UnitSpec', ...}, ...}}}
+E         Use -v to get more diff
+
+tests\window2_cylinder_crossflow_api\test_cylinder_crossflow_api.py:64: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/window1_content_api/test_content_api.py::test_openapi_consistency_and_actual_payloads
+FAILED tests/window1_evidence_core/test_evidence_core.py::test_openapi_runtime_saved_document_and_four_frozen_operations
+FAILED tests/window2_closure_api/test_closure_api.py::test_exact_five_openapi_operations_export_equality_and_wire_schema
+FAILED tests/window2_cylinder_crossflow_api/test_cylinder_crossflow_api.py::test_exact_frozen_operations_openapi_and_generated_contract
+4 failed, 1639 passed, 1 skipped in 1185.30s (0:19:45)

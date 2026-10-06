@@ -1,0 +1,61 @@
+{
+  "accepted_steps": 478,
+  "classification": "LIVE_FAST_RUN",
+  "final_state_hash": "a8a8bbb4ef8ba37fb39856987ac5a0c5b84797d92d2d96c109e58512daf44cd9",
+  "final_state_identical_to_benchmark": true,
+  "provenance_sha256": "7a461c1bed69b5a53027a2c94943a4795a35e2600c5221cd508a3fed2656cfa9",
+  "run_id": "beb0c25c-7838-4dde-876d-25f38178793f",
+  "runtime": {
+    "logical_cpus": 16,
+    "packages": {
+      "PyYAML": "6.0.3",
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1"
+    },
+    "peak_rss_bytes": 102072320,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "python": "3.12.9 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 18:49:16) [MSC v.1929 64 bit (AMD64)]",
+    "solver_seconds": 24.29275429993868,
+    "wall_seconds": 25.144722600001842
+  },
+  "software_identity": {
+    "software": [
+      {
+        "path": "backend/solver_runtime/worker.py",
+        "sha256": "5ca8a9f7af21baca2a00d73eacfe42e0937ec468f749fbe92348d41d577d686a"
+      },
+      {
+        "path": "backend/solver_runtime/case8_adapter.py",
+        "sha256": "2b503534d070708fa17ee51b926d74bf6b82d203dc160935ba5df3782cf8e17d"
+      },
+      {
+        "path": "backend/solver_runtime/binding.py",
+        "sha256": "f0a36e8e03e681cb15125bcd7b283769c1f3901efd18ad49a76f4f018c28b429"
+      },
+      {
+        "path": "backend/solver_runtime/artifacts.py",
+        "sha256": "3f923627155143b19a13e04360b0feb494d41d2a90d7681e51b5480144a04339"
+      },
+      {
+        "path": "backend/solver_runtime/paths.py",
+        "sha256": "370b4b4e10818555b135ddcc80f5eecab3ce5e2ad89b9e7aebc7ce21d6d04fdd"
+      },
+      {
+        "path": "backend/services/v2/experiments.py",
+        "sha256": "d3c5ee779049124478fb871ea0e8e1f7ffd0d6c8d28ed4e88fbe6e5fa8c4c2b5"
+      },
+      {
+        "path": "backend/registry/v2/cases.py",
+        "sha256": "6ce6442daf2d21fa4bea966a9e75fdd1a05be54002e6a9a097d3a3542eba8f13"
+      },
+      {
+        "path": "backend/models/v2/experiment.py",
+        "sha256": "4b354ff20e5a05af7ad0582517805e614d4913b462a585572ffa1507b088f5a7"
+      }
+    ],
+    "source_manifest_sha256": "4469ae2bb772fcb7741ee516128bab85c2dd8cadcfe3e8953b03c90d2f4b3691"
+  },
+  "status": "PASS"
+}
