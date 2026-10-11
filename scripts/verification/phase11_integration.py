@@ -170,13 +170,18 @@ def public_audit():
         assert not unsafe.search(json.dumps(asset, ensure_ascii=False)), identity
         statuses[asset['verification']['status']] += 1
     routes = [r.rule for r in app.url_map.iter_rules()]
-    assert not any('download' in r or 'file' in r for r in routes)
+    # Historical V1 evidence remains read-only; only run-bound, verified V2
+    # export downloads are allowed by the Phase B API contract.
+    assert not any('download' in r or 'file' in r for r in routes if r.startswith('/api/v1/'))
+    export_download_routes = sorted(r for r in routes if 'download' in r)
+    assert export_download_routes == ['/api/v2/runs/<run_id>/exports/<kind>/download']
     for query in ('path=D:/Paper/passage6', 'download=true', 'absolute_source_path=secret'):
         assert client.get('/api/v1/assets/asset_8d15c3f16f95?' + query).status_code == 400
     assert client.get('/api/v1/assets/asset_8d15c3f16f95/download').status_code == 404
     return save('public-audit.json', {'status': 'PASS', 'counts': counts, 'coverage': chains,
         'source_assets_scanned': len(service.registry.assets), 'asset_verification_counts': dict(statuses),
-        'absolute_locators_in_public_assets': 0, 'download_routes': 0, 'unsafe_query_rejections': 3,
+        'absolute_locators_in_public_assets': 0, 'download_routes': 0,
+        'v2_export_download_routes': export_download_routes, 'unsafe_query_rejections': 3,
         'gap_records_no_numeric_payload': list(gaps), 'explore_evidence_duplication': False,
         'hash_fields_separate': True, 'etag_used_as_scientific_hash': False})
 
@@ -200,7 +205,9 @@ def production_scan():
                             'category': label, 'text': line.strip()[:500]})
     # Backend private roots and locator scrubber patterns are implementation,
     # not public DTO paths. Denials of downloading/ranking are retained verbatim.
-    assert not any(o['category'] == 'send_file' for o in occurrences)
+    file_senders = [o for o in occurrences if o['category'] == 'send_file']
+    assert len(file_senders) == 2
+    assert all(o['file'] == 'backend/api/v2/exports.py' for o in file_senders)
     bundle = '\n'.join(p.read_text(encoding='utf-8') for p in (ROOT / 'frontend/dist/assets').glob('*.js'))
     assert bundle
     mock_markers = ('createMockProvider', 'mock.case8.', 'mock.gate.', 'mock.spectrum.',
@@ -212,10 +219,12 @@ def production_scan():
                   'larger entropy means better', 'more localized is universally better'):
         assert claim not in bundle.lower()
     return save('production-scan.json', {'status': 'PASS', 'occurrences_for_context_review': occurrences,
-        'public_asset_path_audit': 'public-audit.json;2438 assets', 'send_file_occurrences': 0,
+        'public_asset_path_audit': 'public-audit.json;2438 assets',
+        'send_file_occurrences': len(file_senders),
+        'verified_file_sender': 'backend/api/v2/exports.py',
         'scientific_root_in_bundle': False, 'mock_in_production': False,
         'prohibited_positive_claims_in_bundle': 0,
-        'context_review': 'best/winner hits are explicit scientific denials or internal selection variable names; file URI pattern is a scrubber. Evidence download hits deny source-file serving; V2 reports.ts downloads only the controlled, hash-verified self-contained report HTML endpoint as a Blob. Private backend source-root defaults are not public API values.'})
+        'context_review': 'best/winner hits are explicit scientific denials or internal selection variable names; file URI pattern is a scrubber. V1 evidence never serves source files. Phase B sends only finite run-bound, verified export files through backend/api/v2/exports.py; the frontend downloads these controlled endpoints. Private backend source-root defaults are not public API values.'})
 
 
 def main():

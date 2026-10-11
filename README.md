@@ -1,8 +1,9 @@
-# ShockPath · 耗散路径数字实验与可视分析平台
+# ShockPath · 交互式 CFD 求解与智能数值分析系统
 
 > 项目目录：`CFD_visiblesystem`  
 > 当前形态：**V1 回放 + V2 实时 Case 8**  
-> 目标：把数值耗散的讨论从"结论"推进到"可追溯的证据链"
+> 当前界面：**V2.5 Phase A · CFD 数值实验工作台**
+> 工作流程：配置参数 → 执行真实 Solver → 观察与分析 → 导出报告
 
 ShockPath 是一个面向计算流体力学（CFD）的交互式可视分析与数字实验平台，帮助使用者理解：**数值耗散由什么触发、作用在哪里，以及如何影响流动和不同模态。** 系统把两类实验统一在同一套界面中：
 
@@ -28,18 +29,21 @@ ShockPath 是一个面向计算流体力学（CFD）的交互式可视分析与�
 
 ## 2. 功能总览
 
-### 2.1 V1：已有实验回放
+### 2.1 统一工作台与 V1 科研回放
 
-**四个主要入口**
+**统一的五个一级入口**
 
 | 入口 | 用途 | 页面路径 |
 | --- | --- | --- |
-| 首页 Home | 进入平台、了解主题并选择分析入口 | `/home` |
-| 引导探索 Explore | 按七幕故事浏览问题、图表、结论与证据 | `/explore?scene=1` |
-| 数字实验室 Lab | 自主选择实验，进入完整工作区 | `/lab` |
-| 证据中心 Evidence | 查询当前证据、数据缺口与历史记录 | `/evidence` |
+| 首页 | 系统概览、快速模板与真实近期运行 | `/home` |
+| 新建计算 | 模板 / 专业参数 / 自然语言 → 验证 → 确认 → 启动 Solver | `/experiments/new` |
+| 运行任务 | 全部任务、运行对比、参数扫描与运行详情 | `/workspace` |
+| 算例库 | 后端可执行的实时算例与历史科研数据回放 | `/lab` |
+| 帮助 | 三步入门、术语、状态与科研教程 | `/help` |
 
-网站入口是 `/`，点击「进入系统」进入首页。
+网站入口 `/` 直接重定向到 `/home`，保留 query 与 hash。七幕引导探索（`/explore?scene=1`）、证据中心（`/evidence`）与机制教程继续保留，可通过帮助中心和相关结果页面访问。Run、报告、证据、对比和扫描子路由始终高亮“运行任务”；历史实验与跨流动比较高亮“算例库”。
+
+顶部服务提示来自 `/api/v2/cases` 的 `execution_available`，约每 30 秒刷新：成功且可执行为“求解服务可用”，成功但没有可执行算例为“求解服务未启动”，请求失败或尚未取得状态为“服务状态未知”。“真实数据 API”表示数据来源类型，服务是否可用需看独立的服务状态。
 
 **六类实验工作区**
 
@@ -114,6 +118,16 @@ Set-Location 'D:\code_project\CFD_visiblesystem'
 
 默认后端地址为 `http://127.0.0.1:5000`，由 Waitress 承载 Flask 服务。
 
+也可直接运行项目根目录的 `python.py`：
+
+```powershell
+./.venv/Scripts/python.exe python.py
+```
+
+在 PyCharm 中打开项目，选择现有解释器 `D:\code_project\CFD_visiblesystem\.venv\Scripts\python.exe`，右键根目录的 `python.py`，选择 **Run 'python'**。入口会自动使用项目目录、禁止生成 Python 字节码，并显示启动地址。后端会持续运行，控制台不返回提示符属于正常现象；保持窗口打开即可。切换启动方式前，先停止原来的后端，避免重复占用 5000 端口。
+
+此 Python 入口启动后端；前端仍按下一节单独启动，随后在浏览器打开网页。Python 入口沿用进程环境变量，不自动读取 `.env`；PyCharm 可在 Run Configuration 的 Environment variables 中配置。
+
 需要指定数据根目录时，在**启动后端的同一终端**先执行：
 
 ```powershell
@@ -136,7 +150,7 @@ npm run build
 npm run preview -- --port 4173 --strictPort
 ```
 
-打开 [http://127.0.0.1:4173/](http://127.0.0.1:4173/) ，点击「进入系统」。`npm run build` 含 `vue-tsc --noEmit` 类型检查与生产构建；修改前端代码后需重新构建。Vite preview 将 `/api` 代理到 `127.0.0.1:5000`。
+打开 [http://127.0.0.1:4173/](http://127.0.0.1:4173/) 即进入首页。`npm run build` 含 `vue-tsc --noEmit` 类型检查与生产构建；修改前端代码后需重新构建。Vite preview 将 `/api` 代理到 `127.0.0.1:5000`。
 
 开发页面时可用 `npm run dev -- --port 5173 --strictPort` 代替，随后访问 `http://127.0.0.1:5173/`（后端仍需单独启动）。
 
@@ -146,7 +160,7 @@ npm run preview -- --port 4173 --strictPort
 
 ## 4. V2 使用流程（以 Case 8 为例）
 
-1. 打开 **新建实验**（`/experiments/new`），选择 **模板 / 专业参数 / 自然语言** 之一，填写或描述实验配置。
+1. 首页点击 **开始新计算** 或快速模板，进入 **新建计算**（`/experiments/new`）。模板标识随 URL 传递，仍需选择 **模板 / 专业参数 / 自然语言** 之一并核对实验配置。
 2. 后端做归一化与能力校验，返回分类、模板血缘、协议差异与 SHA-256；界面要求**审阅并确认**，确认时再次校验。
 3. 点击 **启动求解**，以确认后的哈希与持久重试键提交 Run（进入单 worker 队列）。
 4. 在运行工作台 `/runs/:runId` 观察真实步数与时间、进度日志；成功后得到完整科学结果：
@@ -230,6 +244,14 @@ CFD_visiblesystem/
 npm run build --prefix frontend
 ```
 
+**Phase A 前端验收**（包含导航/路由单元测试、既有 V1 浏览器回归、真实 V2 Run/报告/证据、P7 对比与扫描兼容，以及四种屏幕宽度）：
+
+```powershell
+npm run test:phase-a --prefix frontend
+```
+
+测试使用独立 API / UI 端口 5151 / 4451 / 4551，后端以 `-B` 启动并关闭真实 AI provider 调用。生产页面使用真实 API 和 Solver，MOCK 仅用于既有隔离的开发测试项目；空记录与服务故障通过明确的测试注入验证，不生成科学结果。日志与结果位于 `.cache/phase-a/`，浏览器截图和导出的 HTML 位于 `output/playwright/phase-a/`。P7 兼容测试需要保留现有验收 Run / Sweep 记录，详细交付和人工检查项见 [PHASE_A_STATUS](docs/v2_5/PHASE_A_STATUS.md)。
+
 V2 各阶段定向测试：
 
 ```powershell
@@ -260,7 +282,13 @@ npx playwright test --config=playwright.phase11.integration.config.ts
 npm run generate:types --prefix frontend
 ```
 
-**最新阶段验收（P7）**：完整后端 **1674 passed / 1 skipped**；最终定向 **128 passed**；P7 浏览器 **4 passed / 0 flaky**；当前 OpenAPI 为 **71 paths / 396 schemas**（V1 paths / schema 子集逐项一致）；科研源 **27,843 文件**的 path / size / mtime_ns / SHA-256 与锁定清单一致。以上为各阶段真实单次运行结果，**不将不同轮次计数相加**。
+**Phase A 当前验收**：文件清单、功能完成情况、最终回归结果、源码保护检查及本地验收步骤见 [PHASE_A_STATUS](docs/v2_5/PHASE_A_STATUS.md)。
+
+**Phase B 导出中心**：已完成 Case 8 运行页和报告页提供原始数据包（NPZ / JSON / 完整 CSV）、流场包（VTI / 真实时间 PVD）及实验报告（离线 HTML / A4 PDF / ZIP）。导出文件独立保存在 `runtime/runs/<run_id>/exports/`，不参与原始 Solver 输出指纹或 64 MiB 容量统计；每 Run 导出缓存默认 256 MiB，全局 2 GiB。接口、实际导出目录、文件清单与三组真实 Run 科学一致性验收见 [PHASE_B_EXPORT_STATUS](docs/v2_5/PHASE_B_EXPORT_STATUS.md)。
+
+PDF 使用可选服务端依赖：`./.venv/Scripts/python.exe -m pip install -r requirements-export-pdf.lock.txt`，然后安装匹配浏览器 `./.venv/Scripts/python.exe -m playwright install chromium`，并提供中文字体。能力不足时界面明确显示 PDF 不可用，HTML 仍可下载。Phase B 浏览器验收：`npm run test:phase-b --prefix frontend`；后端定向验收：`./.venv/Scripts/python.exe -B -m pytest tests/v2_exports -q`。
+
+**既有 P7 阶段验收记录**：完整后端 **1674 passed / 1 skipped**；最终定向 **128 passed**；P7 浏览器 **4 passed / 0 flaky**；OpenAPI 为 **71 paths / 396 schemas**（V1 paths / schema 子集逐项一致）；科研源 **27,843 文件**的 path / size / mtime_ns / SHA-256 与锁定清单一致。以上为各阶段真实单次运行结果，**不将不同轮次计数相加**。
 
 > 实时 AI 相关验收需要配置真实 provider 密钥并会产生**真实网络请求**；隔离测试套件不使用真实调用。历史 Phase 12 验收记录的 1356 项后端 / 217 项前端通过属于该阶段结果，当前代码状态需重新验证。
 

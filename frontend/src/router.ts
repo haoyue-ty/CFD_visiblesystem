@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EntryPage from './pages/EntryPage.vue'
 import HomePage from './pages/HomePage.vue'
+import EntryPage from './pages/EntryPage.vue'
+import HelpPage from './pages/HelpPage.vue'
 import LabPage from './pages/LabPage.vue'
 import ExperimentPage from './pages/ExperimentDetailPage.vue'
 import CrossFlowPage from './pages/CrossFlowPage.vue'
@@ -19,9 +20,15 @@ import { experimentLabels } from './presentation/zh-CN'
 
 export const router = createRouter({
   history: createWebHistory(),
+  scrollBehavior(to, _from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.hash) return { el: to.hash, top: 20 }
+    return { top: 0 }
+  },
   routes: [
     { path: '/', name: 'entry', component: EntryPage },
     { path: '/home', name: 'home', component: HomePage },
+    { path: '/help', name: 'help', component: HelpPage },
     { path: '/experiments/new', name: 'experiment-builder', component: ExperimentBuilderPage },
     { path: '/workspace', name: 'run-list', component: RunListPage },
     { path: '/workspace/compare', name: 'run-comparison', component: RunComparisonPage },
@@ -42,10 +49,10 @@ export const router = createRouter({
 
 router.afterEach(to => {
   if (to.name === 'run-comparison') { document.title = '运行对比 · ShockPath'; return }
-  if (to.name === 'parameter-sweeps' || to.name === 'parameter-sweep') { document.title = '系数扫描 · ShockPath'; return }
+  if (to.name === 'parameter-sweeps' || to.name === 'parameter-sweep') { document.title = '参数扫描 · ShockPath'; return }
   if (to.name === 'run-report') { document.title = '实验报告 · ShockPath'; return }
   if (to.name === 'run-evidence') { document.title = '本次运行证据 · ShockPath'; return }
-  const titles: Record<string, string> = { home: '首页', explore: '引导探索', lab: '数字实验室', mechanism: '跨模态耗散机制', 'cross-flow': '跨流动对比', 'evidence-center': '证据中心', evidence: '证据详情' }
-  const title = to.name === 'run-list' ? '实验工作台' : to.name === 'run-workspace' ? '运行详情' : to.name === 'experiment-builder' ? '新建实验' : to.name === 'experiment' ? experimentLabels[String(to.params.experiment_id)] ?? '实验详情' : titles[String(to.name)]
-  document.title = title ? `${title} · ShockPath` : 'ShockPath · 耗散路径数字实验与可视分析平台'
+  const titles: Record<string, string> = { entry: '开始实验', home: '首页', help: '帮助', explore: '引导探索', lab: '算例库', mechanism: '跨模态耗散机制', 'cross-flow': '跨流动对比', 'evidence-center': '证据中心', evidence: '证据详情' }
+  const title = to.name === 'run-list' ? '运行任务' : to.name === 'run-workspace' ? '运行详情' : to.name === 'experiment-builder' ? '新建计算' : to.name === 'experiment' ? experimentLabels[String(to.params.experiment_id)] ?? '算例详情' : titles[String(to.name)]
+  document.title = title ? `${title} · ShockPath` : 'ShockPath · 交互式 CFD 求解与智能数值分析系统'
 })

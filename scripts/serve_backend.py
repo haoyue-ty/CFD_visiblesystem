@@ -6,7 +6,8 @@ import time
 from backend import create_app
 
 
-if __name__ == "__main__":
+def main():
+    print("ShockPath 后端正在初始化…", flush=True)
     app = create_app()
     settings = app.extensions["settings"]
     store = app.extensions["run_store"]
@@ -24,8 +25,14 @@ if __name__ == "__main__":
             manager.wait()
             raise RuntimeError("Run manager did not become ready")
     try:
+        print(f"正在启动后端 HTTP 服务：http://{settings.api_host}:{settings.api_port}", flush=True)
+        print("此服务会持续运行，请保持窗口打开；在终端按 Ctrl+C 可停止。", flush=True)
         serve(app, host=settings.api_host, port=settings.api_port, threads=settings.waitress_threads)
     finally:
         if manager and manager.poll() is None:
             manager.terminate()
             manager.wait(timeout=10)
+
+
+if __name__ == "__main__":
+    main()

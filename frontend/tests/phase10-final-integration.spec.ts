@@ -12,9 +12,11 @@ test('Entry → Home → seven real Scenes → Evidence Detail → Scene → Lab
   page.on('response', response => { if (response.status() >= 500) serverErrors.push(`${response.status()} ${response.url()}`) })
   const ready = ['entropy-terminal', 'mechanism-architecture', 'mechanism-architecture', 'gate-Ungated', 'guided-modal-table', 'sector-table', 'evidence-record']
   await page.goto('/')
-  await page.getByTestId('enter-system').click()
+  await page.getByTestId('start-experiment').click()
+  await expect(page).toHaveURL(/\/home$/)
   await expect(page.locator('main[data-page="home"]')).toBeVisible()
-  await page.getByTestId('home-start-explore').click()
+  await page.getByTestId('home-to-help').click()
+  await page.getByTestId('help-start-explore').click()
   for (let scene = 1; scene <= 7; scene++) {
     await expect(page.getByTestId('scene-progress')).toHaveText(`第 ${scene} 幕 / 共 7 幕`)
     await expect(page.getByTestId(ready[scene - 1]!)).toBeVisible()

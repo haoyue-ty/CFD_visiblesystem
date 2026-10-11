@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { loadRunEvidence } from '../data/v2/runs'
+import WorkspaceNavigation from '../components/WorkspaceNavigation.vue'
 const route = useRoute()
 const evidence = ref<Awaited<ReturnType<typeof loadRunEvidence>>>()
 const error = ref('')
@@ -15,6 +16,7 @@ watch(() => route.params.runId, load, { immediate: true })
 </script>
 <template>
   <main class="evidence" data-testid="run-evidence">
+    <WorkspaceNavigation />
     <RouterLink :to="`/runs/${route.params.runId}`">← 本次科学结果</RouterLink><h1>本次运行证据</h1>
     <p v-if="error" role="alert">{{ error }} <button @click="load">重试</button></p>
     <p v-else-if="!evidence" role="status">正在校验运行证据…</p>
@@ -38,5 +40,5 @@ watch(() => route.params.runId, load, { immediate: true })
   </main>
 </template>
 <style scoped>
-.evidence { max-width: 1100px; margin: auto; padding: 2rem 1rem; color: #24384c; }section { padding: 1.2rem; margin: 1rem 0; border: 1px solid #dce4eb; border-radius: 8px; }p,td { overflow-wrap: anywhere; }p,li { line-height: 1.7; }h2 { font-size: 1.1rem; }h3 { font-size: 1rem; }pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .8rem; }table { width: 100%; table-layout: fixed; text-align: left; font-size: .8rem; }td,th { padding: .5rem; border-bottom: 1px solid #dce4eb; }a { color: #214f75; }
+.evidence { max-width: 1100px; margin: auto; padding: 2rem 1rem; color: var(--sp-text); }section { padding: 1.2rem; margin: 1rem 0; border: 1px solid var(--sp-border); border-radius: 12px; }p,td { overflow-wrap: anywhere; }p,li { line-height: 1.7; }h2 { font-size: 1.1rem; }h3 { font-size: 1rem; }pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .8rem; }table { width: 100%; table-layout: fixed; text-align: left; font-size: .8rem; }td,th { padding: .5rem; border-bottom: 1px solid var(--sp-border); }a { color: var(--sp-primary); }
 </style>

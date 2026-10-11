@@ -292,7 +292,12 @@ def test_public_dtos_and_routes_have_no_locator_or_download(client, app):
         response = client.get(url)
         assert response.status_code == 200 and not regex.search(response.get_data(as_text=True))
         assert "Content-Disposition" not in response.headers
-    assert not any("download" in rule.rule or "file" in rule.rule for rule in app.url_map.iter_rules())
+    # Historical V1 evidence must still never expose source-file downloads.
+    # Phase B adds only the explicitly verified, run-bound V2 export route.
+    assert not any("download" in rule.rule or "file" in rule.rule
+                   for rule in app.url_map.iter_rules() if rule.rule.startswith("/api/v1/"))
+    assert {rule.rule for rule in app.url_map.iter_rules() if "download" in rule.rule} == {
+        "/api/v2/runs/<run_id>/exports/<kind>/download"}
     for url in ("/api/v1/assets/asset_8d15c3f16f95?path=D:/Paper/passage6", "/api/v1/assets/asset_8d15c3f16f95?download=true"):
         assert client.get(url).status_code == 400
     assert client.get("/api/v1/assets/asset_8d15c3f16f95/download").status_code == 404

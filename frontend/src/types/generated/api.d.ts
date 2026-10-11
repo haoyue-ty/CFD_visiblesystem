@@ -1128,6 +1128,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v2/runs/{run_id}/exports": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 从已验证完成 Run 生成并流式下载独立缓存；raw / visualization / report，report 可选 zip / html / pdf。 */
+        get: operations["V2_EXPORT_STATUS"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/exports/{kind}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description 从已验证完成 Run 生成并流式下载独立缓存；raw / visualization / report，report 可选 zip / html / pdf。 */
+        post: operations["V2_EXPORT_GENERATE"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/runs/{run_id}/exports/{kind}/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description 从已验证完成 Run 生成并流式下载独立缓存；raw / visualization / report，report 可选 zip / html / pdf。 */
+        get: operations["V2_EXPORT_DOWNLOAD"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v2/comparisons": {
         parameters: {
             query?: never;
@@ -7043,6 +7094,131 @@ export interface components {
             data: components["schemas"]["ReportMetadata"];
             /** Warnings */
             warnings: string[];
+        };
+        /** ExportCapability */
+        ExportCapability: {
+            /** Formats */
+            formats: string[];
+            /** Unavailable Formats */
+            unavailable_formats: {
+                [key: string]: string;
+            };
+            /** Retryable Formats */
+            retryable_formats: string[];
+        };
+        /** ExportMetadata */
+        ExportMetadata: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "raw" | "visualization" | "report";
+            /**
+             * Status
+             * @default NOT_GENERATED
+             * @enum {string}
+             */
+            status: "NOT_GENERATED" | "GENERATING" | "READY" | "FAILED";
+            /** Formats */
+            formats: string[];
+            /**
+             * Generated At
+             * @default null
+             */
+            generated_at: string | null;
+            /**
+             * Size Bytes
+             * @default null
+             */
+            size_bytes: number | null;
+            /**
+             * Sha256
+             * @default null
+             */
+            sha256: string | null;
+            /** Download Urls */
+            download_urls: {
+                [key: string]: string;
+            };
+            /** Unavailable Formats */
+            unavailable_formats: {
+                [key: string]: string;
+            };
+            /**
+             * Error Code
+             * @default null
+             */
+            error_code: string | null;
+            /**
+             * Reason
+             * @default null
+             */
+            reason: string | null;
+        };
+        /** RunExports */
+        RunExports: {
+            /** Run Id */
+            run_id: string;
+            /** Available */
+            available: boolean;
+            /** Reason */
+            reason: string | null;
+            /** Source Result Hash */
+            source_result_hash: string | null;
+            /** Exporter Version */
+            exporter_version: string;
+            /** Capabilities */
+            capabilities: {
+                [key: string]: components["schemas"]["ExportCapability"];
+            };
+            /** Exports */
+            exports: {
+                [key: string]: components["schemas"]["ExportMetadata"];
+            };
+        };
+        /** V2Envelope[RunExports] */
+        V2Envelope_RunExports_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["RunExports"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** V2Envelope[ExportMetadata] */
+        V2Envelope_ExportMetadata_: {
+            /**
+             * Schema Version
+             * @default 2.0.0
+             * @constant
+             */
+            schema_version: "2.0.0";
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["ExportMetadata"];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** ExportQuery */
+        Input_ExportQuery: {
+            /** Run Id */
+            run_id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "raw" | "visualization" | "report";
+            /**
+             * Format
+             * @default zip
+             * @enum {string}
+             */
+            format: "zip" | "html" | "pdf";
         };
         /** MetricComparison */
         MetricComparison: {
@@ -13131,6 +13307,296 @@ export interface operations {
             };
             /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
             500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_EXPORT_STATUS: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_RunExports_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, EXPORT_NOT_READY, PDF_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_CACHE_LIMIT */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_UNSUPPORTED_CASE */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_BUSY, EXPORT_SERVICE_BUSY, REPORT_BUSY */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, EXPORT_OUTPUT_INVALID, EXPORT_GENERATION_FAILED, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_EXPORT_GENERATE: {
+        parameters: {
+            query?: {
+                format?: "zip" | "html" | "pdf";
+            };
+            header?: never;
+            path: {
+                run_id: string;
+                kind: "raw" | "visualization" | "report";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2Envelope_ExportMetadata_"];
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, EXPORT_NOT_READY, PDF_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_CACHE_LIMIT */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_UNSUPPORTED_CASE */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_BUSY, EXPORT_SERVICE_BUSY, REPORT_BUSY */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, EXPORT_OUTPUT_INVALID, EXPORT_GENERATION_FAILED, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+        };
+    };
+    V2_EXPORT_DOWNLOAD: {
+        parameters: {
+            query?: {
+                format?: "zip" | "html" | "pdf";
+            };
+            header?: never;
+            path: {
+                run_id: string;
+                kind: "raw" | "visualization" | "report";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/zip": string;
+                    "text/html": string;
+                    "application/pdf": string;
+                };
+            };
+            /** @description INVALID_REQUEST */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNKNOWN_RUN */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description RUN_RESULT_NOT_READY, EXPORT_NOT_READY, PDF_UNAVAILABLE */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_CACHE_LIMIT */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_UNSUPPORTED_CASE */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description EXPORT_BUSY, EXPORT_SERVICE_BUSY, REPORT_BUSY */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, EXPORT_OUTPUT_INVALID, EXPORT_GENERATION_FAILED, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE */
+            503: {
                 headers: {
                     [name: string]: unknown;
                 };

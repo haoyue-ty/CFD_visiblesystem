@@ -154,7 +154,7 @@ test('W3 three required GAPS have no values, fake plots or reconstruct actions',
 test('W3 Home→Lab reaches each implemented module and Evidence navigation', async ({ page }) => {
   for (const [id, ready] of [['case8', 'config-D_u'], ['entropy-closure', 'closure-run'], ['cylinder', 'config-D_u']] as const) {
     await page.goto('/home')
-    await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "数字实验室", exact: true }).click()
+    await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "算例库", exact: true }).click()
     await page.getByTestId(`open-${id}`).click()
     await expect(page.getByTestId(ready)).toBeVisible()
     await expect(page.getByTestId('provider-kind')).toHaveText("真实数据 API")
@@ -162,7 +162,7 @@ test('W3 Home→Lab reaches each implemented module and Evidence navigation', as
   }
   // Preserve legacy shared-workspace shortcuts alongside delivered standalone cards.
   await page.goto('/home')
-  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "数字实验室", exact: true }).click()
+  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "算例库", exact: true }).click()
   await page.getByTestId('open-case8').click()
   await page.getByTestId('tab-allocation').click()
   await page.getByTestId('alloc-family-cell').click()
@@ -174,11 +174,12 @@ test('W3 Home→Lab reaches each implemented module and Evidence navigation', as
   await expect(page.getByTestId('growth-validation-canvas')).toBeVisible()
   await expect(page.getByTestId('growth-cfd')).not.toHaveText("当前不可用")
   await page.goto('/lab')
-  await page.getByRole('link', { name: "跨流动对比", exact: true }).click()
+  await page.getByTestId('history-cross-flow').getByRole('link').click()
   await expect(page.getByTestId('descriptive-only')).toBeVisible()
   await page.goto('/lab')
   await page.getByTestId('lab-open-mechanism').click()
   await expect(page.getByTestId('mechanism-architecture')).toBeVisible()
-  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "证据中心", exact: true }).click()
+  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "帮助", exact: true }).click()
+  await page.getByTestId('help-open-evidence').click()
   await expect(page.getByTestId('evidence-CURRENT')).toBeVisible()
 })

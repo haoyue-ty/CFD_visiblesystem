@@ -16,6 +16,6 @@ export async function saveReport(run_id: string) {
   if (!response.data) throw new ExperimentApiError('报告下载失败，请重新生成报告后重试。')
   const url = URL.createObjectURL(new Blob([response.data], { type: 'text/html;charset=utf-8' }))
   const link = document.createElement('a')
-  link.href = url; link.download = `ShockPath-${run_id}.html`; link.click()
+  link.href = url; link.download = `ShockPath_${run_id}_report.html`; link.click()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

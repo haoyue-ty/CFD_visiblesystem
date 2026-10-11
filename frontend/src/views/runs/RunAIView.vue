@@ -31,7 +31,7 @@ watch(() => props.view, () => { ++chatGeneration; answer.value = undefined; aski
 onUnmounted(() => { ++generation; ++chatGeneration })
 </script>
 <template>
-  <aside class="ai-panel" data-testid="run-ai">
+  <aside id="run-ai" class="ai-panel" data-testid="run-ai">
     <section><h2>AI 结果解读</h2>
       <p class="hint">解释本次计算；数值和证据由后端提供。</p>
       <p v-if="interpreting" role="status">正在生成结果解读…</p>
@@ -66,6 +66,6 @@ onUnmounted(() => { ++generation; ++chatGeneration })
   </aside>
 </template>
 <style scoped>
-.ai-panel { border: 1px solid #dce4eb; border-radius: 8px; padding: 1.2rem; margin: 1rem 0; min-width: 0; align-self: start; }section + section { border-top: 1px solid #dce4eb; margin-top: 1rem; padding-top: 1rem; }h2 { font-size: 1.1rem; }h3 { font-size: .9rem; }.hint { color: #617184; font-size: .8rem; }p,li { line-height: 1.65; overflow-wrap: anywhere; }ul { padding-left: 1rem; }textarea { display: block; box-sizing: border-box; width: 100%; resize: vertical; margin: .5rem 0; }button,textarea { font: inherit; border: 1px solid #bdccda; border-radius: 5px; background: white; padding: .45rem; max-width: 100%; }button { margin: .25rem .25rem .25rem 0; }button:disabled { opacity: .5; }.hash { overflow-wrap: anywhere; font-size: .75rem; }
+.ai-panel { border: 1px solid var(--sp-border); border-radius: 12px; padding: 1.2rem; margin: 1rem 0; min-width: 0; align-self: start; }section + section { border-top: 1px solid var(--sp-border); margin-top: 1rem; padding-top: 1rem; }h2 { font-size: 1.1rem; }h3 { font-size: .9rem; }.hint { color: var(--sp-muted); font-size: .8rem; }p,li { line-height: 1.65; overflow-wrap: anywhere; }ul { padding-left: 1rem; }textarea { display: block; box-sizing: border-box; width: 100%; resize: vertical; margin: .5rem 0; }button,textarea { font: inherit; border: 1px solid var(--sp-border); border-radius: 12px; background: white; padding: .45rem; max-width: 100%; }button { margin: .25rem .25rem .25rem 0; }button:disabled { opacity: .5; }.hash { overflow-wrap: anywhere; font-size: .75rem; }
 @media(min-width:1200px) { .ai-panel { position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow: auto; } }
 </style>

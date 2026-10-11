@@ -16,9 +16,9 @@ function failure(error: components['schemas']['V2FailedEnvelope'] | undefined): 
   throw new ExperimentApiError(error?.error.message ?? '请求失败，请重试。', error?.error.details ?? [], error?.error.code)
 }
 
-export async function loadCases() {
+export async function loadCases(signal?: AbortSignal) {
   try {
-    const { data, error } = await api.GET('/api/v2/cases')
+    const { data, error } = await api.GET('/api/v2/cases', { signal })
     if (!data) failure(error)
     return data.data
   } catch (error) {

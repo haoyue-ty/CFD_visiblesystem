@@ -2,6 +2,8 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { generateReport, loadReport, saveReport } from '../data/v2/reports'
+import WorkspaceNavigation from '../components/WorkspaceNavigation.vue'
+import RunExportCenter from '../components/RunExportCenter.vue'
 const route = useRoute()
 const report = ref<Awaited<ReturnType<typeof loadReport>> | null>(null)
 const error = ref('')
@@ -34,6 +36,7 @@ watch(() => route.params.runId, load, { immediate: true })
 
 <template>
   <main class="report-page" data-page="run-report">
+    <WorkspaceNavigation />
     <RouterLink :to="`/runs/${route.params.runId}`">← 本次运行结果</RouterLink>
     <h1>实验报告</h1>
     <p>固定 12 节结构，包含真实配置、数字、流场图、熵预算和来源。保存 HTML 后可离线打开。</p>
@@ -51,11 +54,12 @@ watch(() => route.params.runId, load, { immediate: true })
         <p v-if="report.html_sha256" class="hash">HTML SHA-256：{{ report.html_sha256 }}</p>
         <RouterLink :to="`/runs/${route.params.runId}/evidence`">核查本次运行证据</RouterLink>
       </section>
+      <RunExportCenter :key="String(route.params.runId)" :run-id="String(route.params.runId)" run-status="COMPLETED" />
       <iframe v-if="report.status === 'READY' && report.html_url" :key="report.report_id ?? ''" :src="report.html_url" title="ShockPath 数值实验报告预览" sandbox="" data-testid="report-preview"></iframe>
     </template>
   </main>
 </template>
 
 <style scoped>
-.report-page{max-width:1100px;margin:auto;padding:2.5rem 1.5rem;color:#24384c;min-width:0}p{line-height:1.7;overflow-wrap:anywhere}a{color:#214f75}.panel{padding:1.5rem;border:1px solid #dce4eb;border-radius:8px;margin:1rem 0}.hash{font-size:.8rem;overflow-wrap:anywhere}button{font:inherit;border:1px solid #bdccda;border-radius:5px;background:white;color:#254b6c;padding:.55rem .9rem;margin:0 .5rem .5rem 0}button:disabled{opacity:.5}iframe{width:100%;height:80vh;border:1px solid #dce4eb;border-radius:8px;background:#fff;box-sizing:border-box}@media(max-width:780px){.report-page{padding:1.5rem 1rem}.panel{padding:1rem}}
+.report-page{max-width:1100px;margin:auto;padding:2.5rem 1.5rem;color:var(--sp-text);min-width:0}p{line-height:1.7;overflow-wrap:anywhere}a{color:var(--sp-primary)}.panel{padding:1.5rem;border:1px solid var(--sp-border);border-radius: 12px;margin:1rem 0}.hash{font-size:.8rem;overflow-wrap:anywhere}button{font:inherit;border:1px solid var(--sp-border);border-radius: 12px;background:white;color:var(--sp-text);padding:.55rem .9rem;margin:0 .5rem .5rem 0}button:disabled{opacity:.5}iframe{width:100%;height:80vh;border:1px solid var(--sp-border);border-radius: 12px;background:#fff;box-sizing:border-box}@media(max-width:780px){.report-page{padding:1.5rem 1rem}.panel{padding:1rem}}
 </style>

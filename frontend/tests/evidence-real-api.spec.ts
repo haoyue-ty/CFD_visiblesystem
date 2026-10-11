@@ -16,7 +16,8 @@ test('Evidence navigation opens CURRENT with bounded EVI01 pagination and server
   const calls: URL[] = []
   page.on('request', r => { const u = new URL(r.url()); if (u.pathname === '/api/v1/evidence') calls.push(u) })
   await page.goto('/home')
-  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "证据中心", exact: true }).click()
+  await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "帮助", exact: true }).click()
+  await page.getByTestId('help-open-evidence').click()
   await expect(page.getByTestId('evidence-CURRENT')).toBeVisible()
   await expect(page.getByTestId('evidence-card')).toHaveCount(20)
   await expect(page.getByTestId('evidence-GAPS')).toHaveCount(0)

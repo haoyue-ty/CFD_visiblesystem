@@ -155,6 +155,8 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     register_ai_operations(catalog, run_store, ai_client)
     from backend.api.v2.reports import register_report_operations
     register_report_operations(catalog, run_store, ai_client)
+    from backend.api.v2.exports import register_export_operations
+    app.extensions["export_service"] = register_export_operations(catalog, run_store, ai_client)
     from backend.api.v2.comparison import register_comparison_operations
     register_comparison_operations(catalog, run_store)
     if configure_catalog is not None:

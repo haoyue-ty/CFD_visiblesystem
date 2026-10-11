@@ -18,8 +18,8 @@ export async function createRun(config: LiveConfig, submission: Submission, conf
   if (!data) fail(error)
   return data.data
 }
-export async function loadRuns(offset = 0, status?: RunStatus) {
-  const { data, error } = await api.GET('/api/v2/runs', { params: { query: { offset, limit: 20, status } } })
+export async function loadRuns(offset = 0, status?: RunStatus, limit = 20) {
+  const { data, error } = await api.GET('/api/v2/runs', { params: { query: { offset, limit, status } } })
   if (!data) fail(error)
   return data.data
 }

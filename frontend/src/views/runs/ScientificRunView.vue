@@ -166,9 +166,9 @@ onUnmounted(() => { ++session; ++selection; pause() })
 
 <style scoped>
 .science-main { min-width: 0; }@media(min-width:1200px) { .science-layout { display: grid; grid-template-columns: minmax(0, 1fr) 22rem; gap: 1rem; } }
-.panel { padding: 1.5rem; border: 1px solid #dce4eb; border-radius: 8px; margin: 1rem 0; min-width: 0; }h2 { font-size: 1.1rem; }h3 { font-size: 1rem; }p,li { line-height: 1.7; }
-.hash { overflow-wrap: anywhere; font-size: .8rem; }.hint { color: #617184; font-size: .8rem; }.controls { display: flex; flex-wrap: wrap; gap: .6rem; margin: .8rem 0; align-items: center; }p,li { overflow-wrap: anywhere; }
+.panel { padding: 1.5rem; border: 1px solid var(--sp-border); border-radius: 12px; margin: 1rem 0; min-width: 0; }h2 { font-size: 1.1rem; }h3 { font-size: 1rem; }p,li { line-height: 1.7; }
+.hash { overflow-wrap: anywhere; font-size: .8rem; }.hint { color: var(--sp-muted); font-size: .8rem; }.controls { display: flex; flex-wrap: wrap; gap: .6rem; margin: .8rem 0; align-items: center; }p,li { overflow-wrap: anywhere; }
 :deep(.mp__head) { flex-wrap: wrap; }:deep(.mp__meta) { grid-template-columns: 9rem minmax(0, 1fr); }:deep(.mp__meta dd) { overflow-wrap: anywhere; }
-button,select,input { font: inherit; max-width: 100%; border: 1px solid #bdccda; border-radius: 5px; background: white; padding: .45rem; }input[type=number] { width: 6rem; }button:disabled { opacity: .5; }.faces { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }a { color: #214f75; }
+button,select,input { font: inherit; max-width: 100%; border: 1px solid var(--sp-border); border-radius: 12px; background: white; padding: .45rem; }input[type=number] { width: 6rem; }button:disabled { opacity: .5; }.faces { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }a { color: var(--sp-primary); }
 @media(max-width:780px) { .panel { padding: 1rem; }.faces { grid-template-columns: 1fr; }:deep(.mp__meta) { grid-template-columns: 1fr; } }
 </style>

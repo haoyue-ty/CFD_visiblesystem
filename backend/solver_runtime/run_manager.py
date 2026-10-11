@@ -4,6 +4,7 @@ import os
 import subprocess
 import sys
 import time
+from pathlib import Path
 
 from backend.core.settings import Settings
 from backend.solver_runtime.artifacts import target, utc_now, write_json
@@ -15,6 +16,9 @@ from backend.solver_runtime.run_store import ACTIVE, TERMINAL, RunStore, file_lo
 def directory_bytes(root):
     total = 0
     for path in root.rglob("*"):
+        # User export caches have their own quota; they are not Solver output.
+        if isinstance(root, Path) and isinstance(path, Path) and path.is_relative_to(root / "exports"):
+            continue
         if path.name.endswith(".tmp"):
             continue
         try:

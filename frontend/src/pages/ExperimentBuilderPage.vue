@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { createRun } from '../data/v2/runs'
 import { ExperimentApiError, loadCases, parseNaturalLanguage, validateConfig,
   type Draft, type LiveCase, type LiveConfig, type Submission, type Validated } from '../data/v2/experiments'
@@ -20,6 +20,8 @@ const busy = ref(false)
 const accepted = ref(false)
 const confirmed = ref(false)
 const router = useRouter()
+const route = useRoute()
+const templateNotice = ref('')
 let revision = 0
 const labels = { LIVE_FAST_RUN: '普通配置', LIVE_PAPER_PROFILE: '论文标准配置的新运行',
   PAPER_SCALE_CUSTOM: '论文模板 · 自定义参数', CUSTOM_RUN: '自定义实验' }
@@ -43,6 +45,27 @@ function selectTemplate(id: string) {
   config.value = JSON.parse(JSON.stringify(template.config)) as LiveConfig
   draft.value = null
 }
+
+function applyRouteTemplate() {
+  if (!registry.value) return
+  if (typeof route.query.prompt === 'string' && route.query.prompt.trim()) {
+    mode.value = 'natural_language'
+    text.value = route.query.prompt.slice(0, 4000)
+  } else if (route.query.mode === 'form') {
+    mode.value = 'form'
+  }
+  const requested = route.query.template
+  templateNotice.value = ''
+  if (typeof requested !== 'string') return
+  if (registry.value.templates.some(t => t.template_id === requested)) {
+    mode.value = 'template'
+    selectTemplate(requested)
+  } else {
+    selectTemplate(registry.value.templates[0]!.template_id)
+    templateNotice.value = '请求的模板未登记，已恢复为当前默认模板。请重新核对并验证配置。'
+  }
+}
+watch(() => [route.query.template, route.query.mode, route.query.prompt], applyRouteTemplate)
 
 function readField(path: string): number {
   const [group, key] = path.split('.') as [keyof LiveConfig, string]
@@ -78,10 +101,11 @@ async function load() {
   error.value = null
   try {
     const result = await loadCases()
-    registry.value = result.cases[0] ?? null
+    registry.value = result.cases.find(c => c.case_id === 'case8') ?? null
     aiAvailable.value = result.natural_language_available
-    if (!registry.value) throw new ExperimentApiError('当前没有可创建的实验。')
+    if (!registry.value?.templates.length) throw new ExperimentApiError('当前没有可创建的算例模板。')
     selectTemplate(registry.value.templates[0]!.template_id)
+    applyRouteTemplate()
   } catch (e) { error.value = e as ExperimentApiError }
   finally { loading.value = false }
 }
@@ -147,11 +171,14 @@ onMounted(load)
 <template>
   <main class="builder" data-page="experiment-builder">
     <header class="builder__header">
-      <p class="eyebrow">SHOCKPATH · 新建实验</p>
+      <p class="eyebrow">SHOCKPATH · 新建计算</p>
       <h1>配置你的 Case 8 实验</h1>
       <p>从模板、专业参数或自然语言开始，核对同一份后端验证的实验配置。</p>
       <p v-if="registry?.execution_available" class="notice" data-testid="execution-ready">后台运行服务在线。核对并确认配置后，提交真实 CFD；任务串行执行。</p>
-      <p v-else class="notice" data-testid="execution-unavailable">后台运行服务尚未启动。本页可验证与确认配置，尚未启动 CFD。</p>
+      <p v-else-if="registry" class="notice" data-testid="execution-unavailable">后台运行服务尚未启动。本页可验证与确认配置，尚未启动 CFD。</p>
+      <p v-else class="hint">正在核查服务状态；只有后端确认可执行时才能启动求解。</p>
+      <p v-if="templateNotice" role="status" class="notice">{{ templateNotice }}</p>
+      <p class="hint">1. 输入参数 → 2. 验证并确认配置 → 3. 启动求解</p>
     </header>
 
     <p v-if="loading" role="status">正在加载实验能力与模板…</p>
@@ -260,22 +287,23 @@ onMounted(load)
 </template>
 
 <style scoped>
-.builder { max-width: 1180px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; color: #24384c; }
+.builder { max-width: 1180px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; color: var(--sp-text); }
 .builder__header { max-width: 790px; margin-bottom: 1.6rem; }
-.eyebrow { font-size: .75rem; letter-spacing: .12em; color: #476e93; }
+.eyebrow { font-size: .75rem; letter-spacing: .12em; color: var(--sp-muted); }
 h1 { font-size: 2rem; margin: .6rem 0; } h2 { font-size: 1.15rem; margin: 0 0 1.4rem; }
-p, li { line-height: 1.7; }.notice { padding: .75rem 1rem; background: #fff6dd; border-left: 3px solid #b38935; font-size: .9rem; }
+p, li { line-height: 1.7; }.notice { padding: .75rem 1rem; background: var(--sp-primary-soft); color: #66739d; border-radius: 12px; font-size: .85rem; }
 .builder__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
-.panel { background: #fff; border: 1px solid #dce4eb; border-radius: 10px; padding: 1.5rem; min-width: 0; }
+.panel { background: #fff; border: 1px solid var(--sp-border); border-radius: var(--sp-radius); padding: 1.5rem; min-width: 0; }
 .modes { display: flex; gap: .6rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-button, select, textarea { font: inherit; } button { border: 1px solid #bdccda; border-radius: 5px; background: #fff; color: #254b6c; padding: .55rem .9rem; cursor: pointer; }
-button[aria-pressed="true"], .primary { background: #214f75; color: #fff; border-color: #214f75; }button:disabled { opacity: .55; cursor: default; }
+button, select, textarea { font: inherit; } button { border: 1px solid var(--sp-border); border-radius: 12px; background: #fff; color: var(--sp-text); padding: .55rem .9rem; cursor: pointer; }
+button[aria-pressed="true"] { background: var(--sp-primary-soft); color: var(--sp-primary); border-color: #ccd6ff; }.primary { background: var(--sp-primary); color: #fff; border-color: var(--sp-primary); }button:disabled { opacity: .55; cursor: default; }
+.modes button { border-radius: 999px; min-height: 44px; padding-inline: 18px; }.builder__header > p:not(.eyebrow):not(.notice) { color: var(--sp-muted); }.panel button { min-height: 44px; border-radius: 999px; padding-inline: 18px; }
 .field { display: flex; flex-direction: column; gap: .4rem; margin: 1rem 0; font-size: .9rem; }
-select, textarea { padding: .7rem; border: 1px solid #bdccda; border-radius: 5px; background: #fff; color: #24384c; max-width: 100%; }textarea { resize: vertical; }
-.hint { color: #617184; font-size: .85rem; }.text-button { font-size: .8rem; }.protocol { margin: 1.3rem 0; font-size: .85rem; }
-summary { cursor: pointer; color: #315e83; } .classification { font-weight: 600; color: #214f75; } dl { display: grid; grid-template-columns: 5rem 1fr; gap: .7rem; font-size: .9rem; }dt { color: #617184; }dd { margin: 0; }
-table { border-collapse: collapse; width: 100%; font-size: .85rem; margin: 1.4rem 0; text-align: left; }th,td { padding: .5rem; border-bottom: 1px solid #dce4eb; }caption { text-align: left; margin-bottom: .6rem; color: #617184; }
-.hash { font-size: .75rem; }code { display: block; overflow-wrap: anywhere; margin-top: .4rem; }pre { font-size: .75rem; overflow: auto; max-height: 340px; padding: .75rem; background: #f4f7fa; }
+select, textarea { padding: .7rem; border: 1px solid var(--sp-border); border-radius: 12px; background: #fff; color: var(--sp-text); max-width: 100%; }textarea { resize: vertical; }
+.hint { color: var(--sp-muted); font-size: .85rem; }.text-button { font-size: .8rem; }.protocol { margin: 1.3rem 0; font-size: .85rem; }
+summary { cursor: pointer; color: var(--sp-primary); } .classification { font-weight: 600; color: var(--sp-primary); } dl { display: grid; grid-template-columns: 5rem 1fr; gap: .7rem; font-size: .9rem; }dt { color: var(--sp-muted); }dd { margin: 0; }
+table { border-collapse: collapse; width: 100%; font-size: .85rem; margin: 1.4rem 0; text-align: left; }th,td { padding: .5rem; border-bottom: 1px solid var(--sp-border); }caption { text-align: left; margin-bottom: .6rem; color: var(--sp-muted); }
+.hash { font-size: .75rem; }code { display: block; overflow-wrap: anywhere; margin-top: .4rem; }pre { font-size: .75rem; overflow: auto; max-height: 340px; padding: .75rem; background: #f7f8fc; }
 .confirm { display: flex; gap: .5rem; align-items: start; font-size: .85rem; margin: 1.2rem 0; line-height: 1.6; }.run-disabled { margin-top: 1.3rem; }.error { color: #842d2d; background: #fff1f1; padding: 1rem; margin-bottom: 1rem; }
 @media (max-width: 780px) { .builder__layout { grid-template-columns: 1fr; }.builder { padding: 1.5rem 1rem; } h1 { font-size: 1.6rem; } }
 </style>

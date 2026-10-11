@@ -24,7 +24,7 @@ def register_report_operations(catalog, store, client):
         response = Response(service.html(run_id), content_type='text/html; charset=utf-8')
         response.headers['Content-Security-Policy'] = "sandbox; default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'self'"
         response.headers['X-Content-Type-Options'] = 'nosniff'
-        response.headers['Content-Disposition'] = f'inline; filename="ShockPath-{run_id}.html"'
+        response.headers['Content-Disposition'] = f'inline; filename="ShockPath_{run_id}_report.html"'
         return response
     catalog.register(Operation(method='GET', path='/api/v2/reports/{run_id}/html', operation_id='V2_REPORT_HTML',
         blueprint='v2_reports', service='ReportService', request_model=RunPath, response_model=None,

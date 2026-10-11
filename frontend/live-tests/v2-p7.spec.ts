@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 const root = fileURLToPath(new URL('../..',import.meta.url))
+const artifacts = root+'/output/playwright/phase-a'
 const live = JSON.parse(readFileSync(root+'/docs/v2/p7_live_acceptance.json','utf8'))
 const scan = live.checks.real_four_combination_serial_scan
 const [a,b] = scan.records.map((r: { run_id: string }) => r.run_id)
@@ -25,10 +26,10 @@ test('final comparison uses physical geometry, true time axis and a common color
   await page.getByLabel('共同快照时间').selectOption('0')
   await expect(page.getByTestId('comparison-color')).toHaveText(/· t=0$/)
   await expect(figure).toHaveAttribute('aria-label',/t=0，/)
-  await page.screenshot({path:root+'/docs/v2/p7_compare_desktop.png',fullPage:true})
+  await page.screenshot({path:artifacts+'/p7-compare-desktop.png',fullPage:true})
   await page.setViewportSize({width:390,height:844})
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
-  await page.screenshot({path:root+'/docs/v2/p7_compare_mobile.png',fullPage:true})
+  await page.screenshot({path:artifacts+'/p7-compare-mobile.png',fullPage:true})
   expect(errors).toEqual([])
 })
 
@@ -59,6 +60,11 @@ test('scan confirmation is invalidated on edit and unsupported values never offe
   await page.getByRole('button',{name:'验证扫描配置'}).click()
   await expect(page.getByRole('alert')).toBeVisible()
   await expect(page.getByRole('button',{name:'确认并启动扫描'})).toHaveCount(0)
+  const budgetError = await page.getByRole('alert').innerText()
+  const refreshed = page.waitForResponse(response => response.url().includes('/api/v2/sweeps?') && response.request().method() === 'GET')
+  await page.getByRole('button',{name:'刷新扫描',exact:true}).click()
+  await (await refreshed).finished()
+  await expect(page.getByRole('alert')).toHaveText(budgetError)
 })
 
 test('completed and budget-exhausted scans survive reload with run links and mobile layout', async ({ page }) => {
@@ -67,7 +73,7 @@ test('completed and budget-exhausted scans survive reload with run links and mob
   await expect(page.getByTestId('sweep-status')).toHaveText('全部完成')
   await expect(page.getByTestId('sweep-progress')).toContainText('成功 4')
   await expect(page.getByRole('button',{name:'取消扫描',exact:true})).toHaveCount(0)
-  await page.screenshot({path:root+'/docs/v2/p7_scan_desktop.png',fullPage:true})
+  await page.screenshot({path:artifacts+'/p7-scan-desktop.png',fullPage:true})
   await page.setViewportSize({width:390,height:844})
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
   await page.getByRole('link',{name:'对比前两个成功运行'}).click()

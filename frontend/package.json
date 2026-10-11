@@ -8,9 +8,12 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "generate:types": "openapi-typescript ../config/openapi.json -o src/types/generated/api.d.ts",
-    "test:routes": "playwright test"
+    "test:routes": "playwright test",
+    "test:phase-a": "playwright test --config=playwright.phase-a.config.ts",
+    "test:phase-b": "playwright test --config=playwright.phase-b.config.ts"
   },
   "dependencies": {
+    "@lucide/vue": "1.55.0",
     "@tanstack/vue-query": "5.104.0",
     "echarts": "6.1.0",
     "openapi-fetch": "0.17.0",

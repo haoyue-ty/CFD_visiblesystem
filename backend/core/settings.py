@@ -28,6 +28,12 @@ class Settings(CanonicalModel):
     max_run_output_bytes: int = Field(default=67108864, ge=1048576, le=67108864)
     waitress_threads: int = Field(default=12, ge=8, le=64)
     max_sse_connections: int = Field(default=4, ge=1, le=4)
+    max_concurrent_exports: int = Field(default=2, ge=1, le=4)
+    max_export_cache_bytes: int = Field(default=268435456, ge=1048576, le=1073741824)
+    max_total_export_cache_bytes: int = Field(default=2147483648, ge=1048576, le=17179869184)
+    max_export_seconds: float = Field(default=90, gt=0, le=180)
+    export_pdf_enabled: bool = True
+    export_pdf_browser: str = ""
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -54,4 +60,10 @@ class Settings(CanonicalModel):
             max_run_output_bytes=int(os.getenv("MAX_RUN_OUTPUT_BYTES") or "67108864"),
             waitress_threads=int(os.getenv("WAITRESS_THREADS") or "12"),
             max_sse_connections=int(os.getenv("MAX_SSE_CONNECTIONS") or "4"),
+            max_concurrent_exports=int(os.getenv("MAX_CONCURRENT_EXPORTS") or "2"),
+            max_export_cache_bytes=int(os.getenv("MAX_EXPORT_CACHE_BYTES") or "268435456"),
+            max_total_export_cache_bytes=int(os.getenv("MAX_TOTAL_EXPORT_CACHE_BYTES") or "2147483648"),
+            max_export_seconds=float(os.getenv("MAX_EXPORT_SECONDS") or "90"),
+            export_pdf_enabled=os.getenv("EXPORT_PDF_ENABLED", "true").lower() == "true",
+            export_pdf_browser=os.getenv("EXPORT_PDF_BROWSER", ""),
         )

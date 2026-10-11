@@ -6,7 +6,7 @@ test('V1 Lab catalog opens all six delivered experiments from production API', a
   for (const [id, ready] of [['case8', 'config-D_u'], ['gate', 'cell-allocation-canvas'], ['entropy-closure', 'closure-run'],
     ['spectrum', 'spectral-curve-canvas'], ['modal-validation', 'growth-validation-canvas'], ['cylinder', 'config-D_u']] as const) {
     await page.goto('/home')
-    await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "数字实验室", exact: true }).click()
+    await page.getByRole('navigation', { name: "系统导航" }).getByRole('link', { name: "算例库", exact: true }).click()
     await expect(page.getByTestId(`lab-delivery-${id}`)).toHaveText("已交付")
     await page.getByTestId(`open-${id}`).click()
     await expect(page.getByTestId(ready).first()).toBeVisible()

@@ -1,141 +1,70 @@
 <script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { zh } from '../presentation/zh-CN'
-
-import { activeProvider } from '../data'
-/**
- * P04 — Lab Workspace (experiment catalog + analysis shortcuts).
- *
- * Case8 and Cylinder are enterable when the API declares IMPLEMENTED. Other
- * catalog entries retain their API delivery status. They are not labelled as
- * MISSING scientific data (IA 17.1: "不能把'未实现'标记为科研数据 MISSING").
- */
-import { onMounted, ref } from 'vue'
-import { dataService, type Loaded } from '../data'
+import { activeProvider, dataService, createRequestGuard, type Loaded } from '../data'
 import type { ExperimentCatalogEntry, ExperimentOverview } from '../data/domain'
+import { useCaseRegistry } from '../data/v2/useCaseRegistry'
 import LoadStateBlock from '../components/LoadStateBlock.vue'
 import MockBadge from '../components/MockBadge.vue'
+import LiveCaseCard from '../components/LiveCaseCard.vue'
 
+const registry = useCaseRegistry()
+const executable = computed(() => registry.isError.value ? [] : registry.data.value?.cases.filter(c => c.execution_available && c.templates.length) ?? [])
 const experiments = ref<Loaded<ExperimentCatalogEntry[]> | null>(null)
 const case8 = ref<Loaded<ExperimentOverview> | null>(null)
-
+const catalogGuard = createRequestGuard(), caseGuard = createRequestGuard()
 onMounted(async () => {
-  experiments.value = { state: 'LOADING', data: null, reason: null, origin: 'MOCK' }
-  case8.value = { state: 'LOADING', data: null, reason: null, origin: 'MOCK' }
-  experiments.value = await dataService.listExperiments()
-  case8.value = await dataService.getExperimentOverview('case8')
+  const [catalog, overview] = await Promise.all([
+    catalogGuard.run(signal => dataService.listExperiments(signal)),
+    caseGuard.run(signal => dataService.getExperimentOverview('case8', signal)),
+  ])
+  if (catalog) experiments.value = catalog
+  if (overview) case8.value = overview
 })
+onUnmounted(() => { catalogGuard.cancel(); caseGuard.cancel() })
 </script>
-
 <template>
   <main data-page="lab" class="lab">
-    <nav class="lab__subnav" :aria-label="zh('Lab sections')">
-      <span class="lab__subnav-current">{{ zh("实验目录 / Experiment catalog") }}</span>
-      <RouterLink :to="{ name: 'mechanism' }" data-testid="lab-open-mechanism">{{ zh("Mechanism Explorer") }}</RouterLink>
-      <RouterLink :to="{ name: 'cross-flow' }">{{ zh("跨流动比较 Cross-flow") }}</RouterLink>
-    </nav>
-
-    <h1>{{ zh("Lab Workspace") }}</h1>
-    <RouterLink :to="{ name: 'explore', query: { scene: '1' } }" data-testid="lab-open-explore">{{ zh("Explore / Guided Story") }}</RouterLink>
-    <p class="lab__intro">
-      {{ zh("The Lab opens real experiments and their supported controls. Availability below is") }}
-      <strong>{{ zh("software delivery status") }}</strong>{{ zh("; it does not report scientific capability or asset verification.") }}
-    </p>
-
-    <LoadStateBlock :loaded="experiments" :target="zh('experiment catalog')">
-      <ul class="lab__list" data-testid="lab-experiment-list">
-        <li
-          v-for="exp in experiments?.data || []"
-          :key="exp.experiment_id"
-          class="lab__item"
-          :class="{ 'lab__item--implemented': exp.delivery_status === 'IMPLEMENTED' }"
-          :data-testid="`lab-experiment-${exp.experiment_id}`"
-        >
-          <div class="lab__item-head">
-            <h2>{{ zh(exp.name) }}</h2>
-            <span
-              class="badge"
-              :class="exp.delivery_status === 'IMPLEMENTED' ? 'badge--implemented' : 'badge--planned'"
-              :data-testid="`lab-delivery-${exp.experiment_id}`"
-            >{{ zh(exp.delivery_status) }}</span>
-          </div>
-          <p class="lab__family">{{ zh(exp.scientific_family) }}</p>
-          <p class="lab__summary">{{ zh(exp.summary) }}</p>
-
-          <!-- IMPLEMENTED: enterable, with real capability summary -->
-          <template v-if="exp.delivery_status === 'IMPLEMENTED' && exp.implementable_route">
-            <p class="lab__capability" :data-testid="`${exp.experiment_id}-capability`">{{ zh(exp.experiment_id === 'cylinder' ? 'SUPPORTED · 5 instantaneous snapshots + 9757 scalar steps + 16 sectors; cumulative 2D Missing' : exp.experiment_id === 'case8' ? 'SUPPORTED · 6 snapshots + 1912 scalar steps' : exp.summary) }}</p>
-            <RouterLink
-              class="lab__cta"
-              :to="{ name: 'experiment', params: { experiment_id: exp.experiment_id } }"
-              :data-testid="`open-${exp.experiment_id}`"
-            >{{ zh("Open") }} {{ zh(exp.name) }} →</RouterLink>
-          </template>
-
-          <!-- PLANNED: explicit delivery note, NOT a missing-data label -->
-          <template v-else>
-            <p class="lab__planned-note" :data-testid="`lab-planned-note-${exp.experiment_id}`">
-              {{ zh("Delivery: PLANNED — no interactive page is registered yet. This is an application delivery state,") }} <strong>{{ zh("not") }}</strong> {{ zh("MISSING scientific data.") }}
-            </p>
-            <span class="lab__cta lab__cta--disabled" aria-disabled="true">{{ zh("Not yet available") }}</span>
-          </template>
-        </li>
-      </ul>
-    </LoadStateBlock>
-
-    <section class="lab__case8-preview" :aria-label="zh('Case8 configurations')">
-      <h2>{{ zh("Case8 configurations") }}</h2>
-      <LoadStateBlock :loaded="case8" :target="zh('Case8 overview')">
-        <table class="lab__configs" data-testid="lab-case8-configs">
-          <thead>
-            <tr><th>{{ zh("Config") }}</th><th>q_aa</th><th>q_at</th></tr>
-          </thead>
-          <tbody>
-            <tr v-for="cfg in case8?.data?.configurations || []" :key="cfg.config_id">
-              <td>{{ zh(cfg.config_id) }}</td>
-              <td>{{ zh(cfg.q_aa) }}</td>
-              <td>{{ zh(cfg.q_at) }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="lab__preview-note">
-          {{ zh("All four configs are equally selectable; D_u is only a convenient starting point, not \"best\".") }}
-        </p>
-      </LoadStateBlock>
+    <header><p class="sp-eyebrow">SHOCKPATH · 算例库</p><h1>算例库</h1><p class="sp-intro">选择可执行算例开始新计算，或打开已有科研记录进行回放与分析。实时计算与历史数据分别标明。</p></header>
+    <section class="sp-section" aria-labelledby="live-heading" data-testid="live-case-library">
+      <div class="sp-section-heading"><h2 id="live-heading">实时求解算例</h2><RouterLink to="/experiments/new">新建计算 →</RouterLink></div>
+      <div v-if="registry.isError.value" class="sp-state sp-state--error" role="alert">无法核查实时求解能力。<button class="sp-button" @click="registry.refetch()">重试能力检查</button></div>
+      <p v-else-if="registry.isPending.value" class="sp-state" role="status">正在核查后端执行能力…</p>
+      <LiveCaseCard v-for="liveCase in executable" v-else-if="executable.length" :key="liveCase.case_id" :live-case="liveCase" />
+      <p v-else class="sp-state" data-testid="no-live-cases">求解服务未启动或当前没有可执行算例。新建计算页仍可查看已登记的模板、支持参数并验证配置；服务恢复后才能启动真实求解。</p>
     </section>
-
-    <footer class="lab__provenance">
-      <MockBadge v-if="activeProvider.kind === 'MOCK'" origin="MOCK" :verification="activeProvider.kind === 'MOCK' ? 'NOT_APPLICABLE' : undefined" />
-      <span v-if="activeProvider.kind === 'MOCK'" class="lab__provenance-text">{{ zh("All data in this slice is synthetic mock data for layout and interaction development.") }}</span>
-    </footer>
+    <section class="sp-section" aria-labelledby="history-heading" data-testid="history-case-library">
+      <div class="sp-section-heading"><h2 id="history-heading">历史科研算例</h2><span class="sp-badge sp-badge--history">历史数据回放</span></div>
+      <p class="sp-muted">以下入口读取已有科研数据，切换配置或图表不会启动 Solver。软件交付状态与科学验证状态分别保留。</p>
+      <LoadStateBlock :loaded="experiments" :target="zh('experiment catalog')">
+        <ul class="lab__list sp-grid" data-testid="lab-experiment-list">
+          <li v-for="exp in experiments?.data || []" :key="exp.experiment_id" class="sp-panel lab__item" :data-testid="`lab-experiment-${exp.experiment_id}`">
+            <div class="lab__item-head"><h3>{{ zh(exp.name) }}</h3><span class="sp-badge" :data-testid="`lab-delivery-${exp.experiment_id}`">{{ zh(exp.delivery_status) }}</span></div>
+            <span class="sp-badge sp-badge--history">历史数据回放</span>
+            <p class="lab__summary">{{ zh(exp.summary) }}</p>
+            <template v-if="exp.delivery_status === 'IMPLEMENTED' && exp.implementable_route">
+              <p class="sp-muted" :data-testid="`${exp.experiment_id}-capability`">{{ zh(exp.availability_note ?? exp.summary) }}</p>
+              <RouterLink class="sp-button" :to="{ name: 'experiment', params: { experiment_id: exp.experiment_id } }" :data-testid="`open-${exp.experiment_id}`">查看 {{ zh(exp.name) }} →</RouterLink>
+            </template>
+            <template v-else><p class="sp-muted" :data-testid="`lab-planned-note-${exp.experiment_id}`">{{ zh('Delivery: PLANNED — no interactive page is registered yet. This is an application delivery state,') }} <strong>{{ zh('not') }}</strong> {{ zh('MISSING scientific data.') }}</p><span class="sp-muted" aria-disabled="true">{{ zh('Not yet available') }}</span></template>
+          </li>
+          <li class="sp-panel lab__item" data-testid="history-cross-flow"><div class="lab__item-head"><h3>跨流动比较</h3></div><span class="sp-badge sp-badge--history">历史数据回放</span><p>并列查看 Case 8 与 Mach 3 圆柱绕流的已记录路径、分配与响应。保留不同定义和适用范围，不进行统一性能排名。</p><RouterLink to="/cross-flow" class="sp-button">查看跨流动比较 →</RouterLink></li>
+        </ul>
+      </LoadStateBlock>
+      <details class="sp-panel sp-section"><summary>Case 8 历史配置</summary>
+        <LoadStateBlock :loaded="case8" :target="zh('Case8 overview')">
+          <table data-testid="lab-case8-configs"><thead><tr><th>配置</th><th>q_aa</th><th>q_at</th></tr></thead><tbody><tr v-for="cfg in case8?.data?.configurations || []" :key="cfg.config_id"><td>{{ cfg.config_id }}</td><td>{{ cfg.q_aa }}</td><td>{{ cfg.q_at }}</td></tr></tbody></table>
+          <p class="sp-muted">{{ zh('All four configs are equally selectable; D_u is only a convenient starting point, not "best".') }}</p>
+        </LoadStateBlock>
+      </details>
+    </section>
+    <nav class="sp-subnav sp-section" aria-label="算例相关教程"><RouterLink to="/help">帮助与科研教程</RouterLink><RouterLink :to="{ name: 'explore', query: { scene: '1' } }" data-testid="lab-open-explore">七幕引导探索</RouterLink><RouterLink to="/lab/mechanism" data-testid="lab-open-mechanism">跨模态耗散机制</RouterLink></nav>
+    <MockBadge v-if="activeProvider.kind === 'MOCK'" origin="MOCK" verification="NOT_APPLICABLE" />
   </main>
 </template>
-
 <style scoped>
-.lab { max-width: 60rem; margin: 0 auto; padding: 1.5rem; }
-.lab__subnav { display: flex; gap: 1rem; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; padding-bottom: 0.5rem; }
-.lab__subnav-current { font-weight: 700; color: #1a4f8a; }
-.lab__subnav-item--planned { color: #999; }
-.lab__intro { font-size: 0.9rem; color: #555; line-height: 1.6; }
-.lab__list { list-style: none; padding: 0; display: grid; gap: 0.8rem; }
-.lab__item { border: 1px solid #e2e2e2; border-radius: 5px; padding: 0.9rem 1.1rem; }
-.lab__item--implemented { border-color: #1a4f8a; background: #f8fbff; }
-.lab__item-head { display: flex; align-items: center; gap: 0.6rem; }
-.lab__item-head h2 { margin: 0; font-size: 1.05rem; }
-.lab__family { font-size: 0.78rem; color: #777; margin: 0.15rem 0; text-transform: uppercase; letter-spacing: 0.04em; }
-.lab__summary { font-size: 0.87rem; color: #444; margin: 0.3rem 0; }
-.lab__capability { font-size: 0.82rem; color: #186a2b; font-weight: 600; }
-.lab__planned-note { font-size: 0.82rem; color: #8a6d00; background: #fffaf0; border-left: 3px solid #e6c86a; padding: 0.35rem 0.6rem; }
-.lab__cta { display: inline-block; margin-top: 0.4rem; padding: 0.4rem 1rem; background: #1a4f8a; color: #fff; text-decoration: none; border-radius: 3px; font-size: 0.85rem; }
-.lab__cta--disabled { background: #ccc; color: #666; cursor: not-allowed; }
-.lab__case8-preview { margin-top: 1.5rem; }
-.lab__case8-preview h2 { font-size: 1.05rem; }
-.lab__configs { border-collapse: collapse; font-size: 0.85rem; }
-.lab__configs th, .lab__configs td { border: 1px solid #ddd; padding: 0.25rem 0.8rem; text-align: left; }
-.lab__configs th { background: #f2f2f2; }
-.lab__preview-note { font-size: 0.8rem; color: #777; }
-.lab__provenance { margin-top: 2rem; display: flex; align-items: center; gap: 0.6rem; }
-.lab__provenance-text { font-size: 0.78rem; color: #777; }
-.badge { font-size: 0.68rem; font-weight: 700; padding: 0.1rem 0.45rem; border-radius: 3px; text-transform: uppercase; }
-.badge--planned { background: #fff4d6; color: #8a6d00; border: 1px solid #e6c86a; }
-.badge--implemented { background: #e3f5e6; color: #186a2b; border: 1px solid #8cc79a; }
+.lab__list { list-style: none; padding: 0; }
+.lab__item-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.lab__item-head h3 { margin: 0; }.lab__item p { font-size: 14px; }.lab__item .sp-button { margin-top: 6px; }
+summary { cursor: pointer; color: var(--sp-primary); }table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }th,td { padding: 10px; text-align: left; border-bottom: 1px solid var(--sp-border); }
 </style>

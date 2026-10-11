@@ -106,7 +106,7 @@ test.describe('state restoration', () => {
 test.describe('bootstrap chain still holds', () => {
   test('the frozen bootstrap route chain is unchanged', async ({ page }) => {
     await page.goto(CHAIN.entry)
-    await page.getByTestId('enter-system').click()
+    await expect(page).toHaveURL(/\/home$/)
     await page.getByTestId('home-to-lab').click()
     await page.getByTestId('open-case8').click()
     await page.getByTestId('tab-evidence').click()

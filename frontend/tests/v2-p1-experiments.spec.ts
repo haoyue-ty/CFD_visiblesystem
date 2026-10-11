@@ -43,7 +43,7 @@ test('template and form share hash, paper changes preserve lineage, confirmation
 
 test('benchmarked fast and unavailable AI stay explicit; reload and navigation work', async ({ page }) => {
   await page.goto('/home')
-  await page.getByTestId('new-experiment-entry').getByRole('link').click()
+  await page.getByTestId('new-experiment-entry').getByRole('button').click()
   await expect(page).toHaveURL(/\/experiments\/new$/)
   await validate(page)
   await expect(page.getByTestId('classification')).toHaveText('普通配置')
@@ -118,5 +118,5 @@ test('mobile builder has no horizontal overflow and can confirm configuration', 
   await page.getByRole('button', { name: '确认配置', exact: true }).click()
   await expect(page.getByTestId('config-confirmed')).toBeVisible()
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
-  await page.screenshot({ path: '../docs/v2/p1_builder_mobile.png', fullPage: true })
+  await page.screenshot({ path: '../output/playwright/phase-a/p1-builder-mobile.png', fullPage: true })
 })

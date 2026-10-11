@@ -30,6 +30,7 @@ class Operation:
     response_media_type: str = "application/json"
     error_response_model: type[BaseModel] | None = None
     request_headers: tuple[str, ...] = ()
+    response_media_types: tuple[str, ...] = ()
 
 
 def _json_object(pairs):
@@ -61,8 +62,12 @@ class OperationCatalog:
             raise ValueError("Unsupported catalog method")
         if not operation.path.startswith("/api/"):
             raise ValueError("Operations must use the API namespace")
-        if operation.response_media_type not in ("application/json", "text/event-stream", "text/html"):
+        if operation.response_media_type not in ("application/json", "text/event-stream", "text/html", "application/zip", "application/pdf"):
             raise ValueError("Unsupported response media type")
+        if any(media not in ("text/html", "application/zip", "application/pdf") for media in operation.response_media_types):
+            raise ValueError("Unsupported alternate response media type")
+        if operation.response_media_types and operation.response_media_type == "application/json":
+            raise ValueError("JSON response models cannot have binary alternatives")
         if type(operation.success_status) is not int or not 200 <= operation.success_status < 300 or operation.success_status == 204:
             raise ValueError("Catalog responses require a body and a success status")
         if operation.success_status in operation.documented_errors:
@@ -123,7 +128,7 @@ class OperationCatalog:
                         raise system_error("INVALID_REQUEST", "Invalid JSON request body", status=400) from None
                 value = _op.handler(query, **handler_values)
                 if _op.response_media_type != "application/json":
-                    if (not isinstance(value, Response) or value.mimetype != _op.response_media_type
+                    if (not isinstance(value, Response) or value.mimetype not in (_op.response_media_type, *_op.response_media_types)
                             or value.status_code != _op.success_status):
                         raise TypeError("Handler must return a Response with the declared media type and status")
                     return value

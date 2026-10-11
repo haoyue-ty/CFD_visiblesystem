@@ -1,25 +1,79 @@
 :root {
-  font-family: Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", system-ui, sans-serif;
-  line-height: 1.65;
-  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-size: 15px; line-height: 1.65; color: #262c3a; background: #fff;
+  --sp-text: #262c3a; --sp-muted: #697386; --sp-primary: #416de4;
+  --sp-primary-hover: #345bc8; --sp-primary-soft: #eef2ff;
+  --sp-surface: #fff; --sp-border: #e7e9ef; --sp-radius: 18px;
+  --sp-page-width: 1200px; --sp-page-gutter: 40px;
 }
+* { box-sizing: border-box; }
 body { margin: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 button, input, select, textarea { font: inherit; }
 button, select, a { touch-action: manipulation; }
-button { line-height: 1.5; }
-h1, h2, h3 { line-height: 1.4; text-wrap: pretty; }
+button { line-height: 1.5; cursor: pointer; }
+button:disabled { cursor: default; }
+a { color: var(--sp-primary); text-underline-offset: 3px; }
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid var(--sp-primary); outline-offset: 3px; }
+h1, h2, h3 { line-height: 1.4; text-wrap: pretty; color: var(--sp-text); }
+h1 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 650; margin: .5rem 0 .75rem; }
+h2 { font-size: 1.2rem; font-weight: 600; }
+h3 { font-size: 1rem; font-weight: 600; }
 main, section, article { min-width: 0; }
+#app main { max-width: var(--sp-page-width); margin-inline: auto; width: 100%; padding: 32px var(--sp-page-gutter) 56px; }
 select { max-width: 100%; }
 table { max-width: 100%; }
 td, th { overflow-wrap: anywhere; }
+.sp-icon { width: 20px; height: 20px; flex-shrink: 0; }
+.sp-eyebrow { margin: 0 0 8px; color: var(--sp-primary); font-size: 11px; letter-spacing: 1.4px; font-weight: 600; }
+.sp-intro { color: var(--sp-muted); max-width: 760px; }
+.sp-section { margin-top: 32px; }
+.sp-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.sp-section-heading h2 { margin: 0; }
+.sp-panel { padding: 24px; border: 1px solid var(--sp-border); border-radius: var(--sp-radius); background: var(--sp-surface); min-width: 0; }
+:where(.panel, .ai-panel, .card) { background: var(--sp-surface); border-radius: var(--sp-radius); }
+:where(.p7 > section) { background: var(--sp-surface); border: 1px solid var(--sp-border); border-radius: var(--sp-radius); padding: 24px; }
+.sp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.sp-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.sp-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 18px; border: 1px solid var(--sp-border); border-radius: 999px; background: white; color: var(--sp-text); font: inherit; font-size: 14px; font-weight: 500; text-decoration: none; cursor: pointer; transition: color .15s, background .15s, border-color .15s; }
+.sp-button:hover { background: var(--sp-primary-soft); border-color: var(--sp-primary); }
+.sp-button--primary { background: var(--sp-primary); border-color: var(--sp-primary); color: white; }
+.sp-button--primary:hover { background: var(--sp-primary-hover); color: white; }
+.sp-button:disabled { opacity: .55; cursor: default; }
+.sp-badge { display: inline-flex; align-items: center; width: fit-content; padding: 3px 10px; border-radius: 999px; background: var(--sp-primary-soft); color: var(--sp-primary); font-size: 12px; font-weight: 500; white-space: nowrap; }
+.sp-badge--history { color: #586778; background: #eef1f5; }
+.sp-muted { color: var(--sp-muted); font-size: 13px; }
+.sp-state { padding: 24px; border: 1px solid var(--sp-border); border-radius: var(--sp-radius); background: white; color: var(--sp-muted); }
+.sp-state p:first-child { margin-top: 0; }
+.sp-state p:last-child { margin-bottom: 0; }
+.sp-state--error { border-color: #e7c6c9; color: #923e47; background: #fff8f8; }
+.sp-state--empty { text-align: center; padding: 32px 24px; }
+.sp-kv { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px 16px; font-size: 14px; }
+.sp-kv dt { color: var(--sp-muted); }
+.sp-kv dd { margin: 0; overflow-wrap: anywhere; }
+.sp-subnav { display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--sp-border); margin-bottom: 24px; padding-bottom: 8px; }
+.sp-subnav a { color: var(--sp-muted); padding: 8px 16px; min-height: 44px; border-radius: 999px; text-decoration: none; font-size: 14px; }
+.sp-subnav a:hover, .sp-subnav a[aria-current="page"] { color: var(--sp-primary); background: var(--sp-primary-soft); }
+.sp-subnav a[aria-current="page"] { font-weight: 600; }
+.app-shell .app-content :is(.workspace, .p7, .report-page) button { min-height: 44px; border-radius: 999px; padding-inline: 18px; }
+.app-shell .app-content :is(.workspace, .p7, .report-page) select { min-height: 44px; border-radius: 12px; }
+.app-shell .app-content :is(.workspace, .p7, .report-page) > header > p:not(.eyebrow) { color: var(--sp-muted); }
+@media (max-width: 768px) { :root { --sp-page-gutter: 20px; } .sp-panel { padding: 20px; } }
+@media (max-width: 600px) {
+  :root { --sp-page-gutter: 16px; }
+  #app main { padding-top: 24px; }
+  .sp-grid { grid-template-columns: 1fr; }
+  .sp-panel { padding: 18px; }
+  .sp-kv { grid-template-columns: 90px minmax(0, 1fr); gap: 10px; }
+  .sp-section { margin-top: 24px; }
+}
 @media (max-width: 700px) {
-  .appbar { flex-wrap: wrap; gap: .6rem; padding: .6rem .8rem !important; }
-  .appbar__nav { flex-wrap: wrap; gap: .7rem !important; }
   [role="tablist"] { flex-wrap: wrap; }
   .filters label { min-width: 0; width: 100%; }
-  .lab__subnav, .scene-actions, .lab__item-head, .exp-list__head { flex-wrap: wrap; }
+  .scene-actions, .lab__item-head { flex-wrap: wrap; }
   .comparison, [data-testid="front-band"] { overflow-wrap: anywhere; }
   .ls { min-width: 0; }
   .scc, .emc, .gvc { overflow-x: auto; max-width: 100%; }
   .scc__canvas, .emc__canvas, .gvc__canvas { min-width: 46rem; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }

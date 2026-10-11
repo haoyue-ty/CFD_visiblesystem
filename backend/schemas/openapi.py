@@ -50,7 +50,7 @@ def export_openapi(catalog: OperationCatalog) -> dict:
             "x-auth-policy": operation.auth_policy,
             "x-cache-policy": operation.cache_policy,
             "responses": {str(operation.success_status): {"description": "Success", "content": {
-                operation.response_media_type: {"schema": response_ref}}}},
+                media: {"schema": response_ref} for media in (operation.response_media_type, *operation.response_media_types)}}},
         }
         for status, codes in operation.documented_errors.items():
             operation_error_ref = register_model(operation.error_response_model) if operation.error_response_model else error_ref

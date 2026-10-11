@@ -15,22 +15,27 @@ import { test, expect } from '../../frontend/node_modules/@playwright/test'
  */
 
 test.describe('Entry -> Home -> Lab -> Case8 chain', () => {
-  test('Entry shows identity and enters the system', async ({ page }) => {
+  test('entry starts the workspace', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('main[data-page="entry"] h1')).toHaveText('ShockPath')
-    await page.getByTestId('enter-system').click()
+    await expect(page.locator('main[data-page="entry"]')).toBeVisible()
+    await page.getByTestId('start-experiment').click()
+    await expect(page.locator('main[data-page="home"] h1')).toHaveText('探索流动之境')
     await expect(page).toHaveURL(/\/home$/)
     await expect(page.locator('main[data-page="home"]')).toBeVisible()
   })
 
-  test('Home shows the scientific question, implemented Explore, and Lab entry', async ({ page }) => {
+  test('Home prioritizes computation and reaches tutorials through Help', async ({ page }) => {
     await page.goto('/home')
-    await expect(page.getByTestId('home-question')).toContainText("耗散")
+    await expect(page.getByRole('heading', { name: '探索流动之境' })).toBeVisible()
+    await expect(page.getByRole('link', { name: '开始新计算' })).toBeVisible()
+    await page.getByTestId('home-to-help').click()
     await expect(page.getByTestId('explore-status')).toContainText("已交付 · 7 幕引导")
     // Phase10 delivers the guided entry alongside the existing Lab path.
-    await page.getByTestId('home-start-explore').click()
+    await page.getByTestId('help-start-explore').click()
     await expect(page).toHaveURL(/\/explore\?scene=1$/)
     await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
+    await page.goBack()
+    await expect(page.locator('main[data-page="help"]')).toBeVisible()
     await page.goBack()
     await expect(page.locator('main[data-page="home"]')).toBeVisible()
     await page.getByTestId('home-to-lab').click()

@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test'
  * Each route must open and survive a reload.
  */
 for (const [path, pageId] of [
-  ['/', 'entry'], ['/home', 'home'], ['/lab', 'lab'],
+  ['/', 'entry'], ['/home', 'home'], ['/help', 'help'], ['/lab', 'lab'],
   ['/lab/experiments/case8', 'experiment'],
   ['/evidence/ev.case8.D_u.snapshot.6.density', 'evidence'],
 ] as const) {

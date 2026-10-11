@@ -6,7 +6,8 @@ test('real vertical slice and four-configuration acceptance', async ({ page }) =
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto('/')
-  await page.getByTestId('enter-system').click()
+  await page.getByTestId('start-experiment').click()
+  await expect(page).toHaveURL(/\/home$/)
   await page.getByTestId('home-to-lab').click()
   await page.getByTestId('open-case8').click()
   await expect(page.locator('main h1')).toHaveText("Case 8 — D_u")

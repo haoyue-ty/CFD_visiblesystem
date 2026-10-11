@@ -19,8 +19,9 @@ test('Home and Lab enter implemented Explore; CONTENT01 returns exactly seven pr
   const body = await response.json()
   expect(body.data.items.map((s: { scene_id: number }) => s.scene_id)).toEqual([1, 2, 3, 4, 5, 6, 7])
   await page.goto('/home')
+  await page.getByTestId('home-to-help').click()
   await expect(page.getByTestId('explore-status')).toContainText("已交付")
-  await page.getByTestId('home-start-explore').click()
+  await page.getByTestId('help-start-explore').click()
   await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
   await page.goto('/lab')
   await page.getByTestId('lab-open-explore').click()
@@ -141,7 +142,8 @@ test('S7 real per-result evidence loads one record with identity/config/hash/lim
 })
 
 test('Previous / Next, scene navigation and browser Back restore only Scene/page', async ({ page }) => {
-  await page.goto('/home'); await page.getByTestId('home-start-explore').click()
+  await page.goto('/home'); await page.getByTestId('home-to-help').click()
+  await page.getByTestId('help-start-explore').click()
   await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
   await page.getByTestId('scene-next').click()
   await expect(page.getByTestId('scene-progress')).toHaveText("第 2 幕 / 共 7 幕")
@@ -150,6 +152,8 @@ test('Previous / Next, scene navigation and browser Back restore only Scene/page
   await page.goBack(); await expect(page.getByTestId('scene-progress')).toHaveText("第 2 幕 / 共 7 幕")
   await page.getByTestId('scene-previous').click(); await expect(page.getByTestId('scene-progress')).toHaveText("第 1 幕 / 共 7 幕")
   await page.goBack(); await page.goBack(); await page.goBack()
+  await expect(page).toHaveURL(/\/help$/)
+  await page.goBack()
   await expect(page).toHaveURL(/\/home$/)
 })
 

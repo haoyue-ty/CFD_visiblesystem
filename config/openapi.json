@@ -10559,6 +10559,527 @@
         ]
       }
     },
+    "/api/v2/runs/{run_id}/exports": {
+      "get": {
+        "operationId": "V2_EXPORT_STATUS",
+        "description": "从已验证完成 Run 生成并流式下载独立缓存；raw / visualization / report，report 可选 zip / html / pdf。",
+        "tags": [
+          "v2_exports"
+        ],
+        "x-delivery-phase": "V2.5-B",
+        "x-service": "ExportService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2Envelope_RunExports_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_RUN",
+            "x-error-codes": [
+              "UNKNOWN_RUN"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "RUN_RESULT_NOT_READY, EXPORT_NOT_READY, PDF_UNAVAILABLE",
+            "x-error-codes": [
+              "RUN_RESULT_NOT_READY",
+              "EXPORT_NOT_READY",
+              "PDF_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "EXPORT_CACHE_LIMIT",
+            "x-error-codes": [
+              "EXPORT_CACHE_LIMIT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "EXPORT_UNSUPPORTED_CASE",
+            "x-error-codes": [
+              "EXPORT_UNSUPPORTED_CASE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "EXPORT_BUSY, EXPORT_SERVICE_BUSY, REPORT_BUSY",
+            "x-error-codes": [
+              "EXPORT_BUSY",
+              "EXPORT_SERVICE_BUSY",
+              "REPORT_BUSY"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE",
+            "x-error-codes": [
+              "PDF_UNAVAILABLE",
+              "EXPORT_TIMEOUT",
+              "EXPORT_STORAGE_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR, RUN_OUTPUT_INVALID, EXPORT_OUTPUT_INVALID, EXPORT_GENERATION_FAILED, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH",
+            "x-error-codes": [
+              "INTERNAL_ERROR",
+              "RUN_OUTPUT_INVALID",
+              "EXPORT_OUTPUT_INVALID",
+              "EXPORT_GENERATION_FAILED",
+              "REPORT_OUTPUT_INVALID",
+              "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/runs/{run_id}/exports/{kind}": {
+      "post": {
+        "operationId": "V2_EXPORT_GENERATE",
+        "description": "从已验证完成 Run 生成并流式下载独立缓存；raw / visualization / report，report 可选 zip / html / pdf。",
+        "tags": [
+          "v2_exports"
+        ],
+        "x-delivery-phase": "V2.5-B",
+        "x-service": "ExportService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2Envelope_ExportMetadata_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_RUN",
+            "x-error-codes": [
+              "UNKNOWN_RUN"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "RUN_RESULT_NOT_READY, EXPORT_NOT_READY, PDF_UNAVAILABLE",
+            "x-error-codes": [
+              "RUN_RESULT_NOT_READY",
+              "EXPORT_NOT_READY",
+              "PDF_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "EXPORT_CACHE_LIMIT",
+            "x-error-codes": [
+              "EXPORT_CACHE_LIMIT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "EXPORT_UNSUPPORTED_CASE",
+            "x-error-codes": [
+              "EXPORT_UNSUPPORTED_CASE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "EXPORT_BUSY, EXPORT_SERVICE_BUSY, REPORT_BUSY",
+            "x-error-codes": [
+              "EXPORT_BUSY",
+              "EXPORT_SERVICE_BUSY",
+              "REPORT_BUSY"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE",
+            "x-error-codes": [
+              "PDF_UNAVAILABLE",
+              "EXPORT_TIMEOUT",
+              "EXPORT_STORAGE_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR, RUN_OUTPUT_INVALID, EXPORT_OUTPUT_INVALID, EXPORT_GENERATION_FAILED, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH",
+            "x-error-codes": [
+              "INTERNAL_ERROR",
+              "RUN_OUTPUT_INVALID",
+              "EXPORT_OUTPUT_INVALID",
+              "EXPORT_GENERATION_FAILED",
+              "REPORT_OUTPUT_INVALID",
+              "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "raw",
+                "visualization",
+                "report"
+              ],
+              "title": "Kind",
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "zip",
+              "enum": [
+                "zip",
+                "html",
+                "pdf"
+              ],
+              "title": "Format",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v2/runs/{run_id}/exports/{kind}/download": {
+      "get": {
+        "operationId": "V2_EXPORT_DOWNLOAD",
+        "description": "从已验证完成 Run 生成并流式下载独立缓存；raw / visualization / report，report 可选 zip / html / pdf。",
+        "tags": [
+          "v2_exports"
+        ],
+        "x-delivery-phase": "V2.5-B",
+        "x-service": "ExportService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/pdf": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST",
+            "x-error-codes": [
+              "INVALID_REQUEST"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "UNKNOWN_RUN",
+            "x-error-codes": [
+              "UNKNOWN_RUN"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "RUN_RESULT_NOT_READY, EXPORT_NOT_READY, PDF_UNAVAILABLE",
+            "x-error-codes": [
+              "RUN_RESULT_NOT_READY",
+              "EXPORT_NOT_READY",
+              "PDF_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "EXPORT_CACHE_LIMIT",
+            "x-error-codes": [
+              "EXPORT_CACHE_LIMIT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "EXPORT_UNSUPPORTED_CASE",
+            "x-error-codes": [
+              "EXPORT_UNSUPPORTED_CASE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "EXPORT_BUSY, EXPORT_SERVICE_BUSY, REPORT_BUSY",
+            "x-error-codes": [
+              "EXPORT_BUSY",
+              "EXPORT_SERVICE_BUSY",
+              "REPORT_BUSY"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE",
+            "x-error-codes": [
+              "PDF_UNAVAILABLE",
+              "EXPORT_TIMEOUT",
+              "EXPORT_STORAGE_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR, RUN_OUTPUT_INVALID, EXPORT_OUTPUT_INVALID, EXPORT_GENERATION_FAILED, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH",
+            "x-error-codes": [
+              "INTERNAL_ERROR",
+              "RUN_OUTPUT_INVALID",
+              "EXPORT_OUTPUT_INVALID",
+              "EXPORT_GENERATION_FAILED",
+              "REPORT_OUTPUT_INVALID",
+              "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "raw",
+                "visualization",
+                "report"
+              ],
+              "title": "Kind",
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "zip",
+              "enum": [
+                "zip",
+                "html",
+                "pdf"
+              ],
+              "title": "Format",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/v2/comparisons": {
       "post": {
         "operationId": "V2_COMPARE_RUNS",
@@ -27651,6 +28172,337 @@
           "warnings"
         ],
         "title": "V2Envelope[ReportMetadata]",
+        "type": "object"
+      },
+      "ExportCapability": {
+        "additionalProperties": false,
+        "properties": {
+          "formats": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Formats",
+            "type": "array"
+          },
+          "unavailable_formats": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Unavailable Formats",
+            "type": "object"
+          },
+          "retryable_formats": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Retryable Formats",
+            "type": "array"
+          }
+        },
+        "required": [
+          "formats",
+          "unavailable_formats",
+          "retryable_formats"
+        ],
+        "title": "ExportCapability",
+        "type": "object"
+      },
+      "ExportMetadata": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "raw",
+              "visualization",
+              "report"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "status": {
+            "default": "NOT_GENERATED",
+            "enum": [
+              "NOT_GENERATED",
+              "GENERATING",
+              "READY",
+              "FAILED"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "formats": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Formats",
+            "type": "array"
+          },
+          "generated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Generated At"
+          },
+          "size_bytes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Size Bytes"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Sha256"
+          },
+          "download_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Download Urls",
+            "type": "object"
+          },
+          "unavailable_formats": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Unavailable Formats",
+            "type": "object"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error Code"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Reason"
+          }
+        },
+        "required": [
+          "kind",
+          "status",
+          "formats",
+          "generated_at",
+          "size_bytes",
+          "sha256",
+          "download_urls",
+          "unavailable_formats",
+          "error_code",
+          "reason"
+        ],
+        "title": "ExportMetadata",
+        "type": "object"
+      },
+      "RunExports": {
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "source_result_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Result Hash"
+          },
+          "exporter_version": {
+            "title": "Exporter Version",
+            "type": "string"
+          },
+          "capabilities": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExportCapability"
+            },
+            "propertyNames": {
+              "enum": [
+                "raw",
+                "visualization",
+                "report"
+              ]
+            },
+            "title": "Capabilities",
+            "type": "object"
+          },
+          "exports": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ExportMetadata"
+            },
+            "propertyNames": {
+              "enum": [
+                "raw",
+                "visualization",
+                "report"
+              ]
+            },
+            "title": "Exports",
+            "type": "object"
+          }
+        },
+        "required": [
+          "run_id",
+          "available",
+          "reason",
+          "source_result_hash",
+          "exporter_version",
+          "capabilities",
+          "exports"
+        ],
+        "title": "RunExports",
+        "type": "object"
+      },
+      "V2Envelope_RunExports_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "2.0.0",
+            "default": "2.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/RunExports"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "data",
+          "warnings"
+        ],
+        "title": "V2Envelope[RunExports]",
+        "type": "object"
+      },
+      "V2Envelope_ExportMetadata_": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "2.0.0",
+            "default": "2.0.0",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExportMetadata"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "schema_version",
+          "request_id",
+          "data",
+          "warnings"
+        ],
+        "title": "V2Envelope[ExportMetadata]",
+        "type": "object"
+      },
+      "Input_ExportQuery": {
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "raw",
+              "visualization",
+              "report"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "format": {
+            "default": "zip",
+            "enum": [
+              "zip",
+              "html",
+              "pdf"
+            ],
+            "title": "Format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "run_id",
+          "kind"
+        ],
+        "title": "ExportQuery",
         "type": "object"
       },
       "MetricComparison": {

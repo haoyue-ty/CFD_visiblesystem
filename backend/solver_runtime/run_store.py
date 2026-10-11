@@ -23,10 +23,6 @@ ACTIVE = frozenset(("STARTING", "RUNNING", "POSTPROCESSING"))
 def file_lock(path, *, blocking=True):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a+b") as stream:
-        stream.seek(0, 2)
-        if stream.tell() == 0:
-            stream.write(b"\0")
-            stream.flush()
         deadline = time.monotonic() + 10
         acquired = False
         while not acquired:
@@ -44,6 +40,12 @@ def file_lock(path, *, blocking=True):
                     raise RuntimeError("Runtime lock is already owned") from None
                 time.sleep(.025)
         try:
+            # Lock the first byte before initializing even an empty file.
+            # Concurrent Windows callers must not write into an owned range.
+            stream.seek(0, 2)
+            if stream.tell() == 0:
+                stream.write(b"\0")
+                stream.flush()
             yield
         finally:
             stream.seek(0)

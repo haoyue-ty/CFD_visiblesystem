@@ -15,5 +15,5 @@ const labels = { FACT: '事实', INTERPRETATION: '解释', LIMITATION: '局限' 
   </article>
 </template>
 <style scoped>
-.claim { padding: .8rem 0; border-bottom: 1px solid #e1e8ee; }p,li { line-height: 1.65; overflow-wrap: anywhere; }strong { font-size: .8rem; color: #496579; }ul { padding-left: 1rem; font-size: .78rem; }a { color: #214f75; }
+.claim { padding: .8rem 0; border-bottom: 1px solid #e1e8ee; }p,li { line-height: 1.65; overflow-wrap: anywhere; }strong { font-size: .8rem; color: #496579; }ul { padding-left: 1rem; font-size: .78rem; }a { color: var(--sp-primary); }
 </style>

@@ -2,6 +2,9 @@
 import { computed, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import ScientificRunView from '../views/runs/ScientificRunView.vue'
+import WorkspaceNavigation from '../components/WorkspaceNavigation.vue'
+import RunExportCenter from '../components/RunExportCenter.vue'
+import { runProgress, runCaseName, runDate } from '../presentation/runs'
 import { cancelRun, loadRun, loadRunHistory, statusLabels, terminal, type RunRecord } from '../data/v2/runs'
 const route = useRoute()
 const run = ref<RunRecord | null>(null)
@@ -12,33 +15,40 @@ const cancelling = ref(false)
 let events: EventSource | undefined
 let timer: ReturnType<typeof setInterval> | undefined
 let generation = 0
-const progress = computed(() => run.value ? Math.min(100, 100 * run.value.physical_time / run.value.requested_final_time) : 0)
+let refreshing: number | undefined
+const progress = computed(() => run.value ? runProgress(run.value) : 0)
+const elapsed = computed(() => run.value?.started_at ? `${Math.max(0, ((run.value.finished_at ? Date.parse(run.value.finished_at) : Date.now()) - Date.parse(run.value.started_at)) / 1000).toFixed(1)} 秒` : '等待执行')
 const failureLabels: Record<string, string> = {
   WORKER_INTERRUPTED: '服务中断，计算未续算。可用同一配置创建新运行。', WORKER_TIMEOUT: '计算超过运行时长上限。',
   RUN_OUTPUT_LIMIT: '输出超过容量上限。', WORKER_EXIT: '求解进程异常退出。', WORKER_FAILED: '求解或结果校验失败。',
 }
 function stop() { events?.close(); events = undefined; clearInterval(timer); timer = undefined }
 async function refresh(id: string, current: number) {
+  if (refreshing === current) return
+  refreshing = current
   try {
     const record = await loadRun(id)
     if (current !== generation) return
     if (!run.value || record.last_event_id >= run.value.last_event_id) run.value = record
     error.value = ''
+    if (terminal(record.status)) {
+      stop(); connection.value = '运行记录已保存'
+    }
     const first = await loadRunHistory(id)
     const recent = first.total > 5 ? await loadRunHistory(id, first.total - 5) : first
     if (current !== generation) return
     history.value = recent.rows
-    if (terminal(record.status)) {
-      stop(); connection.value = '运行记录已保存'
-    }
   } catch (e) { if (current === generation) error.value = e instanceof Error ? e.message : '连接失败，请重试。' }
+  finally { if (refreshing === current) refreshing = undefined }
 }
-function start() {
+async function start() {
   stop(); const current = ++generation
   const id = String(route.params.runId)
-  run.value = null; history.value = []; error.value = ''; cancelling.value = false
-  refresh(id, current)
+  run.value = null; history.value = []; error.value = ''; cancelling.value = false; connection.value = '正在连接事件服务'
+  await refresh(id, current)
+  if (current !== generation || (run.value && terminal((run.value as RunRecord).status))) return
   timer = setInterval(() => refresh(id, current), 4000)
+  if (!run.value) return
   events = new EventSource('/api/v2/runs/' + encodeURIComponent(id) + '/events')
   events.onopen = () => { if (current === generation) connection.value = '实时事件已连接' }
   events.onerror = () => { if (current === generation) connection.value = '事件连接中断，正在通过状态查询刷新' }
@@ -66,11 +76,14 @@ onUnmounted(() => { generation++; stop() })
 
 <template>
   <main class="workspace" data-page="run-workspace">
-    <RouterLink to="/workspace">← 实验工作台</RouterLink><h1>Case 8 运行</h1>
+    <WorkspaceNavigation />
+    <RouterLink to="/workspace">← 运行任务</RouterLink><h1>{{ run ? runCaseName(run.experiment.normalized_config.case_id) : '运行详情' }}</h1>
     <p v-if="error" role="alert" data-testid="run-error">{{ error }} <button @click="start">重新连接</button></p>
     <p v-if="!run && !error" role="status">正在加载运行记录…</p>
     <template v-if="run">
-      <header class="panel"><strong data-testid="run-status">{{ statusLabels[run.status] }}</strong><p class="identity">{{ run.run_id }}</p>
+      <header class="panel"><div class="sp-section-heading"><strong data-testid="run-status">{{ statusLabels[run.status] }}</strong><span class="sp-badge">本次真实计算</span></div><p class="identity">Run ID：{{ run.run_id }}</p>
+        <dl class="sp-kv"><dt>运行配置</dt><dd>{{ run.experiment.normalized_config.grid.nx }} × {{ run.experiment.normalized_config.grid.ny }} · CFL={{ run.experiment.normalized_config.time.cfl }} · T={{ run.requested_final_time }}<br />q_aa={{ run.experiment.normalized_config.method.q_aa }} · q_at={{ run.experiment.normalized_config.method.q_at }}</dd>
+          <dt>创建时间</dt><dd>{{ runDate(run.created_at) }}</dd><dt>开始时间</dt><dd>{{ runDate(run.started_at) }}</dd><dt>运行时间</dt><dd>{{ elapsed }}</dd><template v-if="run.finished_at"><dt>结束时间</dt><dd>{{ runDate(run.finished_at) }}</dd></template></dl>
         <p>{{ connection }}</p><p v-if="run.status === 'QUEUED'">等待前面的任务结束后开始求解。</p>
         <p v-if="run.cancel_requested && !terminal(run.status)" role="status">已请求取消，正在停止实际计算…</p>
         <button v-if="!terminal(run.status)" :disabled="cancelling || run.cancel_requested" @click="cancel">取消运行</button>
@@ -80,22 +93,24 @@ onUnmounted(() => { generation++; stop() })
         <div v-if="run.planned_steps"><progress :value="progress" max="100" aria-label="求解进度"></progress>
           <p data-testid="real-progress">{{ run.completed_steps }} / {{ run.planned_steps }} 步 · t={{ run.physical_time.toPrecision(6) }} / {{ run.requested_final_time }} · {{ progress.toFixed(1) }}%</p></div>
       </header>
-      <section class="panel"><h2>本次配置</h2>
+      <nav v-if="run.status === 'COMPLETED'" class="sp-subnav" aria-label="本次运行分析"><a href="#run-results">科学结果</a><a href="#run-ai">AI 科研助手</a><a href="#run-report">实验报告</a><RouterLink :to="`/runs/${run.run_id}/evidence`">科学证据</RouterLink><RouterLink :to="{ path: '/workspace/compare', query: { a: run.run_id } }">对比此运行</RouterLink></nav>
+      <details class="panel"><summary>本次配置与来源</summary>
         <p>{{ run.experiment.normalized_config.grid.nx }} × {{ run.experiment.normalized_config.grid.ny }} · CFL={{ run.experiment.normalized_config.time.cfl }} · T={{ run.requested_final_time }}</p>
-        <p>q_aa={{ run.experiment.normalized_config.method.q_aa }} · q_at={{ run.experiment.normalized_config.method.q_at }} · Mach=6 · 一阶 · SSP-RK3</p>
+        <p>q_aa={{ run.experiment.normalized_config.method.q_aa }} · q_at={{ run.experiment.normalized_config.method.q_at }} · Mach={{ run.experiment.normalized_config.physics.mach }} · 一阶 · SSP-RK3</p>
         <p class="hash">配置 SHA-256：{{ run.experiment.config_hash }}</p>
         <p>来源：本次新建的 V2 计算。论文配置匹配与科学复现结论分别核查。</p>
         <p v-if="run.finished_at">结束时间：{{ new Date(run.finished_at).toLocaleString() }}</p>
-      </section>
-      <section class="panel"><h2>真实进度日志</h2><pre data-testid="run-log">{{ run.log_tail.join('\n') || '等待求解器输出…' }}</pre></section>
-      <section v-if="history.length" class="panel"><h2>最近的熵累计记录</h2>
+      </details>
+      <details class="panel" :open="!terminal(run.status)"><summary>真实进度日志</summary><pre data-testid="run-log">{{ run.log_tail.join('\n') || '等待求解器输出…' }}</pre></details>
+      <details v-if="history.length" class="panel" :open="!terminal(run.status)"><summary>最近的熵累计记录</summary>
         <div class="table-wrap"><table><thead><tr><th>时间（model time）</th><th>E_bg</th><th>E_aa</th><th>E_at</th></tr></thead>
           <tbody><tr v-for="(row, index) in history" :key="index"><td>{{ row.time_end?.toPrecision(5) }}</td>
             <td>{{ row.E_bg?.toPrecision(5) }}</td><td>{{ row.E_aa?.toPrecision(5) }}</td><td>{{ row.E_at?.toPrecision(5) }}</td></tr></tbody></table></div>
         <p class="hint">来自本次运行的逐步诊断，包含 SSP-RK3 时间权重；仅展示最近 5 条记录。</p>
-      </section>
-      <ScientificRunView v-if="run.status === 'COMPLETED'" :run-id="run.run_id" />
-      <section v-if="run.status === 'COMPLETED'" class="panel"><h2>实验报告</h2>
+      </details>
+      <RunExportCenter :key="run.run_id" :run-id="run.run_id" :run-status="run.status" />
+      <ScientificRunView v-if="run.status === 'COMPLETED'" id="run-results" :run-id="run.run_id" />
+      <section v-if="run.status === 'COMPLETED'" id="run-report" class="panel"><h2>实验报告</h2>
         <p>将本次配置、真实科学结果、已验证解读与来源保存为可离线打开的 HTML。</p>
         <RouterLink :to="`/runs/${run.run_id}/report`" data-testid="run-report-link">生成 / 查看实验报告 →</RouterLink>
       </section>
@@ -104,10 +119,10 @@ onUnmounted(() => { generation++; stop() })
 </template>
 
 <style scoped>
-.workspace { max-width: 1100px; margin: auto; padding: 2.5rem 1.5rem; color: #24384c; }a { color: #214f75; }
-.panel { padding: 1.5rem; border: 1px solid #dce4eb; border-radius: 8px; margin: 1rem 0; min-width: 0; }h2 { font-size: 1.1rem; }p { line-height: 1.7; }
-strong { font-size: 1.2rem; color: #214f75; }.identity,.hash { overflow-wrap: anywhere; font-size: .8rem; }.hint { color: #617184; font-size: .85rem; }
-button { font: inherit; border: 1px solid #bdccda; border-radius: 5px; background: white; color: #254b6c; padding: .55rem .9rem; }button:disabled { opacity: .5; }
-progress { width: 100%; accent-color: #214f75; }pre { overflow: auto; background: #f4f7fa; padding: 1rem; font-size: .8rem; }.table-wrap { overflow-x: auto; }table { width: 100%; text-align: left; border-collapse: collapse; }th,td { padding: .5rem; border-bottom: 1px solid #dce4eb; font-size: .85rem; }
+.workspace { max-width: 1100px; margin: auto; padding: 2.5rem 1.5rem; color: var(--sp-text); }a { color: var(--sp-primary); }
+.panel { padding: 1.5rem; border: 1px solid var(--sp-border); border-radius: var(--sp-radius); background: var(--sp-surface); margin: 1rem 0; min-width: 0; }h2 { font-size: 1.1rem; }p { line-height: 1.7; }summary { cursor: pointer; font-size: 1rem; font-weight: 600; color: var(--sp-text); }
+strong { font-size: 1.2rem; color: var(--sp-primary); }.identity,.hash { overflow-wrap: anywhere; font-size: .8rem; }.hint { color: var(--sp-muted); font-size: .85rem; }
+button { font: inherit; border: 1px solid var(--sp-border); border-radius: 12px; background: white; color: var(--sp-text); padding: .55rem .9rem; }button:disabled { opacity: .5; }
+progress { width: 100%; accent-color: var(--sp-primary); }pre { overflow: auto; background: #f7f8fc; padding: 1rem; font-size: .8rem; }.table-wrap { overflow-x: auto; }table { width: 100%; text-align: left; border-collapse: collapse; }th,td { padding: .5rem; border-bottom: 1px solid var(--sp-border); font-size: .85rem; }
 @media(max-width:780px) { .workspace { padding: 1.5rem 1rem; }.panel { padding: 1rem; } }
 </style>

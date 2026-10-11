@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+import time
 
 
 def utc_now():
@@ -37,13 +38,22 @@ def write_json(root: Path, relative: str, value):
     temporary = target(root, relative + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True,
                                     allow_nan=False) + "\n", encoding="utf-8")
-    temporary.replace(path)
+    # Windows readers can briefly deny a rename of the heartbeat/control file.
+    # Keep the same atomic commit; never truncate or overwrite the live JSON.
+    for attempt in range(20):
+        try:
+            temporary.replace(path)
+            return
+        except PermissionError as error:
+            if getattr(error, "winerror", None) not in (5, 32, 33) or attempt == 19:
+                raise
+            time.sleep(.01 * (attempt + 1))
 
 
 def output_inventory(root: Path):
     # Mutable process log and lifecycle are not scientific result identity.
     return [{"path": p.relative_to(root).as_posix(), "size": p.stat().st_size, "sha256": sha256(p)}
             for p in sorted(root.rglob("*")) if p.is_file()
-            and p.relative_to(root).parts[0] not in ("cache", "tmp", "ai", "report")
+            and p.relative_to(root).parts[0] not in ("cache", "tmp", "ai", "report", "exports")
             and not p.name.endswith(".tmp")
             and p.name not in ("status.json", "run_control.json", "provenance.json", "solver.log")]

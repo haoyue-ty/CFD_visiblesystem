@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import WorkspaceNavigation from '../components/WorkspaceNavigation.vue'
 import { loadRuns, loadRun, statusLabels, type RunRecord } from '../data/v2/runs'
 import { previewSweep, createSweep, loadSweep, loadSweeps, cancelSweep, type Sweep, type SweepInput, type Preview } from '../data/v2/comparison'
 const route = useRoute(), router = useRouter()
 const runs = ref<RunRecord[]>([]), base = ref(''), aa = ref('3.96, 13.2'), at = ref('0, 0.396'), tasks = ref(4), seconds = ref(300)
 const preview = ref<Preview>(), draft = ref<SweepInput>(), sweep = ref<Sweep>(), sweeps = ref<Sweep[]>([]), error = ref(''), busy = ref(false)
+const refreshError = ref('')
 const offset = ref(0), total = ref(0), runOffset = ref(0), runTotal = ref(0)
 const terminal = computed(() => sweep.value && ['COMPLETED', 'FAILED', 'CANCELLED'].includes(sweep.value.status))
 const labels: Record<string,string> = { QUEUED: '排队中', RUNNING: '扫描中', CANCELLING: '正在取消', COMPLETED: '全部完成', FAILED: '扫描失败', CANCELLED: '已取消' }
@@ -50,8 +52,8 @@ async function refresh() {
     const id = String(route.params.sweepId ?? '')
     if (id) { const result = await loadSweep(id); if (active && id === String(route.params.sweepId)) sweep.value = result }
     const list = await loadSweeps(offset.value)
-    if (active) { sweeps.value = list.sweeps; total.value = list.total; error.value = '' }
-  } catch (e) { if (active) error.value = e instanceof Error ? e.message : '加载失败' }
+    if (active) { sweeps.value = list.sweeps; total.value = list.total; refreshError.value = '' }
+  } catch (e) { if (active) refreshError.value = e instanceof Error ? e.message : '加载失败' }
 }
 async function cancel() {
   if (!sweep.value) return
@@ -66,9 +68,9 @@ onMounted(async () => { await Promise.all([moreRuns(), refresh()]); timer = setI
 onUnmounted(() => { active = false; generation++; clearInterval(timer) })
 </script>
 <template>
-  <main class="p7" data-page="parameter-sweep"><p class="eyebrow">SHOCKPATH · PARAMETER SWEEP</p><h1>系数扫描</h1>
+  <main class="p7" data-page="parameter-sweep"><WorkspaceNavigation /><p class="eyebrow">SHOCKPATH · PARAMETER SWEEP</p><h1>参数扫描</h1>
     <p>基于已验证配置，仅改变 q_aa / q_at。当前登记 q_aa=3.96/13.2、q_at=0/0.396，最多四个组合，复用单 worker 串行计算。</p>
-    <RouterLink to="/workspace">返回工作台</RouterLink>
+    <RouterLink to="/workspace">返回运行任务</RouterLink>
     <form @submit.prevent="buildPreview"><label>基础 Run ID <input v-model="base" list="base-runs" required aria-label="基础 Run ID" /></label>
       <datalist id="base-runs"><option v-for="run in runs" :key="run.run_id" :value="run.run_id">{{ run.experiment.normalized_config.grid.nx }}×{{ run.experiment.normalized_config.grid.ny }} T={{ run.requested_final_time }}</option></datalist>
       <label>q_aa 值 <input v-model="aa" required aria-label="q_aa 扫描值" /></label><label>q_at 值 <input v-model="at" required aria-label="q_at 扫描值" /></label>
@@ -76,7 +78,7 @@ onUnmounted(() => { active = false; generation++; clearInterval(timer) })
       <label>总时间预算 / 秒 <input type="number" v-model.number="seconds" min="1" max="1800" required aria-label="总时间预算" /></label>
       <button :disabled="busy">验证扫描配置</button><button v-if="runOffset < runTotal" type="button" @click="moreRuns">加载更多基础运行</button></form>
     <p>时间预算从提交起计算，包含排队和后处理；耗尽时停止子运行，跳过未提交项。epsilon 与其他 Case 当前未开放。</p>
-    <p v-if="error" role="alert">{{ error }}</p>
+    <p v-if="error || refreshError" role="alert">{{ error || refreshError }}</p>
     <section v-if="preview"><h2>确认 {{ preview.total_tasks }} 项扫描</h2>
       <p v-if="draft">Case 8 · {{ draft.config.grid.nx }}×{{ draft.config.grid.ny }} · T={{ draft.config.time.final_time }} · CFL={{ draft.config.time.cfl }} · {{ draft.config.discretization?.reconstruction }} · {{ draft.config.time.integrator }}</p>
       <p>预算 {{ preview.max_tasks }} 项 / {{ preview.time_budget_seconds }} 秒 · hash {{ preview.sweep_hash }}</p>

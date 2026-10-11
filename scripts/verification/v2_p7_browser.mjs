@@ -50,7 +50,7 @@ try {
   const p6=JSON.parse(readFileSync(path.join(out,'p6_live_acceptance.json'),'utf8'))
   const baseRun=p6.scenarios[0].run_id
   await page.goto(base+'/workspace')
-  await page.getByRole('link',{name:'系数扫描',exact:true}).click()
+  await page.getByRole('link',{name:'参数扫描',exact:true}).click()
   await page.getByLabel('基础 Run ID').fill(baseRun)
   await page.getByLabel('总时间预算',{exact:true}).fill('300')
   await page.getByRole('button',{name:'验证扫描配置'}).click()
@@ -143,7 +143,7 @@ try {
   expect(exhausted.items.every(i=>['CANCELLED','SKIPPED'].includes(i.status))).toBe(true)
   pass('real_time_budget',{record:exhausted})
   await page.goto(base+'/workspace/sweeps')
-  await expect(page.getByRole('heading',{name:'系数扫描',exact:true})).toBeVisible()
+  await expect(page.getByRole('heading',{name:'参数扫描',exact:true})).toBeVisible()
   await page.getByLabel('基础 Run ID').fill(baseRun)
   await page.getByLabel('q_aa 扫描值').fill('5')
   await page.getByRole('button',{name:'验证扫描配置'}).click()
