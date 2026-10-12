@@ -35,8 +35,8 @@ class LiveDomain(V2Model):
 
 
 class LiveGrid(V2Model):
-    nx: Annotated[int, Field(strict=True, ge=1, le=128)]
-    ny: Annotated[int, Field(strict=True, ge=1, le=32)]
+    nx: Annotated[int, Field(strict=True, ge=16, le=256)]
+    ny: Annotated[int, Field(strict=True, ge=8, le=128)]
     domain: LiveDomain = Field(default_factory=LiveDomain)
 
 
@@ -125,13 +125,22 @@ class LiveTemplate(V2Model):
     config: LiveExperimentConfig
 
 
+class ParameterRange(V2Model):
+    minimum: Finite
+    maximum: Finite
+    minimum_inclusive: bool = True
+    maximum_inclusive: bool = True
+    integer: bool = False
+
+
 class ParameterCapability(V2Model):
     field_path: str
     label: str
     scope: Literal["INPUT", "OUTPUT"] = "INPUT"
-    support: Literal["FIXED", "CANDIDATE", "UNSUPPORTED"]
+    support: Literal["FIXED", "CANDIDATE", "RANGE", "UNSUPPORTED"]
     verified_values: list[Any] = Field(default_factory=list)
     candidate_values: list[Any] = Field(default_factory=list)
+    input_range: ParameterRange | None = None
     unit: str
     source_refs: list[str]
     required_stage: str

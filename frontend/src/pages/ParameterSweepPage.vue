@@ -2,6 +2,9 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import WorkspaceNavigation from '../components/WorkspaceNavigation.vue'
+import RunSelectionInput from '../components/RunSelectionInput.vue'
+import { runDate, runSelectionLabel } from '../presentation/runs'
+import { loadCases } from '../data/v2/experiments'
 import { loadRuns, loadRun, statusLabels, type RunRecord } from '../data/v2/runs'
 import { previewSweep, createSweep, loadSweep, loadSweeps, cancelSweep, type Sweep, type SweepInput, type Preview } from '../data/v2/comparison'
 const route = useRoute(), router = useRouter()
@@ -30,10 +33,12 @@ async function buildPreview() {
   try {
     const inputValues = { q_aa_values: values(aa.value), q_at_values: values(at.value), max_tasks: tasks.value, time_budget_seconds: seconds.value }
     const record = await loadRun(base.value)
+    const registry = (await loadCases()).cases.find(item => item.case_id === record.experiment.normalized_config.case_id)
+    if (!registry) throw new Error('该基础运行的算例暂未开放参数扫描。')
     const input: SweepInput = { config: { ...record.experiment.normalized_config, profile: 'custom' } as SweepInput['config'],
       submission: { input_mode: 'form', template_id: null,
         natural_language_text: null, parser_version: null,
-        capability_revision: record.experiment.capability_revision }, ...inputValues }
+        capability_revision: registry.capability_revision }, ...inputValues }
     const result = await previewSweep(input)
     if (current !== generation || !active) return
     draft.value = input; preview.value = result
@@ -69,10 +74,11 @@ onUnmounted(() => { active = false; generation++; clearInterval(timer) })
 </script>
 <template>
   <main class="p7" data-page="parameter-sweep"><WorkspaceNavigation /><p class="eyebrow">SHOCKPATH · PARAMETER SWEEP</p><h1>参数扫描</h1>
-    <p>基于已验证配置，仅改变 q_aa / q_at。当前登记 q_aa=3.96/13.2、q_at=0/0.396，最多四个组合，复用单 worker 串行计算。</p>
+    <p>基于已验证配置扫描系数。q_aa 支持 0–13.2，q_at 支持 0–0.396，可填写范围内的小数；每个系数最多 3 个值、最多 9 个组合，串行计算。</p>
     <RouterLink to="/workspace">返回运行任务</RouterLink>
-    <form @submit.prevent="buildPreview"><label>基础 Run ID <input v-model="base" list="base-runs" required aria-label="基础 Run ID" /></label>
-      <datalist id="base-runs"><option v-for="run in runs" :key="run.run_id" :value="run.run_id">{{ run.experiment.normalized_config.grid.nx }}×{{ run.experiment.normalized_config.grid.ny }} T={{ run.requested_final_time }}</option></datalist>
+    <form class="run-picker-form" @submit.prevent="buildPreview">
+      <RunSelectionInput v-model="base" label="基础 Run ID" list="base-runs" :runs="runs" :disabled="busy" details-id="base-run-details" />
+      <datalist id="base-runs"><option v-for="run in runs" :key="run.run_id" :value="run.run_id" :label="runSelectionLabel(run)">{{ runSelectionLabel(run) }}</option></datalist>
       <label>q_aa 值 <input v-model="aa" required aria-label="q_aa 扫描值" /></label><label>q_at 值 <input v-model="at" required aria-label="q_at 扫描值" /></label>
       <label>总任务预算 <input type="number" v-model.number="tasks" min="1" max="9" step="1" required aria-label="总任务预算" /></label>
       <label>总时间预算 / 秒 <input type="number" v-model.number="seconds" min="1" max="1800" required aria-label="总时间预算" /></label>
@@ -94,7 +100,7 @@ onUnmounted(() => { active = false; generation++; clearInterval(timer) })
         <td><RouterLink v-if="item.run" :to="'/runs/'+item.run.run_id">{{ item.run.run_id }}</RouterLink><span v-else>—</span></td></tr></tbody></table></div>
       <RouterLink v-if="completed.length >= 2" :to="{ path: '/workspace/compare', query: { a: completed[0]?.run?.run_id, b: completed[1]?.run?.run_id } }">对比前两个成功运行</RouterLink>
       <p v-for="note in sweep.warnings" :key="note" class="hint">{{ note }}</p></section>
-    <section><h2>扫描记录</h2><ul><li v-for="s in sweeps" :key="s.sweep_id"><RouterLink :to="'/sweeps/'+s.sweep_id">{{ s.sweep_id }}</RouterLink> · {{ labels[s.status] }} · {{ s.successful_tasks }}/{{ s.total_tasks }}</li></ul>
+    <section><h2>扫描记录</h2><ul><li v-for="s in sweeps" :key="s.sweep_id"><RouterLink :to="'/sweeps/'+s.sweep_id"><time :datetime="s.created_at">{{ runDate(s.created_at) }}</time> · {{ s.sweep_id.slice(0, 8) }}</RouterLink> · {{ labels[s.status] }} · {{ s.successful_tasks }}/{{ s.total_tasks }}</li></ul>
       <div class="toolbar"><button :disabled="offset === 0" @click="offset -= 20">上一页</button><button :disabled="offset + 20 >= total" @click="offset += 20">下一页</button><button @click="refresh">刷新扫描</button></div></section>
   </main>
 </template>

@@ -6,10 +6,693 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/v1/auth/session": {
+      "get": {
+        "operationId": "AUTH01",
+        "description": "Email verification and persistent server-side sessions.",
+        "tags": [
+          "accounts"
+        ],
+        "x-delivery-phase": "ACCOUNTS",
+        "x-service": "AuthService",
+        "x-auth-policy": "ANONYMOUS",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE",
+            "x-error-codes": [
+              "INVALID_REQUEST",
+              "INVALID_EMAIL",
+              "INVALID_VERIFICATION_CODE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "UNSUPPORTED_MEDIA_TYPE",
+            "x-error-codes": [
+              "UNSUPPORTED_MEDIA_TYPE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED, CODE_SEND_TOO_FREQUENT",
+            "x-error-codes": [
+              "RATE_LIMITED",
+              "CODE_SEND_TOO_FREQUENT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "MAIL_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE",
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ACCOUNT_NOT_FOUND",
+            "x-error-codes": [
+              "ACCOUNT_NOT_FOUND"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ACCOUNT_ALREADY_EXISTS",
+            "x-error-codes": [
+              "ACCOUNT_ALREADY_EXISTS"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/email-verification-challenges": {
+      "post": {
+        "operationId": "AUTH02",
+        "description": "Email verification and persistent server-side sessions.",
+        "tags": [
+          "accounts"
+        ],
+        "x-delivery-phase": "ACCOUNTS",
+        "x-service": "AuthService",
+        "x-auth-policy": "SAME_ORIGIN_CSRF",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailChallengeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE",
+            "x-error-codes": [
+              "INVALID_REQUEST",
+              "INVALID_EMAIL",
+              "INVALID_VERIFICATION_CODE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "UNSUPPORTED_MEDIA_TYPE",
+            "x-error-codes": [
+              "UNSUPPORTED_MEDIA_TYPE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED, CODE_SEND_TOO_FREQUENT",
+            "x-error-codes": [
+              "RATE_LIMITED",
+              "CODE_SEND_TOO_FREQUENT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "MAIL_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE",
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ACCOUNT_NOT_FOUND",
+            "x-error-codes": [
+              "ACCOUNT_NOT_FOUND"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ACCOUNT_ALREADY_EXISTS",
+            "x-error-codes": [
+              "ACCOUNT_ALREADY_EXISTS"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Input_EmailCodeRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "operationId": "AUTH03",
+        "description": "Email verification and persistent server-side sessions.",
+        "tags": [
+          "accounts"
+        ],
+        "x-delivery-phase": "ACCOUNTS",
+        "x-service": "AuthService",
+        "x-auth-policy": "SAME_ORIGIN_CSRF",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE",
+            "x-error-codes": [
+              "INVALID_REQUEST",
+              "INVALID_EMAIL",
+              "INVALID_VERIFICATION_CODE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "UNSUPPORTED_MEDIA_TYPE",
+            "x-error-codes": [
+              "UNSUPPORTED_MEDIA_TYPE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED, CODE_SEND_TOO_FREQUENT",
+            "x-error-codes": [
+              "RATE_LIMITED",
+              "CODE_SEND_TOO_FREQUENT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "MAIL_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE",
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ACCOUNT_NOT_FOUND",
+            "x-error-codes": [
+              "ACCOUNT_NOT_FOUND"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ACCOUNT_ALREADY_EXISTS",
+            "x-error-codes": [
+              "ACCOUNT_ALREADY_EXISTS"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Input_EmailSignInRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "AUTH04",
+        "description": "Email verification and persistent server-side sessions.",
+        "tags": [
+          "accounts"
+        ],
+        "x-delivery-phase": "ACCOUNTS",
+        "x-service": "AuthService",
+        "x-auth-policy": "SAME_ORIGIN_CSRF",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE",
+            "x-error-codes": [
+              "INVALID_REQUEST",
+              "INVALID_EMAIL",
+              "INVALID_VERIFICATION_CODE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "UNSUPPORTED_MEDIA_TYPE",
+            "x-error-codes": [
+              "UNSUPPORTED_MEDIA_TYPE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED, CODE_SEND_TOO_FREQUENT",
+            "x-error-codes": [
+              "RATE_LIMITED",
+              "CODE_SEND_TOO_FREQUENT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "MAIL_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE",
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ACCOUNT_NOT_FOUND",
+            "x-error-codes": [
+              "ACCOUNT_NOT_FOUND"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ACCOUNT_ALREADY_EXISTS",
+            "x-error-codes": [
+              "ACCOUNT_ALREADY_EXISTS"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Input_EmailSignInRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "operationId": "AUTH05",
+        "description": "Email verification and persistent server-side sessions.",
+        "tags": [
+          "accounts"
+        ],
+        "x-delivery-phase": "ACCOUNTS",
+        "x-service": "AuthService",
+        "x-auth-policy": "SAME_ORIGIN_CSRF",
+        "x-cache-policy": "NO_STORE",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE",
+            "x-error-codes": [
+              "INVALID_REQUEST",
+              "INVALID_EMAIL",
+              "INVALID_VERIFICATION_CODE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "UNSUPPORTED_MEDIA_TYPE",
+            "x-error-codes": [
+              "UNSUPPORTED_MEDIA_TYPE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "RATE_LIMITED, CODE_SEND_TOO_FREQUENT",
+            "x-error-codes": [
+              "RATE_LIMITED",
+              "CODE_SEND_TOO_FREQUENT"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED",
+            "x-error-codes": [
+              "MAIL_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE",
+              "FEATURE_NOT_ENABLED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ACCOUNT_NOT_FOUND",
+            "x-error-codes": [
+              "ACCOUNT_NOT_FOUND"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "ACCOUNT_ALREADY_EXISTS",
+            "x-error-codes": [
+              "ACCOUNT_ALREADY_EXISTS"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedEnvelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        ]
+      }
+    },
     "/api/v1/system": {
       "get": {
         "operationId": "SYS01",
-        "description": "Project metadata and current experiment delivery status; accounts disabled.",
+        "description": "Project metadata, experiment delivery and account feature status.",
         "tags": [
           "system_registry"
         ],
@@ -7365,7 +8048,7 @@
         ],
         "x-delivery-phase": "V2-P1",
         "x-service": "LiveExperimentService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -7457,6 +8140,45 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ACCOUNT_STORE_UNAVAILABLE",
+            "x-error-codes": [
+              "ACCOUNT_STORE_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -7480,7 +8202,7 @@
         ],
         "x-delivery-phase": "V2-P1",
         "x-service": "LiveExperimentService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -7587,9 +8309,36 @@
             }
           },
           "503": {
-            "description": "AI_UNAVAILABLE",
+            "description": "AI_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "AI_UNAVAILABLE"
+              "AI_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -7621,7 +8370,7 @@
         ],
         "x-delivery-phase": "V2-P3",
         "x-service": "RunService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "202": {
@@ -7732,9 +8481,10 @@
             }
           },
           "503": {
-            "description": "RUN_SERVICE_UNAVAILABLE",
+            "description": "RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "RUN_SERVICE_UNAVAILABLE"
+              "RUN_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -7750,6 +8500,32 @@
               "INTERNAL_ERROR",
               "RUN_OUTPUT_INVALID",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -8141,7 +8917,7 @@
         ],
         "x-delivery-phase": "V2-P3",
         "x-service": "RunService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -8252,9 +9028,10 @@
             }
           },
           "503": {
-            "description": "RUN_SERVICE_UNAVAILABLE",
+            "description": "RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "RUN_SERVICE_UNAVAILABLE"
+              "RUN_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -8270,6 +9047,32 @@
               "INTERNAL_ERROR",
               "RUN_OUTPUT_INVALID",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -9938,7 +10741,7 @@
         ],
         "x-delivery-phase": "V2-P5",
         "x-service": "ScientificAIService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -10062,9 +10865,36 @@
             }
           },
           "503": {
-            "description": "AI_UNAVAILABLE",
+            "description": "AI_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "AI_UNAVAILABLE"
+              "AI_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -10097,7 +10927,7 @@
         ],
         "x-delivery-phase": "V2-P5",
         "x-service": "ScientificAIService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -10221,9 +11051,36 @@
             }
           },
           "503": {
-            "description": "AI_UNAVAILABLE",
+            "description": "AI_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "AI_UNAVAILABLE"
+              "AI_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -10255,7 +11112,7 @@
         ],
         "x-delivery-phase": "V2-P6",
         "x-service": "ReportService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -10328,6 +11185,45 @@
               "RUN_OUTPUT_INVALID",
               "REPORT_OUTPUT_INVALID",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ACCOUNT_STORE_UNAVAILABLE",
+            "x-error-codes": [
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -10719,7 +11615,7 @@
         ],
         "x-delivery-phase": "V2.5-B",
         "x-service": "ExportService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -10815,11 +11711,12 @@
             }
           },
           "503": {
-            "description": "PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE",
+            "description": "PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
               "PDF_UNAVAILABLE",
               "EXPORT_TIMEOUT",
-              "EXPORT_STORAGE_UNAVAILABLE"
+              "EXPORT_STORAGE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -10838,6 +11735,32 @@
               "EXPORT_GENERATION_FAILED",
               "REPORT_OUTPUT_INVALID",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -11089,7 +12012,7 @@
         ],
         "x-delivery-phase": "V2-P7",
         "x-service": "ComparisonService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -11201,9 +12124,10 @@
             }
           },
           "503": {
-            "description": "RUN_SERVICE_UNAVAILABLE",
+            "description": "RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "RUN_SERVICE_UNAVAILABLE"
+              "RUN_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -11219,6 +12143,32 @@
               "RUN_OUTPUT_INVALID",
               "INTERNAL_ERROR",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -11250,7 +12200,7 @@
         ],
         "x-delivery-phase": "V2-P7",
         "x-service": "SweepService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -11362,9 +12312,10 @@
             }
           },
           "503": {
-            "description": "RUN_SERVICE_UNAVAILABLE",
+            "description": "RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "RUN_SERVICE_UNAVAILABLE"
+              "RUN_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -11380,6 +12331,32 @@
               "RUN_OUTPUT_INVALID",
               "INTERNAL_ERROR",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -11411,7 +12388,7 @@
         ],
         "x-delivery-phase": "V2-P7",
         "x-service": "SweepService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "202": {
@@ -11523,9 +12500,10 @@
             }
           },
           "503": {
-            "description": "RUN_SERVICE_UNAVAILABLE",
+            "description": "RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "RUN_SERVICE_UNAVAILABLE"
+              "RUN_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -11541,6 +12519,32 @@
               "RUN_OUTPUT_INVALID",
               "INTERNAL_ERROR",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -11908,7 +12912,7 @@
         ],
         "x-delivery-phase": "V2-P7",
         "x-service": "SweepService",
-        "x-auth-policy": "ANONYMOUS",
+        "x-auth-policy": "SESSION_WHEN_ACCOUNTS_ENABLED",
         "x-cache-policy": "NO_STORE",
         "responses": {
           "200": {
@@ -12020,9 +13024,10 @@
             }
           },
           "503": {
-            "description": "RUN_SERVICE_UNAVAILABLE",
+            "description": "RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE",
             "x-error-codes": [
-              "RUN_SERVICE_UNAVAILABLE"
+              "RUN_SERVICE_UNAVAILABLE",
+              "ACCOUNT_STORE_UNAVAILABLE"
             ],
             "content": {
               "application/json": {
@@ -12038,6 +13043,32 @@
               "RUN_OUTPUT_INVALID",
               "INTERNAL_ERROR",
               "CANONICAL_SCHEMA_MISMATCH"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHENTICATED",
+            "x-error-codes": [
+              "UNAUTHENTICATED"
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2FailedEnvelope"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "CSRF_FAILED",
+            "x-error-codes": [
+              "CSRF_FAILED"
             ],
             "content": {
               "application/json": {
@@ -17332,6 +18363,173 @@
           "runs"
         ],
         "title": "ValidationRunListView",
+        "type": "object"
+      },
+      "AuthSession": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "authenticated": {
+            "title": "Authenticated",
+            "type": "boolean"
+          },
+          "user": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AuthUser"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "csrf_token": {
+            "default": "",
+            "title": "Csrf Token",
+            "type": "string"
+          },
+          "mail_configured": {
+            "default": false,
+            "title": "Mail Configured",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "enabled",
+          "authenticated"
+        ],
+        "title": "AuthSession",
+        "type": "object"
+      },
+      "AuthUser": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email"
+        ],
+        "title": "AuthUser",
+        "type": "object"
+      },
+      "AuthSessionResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AuthSession"
+          }
+        },
+        "required": [
+          "request_id",
+          "data"
+        ],
+        "title": "AuthSessionResponse",
+        "type": "object"
+      },
+      "EmailChallenge": {
+        "additionalProperties": false,
+        "properties": {
+          "delivery_status": {
+            "const": "SMTP_ACCEPTED",
+            "default": "SMTP_ACCEPTED",
+            "title": "Delivery Status",
+            "type": "string"
+          },
+          "expires_in": {
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "retry_after": {
+            "title": "Retry After",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "expires_in",
+          "retry_after"
+        ],
+        "title": "EmailChallenge",
+        "type": "object"
+      },
+      "EmailChallengeResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EmailChallenge"
+          }
+        },
+        "required": [
+          "request_id",
+          "data"
+        ],
+        "title": "EmailChallengeResponse",
+        "type": "object"
+      },
+      "Input_EmailCodeRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "maxLength": 254,
+            "minLength": 3,
+            "title": "Email",
+            "type": "string"
+          },
+          "purpose": {
+            "enum": [
+              "login",
+              "register"
+            ],
+            "title": "Purpose",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "purpose"
+        ],
+        "title": "EmailCodeRequest",
+        "type": "object"
+      },
+      "Input_EmailSignInRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "maxLength": 254,
+            "minLength": 3,
+            "title": "Email",
+            "type": "string"
+          },
+          "code": {
+            "pattern": "^[0-9]{6}$",
+            "title": "Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "code"
+        ],
+        "title": "EmailSignInRequest",
         "type": "object"
       },
       "Input_RegistryQuery": {
@@ -24298,14 +25496,14 @@
         "additionalProperties": false,
         "properties": {
           "nx": {
-            "maximum": 128,
-            "minimum": 1,
+            "maximum": 256,
+            "minimum": 16,
             "title": "Nx",
             "type": "integer"
           },
           "ny": {
-            "maximum": 32,
-            "minimum": 1,
+            "maximum": 128,
+            "minimum": 8,
             "title": "Ny",
             "type": "integer"
           },
@@ -24588,6 +25786,7 @@
             "enum": [
               "FIXED",
               "CANDIDATE",
+              "RANGE",
               "UNSUPPORTED"
             ],
             "title": "Support",
@@ -24602,6 +25801,17 @@
             "items": {},
             "title": "Candidate Values",
             "type": "array"
+          },
+          "input_range": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ParameterRange"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
           },
           "unit": {
             "title": "Unit",
@@ -24639,6 +25849,7 @@
           "support",
           "verified_values",
           "candidate_values",
+          "input_range",
           "unit",
           "source_refs",
           "required_stage",
@@ -24647,6 +25858,43 @@
           "reason"
         ],
         "title": "ParameterCapability",
+        "type": "object"
+      },
+      "ParameterRange": {
+        "additionalProperties": false,
+        "properties": {
+          "minimum": {
+            "title": "Minimum",
+            "type": "number"
+          },
+          "maximum": {
+            "title": "Maximum",
+            "type": "number"
+          },
+          "minimum_inclusive": {
+            "default": true,
+            "title": "Minimum Inclusive",
+            "type": "boolean"
+          },
+          "maximum_inclusive": {
+            "default": true,
+            "title": "Maximum Inclusive",
+            "type": "boolean"
+          },
+          "integer": {
+            "default": false,
+            "title": "Integer",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "minimum",
+          "maximum",
+          "minimum_inclusive",
+          "maximum_inclusive",
+          "integer"
+        ],
+        "title": "ParameterRange",
         "type": "object"
       },
       "V2Envelope_LiveCases_": {
@@ -25142,14 +26390,14 @@
         "additionalProperties": false,
         "properties": {
           "nx": {
-            "maximum": 128,
-            "minimum": 1,
+            "maximum": 256,
+            "minimum": 16,
             "title": "Nx",
             "type": "integer"
           },
           "ny": {
-            "maximum": 32,
-            "minimum": 1,
+            "maximum": 128,
+            "minimum": 8,
             "title": "Ny",
             "type": "integer"
           },

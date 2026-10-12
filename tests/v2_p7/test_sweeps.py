@@ -44,10 +44,11 @@ def test_invalid_requests_rejected(change):
     with pytest.raises(ValueError): request(**change)
 
 
-def test_unverified_coefficients_and_physics_rejected(store):
+def test_custom_coefficients_are_allowed_but_fixed_physics_is_rejected(store):
     for r in (request(q_aa_values=[5.]), request(q_at_values=[.2])):
-        with pytest.raises(ExperimentError) as error: preview(r)
-        assert error.value.code == 'UNSUPPORTED_PARAMETER'
+        result = preview(r)
+        assert result.total_tasks == 2
+        assert all(e.classification == 'CUSTOM_RUN' for e in result.experiments)
     r = request(); r.config.physics.initial_condition.corrugation_amplitude = .001
     with pytest.raises(ExperimentError): preview(r)
     assert not (store.root/'runs').exists()

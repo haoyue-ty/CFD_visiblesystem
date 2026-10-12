@@ -1,8 +1,9 @@
 from backend.models.v2.experiment import (
-    LiveCase, LiveExperimentConfig, LiveTemplate, ParameterCapability,
+    LiveCase, LiveExperimentConfig, LiveGrid, LiveMethod, LiveTime, LiveTemplate, ParameterCapability, ParameterRange,
 )
 
-CAPABILITY_REVISION = "case8.capability.p2.1"
+CAPABILITY_REVISION = "case8.capability.custom.v1"
+LEGACY_CAPABILITY_REVISIONS = frozenset({"case8.capability.p2.1"})
 PROTOCOL_ID = "CANONICAL_STRONG_SHOCK_TRANSVERSE_PERTURBATION"
 SOURCE_CASE = "solver/cases/flagship_cross_modal_case8.py"
 SOURCE_PROTOCOL = "jcp_extension_v1/J2_entropy_diagnostics/J2B_case8_formal/J2B_PROTOCOL_LOCK.json"
@@ -32,14 +33,15 @@ def templates() -> list[LiveTemplate]:
 def case8() -> LiveCase:
     capabilities = []
 
-    def add(path, label, support, values, unit, source, reason, scope="INPUT"):
+    def add(path, label, support, values, unit, source, reason, scope="INPUT", input_range=None):
         capabilities.append(ParameterCapability(
             field_path=path, label=label, support=support,
-            verified_values=values if support == "FIXED" else [],
+            verified_values=values if support in ("FIXED", "RANGE") else [],
             candidate_values=values if support == "CANDIDATE" else [],
+            input_range=input_range,
             unit=unit, source_refs=[source], required_stage="P2" if scope == "INPUT" else "P4",
             validation_ready=support != "UNSUPPORTED" and scope == "INPUT", scope=scope, reason=reason,
-            execution_verified=support != "UNSUPPORTED",
+            execution_verified=support in ("FIXED", "CANDIDATE"),
         ))
 
     for path, label, values, unit, source in (
@@ -49,7 +51,17 @@ def case8() -> LiveCase:
         ("grid.ny", "Ny", [16, 32], "cells", SOURCE_CASE),
         ("time.final_time", "终止时间 T", [0.04, 0.08], "model time", SOURCE_PROTOCOL),
     ):
-        add(path, label, "CANDIDATE", values, unit, source, "登记值已通过 P2 独立执行/参数生效核查；不构成全部组合的稳定性证明。")
+        group, field = path.split('.')
+        model = {"grid": LiveGrid, "method": LiveMethod, "time": LiveTime}[group]
+        schema = model.model_json_schema()["properties"][field]
+        limits = ParameterRange(
+            minimum=schema.get("minimum", schema.get("exclusiveMinimum")),
+            maximum=schema.get("maximum", schema.get("exclusiveMaximum")),
+            minimum_inclusive="minimum" in schema, maximum_inclusive="maximum" in schema,
+            integer=schema["type"] == "integer",
+        )
+        add(path, label, "RANGE", values, unit, source,
+            "支持范围内的自定义数值；参考值来自已有执行核查，完整范围不等于逐点稳定性认证。", input_range=limits)
     default = templates()[1].config.model_dump(mode="json")
     for group in ("physics", "discretization", "output"):
         add(group, {"physics": "物理与初始条件", "discretization": "离散与边界条件", "output": "快照策略"}[group],
@@ -79,5 +91,5 @@ def case8() -> LiveCase:
         source_manifest_revision="v2-p2.1", protocol_id=PROTOCOL_ID,
         grid_pairs=[(64, 16), (128, 32)], capabilities=capabilities, templates=templates(),
         limitations=["独立 CLI 已通过 P2 真求解验收；网页提交需要后台运行服务在线。", "fast 已通过本机重复 benchmark；实际耗时取决于机器与负载，不承诺稳定性或 ETA。",
-                     "论文标准配置不代表本次科学复现已成功。", "自定义仅限登记候选值及网格组合，连续范围尚未开放。"],
+                     "论文标准配置不代表本次科学复现已成功。", "网格可在范围内自由组合，系数与时间可填写范围内的小数；参考值不是唯一可计算值。"],
     )

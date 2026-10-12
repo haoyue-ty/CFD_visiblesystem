@@ -4,9 +4,12 @@ import sys
 import time
 
 from backend import create_app
+from backend.core.settings import WORKSPACE_ROOT
+from dotenv import load_dotenv
 
 
 def main():
+    load_dotenv(WORKSPACE_ROOT / '.env', override=False, interpolate=False)
     print("ShockPath 后端正在初始化…", flush=True)
     app = create_app()
     settings = app.extensions["settings"]

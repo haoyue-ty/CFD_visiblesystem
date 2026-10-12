@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from pydantic import Field
+from pydantic import Field, SecretStr
 
 from backend.models.core import CanonicalModel
 
@@ -15,6 +15,12 @@ class Settings(CanonicalModel):
     api_host: str = "127.0.0.1"
     api_port: int = Field(default=5000, ge=1, le=65535)
     enable_accounts: bool = False
+    qq_smtp_email: str = ''
+    qq_smtp_auth_code: SecretStr = SecretStr('')
+    auth_database_url: SecretStr = SecretStr('')
+    auth_secret_key: SecretStr = SecretStr('')
+    auth_cookie_secure: bool = False
+    auth_trusted_origins: list[str] = Field(default_factory=lambda: ['http://127.0.0.1:5173', 'http://localhost:5173'])
     deepseek_model: str = "deepseek-flash"
     deepseek_base_url: str = "https://api.deepseek.com"
     deepseek_timeout_seconds: float = Field(default=30.0, gt=0, le=60)
@@ -47,6 +53,12 @@ class Settings(CanonicalModel):
             api_host=os.getenv("API_HOST") or "127.0.0.1",
             api_port=int(os.getenv("API_PORT") or "5000"),
             enable_accounts=accounts == "true",
+            qq_smtp_email=os.getenv('QQ_SMTP_EMAIL', ''),
+            qq_smtp_auth_code=os.getenv('QQ_SMTP_AUTH_CODE', ''),
+            auth_database_url=os.getenv('AUTH_DATABASE_URL', ''),
+            auth_secret_key=os.getenv('AUTH_SECRET_KEY', ''),
+            auth_cookie_secure=os.getenv('AUTH_COOKIE_SECURE', 'false').lower() == 'true',
+            auth_trusted_origins=[value.strip() for value in os.getenv('AUTH_TRUSTED_ORIGINS', 'http://127.0.0.1:5173,http://localhost:5173').split(',') if value.strip()],
             deepseek_model=os.getenv("DEEPSEEK_MODEL") or "deepseek-flash",
             deepseek_base_url=os.getenv("DEEPSEEK_BASE_URL") or "https://api.deepseek.com",
             deepseek_timeout_seconds=float(os.getenv("DEEPSEEK_TIMEOUT_SECONDS") or "30"),

@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 import json
 import re
 from typing import Callable
@@ -47,14 +47,20 @@ def _reject_json_constant(value):
 
 
 class OperationCatalog:
-    def __init__(self):
+    def __init__(self, *, require_accounts=False):
         self._operations: list[Operation] = []
+        self.require_accounts = require_accounts
 
     @property
     def operations(self) -> tuple[Operation, ...]:
         return tuple(self._operations)
 
     def register(self, operation: Operation) -> None:
+        if self.require_accounts and operation.path.startswith('/api/v2/') and operation.method not in ('GET', 'HEAD', 'OPTIONS'):
+            operation = replace(operation, auth_policy='SESSION_WHEN_ACCOUNTS_ENABLED',
+                                documented_errors={**operation.documented_errors, 401: ('UNAUTHENTICATED',),
+                                                   403: ('CSRF_FAILED',),
+                                                   503: (*operation.documented_errors.get(503, ()), 'ACCOUNT_STORE_UNAVAILABLE')})
         if any(item.operation_id == operation.operation_id or (item.method, item.path) == (operation.method, operation.path)
                for item in self._operations):
             raise ValueError("Duplicate operation id or method/path")

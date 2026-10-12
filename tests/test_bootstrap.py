@@ -177,9 +177,10 @@ def test_frozen_docs_hashes_unchanged():
         assert hashlib.sha256(document.read_bytes()).hexdigest() == item["sha256"].lower()
 
 
-def test_accounts_cannot_be_enabled():
-    with pytest.raises(ValueError, match="disabled"):
-        create_app(Settings(enable_accounts=True))
+def test_accounts_can_be_enabled_as_an_independent_feature():
+    app = create_app(Settings(enable_accounts=True))
+    assert app.test_client().get('/api/v1/system').json['data']['account_extension']['enabled'] is True
+    assert app.test_client().get('/api/v1/auth/session').json['data']['enabled'] is True
 
 
 def test_factory_never_opens_configured_scientific_paths():

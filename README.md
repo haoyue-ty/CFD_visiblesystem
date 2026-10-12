@@ -71,7 +71,21 @@ ShockPath 是一个面向计算流体力学（CFD）的交互式可视分析与�
 | P4 | 科学结果：流场与派生场、全轨迹熵、宏观指标、原生 face 瞬时/累计分配、Run 专属证据 |
 | P5 | AI 解释与科研助手：按结果哈希 / prompt 版本 / 模型缓存的自动解读，与基于当前视图的问答 |
 | P6 | 实验报告：固定十二节、可离线打开的自包含 HTML，所有图表与数据内联 |
-| P7 | 运行 A/B 对比与系数扫描：同条件对比、已登记 q_aa / q_at 四组合串行扫描 |
+| P7 | 运行 A/B 对比与系数扫描：同条件对比、范围内自定义系数，最多九组合串行扫描 |
+
+### 自定义参数范围
+
+快测和论文配置是参考模板，专业参数不再只允许模板中的几个离散值。
+
+| 参数 | 当前可输入范围 |
+| --- | --- |
+| 网格 Nx | 16–256，整数 |
+| 网格 Ny | 8–128，整数；可与 Nx 自由组合 |
+| q_aa | 0–13.2，支持范围内的小数 |
+| q_at | 0–0.396，支持范围内的小数 |
+| 终止时间 T | 0 < T ≤ 0.08，模型时间 |
+
+例如 96×24、q_aa=4.8、q_at=0.12、T=0.015 可作为自定义实验。64×16、128×32 与原有系数仍保留为已核查的参考配置。自定义参数不会自动获得论文标准或快测 benchmark 身份；数值有效性按每次真实运行的阶段保护和科学诊断判定。CFL、物理条件、边界与通量方法沿用现有协议，运行时间和输出空间仍受资源上限约束。
 
 **关键设计原则**
 
@@ -126,7 +140,7 @@ Set-Location 'D:\code_project\CFD_visiblesystem'
 
 在 PyCharm 中打开项目，选择现有解释器 `D:\code_project\CFD_visiblesystem\.venv\Scripts\python.exe`，右键根目录的 `python.py`，选择 **Run 'python'**。入口会自动使用项目目录、禁止生成 Python 字节码，并显示启动地址。后端会持续运行，控制台不返回提示符属于正常现象；保持窗口打开即可。切换启动方式前，先停止原来的后端，避免重复占用 5000 端口。
 
-此 Python 入口启动后端；前端仍按下一节单独启动，随后在浏览器打开网页。Python 入口沿用进程环境变量，不自动读取 `.env`；PyCharm 可在 Run Configuration 的 Environment variables 中配置。
+此 Python 入口启动后端；前端仍按下一节单独启动，随后在浏览器打开网页。Python 入口读取本地 `.env`，已有进程环境变量优先；PyCharm 也可在 Run Configuration 的 Environment variables 中配置。
 
 需要指定数据根目录时，在**启动后端的同一终端**先执行：
 
@@ -134,13 +148,13 @@ Set-Location 'D:\code_project\CFD_visiblesystem'
 $env:SCIENTIFIC_DATA_ROOT = 'D:\Paper\passage6'
 ```
 
-如需从本地 Git 忽略的 `.env` 载入后端环境（包括 `DEEPSEEK_API_KEY`），使用 PowerShell 启动器代替 Python 入口：
+也可使用 PowerShell 启动器载入本地配置并启动后端：
 
 ```powershell
 pwsh -NoProfile -File ./scripts/serve_backend.ps1
 ```
 
-该启动器只载入已登记的设置、保留已有进程设置，**不会执行或打印** `.env` 内容。Python 入口与前端不会自动读取 `.env`；`.env.example` 是配置模板。
+启动器与 Python 入口均保留已有进程设置，**不会执行或打印** `.env` 内容。邮箱与数据库凭证仅供后端读取；`.env.example` 是配置模板。
 
 ### 3.4 构建并启动前端（终端二）
 
@@ -180,13 +194,16 @@ npm run preview -- --port 4173 --strictPort
 
 ## 5. 配置项
 
-后端设置使用进程环境变量；仅独立的 PowerShell 后端启动器会加载 `.env`。`.env.example` 记录了当前支持的变量：
+后端启动入口加载本地 `.env`，进程环境变量优先。`.env.example` 记录了当前支持的变量：
 
 | 变量 | 说明 |
 | --- | --- |
 | `SCIENTIFIC_DATA_ROOT` | V1 只读科研资产根目录 |
 | `API_HOST` / `API_PORT` | 后端监听地址与端口 |
-| `ENABLE_ACCOUNTS` | 账号扩展开关，默认关闭 |
+| `ENABLE_ACCOUNTS` | 邮箱验证码登录开关；当前本地配置启用，关闭后保留原有匿名模式 |
+| `QQ_SMTP_EMAIL` / `QQ_SMTP_AUTH_CODE` | QQ 发件邮箱与 SMTP 授权码（不是 QQ 密码） |
+| `AUTH_DATABASE_URL` | 独立账号库连接，当前使用 MySQL `shockpath_accounts` |
+| `AUTH_SECRET_KEY` / `AUTH_COOKIE_SECURE` | 可选账号签名密钥与 HTTPS Cookie 设置 |
 | `DEEPSEEK_API_KEY` | 自然语言草稿与 AI 解释所需，缺失时相应入口不可用 |
 | `DEEPSEEK_MODEL` / `DEEPSEEK_BASE_URL` / `DEEPSEEK_TIMEOUT_SECONDS` | 默认 `deepseek-flash`、`https://api.deepseek.com`、30 秒 |
 | `DEEPSEEK_MAX_RETRIES` / `AI_MAX_OUTPUT_TOKENS` / `AI_MAX_INPUT_CHARS` | 提供商请求与输入 / 输出保护 |
@@ -195,6 +212,8 @@ npm run preview -- --port 4173 --strictPort
 | `WAITRESS_THREADS` / `MAX_SSE_CONNECTIONS` | 服务线程与 SSE 流上限 |
 
 AI 审计记录位于忽略的 `runtime/ai/`，只含哈希、长度、安全错误类别与用量，**不含凭证或提示词正文**。默认数值并发为 1。
+
+开始页右上角提供登录/注册，邮箱验证码验证成功后进入实验工作台。未登录点击“开始实验”会转到登录页，并在登录后继续原目标页面。验证码从 QQ 邮箱发送到用户填写的邮箱；账号使用独立 MySQL 数据库，会话使用 HttpOnly Cookie。配置、接口与验证说明见 [账号功能](docs/ACCOUNTS.md)。
 
 ---
 

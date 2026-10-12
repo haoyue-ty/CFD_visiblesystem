@@ -19,9 +19,9 @@ MANIFEST = WORKSPACE_ROOT / "docs/v2/source_manifest_p2.json"
 
 def worker_environment(root: Path):
     env = os.environ.copy()
-    # No secret is needed to compute CFD; do not propagate AI credentials.
+    # No secret is needed to compute CFD; AI and account credentials stay in the HTTP server.
     for key in list(env):
-        if any(word in key.upper() for word in ("API_KEY", "TOKEN", "SECRET", "PASSWORD")):
+        if any(word in key.upper() for word in ("API_KEY", "TOKEN", "SECRET", "PASSWORD", "SMTP", "AUTH_DATABASE")):
             env.pop(key)
     env.update({"PYTHONDONTWRITEBYTECODE": "1", "PYTHONPATH": str(WORKSPACE_ROOT),
                 "TEMP": str(root / "tmp"), "TMP": str(root / "tmp"), "TMPDIR": str(root / "tmp"),

@@ -4,7 +4,7 @@ import json
 from backend.models.v2.experiment import (
     LiveExperimentConfig, V2FieldIssue, V2ProtocolDiff, ValidateExperimentRequest, ValidatedExperiment,
 )
-from backend.registry.v2.cases import CAPABILITY_REVISION, case8
+from backend.registry.v2.cases import CAPABILITY_REVISION, LEGACY_CAPABILITY_REVISIONS, case8
 
 
 class ExperimentError(Exception):
@@ -14,8 +14,8 @@ class ExperimentError(Exception):
         self.details, self.retryable = details or [], retryable
 
 
-def check_revision(revision: str):
-    if revision != CAPABILITY_REVISION:
+def check_revision(revision: str, *, allow_legacy=False):
+    if revision != CAPABILITY_REVISION and not (allow_legacy and revision in LEGACY_CAPABILITY_REVISIONS):
         raise ExperimentError("CAPABILITY_REVISION_CONFLICT", "能力版本已更新，请重新加载并验证配置。", 409)
 
 
@@ -40,9 +40,9 @@ def normalize_numbers(value):
     return value
 
 
-def validate_experiment(request: ValidateExperimentRequest) -> ValidatedExperiment:
+def validate_experiment(request: ValidateExperimentRequest, *, allow_legacy=False) -> ValidatedExperiment:
     """Always call again at future Run submission; preview labels are never authority."""
-    check_revision(request.submission.capability_revision)
+    check_revision(request.submission.capability_revision, allow_legacy=allow_legacy)
     registry = case8()
     registered = {item.template_id: item for item in registry.templates}
     template_id = request.submission.template_id
@@ -62,6 +62,10 @@ def validate_experiment(request: ValidateExperimentRequest) -> ValidatedExperime
     for capability in registry.capabilities:
         if capability.scope != "INPUT" or not capability.validation_ready:
             continue
+        if capability.support == "RANGE":
+            # Bounds, integer types and finiteness already passed the config model.
+            # Reference/benchmark values do not restrict custom experiments.
+            continue
         value = payload
         for key in capability.field_path.split("."):
             value = value[key]
@@ -78,9 +82,6 @@ def validate_experiment(request: ValidateExperimentRequest) -> ValidatedExperime
     if unsupported:
         issues = {item.field: item for item in unsupported}
         raise ExperimentError("UNSUPPORTED_PARAMETER", "配置包含未支持的参数值。", details=list(issues.values()))
-    if (payload["grid"]["nx"], payload["grid"]["ny"]) not in registry.grid_pairs:
-        raise ExperimentError("UNSUPPORTED_COMBINATION", "仅登记 64×16 与 128×32 网格。",
-                              details=[V2FieldIssue(field="grid", reason="混合网格组合未核查。")])
     requested_profile = request.config.profile
     differences, output_diff = [], []
     if template:
@@ -107,5 +108,7 @@ def validate_experiment(request: ValidateExperimentRequest) -> ValidatedExperime
     return ValidatedExperiment(
         normalized_config=normalized, requested_profile=requested_profile, classification=classification,
         protocol_diff=differences, output_diff=output_diff, warnings=warnings, unsupported_fields=[],
-        config_hash=digest, capability_revision=CAPABILITY_REVISION,
+        config_hash=digest, capability_revision=(request.submission.capability_revision
+            if allow_legacy and request.submission.capability_revision in LEGACY_CAPABILITY_REVISIONS
+            else CAPABILITY_REVISION),
     )

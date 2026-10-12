@@ -30,10 +30,8 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
                cylinder_adapter=_DEFAULT_ADAPTER,
                closure_adapter=_DEFAULT_ADAPTER,
                project: ProjectInfo | None = None,
-               configure_catalog=None, ai_client=None, run_store=None) -> Flask:
+               configure_catalog=None, ai_client=None, run_store=None, auth_service=None) -> Flask:
     settings = settings or Settings.from_env()
-    if settings.enable_accounts:
-        raise ValueError("Accounts must remain disabled in Phase 5A")
     if case8_adapter is _DEFAULT_ADAPTER:
         case8_adapter = Case8Adapter(settings.scientific_data_root) if settings.scientific_data_root else Case8Adapter()
     if allocation_adapter is _DEFAULT_ADAPTER:
@@ -59,8 +57,9 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
     from backend.services.closure import ClosureService
     app.extensions["closure_service"] = ClosureService(closure_adapter)
     project = project or load_bootstrap_project()
-    if project.account_extension.enabled:
-        raise ValueError("Bootstrap project metadata must disable accounts")
+    project = project.model_copy(update={'account_extension': project.account_extension.model_copy(update={
+        'enabled': settings.enable_accounts, 'status': 'AVAILABLE' if settings.enable_accounts else 'UNSUPPORTED',
+    })})
     if isinstance(case8_adapter, Case8Adapter):
         from backend.registry import case8_registry as registry
         project = project.model_copy(update={
@@ -77,7 +76,12 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
         project = project.model_copy(update={"experiments": [
             ref.model_copy(update={"delivery_status": "IMPLEMENTED"}) if ref.experiment_id == "entropy-closure" else ref
             for ref in project.experiments]})
-    catalog = OperationCatalog()
+    catalog = OperationCatalog(require_accounts=settings.enable_accounts)
+    from backend.api.auth import register_auth_operations
+    from backend.services.auth import AuthService
+    auth_service = (auth_service or AuthService(settings)) if settings.enable_accounts else None
+    app.extensions['auth_service'] = auth_service
+    register_auth_operations(catalog, settings, auth_service)
     service = app.extensions["case8_service"]
     allocation_service = app.extensions["allocation_service"]
     spectral_service = app.extensions["spectral_service"]
@@ -168,12 +172,22 @@ def create_app(settings: Settings | None = None, *, case8_adapter: Case8AdapterP
         g.request_id = str(uuid4())
         if request.path.startswith("/api/v2/"):
             request.max_content_length = 65536
+        if request.path.startswith('/api/v1/auth/'):
+            request.max_content_length = 4096
+        if (settings.enable_accounts and request.path.startswith('/api/v2/')
+                and request.method not in ('GET', 'HEAD', 'OPTIONS') and request.url_rule):
+            from backend.api.auth import SESSION_COOKIE, check_csrf
+            from backend.core.errors import system_error
+            if not auth_service.user(request.cookies.get(SESSION_COOKIE)):
+                raise system_error('UNAUTHENTICATED', '请先登录后再操作实验工作台。', status=401, domain='ACCOUNT')
+            check_csrf(auth_service)
 
     @app.after_request
     def response_headers(response):
         response.headers["X-Request-ID"] = g.request_id
         response.headers["Cache-Control"] = "no-store"
-        return response
+        from backend.api.auth import apply_auth_cookies
+        return apply_auth_cookies(response, settings, auth_service)
 
     register_error_handlers(app)
     catalog.bind(app)

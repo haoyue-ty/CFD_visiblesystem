@@ -15,7 +15,8 @@ import traceback
 import numpy as np
 
 from backend.core.settings import WORKSPACE_ROOT
-from backend.models.v2.experiment import ValidateExperimentRequest
+from backend.models.v2.experiment import ValidateExperimentRequest, ValidatedExperiment
+from backend.registry.v2.cases import LEGACY_CAPABILITY_REVISIONS
 from backend.solver_runtime.artifacts import output_inventory, sha256, target, utc_now, write_json
 from backend.solver_runtime.binding import ScientificBinding
 from backend.solver_runtime.case8_adapter import MANIFEST
@@ -70,7 +71,8 @@ def build_timestep(setup, config, sound_speed):
                         + np.abs(state[..., 2] / state[..., 0]) / mesh.dy
                         + acoustic / mesh.dx + acoustic / mesh.dy))
     raw_dt = config.time.cfl / rate
-    steps = int(np.ceil(config.time.final_time / raw_dt))
+    # Even a short custom interval must retain all six source checkpoints.
+    steps = max(5, int(np.ceil(config.time.final_time / raw_dt)))
     dt = config.time.final_time / steps
     if not math.isfinite(dt) or dt <= 0 or steps > 10000:
         raise ValueError("INVALID_STEP_PROTOCOL")
@@ -93,6 +95,18 @@ def validate_samples(samples, q_at):
             raise RuntimeError("QAT_ZERO_CHANNEL_IDENTITY")
 
 
+def validate_recorded_request(request, saved):
+    validated = validate_experiment(request, allow_legacy=True)
+    recorded = ValidatedExperiment.model_validate_json(json.dumps(saved, allow_nan=False))
+    if request.submission.capability_revision in LEGACY_CAPABILITY_REVISIONS:
+        # Historical availability wording is descriptive, not a numerical input.
+        # Keep the recorded wording while checking every other identity field.
+        validated = validated.model_copy(update={"warnings": recorded.warnings})
+    if validated.model_dump(mode="json") != recorded.model_dump(mode="json"):
+        raise RuntimeError("RUN_CONFIG_IDENTITY_MISMATCH")
+    return validated
+
+
 def compute(root: Path, status, *, binding: ScientificBinding):
     started = perf_counter()
     wrapper_files = [Path(__file__), WORKSPACE_ROOT / "backend/solver_runtime/case8_adapter.py",
@@ -105,10 +119,8 @@ def compute(root: Path, status, *, binding: ScientificBinding):
     software = [{"path": p.relative_to(WORKSPACE_ROOT).as_posix(), "sha256": sha256(p)} for p in wrapper_files]
     manifest_hash = sha256(MANIFEST)
     request = ValidateExperimentRequest.model_validate_json(target(root, "request.json").read_text(encoding="utf-8"))
-    validated = validate_experiment(request)
     saved = json.loads(target(root, "config.json").read_text(encoding="utf-8"))
-    if validated.model_dump(mode="json") != saved:
-        raise RuntimeError("RUN_CONFIG_IDENTITY_MISMATCH")
+    validated = validate_recorded_request(request, saved)
     config = validated.normalized_config
     smoke_steps = json.loads(target(root, "execution.json").read_text(encoding="utf-8"))["smoke_steps"]
     if smoke_steps is not None and (type(smoke_steps) is not int or not 2 <= smoke_steps <= 5):

@@ -4,6 +4,91 @@
  */
 
 export interface paths {
+    "/api/v1/auth/session": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Email verification and persistent server-side sessions. */
+        get: operations["AUTH01"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/email-verification-challenges": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Email verification and persistent server-side sessions. */
+        post: operations["AUTH02"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Email verification and persistent server-side sessions. */
+        post: operations["AUTH03"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Email verification and persistent server-side sessions. */
+        post: operations["AUTH04"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Email verification and persistent server-side sessions. */
+        post: operations["AUTH05"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/system": {
         parameters: {
             query?: never;
@@ -11,7 +96,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Project metadata and current experiment delivery status; accounts disabled. */
+        /** @description Project metadata, experiment delivery and account feature status. */
         get: operations["SYS01"];
         put?: never;
         post?: never;
@@ -3029,6 +3114,74 @@ export interface components {
             /** Runs */
             runs: components["schemas"]["ValidationRunView"][];
         };
+        /** AuthSession */
+        AuthSession: {
+            /** Enabled */
+            enabled: boolean;
+            /** Authenticated */
+            authenticated: boolean;
+            /** @default null */
+            user: components["schemas"]["AuthUser"] | null;
+            /**
+             * Csrf Token
+             * @default
+             */
+            csrf_token: string;
+            /**
+             * Mail Configured
+             * @default false
+             */
+            mail_configured: boolean;
+        };
+        /** AuthUser */
+        AuthUser: {
+            /** Id */
+            id: string;
+            /** Email */
+            email: string;
+        };
+        /** AuthSessionResponse */
+        AuthSessionResponse: {
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["AuthSession"];
+        };
+        /** EmailChallenge */
+        EmailChallenge: {
+            /**
+             * Delivery Status
+             * @default SMTP_ACCEPTED
+             * @constant
+             */
+            delivery_status: "SMTP_ACCEPTED";
+            /** Expires In */
+            expires_in: number;
+            /** Retry After */
+            retry_after: number;
+        };
+        /** EmailChallengeResponse */
+        EmailChallengeResponse: {
+            /** Request Id */
+            request_id: string;
+            data: components["schemas"]["EmailChallenge"];
+        };
+        /** EmailCodeRequest */
+        Input_EmailCodeRequest: {
+            /** Email */
+            email: string;
+            /**
+             * Purpose
+             * @enum {string}
+             */
+            purpose: "login" | "register";
+        };
+        /** EmailSignInRequest */
+        Input_EmailSignInRequest: {
+            /** Email */
+            email: string;
+            /** Code */
+            code: string;
+        };
         /** RegistryQuery */
         Input_RegistryQuery: {
             /**
@@ -5678,11 +5831,13 @@ export interface components {
              * Support
              * @enum {string}
              */
-            support: "FIXED" | "CANDIDATE" | "UNSUPPORTED";
+            support: "FIXED" | "CANDIDATE" | "RANGE" | "UNSUPPORTED";
             /** Verified Values */
             verified_values: unknown[];
             /** Candidate Values */
             candidate_values: unknown[];
+            /** @default null */
+            input_range: components["schemas"]["ParameterRange"] | null;
             /** Unit */
             unit: string;
             /** Source Refs */
@@ -5698,6 +5853,28 @@ export interface components {
             execution_verified: boolean;
             /** Reason */
             reason: string;
+        };
+        /** ParameterRange */
+        ParameterRange: {
+            /** Minimum */
+            minimum: number;
+            /** Maximum */
+            maximum: number;
+            /**
+             * Minimum Inclusive
+             * @default true
+             */
+            minimum_inclusive: boolean;
+            /**
+             * Maximum Inclusive
+             * @default true
+             */
+            maximum_inclusive: boolean;
+            /**
+             * Integer
+             * @default false
+             */
+            integer: boolean;
         };
         /** V2Envelope[LiveCases] */
         V2Envelope_LiveCases_: {
@@ -7525,6 +7702,441 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    AUTH01: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthSessionResponse"];
+                };
+            };
+            /** @description INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_ALREADY_EXISTS */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description RATE_LIMITED, CODE_SEND_TOO_FREQUENT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    AUTH02: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_EmailCodeRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EmailChallengeResponse"];
+                };
+            };
+            /** @description INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_ALREADY_EXISTS */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description RATE_LIMITED, CODE_SEND_TOO_FREQUENT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    AUTH03: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_EmailSignInRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthSessionResponse"];
+                };
+            };
+            /** @description INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_ALREADY_EXISTS */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description RATE_LIMITED, CODE_SEND_TOO_FREQUENT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    AUTH04: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Input_EmailSignInRequest"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthSessionResponse"];
+                };
+            };
+            /** @description INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_ALREADY_EXISTS */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description RATE_LIMITED, CODE_SEND_TOO_FREQUENT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
+    AUTH05: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthSessionResponse"];
+                };
+            };
+            /** @description INVALID_REQUEST, INVALID_EMAIL, INVALID_VERIFICATION_CODE */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_NOT_FOUND */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_ALREADY_EXISTS */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description UNSUPPORTED_MEDIA_TYPE */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description RATE_LIMITED, CODE_SEND_TOO_FREQUENT */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+            /** @description MAIL_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE, FEATURE_NOT_ENABLED */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FailedEnvelope"];
+                };
+            };
+        };
+    };
     SYS01: {
         parameters: {
             query?: {
@@ -11402,6 +12014,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description CAPABILITY_REVISION_CONFLICT */
             409: {
                 headers: {
@@ -11447,6 +12077,15 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description ACCOUNT_STORE_UNAVAILABLE */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
         };
     };
     V2_PARSE_EXPERIMENT: {
@@ -11473,6 +12112,24 @@ export interface operations {
             };
             /** @description INVALID_REQUEST */
             400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -11534,7 +12191,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description AI_UNAVAILABLE */
+            /** @description AI_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -11681,6 +12338,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
             404: {
                 headers: {
@@ -11744,7 +12419,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description RUN_SERVICE_UNAVAILABLE */
+            /** @description RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -11887,6 +12562,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
             404: {
                 headers: {
@@ -11950,7 +12643,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description RUN_SERVICE_UNAVAILABLE */
+            /** @description RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -12936,6 +13629,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
             404: {
                 headers: {
@@ -12999,7 +13710,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description AI_UNAVAILABLE */
+            /** @description AI_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -13041,6 +13752,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, SNAPSHOT_NOT_FOUND */
             404: {
                 headers: {
@@ -13104,7 +13833,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description AI_UNAVAILABLE */
+            /** @description AI_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -13211,6 +13940,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN */
             404: {
                 headers: {
@@ -13240,6 +13987,15 @@ export interface operations {
             };
             /** @description INTERNAL_ERROR, RUN_OUTPUT_INVALID, REPORT_OUTPUT_INVALID, CANONICAL_SCHEMA_MISMATCH */
             500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description ACCOUNT_STORE_UNAVAILABLE */
+            503: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -13442,6 +14198,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN */
             404: {
                 headers: {
@@ -13496,7 +14270,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE */
+            /** @description PDF_UNAVAILABLE, EXPORT_TIMEOUT, EXPORT_STORAGE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -13637,6 +14411,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
             404: {
                 headers: {
@@ -13700,7 +14492,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description RUN_SERVICE_UNAVAILABLE */
+            /** @description RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -13742,6 +14534,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
             404: {
                 headers: {
@@ -13805,7 +14615,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description RUN_SERVICE_UNAVAILABLE */
+            /** @description RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -13951,6 +14761,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
             404: {
                 headers: {
@@ -14014,7 +14842,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description RUN_SERVICE_UNAVAILABLE */
+            /** @description RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -14157,6 +14985,24 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
+            /** @description UNAUTHENTICATED */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
+            /** @description CSRF_FAILED */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["V2FailedEnvelope"];
+                };
+            };
             /** @description UNKNOWN_RUN, UNKNOWN_SWEEP */
             404: {
                 headers: {
@@ -14220,7 +15066,7 @@ export interface operations {
                     "application/json": components["schemas"]["V2FailedEnvelope"];
                 };
             };
-            /** @description RUN_SERVICE_UNAVAILABLE */
+            /** @description RUN_SERVICE_UNAVAILABLE, ACCOUNT_STORE_UNAVAILABLE */
             503: {
                 headers: {
                     [name: string]: unknown;

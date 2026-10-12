@@ -129,6 +129,8 @@ def unsupported_parameter(message: str, *, resource_type: str = "spectrum", iden
 
 def register_error_handlers(app: Flask) -> None:
     def domain_response(error: DomainError):
+        if getattr(error, 'retry_after', None):
+            g.auth_retry_after = error.retry_after
         if request.path.startswith("/api/v2/"):
             from backend.api.v2.errors import v2_error_response
             from backend.services.v2.experiments import ExperimentError

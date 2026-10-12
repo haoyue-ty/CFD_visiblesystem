@@ -6,3 +6,7 @@ export function runCaseName(caseId: string): string { return caseId === 'case8' 
 export function runDate(value: string | null): string {
   return value ? new Date(value).toLocaleString('zh-CN', { hour12: false }) : '尚未开始'
 }
+export function runSelectionLabel(run: RunRecord): string {
+  const config = run.experiment.normalized_config
+  return `${runDate(run.created_at)} · ${config.grid.nx}×${config.grid.ny} · q_aa=${config.method.q_aa} · q_at=${config.method.q_at} · ${run.run_id.slice(0, 8)}`
+}

@@ -27,8 +27,40 @@ const labels = { LIVE_FAST_RUN: '普通配置', LIVE_PAPER_PROFILE: '论文标�
   PAPER_SCALE_CUSTOM: '论文模板 · 自定义参数', CUSTOM_RUN: '自定义实验' }
 const fieldLabels: Record<string, string> = { 'grid.nx': 'Nx', 'grid.ny': 'Ny', 'time.cfl': 'CFL',
   'time.final_time': '终止时间 T', 'method.q_aa': 'q_aa', 'method.q_at': 'q_at' }
-const editable = computed(() => registry.value?.capabilities.filter(c => c.scope === 'INPUT' && c.support === 'CANDIDATE') ?? [])
+const editable = computed(() => registry.value?.capabilities.filter(c => c.scope === 'INPUT' && (c.support === 'CANDIDATE' || c.support === 'RANGE')) ?? [])
 const selectedTemplate = computed(() => registry.value?.templates.find(t => t.template_id === templateId.value))
+const gridNxRange = computed(() => editable.value.find(field => field.field_path === 'grid.nx')?.input_range)
+const gridNyRange = computed(() => editable.value.find(field => field.field_path === 'grid.ny')?.input_range)
+const validForm = computed(() => {
+  if (mode.value !== 'form') return true
+  if (!config.value) return false
+  const { nx, ny } = config.value.grid
+  return Number.isInteger(nx) && nx > 0 && Number.isInteger(ny) && ny > 0
+    && editable.value.every(field => {
+      const value = readField(field.field_path)
+      if (!Number.isFinite(value)) return false
+      const range = field.input_range
+      if (!range) return field.field_path === 'time.final_time' ? value > 0 : value >= 0
+      return (!range.integer || Number.isInteger(value))
+        && (range.minimum_inclusive ? value >= range.minimum : value > range.minimum)
+        && (range.maximum_inclusive ? value <= range.maximum : value < range.maximum)
+    })
+})
+function fieldHelp(field: LiveCase['capabilities'][number]): string {
+  const range = field.input_range
+  if (range) {
+    const lower = range.minimum_inclusive ? '≤' : '<'
+    const upper = range.maximum_inclusive ? '≤' : '<'
+    return `格式：${range.integer ? '整数' : '数值，可填写小数'}；范围：${range.minimum} ${lower} ${field.label} ${upper} ${range.maximum}。`
+  }
+  const candidates = [...new Set([...field.verified_values, ...field.candidate_values])]
+  return `格式：${field.field_path === 'time.final_time' ? '正数' : '非负数'}，可填写小数；当前支持：${candidates.join('、')}。`
+}
+const gridHelp = computed(() => {
+  const nx = gridNxRange.value
+  const ny = gridNyRange.value
+  return nx && ny ? `格式：Nx、Ny 分别填写整数；范围：Nx ${nx.minimum}–${nx.maximum}，Ny ${ny.minimum}–${ny.maximum}，可自由组合。` : '格式：Nx、Ny 分别填写正整数。'
+})
 
 function invalidate() {
   revision++
@@ -71,18 +103,16 @@ function readField(path: string): number {
   const [group, key] = path.split('.') as [keyof LiveConfig, string]
   return (config.value?.[group] as Record<string, number> | undefined)?.[key] ?? 0
 }
+function displayField(path: string): number | '' {
+  const value = readField(path)
+  return Number.isFinite(value) ? value : ''
+}
 function setField(path: string, event: Event) {
   if (!config.value) return
   const [group, key] = path.split('.') as [keyof LiveConfig, string]
   const values = config.value[group] as unknown as Record<string, number>
-  values[key] = Number((event.target as HTMLSelectElement).value)
-  draft.value = null
-}
-function setGrid(event: Event) {
-  if (!config.value) return
-  const [nx, ny] = (event.target as HTMLSelectElement).value.split('x').map(Number)
-  config.value.grid.nx = nx!
-  config.value.grid.ny = ny!
+  const input = (event.target as HTMLInputElement).value
+  values[key] = input === '' ? NaN : Number(input)
   draft.value = null
 }
 function useCustom() {
@@ -111,7 +141,7 @@ async function load() {
 }
 
 async function check(confirm = false) {
-  if (!config.value || !registry.value || busy.value) return
+  if (!config.value || !registry.value || busy.value || !validForm.value) return
   const current = revision
   const candidate = structuredClone(JSON.parse(JSON.stringify(config.value))) as LiveConfig
   const meta = submission()
@@ -210,18 +240,22 @@ onMounted(load)
 
           <template v-if="mode === 'form' && config">
             <button class="text-button" :disabled="busy" @click="useCustom">使用直接自定义配置</button>
-            <label class="field">网格 Nx × Ny
-              <select aria-label="网格" :value="`${config.grid.nx}x${config.grid.ny}`" :disabled="busy" @change="setGrid">
-                <option v-for="pair in registry.grid_pairs" :key="pair.join('x')" :value="pair.join('x')">{{ pair[0] }} × {{ pair[1] }}</option>
-              </select>
-            </label>
+            <div class="grid-inputs" role="group" aria-label="网格 Nx × Ny">
+              <label class="field">网格 Nx
+                <input type="number" aria-label="网格 Nx" :value="displayField('grid.nx')" :min="gridNxRange?.minimum ?? 1" :max="gridNxRange?.maximum" step="1" :disabled="busy" required placeholder="例如 64" aria-describedby="grid-help" @input="setField('grid.nx', $event)" />
+              </label>
+              <label class="field">网格 Ny
+                <input type="number" aria-label="网格 Ny" :value="displayField('grid.ny')" :min="gridNyRange?.minimum ?? 1" :max="gridNyRange?.maximum" step="1" :disabled="busy" required placeholder="例如 16" aria-describedby="grid-help" @input="setField('grid.ny', $event)" />
+              </label>
+            </div>
+            <p id="grid-help" class="hint field-help">{{ gridHelp }}推荐网格：{{ registry.grid_pairs.map(pair => pair.join(' × ')).join('、') }}。</p>
             <label v-for="field in editable.filter(c => !c.field_path.startsWith('grid.'))" :key="field.field_path" class="field">
               {{ field.label }}
-              <select :aria-label="field.label" :value="readField(field.field_path)" :disabled="busy" @change="setField(field.field_path, $event)">
-                <option v-for="value in field.candidate_values" :key="String(value)" :value="String(value)">{{ value }}</option>
-              </select>
+              <input type="number" :aria-label="field.label" :value="displayField(field.field_path)" :min="field.input_range?.minimum ?? 0" :max="field.input_range?.maximum" step="any" :disabled="busy" required :placeholder="`例如 ${field.candidate_values[0] ?? field.verified_values[0] ?? 0}`" :aria-describedby="`help-${field.field_path.replace('.', '-')}`" @input="setField(field.field_path, $event)" />
+              <small :id="`help-${field.field_path.replace('.', '-')}`" class="hint field-help">{{ fieldHelp(field) }}</small>
             </label>
-            <p class="hint">CFL=0.05、Mach=6、γ=1.4 固定。可编辑值仅限已登记并通过 P2 核查的候选。</p>
+            <p v-if="!validForm" class="error field-help" role="alert">请按各输入框下的范围填写完整的有效数值；网格必须使用整数。</p>
+            <p class="hint">CFL=0.05、Mach=6、γ=1.4 固定。范围内可填写自己的参数，填写后点击“验证配置”。</p>
           </template>
 
           <template v-if="mode === 'natural_language'">
@@ -250,7 +284,7 @@ onMounted(load)
             <p>快照沿用 0、0.2、0.4、0.6、0.8、1 的源 checkpoint fractions，实际步数待求解器计算。</p>
             <ul><li v-for="cap in registry.capabilities.filter(c => c.scope === 'INPUT' && c.support === 'UNSUPPORTED')" :key="cap.field_path">{{ cap.label }}：{{ cap.reason }}</li></ul>
           </details>
-          <button v-if="mode !== 'natural_language'" class="primary" :disabled="busy || !config" @click="check()">{{ busy ? '正在验证…' : '验证配置' }}</button>
+          <button v-if="mode !== 'natural_language'" class="primary" :disabled="busy || !config || !validForm" @click="check()">{{ busy ? '正在验证…' : '验证配置' }}</button>
         </section>
 
         <section class="panel summary" aria-label="配置摘要" data-testid="config-summary">
@@ -295,11 +329,12 @@ p, li { line-height: 1.7; }.notice { padding: .75rem 1rem; background: var(--sp-
 .builder__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
 .panel { background: #fff; border: 1px solid var(--sp-border); border-radius: var(--sp-radius); padding: 1.5rem; min-width: 0; }
 .modes { display: flex; gap: .6rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-button, select, textarea { font: inherit; } button { border: 1px solid var(--sp-border); border-radius: 12px; background: #fff; color: var(--sp-text); padding: .55rem .9rem; cursor: pointer; }
+button, input, select, textarea { font: inherit; } button { border: 1px solid var(--sp-border); border-radius: 12px; background: #fff; color: var(--sp-text); padding: .55rem .9rem; cursor: pointer; }
 button[aria-pressed="true"] { background: var(--sp-primary-soft); color: var(--sp-primary); border-color: #ccd6ff; }.primary { background: var(--sp-primary); color: #fff; border-color: var(--sp-primary); }button:disabled { opacity: .55; cursor: default; }
 .modes button { border-radius: 999px; min-height: 44px; padding-inline: 18px; }.builder__header > p:not(.eyebrow):not(.notice) { color: var(--sp-muted); }.panel button { min-height: 44px; border-radius: 999px; padding-inline: 18px; }
 .field { display: flex; flex-direction: column; gap: .4rem; margin: 1rem 0; font-size: .9rem; }
-select, textarea { padding: .7rem; border: 1px solid var(--sp-border); border-radius: 12px; background: #fff; color: var(--sp-text); max-width: 100%; }textarea { resize: vertical; }
+input, select, textarea { padding: .7rem; border: 1px solid var(--sp-border); border-radius: 12px; background: #fff; color: var(--sp-text); max-width: 100%; min-width: 0; }textarea { resize: vertical; }
+.grid-inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }.grid-inputs input { width: 100%; }.grid-inputs .field { margin-bottom: 0; }.field-help { margin-top: 4px; font-size: .78rem; line-height: 1.6; }
 .hint { color: var(--sp-muted); font-size: .85rem; }.text-button { font-size: .8rem; }.protocol { margin: 1.3rem 0; font-size: .85rem; }
 summary { cursor: pointer; color: var(--sp-primary); } .classification { font-weight: 600; color: var(--sp-primary); } dl { display: grid; grid-template-columns: 5rem 1fr; gap: .7rem; font-size: .9rem; }dt { color: var(--sp-muted); }dd { margin: 0; }
 table { border-collapse: collapse; width: 100%; font-size: .85rem; margin: 1.4rem 0; text-align: left; }th,td { padding: .5rem; border-bottom: 1px solid var(--sp-border); }caption { text-align: left; margin-bottom: .6rem; color: var(--sp-muted); }

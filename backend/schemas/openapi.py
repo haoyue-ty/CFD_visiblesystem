@@ -76,7 +76,8 @@ def export_openapi(catalog: OperationCatalog) -> dict:
                 "schema": register_model(operation.request_body_model, "validation")}}}
         for name in operation.request_headers:
             entry.setdefault("parameters", []).append({"name": name, "in": "header", "required": False,
-                                                       "schema": {"type": "string", "pattern": "^[0-9]{1,10}$"}})
+                                                       "schema": ({"type": "string", "minLength": 1, "maxLength": 128}
+                                                                  if name == 'X-CSRF-Token' else {"type": "string", "pattern": "^[0-9]{1,10}$"})})
         paths.setdefault(operation.path, {})[operation.method.lower()] = entry
     return OpenAPIDocument(
         openapi="3.1.0", jsonSchemaDialect="https://json-schema.org/draft/2020-12/schema",

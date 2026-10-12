@@ -52,7 +52,7 @@ def pdf_capability(settings):
 
 def render_pdf(html, output, browser, *, timeout):
     env = {key: value for key, value in os.environ.items()
-           if not any(word in key.upper() for word in ("API_KEY", "TOKEN", "SECRET", "PASSWORD"))}
+           if not any(word in key.upper() for word in ("API_KEY", "TOKEN", "SECRET", "PASSWORD", "SMTP", "AUTH_DATABASE"))}
     env["PYTHONPATH"] = str(WORKSPACE_ROOT)
     process = None
     try:

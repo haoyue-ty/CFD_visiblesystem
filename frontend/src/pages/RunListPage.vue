@@ -36,7 +36,7 @@ onUnmounted(() => { generation++; clearInterval(timer) })
     <WorkspaceNavigation />
     <header><p class="eyebrow">SHOCKPATH · 运行任务</p><h1>运行任务</h1>
       <p>查看新建实验的真实运行记录。任务按提交顺序串行求解，刷新后可继续查看。</p>
-      <RouterLink to="/experiments/new" class="sp-button sp-button--primary">新建计算</RouterLink></header>
+      <RouterLink to="/experiments/new" class="sp-button workspace__create">新建计算</RouterLink></header>
     <div class="toolbar"><label>运行状态 <select v-model="filter" aria-label="运行状态"><option value="">全部</option>
       <option v-for="(label, key) in statusLabels" :key="key" :value="key">{{ label }}</option></select></label>
       <button @click="refresh">刷新列表</button><span v-if="!error && !loading">共 {{ total }} 次运行</span></div>
@@ -54,6 +54,7 @@ onUnmounted(() => { generation++; clearInterval(timer) })
 .eyebrow { font-size: .75rem; letter-spacing: .12em; color: var(--sp-muted); }p { line-height: 1.7; }
 button,select,.primary { font: inherit; padding: .55rem .9rem; border: 1px solid var(--sp-border); border-radius: 12px; background: white; color: var(--sp-text); }
 .primary { display: inline-block; background: var(--sp-primary); color: white; text-decoration: none; }button:disabled { opacity: .5; }
+.workspace__create { color: var(--sp-text); }
 .toolbar { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin: 1.5rem 0; }
 .runs { padding: 0; list-style: none; }.runs li { padding: 1.2rem; border: 1px solid var(--sp-border); border-radius: 12px; margin: .8rem 0; overflow-wrap: anywhere; }
 strong { float: right; }a { color: var(--sp-primary); }.hint,small { color: var(--sp-muted); font-size: .8rem; }

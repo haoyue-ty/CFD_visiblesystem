@@ -59,7 +59,8 @@ def test_standalone_capabilities_do_not_enable_web_execution(client):
     assert not case['execution_available']
     assert len(case['templates']) == 5
     assert case['templates'][0]['benchmark_status'] == 'PASSED'
-    assert all(c['execution_verified'] for c in case['capabilities'] if c['scope'] == 'INPUT' and c['validation_ready'])
+    assert all(c['execution_verified'] for c in case['capabilities'] if c['scope'] == 'INPUT' and c['support'] == 'FIXED')
+    assert all(c['input_range'] and not c['execution_verified'] for c in case['capabilities'] if c['support'] == 'RANGE')
     assert all(not c['execution_verified'] for c in case['capabilities'] if c['support'] == 'UNSUPPORTED')
     outputs = [c for c in case['capabilities'] if c['scope'] == 'OUTPUT']
     assert {c['field_path'] for c in outputs} == {'fields', 'entropy', 'metrics', 'allocation'}
@@ -145,7 +146,7 @@ def test_no_paper_identity_without_template_and_approved_fast(client):
 
 
 @pytest.mark.parametrize('path,value', [
-    ('grid.nx', True), ('grid.nx', 64.0), ('grid.nx', '64'), ('grid.ny', 1.5), ('grid.nx', 129), ('grid.ny', 0),
+    ('grid.nx', True), ('grid.nx', 64.0), ('grid.nx', '64'), ('grid.ny', 1.5), ('grid.nx', 257), ('grid.ny', 0),
     ('time.cfl', '0.05'), ('time.cfl', True), ('time.cfl', 0), ('time.final_time', -.01),
     ('method.q_aa', -1), ('method.q_at', .397), ('physics.mach', False),
     ('case_id', 'cylinder'), ('profile', 'production'), ('discretization.reconstruction', 'WENO'),
@@ -164,7 +165,7 @@ def test_invalid_or_unknown_fields_are_rejected(client, path, value):
 
 
 @pytest.mark.parametrize('path,value', [
-    ('time.cfl', .04), ('time.final_time', .02), ('method.q_aa', 4.0), ('method.q_at', .1),
+    ('time.cfl', .04),
     ('physics.mach', 5.), ('physics.gamma', 1.5), ('physics.initial_condition.corrugation_amplitude', .0001),
     ('physics.initial_condition.wavelength_count', 3), ('grid.domain.x', [0.,2.]),
     ('output.checkpoint_fractions', [0.,.1,.4,.6,.8,1.]), ('discretization.artificial_viscosity', True),
@@ -181,7 +182,9 @@ def test_unsupported_values_fail_with_field_details(client, path, value):
 def test_grid_combination_revision_and_lineage_fail(client):
     body = request_body()
     body['config']['grid']['nx'] = 64
-    assert client.post('/api/v2/experiments/validate', json=body).json['error']['code'] == 'UNSUPPORTED_COMBINATION'
+    response = client.post('/api/v2/experiments/validate', json=body)
+    assert response.status_code == 200
+    assert response.json['data']['classification'] == 'PAPER_SCALE_CUSTOM'
     body = request_body()
     body['submission']['capability_revision'] = 'old'
     assert client.post('/api/v2/experiments/validate', json=body).status_code == 409
@@ -330,7 +333,9 @@ def test_v1_contract_subset_unchanged(app):
     original = json.loads(subprocess.check_output(['git','show','HEAD:config/openapi.json']))
     actual = export_openapi(app.extensions['operation_catalog'])
     assert {key: actual['paths'][key] for key in original['paths']} == original['paths']
-    assert {key: actual['components']['schemas'][key] for key in original['components']['schemas']} == original['components']['schemas']
+    expanded = {'LiveGrid', 'Input_LiveGrid', 'ParameterCapability', 'Input_ParameterCapability'}
+    assert {key: actual['components']['schemas'][key] for key in original['components']['schemas'] if key not in expanded} == {
+        key: schema for key, schema in original['components']['schemas'].items() if key not in expanded}
     for path in ('/api/v2/experiments/validate', '/api/v2/experiments/parse-natural-language'):
         operation = actual['paths'][path]['post']
         assert operation['requestBody']['required']

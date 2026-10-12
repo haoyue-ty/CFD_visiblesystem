@@ -6,6 +6,8 @@ import { loadRuns, type RunRecord, type FieldName } from '../data/v2/runs'
 import ComparisonField from '../views/runs/ComparisonField.vue'
 import EntropyChart from '../scientific/EntropyChart.vue'
 import WorkspaceNavigation from '../components/WorkspaceNavigation.vue'
+import RunSelectionInput from '../components/RunSelectionInput.vue'
+import { runSelectionLabel } from '../presentation/runs'
 const route = useRoute()
 const runs = ref<RunRecord[]>([]), a = ref(String(route.query.a ?? '')), b = ref(String(route.query.b ?? ''))
 const field = ref<FieldName>('density'), time = ref(''), result = ref<Comparison>(), error = ref(''), busy = ref(false)
@@ -33,9 +35,9 @@ onMounted(async () => { await more(); if (a.value && b.value) await compare(true
   <main class="p7" data-page="run-comparison"><WorkspaceNavigation /><p class="eyebrow">SHOCKPATH · RUN A/B</p><h1>运行对比</h1>
     <p>先核查实验条件，再并列观察同一变量、同一真实时间。系数差异是比较因素。</p>
     <RouterLink to="/workspace">返回运行任务</RouterLink>
-    <form @submit.prevent="compare(true)"><label v-for="side in ['A', 'B']" :key="side">Run {{ side }}
-      <input :disabled="busy" :value="side === 'A' ? a : b" @input="side === 'A' ? a = ($event.target as HTMLInputElement).value : b = ($event.target as HTMLInputElement).value" list="completed-runs" :aria-label="`Run ${side}`" required placeholder="选择或粘贴 Run ID" /></label>
-      <datalist id="completed-runs"><option v-for="run in runs" :key="run.run_id" :value="run.run_id">q_aa={{ run.experiment.normalized_config.method.q_aa }} q_at={{ run.experiment.normalized_config.method.q_at }}</option></datalist>
+    <form class="run-picker-form" @submit.prevent="compare(true)">
+      <RunSelectionInput v-for="side in ['A', 'B']" :key="side" :model-value="side === 'A' ? a : b" @update:model-value="side === 'A' ? a = $event : b = $event" :label="`Run ${side}`" list="completed-runs" :runs="runs" :disabled="busy" :details-id="`run-${side.toLowerCase()}-details`" />
+      <datalist id="completed-runs"><option v-for="run in runs" :key="run.run_id" :value="run.run_id" :label="runSelectionLabel(run)">{{ runSelectionLabel(run) }}</option></datalist>
       <button :disabled="busy">核查并对比</button><button type="button" v-if="offset < total" @click="more">加载更多运行</button></form>
     <p v-if="busy" role="status">核查来源和结果…</p><p v-if="error" role="alert">{{ error }}</p>
     <section v-if="result"><h2 data-testid="comparison-conditions">{{ result.same_conditions ? '同条件比较' : '非同条件比较' }}</h2>
